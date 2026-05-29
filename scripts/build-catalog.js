@@ -90,7 +90,8 @@ async function buildCatalog() {
       if (!fs.existsSync(chMetaPath)) continue;
       const ch = JSON.parse(fs.readFileSync(chMetaPath, 'utf-8'));
 
-      // Auto-generate title kalau tidak diisi
+      // Auto-generate id dan title kalau tidak diisi
+      ch.id = `${slug}-ch-${ch.chapter_number}`;
       if (!ch.title) {
         ch.title = `Ch. ${ch.chapter_number}`;
       }
@@ -114,6 +115,10 @@ async function buildCatalog() {
 
     // Urutkan chapter: terbaru di atas (descending)
     chapters.sort((a, b) => b.chapter_number - a.chapter_number);
+
+    // coverUrl: pakai cover_dev saat development (jika ada), fallback ke covers[0]
+    manga.coverUrl = manga.cover_dev ?? manga.covers?.[0] ?? null;
+    delete manga.cover_dev; // jangan masuk catalog production
 
     catalog.push({ ...manga, chapters });
     console.log(`✅ ${manga.title} — ${chapters.length} chapters`);

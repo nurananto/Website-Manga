@@ -11,9 +11,11 @@
   "covers": [
     "manga/neon-genesis-echoes/covers/cover1.webp"
   ],
+  "cover_dev": "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&q=80&w=600",
   "mangadex_id": null,
   "mangadex_url": null,
   "raw_url": null,
+  "isTrending": true,
   "next_update": "2026-06-10T00:00:00+07:00",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null

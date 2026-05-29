@@ -260,7 +260,13 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
                   <h2 className="font-body-md text-sm font-extrabold text-on-surface truncate">{chapter.title}</h2>
                 </div>
                 {manga?.coverUrl && (
-                  <img src={manga.coverUrl} alt="" className="h-full w-10 object-cover rounded-xl shrink-0 opacity-80" />
+                  <div className="h-full py-1.5 flex items-center shrink-0">
+                    <img
+                      src={manga.coverUrl}
+                      alt=""
+                      className="h-full aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10"
+                    />
+                  </div>
                 )}
               </button>
             </div>
@@ -292,7 +298,13 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
                   <h2 className="font-body-md text-sm font-extrabold text-on-surface truncate">{chapter.title}</h2>
                 </div>
                 {manga?.coverUrl && (
-                  <img src={manga.coverUrl} alt="" className="h-full w-10 object-cover rounded-xl shrink-0 opacity-80" />
+                  <div className="h-full py-1.5 flex items-center shrink-0">
+                    <img
+                      src={manga.coverUrl}
+                      alt=""
+                      className="h-full aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10"
+                    />
+                  </div>
                 )}
               </button>
             </div>

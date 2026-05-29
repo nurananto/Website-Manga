@@ -19,13 +19,12 @@ export default function MangaCard({ manga, onReadChapter }) {
   return (
     <div className={`flex h-[200px] bg-surface-container rounded-xl overflow-hidden group hover:bg-surface-container-high transition-all duration-300 cursor-pointer border shadow-md ${borderClass}`}>
       {/* Cover Image Section */}
-      <div className="relative w-[130px] h-full flex-shrink-0 overflow-hidden">
+      <div className="relative w-[130px] h-full flex-shrink-0 flex items-center justify-center py-2 px-2 bg-surface-container-low">
         <img
           alt={manga.title}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          className="h-full max-h-[94%] aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
           src={manga.coverUrl}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-surface-dim/90 via-transparent to-transparent" />
 
         {/* UP badge — hanya tampil saat ada chapter baru */}
         {hasNewChapter && (

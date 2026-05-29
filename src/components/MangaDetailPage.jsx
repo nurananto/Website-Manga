@@ -44,32 +44,35 @@ const renderChapterRow = (ch, idx) => {
           !isNew ? 'opacity-60' : ''
         }`}
       >
-        {/* Left: unread dot + title + NEW badge (inline, sama seperti MangaCard) */}
+        {/* Left: unread dot + title + date */}
         <div className="flex items-center gap-3 min-w-0 flex-1">
           <div className={`w-2 h-2 rounded-full shrink-0 transition-all ${
             isUnread ? 'bg-primary shadow-[0_0_8px_rgba(137,206,255,0.8)]' : 'bg-transparent'
           }`} />
-          <div className="flex items-center gap-1.5 min-w-0">
-            <p className="font-body-md text-sm text-on-surface font-bold group-hover:text-primary transition-colors truncate">
-              {ch.title}
-            </p>
-            {isNew && (
-              <span className="relative flex items-center shrink-0">
-                <span className="absolute inset-0 rounded bg-emerald-400/40 animate-ping" />
-                <span className="relative font-label-sm bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase leading-none">
-                  New
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5 min-w-0">
+              <p className="font-body-md text-sm text-on-surface font-bold group-hover:text-primary transition-colors truncate">
+                {ch.title}
+              </p>
+              {isNew && (
+                <span className="relative flex items-center shrink-0">
+                  <span className="absolute inset-0 rounded bg-emerald-400/40 animate-ping" />
+                  <span className="relative font-label-sm bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase leading-none">
+                    New
+                  </span>
                 </span>
-              </span>
-            )}
-            {showStatusBadge && (
-              <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-wider ${
-                manga.status === 'Tamat'
-                  ? 'bg-red-500/15 text-red-400 border border-red-500/30'
-                  : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
-              }`}>
-                {manga.status}
-              </span>
-            )}
+              )}
+              {showStatusBadge && (
+                <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-wider ${
+                  manga.status === 'Tamat'
+                    ? 'bg-red-500/15 text-red-400 border border-red-500/30'
+                    : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
+                }`}>
+                  {manga.status}
+                </span>
+              )}
+            </div>
+            <p className="font-label-sm text-[11px] text-outline/60 mt-0.5">{ch.date || ch.release_date?.slice(0, 10)}</p>
           </div>
         </div>
 
@@ -95,7 +98,12 @@ const renderChapterRow = (ch, idx) => {
                 />
               </div>
             </div>
-          ) : null}
+          ) : (
+            <div className="flex items-center gap-1 text-outline/50 font-label-sm text-[11px] select-none shrink-0">
+              <Eye className="w-3.5 h-3.5 shrink-0" />
+              <span>{chapterViews}</span>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -122,7 +130,7 @@ const renderChapterRow = (ch, idx) => {
           {/* Info Over Cover Container */}
           <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-6 pb-4">
             {/* Cover Image */}
-            <div className="w-[150px] sm:w-[200px] md:w-[220px] aspect-[2/3] flex-shrink-0">
+            <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[2/3] flex-shrink-0">
               <img
                 alt={`${manga.title} Cover`}
                 className="w-full h-full object-cover rounded-xl shadow-2xl border border-white/10"
@@ -133,12 +141,12 @@ const renderChapterRow = (ch, idx) => {
             {/* Metadata info */}
             <div className="flex-grow w-full flex flex-col items-center sm:items-start mt-4 sm:mt-0 pb-1">
               {/* Title */}
-              <h2 className="font-headline-md text-2xl md:text-4xl lg:text-5xl leading-tight text-on-surface font-black tracking-tight mb-2 text-center sm:text-left">
+              <h2 className="font-headline-md text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-on-surface font-black tracking-tight mb-2 text-center sm:text-left">
                 {manga.title}
               </h2>
 
               {/* Alternative Title */}
-              <p className="text-outline/80 text-sm sm:text-base md:text-lg font-semibold mb-5 leading-normal text-center sm:text-left">
+              <p className="text-outline/80 text-base sm:text-lg md:text-xl font-semibold mb-5 leading-normal text-center sm:text-left">
                 {manga.alternativeTitle || "Alternative Title"}
               </p>
               
@@ -152,7 +160,7 @@ const renderChapterRow = (ch, idx) => {
                       onReadChapter(manga.chapters[manga.chapters.length - 1], manga.title);
                     }
                   }}
-                  className="px-7 h-11 bg-primary hover:bg-primary/95 text-on-primary rounded-xl font-label-sm font-bold text-xs sm:text-sm flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-primary/10 cursor-pointer"
+                  className="px-7 h-10 bg-primary hover:bg-primary/95 text-on-primary rounded-xl font-label-sm font-bold text-sm flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-primary/10 cursor-pointer"
                 >
                   <BookOpen className="w-4 h-4" />
                   {lastReadChapter ? `Lanjut Baca (${lastReadChapter.title.split(':')[0]})` : 'Mulai Baca'}
@@ -291,8 +299,8 @@ const renderChapterRow = (ch, idx) => {
               <div className="flex flex-col gap-1 p-3 sm:p-4">
                 <span className="font-label-sm text-[10px] text-outline/60 font-bold uppercase tracking-widest">Type</span>
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-violet-400 shrink-0" />
-                  <span className="font-body-md text-sm font-black text-violet-400">{manga.type || 'MANGA'}</span>
+                  <span className="w-2 h-2 rounded-full bg-white/60 shrink-0" />
+                  <span className="font-body-md text-sm font-black text-on-surface">{manga.type || 'MANGA'}</span>
                 </div>
               </div>
             </div>
@@ -357,7 +365,7 @@ const renderChapterRow = (ch, idx) => {
             </div>
 
             {/* Chapter List */}
-            <div className="divide-y divide-white/5 border-t border-b border-white/5">
+            <div className="divide-y divide-white/10 border-t border-b border-white/10">
               {showAllChapters ? (
                 sortedChapters.map((ch, idx) => renderChapterRow(ch, idx))
               ) : (
