@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { imgUrl } from '../utils';
+import { imgUrl, timeAgo } from '../utils';
 import { Star, BookOpen, ArrowUpDown, Eye, Coins, Clock } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
@@ -73,7 +73,7 @@ const renderChapterRow = (ch, idx) => {
                 </span>
               )}
             </div>
-            <p className="font-label-sm text-[11px] text-outline/60 mt-0.5">{ch.date || ch.release_date?.slice(0, 10)}</p>
+            <p className="font-label-sm text-[11px] text-outline/60 mt-0.5">{ch.date || timeAgo(ch.release_date)}</p>
           </div>
         </div>
 

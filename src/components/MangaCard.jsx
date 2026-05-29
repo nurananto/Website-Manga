@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { imgUrl } from '../utils';
+import { imgUrl, timeAgo } from '../utils';
 import { Star, Coins, Clock, ArrowUp } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
@@ -18,7 +18,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
     : 'border-white/5 hover:border-primary/20';
 
   return (
-    <div className={`flex h-[180px] bg-surface-container rounded-xl overflow-hidden group hover:bg-surface-container-high transition-all duration-300 border shadow-md ${borderClass}`}>
+    <div className={`flex h-[180px] bg-surface-container rounded-xl overflow-hidden group border shadow-md ${borderClass}`}>
       {/* Cover — klik ke detail */}
       <div
         onClick={onViewManga}
@@ -70,7 +70,6 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
             </div>
           )}
         </div>
-        <p className="font-body-md text-xs text-outline mt-0.5 truncate">{manga.author}</p>
 
         {/* Chapters List */}
         <div className="flex flex-col gap-1.5 mt-2">
@@ -132,7 +131,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                     </div>
                   </div>
                 ) : (
-                  <span className="font-label-sm text-xs text-outline/60 whitespace-nowrap shrink-0">{ch.date}</span>
+                  <span className="font-label-sm text-xs text-outline/60 whitespace-nowrap shrink-0">{ch.date || timeAgo(ch.release_date)}</span>
                 )}
               </div>
             );
