@@ -1,0 +1,20 @@
+{
+  "id": "neon-genesis-echoes",
+  "title": "Neon Genesis Echoes",
+  "alt_title": "新世紀エコー / Gema Awal Mula",
+  "status": "Ongoing",
+  "type": "MANGA",
+  "author": "Kyohei Araya",
+  "artist": "Yuki Tanaka",
+  "genres": ["Sci-Fi", "Cyberpunk", "Action", "Psychological"],
+  "description": "In a world where memories can be digitized and traded, a rogue archivist uncovers a fragmented file that holds the key to humanity's forgotten past.",
+  "covers": [
+    "manga/neon-genesis-echoes/covers/cover1.webp"
+  ],
+  "mangadex_id": null,
+  "mangadex_url": null,
+  "raw_url": null,
+  "next_update": "2026-06-10T00:00:00+07:00",
+  "tamat_at_chapter": null,
+  "hiatus_at_chapter": null
+}

@@ -1,0 +1,39 @@
+name: Build Catalog
+
+on:
+  push:
+    paths:
+      - 'chapters/**'
+  workflow_dispatch:        # bisa dipicu manual dari GitHub UI
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write       # izin commit balik ke repo
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0    # perlu full history untuk git log (release_date)
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate catalog.json
+        run: node scripts/build-catalog.js
+
+      - name: Generate version file
+        run: |
+          echo "{\"v\":\"$(date +%s)\"}" > public/version.json
+
+      - name: Commit hasil build
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/catalog.json public/version.json
+          git diff --staged --quiet || git commit -m "chore: update catalog & sw version [skip ci]"
+          git push
