@@ -30,7 +30,7 @@ function CountdownLarge({ unlockDate }) {
         const cell = (
           <div key={l} className="flex flex-col items-center">
             <span className="font-mono text-4xl font-black text-on-surface tabular-nums leading-none">{pad(v)}</span>
-            <span className="font-label-sm text-[9px] text-outline/60 font-bold uppercase tracking-widest mt-1">{l}</span>
+            <span className="font-label-sm text-[10px] sm:text-xs text-outline/60 font-bold uppercase tracking-widest mt-1">{l}</span>
           </div>
         );
         if (i === 0) return [cell];
@@ -419,7 +419,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
                   <BookOpen className="w-7 h-7 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-headline-md text-lg font-black text-on-surface">Kamu sudah sampai chapter terbaru!</h3>
+                  <h3 className="font-headline-md text-base sm:text-lg font-black text-on-surface">Kamu sudah sampai chapter terbaru!</h3>
                   <p className="font-headline-md text-base font-black text-on-surface mt-1">{manga?.title}</p>
                   <p className="font-body-md text-sm text-outline mt-0.5">{chapters[0]?.title}</p>
                   <p className="font-label-sm text-xs text-outline/60 mt-0.5">Diupload: {chapters[0]?.date}</p>

@@ -354,8 +354,8 @@ const renderChapterRow = (ch, idx) => {
           <div className={`lg:col-span-7 lg:flex flex-col ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
             {/* Chapter List Header */}
             <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-2">
-              <h3 className="font-headline-md text-lg text-on-surface font-black">
-                Chapters <span className="font-body-md text-on-surface-variant font-normal text-sm">({manga.chapters.length})</span>
+              <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">
+                Chapters <span className="font-body-md text-on-surface-variant font-normal text-xs sm:text-sm">({manga.chapters.length})</span>
               </h3>
               <button
                 onClick={() => setSortNewest(v => !v)}

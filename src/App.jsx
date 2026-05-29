@@ -294,7 +294,7 @@ export default function App() {
                                 className="w-5 h-5 object-contain shrink-0 brightness-0 invert drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] group-hover:scale-110 transition-transform duration-300"
                               />
                               <span>Suka dengan hasil terjemahan ini? Silahkan donasi ke Trakteer!</span>
-                              <span className="flex items-center gap-1.5 bg-red-600 text-white px-2 py-0.5 rounded text-[10px] sm:text-xs font-black shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                              <span className="flex items-center gap-1.5 bg-red-600 text-white px-2 py-0.5 rounded text-xs font-black shadow-sm group-hover:scale-105 transition-transform shrink-0">
                                 Donasi
                               </span>
                             </div>
@@ -310,7 +310,7 @@ export default function App() {
                                 className="w-5 h-5 object-contain shrink-0 brightness-0 invert drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] group-hover:scale-110 transition-transform duration-300"
                               />
                               <span>Suka dengan hasil terjemahan ini? Silahkan donasi ke Trakteer!</span>
-                              <span className="flex items-center gap-1.5 bg-red-600 text-white px-2 py-0.5 rounded text-[10px] sm:text-xs font-black shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                              <span className="flex items-center gap-1.5 bg-red-600 text-white px-2 py-0.5 rounded text-xs font-black shadow-sm group-hover:scale-105 transition-transform shrink-0">
                                 Donasi
                               </span>
                             </div>
