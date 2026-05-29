@@ -140,19 +140,19 @@ const renderChapterRow = (ch, idx) => {
             </div>
 
             {/* Metadata info */}
-            <div className="flex-grow w-full flex flex-col items-center sm:items-start mt-4 sm:mt-0 pb-1">
-              {/* Title */}
-              <h2 className="font-headline-md text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-on-surface font-black tracking-tight mb-2 text-center sm:text-left">
+            <div className="flex-grow w-full flex flex-col items-center sm:items-start mt-3 sm:mt-0 pb-1">
+              {/* Title — max 2 baris */}
+              <h2 className="font-headline-md text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-on-surface font-black tracking-tight mb-1.5 text-center sm:text-left line-clamp-2">
                 {manga.title}
               </h2>
 
               {/* Alternative Title */}
-              <p className="text-outline/80 text-base sm:text-lg md:text-xl font-semibold mb-5 leading-normal text-center sm:text-left">
+              <p className="text-outline/80 text-sm sm:text-base md:text-lg font-semibold mb-3 leading-normal text-center sm:text-left line-clamp-1">
                 {manga.alternativeTitle || manga.alt_title || ''}
               </p>
-              
-              {/* Tombol Baca — otomatis berganti jadi Lanjut Baca saat ada riwayat */}
-              <div className="flex w-full justify-center sm:justify-start mt-2">
+
+              {/* Tombol Baca */}
+              <div className="flex w-full justify-center sm:justify-start">
                 <button
                   onClick={() => {
                     if (lastReadChapter) {
@@ -161,7 +161,7 @@ const renderChapterRow = (ch, idx) => {
                       onReadChapter(manga.chapters[manga.chapters.length - 1], manga.title);
                     }
                   }}
-                  className="px-7 h-10 bg-primary hover:bg-primary/95 text-on-primary rounded-xl font-label-sm font-bold text-sm flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-primary/10 cursor-pointer"
+                  className="px-6 h-10 bg-primary hover:bg-primary/95 text-on-primary rounded-xl font-label-sm font-bold text-sm flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-primary/10 cursor-pointer"
                 >
                   <BookOpen className="w-4 h-4" />
                   {lastReadChapter ? `Lanjut Baca (${lastReadChapter.title.split(':')[0]})` : 'Mulai Baca'}
@@ -252,32 +252,32 @@ const renderChapterRow = (ch, idx) => {
                   <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-current" />
                   <span className="font-headline-md text-lg sm:text-xl font-black text-on-surface">{manga.rating}</span>
                 </div>
-                <span className="font-label-sm text-[10px] text-outline/70 font-semibold uppercase tracking-wide">Rating</span>
+                <span className="font-label-sm text-xs text-outline/70 font-semibold uppercase tracking-wide">Rating</span>
               </div>
               <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-white/5">
                 <div className="flex items-center gap-1.5">
                   <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
                   <span className="font-headline-md text-lg sm:text-xl font-black text-on-surface">{manga.chapters.length}</span>
                 </div>
-                <span className="font-label-sm text-[10px] text-outline/70 font-semibold uppercase tracking-wide">Chapters</span>
+                <span className="font-label-sm text-xs text-outline/70 font-semibold uppercase tracking-wide">Chapters</span>
               </div>
               <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-white/5">
                 <div className="flex items-center gap-1.5">
                   <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" />
                   <span className="font-headline-md text-lg sm:text-xl font-black text-on-surface">{manga.total_views ? `${(manga.total_views / 1000).toFixed(1)}k` : '—'}</span>
                 </div>
-                <span className="font-label-sm text-[10px] text-outline/70 font-semibold uppercase tracking-wide">Views</span>
+                <span className="font-label-sm text-xs text-outline/70 font-semibold uppercase tracking-wide">Views</span>
               </div>
             </div>
 
             {/* Author + Artist */}
             <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-white/5 overflow-hidden">
               <div className="flex flex-col gap-1 p-3 sm:p-4 border-r border-white/5 min-w-0">
-                <span className="font-label-sm text-[10px] text-outline/60 font-bold uppercase tracking-widest">Author</span>
+                <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Author</span>
                 <span className="font-body-md text-sm font-bold text-on-surface truncate">{manga.author || '—'}</span>
               </div>
               <div className="flex flex-col gap-1 p-3 sm:p-4 min-w-0">
-                <span className="font-label-sm text-[10px] text-outline/60 font-bold uppercase tracking-widest">Artist</span>
+                <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Artist</span>
                 <span className="font-body-md text-sm font-bold text-on-surface truncate">{manga.artist || '—'}</span>
               </div>
             </div>
@@ -285,7 +285,7 @@ const renderChapterRow = (ch, idx) => {
             {/* Status + Type */}
             <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-white/5 overflow-hidden">
               <div className="flex flex-col gap-1 p-3 sm:p-4 border-r border-white/5">
-                <span className="font-label-sm text-[10px] text-outline/60 font-bold uppercase tracking-widest">Status</span>
+                <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Status</span>
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full shrink-0 ${
                     manga.status === 'Tamat' ? 'bg-red-400' :
@@ -298,7 +298,7 @@ const renderChapterRow = (ch, idx) => {
                 </div>
               </div>
               <div className="flex flex-col gap-1 p-3 sm:p-4">
-                <span className="font-label-sm text-[10px] text-outline/60 font-bold uppercase tracking-widest">Type</span>
+                <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Type</span>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-white/60 shrink-0" />
                   <span className="font-body-md text-sm font-black text-on-surface">{manga.type || 'MANGA'}</span>
