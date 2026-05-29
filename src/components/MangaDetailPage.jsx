@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
+import { imgUrl } from '../utils';
 import { Star, BookOpen, ArrowUpDown, Eye, Coins, Clock } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
@@ -122,7 +123,7 @@ const renderChapterRow = (ch, idx) => {
             <img
               alt=""
               className="w-full h-full object-cover scale-125 blur-3xl opacity-35"
-              src={manga.coverUrl}
+              src={imgUrl(manga.coverUrl)}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/30 to-transparent" />
           </div>
@@ -134,7 +135,7 @@ const renderChapterRow = (ch, idx) => {
               <img
                 alt={`${manga.title} Cover`}
                 className="w-full h-full object-cover rounded-xl shadow-2xl border border-white/10"
-                src={manga.coverUrl}
+                src={imgUrl(manga.coverUrl)}
               />
             </div>
 

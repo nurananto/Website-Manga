@@ -70,13 +70,18 @@ export default function App() {
       
       if (hash.startsWith('#/manga/')) {
         const mangaId = hash.replace('#/manga/', '');
-        const manga = MANGA_LIST.find(m => m.id === mangaId);
-        if (manga) {
-          setSelectedManga(manga);
-          setActiveChapter(null);
-        } else {
-          window.location.hash = '#/tab/library';
-        }
+        // Fetch full manga data (semua chapter) dari /manga/{id}.json
+        fetch(`/manga/${mangaId}.json?t=${Date.now()}`)
+          .then(r => r.ok ? r.json() : null)
+          .then(fullManga => {
+            if (fullManga) {
+              setSelectedManga(fullManga);
+              setActiveChapter(null);
+            } else {
+              window.location.hash = '#/tab/library';
+            }
+          })
+          .catch(() => { window.location.hash = '#/tab/library'; });
       } else if (hash.startsWith('#/reader/')) {
         const chapterId = hash.replace('#/reader/', '');
         let foundChapter = null;
@@ -360,9 +365,10 @@ export default function App() {
                     <div className="flex flex-col gap-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {paginatedManga.map((manga) => (
-                          <div key={manga.id} onClick={() => { window.location.hash = `#/manga/${manga.id}`; }}>
+                          <div key={manga.id}>
                             <MangaCard
                               manga={manga}
+                              onViewManga={() => { window.location.hash = `#/manga/${manga.id}`; }}
                               onReadChapter={(ch, title) => handleReadChapter(ch, title || manga.title)}
                             />
                           </div>

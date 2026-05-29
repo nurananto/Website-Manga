@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { imgUrl } from '../utils';
 import { Star, Coins, Clock, ArrowUp } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
-export default function MangaCard({ manga, onReadChapter }) {
+export default function MangaCard({ manga, onReadChapter, onViewManga }) {
   const [localUnlocked, setLocalUnlocked] = useState(new Set());
 
   // Apakah ada chapter baru (UP aktif) — prioritas tertinggi untuk border
@@ -17,13 +18,16 @@ export default function MangaCard({ manga, onReadChapter }) {
     : 'border-white/5 hover:border-primary/20';
 
   return (
-    <div className={`flex h-[180px] bg-surface-container rounded-xl overflow-hidden group hover:bg-surface-container-high transition-all duration-300 cursor-pointer border shadow-md ${borderClass}`}>
-      {/* Cover Image Section */}
-      <div className="relative w-[120px] h-full flex-shrink-0 flex items-center justify-center py-2.5 px-2">
+    <div className={`flex h-[180px] bg-surface-container rounded-xl overflow-hidden group hover:bg-surface-container-high transition-all duration-300 border shadow-md ${borderClass}`}>
+      {/* Cover — klik ke detail */}
+      <div
+        onClick={onViewManga}
+        className="relative w-[120px] h-full flex-shrink-0 flex items-center justify-center py-2.5 px-2 cursor-pointer"
+      >
         <img
           alt={manga.title}
-          className="h-full w-full object-cover rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
-          src={manga.coverUrl}
+          className="h-full w-full object-cover rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-white/10 hover:scale-105 transition-transform duration-500"
+          src={imgUrl(manga.coverUrl)}
         />
 
         {/* UP badge — hanya tampil saat ada chapter baru */}
@@ -39,9 +43,12 @@ export default function MangaCard({ manga, onReadChapter }) {
       {/* Details Section */}
       <div className="flex-1 p-3 sm:p-4 flex flex-col min-w-0">
         {/* Title row */}
-        <div className="flex items-start justify-between gap-2">
+        <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
-            <h3 className="font-headline-md text-lg leading-tight font-extrabold text-on-surface truncate group-hover:text-primary transition-colors">
+            <h3
+              onClick={onViewManga}
+              className="font-headline-md text-lg leading-tight font-extrabold text-on-surface truncate hover:text-primary transition-colors cursor-pointer"
+            >
               {manga.title}
             </h3>
             {/* Status badge di judul — hanya tampil saat tidak ada update baru */}
@@ -56,15 +63,17 @@ export default function MangaCard({ manga, onReadChapter }) {
               </span>
             )}
           </div>
-          <div className="flex items-center gap-1 shrink-0 bg-amber-500/10 px-1.5 py-0.5 rounded-lg text-amber-500">
-            <Star className="w-3 h-3 fill-current" />
-            <span className="font-label-sm text-[10px] font-black">{manga.rating}</span>
-          </div>
+          {manga.rating && (
+            <div className="flex items-center gap-1 shrink-0 bg-amber-500/10 px-1.5 py-0.5 rounded-lg text-amber-500">
+              <Star className="w-3 h-3 fill-current" />
+              <span className="font-label-sm text-sm font-black">{manga.rating}</span>
+            </div>
+          )}
         </div>
         <p className="font-body-md text-xs text-outline mt-0.5 truncate">{manga.author}</p>
 
         {/* Chapters List */}
-        <div className="flex flex-col gap-1 mt-2">
+        <div className="flex flex-col gap-1.5 mt-2">
           {manga.chapters.slice(0, 3).map((ch, idx) => {
             const isLocked = ch.isLocked && !localUnlocked.has(ch.id);
             // Badge status muncul di chapter pertama (terbaru) saat tidak ada update
@@ -77,7 +86,7 @@ export default function MangaCard({ manga, onReadChapter }) {
                   e.stopPropagation();
                   onReadChapter(ch, manga.title);
                 }}
-                className="flex justify-between items-center hover:bg-surface-container-highest px-2 py-1 rounded-md transition-colors group/ch"
+                className="flex justify-between items-center hover:bg-surface-container-highest px-2.5 py-1.5 rounded-xl border border-white/5 hover:border-white/10 transition-all group/ch"
               >
                 <div className="flex items-center gap-1.5 min-w-0 mr-2">
                   <span className="font-body-md text-sm font-semibold text-on-surface-variant group-hover/ch:text-primary transition-colors truncate">

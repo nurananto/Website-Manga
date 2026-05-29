@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { imgUrl } from '../utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Play, Info } from 'lucide-react';
 
@@ -41,7 +42,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
           <img
             alt=""
             className="w-full h-full object-cover object-center scale-125 blur-3xl opacity-25"
-            src={activeManga.coverUrl}
+            src={imgUrl(activeManga.coverUrl)}
           />
           {/* Vignette Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-transparent" />
@@ -116,7 +117,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
         <img
           alt={activeManga.title}
           className="h-full max-h-[93%] aspect-[2/3] object-cover rounded-lg shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
-          src={activeManga.coverUrl}
+          src={imgUrl(activeManga.coverUrl)}
         />
       </div>
 
