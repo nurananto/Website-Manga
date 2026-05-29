@@ -40,6 +40,8 @@ export default function App() {
   const [activeChapter, setActiveChapter] = useState(null);
   const [activeMangaTitle, setActiveMangaTitle] = useState('');
   const [selectedManga, setSelectedManga] = useState(null);
+  const selectedMangaRef = useRef(null);
+  const mangaListRef = useRef([]);
   const [activeTab, setActiveTab] = useState('library'); // 'library', 'discover', 'updates', 'profile'
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [bookmarkedIds, setBookmarkedIds] = useState(() => new Set([1, 2]));
@@ -59,7 +61,7 @@ export default function App() {
   useEffect(() => {
     fetch('/manga/index.json?t=' + Date.now())
       .then(r => r.json())
-      .then(data => { setMangaList(data); setIsLoading(false); })
+      .then(data => { setMangaList(data); mangaListRef.current = data; setIsLoading(false); })
       .catch(() => setIsLoading(false));
   }, []);
 
@@ -76,6 +78,7 @@ export default function App() {
           .then(fullManga => {
             if (fullManga) {
               setSelectedManga(fullManga);
+              selectedMangaRef.current = fullManga;
               setActiveChapter(null);
             } else {
               window.location.hash = '#/tab/library';
@@ -87,10 +90,12 @@ export default function App() {
         let foundChapter = null;
         let foundManga = null;
 
-        // Cari di selectedManga dulu (full data) baru di MANGA_LIST (index)
-        const allManga = selectedManga
-          ? [selectedManga, ...MANGA_LIST.filter(m => m.id !== selectedManga.id)]
-          : MANGA_LIST;
+        // Pakai ref agar tidak stale closure
+        const current = selectedMangaRef.current;
+        const list = mangaListRef.current || [];
+        const allManga = current
+          ? [current, ...list.filter(m => m.id !== current.id)]
+          : list;
 
         for (const m of allManga) {
           const ch = (m.chapters || []).find(c => c.id === chapterId);

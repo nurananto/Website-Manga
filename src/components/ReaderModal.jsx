@@ -197,9 +197,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       <button
         onClick={handlePrev}
         disabled={prevDisabled}
-        className="flex-1 h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 text-sm font-bold text-on-surface disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
+        className="flex-1 h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-on-surface disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
       >
-        <ArrowLeft className="w-4 h-4" />
+        <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         <span className="hidden sm:inline">Prev</span>
       </button>
 
@@ -207,7 +207,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       <div ref={dropdownRef} className="relative flex-[2]">
         <button
           onClick={() => setShowChapterList(v => !v)}
-          className="w-full h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-3 text-xs font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
+          className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-[11px] sm:text-xs font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
         >
           <BookOpen className="w-3.5 h-3.5 text-primary shrink-0" />
           <span className="truncate">{chapter.title.split(':')[0]}</span>
@@ -265,7 +265,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       <button
         onClick={handleNext}
         disabled={nextDisabled}
-        className="flex-1 h-11 rounded-xl bg-primary hover:bg-primary/90 flex items-center justify-center gap-2 text-sm font-bold text-on-primary disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
+        className="flex-1 h-9 sm:h-10 md:h-11 rounded-xl bg-primary hover:bg-primary/90 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-on-primary disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
       >
         <span className="hidden sm:inline">Next</span>
         <ArrowRight className="w-4 h-4" />
@@ -289,7 +289,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
             <div className="px-2 py-2">
               <button
                 onClick={onClose}
-                className="w-full h-16 px-4 rounded-2xl bg-surface-container border border-white/15 flex items-center gap-3 hover:bg-surface-container-high transition-colors active:scale-[0.99] cursor-pointer overflow-hidden"
+                className="w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl bg-surface-container border border-white/15 flex items-center gap-3 hover:bg-surface-container-high transition-colors active:scale-[0.99] cursor-pointer overflow-hidden"
               >
                 <ArrowLeft className="w-5 h-5 text-primary shrink-0" />
                 <div className="min-w-0 flex-1 text-left">
@@ -327,7 +327,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
             <div className="px-2 py-2 pb-8">
               <button
                 onClick={onClose}
-                className="w-full h-16 px-4 rounded-2xl bg-surface-container border border-white/15 flex items-center gap-3 hover:bg-surface-container-high transition-colors active:scale-[0.99] cursor-pointer overflow-hidden"
+                className="w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl bg-surface-container border border-white/15 flex items-center gap-3 hover:bg-surface-container-high transition-colors active:scale-[0.99] cursor-pointer overflow-hidden"
               >
                 <ArrowLeft className="w-5 h-5 text-primary shrink-0" />
                 <div className="min-w-0 flex-1 text-left">

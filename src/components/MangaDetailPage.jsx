@@ -167,7 +167,7 @@ const renderChapterRow = (ch, idx) => {
                       onReadChapter(manga.chapters[manga.chapters.length - 1], manga.title);
                     }
                   }}
-                  className="px-6 h-10 bg-primary hover:bg-primary/95 text-on-primary rounded-xl font-label-sm font-bold text-sm flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-primary/10 cursor-pointer"
+                  className="px-4 sm:px-6 h-9 sm:h-10 md:h-11 bg-primary hover:bg-primary/95 text-on-primary rounded-xl font-label-sm font-bold text-xs sm:text-sm flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-primary/10 cursor-pointer"
                 >
                   <BookOpen className="w-4 h-4" />
                   {lastReadChapter ? `Lanjut Baca (${lastReadChapter.title.split(':')[0]})` : 'Mulai Baca'}
@@ -325,7 +325,7 @@ const renderChapterRow = (ch, idx) => {
             <div className="grid grid-cols-2 gap-3">
               {manga.mangadex_url ? (
                 <a href={manga.mangadex_url} target="_blank" rel="noopener noreferrer"
-                  className="h-10 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/20 rounded-xl font-label-sm text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-orange-400 hover:text-orange-300 cursor-pointer">
+                  className="h-9 sm:h-10 md:h-11 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/20 rounded-xl font-label-sm text-xs sm:text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-orange-400 hover:text-orange-300 cursor-pointer">
                   MangaDex
                 </a>
               ) : (
@@ -333,7 +333,7 @@ const renderChapterRow = (ch, idx) => {
               )}
               {manga.raw_url ? (
                 <a href={manga.raw_url} target="_blank" rel="noopener noreferrer"
-                  className="h-10 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 rounded-xl font-label-sm text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-cyan-400 hover:text-cyan-300 cursor-pointer">
+                  className="h-9 sm:h-10 md:h-11 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 rounded-xl font-label-sm text-xs sm:text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-cyan-400 hover:text-cyan-300 cursor-pointer">
                   Raw Link
                 </a>
               ) : (
@@ -345,7 +345,7 @@ const renderChapterRow = (ch, idx) => {
             <div className="flex flex-col gap-2">
               <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">Synopsis</h3>
               <p className="font-body-md text-sm text-on-surface-variant leading-relaxed opacity-90 text-justify">
-                {expandedSynopsis ? manga.description : `${manga.description.substring(0, 160)}...`}
+                {expandedSynopsis ? (manga.description || '') : `${(manga.description || '').substring(0, 160)}${(manga.description || '').length > 160 ? '...' : ''}`}
                 <button
                   onClick={() => setExpandedSynopsis(v => !v)}
                   className="font-label-sm text-primary font-bold ml-1.5 text-xs hover:underline cursor-pointer"

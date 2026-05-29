@@ -24,7 +24,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
     : 'border-white/5 hover:border-primary/20';
 
   return (
-    <div className={`flex h-[180px] bg-surface-container rounded-xl overflow-hidden group border shadow-md ${borderClass}`}>
+    <div className={`flex h-[160px] sm:h-[175px] md:h-[190px] bg-surface-container rounded-xl overflow-hidden group border shadow-md ${borderClass}`}>
       {/* Cover — klik ke detail */}
       <div
         onClick={onViewManga}
@@ -53,7 +53,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
             <h3
               onClick={onViewManga}
-              className="font-headline-md text-lg leading-tight font-extrabold text-on-surface truncate hover:text-primary transition-colors cursor-pointer"
+              className="font-headline-md text-sm sm:text-base md:text-lg leading-tight font-extrabold text-on-surface truncate hover:text-primary transition-colors cursor-pointer"
             >
               {manga.title}
             </h3>
@@ -86,9 +86,9 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
             const targetChapter = manga.status === 'Tamat'
               ? manga.tamat_at_chapter
               : manga.hiatus_at_chapter;
+            // Badge hanya muncul di chapter yang sesuai tamat/hiatus_at_chapter
             const showStatusBadge = isFinished && targetChapter != null
-              ? ch.chapter_number === targetChapter
-              : isFinished && idx === 0; // fallback: chapter pertama kalau tidak ada info
+              && ch.chapter_number === targetChapter;
 
             return (
               <div
@@ -99,8 +99,8 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                 }}
                 className="flex justify-between items-center hover:bg-surface-container-highest px-2.5 py-1.5 rounded-xl border border-white/5 hover:border-white/10 transition-all group/ch"
               >
-                <div className="flex items-center gap-1.5 min-w-0 mr-2">
-                  <span className="font-body-md text-sm font-semibold text-on-surface-variant group-hover/ch:text-primary transition-colors truncate">
+                <div className="flex items-center gap-1 min-w-0 mr-1">
+                  <span className="font-body-md text-[11px] sm:text-xs font-semibold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
                   </span>
                   {ch.isNew && (
