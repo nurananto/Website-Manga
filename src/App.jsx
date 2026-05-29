@@ -4,14 +4,13 @@ import FeaturedCarousel from './components/FeaturedCarousel';
 import MangaCard from './components/MangaCard';
 import ReaderModal from './components/ReaderModal';
 import MangaDetailPage from './components/MangaDetailPage';
-import CATALOG from './data/catalog.json';
-const MANGA_LIST = CATALOG;
 import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield, HelpCircle, Star, Search, Key, X, Coffee, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthModal, CoinPurchaseModal, UnlockModal } from './components/CoinModals';
 import { MangaCardSkeleton } from './components/Skeleton';
 
 export default function App() {
+  const [MANGA_LIST, setMangaList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Paksa refresh saat ada versi baru di server
@@ -56,10 +55,12 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState(null);
   const ITEMS_PER_PAGE = 6;
 
-  // Simulasi loading singkat saat pertama mount
+  // Fetch catalog dari /manga/index.json
   useEffect(() => {
-    const t = setTimeout(() => setIsLoading(false), 600);
-    return () => clearTimeout(t);
+    fetch('/manga/index.json?t=' + Date.now())
+      .then(r => r.json())
+      .then(data => { setMangaList(data); setIsLoading(false); })
+      .catch(() => setIsLoading(false));
   }, []);
 
   // Routing effect to handle URLs and page refreshes
