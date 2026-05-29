@@ -26,7 +26,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
         <div className="flex items-center gap-8">
           <a 
             className="font-headline-md text-2xl font-black text-on-surface tracking-tight flex items-center gap-2 group" 
-            href="#" 
+            href="/"
             onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
           >
             <span className="w-9 h-9 rounded-lg bg-gradient-to-tr from-sky-400 to-indigo-600 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">

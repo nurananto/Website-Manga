@@ -8,6 +8,7 @@ import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthModal, CoinPurchaseModal, UnlockModal } from './components/CoinModals';
 import { MangaCardSkeleton } from './components/Skeleton';
+import { parsePath, navigate } from './router';
 
 export default function App() {
   const [MANGA_LIST, setMangaList] = useState([]);
@@ -65,14 +66,15 @@ export default function App() {
       .catch(() => setIsLoading(false));
   }, []);
 
-  // Routing effect to handle URLs and page refreshes
+  // Path-based routing
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      
-      if (hash.startsWith('#/manga/')) {
-        const mangaId = hash.replace('#/manga/', '');
-        // Fetch full manga data (semua chapter) dari /manga/{id}.json
+    const handleRoute = () => {
+      const { page, mangaId, chapterNum } = parsePath();
+
+      if (page === 'home') {
+        setSelectedManga(null);
+        setActiveChapter(null);
+      } else if (page === 'manga') {
         fetch(`/manga/${mangaId}.json?t=${Date.now()}`)
           .then(r => r.ok ? r.json() : null)
           .then(fullManga => {
@@ -80,73 +82,46 @@ export default function App() {
               setSelectedManga(fullManga);
               selectedMangaRef.current = fullManga;
               setActiveChapter(null);
-            } else {
-              window.location.hash = '#/tab/library';
-            }
+            } else navigate('/', true);
           })
-          .catch(() => { window.location.hash = '#/tab/library'; });
-      } else if (hash.startsWith('#/reader/')) {
-        const chapterId = hash.replace('#/reader/', '');
-        let foundChapter = null;
-        let foundManga = null;
+          .catch(() => navigate('/', true));
+      } else if (page === 'reader') {
+        // Fetch manga kalau belum ada atau berbeda
+        const loadReader = (manga) => {
+          const ch = (manga.chapters || []).find(
+            c => String(c.chapter_number) === chapterNum
+          );
+          if (!ch) { navigate(`/${mangaId}`, true); return; }
 
-        // Pakai ref agar tidak stale closure
+          const isTimeUnlocked = ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now();
+          if (ch.isLocked && !isTimeUnlocked) {
+            navigate(`/${mangaId}`, true);
+            if (!isLoggedIn) setIsAuthModalOpen(true);
+            else { setPendingUnlockChapter(ch); setPendingMangaTitle(manga.title); setIsUnlockModalOpen(true); }
+            return;
+          }
+          setSelectedManga(manga);
+          selectedMangaRef.current = manga;
+          setActiveMangaTitle(manga.title);
+          setActiveChapter(ch);
+        };
+
         const current = selectedMangaRef.current;
-        const list = mangaListRef.current || [];
-        const allManga = current
-          ? [current, ...list.filter(m => m.id !== current.id)]
-          : list;
-
-        for (const m of allManga) {
-          const ch = (m.chapters || []).find(c => c.id === chapterId);
-          if (ch) {
-            foundChapter = ch;
-            foundManga = m;
-            break;
-          }
-        }
-        
-        if (foundChapter && foundManga) {
-          const isTimeUnlocked = foundChapter.unlockDate && new Date(foundChapter.unlockDate).getTime() <= new Date().getTime();
-          if (foundChapter.isLocked && !isTimeUnlocked) {
-            // Redirect back to manga detail page and open unlock flow
-            window.location.hash = `#/manga/${foundManga.id}`;
-            if (!isLoggedIn) {
-              setIsAuthModalOpen(true);
-            } else {
-              setPendingUnlockChapter(foundChapter);
-              setPendingMangaTitle(foundManga.title);
-              setIsUnlockModalOpen(true);
-            }
-          } else {
-            setActiveMangaTitle(foundManga.title);
-            setActiveChapter(foundChapter);
-            setSelectedManga(foundManga);
-          }
+        if (current?.id === mangaId) {
+          loadReader(current);
         } else {
-          window.location.hash = '#/tab/library';
+          fetch(`/manga/${mangaId}.json?t=${Date.now()}`)
+            .then(r => r.ok ? r.json() : null)
+            .then(m => m ? loadReader(m) : navigate('/', true))
+            .catch(() => navigate('/', true));
         }
-      } else if (hash.startsWith('#/tab/')) {
-        const tab = hash.replace('#/tab/', '');
-        if (['library', 'discover', 'updates', 'profile'].includes(tab)) {
-          setActiveTab(tab);
-          setSelectedManga(null);
-          setActiveChapter(null);
-        } else {
-          window.location.hash = '#/tab/library';
-        }
-      } else {
-        // Redirect to default tab if hash is empty or unrecognized
-        window.location.hash = '#/tab/library';
       }
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange(); // Run on mount
+    window.addEventListener('popstate', handleRoute);
+    handleRoute(); // run on mount
 
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
+    return () => window.removeEventListener('popstate', handleRoute);
   }, [isLoggedIn]);
 
   const showToast = (message) => {
@@ -179,8 +154,10 @@ export default function App() {
   const paginatedManga = filteredManga.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   const openChapterReader = (chapter, mangaTitle) => {
-    setActiveMangaTitle(mangaTitle || "Neon Genesis Echoes");
-    window.location.hash = `#/reader/${chapter.id}`;
+    setActiveMangaTitle(mangaTitle || "");
+    // URL: /mangaId/chapterNum
+    const mangaId = selectedMangaRef.current?.id || '';
+    navigate(`/${mangaId}/${chapter.chapter_number}`);
     const manga = MANGA_LIST.find(m => m.chapters.some(c => c.id === chapter.id));
     if (manga) {
       setHistoryChapters(prev => ({
@@ -225,7 +202,7 @@ export default function App() {
   };
 
   const handleTabClick = (tab) => {
-    window.location.hash = `#/tab/${tab}`;
+    navigate('/');
     setSearchQuery('');
   };
 
@@ -278,7 +255,7 @@ export default function App() {
                     <FeaturedCarousel 
                       mangaList={MANGA_LIST} 
                       onReadChapter={(ch, title) => handleReadChapter(ch, title)} 
-                      onViewManga={(manga) => { window.location.hash = `#/manga/${manga.id}`; }}
+                      onViewManga={(manga) => { navigate(`/${manga.id}`); }}
                     />
                     
                     {/* Trakteer Donation Banner */}
@@ -379,7 +356,7 @@ export default function App() {
                           <div key={manga.id}>
                             <MangaCard
                               manga={manga}
-                              onViewManga={() => { window.location.hash = `#/manga/${manga.id}`; }}
+                              onViewManga={() => { navigate(`/${manga.id}`); }}
                               onReadChapter={(ch, title) => handleReadChapter(ch, title || manga.title)}
                             />
                           </div>
@@ -436,7 +413,7 @@ export default function App() {
                         key={genre}
                         onClick={() => {
                           setSearchQuery(genre);
-                          window.location.hash = '#/tab/library';
+                          navigate('/');
                         }}
                         className="p-6 bg-surface-container rounded-2xl border border-white/5 hover:border-primary/20 hover:bg-surface-container-high text-left transition-all active:scale-95 cursor-pointer shadow-md group"
                       >
@@ -471,7 +448,7 @@ export default function App() {
                     return (
                       <div 
                         key={manga.id} 
-                        onClick={() => { window.location.hash = `#/manga/${manga.id}`; }}
+                        onClick={() => { navigate(`/${manga.id}`); }}
                         className="py-5 px-5 flex items-center gap-5 hover:bg-white/5 cursor-pointer transition-colors"
                       >
                         <img 
@@ -518,7 +495,7 @@ export default function App() {
                         return (
                           <div 
                             key={manga.id} 
-                            onClick={() => { window.location.hash = `#/manga/${manga.id}`; }}
+                            onClick={() => { navigate(`/${manga.id}`); }}
                             className="py-5 px-5 flex items-center gap-5 hover:bg-white/5 cursor-pointer transition-colors"
                           >
                             <img 
@@ -569,7 +546,7 @@ export default function App() {
         <ReaderModal
           chapter={activeChapter}
           manga={selectedManga}
-          onClose={() => { window.location.hash = `#/manga/${selectedManga?.id || ''}`; }}
+          onClose={() => { navigate(`/${selectedManga?.id || ''}`); }}
           onReadChapter={handleReadChapter}
         />
       )}
