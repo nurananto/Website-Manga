@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
 import MangaCard from './components/MangaCard';
