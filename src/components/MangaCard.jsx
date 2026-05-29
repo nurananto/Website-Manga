@@ -7,8 +7,13 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
   const [localUnlocked, setLocalUnlocked] = useState(new Set());
 
   const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus';
-  // UP hanya aktif untuk manga Ongoing dengan chapter baru
-  const hasNewChapter = !isFinished && manga.chapters.some(ch => ch.isNew);
+
+  // UP aktif 24 jam setelah ada chapter baru — berlaku untuk semua status
+  const hasRecentUpdate = manga.chapters.some(ch => {
+    if (!ch.release_date) return false;
+    return (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
+  });
+  const hasNewChapter = hasRecentUpdate;
 
   const borderClass = hasNewChapter
     ? 'border-emerald-500/60 hover:border-emerald-400/80 shadow-[0_0_14px_rgba(52,211,153,0.25)] hover:shadow-[0_0_20px_rgba(52,211,153,0.4)]'
@@ -77,7 +82,13 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
           {manga.chapters.slice(0, 3).map((ch, idx) => {
             const isLocked = ch.isLocked && !localUnlocked.has(ch.id);
             // Badge status muncul di chapter pertama (terbaru) saat tidak ada update
-            const showStatusBadge = idx === 0 && isFinished;
+            // Badge Tamat/Hiatus muncul di chapter yang sesuai tamat_at_chapter/hiatus_at_chapter
+            const targetChapter = manga.status === 'Tamat'
+              ? manga.tamat_at_chapter
+              : manga.hiatus_at_chapter;
+            const showStatusBadge = isFinished && targetChapter != null
+              ? ch.chapter_number === targetChapter
+              : isFinished && idx === 0; // fallback: chapter pertama kalau tidak ada info
 
             return (
               <div

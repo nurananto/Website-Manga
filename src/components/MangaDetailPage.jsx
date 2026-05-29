@@ -28,11 +28,17 @@ const renderChapterRow = (ch, idx) => {
     const isNew = !!ch.isNew;
     const isUnread = !readChapters.has(ch.id);
     const isLocked = ch.isLocked && !localUnlockedChapters.has(ch.id);
-    const isFirstShown = sortNewest ? idx === 0 : idx === sortedChapters.length - 1;
-    const showStatusBadge = isFirstShown && (manga.status === 'Tamat' || manga.status === 'Hiatus');
+    const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus';
+    const targetChapter = manga.status === 'Tamat' ? manga.tamat_at_chapter : manga.hiatus_at_chapter;
+    const showStatusBadge = isFinished && (
+      targetChapter != null
+        ? ch.chapter_number === targetChapter
+        : sortNewest ? idx === 0 : idx === sortedChapters.length - 1
+    );
 
-    const viewsCode = (ch.id.charCodeAt(ch.id.length - 1) % 8) + 12;
-    const chapterViews = `${viewsCode}.${viewsCode % 3}k`;
+    const chapterViews = ch.views
+      ? ch.views >= 1000 ? `${(ch.views / 1000).toFixed(1)}k` : ch.views
+      : null;
 
     return (
       <div
@@ -99,12 +105,12 @@ const renderChapterRow = (ch, idx) => {
                 />
               </div>
             </div>
-          ) : (
-            <div className="flex items-center gap-1 text-outline/50 font-label-sm text-[11px] select-none shrink-0">
+          ) : chapterViews ? (
+            <div className="flex items-center gap-1 text-outline/50 font-label-sm text-xs select-none shrink-0">
               <Eye className="w-3.5 h-3.5 shrink-0" />
               <span>{chapterViews}</span>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     );
@@ -309,7 +315,7 @@ const renderChapterRow = (ch, idx) => {
             {/* Genres */}
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {manga.genres.map((g) => (
-                <span key={g} className="font-label-sm bg-surface-container-high px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[11px] text-on-surface border border-white/5 font-semibold">
+                <span key={g} className="font-label-sm bg-surface-container-high px-3 py-1.5 rounded-lg text-xs sm:text-sm text-on-surface border border-white/5 font-semibold">
                   {g}
                 </span>
               ))}
@@ -319,7 +325,7 @@ const renderChapterRow = (ch, idx) => {
             <div className="grid grid-cols-2 gap-3">
               {manga.mangadex_url ? (
                 <a href={manga.mangadex_url} target="_blank" rel="noopener noreferrer"
-                  className="h-10 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/20 rounded-xl font-label-sm text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-orange-400 hover:text-orange-300 cursor-pointer">
+                  className="h-10 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/20 rounded-xl font-label-sm text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-orange-400 hover:text-orange-300 cursor-pointer">
                   MangaDex
                 </a>
               ) : (
@@ -327,7 +333,7 @@ const renderChapterRow = (ch, idx) => {
               )}
               {manga.raw_url ? (
                 <a href={manga.raw_url} target="_blank" rel="noopener noreferrer"
-                  className="h-10 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 rounded-xl font-label-sm text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-cyan-400 hover:text-cyan-300 cursor-pointer">
+                  className="h-10 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 rounded-xl font-label-sm text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-cyan-400 hover:text-cyan-300 cursor-pointer">
                   Raw Link
                 </a>
               ) : (
@@ -373,16 +379,16 @@ const renderChapterRow = (ch, idx) => {
               ) : (
                 <>
                   {/* Paling Baru (Top 3 newest) */}
-                  {sortedChapters.slice(0, 3).map((ch, idx) => renderChapterRow(ch, idx))}
+                  {sortedChapters.slice(0, 10).map((ch, idx) => renderChapterRow(ch, idx))}
                   
                   {/* View More Button in the middle */}
-                  {sortedChapters.length > 4 && (
+                  {sortedChapters.length > 10 && (
                     <div className="py-2.5 px-2 -mx-2">
                       <button
                         onClick={() => setShowAllChapters(true)}
                         className="font-label-sm w-full py-2.5 bg-surface-container/20 hover:bg-surface-container-high/40 border border-white/5 rounded-lg text-on-surface-variant hover:text-primary tracking-wider text-xs font-bold transition-all cursor-pointer text-center"
                       >
-                        View More ({sortedChapters.length - 4} more chapters)
+                        View More ({sortedChapters.length - 10} more chapters)
                       </button>
                     </div>
                   )}
@@ -394,7 +400,7 @@ const renderChapterRow = (ch, idx) => {
             </div>
 
             {/* View Less Chapters Button (Shows at the bottom only when expanded) */}
-            {showAllChapters && sortedChapters.length > 3 && (
+            {showAllChapters && sortedChapters.length > 10 && (
               <button
                 onClick={() => setShowAllChapters(false)}
                 className="font-label-sm w-full mt-4 py-3 bg-surface-container/20 hover:bg-surface-container-high/40 border border-white/5 rounded-lg text-on-surface-variant hover:text-primary tracking-wider text-xs font-bold transition-all cursor-pointer text-center"

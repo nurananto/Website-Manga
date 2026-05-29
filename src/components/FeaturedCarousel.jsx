@@ -113,10 +113,10 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
       </div>
 
       {/* Right Side: Cover Image */}
-      <div className="absolute inset-y-0 right-2 hidden sm:flex items-center justify-center h-full z-10 py-2">
+      <div className="absolute inset-y-0 right-2 flex items-center justify-center h-full z-10 py-2">
         <img
           alt={activeManga.title}
-          className="h-full max-h-[93%] aspect-[2/3] object-cover rounded-lg shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
+          className="h-[80%] sm:h-[93%] aspect-[2/3] object-cover rounded-lg shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500 opacity-60 sm:opacity-100"
           src={imgUrl(activeManga.coverUrl)}
         />
       </div>
