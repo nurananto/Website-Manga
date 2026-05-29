@@ -19,10 +19,10 @@ export default function MangaCard({ manga, onReadChapter }) {
   return (
     <div className={`flex h-[200px] bg-surface-container rounded-xl overflow-hidden group hover:bg-surface-container-high transition-all duration-300 cursor-pointer border shadow-md ${borderClass}`}>
       {/* Cover Image Section */}
-      <div className="relative w-[130px] h-full flex-shrink-0 flex items-center justify-center py-2 px-2 bg-surface-container-low">
+      <div className="relative w-[110px] h-full flex-shrink-0 flex items-center justify-center py-3 px-2.5 bg-surface-container-low">
         <img
           alt={manga.title}
-          className="h-full max-h-[94%] aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
+          className="h-full max-h-[88%] aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
           src={manga.coverUrl}
         />
 
@@ -64,7 +64,7 @@ export default function MangaCard({ manga, onReadChapter }) {
         <p className="font-body-md text-xs text-outline mt-0.5 truncate">{manga.author}</p>
 
         {/* Chapters List */}
-        <div className="flex flex-col gap-1 mt-auto">
+        <div className="flex flex-col gap-1 mt-2">
           {manga.chapters.slice(0, 3).map((ch, idx) => {
             const isLocked = ch.isLocked && !localUnlocked.has(ch.id);
             // Badge status muncul di chapter pertama (terbaru) saat tidak ada update

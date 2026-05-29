@@ -34,7 +34,9 @@
         "pages": 48,
         "id": "neon-genesis-echoes-ch-3",
         "release_date": "2026-05-29T17:01:51.000+07:00",
-        "unlock_date": "2026-06-12T10:01:51.000Z"
+        "unlockDate": "2026-06-12T10:01:51.000Z",
+        "isLocked": true,
+        "isNew": true
       },
       {
         "chapter_number": 2,
@@ -43,7 +45,9 @@
         "pages": 44,
         "id": "neon-genesis-echoes-ch-2",
         "release_date": "2026-05-29T17:01:51.000+07:00",
-        "unlock_date": null
+        "unlockDate": null,
+        "isLocked": false,
+        "isNew": true
       },
       {
         "chapter_number": 1,
@@ -52,7 +56,9 @@
         "pages": 52,
         "id": "neon-genesis-echoes-ch-1",
         "release_date": "2026-05-29T17:01:51.000+07:00",
-        "unlock_date": null
+        "unlockDate": null,
+        "isLocked": false,
+        "isNew": true
       }
     ]
   }

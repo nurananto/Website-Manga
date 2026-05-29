@@ -101,14 +101,21 @@ async function buildCatalog() {
         ch.release_date = getFileCommitDate(chMetaPath);
       }
 
-      // Hitung unlock_date
+      // Hitung unlockDate (camelCase agar sesuai frontend)
       if (ch.lock_hours > 0) {
         const unlockDate = new Date(ch.release_date);
         unlockDate.setHours(unlockDate.getHours() + ch.lock_hours);
-        ch.unlock_date = unlockDate.toISOString();
+        ch.unlockDate = unlockDate.toISOString();
       } else {
-        ch.unlock_date = null; // gratis
+        ch.unlockDate = null;
       }
+
+      // isLocked: terkunci kalau unlockDate masih di masa depan
+      ch.isLocked = ch.unlockDate ? new Date(ch.unlockDate) > new Date() : false;
+
+      // isNew: chapter dirilis dalam 7 hari terakhir
+      const releaseMs = new Date(ch.release_date).getTime();
+      ch.isNew = (Date.now() - releaseMs) < 7 * 24 * 60 * 60 * 1000;
 
       chapters.push(ch);
     }
