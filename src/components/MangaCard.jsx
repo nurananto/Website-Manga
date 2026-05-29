@@ -6,8 +6,9 @@ import CountdownTimer from './CountdownTimer';
 export default function MangaCard({ manga, onReadChapter, onViewManga }) {
   const [localUnlocked, setLocalUnlocked] = useState(new Set());
 
-  // Apakah ada chapter baru (UP aktif) — prioritas tertinggi untuk border
-  const hasNewChapter = manga.chapters.some(ch => ch.isNew);
+  const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus';
+  // UP hanya aktif untuk manga Ongoing dengan chapter baru
+  const hasNewChapter = !isFinished && manga.chapters.some(ch => ch.isNew);
 
   const borderClass = hasNewChapter
     ? 'border-emerald-500/60 hover:border-emerald-400/80 shadow-[0_0_14px_rgba(52,211,153,0.25)] hover:shadow-[0_0_20px_rgba(52,211,153,0.4)]'
@@ -76,7 +77,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
           {manga.chapters.slice(0, 3).map((ch, idx) => {
             const isLocked = ch.isLocked && !localUnlocked.has(ch.id);
             // Badge status muncul di chapter pertama (terbaru) saat tidak ada update
-            const showStatusBadge = idx === 0 && !hasNewChapter && (manga.status === 'Tamat' || manga.status === 'Hiatus');
+            const showStatusBadge = idx === 0 && isFinished;
 
             return (
               <div
