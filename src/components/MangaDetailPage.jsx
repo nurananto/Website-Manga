@@ -148,7 +148,7 @@ const renderChapterRow = (ch, idx) => {
 
               {/* Alternative Title */}
               <p className="text-outline/80 text-base sm:text-lg md:text-xl font-semibold mb-5 leading-normal text-center sm:text-left">
-                {manga.alternativeTitle || "Alternative Title"}
+                {manga.alternativeTitle || manga.alt_title || ''}
               </p>
               
               {/* Tombol Baca — otomatis berganti jadi Lanjut Baca saat ada riwayat */}
@@ -264,7 +264,7 @@ const renderChapterRow = (ch, idx) => {
               <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-white/5">
                 <div className="flex items-center gap-1.5">
                   <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" />
-                  <span className="font-headline-md text-lg sm:text-xl font-black text-on-surface">{(Math.round(parseFloat(manga.rating) * manga.chapters.length * 1.8 * 10) / 10).toFixed(1)}k</span>
+                  <span className="font-headline-md text-lg sm:text-xl font-black text-on-surface">{manga.total_views ? `${(manga.total_views / 1000).toFixed(1)}k` : '—'}</span>
                 </div>
                 <span className="font-label-sm text-[10px] text-outline/70 font-semibold uppercase tracking-wide">Views</span>
               </div>
@@ -317,21 +317,22 @@ const renderChapterRow = (ch, idx) => {
 
             {/* MangaDex + Raw Link */}
             <div className="grid grid-cols-2 gap-3">
-              <a
-                href="https://mangadex.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="h-10 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/20 rounded-xl font-label-sm text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-orange-400 hover:text-orange-300 cursor-pointer"
-              >
-                MangaDex
-              </a>
-              <a
-                href="#"
-                onClick={(e) => { e.preventDefault(); alert("Opening Raw Link..."); }}
-                className="h-10 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 rounded-xl font-label-sm text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-cyan-400 hover:text-cyan-300 cursor-pointer"
-              >
-                Raw Link
-              </a>
+              {manga.mangadex_url ? (
+                <a href={manga.mangadex_url} target="_blank" rel="noopener noreferrer"
+                  className="h-10 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/20 rounded-xl font-label-sm text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-orange-400 hover:text-orange-300 cursor-pointer">
+                  MangaDex
+                </a>
+              ) : (
+                <div className="h-10 bg-surface-container/20 border border-white/5 rounded-xl font-label-sm text-xs font-bold flex items-center justify-center text-outline/30 select-none">MangaDex</div>
+              )}
+              {manga.raw_url ? (
+                <a href={manga.raw_url} target="_blank" rel="noopener noreferrer"
+                  className="h-10 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 rounded-xl font-label-sm text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-cyan-400 hover:text-cyan-300 cursor-pointer">
+                  Raw Link
+                </a>
+              ) : (
+                <div className="h-10 bg-surface-container/20 border border-white/5 rounded-xl font-label-sm text-xs font-bold flex items-center justify-center text-outline/30 select-none">Raw Link</div>
+              )}
             </div>
 
             {/* Synopsis */}

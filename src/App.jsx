@@ -86,8 +86,14 @@ export default function App() {
         const chapterId = hash.replace('#/reader/', '');
         let foundChapter = null;
         let foundManga = null;
-        for (const m of MANGA_LIST) {
-          const ch = m.chapters.find(c => c.id === chapterId);
+
+        // Cari di selectedManga dulu (full data) baru di MANGA_LIST (index)
+        const allManga = selectedManga
+          ? [selectedManga, ...MANGA_LIST.filter(m => m.id !== selectedManga.id)]
+          : MANGA_LIST;
+
+        for (const m of allManga) {
+          const ch = (m.chapters || []).find(c => c.id === chapterId);
           if (ch) {
             foundChapter = ch;
             foundManga = m;
