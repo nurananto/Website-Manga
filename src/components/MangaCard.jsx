@@ -17,12 +17,12 @@ export default function MangaCard({ manga, onReadChapter }) {
     : 'border-white/5 hover:border-primary/20';
 
   return (
-    <div className={`flex h-[200px] bg-surface-container rounded-xl overflow-hidden group hover:bg-surface-container-high transition-all duration-300 cursor-pointer border shadow-md ${borderClass}`}>
+    <div className={`flex h-[180px] bg-surface-container rounded-xl overflow-hidden group hover:bg-surface-container-high transition-all duration-300 cursor-pointer border shadow-md ${borderClass}`}>
       {/* Cover Image Section */}
-      <div className="relative w-[110px] h-full flex-shrink-0 flex items-center justify-center py-3 px-2.5 bg-surface-container-low">
+      <div className="relative w-[120px] h-full flex-shrink-0 flex items-center justify-center py-2.5 px-2">
         <img
           alt={manga.title}
-          className="h-full max-h-[88%] aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
+          className="h-full w-full object-cover rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
           src={manga.coverUrl}
         />
 

@@ -269,7 +269,7 @@ export default function App() {
                       href="https://trakteer.id"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative w-full overflow-hidden bg-gradient-to-r from-red-950/40 via-red-900/25 to-red-950/40 border border-red-500/20 py-3 rounded-xl flex items-center group shadow-md hover:border-red-500/40 hover:bg-red-950/50 transition-all duration-300 -mt-4 -mb-6 cursor-pointer"
+                      className="relative w-full overflow-hidden bg-gradient-to-r from-red-950/40 via-red-900/25 to-red-950/40 border border-red-500/20 py-3 rounded-xl flex items-center group shadow-md hover:border-red-500/40 hover:bg-red-950/50 transition-all duration-300 -mt-2 -mb-4 cursor-pointer"
                     >
                       <div className="flex whitespace-nowrap animate-marquee">
                         {/* Track 1 */}
@@ -310,7 +310,7 @@ export default function App() {
                 )}
 
                  {/* Catalog Listing */}
-                <section className="flex flex-col gap-6">
+                <section className="flex flex-col gap-3">
                   <div className="flex items-center justify-between border-b border-white/5 pb-4">
                     <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface flex items-center gap-3">
                       <TrendingUp className="w-6 h-6 text-amber-500" />
