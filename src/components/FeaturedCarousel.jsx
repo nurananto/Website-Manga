@@ -28,6 +28,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
   };
 
   return (
+    <div className="flex flex-col gap-2">
     <section className="relative w-full h-[200px] sm:h-[240px] md:h-[280px] rounded-xl overflow-hidden group shadow-2xl border border-white/5 flex items-center justify-between">
       <AnimatePresence mode="wait">
         <motion.div
@@ -121,18 +122,21 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
         />
       </div>
 
-      {/* Dots — tengah bawah, klik untuk navigasi */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-        {trending.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrent(idx)}
-            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-              idx === current ? 'w-6 bg-primary' : 'w-2 bg-white/30 hover:bg-white/50'
-            }`}
-          />
-        ))}
-      </div>
+    </section>
+
+    {/* Dots — di luar carousel, tengah bawah */}
+    <div className="flex justify-center gap-2">
+      {trending.map((_, idx) => (
+        <button
+          key={idx}
+          onClick={() => setCurrent(idx)}
+          className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+            idx === current ? 'w-6 bg-primary' : 'w-1.5 bg-white/30 hover:bg-white/50'
+          }`}
+        />
+      ))}
+    </div>
+    </div>
     </section>
   );
 }

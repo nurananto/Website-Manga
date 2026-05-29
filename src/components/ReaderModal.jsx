@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUp, Coins, Clock, BookOpen } from 'lucide-react';
 import { ReaderPageSkeleton } from './Skeleton';
+import { imgUrl } from '../utils';
 
 function CountdownLarge({ unlockDate }) {
   const [time, setTime] = useState({ h: 0, m: 0, s: 0 });
@@ -43,11 +44,16 @@ function CountdownLarge({ unlockDate }) {
 function PageImage({ src, idx, pageRefs }) {
   const [loaded, setLoaded] = useState(false);
   return (
-    <div ref={el => { pageRefs.current[idx] = el; }} className="w-full relative">
-      {!loaded && <ReaderPageSkeleton />}
+    <div ref={el => { pageRefs.current[idx] = el; }} className="w-full relative min-h-[300px]">
+      {!loaded && (
+        <div className="absolute inset-0 flex items-center justify-center bg-[#0d0f11]">
+          <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+        </div>
+      )}
       <img
         alt={`Page ${idx + 1}`}
-        className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0 absolute inset-0'}`}
+        loading="lazy"
+        className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
         src={src}
         onLoad={() => setLoaded(true)}
       />
@@ -223,7 +229,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
               transition={{ duration: 0.15 }}
               className={`absolute ${position === 'top' ? 'top-full mt-2' : 'bottom-full mb-2'} left-0 right-0 z-50 bg-surface-container border border-white/10 rounded-xl shadow-2xl overflow-hidden`}
             >
-              <div className="max-h-64 overflow-y-auto">
+              <div className="max-h-[50vh] overflow-y-auto hide-scrollbar">
                 {chapters.map((ch, idx) => {
                   const isActive = ch.id === chapter.id;
                   const isLocked = ch.isLocked && !(ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now());
@@ -299,7 +305,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
                 {manga?.coverUrl && (
                   <div className="h-full py-1.5 flex items-center shrink-0">
                     <img
-                      src={manga.coverUrl}
+                      src={imgUrl(manga?.coverUrl)}
                       alt=""
                       className="h-full aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10"
                     />
@@ -337,7 +343,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
                 {manga?.coverUrl && (
                   <div className="h-full py-1.5 flex items-center shrink-0">
                     <img
-                      src={manga.coverUrl}
+                      src={imgUrl(manga?.coverUrl)}
                       alt=""
                       className="h-full aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10"
                     />
