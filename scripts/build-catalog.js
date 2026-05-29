@@ -32,8 +32,8 @@ function nowWIB() {
   return toWIB(new Date());
 }
 
-const chaptersDir = './chapters';
-const outDir = './src/data';
+const chaptersDir = './manga';
+const outDir = './public/manga';
 
 // Fetch rating dari MangaDex API
 // mangadex_id: null → rating null (manga original / tidak ada di MangaDex)
@@ -55,6 +55,9 @@ async function fetchMangaDexRating(mangadexId) {
 
 async function buildCatalog() {
   const catalog = [];
+
+  // views dibaca langsung dari manga meta.json (field chapter_views)
+
   const mangaSlugs = fs.readdirSync(chaptersDir).filter(f =>
     fs.statSync(path.join(chaptersDir, f)).isDirectory()
   );
@@ -68,6 +71,12 @@ async function buildCatalog() {
     }
 
     const manga = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+
+    // Extract mangadex_id dari mangadex_url kalau ada
+    if (manga.mangadex_url && !manga.mangadex_id) {
+      const match = manga.mangadex_url.match(/\/title\/([a-f0-9-]{36})/);
+      if (match) manga.mangadex_id = match[1];
+    }
 
     // Fetch rating dari MangaDex
     if (manga.mangadex_id) {
@@ -90,8 +99,9 @@ async function buildCatalog() {
       if (!fs.existsSync(chMetaPath)) continue;
       const ch = JSON.parse(fs.readFileSync(chMetaPath, 'utf-8'));
 
-      // Auto-generate id dan title kalau tidak diisi
+      // Auto-generate id, title, dan r2_prefix
       ch.id = `${slug}-ch-${ch.chapter_number}`;
+      ch.r2_prefix = `manga/${slug}/${ch.chapter_number}/`;
       if (!ch.title) {
         ch.title = `Ch. ${ch.chapter_number}`;
       }
@@ -117,28 +127,86 @@ async function buildCatalog() {
       const releaseMs = new Date(ch.release_date).getTime();
       ch.isNew = (Date.now() - releaseMs) < 7 * 24 * 60 * 60 * 1000;
 
+      // Views per chapter dari manga meta.json (field chapter_views)
+      ch.views = (manga.chapter_views ?? {})[String(ch.chapter_number)] ?? 0;
+
       chapters.push(ch);
     }
 
     // Urutkan chapter: terbaru di atas (descending)
     chapters.sort((a, b) => b.chapter_number - a.chapter_number);
 
-    // coverUrl: pakai cover_dev saat development (jika ada), fallback ke covers[0]
-    manga.coverUrl = manga.cover_dev ?? manga.covers?.[0] ?? null;
-    delete manga.cover_dev; // jangan masuk catalog production
+    // Total views manga = jumlah semua chapter views
+    manga.total_views = chapters.reduce((sum, ch) => sum + ch.views, 0);
 
-    catalog.push({ ...manga, chapters });
+    // next_update diambil dari chapter terbaru (chapters sudah diurutkan desc)
+    manga.next_update = chapters[0]?.next_update ?? null;
+
+    // Urutkan genre abjad
+    if (Array.isArray(manga.genres)) manga.genres.sort();
+
+    // Normalisasi status & type — case insensitive
+    const statusMap = { 'ongoing':'Ongoing', 'hiatus':'Hiatus', 'tamat':'Tamat' };
+    const typeMap   = { 'manga':'MANGA', 'manhwa':'MANHWA', 'manhua':'MANHUA', 'novel':'NOVEL' };
+    manga.status = statusMap[manga.status?.toLowerCase()] ?? manga.status;
+    manga.type   = typeMap[manga.type?.toLowerCase()] ?? manga.type;
+
+    // coverUrl dari covers[0]
+    manga.coverUrl = manga.cover_dev ?? manga.covers?.[0] ?? null;
+    delete manga.cover_dev;
+
+    // Simpan full detail per manga → public/manga/{id}.json
+    // Frontend fetch ini saat user buka halaman detail manga
+    const mangaPublicDir = './public/manga';
+    fs.mkdirSync(mangaPublicDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(mangaPublicDir, `${slug}.json`),
+      JSON.stringify({ ...manga, chapters }, null, 2),
+      'utf-8'
+    );
+
+    // index.json hanya simpan info dasar + 3 chapter terbaru (untuk kartu)
+    catalog.push({
+      id:           manga.id,
+      title:        manga.title,
+      alt_title:    manga.alt_title,
+      status:       manga.status,
+      type:         manga.type,
+      author:       manga.author,
+      coverUrl:     manga.coverUrl,
+      covers:       manga.covers,
+      genres:       manga.genres,
+      rating:       manga.rating,
+      total_views:  manga.total_views,
+      isTrending:   manga.isTrending,
+      next_update:  manga.next_update,
+      chapters:     chapters.slice(0, 3),
+    });
+
     console.log(`✅ ${manga.title} — ${chapters.length} chapters`);
   }
 
+  // Trending: top 5 manga by total_views (otomatis)
+  const byViews = [...catalog].sort((a, b) => (b.total_views ?? 0) - (a.total_views ?? 0));
+  const trendingIds = new Set(byViews.slice(0, 5).map(m => m.id));
+  catalog.forEach(m => { m.isTrending = trendingIds.has(m.id); });
+
+  // Urutkan homepage: manga yang paling baru diupdate tampil paling atas
+  catalog.sort((a, b) => {
+    const dateA = a.chapters[0]?.release_date ?? '0';
+    const dateB = b.chapters[0]?.release_date ?? '0';
+    return dateB.localeCompare(dateA);
+  });
+
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(
-    path.join(outDir, 'catalog.json'),
+    path.join(outDir, 'index.json'),
     JSON.stringify(catalog, null, 2),
     'utf-8'
   );
 
-  console.log(`\n📦 catalog.json: ${catalog.length} manga`);
+  console.log(`\n📦 index.json: ${catalog.length} manga`);
+  console.log(`🔥 Trending: ${[...trendingIds].join(', ')}`);
 }
 
 buildCatalog().catch(err => {

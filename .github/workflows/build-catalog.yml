@@ -3,7 +3,7 @@ name: Build Catalog
 on:
   push:
     paths:
-      - 'chapters/**'
+      - 'manga/**'
   workflow_dispatch:        # bisa dipicu manual dari GitHub UI
 
 jobs:

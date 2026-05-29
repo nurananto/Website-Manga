@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUp, Coins, Clock, BookOpen } from 'lucide-react';
-import { MOCK_MANGA_PAGES } from '../mock/mangaData';
 import { ReaderPageSkeleton } from './Skeleton';
 
 function CountdownLarge({ unlockDate }) {
@@ -72,6 +71,18 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
     return () => { document.body.style.overflow = ''; };
   }, []);
 
+  // Kirim view ke Worker — hanya 1x per chapter (localStorage sebagai guard)
+  useEffect(() => {
+    if (!chapter?.id) return;
+    const key = `viewed_${chapter.id}`;
+    if (localStorage.getItem(key)) return; // sudah pernah buka
+    localStorage.setItem(key, '1');
+    const workerUrl = import.meta.env.VITE_WORKER_URL;
+    if (workerUrl) {
+      fetch(`${workerUrl}/api/view/${chapter.id}`, { method: 'POST' }).catch(() => {});
+    }
+  }, [chapter?.id]);
+
   const chapters = manga?.chapters || [];
   const currentIdx = chapters.findIndex(ch => ch.id === chapter?.id);
   const prevChapter = chapters[currentIdx + 1] ?? null; // lebih lama
@@ -90,11 +101,37 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
   // Prev di-disable saat: sudah di chapter paling lama / oneshot
   const prevDisabled = isAtOldest || isOneshot;
 
-  const pageCount = chapter?.pages || 4;
-  const pages = Array.from({ length: pageCount }, (_, i) => {
-    const key = `${chapter?.id}-${i}`;
-    return MOCK_MANGA_PAGES[key] || `https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&q=80&w=800&sig=${i}`;
-  });
+  const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+  const [pages, setPages] = useState([]);
+  const [pageCount, setPageCount] = useState(chapter?.pages || 0);
+
+  // Load gambar dari R2 sampai 404
+  useEffect(() => {
+    if (!chapter?.id || !manga?.id) return;
+    setPages([]);
+    setPageCount(0);
+
+    const mangaId      = manga.id;
+    const chapterNum   = chapter.chapter_number;
+    const loadedPages  = [];
+
+    const tryLoad = async (idx) => {
+      const num = String(idx).padStart(3, '0');
+      const url = `${workerUrl}/images/manga/${mangaId}/${chapterNum}/Image${num}.webp`;
+      try {
+        const res = await fetch(url, { method: 'HEAD' });
+        if (!res.ok) return; // 404 → berhenti
+        loadedPages.push(url);
+        setPages([...loadedPages]);
+        setPageCount(loadedPages.length);
+        tryLoad(idx + 1); // muat halaman berikutnya
+      } catch {
+        // berhenti
+      }
+    };
+
+    tryLoad(1); // mulai dari Image001.webp
+  }, [chapter?.id]);
 
   // Reset scroll + currentPage saat chapter berganti
   useEffect(() => {
