@@ -51,7 +51,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
       </AnimatePresence>
 
       {/* Left Side: Content Overlay */}
-      <div className="absolute inset-y-0 left-0 p-4 md:p-6 md:pl-8 flex flex-col justify-center gap-3 z-10 w-[65%] sm:w-2/3 md:w-3/5">
+      <div className="absolute inset-y-0 left-0 p-3 sm:p-4 md:p-6 md:pl-8 flex flex-col justify-center gap-1.5 sm:gap-2 md:gap-3 z-10 w-[72%] sm:w-2/3 md:w-3/5">
         <div className="flex gap-2 items-center flex-wrap">
           <span className="bg-amber-500/20 text-amber-500 px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md border border-amber-500/30 font-semibold shadow-sm">
             Trending Now
@@ -116,7 +116,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
       <div className="absolute inset-y-0 right-2 flex items-center justify-center h-full z-10 py-2">
         <img
           alt={activeManga.title}
-          className="h-[85%] sm:h-[93%] aspect-[2/3] object-cover rounded-lg shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
+          className="h-[75%] sm:h-[90%] md:h-[93%] aspect-[2/3] object-cover rounded-lg shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
           src={imgUrl(activeManga.coverUrl)}
         />
       </div>
