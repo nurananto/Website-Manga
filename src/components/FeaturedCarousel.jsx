@@ -137,6 +137,5 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
       ))}
     </div>
     </div>
-    </section>
   );
 }
