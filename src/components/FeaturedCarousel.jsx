@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { imgUrl } from '../utils';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Play, Info } from 'lucide-react';
+import { Play, Info } from 'lucide-react';
 
 export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga }) {
   const trending = mangaList.filter((m) => m.isTrending) || [mangaList[0]];
@@ -121,28 +121,14 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
         />
       </div>
 
-      {/* Manual Navigation Controls */}
-      <button
-        onClick={handlePrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-lg bg-surface/40 hover:bg-surface/80 border border-white/5 backdrop-blur-md flex items-center justify-center text-on-surface opacity-0 group-hover:opacity-100 transition-opacity z-20 cursor-pointer"
-      >
-        <ChevronLeft className="w-4 h-4" />
-      </button>
-      <button
-        onClick={handleNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-lg bg-surface/40 hover:bg-surface/80 border border-white/5 backdrop-blur-md flex items-center justify-center text-on-surface opacity-0 group-hover:opacity-100 transition-opacity z-20 cursor-pointer"
-      >
-        <ChevronRight className="w-4 h-4" />
-      </button>
-
-      {/* Carousel Indicators */}
-      <div className="absolute bottom-3 left-4 md:left-8 flex gap-2 z-20">
+      {/* Dots — tengah bawah, klik untuk navigasi */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
         {trending.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrent(idx)}
-            className={`h-1 rounded transition-all duration-300 cursor-pointer ${
-              idx === current ? 'w-6 bg-primary shadow-glow' : 'w-1.5 bg-white/20 hover:bg-white/40'
+            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+              idx === current ? 'w-6 bg-primary' : 'w-2 bg-white/30 hover:bg-white/50'
             }`}
           />
         ))}

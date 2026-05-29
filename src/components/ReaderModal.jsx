@@ -116,7 +116,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
     const loadedPages  = [];
 
     const tryLoad = async (idx) => {
-      const num = String(idx).padStart(3, '0');
+      const num = String(idx).padStart(2, '0');
       const url = `${workerUrl}/images/manga/${mangaId}/${chapterNum}/Image${num}.webp`;
       try {
         const res = await fetch(url, { method: 'HEAD' });
