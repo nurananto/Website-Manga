@@ -257,7 +257,7 @@ export default function App() {
             {activeTab === 'library' && (
               <>
                 {/* Featured Carousel */}
-                {!searchQuery && (
+                {!searchQuery && MANGA_LIST.length > 0 && (
                   <>
                     <FeaturedCarousel 
                       mangaList={MANGA_LIST} 
