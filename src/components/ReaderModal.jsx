@@ -30,8 +30,8 @@ function CountdownLarge({ unlockDate }) {
       {[{ v: time.h, l: 'JAM' }, { v: time.m, l: 'MENIT' }, { v: time.s, l: 'DETIK' }].reduce((acc, { v, l }, i) => {
         const cell = (
           <div key={l} className="flex flex-col items-center">
-            <span className="font-mono text-4xl font-black text-on-surface tabular-nums leading-none">{pad(v)}</span>
-            <span className="font-label-sm text-[10px] sm:text-xs text-outline/60 font-bold uppercase tracking-widest mt-1">{l}</span>
+            <span className="font-mono text-4xl sm:text-5xl md:text-6xl font-black text-on-surface tabular-nums leading-none">{pad(v)}</span>
+            <span className="font-label-sm text-[10px] sm:text-xs md:text-sm text-outline/60 font-bold uppercase tracking-widest mt-1">{l}</span>
           </div>
         );
         if (i === 0) return [cell];
@@ -204,7 +204,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       <button
         onClick={handlePrev}
         disabled={prevDisabled}
-        className="flex-1 h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-on-surface disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
+        className="flex-1 h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base font-bold text-on-surface disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
       >
         <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         <span className="hidden sm:inline">Prev</span>
@@ -241,7 +241,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
                         setShowChapterList(false);
                         if (!isActive) onReadChapter(ch, manga.title);
                       }}
-                      className={`w-full flex items-center justify-between px-4 py-3 text-left text-xs font-semibold transition-colors cursor-pointer border-b border-white/5 last:border-0 ${
+                      className={`w-full flex items-center justify-between px-4 py-3 text-left text-xs sm:text-xs md:text-sm font-semibold transition-colors cursor-pointer border-b border-white/5 last:border-0 ${
                         isActive
                           ? 'bg-primary/10 text-primary font-black'
                           : 'text-on-surface-variant hover:bg-white/5 hover:text-on-surface'
@@ -272,7 +272,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       <button
         onClick={handleNext}
         disabled={nextDisabled}
-        className="flex-1 h-9 sm:h-10 md:h-11 rounded-xl bg-primary hover:bg-primary/90 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-on-primary disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
+        className="flex-1 h-9 sm:h-10 md:h-11 rounded-xl bg-primary hover:bg-primary/90 flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base font-bold text-on-primary disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
       >
         <span className="hidden sm:inline">Next</span>
         <ArrowRight className="w-4 h-4" />
@@ -300,8 +300,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
               >
                 <ArrowLeft className="w-5 h-5 text-primary shrink-0" />
                 <div className="min-w-0 flex-1 text-left">
-                  <p className="font-label-sm text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{manga?.title}</p>
-                  <h2 className="font-body-md text-sm font-extrabold text-on-surface truncate">{chapter.title}</h2>
+                  <p className="font-label-sm text-xs sm:text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{manga?.title}</p>
+                  <h2 className="font-body-md text-sm sm:text-sm md:text-base font-extrabold text-on-surface truncate">{chapter.title}</h2>
                 </div>
                 {manga?.coverUrl && (
                   <div className="h-full py-1.5 flex items-center shrink-0">
@@ -343,8 +343,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
               >
                 <ArrowLeft className="w-5 h-5 text-primary shrink-0" />
                 <div className="min-w-0 flex-1 text-left">
-                  <p className="font-label-sm text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{manga?.title}</p>
-                  <h2 className="font-body-md text-sm font-extrabold text-on-surface truncate">{chapter.title}</h2>
+                  <p className="font-label-sm text-xs sm:text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{manga?.title}</p>
+                  <h2 className="font-body-md text-sm sm:text-sm md:text-base font-extrabold text-on-surface truncate">{chapter.title}</h2>
                 </div>
                 {manga?.coverUrl && (
                   <div className="h-full py-1.5 flex items-center shrink-0">
@@ -483,12 +483,12 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
               >
                 <div>
                   <p className="font-label-sm text-xs text-outline/70 uppercase tracking-widest font-bold mb-1">Chapter berikutnya</p>
-                  <h3 className="font-headline-md text-base font-black text-on-surface">{lockedNext.title}</h3>
+                  <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface">{lockedNext.title}</h3>
                 </div>
 
                 {/* Countdown besar — update tiap detik */}
                 <div className="flex flex-col items-center gap-2 bg-surface-container-high/40 rounded-xl py-5 px-4 border border-white/5">
-                  <p className="font-label-sm text-[11px] text-outline/60 font-bold uppercase tracking-wider">Gratis dalam</p>
+                  <p className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/60 font-bold uppercase tracking-wider">Gratis dalam</p>
                   <CountdownLarge unlockDate={lockedNext.unlockDate} />
                 </div>
 

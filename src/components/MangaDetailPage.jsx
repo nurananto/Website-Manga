@@ -53,7 +53,7 @@ const renderChapterRow = (ch, idx) => {
         <div className={`flex items-center gap-3 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 min-w-0">
-              <p className="font-body-md text-sm md:text-base text-on-surface font-bold group-hover:text-primary transition-colors truncate">
+              <p className="font-body-md text-sm sm:text-sm md:text-base text-on-surface font-bold group-hover:text-primary transition-colors truncate">
                 {ch.title}
               </p>
               {isNew && (
@@ -237,21 +237,21 @@ const renderChapterRow = (ch, idx) => {
                   <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-current" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.rating}</span>
                 </div>
-                <span className="font-label-sm text-xs text-outline/70 font-semibold uppercase tracking-wide">Rating</span>
+                <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/70 font-semibold uppercase tracking-wide">Rating</span>
               </div>
               <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-white/5">
                 <div className="flex items-center gap-1.5">
                   <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
-                  <span className="font-headline-md text-lg sm:text-xl font-black text-on-surface">{manga.chapters.length}</span>
+                  <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.chapters.length}</span>
                 </div>
-                <span className="font-label-sm text-xs text-outline/70 font-semibold uppercase tracking-wide">Chapters</span>
+                <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/70 font-semibold uppercase tracking-wide">Chapters</span>
               </div>
               <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-white/5">
                 <div className="flex items-center gap-1.5">
                   <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" />
-                  <span className="font-headline-md text-lg sm:text-xl font-black text-on-surface">{manga.total_views ? `${(manga.total_views / 1000).toFixed(1)}k` : '—'}</span>
+                  <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.total_views ? `${(manga.total_views / 1000).toFixed(1)}k` : '—'}</span>
                 </div>
-                <span className="font-label-sm text-xs text-outline/70 font-semibold uppercase tracking-wide">Views</span>
+                <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/70 font-semibold uppercase tracking-wide">Views</span>
               </div>
             </div>
 
@@ -259,7 +259,7 @@ const renderChapterRow = (ch, idx) => {
             <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-white/5 overflow-hidden">
               <div className="flex flex-col gap-1 p-3 sm:p-4 border-r border-white/5 min-w-0">
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Author</span>
-                <span className="font-body-md text-sm md:text-base font-bold text-on-surface truncate">{manga.author || '—'}</span>
+                <span className="font-body-md text-sm sm:text-sm md:text-base font-bold text-on-surface truncate">{manga.author || '—'}</span>
               </div>
               <div className="flex flex-col gap-1 p-3 sm:p-4 min-w-0">
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Artist</span>
@@ -276,7 +276,7 @@ const renderChapterRow = (ch, idx) => {
                     manga.status === 'Tamat' ? 'bg-red-400' :
                     manga.status === 'Hiatus' ? 'bg-zinc-400' : 'bg-emerald-400'
                   }`} />
-                  <span className={`font-body-md text-sm font-black ${
+                  <span className={`font-body-md text-sm sm:text-sm md:text-base font-black ${
                     manga.status === 'Tamat' ? 'text-red-400' :
                     manga.status === 'Hiatus' ? 'text-zinc-400' : 'text-emerald-400'
                   }`}>{manga.status || 'Ongoing'}</span>
@@ -286,7 +286,7 @@ const renderChapterRow = (ch, idx) => {
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Type</span>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-white/60 shrink-0" />
-                  <span className="font-body-md text-sm font-black text-on-surface">{manga.type || 'MANGA'}</span>
+                  <span className="font-body-md text-sm sm:text-sm md:text-base font-black text-on-surface">{manga.type || 'MANGA'}</span>
                 </div>
               </div>
             </div>
@@ -294,7 +294,7 @@ const renderChapterRow = (ch, idx) => {
             {/* Genres */}
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {manga.genres.map((g) => (
-                <span key={g} className="font-label-sm bg-surface-container-high px-3 py-1.5 rounded-lg text-xs sm:text-sm text-on-surface border border-white/5 font-semibold">
+                <span key={g} className="font-label-sm bg-surface-container-high px-3 py-1.5 rounded-lg text-xs sm:text-sm md:text-base text-on-surface border border-white/5 font-semibold">
                   {g}
                 </span>
               ))}
@@ -323,7 +323,7 @@ const renderChapterRow = (ch, idx) => {
             {/* Synopsis */}
             <div className="flex flex-col gap-2">
               <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">Synopsis</h3>
-              <p className="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed opacity-90 text-justify">
+              <p className="font-body-md text-sm sm:text-sm md:text-base text-on-surface-variant leading-relaxed opacity-90 text-justify">
                 {expandedSynopsis ? (manga.description || '') : `${(manga.description || '').substring(0, 160)}${(manga.description || '').length > 160 ? '...' : ''}`}
                 <button
                   onClick={() => setExpandedSynopsis(v => !v)}

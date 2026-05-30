@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { imgUrl, timeAgo } from '../utils';
-import { Star, Coins, Clock, ArrowUp } from 'lucide-react';
+import { Coins, Clock, ArrowUp } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
 export default function MangaCard({ manga, onReadChapter, onViewManga }) {
@@ -53,18 +53,12 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
             <h3
               onClick={onViewManga}
-              className="font-headline-md text-base sm:text-base md:text-lg leading-tight font-extrabold text-on-surface truncate hover:text-primary transition-colors cursor-pointer"
+              className="font-headline-md text-base sm:text-base md:text-lg leading-tight font-black text-on-surface truncate hover:text-primary transition-colors cursor-pointer"
             >
               {manga.title}
             </h3>
             {/* Badge status hanya tampil di chapter row sesuai tamat/hiatus_at_chapter */}
           </div>
-          {manga.rating && (
-            <div className="flex items-center gap-1 shrink-0 bg-amber-500/10 px-1.5 py-0.5 rounded-lg text-amber-500">
-              <Star className="w-3 h-3 fill-current" />
-              <span className="font-label-sm text-sm font-black">{manga.rating}</span>
-            </div>
-          )}
         </div>
 
         {/* Chapters List */}
@@ -90,7 +84,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                 className="flex justify-between items-center hover:bg-surface-container-highest px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 md:py-2 rounded-xl border border-white/5 hover:border-white/10 transition-all group/ch"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
-                  <span className="font-body-md text-sm sm:text-sm md:text-base font-semibold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
+                  <span className="font-body-md text-sm sm:text-sm md:text-base font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
                   </span>
                   {ch.isNew && (
@@ -133,7 +127,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                     </div>
                   </div>
                 ) : (
-                  <span className="font-label-sm text-xs text-outline/60 whitespace-nowrap shrink-0">{ch.date || timeAgo(ch.release_date)}</span>
+                  <span className="font-label-sm text-xs md:text-sm text-outline/60 whitespace-nowrap shrink-0">{ch.date || timeAgo(ch.release_date)}</span>
                 )}
               </div>
             );
