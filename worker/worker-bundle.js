@@ -13,6 +13,63 @@ const CORS = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
 
+// ── Referer check ─────────────────────────────────────────────
+// Env var: ALLOWED_ORIGINS = "nuranantoweb.pages.dev,nuranantoscans.my.id"
+function isAllowedReferer(request, env) {
+  const referer = request.headers.get('Referer') || request.headers.get('Origin') || '';
+  const allowed = (env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
+  if (!allowed.length) return true; // kalau belum diset, izinkan semua (dev mode)
+  return allowed.some(domain => referer.includes(domain));
+}
+
+// ── Ban check ─────────────────────────────────────────────────
+async function isBanned(ip, env) {
+  const row = await env.DB.prepare(`
+    SELECT expires_at FROM banned_ips
+    WHERE ip = ? AND (expires_at IS NULL OR expires_at > datetime('now'))
+  `).bind(ip).first();
+  return !!row;
+}
+
+// ── Rate limit: 50 request/menit, langsung ban 70 tahun ──────
+const RATE_LIMIT = 50;
+
+async function checkRateLimit(request, env) {
+  const ip     = request.headers.get('CF-Connecting-IP') || 'unknown';
+  const minute = Math.floor(Date.now() / 60000);
+  const key    = `${ip}:${minute}`;
+
+  // Cek ban dulu
+  if (await isBanned(ip, env)) return { allowed: false, banned: true };
+
+  // Atomic upsert
+  const row = await env.DB.prepare(`
+    INSERT INTO rate_limits (key, count, minute, violations) VALUES (?, 1, ?, 0)
+    ON CONFLICT(key) DO UPDATE SET count = count + 1
+    RETURNING count
+  `).bind(key, minute).first();
+
+  const count = row?.count || 1;
+
+  if (count > RATE_LIMIT) {
+    // Langsung ban 70 tahun
+    const expires = new Date(Date.now() + 70 * 365.25 * 24 * 3600000).toISOString();
+    await env.DB.prepare(`
+      INSERT OR IGNORE INTO banned_ips (ip, reason, expires_at)
+      VALUES (?, 'Auto-ban: exceeded rate limit', ?)
+    `).bind(ip, expires).run();
+
+    return { allowed: false, banned: true };
+  }
+
+  // Cleanup sesekali
+  if (Math.random() < 0.01) {
+    env.DB.prepare('DELETE FROM rate_limits WHERE minute < ?').bind(minute - 5).run();
+  }
+
+  return { allowed: true };
+}
+
 // ── Coin mapping Trakteer ────────────────────────────────────
 const COIN_MAP = [
   { min: 50000, coins: 600 },
@@ -58,6 +115,16 @@ async function hmacSha256(secret, message) {
 //   /images/manga/waka-chan/1.5/Image001.webp   → chapter (cek lock)
 
 async function handleImages(request, env, ctx) {
+  // Referer check
+  if (!isAllowedReferer(request, env))
+    return new Response('Forbidden', { status: 403 });
+
+  // Rate limit + ban check
+  const rl = await checkRateLimit(request, env);
+  if (!rl.allowed)
+    return new Response(rl.banned ? 'Forbidden' : 'Too Many Requests',
+      { status: rl.banned ? 403 : 429 });
+
   const r2Key = new URL(request.url).pathname.replace(/^\/images\//, '');
   if (!r2Key) return new Response('Bad Request', { status: 400 });
 

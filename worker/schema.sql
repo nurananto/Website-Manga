@@ -62,6 +62,22 @@ CREATE TABLE IF NOT EXISTS sync_log (
 
 INSERT OR IGNORE INTO sync_log (id, status) VALUES (1, 'pending');
 
+-- Rate limiting per IP per menit
+CREATE TABLE IF NOT EXISTS rate_limits (
+  key    TEXT PRIMARY KEY,
+  count  INTEGER DEFAULT 1,
+  minute INTEGER
+);
+CREATE INDEX IF NOT EXISTS idx_rate_minute ON rate_limits(minute);
+
+-- Ban permanen / sementara
+CREATE TABLE IF NOT EXISTS banned_ips (
+  ip         TEXT PRIMARY KEY,
+  reason     TEXT,
+  banned_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  expires_at TIMESTAMP            -- NULL = permanen
+);
+
 -- Index untuk performa
 CREATE INDEX IF NOT EXISTS idx_bookmarks_user     ON bookmarks(user_id);
 CREATE INDEX IF NOT EXISTS idx_history_user       ON history(user_id);
