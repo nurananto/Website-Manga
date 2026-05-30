@@ -45,9 +45,19 @@ async function fetchMangaDexRating(mangadexId) {
     );
     if (!res.ok) return null;
     const data = await res.json();
-    const stats = data.statistics?.[mangadexId];
-    // Pakai bayesian (lebih stabil) dengan fallback ke average
-    return stats?.rating?.bayesian ?? stats?.rating?.average ?? null;
+    const dist = data.statistics?.[mangadexId]?.rating?.distribution;
+    if (!dist) return null;
+
+    // Hitung weighted average dari distribusi
+    let totalVotes = 0;
+    let weightedSum = 0;
+    for (let score = 1; score <= 10; score++) {
+      const votes = dist[String(score)] || 0;
+      totalVotes += votes;
+      weightedSum += score * votes;
+    }
+    if (totalVotes === 0) return null;
+    return weightedSum / totalVotes;
   } catch {
     return null;
   }
@@ -83,7 +93,7 @@ async function buildCatalog() {
       console.log(`📡 Fetching rating for ${manga.title}...`);
       manga.rating = await fetchMangaDexRating(manga.mangadex_id);
       if (manga.rating) {
-        manga.rating = Math.round(manga.rating * 10) / 10; // 1 desimal
+        manga.rating = Math.round(manga.rating * 100) / 100; // 2 desimal (x.xx)
         console.log(`   ⭐ ${manga.rating}`);
       }
     } else {

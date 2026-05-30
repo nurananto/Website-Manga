@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - 'manga/**'
+  schedule:
+    - cron: '0 0 * * 0'   # Setiap Minggu jam 00:00 UTC (07:00 WIB)
   workflow_dispatch:        # bisa dipicu manual dari GitHub UI
 
 jobs:

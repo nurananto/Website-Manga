@@ -367,22 +367,34 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
           onMouseLeave={() => setBarExpanded(false)}
           onClick={() => setBarExpanded(v => !v)}
         >
-          {/* Expanded: pill segments */}
+          {/* Expanded: pill segments + bubble halaman */}
           <div
             className={`overflow-hidden transition-all duration-200 bg-black/80 backdrop-blur-sm flex items-center gap-2 px-3 ${barExpanded ? 'h-9' : 'h-0'}`}
           >
             <span className="font-label-sm text-[11px] font-bold text-white/50 shrink-0 w-5 text-right tabular-nums">
               {currentPage + 1}
             </span>
-            <div className="flex-1 flex items-center gap-[3px]">
+            <div className="flex-1 flex items-center gap-[3px] relative">
               {Array.from({ length: pageCount }).map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => pageRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                  className={`flex-1 h-[6px] rounded-full transition-colors duration-150 cursor-pointer ${
-                    i <= currentPage ? 'bg-primary' : 'bg-white/25 hover:bg-white/50'
-                  }`}
-                />
+                <div key={i} className="flex-1 relative group/seg">
+                  {/* Bubble nomor halaman */}
+                  <div className={`absolute bottom-full mb-1.5 left-1/2 -translate-x-1/2
+                    font-label-sm text-[10px] font-black px-1.5 py-0.5 rounded-md pointer-events-none
+                    opacity-0 group-hover/seg:opacity-100 transition-opacity duration-100 whitespace-nowrap
+                    ${i <= currentPage
+                      ? 'bg-primary text-on-primary'
+                      : 'bg-white/20 text-white/70'
+                    }`}>
+                    {i + 1}
+                  </div>
+                  {/* Pill */}
+                  <button
+                    onClick={() => pageRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                    className={`w-full h-[6px] rounded-full transition-colors duration-150 cursor-pointer ${
+                      i <= currentPage ? 'bg-primary' : 'bg-white/25 hover:bg-white/50'
+                    }`}
+                  />
+                </div>
               ))}
             </div>
             <span className="font-label-sm text-[11px] font-bold text-white/50 shrink-0 w-5 tabular-nums">

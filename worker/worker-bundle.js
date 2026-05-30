@@ -16,9 +16,10 @@ const CORS = {
 // ── Referer check ─────────────────────────────────────────────
 // Env var: ALLOWED_ORIGINS = "nuranantoweb.pages.dev,nuranantoscans.my.id"
 function isAllowedReferer(request, env) {
+  // Referer / Origin check
   const referer = request.headers.get('Referer') || request.headers.get('Origin') || '';
   const allowed = (env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
-  if (!allowed.length) return true; // kalau belum diset, izinkan semua (dev mode)
+  if (!allowed.length) return true;
   return allowed.some(domain => referer.includes(domain));
 }
 
@@ -156,8 +157,8 @@ async function servePublic(request, env, ctx, r2Key) {
   const response = new Response(object.body, {
     headers: {
       'Content-Type':              object.httpMetadata?.contentType || 'image/webp',
-      'Cache-Control':             'public, max-age=604800, s-maxage=604800', // 7 hari
-      'Cloudflare-CDN-Cache-Control': 'public, max-age=604800',               // 7 hari di edge CF
+      'Cache-Control':             'public, max-age=31536000, immutable',     // 1 tahun, tidak berubah
+      'Cloudflare-CDN-Cache-Control': 'public, max-age=31536000, immutable',  // 1 tahun di edge CF
       'ETag':                      object.etag,
     },
   });
