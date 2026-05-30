@@ -155,8 +155,12 @@ export default function App() {
 
   const openChapterReader = (chapter, mangaTitle) => {
     setActiveMangaTitle(mangaTitle || "");
-    // URL: /mangaId/chapterNum
-    const mangaId = selectedMangaRef.current?.id || '';
+    // Ambil mangaId dari ref, atau extract dari chapter.id (format: "waka-chan-ch-35")
+    const mangaId = selectedMangaRef.current?.id
+      || chapter.id?.replace(/-ch-[\d.]+$/, '')
+      || MANGA_LIST.find(m => m.chapters?.some(c => c.id === chapter.id))?.id
+      || '';
+    if (!mangaId) return; // tidak bisa navigasi tanpa mangaId
     navigate(`/${mangaId}/${chapter.chapter_number}`);
     const manga = MANGA_LIST.find(m => m.chapters.some(c => c.id === chapter.id));
     if (manga) {
