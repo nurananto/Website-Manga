@@ -9,7 +9,7 @@
 
 const CORS = {
   'Access-Control-Allow-Origin':  '*',
-  'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+  'Access-Control-Allow-Methods': 'GET, HEAD, POST, DELETE, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
 
@@ -178,7 +178,7 @@ async function handleCron(env) {
         method:  'PUT',
         headers: ghHeaders,
         body:    JSON.stringify({
-          message: `chore: update view counts ${mangaId} [skip ci]`,
+          message: `chore: update view counts ${mangaId}`,
           content: btoa(JSON.stringify(meta, null, 2)),
           sha,
         }),

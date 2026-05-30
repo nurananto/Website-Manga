@@ -41,7 +41,7 @@ function CountdownLarge({ unlockDate }) {
   );
 }
 
-function PageImage({ src, idx, pageRefs }) {
+function PageImage({ src, idx, pageRefs, onSuccess, onFail }) {
   const [loaded, setLoaded] = useState(false);
   return (
     <div
@@ -60,7 +60,8 @@ function PageImage({ src, idx, pageRefs }) {
         decoding="async"
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
         src={src}
-        onLoad={() => setLoaded(true)}
+        onLoad={() => { setLoaded(true); onSuccess?.(); }}
+        onError={() => onFail?.()}
       />
     </div>
   );
@@ -76,6 +77,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
   const dropdownRef = useRef(null);
   const scrollRef = useRef(null);
   const pageRefs = useRef([]);
+  const activeChapterIdRef = useRef(null); // guard agar onSuccess tidak fire untuk chapter lama
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -114,34 +116,23 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
 
   const workerUrl = import.meta.env.VITE_WORKER_URL || '';
   const [pages, setPages] = useState([]);
-  const [pageCount, setPageCount] = useState(chapter?.pages || 0);
+  const [pageCount, setPageCount] = useState(0);
+  const nextPageRef = useRef(1);
 
-  // Load gambar dari R2 sampai 404
+  const makeUrl = (idx) => {
+    const num = String(idx).padStart(2, '0');
+    return `${workerUrl}/images/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp`;
+  };
+
+  // pages wajib — generate semua URL sekaligus, tidak ada 404
   useEffect(() => {
-    if (!chapter?.id || !manga?.id) return;
-    setPages([]);
-    setPageCount(0);
-
-    const mangaId      = manga.id;
-    const chapterNum   = chapter.chapter_number;
-    const loadedPages  = [];
-
-    const tryLoad = async (idx) => {
-      const num = String(idx).padStart(2, '0');
-      const url = `${workerUrl}/images/manga/${mangaId}/${chapterNum}/Image${num}.webp`;
-      try {
-        const res = await fetch(url, { method: 'HEAD' });
-        if (!res.ok) return; // 404 → berhenti
-        loadedPages.push(url);
-        setPages([...loadedPages]);
-        setPageCount(loadedPages.length);
-        tryLoad(idx + 1); // muat halaman berikutnya
-      } catch {
-        // berhenti
-      }
-    };
-
-    tryLoad(1); // mulai dari Image001.webp
+    if (!chapter?.id || !manga?.id || !chapter.pages) return;
+    activeChapterIdRef.current = chapter.id;
+    pageRefs.current = [];
+    const all = Array.from({ length: chapter.pages }, (_, i) => makeUrl(i + 1));
+    nextPageRef.current = chapter.pages + 1;
+    setPages(all);
+    setPageCount(chapter.pages);
   }, [chapter?.id]);
 
   // Reset scroll + currentPage saat chapter berganti
@@ -167,13 +158,18 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
   }, [pageCount]);
 
   useEffect(() => {
-    const handleClick = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setShowChapterList(false);
-      }
+    const handleClose = (e) => {
+      // Tutup dropdown kalau klik/tap di luar area chapter selector
+      // Cek apakah target ada di dalam elemen yang punya data-chapter-selector
+      const inside = e.target.closest('[data-chapter-selector]');
+      if (!inside) setShowChapterList(false);
     };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
+    document.addEventListener('mousedown', handleClose);
+    document.addEventListener('touchstart', handleClose);
+    return () => {
+      document.removeEventListener('mousedown', handleClose);
+      document.removeEventListener('touchstart', handleClose);
+    };
   }, []);
 
   const handleNext = () => {
@@ -215,7 +211,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       </button>
 
       {/* Chapter Selector */}
-      <div ref={dropdownRef} className="relative flex-[2]">
+      <div ref={dropdownRef} data-chapter-selector className="relative flex-[2]">
         <button
           onClick={() => setShowChapterList(v => !v)}
           className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-[11px] sm:text-xs font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
@@ -327,7 +323,12 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
 
             <div className="w-full lg:max-w-[720px] lg:mx-auto">
               {pages.map((p, idx) => (
-                <PageImage key={idx} src={p} idx={idx} pageRefs={pageRefs} />
+                <PageImage
+                  key={idx}
+                  src={p}
+                  idx={idx}
+                  pageRefs={pageRefs}
+                />
               ))}
             </div>
 
@@ -359,13 +360,12 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
           </div>
         </div>
 
-        {/* Progress Bar — thin default, expand on hover */}
+        {/* Progress Bar — thin default, expand on hover/tap */}
         <div
           className="fixed bottom-0 left-0 right-0 z-[202] pb-safe cursor-pointer"
           onMouseEnter={() => setBarExpanded(true)}
           onMouseLeave={() => setBarExpanded(false)}
-          onTouchStart={() => setBarExpanded(true)}
-          onTouchEnd={() => setTimeout(() => setBarExpanded(false), 1200)}
+          onClick={() => setBarExpanded(v => !v)}
         >
           {/* Expanded: pill segments */}
           <div

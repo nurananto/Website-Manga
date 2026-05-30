@@ -99,6 +99,12 @@ async function buildCatalog() {
       if (!fs.existsSync(chMetaPath)) continue;
       const ch = JSON.parse(fs.readFileSync(chMetaPath, 'utf-8'));
 
+      // pages wajib diisi
+      if (!ch.pages || ch.pages < 1) {
+        console.warn(`⚠️  SKIP ${slug} Ch.${ch.chapter_number}: field "pages" wajib diisi!`);
+        continue;
+      }
+
       // Auto-generate id, title, dan r2_prefix
       ch.id = `${slug}-ch-${ch.chapter_number}`;
       ch.r2_prefix = `manga/${slug}/${ch.chapter_number}/`;

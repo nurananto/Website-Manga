@@ -24,11 +24,11 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
     : 'border-white/5 hover:border-primary/20';
 
   return (
-    <div className={`flex h-[160px] sm:h-[175px] md:h-[190px] bg-surface-container rounded-xl overflow-hidden group border shadow-md ${borderClass}`}>
+    <div className={`flex h-[160px] sm:h-[180px] md:h-[200px] lg:h-[210px] bg-surface-container rounded-xl overflow-hidden group border shadow-md ${borderClass}`}>
       {/* Cover — klik ke detail */}
       <div
         onClick={onViewManga}
-        className="relative w-[120px] h-full flex-shrink-0 flex items-center justify-center py-2.5 px-2 cursor-pointer"
+        className="relative w-[110px] sm:w-[130px] md:w-[145px] h-full flex-shrink-0 flex items-center justify-center py-2 sm:py-2.5 md:py-3 px-2 cursor-pointer"
       >
         <img
           alt={manga.title}
@@ -47,7 +47,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
       </div>
 
       {/* Details Section */}
-      <div className="flex-1 p-3 sm:p-4 flex flex-col min-w-0">
+      <div className="flex-1 p-3 sm:p-4 md:p-5 flex flex-col min-w-0">
         {/* Title row */}
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
@@ -97,10 +97,10 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                   e.stopPropagation();
                   onReadChapter(ch, manga.title);
                 }}
-                className="flex justify-between items-center hover:bg-surface-container-highest px-2.5 py-1.5 rounded-xl border border-white/5 hover:border-white/10 transition-all group/ch"
+                className="flex justify-between items-center hover:bg-surface-container-highest px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 md:py-2 rounded-xl border border-white/5 hover:border-white/10 transition-all group/ch"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
-                  <span className="font-body-md text-[11px] sm:text-xs font-semibold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
+                  <span className="font-body-md text-[11px] sm:text-xs md:text-sm font-semibold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
                   </span>
                   {ch.isNew && (
