@@ -36,9 +36,9 @@ const renderChapterRow = (ch, idx) => {
         : sortNewest ? idx === 0 : idx === sortedChapters.length - 1
     );
 
-    const chapterViews = ch.views
-      ? ch.views >= 1000 ? `${(ch.views / 1000).toFixed(1)}k` : ch.views
-      : null;
+    const chapterViews = ch.views && ch.views > 0
+      ? ch.views >= 1000 ? `${(ch.views / 1000).toFixed(1)}k` : String(ch.views)
+      : '—';
 
     return (
       <div
@@ -47,7 +47,7 @@ const renderChapterRow = (ch, idx) => {
           setReadChapters(prev => new Set([...prev, ch.id]));
           onReadChapter(ch, manga.title);
         }}
-        className={`group flex items-center justify-between py-3.5 hover:bg-white/5 transition-all cursor-pointer px-2 -mx-2 rounded-xl ${
+        className={`group flex items-center justify-between py-3 px-3 sm:px-4 hover:bg-white/5 transition-all cursor-pointer rounded-xl border border-white/8 hover:border-white/15 bg-surface-container/30 ${
           !isNew ? 'opacity-60' : ''
         }`}
       >
@@ -105,12 +105,12 @@ const renderChapterRow = (ch, idx) => {
                 />
               </div>
             </div>
-          ) : chapterViews ? (
+          ) : (
             <div className="flex items-center gap-1 text-outline/50 font-label-sm text-xs select-none shrink-0">
               <Eye className="w-3.5 h-3.5 shrink-0" />
               <span>{chapterViews}</span>
             </div>
-          ) : null}
+          )}
         </div>
       </div>
     );
@@ -373,7 +373,7 @@ const renderChapterRow = (ch, idx) => {
             </div>
 
             {/* Chapter List */}
-            <div className="divide-y divide-white/10 border-t border-b border-white/10">
+            <div className="flex flex-col gap-1.5">
               {showAllChapters ? (
                 sortedChapters.map((ch, idx) => renderChapterRow(ch, idx))
               ) : (
