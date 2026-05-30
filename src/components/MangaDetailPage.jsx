@@ -47,15 +47,10 @@ const renderChapterRow = (ch, idx) => {
           setReadChapters(prev => new Set([...prev, ch.id]));
           onReadChapter(ch, manga.title);
         }}
-        className={`group flex items-center justify-between py-3 px-3 sm:px-4 hover:bg-white/5 transition-all cursor-pointer rounded-xl border border-white/8 hover:border-white/15 bg-surface-container/30 ${
-          !isNew ? 'opacity-60' : ''
-        }`}
+        className="group flex items-center justify-between py-3 px-3 sm:px-4 hover:bg-white/5 transition-all cursor-pointer rounded-xl border border-white/8 hover:border-white/15 bg-surface-container/30"
       >
-        {/* Left: unread dot + title + date */}
-        <div className="flex items-center gap-3 min-w-0 flex-1">
-          <div className={`w-2 h-2 rounded-full shrink-0 transition-all ${
-            isUnread ? 'bg-primary shadow-[0_0_8px_rgba(137,206,255,0.8)]' : 'bg-transparent'
-          }`} />
+        {/* Left: title + date — redup kalau sudah dibaca */}
+        <div className={`flex items-center gap-3 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 min-w-0">
               <p className="font-body-md text-sm text-on-surface font-bold group-hover:text-primary transition-colors truncate">
@@ -167,7 +162,7 @@ const renderChapterRow = (ch, idx) => {
                       onReadChapter(manga.chapters[manga.chapters.length - 1], manga.title);
                     }
                   }}
-                  className="px-4 sm:px-6 h-9 sm:h-10 md:h-11 bg-primary hover:bg-primary/95 text-on-primary rounded-xl font-label-sm font-bold text-xs sm:text-sm flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-primary/10 cursor-pointer"
+                  className="px-8 sm:px-12 h-9 sm:h-10 md:h-11 bg-primary hover:bg-primary/95 text-on-primary rounded-xl font-label-sm font-bold text-xs sm:text-sm flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-primary/10 cursor-pointer"
                 >
                   <BookOpen className="w-4 h-4" />
                   {lastReadChapter ? `Lanjut Baca (${lastReadChapter.title.split(':')[0]})` : 'Mulai Baca'}

@@ -7,7 +7,7 @@ export function imgUrl(path) {
   return `${WORKER}/images/${path}`;
 }
 
-// Format tanggal relatif: "2j lalu", "3h lalu", "1m lalu"
+// Format tanggal relatif: "2 jam lalu", "3 hari lalu", "1 bln lalu"
 export function timeAgo(dateStr) {
   if (!dateStr) return '';
   const diff = Date.now() - new Date(dateStr).getTime();
@@ -15,9 +15,11 @@ export function timeAgo(dateStr) {
   const h = Math.floor(m / 60);
   const d = Math.floor(h / 24);
   const mo = Math.floor(d / 30);
-  if (mo > 0)  return `${mo}bln lalu`;
-  if (d > 0)   return `${d}h lalu`;
-  if (h > 0)   return `${h}j lalu`;
-  if (m > 0)   return `${m}m lalu`;
+  const w = Math.floor(d / 7);
+  if (mo > 0)  return `${mo} bln lalu`;
+  if (w > 0)   return `${w} mgg lalu`;
+  if (d > 0)   return `${d} hari lalu`;
+  if (h > 0)   return `${h} jam lalu`;
+  if (m > 0)   return `${m} mnt lalu`;
   return 'Baru saja';
 }

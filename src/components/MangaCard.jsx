@@ -53,21 +53,11 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
             <h3
               onClick={onViewManga}
-              className="font-headline-md text-sm sm:text-base md:text-lg leading-tight font-extrabold text-on-surface truncate hover:text-primary transition-colors cursor-pointer"
+              className="font-headline-md text-base sm:text-base md:text-lg leading-tight font-extrabold text-on-surface truncate hover:text-primary transition-colors cursor-pointer"
             >
               {manga.title}
             </h3>
-            {/* Status badge di judul — hanya tampil saat tidak ada update baru */}
-            {!hasNewChapter && manga.status === 'Hiatus' && (
-              <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[9px] font-black uppercase tracking-wider bg-zinc-500/15 text-zinc-400 border border-zinc-500/30">
-                Hiatus
-              </span>
-            )}
-            {!hasNewChapter && manga.status === 'Tamat' && (
-              <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[9px] font-black uppercase tracking-wider bg-red-500/15 text-red-400 border border-red-500/30">
-                Tamat
-              </span>
-            )}
+            {/* Badge status hanya tampil di chapter row sesuai tamat/hiatus_at_chapter */}
           </div>
           {manga.rating && (
             <div className="flex items-center gap-1 shrink-0 bg-amber-500/10 px-1.5 py-0.5 rounded-lg text-amber-500">
@@ -100,7 +90,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                 className="flex justify-between items-center hover:bg-surface-container-highest px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 md:py-2 rounded-xl border border-white/5 hover:border-white/10 transition-all group/ch"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
-                  <span className="font-body-md text-[11px] sm:text-xs md:text-sm font-semibold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
+                  <span className="font-body-md text-sm sm:text-sm md:text-base font-semibold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
                   </span>
                   {ch.isNew && (
