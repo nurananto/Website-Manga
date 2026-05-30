@@ -7,7 +7,7 @@ import MangaDetailPage from './components/MangaDetailPage';
 import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield, HelpCircle, Star, Search, Key, X, Coffee, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthModal, CoinPurchaseModal, UnlockModal } from './components/CoinModals';
-import { MangaCardSkeleton } from './components/Skeleton';
+import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 
 export default function App() {
@@ -41,6 +41,7 @@ export default function App() {
   const [activeChapter, setActiveChapter] = useState(null);
   const [activeMangaTitle, setActiveMangaTitle] = useState('');
   const [selectedManga, setSelectedManga] = useState(null);
+  const [loadingManga, setLoadingManga] = useState(false);
   const selectedMangaRef = useRef(null);
   const mangaListRef = useRef([]);
   const [activeTab, setActiveTab] = useState('library'); // 'library', 'discover', 'updates', 'profile'
@@ -75,6 +76,8 @@ export default function App() {
         setSelectedManga(null);
         setActiveChapter(null);
       } else if (page === 'manga') {
+        setLoadingManga(true);
+        setSelectedManga(null);
         fetch(`/manga/${mangaId}.json?t=${Date.now()}`)
           .then(r => r.ok ? r.json() : null)
           .then(fullManga => {
@@ -84,7 +87,8 @@ export default function App() {
               setActiveChapter(null);
             } else navigate('/', true);
           })
-          .catch(() => navigate('/', true));
+          .catch(() => navigate('/', true))
+          .finally(() => setLoadingManga(false));
       } else if (page === 'reader') {
         // Fetch manga kalau belum ada atau berbeda
         const loadReader = (manga) => {
@@ -238,7 +242,9 @@ export default function App() {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
-        {selectedManga ? (
+        {loadingManga ? (
+          <MangaDetailSkeleton />
+        ) : selectedManga ? (
           /* Manga Detail View */
           <MangaDetailPage
             manga={selectedManga}

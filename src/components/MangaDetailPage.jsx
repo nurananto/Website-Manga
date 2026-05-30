@@ -53,7 +53,7 @@ const renderChapterRow = (ch, idx) => {
         <div className={`flex items-center gap-3 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 min-w-0">
-              <p className="font-body-md text-sm text-on-surface font-bold group-hover:text-primary transition-colors truncate">
+              <p className="font-body-md text-sm md:text-base text-on-surface font-bold group-hover:text-primary transition-colors truncate">
                 {ch.title}
               </p>
               {isNew && (
@@ -74,7 +74,7 @@ const renderChapterRow = (ch, idx) => {
                 </span>
               )}
             </div>
-            <p className="font-label-sm text-[11px] text-outline/60 mt-0.5">{ch.date || timeAgo(ch.release_date)}</p>
+            <p className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/60 mt-0.5">{ch.date || timeAgo(ch.release_date)}</p>
           </div>
         </div>
 
@@ -152,22 +152,6 @@ const renderChapterRow = (ch, idx) => {
                 {manga.alternativeTitle || manga.alt_title || ''}
               </p>
 
-              {/* Tombol Baca */}
-              <div className="flex w-full justify-center sm:justify-start">
-                <button
-                  onClick={() => {
-                    if (lastReadChapter) {
-                      onReadChapter(lastReadChapter, manga.title);
-                    } else {
-                      onReadChapter(manga.chapters[manga.chapters.length - 1], manga.title);
-                    }
-                  }}
-                  className="px-8 sm:px-12 h-9 sm:h-10 md:h-11 bg-primary hover:bg-primary/95 text-on-primary rounded-xl font-label-sm font-bold text-xs sm:text-sm flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-primary/10 cursor-pointer"
-                >
-                  <BookOpen className="w-4 h-4" />
-                  {lastReadChapter ? `Lanjut Baca (${lastReadChapter.title.split(':')[0]})` : 'Mulai Baca'}
-                </button>
-              </div>
             </div>
           </div>
         </section>
@@ -244,14 +228,14 @@ const renderChapterRow = (ch, idx) => {
         {/* 2-Column layout for Info & Chapters */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 mt-4 px-4 sm:px-6 md:px-8">
           {/* Column 1: Info and Actions */}
-          <div className={`lg:col-span-5 lg:flex flex-col gap-4 ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
+          <div className={`lg:col-span-5 lg:flex flex-col gap-4 border border-white/10 rounded-2xl p-4 sm:p-5 ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
 
             {/* Stats: Rating + Chapters + Total Views */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3">
               <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-white/5">
                 <div className="flex items-center gap-1.5">
                   <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-current" />
-                  <span className="font-headline-md text-lg sm:text-xl font-black text-on-surface">{manga.rating}</span>
+                  <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.rating}</span>
                 </div>
                 <span className="font-label-sm text-xs text-outline/70 font-semibold uppercase tracking-wide">Rating</span>
               </div>
@@ -275,7 +259,7 @@ const renderChapterRow = (ch, idx) => {
             <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-white/5 overflow-hidden">
               <div className="flex flex-col gap-1 p-3 sm:p-4 border-r border-white/5 min-w-0">
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Author</span>
-                <span className="font-body-md text-sm font-bold text-on-surface truncate">{manga.author || '—'}</span>
+                <span className="font-body-md text-sm md:text-base font-bold text-on-surface truncate">{manga.author || '—'}</span>
               </div>
               <div className="flex flex-col gap-1 p-3 sm:p-4 min-w-0">
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Artist</span>
@@ -339,7 +323,7 @@ const renderChapterRow = (ch, idx) => {
             {/* Synopsis */}
             <div className="flex flex-col gap-2">
               <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">Synopsis</h3>
-              <p className="font-body-md text-sm text-on-surface-variant leading-relaxed opacity-90 text-justify">
+              <p className="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed opacity-90 text-justify">
                 {expandedSynopsis ? (manga.description || '') : `${(manga.description || '').substring(0, 160)}${(manga.description || '').length > 160 ? '...' : ''}`}
                 <button
                   onClick={() => setExpandedSynopsis(v => !v)}
@@ -352,7 +336,7 @@ const renderChapterRow = (ch, idx) => {
           </div>
 
           {/* Column 2: Chapters */}
-          <div className={`lg:col-span-7 lg:flex flex-col ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
+          <div className={`lg:col-span-7 lg:flex flex-col border border-white/10 rounded-2xl p-4 sm:p-5 ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
             {/* Chapter List Header */}
             <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-2">
               <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">

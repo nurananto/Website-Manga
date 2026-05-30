@@ -29,7 +29,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
 
   return (
     <div className="flex flex-col gap-2">
-    <section className="relative w-full h-[200px] sm:h-[240px] md:h-[280px] rounded-xl overflow-hidden group shadow-2xl border border-white/5 flex items-center justify-between">
+    <section className="relative w-full h-[200px] sm:h-[240px] md:h-[280px] rounded-xl overflow-hidden group shadow-2xl border border-white/20 flex items-center justify-between">
       <AnimatePresence mode="wait">
         <motion.div
           key={activeManga.id}

@@ -214,7 +214,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       <div ref={dropdownRef} data-chapter-selector className="relative flex-[2]">
         <button
           onClick={() => setShowChapterList(v => !v)}
-          className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-[11px] sm:text-xs font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
+          className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-xs md:text-sm font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
         >
           <BookOpen className="w-3.5 h-3.5 text-primary shrink-0" />
           <span className="truncate">{chapter.title.split(':')[0]}</span>
@@ -300,7 +300,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
               >
                 <ArrowLeft className="w-5 h-5 text-primary shrink-0" />
                 <div className="min-w-0 flex-1 text-left">
-                  <p className="font-label-sm text-[10px] font-bold text-primary uppercase tracking-wider truncate">{manga?.title}</p>
+                  <p className="font-label-sm text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{manga?.title}</p>
                   <h2 className="font-body-md text-sm font-extrabold text-on-surface truncate">{chapter.title}</h2>
                 </div>
                 {manga?.coverUrl && (
@@ -343,7 +343,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
               >
                 <ArrowLeft className="w-5 h-5 text-primary shrink-0" />
                 <div className="min-w-0 flex-1 text-left">
-                  <p className="font-label-sm text-[10px] font-bold text-primary uppercase tracking-wider truncate">{manga?.title}</p>
+                  <p className="font-label-sm text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{manga?.title}</p>
                   <h2 className="font-body-md text-sm font-extrabold text-on-surface truncate">{chapter.title}</h2>
                 </div>
                 {manga?.coverUrl && (
@@ -371,7 +371,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
           <div
             className={`overflow-hidden transition-all duration-200 bg-black/80 backdrop-blur-sm flex items-center gap-2 px-3 ${barExpanded ? 'h-9' : 'h-0'}`}
           >
-            <span className="font-label-sm text-[11px] font-bold text-white/50 shrink-0 w-5 text-right tabular-nums">
+            <span className="font-label-sm text-xs md:text-sm font-bold text-white/50 shrink-0 w-5 text-right tabular-nums">
               {currentPage + 1}
             </span>
             <div className="flex-1 flex items-center gap-[3px] relative">
@@ -397,7 +397,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
                 </div>
               ))}
             </div>
-            <span className="font-label-sm text-[11px] font-bold text-white/50 shrink-0 w-5 tabular-nums">
+            <span className="font-label-sm text-xs md:text-sm font-bold text-white/50 shrink-0 w-5 tabular-nums">
               {pageCount}
             </span>
           </div>
