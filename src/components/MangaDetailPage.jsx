@@ -118,7 +118,7 @@ const renderChapterRow = (ch, idx) => {
       {/* Main Section — pt mengikuti TopNavBar (72px) */}
       <div className="pt-[72px] w-full">
         {/* Hero Banner Section */}
-        <section className="relative mx-4 sm:mx-6 md:mx-8 mt-4 rounded-2xl overflow-hidden border border-white/15 flex items-end pt-3 pb-2">
+        <section className="relative mx-3 sm:mx-4 md:mx-5 mt-4 rounded-2xl overflow-hidden border border-white/15 flex items-end pt-3 pb-2">
           {/* Blurred dynamic background */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <img
@@ -202,7 +202,7 @@ const renderChapterRow = (ch, idx) => {
         </div>
 
         {/* Wrapper: border di mobile/tablet, tidak di desktop */}
-        <div className="mx-4 sm:mx-6 md:mx-8 mt-4 border border-white/15 rounded-2xl lg:border-0 lg:rounded-none lg:mx-0 lg:mt-0">
+        <div className="mx-3 sm:mx-4 md:mx-5 mt-4 border border-white/15 rounded-2xl lg:border-0 lg:rounded-none lg:mx-0 lg:mt-0">
 
           {/* Tab Switcher — mobile/tablet only */}
           <div className="flex border-b border-white/10 lg:hidden">
