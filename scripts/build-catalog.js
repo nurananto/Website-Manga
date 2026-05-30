@@ -1,38 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
-
-// Ambil tanggal commit terakhir dalam WIB (UTC+7)
-function getFileCommitDate(filePath) {
-  try {
-    // %cI = ISO 8601 dengan timezone info dari git config
-    // Kita override TZ ke WIB agar konsisten
-    // --diff-filter=A = ambil tanggal pertama file di-commit (bukan terbaru)
-    // Sehingga update meta.json tidak mengubah release_date
-    const raw = execSync(
-      `git log --diff-filter=A --format="%cI" -- "${filePath}"`,
-      { encoding: 'utf-8', env: { ...process.env, TZ: 'Asia/Jakarta' } }
-    ).trim();
-
-    if (!raw) return nowWIB();
-
-    // Konversi ke WIB (UTC+7)
-    const d = new Date(raw);
-    return toWIB(d);
-  } catch {
-    return nowWIB();
-  }
-}
-
-// Ubah Date ke string ISO dengan offset +07:00
-function toWIB(date) {
-  const wib = new Date(date.getTime() + 7 * 60 * 60 * 1000);
-  return wib.toISOString().replace('Z', '+07:00');
-}
-
-function nowWIB() {
-  return toWIB(new Date());
-}
 
 const chaptersDir = './manga';
 const outDir = './public/manga';
@@ -124,10 +91,7 @@ async function buildCatalog() {
         ch.title = `Ch. ${ch.chapter_number}`;
       }
 
-      // Auto-fill release_date dari git commit time kalau tidak diisi manual
-      if (!ch.release_date) {
-        ch.release_date = getFileCommitDate(chMetaPath);
-      }
+      // release_date wajib diisi via generate_meta.py, tidak di-generate otomatis
 
       // Hitung unlockDate (camelCase agar sesuai frontend)
       if (ch.lock_hours > 0) {
