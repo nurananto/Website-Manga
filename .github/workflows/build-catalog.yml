@@ -34,6 +34,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/data/catalog.json public/version.json
+          git add public/manga/ public/version.json
           git diff --staged --quiet || git commit -m "chore: update catalog & sw version [skip ci]"
           git push
