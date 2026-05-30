@@ -117,10 +117,8 @@ const renderChapterRow = (ch, idx) => {
     <div className="w-full min-h-screen bg-surface text-on-surface font-body-md relative pb-20">
       {/* Main Section — pt mengikuti TopNavBar (72px) */}
       <div className="pt-[72px] w-full">
-        {/* Wrapper border — merangkup semua konten */}
-        <div className="mx-4 sm:mx-6 md:mx-8 mt-4 border border-white/15 rounded-2xl overflow-hidden">
         {/* Hero Banner Section */}
-        <section className="relative w-full flex items-end overflow-hidden pt-3 pb-2">
+        <section className="relative mx-4 sm:mx-6 md:mx-8 mt-4 rounded-2xl overflow-hidden border border-white/15 flex items-end pt-3 pb-2">
           {/* Blurred dynamic background */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <img
@@ -132,7 +130,7 @@ const renderChapterRow = (ch, idx) => {
           </div>
 
           {/* Info Over Cover Container */}
-          <div className="relative z-10 w-full px-4 sm:px-6 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-6 pb-4">
+          <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-6 pb-4">
             {/* Cover Image */}
             <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[2/3] flex-shrink-0">
               <img
@@ -203,34 +201,37 @@ const renderChapterRow = (ch, idx) => {
           </a>
         </div>
 
-        {/* Tab Switcher (Visible on Mobile/Tablet, Hidden on Desktop) */}
-        <div className="flex border-b border-white/10 mt-0 lg:hidden">
-          <button
-            onClick={() => setActiveDetailTab('info')}
-            className={`flex-1 pb-3 text-sm font-bold border-b-2 transition-all cursor-pointer ${
-              activeDetailTab === 'info'
-                ? 'border-primary text-primary font-black'
-                : 'border-transparent text-outline hover:text-on-surface'
-            }`}
-          >
-            Manga Info
-          </button>
-          <button
-            onClick={() => setActiveDetailTab('chapters')}
-            className={`flex-1 pb-3 text-sm font-bold border-b-2 transition-all cursor-pointer ${
-              activeDetailTab === 'chapters'
-                ? 'border-primary text-primary font-black'
-                : 'border-transparent text-outline hover:text-on-surface'
-            }`}
-          >
-            Chapter List
-          </button>
-        </div>
+        {/* Wrapper: border di mobile/tablet, tidak di desktop */}
+        <div className="mx-4 sm:mx-6 md:mx-8 mt-4 border border-white/15 rounded-2xl lg:border-0 lg:rounded-none lg:mx-0 lg:mt-0">
 
-        {/* 2-Column layout for Info & Chapters */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-5 lg:p-4 lg:items-start">
-          {/* Column 1: Info and Actions */}
-          <div className={`lg:col-span-5 lg:flex flex-col gap-4 p-4 sm:p-5 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
+          {/* Tab Switcher — mobile/tablet only */}
+          <div className="flex border-b border-white/10 lg:hidden">
+            <button
+              onClick={() => setActiveDetailTab('info')}
+              className={`flex-1 py-3 text-sm font-bold border-b-2 transition-all cursor-pointer ${
+                activeDetailTab === 'info'
+                  ? 'border-primary text-primary font-black'
+                  : 'border-transparent text-outline hover:text-on-surface'
+              }`}
+            >
+              Manga Info
+            </button>
+            <button
+              onClick={() => setActiveDetailTab('chapters')}
+              className={`flex-1 py-3 text-sm font-bold border-b-2 transition-all cursor-pointer ${
+                activeDetailTab === 'chapters'
+                  ? 'border-primary text-primary font-black'
+                  : 'border-transparent text-outline hover:text-on-surface'
+              }`}
+            >
+              Chapter List
+            </button>
+          </div>
+
+          {/* Grid: 1 kolom mobile, 2 kolom desktop */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-5 lg:mt-4 lg:px-4 sm:px-6 md:px-8 lg:items-start">
+            {/* Column 1: Info */}
+            <div className={`lg:col-span-5 lg:flex flex-col gap-4 p-4 sm:p-5 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
 
             {/* Stats: Rating + Chapters + Total Views */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3">
@@ -390,7 +391,7 @@ const renderChapterRow = (ch, idx) => {
               </button>
             )}
           </div>
-        </div>
+          </div>{/* end grid */}
         </div>{/* end wrapper border */}
       </div>
     </div>
