@@ -7,8 +7,10 @@ function getFileCommitDate(filePath) {
   try {
     // %cI = ISO 8601 dengan timezone info dari git config
     // Kita override TZ ke WIB agar konsisten
+    // --diff-filter=A = ambil tanggal pertama file di-commit (bukan terbaru)
+    // Sehingga update meta.json tidak mengubah release_date
     const raw = execSync(
-      `git log -1 --format="%cI" -- "${filePath}"`,
+      `git log --diff-filter=A --format="%cI" -- "${filePath}"`,
       { encoding: 'utf-8', env: { ...process.env, TZ: 'Asia/Jakarta' } }
     ).trim();
 
@@ -139,9 +141,9 @@ async function buildCatalog() {
       // isLocked: terkunci kalau unlockDate masih di masa depan
       ch.isLocked = ch.unlockDate ? new Date(ch.unlockDate) > new Date() : false;
 
-      // isNew: chapter dirilis dalam 7 hari terakhir
+      // isNew: chapter dirilis dalam 24 jam terakhir
       const releaseMs = new Date(ch.release_date).getTime();
-      ch.isNew = (Date.now() - releaseMs) < 7 * 24 * 60 * 60 * 1000;
+      ch.isNew = (Date.now() - releaseMs) < 24 * 60 * 60 * 1000;
 
       // Views per chapter dari manga meta.json (field chapter_views)
       ch.views = (manga.chapter_views ?? {})[String(ch.chapter_number)] ?? 0;
