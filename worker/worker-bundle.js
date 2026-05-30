@@ -44,7 +44,7 @@ async function checkRateLimit(request, env) {
 
   // Atomic upsert
   const row = await env.DB.prepare(`
-    INSERT INTO rate_limits (key, count, minute, violations) VALUES (?, 1, ?, 0)
+    INSERT INTO rate_limits (key, count, minute) VALUES (?, 1, ?)
     ON CONFLICT(key) DO UPDATE SET count = count + 1
     RETURNING count
   `).bind(key, minute).first();

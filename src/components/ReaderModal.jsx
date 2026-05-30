@@ -42,26 +42,7 @@ function CountdownLarge({ unlockDate }) {
 }
 
 function PageImage({ src, idx, pageRefs }) {
-  const [blobUrl, setBlobUrl] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    let url = null;
-    let cancelled = false;
-    fetch(src)
-      .then(r => r.ok ? r.blob() : Promise.reject())
-      .then(blob => {
-        if (cancelled) return;
-        url = URL.createObjectURL(blob);
-        setBlobUrl(url);
-      })
-      .catch(() => { if (!cancelled) setError(true); });
-    return () => {
-      cancelled = true;
-      if (url) URL.revokeObjectURL(url);
-    };
-  }, [src]);
 
   return (
     <div
@@ -69,20 +50,19 @@ function PageImage({ src, idx, pageRefs }) {
       className="w-full relative"
       style={{ minHeight: loaded ? 'auto' : '85vh' }}
     >
-      {!loaded && !error && (
+      {!loaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-[#0d0f11]">
           <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
         </div>
       )}
-      {blobUrl && (
-        <img
-          alt={`Page ${idx + 1}`}
-          decoding="async"
-          className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
-          src={blobUrl}
-          onLoad={() => setLoaded(true)}
-        />
-      )}
+      <img
+        alt={`Page ${idx + 1}`}
+        loading="lazy"
+        decoding="async"
+        className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        src={src}
+        onLoad={() => setLoaded(true)}
+      />
     </div>
   );
 }
