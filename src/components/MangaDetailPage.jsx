@@ -117,6 +117,8 @@ const renderChapterRow = (ch, idx) => {
     <div className="w-full min-h-screen bg-surface text-on-surface font-body-md relative pb-20">
       {/* Main Section — pt mengikuti TopNavBar (72px) */}
       <div className="pt-[72px] w-full">
+        {/* Wrapper border — merangkup semua konten */}
+        <div className="mx-4 sm:mx-6 md:mx-8 mt-4 border border-white/15 rounded-2xl overflow-hidden">
         {/* Hero Banner Section */}
         <section className="relative w-full flex items-end overflow-hidden pt-3 pb-2">
           {/* Blurred dynamic background */}
@@ -130,12 +132,12 @@ const renderChapterRow = (ch, idx) => {
           </div>
 
           {/* Info Over Cover Container */}
-          <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-6 pb-4">
+          <div className="relative z-10 w-full px-4 sm:px-6 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-6 pb-4">
             {/* Cover Image */}
             <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[2/3] flex-shrink-0">
               <img
                 alt={`${manga.title} Cover`}
-                className="w-full h-full object-cover rounded-xl shadow-2xl border border-white/10"
+                className="w-full h-full object-cover rounded-xl shadow-2xl border-2 border-white/25"
                 src={imgUrl(manga.coverUrl)}
               />
             </div>
@@ -202,7 +204,7 @@ const renderChapterRow = (ch, idx) => {
         </div>
 
         {/* Tab Switcher (Visible on Mobile/Tablet, Hidden on Desktop) */}
-        <div className="flex border-b border-white/5 mx-4 sm:mx-6 md:mx-8 mt-4 lg:hidden">
+        <div className="flex border-b border-white/10 mt-0 lg:hidden">
           <button
             onClick={() => setActiveDetailTab('info')}
             className={`flex-1 pb-3 text-sm font-bold border-b-2 transition-all cursor-pointer ${
@@ -226,9 +228,9 @@ const renderChapterRow = (ch, idx) => {
         </div>
 
         {/* 2-Column layout for Info & Chapters */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 mt-4 px-4 sm:px-6 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-5 lg:p-4 lg:items-start">
           {/* Column 1: Info and Actions */}
-          <div className={`lg:col-span-5 lg:flex flex-col gap-4 border border-white/10 rounded-2xl p-4 sm:p-5 ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
+          <div className={`lg:col-span-5 lg:flex flex-col gap-4 p-4 sm:p-5 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
 
             {/* Stats: Rating + Chapters + Total Views */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3">
@@ -336,7 +338,7 @@ const renderChapterRow = (ch, idx) => {
           </div>
 
           {/* Column 2: Chapters */}
-          <div className={`lg:col-span-7 lg:flex flex-col border border-white/10 rounded-2xl p-4 sm:p-5 ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
+          <div className={`lg:col-span-7 lg:flex flex-col p-4 sm:p-5 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
             {/* Chapter List Header */}
             <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-2">
               <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">
@@ -389,6 +391,7 @@ const renderChapterRow = (ch, idx) => {
             )}
           </div>
         </div>
+        </div>{/* end wrapper border */}
       </div>
     </div>
   );
