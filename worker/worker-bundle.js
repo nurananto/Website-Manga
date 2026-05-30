@@ -88,9 +88,10 @@ async function servePublic(request, env, ctx, r2Key) {
 
   const response = new Response(object.body, {
     headers: {
-      'Content-Type':  object.httpMetadata?.contentType || 'image/webp',
-      'Cache-Control': 'public, max-age=2592000',
-      'ETag':          object.etag,
+      'Content-Type':              object.httpMetadata?.contentType || 'image/webp',
+      'Cache-Control':             'public, max-age=604800, s-maxage=604800', // 7 hari
+      'Cloudflare-CDN-Cache-Control': 'public, max-age=604800',               // 7 hari di edge CF
+      'ETag':                      object.etag,
     },
   });
 

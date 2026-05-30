@@ -44,7 +44,11 @@ function CountdownLarge({ unlockDate }) {
 function PageImage({ src, idx, pageRefs }) {
   const [loaded, setLoaded] = useState(false);
   return (
-    <div ref={el => { pageRefs.current[idx] = el; }} className="w-full relative min-h-[300px]">
+    <div
+      ref={el => { pageRefs.current[idx] = el; }}
+      className="w-full relative"
+      style={{ minHeight: loaded ? 'auto' : '85vh' }}
+    >
       {!loaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-[#0d0f11]">
           <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
@@ -53,6 +57,7 @@ function PageImage({ src, idx, pageRefs }) {
       <img
         alt={`Page ${idx + 1}`}
         loading="lazy"
+        decoding="async"
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
         src={src}
         onLoad={() => setLoaded(true)}
