@@ -120,6 +120,7 @@ async function buildCatalog() {
 
     // Total views manga = jumlah semua chapter views
     manga.total_views = chapters.reduce((sum, ch) => sum + ch.views, 0);
+    if (manga.total_views > 0) console.log(`   👁  ${manga.title.slice(0, 30)} — ${manga.total_views} views`);
 
     // next_update diambil dari chapter terbaru (chapters sudah diurutkan desc)
     manga.next_update = chapters[0]?.next_update ?? null;
