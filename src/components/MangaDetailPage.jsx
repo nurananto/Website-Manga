@@ -231,10 +231,10 @@ const renderChapterRow = (ch, idx) => {
           {/* Grid: 1 kolom mobile, 2 kolom desktop */}
           <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-5 lg:mt-4 lg:px-4 sm:px-6 md:px-8 lg:items-start">
             {/* Column 1: Info */}
-            <div className={`lg:col-span-5 lg:flex flex-col gap-4 p-3 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
+            <div className={`lg:col-span-5 lg:flex flex-col gap-4 lg:border lg:border-white/10 lg:rounded-2xl overflow-hidden ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
 
             {/* Stats: Rating + Chapters + Total Views */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 px-3 pt-3">
               <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-white/5">
                 <div className="flex items-center gap-1.5">
                   <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-current" />
@@ -339,9 +339,9 @@ const renderChapterRow = (ch, idx) => {
           </div>
 
           {/* Column 2: Chapters */}
-          <div className={`lg:col-span-7 lg:flex flex-col px-2 py-3 sm:px-3 lg:px-4 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
+          <div className={`lg:col-span-7 lg:flex flex-col lg:border lg:border-white/10 lg:rounded-2xl overflow-hidden ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
             {/* Chapter List Header */}
-            <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-2">
+            <div className="flex items-center justify-between px-3 pt-3 mb-3 border-b border-white/5 pb-2">
               <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">
                 Chapters <span className="font-body-md text-on-surface-variant font-normal text-xs sm:text-sm">({manga.chapters.length})</span>
               </h3>
@@ -355,7 +355,7 @@ const renderChapterRow = (ch, idx) => {
             </div>
 
             {/* Chapter List */}
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1.5 px-3 pb-3">
               {showAllChapters ? (
                 sortedChapters.map((ch, idx) => renderChapterRow(ch, idx))
               ) : (
@@ -365,7 +365,7 @@ const renderChapterRow = (ch, idx) => {
 
                   {/* View More Button — muncul kalau ada chapter tersembunyi (di luar 6 teratas + 1 pinned bawah) */}
                   {sortedChapters.length > 7 && (
-                    <div className="py-2.5 px-2 -mx-2">
+                    <div className="py-1.5">
                       <button
                         onClick={() => setShowAllChapters(true)}
                         className="font-label-sm w-full py-2.5 bg-surface-container/20 hover:bg-surface-container-high/40 border border-white/5 rounded-lg text-on-surface-variant hover:text-primary tracking-wider text-xs font-bold transition-all cursor-pointer text-center"
