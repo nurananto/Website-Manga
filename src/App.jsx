@@ -62,7 +62,7 @@ export default function App() {
 
   // Fetch catalog dari /manga/index.json
   useEffect(() => {
-    fetch('/manga/index.json?t=' + Date.now())
+    fetch('/manga/index.json', { cache: 'no-cache' })
       .then(r => r.json())
       .then(data => { setMangaList(data); mangaListRef.current = data; setIsLoading(false); })
       .catch(() => setIsLoading(false));
