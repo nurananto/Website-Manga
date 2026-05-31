@@ -88,6 +88,32 @@ body {
   padding-bottom: max(5rem, env(safe-area-inset-bottom));
 }
 
+/* Security: disable drag, context menu, text select on images */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Re-enable pointer events for interactive images (covers yang bisa diklik) */
+img.interactive {
+  pointer-events: auto;
+}
+
+/* Disable text selection globally */
+* {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Re-enable text selection untuk area teks yang perlu */
+p, h1, h2, h3, h4, h5, h6, span.selectable {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
 /* Hide scrollbar but keep scroll functionality */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
