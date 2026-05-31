@@ -121,10 +121,9 @@ async function buildCatalog() {
     // Total views manga = jumlah semua chapter views
     manga.total_views = chapters.reduce((sum, ch) => sum + ch.views, 0);
     if (manga.total_views > 0) {
-      const entries = Object.entries(manga.chapter_views ?? {});
-      const detail = entries.slice(0, 5).map(([ch, v]) => `ch${ch}×${v}`).join(', ');
-      const more = entries.length > 5 ? ` +${entries.length - 5} more` : '';
-      console.log(`   👁  ${manga.title.slice(0, 28)} — total ${manga.total_views} views (${detail}${more})`);
+      const detail = Object.entries(manga.chapter_views ?? {})
+        .map(([ch, v]) => `ch${ch}×${v}`).join(', ');
+      console.log(`   👁  ${manga.title.slice(0, 28)} — total ${manga.total_views} views (${detail})`);
     }
 
     // next_update diambil dari chapter terbaru (chapters sudah diurutkan desc)
