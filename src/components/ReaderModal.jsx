@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUp, Coins, Clock, BookOpen } from 'lucide-react';
 import { ReaderPageSkeleton } from './Skeleton';
@@ -68,14 +69,14 @@ function PageImage({ src, idx, pageRefs }) {
 }
 
 export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) {
-  const [showChapterList, setShowChapterList] = useState(false);
-  const [chapterListPos, setChapterListPos] = useState('top'); // 'top' | 'bottom'
+  // null = tutup, 'top' = dibuka dari navbar atas, 'bottom' = dari navbar bawah
+  const [openChapterList, setOpenChapterList] = useState(null);
+  const [dropdownAnchor, setDropdownAnchor] = useState(null); // pixel position dari getBoundingClientRect
   const [showLastChapterModal, setShowLastChapterModal] = useState(false);
   const [showLockedModal, setShowLockedModal] = useState(false);
   const [lockedNext, setLockedNext] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [barExpanded, setBarExpanded] = useState(false);
-  const dropdownRef = useRef(null);
   const scrollRef = useRef(null);
   const pageRefs = useRef([]);
   const activeChapterIdRef = useRef(null); // guard agar onSuccess tidak fire untuk chapter lama
@@ -163,7 +164,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       // Tutup dropdown kalau klik/tap di luar area chapter selector
       // Cek apakah target ada di dalam elemen yang punya data-chapter-selector
       const inside = e.target.closest('[data-chapter-selector]');
-      if (!inside) setShowChapterList(false);
+      if (!inside) setOpenChapterList(null);
     };
     document.addEventListener('mousedown', handleClose);
     document.addEventListener('touchstart', handleClose);
@@ -212,61 +213,21 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       </button>
 
       {/* Chapter Selector */}
-      <div ref={dropdownRef} data-chapter-selector className="relative flex-[2]">
+      <div data-chapter-selector className="relative flex-[2]">
         <button
-          onClick={() => { setChapterListPos(position); setShowChapterList(v => !v); }}
+          onClick={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            setDropdownAnchor(position === 'top'
+              ? { top: rect.bottom + 6 }
+              : { bottom: window.innerHeight - rect.top + 6 }
+            );
+            setOpenChapterList(v => v === position ? null : position);
+          }}
           className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-xs md:text-sm font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
         >
           <BookOpen className="w-3.5 h-3.5 text-primary shrink-0" />
           <span className="truncate">{chapter.title.split(':')[0]}</span>
         </button>
-
-        {/* Dropdown chapter list */}
-        <AnimatePresence>
-          {showChapterList && (
-            <motion.div
-              initial={{ opacity: 0, y: position === 'top' ? -8 : 8, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: position === 'top' ? -8 : 8, scale: 0.96 }}
-              transition={{ duration: 0.15 }}
-              className={`fixed left-2 right-2 z-[250] bg-surface-container border border-white/10 rounded-xl shadow-2xl overflow-hidden ${chapterListPos === 'top' ? 'top-28' : 'bottom-28'}`}
-            >
-              <div className="overflow-y-auto hide-scrollbar" style={{maxHeight: '40vh'}}>
-                {chapters.slice(0, 5).map((ch, idx) => {
-                  const isActive = ch.id === chapter.id;
-                  const isLocked = ch.isLocked && !(ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now());
-                  return (
-                    <button
-                      key={ch.id}
-                      onClick={() => {
-                        setShowChapterList(false);
-                        if (!isActive) onReadChapter(ch, manga.title);
-                      }}
-                      className={`w-full flex items-center justify-between px-4 py-3 text-left text-xs sm:text-xs md:text-sm font-semibold transition-colors cursor-pointer border-b border-white/5 last:border-0 ${
-                        isActive
-                          ? 'bg-primary/10 text-primary font-black'
-                          : 'text-on-surface-variant hover:bg-white/5 hover:text-on-surface'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2 min-w-0">
-                        <span className="truncate">{ch.title}</span>
-                        {ch.isNew && (
-                          <span className="shrink-0 font-label-sm bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase">New</span>
-                        )}
-                      </div>
-                      {isLocked && (
-                        <span className="flex items-center gap-1 text-amber-400 shrink-0 ml-2">
-                          <Coins className="w-3 h-3 fill-current" />
-                          <span>5</span>
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
 
       {/* Next */}
@@ -464,6 +425,57 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Dropdown chapter list — portal agar selalu di atas gambar */}
+        {openChapterList && dropdownAnchor && createPortal(
+          <AnimatePresence>
+            <motion.div
+              key="chapter-dropdown"
+              data-chapter-selector
+              initial={{ opacity: 0, y: openChapterList === 'top' ? -8 : 8, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: openChapterList === 'top' ? -8 : 8, scale: 0.97 }}
+              transition={{ duration: 0.15 }}
+              style={{ position: 'fixed', left: 8, right: 8, zIndex: 9999, ...dropdownAnchor }}
+              className="bg-surface-container border border-white/10 rounded-xl shadow-2xl overflow-hidden"
+            >
+              <div className="overflow-y-auto hide-scrollbar" style={{ maxHeight: '40vh' }}>
+                {chapters.map((ch) => {
+                  const isActive = ch.id === chapter.id;
+                  const isLocked = ch.isLocked && !(ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now());
+                  return (
+                    <button
+                      key={ch.id}
+                      onClick={() => {
+                        setOpenChapterList(null);
+                        if (!isActive) onReadChapter(ch, manga.title);
+                      }}
+                      className={`w-full flex items-center justify-between px-4 py-3 text-left text-xs sm:text-xs md:text-sm font-semibold transition-colors cursor-pointer border-b border-white/5 last:border-0 ${
+                        isActive
+                          ? 'bg-primary/10 text-primary font-black'
+                          : 'text-on-surface-variant hover:bg-white/5 hover:text-on-surface'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className="truncate">{ch.title}</span>
+                        {ch.isNew && (
+                          <span className="shrink-0 font-label-sm bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase">New</span>
+                        )}
+                      </div>
+                      {isLocked && (
+                        <span className="flex items-center gap-1 text-amber-400 shrink-0 ml-2">
+                          <Coins className="w-3 h-3 fill-current" />
+                          <span>5</span>
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </AnimatePresence>,
+          document.body
+        )}
 
         {/* Modal: Chapter Terkunci */}
         <AnimatePresence>
