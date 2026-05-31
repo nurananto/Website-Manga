@@ -38,4 +38,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/manga/ public/version.json
           git diff --staged --quiet || git commit -m "chore: update catalog & sw version [skip ci]"
+          git pull --rebase origin main || true
           git push
