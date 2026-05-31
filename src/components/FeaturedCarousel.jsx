@@ -52,7 +52,8 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
       </AnimatePresence>
 
       {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}
-      <div className="absolute inset-0 left-0 pt-3 pb-2 pl-3 pr-[33%] sm:pt-4 sm:pb-3 sm:pl-5 sm:pr-[36%] md:pt-5 md:pb-3 md:pl-7 md:pr-[42%] lg:pt-6 lg:pb-4 lg:pl-9 lg:pr-[44%] flex flex-col justify-between z-10">
+      {/* pr dihitung dari lebar cover+margin: mobile~44%, sm~30%, md~32%, lg~27% */}
+      <div className="absolute inset-0 left-0 py-2 pl-3 pr-[44%] sm:py-3 sm:pl-5 sm:pr-[30%] md:py-3 md:pl-7 md:pr-[32%] lg:py-4 lg:pl-9 lg:pr-[27%] flex flex-col z-10">
 
         {/* Top: Badges + Title + Description */}
         <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5">
@@ -106,13 +107,13 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
           </motion.p>
         </div>
 
-        {/* Bottom: Buttons */}
+        {/* Bottom: Buttons — mt-auto mendorong ke bawah sejajar cover */}
         <motion.div
           key={`btn-${activeManga.id}`}
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="flex items-center gap-2 sm:gap-3"
+          className="flex items-center gap-2 sm:gap-3 mt-auto pt-2"
         >
           <button
             onClick={() => onReadChapter(activeManga.chapters[0], activeManga.title)}
