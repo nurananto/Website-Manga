@@ -53,7 +53,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
             <h3
               onClick={onViewManga}
-              className="font-headline-md text-base sm:text-base md:text-lg leading-tight font-black text-on-surface truncate hover:text-primary transition-colors cursor-pointer"
+              className="font-headline-md text-base md:text-lg lg:text-xl leading-tight font-black text-on-surface truncate hover:text-primary transition-colors cursor-pointer"
             >
               {manga.title}
             </h3>
@@ -61,8 +61,8 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
           </div>
         </div>
 
-        {/* Chapters List */}
-        <div className="flex flex-col gap-1.5 sm:gap-2 mt-2">
+        {/* Chapters List — flex-1 + justify-between agar ngepas bawah cover */}
+        <div className="flex flex-col flex-1 justify-between mt-2">
           {manga.chapters.slice(0, 3).map((ch, idx) => {
             const isLocked = ch.isLocked && !localUnlocked.has(ch.id);
             // Badge status muncul di chapter pertama (terbaru) saat tidak ada update
@@ -84,7 +84,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                 className="flex justify-between items-center hover:bg-surface-container-highest px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border border-white/5 hover:border-white/10 transition-all group/ch"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
-                  <span className="font-body-md text-sm lg:text-base font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
+                  <span className="font-body-md text-sm font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
                   </span>
                   {ch.isNew && (

@@ -51,61 +51,62 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
         </motion.div>
       </AnimatePresence>
 
-      {/* Left Side: Content Overlay */}
-      {/* Mobile: w-[65%], tablet: w-[60%], desktop: w-[55%] */}
-      <div className="absolute inset-y-0 left-0 p-3 sm:p-5 md:p-7 lg:p-9 flex flex-col justify-center gap-2 sm:gap-2.5 md:gap-3 z-10 w-[65%] sm:w-[60%] md:w-[55%]">
+      {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}
+      <div className="absolute inset-0 left-0 pr-[38%] sm:pr-[42%] md:pr-[47%] p-3 sm:p-5 md:p-7 lg:p-9 flex flex-col justify-between z-10">
 
-        {/* Badges — mobile: hanya Trending + 1 genre, sm+: 2 genre, md+: 3 genre */}
-        <div className="flex gap-1.5 sm:gap-2 items-center flex-wrap">
-          <span className="bg-amber-500/20 text-amber-500 px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md border border-amber-500/30 font-semibold shadow-sm">
-            Trending
-          </span>
-          {activeManga.genres.slice(0, 1).map((g) => (
-            <span key={g} className="bg-surface-variant/85 text-on-surface px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
-              {g}
+        {/* Top: Badges + Title + Description */}
+        <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5">
+          {/* Badges */}
+          <div className="flex gap-1.5 sm:gap-2 items-center flex-wrap">
+            <span className="bg-amber-500/20 text-amber-500 px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md border border-amber-500/30 font-semibold shadow-sm">
+              Trending
             </span>
-          ))}
-          {activeManga.genres.slice(1, 2).map((g) => (
-            <span key={g} className="hidden sm:inline bg-surface-variant/85 text-on-surface px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
-              {g}
-            </span>
-          ))}
-          {/* +N more: mobile pakai genres.length-1, sm+ pakai genres.length-2 */}
-          {activeManga.genres.length > 1 && (
-            <span className="inline sm:hidden bg-white/5 text-outline px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/5">
-              +{activeManga.genres.length - 1}
-            </span>
-          )}
-          {activeManga.genres.length > 2 && (
-            <span className="hidden sm:inline bg-white/5 text-outline px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/5">
-              +{activeManga.genres.length - 2}
-            </span>
-          )}
+            {activeManga.genres.slice(0, 1).map((g) => (
+              <span key={g} className="bg-surface-variant/85 text-on-surface px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+                {g}
+              </span>
+            ))}
+            {activeManga.genres.slice(1, 2).map((g) => (
+              <span key={g} className="hidden sm:inline bg-surface-variant/85 text-on-surface px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+                {g}
+              </span>
+            ))}
+            {activeManga.genres.length > 1 && (
+              <span className="inline sm:hidden bg-white/5 text-outline px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/5">
+                +{activeManga.genres.length - 1}
+              </span>
+            )}
+            {activeManga.genres.length > 2 && (
+              <span className="hidden sm:inline bg-white/5 text-outline px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/5">
+                +{activeManga.genres.length - 2}
+              </span>
+            )}
+          </div>
+
+          {/* Title */}
+          <motion.h1
+            key={`title-${activeManga.id}`}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="font-display-lg text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight line-clamp-2"
+          >
+            {activeManga.title}
+          </motion.h1>
+
+          {/* Description */}
+          <motion.p
+            key={`desc-${activeManga.id}`}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="line-clamp-2 sm:line-clamp-2 md:line-clamp-3 font-body-lg text-[10px] sm:text-xs md:text-sm text-on-surface-variant/80 leading-relaxed"
+          >
+            {activeManga.description}
+          </motion.p>
         </div>
 
-        {/* Title */}
-        <motion.h1
-          key={`title-${activeManga.id}`}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="font-display-lg text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight line-clamp-2"
-        >
-          {activeManga.title}
-        </motion.h1>
-
-        {/* Description — hidden mobile, 1 baris sm, 2 baris md+ */}
-        <motion.p
-          key={`desc-${activeManga.id}`}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="line-clamp-1 sm:line-clamp-2 font-body-lg text-[10px] sm:text-xs md:text-sm text-on-surface-variant/80 max-w-lg leading-relaxed"
-        >
-          {activeManga.description}
-        </motion.p>
-
-        {/* Buttons */}
+        {/* Bottom: Buttons */}
         <motion.div
           key={`btn-${activeManga.id}`}
           initial={{ y: 20, opacity: 0 }}
@@ -115,14 +116,14 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
         >
           <button
             onClick={() => onReadChapter(activeManga.chapters[0], activeManga.title)}
-            className="flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-lg hover:shadow-indigo-500/20 hover:scale-105 active:scale-98 transition-all text-[10px] sm:text-xs md:text-sm cursor-pointer"
+            className="flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-lg hover:shadow-indigo-500/20 hover:scale-105 active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm cursor-pointer"
           >
             <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-current" />
             Read
           </button>
           <button
             onClick={() => onViewManga && onViewManga(activeManga)}
-            className="flex items-center gap-1.5 sm:gap-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl hover:scale-105 active:scale-98 transition-all text-[10px] sm:text-xs md:text-sm cursor-pointer"
+            className="flex items-center gap-1.5 sm:gap-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl hover:scale-105 active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm cursor-pointer"
           >
             <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
             View
