@@ -361,28 +361,28 @@ const renderChapterRow = (ch, idx) => {
               ) : (
                 <>
                   {/* Paling Baru (Top 3 newest) */}
-                  {sortedChapters.slice(0, 10).map((ch, idx) => renderChapterRow(ch, idx))}
-                  
-                  {/* View More Button in the middle */}
-                  {sortedChapters.length > 10 && (
+                  {sortedChapters.slice(0, 6).map((ch, idx) => renderChapterRow(ch, idx))}
+
+                  {/* View More Button — muncul kalau ada chapter tersembunyi (di luar 6 teratas + 1 pinned bawah) */}
+                  {sortedChapters.length > 7 && (
                     <div className="py-2.5 px-2 -mx-2">
                       <button
                         onClick={() => setShowAllChapters(true)}
                         className="font-label-sm w-full py-2.5 bg-surface-container/20 hover:bg-surface-container-high/40 border border-white/5 rounded-lg text-on-surface-variant hover:text-primary tracking-wider text-xs font-bold transition-all cursor-pointer text-center"
                       >
-                        View More ({sortedChapters.length - 10} more chapters)
+                        View More ({sortedChapters.length - 7} more chapters)
                       </button>
                     </div>
                   )}
 
                   {/* Paling Awal / Chapter 1 (Pinned at bottom) */}
-                  {sortedChapters.length > 3 && renderChapterRow(sortedChapters[sortedChapters.length - 1], sortedChapters.length - 1)}
+                  {sortedChapters.length > 6 && renderChapterRow(sortedChapters[sortedChapters.length - 1], sortedChapters.length - 1)}
                 </>
               )}
             </div>
 
             {/* View Less Chapters Button (Shows at the bottom only when expanded) */}
-            {showAllChapters && sortedChapters.length > 10 && (
+            {showAllChapters && sortedChapters.length > 7 && (
               <button
                 onClick={() => setShowAllChapters(false)}
                 className="font-label-sm w-full mt-4 py-3 bg-surface-container/20 hover:bg-surface-container-high/40 border border-white/5 rounded-lg text-on-surface-variant hover:text-primary tracking-wider text-xs font-bold transition-all cursor-pointer text-center"
