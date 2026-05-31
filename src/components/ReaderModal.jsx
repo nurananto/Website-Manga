@@ -163,6 +163,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       const ratio = el.scrollTop / max;
       const page = Math.min(pageCount - 1, Math.floor(ratio * pageCount));
       setCurrentPage(page);
+      setOpenChapterList(null); // tutup dropdown saat scroll
     };
     el.addEventListener('scroll', handleScroll, { passive: true });
     return () => el.removeEventListener('scroll', handleScroll);
@@ -226,10 +227,16 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
         <button
           onClick={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
-            setDropdownAnchor(position === 'top'
-              ? { top: rect.bottom + 6 }
-              : { bottom: window.innerHeight - rect.top + 6 }
-            );
+            if (position === 'top') {
+              setDropdownAnchor({ top: rect.bottom + 6 });
+            } else {
+              // NavBar bawah: dropdown muncul ke atas, batasi agar tidak melewati atas viewport
+              const spaceAbove = rect.top - 16;
+              setDropdownAnchor({
+                bottom: window.innerHeight - rect.top + 6,
+                maxHeight: Math.min(205, spaceAbove) + 'px',
+              });
+            }
             setOpenChapterList(v => v === position ? null : position);
           }}
           className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-xs md:text-sm font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
@@ -466,13 +473,22 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
               style={{ position: 'fixed', left: 8, right: 8, zIndex: 9999, ...dropdownAnchor }}
               className="bg-surface-container border border-white/10 rounded-xl shadow-2xl overflow-hidden"
             >
-              <div className="overflow-y-auto hide-scrollbar" style={{ maxHeight: '260px' }}>
+              <div
+                className="overflow-y-auto hide-scrollbar"
+                style={{ maxHeight: dropdownAnchor?.maxHeight || '205px' }}
+                ref={el => {
+                  if (!el) return;
+                  const active = el.querySelector('[data-active="true"]');
+                  if (active) active.scrollIntoView({ block: 'nearest' });
+                }}
+              >
                 {chapters.map((ch) => {
                   const isActive = ch.id === activeChapter.id;
                   const isLocked = ch.isLocked && !(ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now());
                   return (
                     <button
                       key={ch.id}
+                      data-active={isActive ? 'true' : 'false'}
                       onClick={() => {
                         setOpenChapterList(null);
                         if (!isActive) onReadChapter(ch, manga.title);
