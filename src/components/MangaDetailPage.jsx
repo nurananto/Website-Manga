@@ -123,10 +123,10 @@ const renderChapterRow = (ch, idx) => {
           <div className="absolute inset-0 z-0 overflow-hidden">
             <img
               alt=""
-              className="w-full h-full object-cover scale-125 blur-3xl opacity-35"
+              className="w-full h-full object-cover scale-125 blur-2xl opacity-55"
               src={imgUrl(manga.coverUrl)}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-surface/10" />
           </div>
 
           {/* Info Over Cover Container */}

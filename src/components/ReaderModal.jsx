@@ -258,15 +258,24 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
             <div className="px-2 py-2">
               <button
                 onClick={onClose}
-                className="w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl bg-surface-container border border-white/15 flex items-center gap-3 hover:bg-surface-container-high transition-colors active:scale-[0.99] cursor-pointer overflow-hidden"
+                className="relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-white/15 flex items-center gap-3 active:scale-[0.99] cursor-pointer overflow-hidden"
               >
-                <ArrowLeft className="w-5 h-5 text-primary shrink-0" />
-                <div className="min-w-0 flex-1 text-left">
+                {/* Blurred cover background */}
+                {manga?.coverUrl && (
+                  <>
+                    <img src={imgUrl(manga?.coverUrl)} alt="" aria-hidden
+                      className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl opacity-40 pointer-events-none"
+                    />
+                    <div className="absolute inset-0 bg-surface-container/60 pointer-events-none" />
+                  </>
+                )}
+                <ArrowLeft className="relative w-5 h-5 text-primary shrink-0" />
+                <div className="relative min-w-0 flex-1 text-left">
                   <p className="font-label-sm text-xs sm:text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{manga?.title}</p>
                   <h2 className="font-body-md text-sm sm:text-sm md:text-base font-extrabold text-on-surface truncate">{chapter.title}</h2>
                 </div>
                 {manga?.coverUrl && (
-                  <div className="h-full py-1.5 flex items-center shrink-0">
+                  <div className="relative h-full py-1.5 flex items-center shrink-0">
                     <img
                       src={imgUrl(manga?.coverUrl)}
                       alt=""
@@ -301,15 +310,24 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
             <div className="px-2 py-2 pb-8">
               <button
                 onClick={onClose}
-                className="w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl bg-surface-container border border-white/15 flex items-center gap-3 hover:bg-surface-container-high transition-colors active:scale-[0.99] cursor-pointer overflow-hidden"
+                className="relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-white/15 flex items-center gap-3 active:scale-[0.99] cursor-pointer overflow-hidden"
               >
-                <ArrowLeft className="w-5 h-5 text-primary shrink-0" />
-                <div className="min-w-0 flex-1 text-left">
+                {/* Blurred cover background */}
+                {manga?.coverUrl && (
+                  <>
+                    <img src={imgUrl(manga?.coverUrl)} alt="" aria-hidden
+                      className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl opacity-40 pointer-events-none"
+                    />
+                    <div className="absolute inset-0 bg-surface-container/60 pointer-events-none" />
+                  </>
+                )}
+                <ArrowLeft className="relative w-5 h-5 text-primary shrink-0" />
+                <div className="relative min-w-0 flex-1 text-left">
                   <p className="font-label-sm text-xs sm:text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{manga?.title}</p>
                   <h2 className="font-body-md text-sm sm:text-sm md:text-base font-extrabold text-on-surface truncate">{chapter.title}</h2>
                 </div>
                 {manga?.coverUrl && (
-                  <div className="h-full py-1.5 flex items-center shrink-0">
+                  <div className="relative h-full py-1.5 flex items-center shrink-0">
                     <img
                       src={imgUrl(manga?.coverUrl)}
                       alt=""
