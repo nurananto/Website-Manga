@@ -24,11 +24,11 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
     : 'border-white/5 hover:border-primary/20';
 
   return (
-    <div className={`flex h-[160px] sm:h-[195px] md:h-[215px] lg:h-[225px] bg-surface-container rounded-xl overflow-hidden group border shadow-md ${borderClass}`}>
+    <div className={`flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden group border shadow-md ${borderClass}`}>
       {/* Cover — klik ke detail */}
       <div
         onClick={onViewManga}
-        className="relative w-[110px] sm:w-[140px] md:w-[155px] h-full flex-shrink-0 flex items-center justify-center py-2 sm:py-2.5 md:py-3 px-2 cursor-pointer"
+        className="relative w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full flex-shrink-0 flex items-center justify-center py-2 sm:py-2.5 md:py-3 px-2 cursor-pointer"
       >
         <img
           alt={manga.title}
@@ -47,7 +47,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
       </div>
 
       {/* Details Section */}
-      <div className="flex-1 p-3 sm:p-4 md:p-5 flex flex-col min-w-0">
+      <div className="flex-1 p-3 sm:p-4 lg:p-5 flex flex-col min-w-0">
         {/* Title row */}
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
@@ -81,10 +81,10 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                   e.stopPropagation();
                   onReadChapter(ch, manga.title);
                 }}
-                className="flex justify-between items-center hover:bg-surface-container-highest px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 md:py-2 rounded-xl border border-white/5 hover:border-white/10 transition-all group/ch"
+                className="flex justify-between items-center hover:bg-surface-container-highest px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border border-white/5 hover:border-white/10 transition-all group/ch"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
-                  <span className="font-body-md text-sm sm:text-sm md:text-base font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
+                  <span className="font-body-md text-sm lg:text-base font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
                   </span>
                   {ch.isNew && (
@@ -127,7 +127,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                     </div>
                   </div>
                 ) : (
-                  <span className="font-label-sm text-xs md:text-sm text-outline/60 whitespace-nowrap shrink-0">{ch.date || timeAgo(ch.release_date)}</span>
+                  <span className="font-label-sm text-[10px] sm:text-xs lg:text-sm text-outline/60 whitespace-nowrap shrink-0">{ch.date || timeAgo(ch.release_date)}</span>
                 )}
               </div>
             );
