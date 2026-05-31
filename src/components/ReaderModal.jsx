@@ -69,6 +69,7 @@ function PageImage({ src, idx, pageRefs }) {
 
 export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) {
   const [showChapterList, setShowChapterList] = useState(false);
+  const [chapterListPos, setChapterListPos] = useState('top'); // 'top' | 'bottom'
   const [showLastChapterModal, setShowLastChapterModal] = useState(false);
   const [showLockedModal, setShowLockedModal] = useState(false);
   const [lockedNext, setLockedNext] = useState(null);
@@ -213,7 +214,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       {/* Chapter Selector */}
       <div ref={dropdownRef} data-chapter-selector className="relative flex-[2]">
         <button
-          onClick={() => setShowChapterList(v => !v)}
+          onClick={() => { setChapterListPos(position); setShowChapterList(v => !v); }}
           className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-xs md:text-sm font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
         >
           <BookOpen className="w-3.5 h-3.5 text-primary shrink-0" />
@@ -228,10 +229,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: position === 'top' ? -8 : 8, scale: 0.96 }}
               transition={{ duration: 0.15 }}
-              className={`fixed left-2 right-2 z-[250] bg-surface-container border border-white/10 rounded-xl shadow-2xl overflow-hidden ${position === 'top' ? 'top-24' : 'bottom-24'}`}
+              className={`fixed left-2 right-2 z-[250] bg-surface-container border border-white/10 rounded-xl shadow-2xl overflow-hidden ${chapterListPos === 'top' ? 'top-28' : 'bottom-28'}`}
             >
-              <div className="max-h-[50vh] overflow-y-auto hide-scrollbar">
-                {chapters.map((ch, idx) => {
+              <div className="overflow-y-auto hide-scrollbar" style={{maxHeight: '40vh'}}>
+                {chapters.slice(0, 5).map((ch, idx) => {
                   const isActive = ch.id === chapter.id;
                   const isLocked = ch.isLocked && !(ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now());
                   return (
