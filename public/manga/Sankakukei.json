@@ -1,7 +1,7 @@
 {
   "id": "Sankakukei",
   "title": "Seishun wa Sankakukei no Loop",
-  "alt_title": "青春は三角形のループ",
+  "alt_title": "éæ¥ã¯ä¸è§å½¢ã®ã«ã¼ã",
   "status": "Ongoing",
   "type": "MANGA",
   "author": "Hozumi Kei",
@@ -14,7 +14,7 @@
     "Slice of Life",
     "Time Travel"
   ],
-  "description": "—Karena aku lebih memperhatikannya daripada siapa pun, aku jadi tahu.Kalau dia sedang jatuh cinta sekarang.Dan orang yang dia sukai itu adalah sahabatku sendiri, teman masa kecil kami berdua. Sang protagonis, Tsubaki, memutuskan untuk mengubur perasaannya dan membantu cinta sang gadis terwujud. Berkat usahanya juga, dua teman masa kecil yang selalu bersama itu akhirnya resmi menjadi pasangan. Setelah menyaksikan momen itu, Tsubaki menjalani malam tanpa tidur sambil menahan perasaan ingin berteriak—dan ketika dia terbangun berikutnya— Dia kembali mengubur perasaannya…",
+  "description": "âKarena aku lebih memperhatikannya daripada siapa pun, aku jadi tahu.Kalau dia sedang jatuh cinta sekarang.Dan orang yang dia sukai itu adalah sahabatku sendiri, teman masa kecil kami berdua. Sang protagonis, Tsubaki, memutuskan untuk mengubur perasaannya dan membantu cinta sang gadis terwujud. Berkat usahanya juga, dua teman masa kecil yang selalu bersama itu akhirnya resmi menjadi pasangan. Setelah menyaksikan momen itu, Tsubaki menjalani malam tanpa tidur sambil menahan perasaan ingin berteriakâdan ketika dia terbangun berikutnyaâ Dia kembali mengubur perasaannyaâ¦",
   "covers": [
     "manga/Sankakukei/covers/cover.webp"
   ],
@@ -23,9 +23,13 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 1
+    "1": 1,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "11": 3
   },
-  "total_views": 1,
+  "total_views": 7,
   "mangadex_id": "e6d70578-d6b2-4c60-a2f4-7ab16e515480",
   "rating": 8.48,
   "next_update": null,
@@ -42,7 +46,7 @@
       "unlockDate": null,
       "isLocked": false,
       "isNew": true,
-      "views": 0
+      "views": 3
     },
     {
       "chapter_number": 10,
@@ -81,7 +85,7 @@
       "unlockDate": null,
       "isLocked": false,
       "isNew": true,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 7,
@@ -94,7 +98,7 @@
       "unlockDate": null,
       "isLocked": false,
       "isNew": true,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 6,
@@ -107,7 +111,7 @@
       "unlockDate": null,
       "isLocked": false,
       "isNew": true,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 5,

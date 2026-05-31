@@ -27,9 +27,10 @@
     "31": 1,
     "32": 1,
     "34": 1,
-    "35": 2
+    "35": 2,
+    "100": 1
   },
-  "total_views": 9,
+  "total_views": 10,
   "mangadex_id": "57fe3f00-8626-462b-8f75-fce0e6faa6be",
   "rating": 8.69,
   "next_update": null,
@@ -46,7 +47,7 @@
       "unlockDate": null,
       "isLocked": false,
       "isNew": true,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 99,
