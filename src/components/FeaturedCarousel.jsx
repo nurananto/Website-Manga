@@ -61,12 +61,12 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
           {/* Background Image (Blurred cover) */}
           <img
             alt=""
-            className="w-full h-full object-cover object-center scale-125 blur-2xl opacity-50"
+            className="w-full h-full object-cover object-center scale-125 blur-xl opacity-75"
             src={imgUrl(activeManga.coverUrl)}
           />
           {/* Vignette Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/70 to-surface/20" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/30 to-transparent" />
         </motion.div>
       </AnimatePresence>
 
