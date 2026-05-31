@@ -120,7 +120,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="line-clamp-3 sm:line-clamp-4 md:line-clamp-5 lg:line-clamp-5 font-body-lg text-xs md:text-sm text-on-surface-variant/80 leading-relaxed text-justify"
+            className="line-clamp-3 sm:line-clamp-3 md:line-clamp-4 lg:line-clamp-5 font-body-lg text-xs md:text-sm text-on-surface-variant/80 leading-relaxed text-justify"
           >
             {activeManga.description}
           </motion.p>
