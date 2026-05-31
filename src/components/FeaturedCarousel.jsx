@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { imgUrl } from '../utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Info } from 'lucide-react';
@@ -6,8 +6,8 @@ import { Play, Info } from 'lucide-react';
 export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga }) {
   const trending = mangaList.filter((m) => m.isTrending) || [mangaList[0]];
   const [current, setCurrent] = useState(0);
+  const touchStartX = useRef(null);
 
-  // Auto slide every 4 seconds (timer resets when current slide changes)
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % trending.length);
@@ -27,9 +27,28 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
     setCurrent((prev) => (prev + 1) % trending.length);
   };
 
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0
+        ? setCurrent((prev) => (prev + 1) % trending.length)
+        : setCurrent((prev) => (prev - 1 + trending.length) % trending.length);
+    }
+    touchStartX.current = null;
+  };
+
   return (
     <div className="flex flex-col gap-2">
-    <section className="relative w-full h-[220px] sm:h-[260px] md:h-[300px] lg:h-[340px] rounded-xl overflow-hidden group shadow-2xl border border-white/20 flex items-center justify-between">
+    <section
+      className="relative w-full h-[220px] sm:h-[260px] md:h-[300px] lg:h-[340px] rounded-xl overflow-hidden group shadow-2xl border border-white/20 flex items-center justify-between"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <AnimatePresence mode="wait">
         <motion.div
           key={activeManga.id}
