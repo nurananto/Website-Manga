@@ -229,7 +229,7 @@ const renderChapterRow = (ch, idx) => {
           </div>
 
           {/* Grid: 1 kolom mobile, 2 kolom desktop */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-5 lg:mt-4 lg:px-4 sm:px-6 md:px-8 lg:items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-5 lg:mt-4 lg:px-4 lg:items-start">
             {/* Column 1: Info */}
             <div className={`lg:col-span-5 lg:flex flex-col gap-4 p-3 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
 
