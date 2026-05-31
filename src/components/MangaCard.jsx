@@ -36,14 +36,6 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
           src={imgUrl(manga.coverUrl)}
         />
 
-        {/* UP badge — hanya tampil saat ada chapter baru */}
-        {hasNewChapter && (
-          <div className="absolute top-2 left-2 bg-emerald-500/90 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-[9px] font-black uppercase tracking-wider shadow-sm flex items-center gap-0.5 animate-pulse">
-            <ArrowUp className="w-2.5 h-2.5 stroke-[3] shrink-0" />
-            <span>UP</span>
-            <ArrowUp className="w-2.5 h-2.5 stroke-[3] shrink-0" />
-          </div>
-        )}
       </div>
 
       {/* Details Section */}
@@ -88,11 +80,9 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                     {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
                   </span>
                   {ch.isNew && (
-                    <span className="relative flex items-center shrink-0">
-                      <span className="absolute inset-0 rounded bg-emerald-400/40 animate-ping" />
-                      <span className="relative font-label-sm bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase leading-none">
-                        New
-                      </span>
+                    <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1 py-0.5 rounded font-label-sm text-[8px] font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
+                      <ArrowUp className="w-2 h-2 stroke-[3] shrink-0" />
+                      <span>UP</span>
                     </span>
                   )}
                   {showStatusBadge && (

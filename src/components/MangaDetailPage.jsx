@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { imgUrl, timeAgo } from '../utils';
-import { Star, BookOpen, ArrowUpDown, Eye, Coins, Clock } from 'lucide-react';
+import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Coins, Clock } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
 
@@ -57,11 +57,9 @@ const renderChapterRow = (ch, idx) => {
                 {ch.title}
               </p>
               {isNew && (
-                <span className="relative flex items-center shrink-0">
-                  <span className="absolute inset-0 rounded bg-emerald-400/40 animate-ping" />
-                  <span className="relative font-label-sm bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase leading-none">
-                    New
-                  </span>
+                <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1 py-0.5 rounded font-label-sm text-[8px] font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
+                  <ArrowUp className="w-2 h-2 stroke-[3] shrink-0" />
+                  <span>UP</span>
                 </span>
               )}
               {showStatusBadge && (
