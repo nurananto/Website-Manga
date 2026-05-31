@@ -52,7 +52,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
       </AnimatePresence>
 
       {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}
-      <div className="absolute inset-0 left-0 pr-[33%] sm:pr-[36%] md:pr-[45%] lg:pr-[47%] py-3 px-3 sm:py-4 sm:px-5 md:py-5 md:px-7 lg:py-6 lg:px-9 flex flex-col justify-between z-10">
+      <div className="absolute inset-0 left-0 pt-3 pb-2 pl-3 pr-[33%] sm:pt-4 sm:pb-3 sm:pl-5 sm:pr-[36%] md:pt-5 md:pb-3 md:pl-7 md:pr-[42%] lg:pt-6 lg:pb-4 lg:pl-9 lg:pr-[44%] flex flex-col justify-between z-10">
 
         {/* Top: Badges + Title + Description */}
         <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5">
