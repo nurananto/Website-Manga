@@ -146,9 +146,13 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
     setPageCount(chapter.pages);
   }, [chapter?.id]);
 
-  // Reset scroll + currentPage saat chapter berganti
+  // Reset scroll + currentPage saat chapter berganti, restore posisi terakhir jika ada
   useEffect(() => {
-    scrollRef.current?.scrollTo({ top: 0, behavior: 'instant' });
+    if (!chapter?.id) return;
+    const savedTop = parseInt(localStorage.getItem(`reader_pos_${chapter.id}`)) || 0;
+    requestAnimationFrame(() => {
+      scrollRef.current?.scrollTo({ top: savedTop, behavior: 'instant' });
+    });
     setCurrentPage(0);
     pageRefs.current = [];
   }, [chapter?.id]);
@@ -163,7 +167,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       const ratio = el.scrollTop / max;
       const page = Math.min(pageCount - 1, Math.floor(ratio * pageCount));
       setCurrentPage(page);
-      setOpenChapterList(null); // tutup dropdown saat scroll
+      setOpenChapterList(null);
+      if (activeChapter?.id) {
+        localStorage.setItem(`reader_pos_${activeChapter.id}`, el.scrollTop);
+      }
     };
     el.addEventListener('scroll', handleScroll, { passive: true });
     return () => el.removeEventListener('scroll', handleScroll);
@@ -475,7 +482,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
             >
               <div
                 className="overflow-y-auto hide-scrollbar"
-                style={{ maxHeight: dropdownAnchor?.maxHeight || '205px' }}
+                style={{ maxHeight: dropdownAnchor?.maxHeight || '230px' }}
                 ref={el => {
                   if (!el) return;
                   const active = el.querySelector('[data-active="true"]');

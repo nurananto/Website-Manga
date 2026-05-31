@@ -245,7 +245,7 @@ export default function App() {
       <div className="flex-1 flex flex-col">
         {loadingManga && initialRoute.page !== 'reader' ? (
           <MangaDetailSkeleton />
-        ) : isLoading && initialRoute.page === 'reader' ? (
+        ) : (isLoading || !activeChapter) && initialRoute.page === 'reader' ? (
           <div className="fixed inset-0 bg-[#090b0d] flex items-center justify-center z-[199]">
             <div className="w-10 h-10 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
           </div>
