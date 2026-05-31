@@ -29,7 +29,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
 
   return (
     <div className="flex flex-col gap-2">
-    <section className="relative w-full h-[200px] sm:h-[240px] md:h-[280px] rounded-xl overflow-hidden group shadow-2xl border border-white/20 flex items-center justify-between">
+    <section className="relative w-full h-[220px] sm:h-[260px] md:h-[300px] lg:h-[340px] rounded-xl overflow-hidden group shadow-2xl border border-white/20 flex items-center justify-between">
       <AnimatePresence mode="wait">
         <motion.div
           key={activeManga.id}
@@ -52,72 +52,84 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
       </AnimatePresence>
 
       {/* Left Side: Content Overlay */}
-      <div className="absolute inset-y-0 left-0 p-3 sm:p-4 md:p-6 md:pl-8 flex flex-col justify-center gap-1.5 sm:gap-2 md:gap-3 z-10 w-[72%] sm:w-2/3 md:w-3/5">
-        <div className="flex gap-2 items-center flex-wrap">
-          <span className="bg-amber-500/20 text-amber-500 px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md border border-amber-500/30 font-semibold shadow-sm">
-            Trending Now
+      {/* Mobile: w-[65%], tablet: w-[60%], desktop: w-[55%] */}
+      <div className="absolute inset-y-0 left-0 p-3 sm:p-5 md:p-7 lg:p-9 flex flex-col justify-center gap-2 sm:gap-2.5 md:gap-3 z-10 w-[65%] sm:w-[60%] md:w-[55%]">
+
+        {/* Badges — mobile: hanya Trending + 1 genre, sm+: 2 genre, md+: 3 genre */}
+        <div className="flex gap-1.5 sm:gap-2 items-center flex-wrap">
+          <span className="bg-amber-500/20 text-amber-500 px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md border border-amber-500/30 font-semibold shadow-sm">
+            Trending
           </span>
-          {activeManga.genres.slice(0, 2).map((g) => (
-            <span key={g} className="bg-surface-variant/85 text-on-surface px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+          {activeManga.genres.slice(0, 1).map((g) => (
+            <span key={g} className="bg-surface-variant/85 text-on-surface px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+              {g}
+            </span>
+          ))}
+          {activeManga.genres.slice(1, 2).map((g) => (
+            <span key={g} className="hidden sm:inline bg-surface-variant/85 text-on-surface px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
               {g}
             </span>
           ))}
           {activeManga.genres.length > 2 && (
-            <span className="bg-white/5 text-outline px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/5">
-              +{activeManga.genres.length - 2} More
+            <span className="hidden md:inline bg-white/5 text-outline px-2.5 py-0.5 rounded-md font-label-sm text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/5">
+              +{activeManga.genres.length - 2}
             </span>
           )}
         </div>
 
+        {/* Title */}
         <motion.h1
           key={`title-${activeManga.id}`}
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="font-display-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight"
+          className="font-display-lg text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight line-clamp-2"
         >
           {activeManga.title}
         </motion.h1>
 
+        {/* Description — hidden mobile, 1 baris sm, 2 baris md+ */}
         <motion.p
           key={`desc-${activeManga.id}`}
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="font-body-lg text-sm md:text-sm text-on-surface-variant/90 line-clamp-2 max-w-lg leading-relaxed"
+          className="hidden sm:line-clamp-1 md:line-clamp-2 sm:block font-body-lg text-xs sm:text-xs md:text-sm lg:text-sm text-on-surface-variant/80 max-w-lg leading-relaxed"
         >
           {activeManga.description}
         </motion.p>
 
+        {/* Buttons */}
         <motion.div
           key={`btn-${activeManga.id}`}
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="flex items-center gap-3 mt-1"
+          className="flex items-center gap-2 sm:gap-3"
         >
           <button
             onClick={() => onReadChapter(activeManga.chapters[0], activeManga.title)}
-            className="flex items-center gap-2 bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg shadow-lg hover:shadow-indigo-500/20 hover:scale-105 active:scale-98 transition-all text-[11px] sm:text-xs cursor-pointer"
+            className="flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-lg hover:shadow-indigo-500/20 hover:scale-105 active:scale-98 transition-all text-[10px] sm:text-xs md:text-sm cursor-pointer"
           >
-            <Play className="w-3.5 h-3.5 fill-current" />
+            <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-current" />
             Read
           </button>
           <button
             onClick={() => onViewManga && onViewManga(activeManga)}
-            className="flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:scale-105 active:scale-98 transition-all text-[11px] sm:text-xs cursor-pointer"
+            className="flex items-center gap-1.5 sm:gap-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl hover:scale-105 active:scale-98 transition-all text-[10px] sm:text-xs md:text-sm cursor-pointer"
           >
-            <Info className="w-3.5 h-3.5" />
+            <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
             View
           </button>
         </motion.div>
       </div>
 
       {/* Right Side: Cover Image */}
-      <div className="absolute inset-y-0 right-2 flex items-center justify-center h-full z-10 py-2">
+      {/* Mobile: lebih besar (h-[85%]), tablet: h-[90%], desktop: h-[93%] */}
+      <div className="absolute inset-y-0 right-2 sm:right-3 md:right-4 flex items-center justify-center h-full z-10 py-2 sm:py-3">
         <img
           alt={activeManga.title}
-          className="h-[75%] sm:h-[90%] md:h-[93%] aspect-[2/3] object-cover rounded-lg shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
+          className="h-[85%] sm:h-[90%] md:h-[93%] aspect-[2/3] object-cover rounded-lg sm:rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
           src={imgUrl(activeManga.coverUrl)}
         />
       </div>
