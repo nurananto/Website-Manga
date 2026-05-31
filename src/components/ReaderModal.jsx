@@ -458,7 +458,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
               style={{ position: 'fixed', left: 8, right: 8, zIndex: 9999, ...dropdownAnchor }}
               className="bg-surface-container border border-white/10 rounded-xl shadow-2xl overflow-hidden"
             >
-              <div className="overflow-y-auto hide-scrollbar" style={{ maxHeight: '40vh' }}>
+              <div className="overflow-y-auto hide-scrollbar" style={{ maxHeight: '260px' }}>
                 {chapters.map((ch) => {
                   const isActive = ch.id === chapter.id;
                   const isLocked = ch.isLocked && !(ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now());
