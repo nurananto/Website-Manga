@@ -52,10 +52,10 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
       </AnimatePresence>
 
       {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}
-      {/* pr dihitung dari lebar cover+margin: mobile~44%, sm~30%, md~32%, lg~27% */}
-      <div className="absolute inset-0 left-0 py-2 pl-3 pr-[44%] sm:py-3 sm:pl-5 sm:pr-[30%] md:py-3 md:pl-7 md:pr-[32%] lg:py-4 lg:pl-9 lg:pr-[27%] flex flex-col z-10">
+      {/* pr pixel tetap agar gap ke cover konsisten di semua lebar viewport */}
+      <div className="absolute inset-0 left-0 py-2 pl-3 pr-36 sm:py-3 sm:pl-5 sm:pr-44 md:py-3 md:pl-7 md:pr-52 lg:py-4 lg:pl-9 lg:pr-60 flex flex-col justify-center z-10">
 
-        {/* Top: Badges + Title + Description */}
+        {/* Satu blok konten, di-center secara vertikal */}
         <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5">
           {/* Badges */}
           <div className="flex gap-1.5 sm:gap-2 items-center flex-wrap">
@@ -105,31 +105,31 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
           >
             {activeManga.description}
           </motion.p>
-        </div>
 
-        {/* Bottom: Buttons — mt-auto mendorong ke bawah sejajar cover */}
-        <motion.div
-          key={`btn-${activeManga.id}`}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="flex items-center gap-2 sm:gap-3 mt-auto pt-2"
-        >
-          <button
-            onClick={() => onReadChapter(activeManga.chapters[0], activeManga.title)}
-            className="flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-lg hover:shadow-indigo-500/20 hover:scale-105 active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm cursor-pointer"
+          {/* Buttons */}
+          <motion.div
+            key={`btn-${activeManga.id}`}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="flex items-center gap-2 sm:gap-3 mt-1 sm:mt-2"
           >
-            <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-current" />
-            Read
-          </button>
-          <button
-            onClick={() => onViewManga && onViewManga(activeManga)}
-            className="flex items-center gap-1.5 sm:gap-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl hover:scale-105 active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm cursor-pointer"
-          >
-            <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
-            View
-          </button>
-        </motion.div>
+            <button
+              onClick={() => onReadChapter(activeManga.chapters[0], activeManga.title)}
+              className="flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-lg hover:shadow-indigo-500/20 hover:scale-105 active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm cursor-pointer"
+            >
+              <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-current" />
+              Read
+            </button>
+            <button
+              onClick={() => onViewManga && onViewManga(activeManga)}
+              className="flex items-center gap-1.5 sm:gap-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl hover:scale-105 active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm cursor-pointer"
+            >
+              <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
+              View
+            </button>
+          </motion.div>
+        </div>
       </div>
 
       {/* Right Side: Cover Image */}
