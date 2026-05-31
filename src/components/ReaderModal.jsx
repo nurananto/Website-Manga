@@ -58,8 +58,9 @@ function PageImage({ src, idx, pageRefs }) {
       )}
       <img
         alt={`Page ${idx + 1}`}
-        loading="lazy"
-        decoding="async"
+        loading={idx === 0 ? 'eager' : 'lazy'}
+        decoding={idx === 0 ? 'sync' : 'async'}
+        fetchpriority={idx === 0 ? 'high' : 'auto'}
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
         src={src}
         onLoad={() => setLoaded(true)}

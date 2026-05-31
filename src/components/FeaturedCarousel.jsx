@@ -158,6 +158,8 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
           alt={activeManga.title}
           className="h-[85%] sm:h-[90%] md:h-[93%] aspect-[2/3] object-cover rounded-lg sm:rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
           src={imgUrl(activeManga.coverUrl)}
+          loading="eager"
+          fetchpriority="high"
         />
       </div>
 

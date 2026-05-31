@@ -259,12 +259,22 @@ export default function App() {
             
             {activeTab === 'library' && (
               <>
-                {/* Featured Carousel */}
-                {!searchQuery && MANGA_LIST.length > 0 && (
+                {/* Featured Carousel — skeleton saat loading agar tidak CLS */}
+                {!searchQuery && (
                   <>
-                    <FeaturedCarousel 
-                      mangaList={MANGA_LIST} 
-                      onReadChapter={(ch, title) => handleReadChapter(ch, title)} 
+                    {isLoading ? (
+                      <div className="flex flex-col gap-2">
+                        <div className="h-[220px] sm:h-[260px] md:h-[300px] lg:h-[340px] rounded-xl bg-surface-container animate-pulse border border-white/5" />
+                        <div className="flex justify-center gap-2">
+                          <div className="h-1.5 w-6 rounded-full bg-surface-container-high animate-pulse" />
+                          <div className="h-1.5 w-1.5 rounded-full bg-surface-container-high animate-pulse" />
+                        </div>
+                      </div>
+                    ) : MANGA_LIST.length > 0 ? (
+                    <>
+                    <FeaturedCarousel
+                      mangaList={MANGA_LIST}
+                      onReadChapter={(ch, title) => handleReadChapter(ch, title)}
                       onViewManga={(manga) => { navigate(`/${manga.id}`); }}
                     />
                     
@@ -310,6 +320,7 @@ export default function App() {
                         </div>
                       </div>
                     </a>
+                    </> ) : null}
                   </>
                 )}
 
