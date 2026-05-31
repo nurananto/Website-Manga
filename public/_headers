@@ -2,12 +2,12 @@
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Catalog JSON — cache 5 menit (diupdate oleh GitHub Action)
+# Catalog JSON — selalu fresh agar views langsung tampil setelah deploy
 /manga/index.json
-  Cache-Control: public, max-age=300, stale-while-revalidate=60
+  Cache-Control: no-cache
 
 /manga/*.json
-  Cache-Control: public, max-age=300, stale-while-revalidate=60
+  Cache-Control: no-cache
 
 # HTML — tidak di-cache agar deploy terbaru langsung aktif
 /index.html
