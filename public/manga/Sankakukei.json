@@ -22,9 +22,12 @@
   "raw_url": "https://comic-walker.com/detail/KC_006586_S?episodeType=first",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
+  "chapter_views": {
+    "1": 1
+  },
+  "total_views": 1,
   "mangadex_id": "e6d70578-d6b2-4c60-a2f4-7ab16e515480",
   "rating": 8.48,
-  "total_views": 0,
   "next_update": null,
   "coverUrl": "manga/Sankakukei/covers/cover.webp",
   "chapters": [
@@ -169,7 +172,7 @@
       "unlockDate": null,
       "isLocked": false,
       "isNew": true,
-      "views": 0
+      "views": 1
     }
   ]
 }
