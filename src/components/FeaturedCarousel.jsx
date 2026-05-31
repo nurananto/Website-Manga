@@ -11,7 +11,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % trending.length);
-    }, 4000);
+    }, 7000);
     return () => clearInterval(timer);
   }, [current, trending.length]);
 
@@ -100,7 +100,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="line-clamp-2 sm:line-clamp-2 md:line-clamp-3 font-body-lg text-[10px] sm:text-xs md:text-sm text-on-surface-variant/80 leading-relaxed"
+            className="line-clamp-4 font-body-lg text-xs md:text-sm text-on-surface-variant/80 leading-relaxed"
           >
             {activeManga.description}
           </motion.p>
