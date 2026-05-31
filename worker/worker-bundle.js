@@ -221,20 +221,32 @@ async function handleCron(env) {
       byManga[mangaId][chNum] = row.views;
     }
 
-    // Update tiap manga meta.json di GitHub
+    // Update semua manga meta.json dalam SATU commit menggunakan Tree API
+    const repoApi = `https://api.github.com/repos/${env.GITHUB_REPO}`;
+
+    // 1. Ambil HEAD commit SHA
+    const refRes = await fetch(`${repoApi}/git/ref/heads/main`, { headers: ghHeaders });
+    if (!refRes.ok) { console.error('Failed to get ref'); throw new Error('git ref failed'); }
+    const { object: { sha: headSha } } = await refRes.json();
+
+    // 2. Ambil tree SHA dari commit
+    const commitRes = await fetch(`${repoApi}/git/commits/${headSha}`, { headers: ghHeaders });
+    const { tree: { sha: treeSha } } = await commitRes.json();
+
+    // 3. Siapkan semua perubahan file
+    const treeItems = [];
     let successCount = 0;
+
     for (const [mangaId, chapterViews] of Object.entries(byManga)) {
       const filePath = `manga/${mangaId}/meta.json`;
       const apiUrl   = `https://api.github.com/repos/${env.GITHUB_REPO}/contents/${filePath}`;
 
-      // Ambil meta.json saat ini
       const getRes = await fetch(apiUrl, { headers: ghHeaders });
       if (!getRes.ok) { console.error(`Skip ${mangaId}: file not found`); continue; }
 
-      const { sha, content: encoded } = await getRes.json();
+      const { content: encoded } = await getRes.json();
       const meta = JSON.parse(atob(encoded.replace(/\n/g, '')));
 
-      // TAMBAHKAN ke total yang sudah ada (bukan replace)
       const existing = meta.chapter_views ?? {};
       for (const [chNum, count] of Object.entries(chapterViews)) {
         existing[chNum] = (existing[chNum] ?? 0) + count;
@@ -242,18 +254,44 @@ async function handleCron(env) {
       meta.chapter_views = existing;
       meta.total_views   = Object.values(existing).reduce((s, v) => s + v, 0);
 
-      const putRes = await fetch(apiUrl, {
-        method:  'PUT',
-        headers: ghHeaders,
-        body:    JSON.stringify({
-          message: `chore: update view counts ${mangaId}`,
-          content: btoa(JSON.stringify(meta, null, 2)),
-          sha,
-        }),
+      treeItems.push({
+        path: filePath,
+        mode: '100644',
+        type: 'blob',
+        content: JSON.stringify(meta, null, 2) + '\n',
       });
+      successCount++;
+    }
 
-      if (putRes.ok) { successCount++; }
-      else { console.error(`Failed update ${mangaId}:`, await putRes.text()); }
+    if (treeItems.length === 0) throw new Error('no files to update');
+
+    // 4. Buat tree baru
+    const newTreeRes = await fetch(`${repoApi}/git/trees`, {
+      method: 'POST', headers: ghHeaders,
+      body: JSON.stringify({ base_tree: treeSha, tree: treeItems }),
+    });
+    const { sha: newTreeSha } = await newTreeRes.json();
+
+    // 5. Buat commit baru
+    const newCommitRes = await fetch(`${repoApi}/git/commits`, {
+      method: 'POST', headers: ghHeaders,
+      body: JSON.stringify({
+        message: `chore: update view counts (${Object.keys(byManga).sort().join(', ')})`,
+        tree: newTreeSha,
+        parents: [headSha],
+      }),
+    });
+    const { sha: newCommitSha } = await newCommitRes.json();
+
+    // 6. Update ref
+    const updateRefRes = await fetch(`${repoApi}/git/refs/heads/main`, {
+      method: 'PATCH', headers: ghHeaders,
+      body: JSON.stringify({ sha: newCommitSha }),
+    });
+
+    if (!updateRefRes.ok) {
+      console.error('Failed to update ref:', await updateRefRes.text());
+      throw new Error('ref update failed');
     }
 
     // Tidak ada views hari ini → ok, tidak ada yang perlu dipush
