@@ -1,5 +1,70 @@
 [
   {
+    "id": "Sankakukei",
+    "title": "Seishun wa Sankakukei no Loop",
+    "alt_title": "青春は三角形のループ",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Hozumi Kei",
+    "coverUrl": "manga/Sankakukei/covers/cover.webp",
+    "covers": [
+      "manga/Sankakukei/covers/cover.webp"
+    ],
+    "genres": [
+      "Comedy",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life",
+      "Time Travel"
+    ],
+    "rating": 8.48,
+    "total_views": 0,
+    "isTrending": true,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 11,
+        "lock_hours": 0,
+        "pages": 31,
+        "release_date": "2026-05-31T14:56:31+07:00",
+        "id": "Sankakukei-ch-11",
+        "r2_prefix": "manga/Sankakukei/11/",
+        "title": "Ch. 11",
+        "unlockDate": null,
+        "isLocked": false,
+        "isNew": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 10,
+        "lock_hours": 0,
+        "pages": 14,
+        "release_date": "2026-05-31T14:56:31+07:00",
+        "id": "Sankakukei-ch-10",
+        "r2_prefix": "manga/Sankakukei/10/",
+        "title": "Ch. 10",
+        "unlockDate": null,
+        "isLocked": false,
+        "isNew": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 9,
+        "lock_hours": 0,
+        "pages": 32,
+        "release_date": "2026-05-31T14:56:31+07:00",
+        "id": "Sankakukei-ch-9",
+        "r2_prefix": "manga/Sankakukei/9/",
+        "title": "Ch. 9",
+        "unlockDate": null,
+        "isLocked": false,
+        "isNew": true,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "waka-chan",
     "title": "Waka-chan wa Kyou mo Azatoi",
     "alt_title": "A Hidden Side to my Crush",
