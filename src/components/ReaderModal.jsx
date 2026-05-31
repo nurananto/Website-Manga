@@ -70,6 +70,14 @@ function PageImage({ src, idx, pageRefs }) {
 }
 
 export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) {
+  // Freeze last known values saat exit animation agar konten tidak hilang
+  const frozenChapter = useRef(chapter);
+  const frozenManga = useRef(manga);
+  useEffect(() => { if (chapter) frozenChapter.current = chapter; }, [chapter]);
+  useEffect(() => { if (manga) frozenManga.current = manga; }, [manga]);
+  const activeChapter = chapter || frozenChapter.current;
+  const activeManga = manga || frozenManga.current;
+
   // null = tutup, 'top' = dibuka dari navbar atas, 'bottom' = dari navbar bawah
   const [openChapterList, setOpenChapterList] = useState(null);
   const [dropdownAnchor, setDropdownAnchor] = useState(null); // pixel position dari getBoundingClientRect
@@ -189,15 +197,15 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       setShowLockedModal(true);
       return;
     }
-    onReadChapter(nextChapter, manga.title);
+    onReadChapter(nextChapter, activeManga.title);
   };
 
   const handlePrev = () => {
     if (prevDisabled) return;
-    onReadChapter(prevChapter, manga.title);
+    onReadChapter(prevChapter, activeManga.title);
   };
 
-  if (!chapter) return null;
+  if (!activeChapter) return null;
 
   const NavBar = ({ position }) => (
     <div className={`flex items-center gap-2 w-full px-2 py-2 bg-surface-container-lowest/90 backdrop-blur-md border-white/20 ${
@@ -227,7 +235,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
           className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-xs md:text-sm font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
         >
           <BookOpen className="w-3.5 h-3.5 text-primary shrink-0" />
-          <span className="truncate">{chapter.title.split(':')[0]}</span>
+          <span className="truncate">{activeChapter.title.split(':')[0]}</span>
         </button>
       </div>
 
@@ -262,9 +270,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
                 className="relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-white/15 flex items-center gap-3 active:scale-[0.99] cursor-pointer overflow-hidden"
               >
                 {/* Blurred cover background */}
-                {manga?.coverUrl && (
+                {activeManga?.coverUrl && (
                   <>
-                    <img src={imgUrl(manga?.coverUrl)} alt="" aria-hidden
+                    <img src={imgUrl(activeManga.coverUrl)} alt="" aria-hidden
                       className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl opacity-40 pointer-events-none"
                     />
                     <div className="absolute inset-0 bg-surface-container/60 pointer-events-none" />
@@ -272,13 +280,13 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
                 )}
                 <ArrowLeft className="relative w-5 h-5 text-primary shrink-0" />
                 <div className="relative min-w-0 flex-1 text-left">
-                  <p className="font-label-sm text-xs sm:text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{manga?.title}</p>
-                  <h2 className="font-body-md text-sm sm:text-sm md:text-base font-extrabold text-on-surface truncate">{chapter.title}</h2>
+                  <p className="font-label-sm text-xs sm:text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{activeManga?.title}</p>
+                  <h2 className="font-body-md text-sm sm:text-sm md:text-base font-extrabold text-on-surface truncate">{activeChapter.title}</h2>
                 </div>
-                {manga?.coverUrl && (
+                {activeManga?.coverUrl && (
                   <div className="relative h-full py-1.5 flex items-center shrink-0">
                     <img
-                      src={imgUrl(manga?.coverUrl)}
+                      src={imgUrl(activeManga.coverUrl)}
                       alt=""
                       className="h-full aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10"
                     />
@@ -314,9 +322,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
                 className="relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-white/15 flex items-center gap-3 active:scale-[0.99] cursor-pointer overflow-hidden"
               >
                 {/* Blurred cover background */}
-                {manga?.coverUrl && (
+                {activeManga?.coverUrl && (
                   <>
-                    <img src={imgUrl(manga?.coverUrl)} alt="" aria-hidden
+                    <img src={imgUrl(activeManga.coverUrl)} alt="" aria-hidden
                       className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl opacity-40 pointer-events-none"
                     />
                     <div className="absolute inset-0 bg-surface-container/60 pointer-events-none" />
@@ -324,13 +332,13 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
                 )}
                 <ArrowLeft className="relative w-5 h-5 text-primary shrink-0" />
                 <div className="relative min-w-0 flex-1 text-left">
-                  <p className="font-label-sm text-xs sm:text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{manga?.title}</p>
-                  <h2 className="font-body-md text-sm sm:text-sm md:text-base font-extrabold text-on-surface truncate">{chapter.title}</h2>
+                  <p className="font-label-sm text-xs sm:text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{activeManga?.title}</p>
+                  <h2 className="font-body-md text-sm sm:text-sm md:text-base font-extrabold text-on-surface truncate">{activeChapter.title}</h2>
                 </div>
-                {manga?.coverUrl && (
+                {activeManga?.coverUrl && (
                   <div className="relative h-full py-1.5 flex items-center shrink-0">
                     <img
-                      src={imgUrl(manga?.coverUrl)}
+                      src={imgUrl(activeManga.coverUrl)}
                       alt=""
                       className="h-full aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10"
                     />
@@ -430,7 +438,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
                   {manga?.nextUpdate && (
                     <p className="font-body-md text-sm text-on-surface/80 mt-3 bg-surface-container-high/50 rounded-lg px-3 py-2 border border-white/5">
                       Chapter selanjutnya akan diupdate setelah{' '}
-                      <span className="text-primary font-bold">{manga.nextUpdate}</span>
+                      <span className="text-primary font-bold">{activeManga.nextUpdate}</span>
                     </p>
                   )}
                 </div>
@@ -460,7 +468,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
             >
               <div className="overflow-y-auto hide-scrollbar" style={{ maxHeight: '260px' }}>
                 {chapters.map((ch) => {
-                  const isActive = ch.id === chapter.id;
+                  const isActive = ch.id === activeChapter.id;
                   const isLocked = ch.isLocked && !(ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now());
                   return (
                     <button
