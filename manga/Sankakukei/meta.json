@@ -6,11 +6,24 @@
   "type": "MANGA",
   "author": "Hozumi Kei",
   "artist": "Mito",
-  "genres": ["School Life","Romance","Comedy","Slice of Life","Time Travel","Shounen"],
+  "genres": [
+    "School Life",
+    "Romance",
+    "Comedy",
+    "Slice of Life",
+    "Time Travel",
+    "Shounen"
+  ],
   "description": "—Karena aku lebih memperhatikannya daripada siapa pun, aku jadi tahu.Kalau dia sedang jatuh cinta sekarang.Dan orang yang dia sukai itu adalah sahabatku sendiri, teman masa kecil kami berdua. Sang protagonis, Tsubaki, memutuskan untuk mengubur perasaannya dan membantu cinta sang gadis terwujud. Berkat usahanya juga, dua teman masa kecil yang selalu bersama itu akhirnya resmi menjadi pasangan. Setelah menyaksikan momen itu, Tsubaki menjalani malam tanpa tidur sambil menahan perasaan ingin berteriak—dan ketika dia terbangun berikutnya— Dia kembali mengubur perasaannya…",
-  "covers": ["manga/Sankakukei/covers/cover.webp"],
+  "covers": [
+    "manga/Sankakukei/covers/cover.webp"
+  ],
   "mangadex_url": "https://mangadex.org/title/e6d70578-d6b2-4c60-a2f4-7ab16e515480/seishun-wa-sankakukei-no-loop",
   "raw_url": "https://comic-walker.com/detail/KC_006586_S?episodeType=first",
   "tamat_at_chapter": null,
-  "hiatus_at_chapter": null
+  "hiatus_at_chapter": null,
+  "chapter_views": {
+    "1": 1
+  },
+  "total_views": 1
 }
