@@ -152,6 +152,7 @@ async function buildCatalog() {
       id:           manga.id,
       title:        manga.title,
       alt_title:    manga.alt_title,
+      description:  manga.description,
       status:       manga.status,
       type:         manga.type,
       author:       manga.author,
