@@ -234,12 +234,13 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
         <button
           onClick={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
+            const base = { left: rect.left, width: rect.width };
             if (position === 'top') {
-              setDropdownAnchor({ top: rect.bottom + 6 });
+              setDropdownAnchor({ ...base, top: rect.bottom + 6 });
             } else {
-              // NavBar bawah: dropdown muncul ke atas, batasi agar tidak melewati atas viewport
               const spaceAbove = rect.top - 16;
               setDropdownAnchor({
+                ...base,
                 bottom: window.innerHeight - rect.top + 6,
                 maxHeight: Math.min(205, spaceAbove) + 'px',
               });
@@ -477,7 +478,14 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: openChapterList === 'top' ? -8 : 8, scale: 0.97 }}
               transition={{ duration: 0.15 }}
-              style={{ position: 'fixed', left: 8, right: 8, zIndex: 9999, ...dropdownAnchor }}
+              style={{
+                position: 'fixed',
+                left: dropdownAnchor?.left ?? 8,
+                width: dropdownAnchor?.width ?? 'auto',
+                zIndex: 9999,
+                top: dropdownAnchor?.top,
+                bottom: dropdownAnchor?.bottom,
+              }}
               className="bg-surface-container border border-white/10 rounded-xl shadow-2xl overflow-hidden"
             >
               <div
