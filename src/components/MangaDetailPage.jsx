@@ -231,7 +231,7 @@ const renderChapterRow = (ch, idx) => {
           {/* Grid: 1 kolom mobile, 2 kolom desktop */}
           <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-5 lg:mt-4 lg:px-4 sm:px-6 md:px-8 lg:items-start">
             {/* Column 1: Info */}
-            <div className={`lg:col-span-5 lg:flex flex-col gap-4 p-4 sm:p-5 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
+            <div className={`lg:col-span-5 lg:flex flex-col gap-4 p-3 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
 
             {/* Stats: Rating + Chapters + Total Views */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3">
@@ -339,7 +339,7 @@ const renderChapterRow = (ch, idx) => {
           </div>
 
           {/* Column 2: Chapters */}
-          <div className={`lg:col-span-7 lg:flex flex-col px-2 py-4 sm:px-3 sm:py-5 lg:px-4 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
+          <div className={`lg:col-span-7 lg:flex flex-col px-2 py-3 sm:px-3 lg:px-4 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
             {/* Chapter List Header */}
             <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-2">
               <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">
