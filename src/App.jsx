@@ -13,6 +13,7 @@ import { parsePath, navigate } from './router';
 export default function App() {
   const [MANGA_LIST, setMangaList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const initialRoute = useState(() => parsePath())[0];
 
   // Paksa refresh saat ada versi baru di server
   useEffect(() => {
@@ -242,7 +243,13 @@ export default function App() {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
-        {loadingManga ? (
+        {loadingManga && initialRoute.page !== 'reader' ? (
+          <MangaDetailSkeleton />
+        ) : isLoading && initialRoute.page === 'reader' ? (
+          <div className="fixed inset-0 bg-[#090b0d] flex items-center justify-center z-[199]">
+            <div className="w-10 h-10 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+          </div>
+        ) : loadingManga ? (
           <MangaDetailSkeleton />
         ) : selectedManga ? (
           /* Manga Detail View */
