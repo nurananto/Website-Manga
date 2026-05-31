@@ -228,7 +228,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: position === 'top' ? -8 : 8, scale: 0.96 }}
               transition={{ duration: 0.15 }}
-              className={`absolute ${position === 'top' ? 'top-full mt-2' : 'bottom-full mb-2'} left-0 right-0 z-50 bg-surface-container border border-white/10 rounded-xl shadow-2xl overflow-hidden`}
+              className={`fixed left-2 right-2 z-[250] bg-surface-container border border-white/10 rounded-xl shadow-2xl overflow-hidden ${position === 'top' ? 'top-24' : 'bottom-24'}`}
             >
               <div className="max-h-[50vh] overflow-y-auto hide-scrollbar">
                 {chapters.map((ch, idx) => {
