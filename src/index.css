@@ -88,6 +88,21 @@ body {
   padding-bottom: max(5rem, env(safe-area-inset-bottom));
 }
 
+/* Slow gold pulse untuk carousel border */
+@keyframes gold-pulse {
+  0%, 100% {
+    border-color: rgba(251, 191, 36, 0.5);
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.15);
+  }
+  50% {
+    border-color: rgba(251, 191, 36, 0.9);
+    box-shadow: 0 0 22px rgba(251, 191, 36, 0.4), 0 0 6px rgba(251, 191, 36, 0.2) inset;
+  }
+}
+.border-gold-pulse {
+  animation: gold-pulse 3s ease-in-out infinite;
+}
+
 /* Security: disable drag, context menu, text select on images */
 img {
   -webkit-user-drag: none;
