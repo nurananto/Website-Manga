@@ -482,9 +482,16 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
             >
               <div
                 className="overflow-y-auto hide-scrollbar"
-                style={{ maxHeight: dropdownAnchor?.maxHeight || '230px' }}
                 ref={el => {
                   if (!el) return;
+                  // Ukur tinggi row pertama → maxHeight = 5 baris tepat
+                  const firstRow = el.firstElementChild;
+                  if (firstRow) {
+                    const rowH = firstRow.offsetHeight;
+                    el.style.maxHeight = (dropdownAnchor?.maxHeight
+                      ? Math.min(rowH * 5, parseInt(dropdownAnchor.maxHeight))
+                      : rowH * 5) + 'px';
+                  }
                   const active = el.querySelector('[data-active="true"]');
                   if (active) active.scrollIntoView({ block: 'nearest' });
                 }}
