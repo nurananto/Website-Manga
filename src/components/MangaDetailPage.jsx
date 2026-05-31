@@ -47,7 +47,7 @@ const renderChapterRow = (ch, idx) => {
           setReadChapters(prev => new Set([...prev, ch.id]));
           onReadChapter(ch, manga.title);
         }}
-        className="group flex items-center justify-between py-3 px-3 sm:px-4 hover:bg-white/5 transition-all cursor-pointer rounded-xl border border-white/8 hover:border-white/15 bg-surface-container/30"
+        className="group flex items-center justify-between py-3 px-2 sm:px-3 hover:bg-white/5 transition-all cursor-pointer rounded-xl border border-white/8 hover:border-white/15 bg-surface-container/30"
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
         <div className={`flex items-center gap-3 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
@@ -339,7 +339,7 @@ const renderChapterRow = (ch, idx) => {
           </div>
 
           {/* Column 2: Chapters */}
-          <div className={`lg:col-span-7 lg:flex flex-col p-4 sm:p-5 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
+          <div className={`lg:col-span-7 lg:flex flex-col px-2 py-4 sm:px-3 sm:py-5 lg:px-4 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
             {/* Chapter List Header */}
             <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-2">
               <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">
