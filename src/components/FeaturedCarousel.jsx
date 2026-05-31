@@ -92,12 +92,12 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
               </span>
             ))}
             {activeManga.genres.length > 1 && (
-              <span className="inline sm:hidden bg-white/5 text-outline px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/5">
+              <span className="inline sm:hidden bg-black/40 text-white/80 px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
                 +{activeManga.genres.length - 1}
               </span>
             )}
             {activeManga.genres.length > 2 && (
-              <span className="hidden sm:inline bg-white/5 text-outline px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/5">
+              <span className="hidden sm:inline bg-black/40 text-white/80 px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
                 +{activeManga.genres.length - 2}
               </span>
             )}
