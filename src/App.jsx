@@ -545,7 +545,8 @@ export default function App() {
             {activeTab === 'profile' && (() => {
               const historyEntries = Object.entries(historyChapters)
                 .map(([mangaId, chapter]) => ({ manga: MANGA_LIST.find(m => m.id === mangaId), chapter }))
-                .filter(e => e.manga);
+                .filter(e => e.manga)
+                .sort((a, b) => new Date(b.chapter.last_read_at || 0) - new Date(a.chapter.last_read_at || 0));
               return (
                 <section className="flex flex-col gap-4 w-full">
                   <div className="border-b border-white/5 pb-4">
