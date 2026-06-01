@@ -317,6 +317,13 @@ export default function App() {
                       mangaList={MANGA_LIST}
                       onReadChapter={(ch, title) => handleReadChapter(ch, title)}
                       onViewManga={(manga) => { navigate(`/${manga.id}`); }}
+                      onReadFirst={async (mangaId) => {
+                        const r = await fetch(`/manga/${mangaId}.json`, { cache: 'no-cache' });
+                        if (!r.ok) return;
+                        const fullManga = await r.json();
+                        const oldest = [...(fullManga.chapters || [])].sort((a, b) => a.chapter_number - b.chapter_number)[0];
+                        if (oldest) handleReadChapter(oldest, fullManga.title);
+                      }}
                     />
                     
                     {/* Trakteer Donation Banner */}
