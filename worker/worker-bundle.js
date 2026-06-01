@@ -2,9 +2,12 @@
 // MangaFlow Worker — single file bundle
 // Paste ini di Cloudflare Dashboard → Workers → Edit Code
 // Binding yang perlu diset di Dashboard:
-//   R2  → nama binding: R2      → bucket: manga-media
-//   D1  → nama binding: DB      → database: manga-db
-//   Var → TRAKTEER_SECRET       → isi secret dari Trakteer
+//   R2  → nama binding: R2           → bucket: manga-media
+//   D1  → nama binding: DB           → database: manga-db
+//   Var → TRAKTEER_SECRET            → isi secret dari Trakteer
+//   Var → SUPABASE_JWT_SECRET        → dari Supabase Dashboard > Settings > API
+//   Var → TOKEN_SECRET               → string rahasia bebas (untuk access token)
+//   Var → ADMIN_SECRET               → string rahasia untuk GitHub Action sync locks
 // ============================================================
 
 const CORS = {
@@ -149,9 +152,33 @@ async function handleImages(request, env, ctx) {
   const isChapter = segment && !isNaN(parseFloat(segment));
 
   if (isChapter) {
-    // Nanti: cek apakah chapter ini terkunci dan user sudah unlock
-    // Untuk sekarang semua chapter bisa diakses (belum ada auth)
-    return servePublic(request, env, ctx, r2Key);
+    const mangaId   = parts[1];
+    const chapterNum = parts[2];
+    const chapterId  = `${mangaId}-ch-${chapterNum}`;
+
+    // Cek apakah chapter ini terkunci di D1
+    const lockRow = await env.DB.prepare(
+      'SELECT unlock_at FROM chapter_locks WHERE chapter_id = ?'
+    ).bind(chapterId).first();
+
+    const now = Date.now();
+    const isLocked = lockRow && new Date(lockRow.unlock_at).getTime() > now;
+
+    if (!isLocked) {
+      // Chapter bebas → serve publik dengan cache penuh
+      return servePublic(request, env, ctx, r2Key);
+    }
+
+    // Chapter terkunci → validasi access token di query param
+    const accessToken = new URL(request.url).searchParams.get('access');
+    if (!accessToken) return new Response('Forbidden', { status: 403 });
+
+    const requestIp  = request.headers.get('CF-Connecting-IP') || 'unknown';
+    const tokenValid = await verifyAccessToken(accessToken, chapterId, requestIp, env);
+    if (!tokenValid) return new Response('Forbidden', { status: 403 });
+
+    // Authorized → serve dengan private cache (tidak di-cache CDN/browser)
+    return servePrivate(request, env, r2Key);
   }
 
   // Cover atau aset lain → selalu publik
@@ -178,6 +205,52 @@ async function servePublic(request, env, ctx, r2Key) {
 
   ctx.waitUntil(cache.put(cacheKey, response.clone()));
   return response;
+}
+
+async function servePrivate(request, env, r2Key) {
+  // Chapter terkunci — tidak di-cache sama sekali
+  const object = await env.R2.get(r2Key);
+  if (!object) return new Response('Not Found', { status: 404 });
+
+  return new Response(object.body, {
+    headers: {
+      'Content-Type':  object.httpMetadata?.contentType || 'image/webp',
+      'Cache-Control': 'private, no-store',
+      'ETag':          object.etag,
+    },
+  });
+}
+
+// ── Access Token untuk chapter terkunci ──────────────────────
+// Token = HMAC-SHA256( chapterId:userId:ip:expiry )
+// IP binding → token tidak bisa dibagi ke orang lain (beda IP = invalid)
+// Env var: TOKEN_SECRET → string rahasia bebas
+async function generateAccessToken(chapterId, userId, ip, env) {
+  const expiry  = Math.floor(Date.now() / 1000) + 7200; // 2 jam (bukan 24, supaya sharing makin tidak berguna)
+  const secret  = env.TOKEN_SECRET || 'fallback-secret';
+  const payload = `${chapterId}|${userId}|${ip}|${expiry}`;
+  const sig     = await hmacSha256(secret, payload);
+  return btoa(unescape(encodeURIComponent(`${payload}|${sig}`))).replace(/=/g, '');
+}
+
+async function verifyAccessToken(token, chapterId, requestIp, env) {
+  try {
+    const decoded = decodeURIComponent(escape(atob(token + '=='.slice(0, (4 - token.length % 4) % 4))));
+    const parts   = decoded.split('|');
+    if (parts.length !== 5) return false;
+
+    const [tid, , tokenIp, expiryStr, sig] = parts;
+    const payload = `${tid}|${parts[1]}|${tokenIp}|${expiryStr}`;
+
+    if (tid !== chapterId)                                    return false;
+    if (tokenIp !== requestIp)                               return false; // IP mismatch → ditolak
+    if (parseInt(expiryStr) < Math.floor(Date.now() / 1000)) return false;
+
+    const expected = await hmacSha256(env.TOKEN_SECRET || 'fallback-secret', payload);
+    return sig === expected;
+  } catch {
+    return false;
+  }
 }
 
 // ── View Counter ─────────────────────────────────────────────
@@ -420,6 +493,68 @@ async function handleUser(request, env) {
     return json({ ok: true });
   }
 
+  // POST /api/user/chapter-token — generate access token untuk chapter terkunci
+  if (pathname === '/api/user/chapter-token' && request.method === 'POST') {
+    if (!checkBodySize(request, 1024)) return json({ error: 'Payload too large' }, 413);
+    let body;
+    try { body = await request.json(); } catch { return json({ error: 'Invalid JSON' }, 400); }
+    const { chapter_id } = body;
+    if (!isStr(chapter_id, 200)) return json({ error: 'Invalid chapter_id' }, 400);
+
+    // Cek apakah chapter terkunci
+    const lockRow = await env.DB.prepare(
+      'SELECT unlock_at FROM chapter_locks WHERE chapter_id = ?'
+    ).bind(chapter_id).first();
+
+    if (!lockRow || new Date(lockRow.unlock_at).getTime() <= Date.now()) {
+      return json({ error: 'Chapter not locked' }, 400);
+    }
+
+    // Cek apakah user sudah unlock chapter ini
+    const unlocked = await env.DB.prepare(
+      'SELECT 1 FROM unlocked_chapters WHERE user_id = ? AND chapter_id = ?'
+    ).bind(user.sub, chapter_id).first();
+
+    if (!unlocked) return json({ error: 'Chapter not unlocked' }, 403);
+
+    const ip    = request.headers.get('CF-Connecting-IP') || 'unknown';
+    const token = await generateAccessToken(chapter_id, user.sub, ip, env);
+    return json({ token, expires_in: 7200 });
+  }
+
+  return json({ error: 'Not found' }, 404);
+}
+
+// ── Admin: sync chapter lock data dari GitHub Action ──────────
+// Env var: ADMIN_SECRET → string rahasia untuk GitHub Action
+async function handleAdmin(request, env) {
+  const secret = request.headers.get('X-Admin-Secret') || '';
+  if (!env.ADMIN_SECRET || secret !== env.ADMIN_SECRET) {
+    return json({ error: 'Unauthorized' }, 401);
+  }
+
+  const { pathname } = new URL(request.url);
+
+  // POST /api/admin/sync-locks — update chapter_locks dari catalog rebuild
+  if (pathname === '/api/admin/sync-locks' && request.method === 'POST') {
+    if (!checkBodySize(request, 65536)) return json({ error: 'Payload too large' }, 413);
+    let body;
+    try { body = await request.json(); } catch { return json({ error: 'Invalid JSON' }, 400); }
+
+    // locks = [{ chapter_id, unlock_at }]
+    const { locks } = body;
+    if (!Array.isArray(locks)) return json({ error: 'Invalid locks' }, 400);
+
+    const stmts = locks
+      .filter(l => isStr(l.chapter_id, 200) && isStr(l.unlock_at, 50))
+      .map(l => env.DB.prepare(
+        'INSERT INTO chapter_locks (chapter_id, unlock_at) VALUES (?, ?) ON CONFLICT(chapter_id) DO UPDATE SET unlock_at = excluded.unlock_at'
+      ).bind(l.chapter_id, l.unlock_at));
+
+    if (stmts.length) await env.DB.batch(stmts);
+    return json({ ok: true, synced: stmts.length });
+  }
+
   return json({ error: 'Not found' }, 404);
 }
 
@@ -484,6 +619,7 @@ export default {
       if (pathname.startsWith('/images/'))                           return addCors(await handleImages(request, env, ctx));
       if (pathname.startsWith('/api/view/') && method === 'POST')    return addCors(await handleView(request, env));
       if (pathname.startsWith('/api/user/'))                         return addCors(await handleUser(request, env));
+      if (pathname.startsWith('/api/admin/'))                        return addCors(await handleAdmin(request, env));
       if (pathname === '/api/webhook/trakteer' && method === 'POST') return addCors(await handleWebhook(request, env));
       if (pathname === '/')                                           return addCors(json({ status: 'ok', service: 'manga-worker' }));
       return addCors(new Response('Not Found', { status: 404 }));

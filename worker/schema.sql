@@ -84,3 +84,9 @@ CREATE INDEX IF NOT EXISTS idx_history_user       ON history(user_id);
 CREATE INDEX IF NOT EXISTS idx_unlocked_user      ON unlocked_chapters(user_id);
 CREATE INDEX IF NOT EXISTS idx_transactions_user  ON coin_transactions(user_id);
 CREATE INDEX IF NOT EXISTS idx_views_chapter      ON chapter_views(chapter_id);
+
+-- Chapter lock timestamps (diisi via /api/admin/sync-locks dari GitHub Action)
+CREATE TABLE IF NOT EXISTS chapter_locks (
+  chapter_id TEXT PRIMARY KEY,
+  unlock_at  TEXT NOT NULL  -- ISO timestamp kapan chapter jadi gratis
+);

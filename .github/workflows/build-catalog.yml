@@ -27,6 +27,9 @@ jobs:
 
       - name: Generate catalog.json
         run: node scripts/build-catalog.js
+        env:
+          WORKER_URL: ${{ secrets.WORKER_URL }}
+          WORKER_ADMIN_SECRET: ${{ secrets.WORKER_ADMIN_SECRET }}
 
       - name: Generate version file
         run: |

@@ -194,6 +194,32 @@ async function buildCatalog() {
 
   console.log(`\n📦 index.json: ${catalog.length} manga`);
   console.log(`🔥 Trending: ${[...trendingIds].join(', ')}`);
+
+  // Sync chapter locks ke Worker (jika env var tersedia)
+  const workerUrl   = process.env.WORKER_URL;
+  const adminSecret = process.env.WORKER_ADMIN_SECRET;
+  if (workerUrl && adminSecret) {
+    const locks = [];
+    for (const manga of catalog) {
+      for (const ch of manga.chapters) {
+        if (ch.isLocked && ch.unlockDate) {
+          locks.push({ chapter_id: ch.id, unlock_at: ch.unlockDate });
+        }
+      }
+    }
+    if (locks.length) {
+      try {
+        const res = await fetch(`${workerUrl}/api/admin/sync-locks`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': adminSecret },
+          body: JSON.stringify({ locks }),
+        });
+        console.log(`🔒 Synced ${locks.length} locks → Worker: ${res.ok ? 'OK' : await res.text()}`);
+      } catch (e) {
+        console.warn('⚠️  Lock sync failed:', e.message);
+      }
+    }
+  }
 }
 
 buildCatalog().catch(err => {
