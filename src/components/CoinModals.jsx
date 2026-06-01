@@ -212,161 +212,133 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' 
 }
 
 // Coin Purchase Modal
-export function CoinPurchaseModal({ isOpen, onClose, userCoins, onPurchase }) {
-  const [successPackage, setSuccessPackage] = useState(null);
-
+export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail, onPurchase }) {
   const packages = [
-    { id: 'pack-starter', title: 'Paket Pemula', coins: 25, bonus: 0, price: 'Rp 5.000', tagline: 'Harga Terbaik' },
-    { id: 'pack-standard', title: 'Paket Standar', coins: 60, bonus: 5, price: 'Rp 10.000', tagline: 'Paling Populer', isPopular: true },
-    { id: 'pack-premium', title: 'Paket Premium', coins: 150, bonus: 20, price: 'Rp 20.000', tagline: 'Koin Melimpah' },
-    { id: 'pack-sultan', title: 'Paket Sultan', coins: 400, bonus: 60, price: 'Rp 50.000', tagline: 'Paling Hemat' }
+    { id: 'pack-s', coins: 20,  price: 'Rp 2.000',  nominal: 2000  },
+    { id: 'pack-m', coins: 50,  price: 'Rp 5.000',  nominal: 5000,  isPopular: true },
+    { id: 'pack-l', coins: 100, price: 'Rp 10.000', nominal: 10000 },
   ];
-
-  const handleBuy = (pkg) => {
-    const totalAdded = pkg.coins + pkg.bonus;
-    onPurchase(totalAdded);
-    setSuccessPackage(pkg);
-  };
 
   if (!isOpen) return null;
 
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
-        {/* Backdrop overlay */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-          className="absolute inset-0"
-        />
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          onClick={onClose} className="absolute inset-0" />
 
-        {/* Modal Container */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+        <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="relative w-full max-w-lg bg-surface-container border border-white/10 rounded-2xl shadow-2xl p-6 md:p-8 overflow-hidden z-10"
+          className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-2xl shadow-2xl z-10 overflow-hidden"
         >
-          {/* Top golden light effect */}
-          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-amber-500/8 rounded-full blur-3xl pointer-events-none" />
 
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="absolute right-6 top-6 w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline hover:text-on-surface transition-colors cursor-pointer z-20"
-          >
-            <X className="w-5 h-5" />
-          </button>
-
-          {successPackage ? (
-            /* Purchase Success Screen */
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="flex flex-col items-center justify-center text-center py-10"
-            >
-              <div className="w-20 h-20 rounded-full bg-amber-500/10 flex items-center justify-center border-2 border-amber-500 shadow-[0_0_20px_rgba(245,158,11,0.3)] mb-6 animate-[pulse_2s_infinite]">
-                <CheckCircle2 className="w-10 h-10 text-amber-400" />
-              </div>
-              <h3 className="text-2xl font-black text-on-surface">Top Up Berhasil!</h3>
-              <p className="text-sm text-outline mt-2 max-w-sm">
-                Selamat! Anda berhasil membeli <span className="text-amber-400 font-bold">+{successPackage.coins + successPackage.bonus} koin</span> menggunakan {successPackage.title}.
-              </p>
-
-              {/* Current balance display */}
-              <div className="mt-6 bg-surface-container-high border border-white/5 px-6 py-3 rounded-xl flex items-center gap-3">
-                <Coins className="w-5 h-5 text-amber-400 fill-current animate-bounce" />
-                <span className="text-xs font-black text-outline uppercase tracking-wider">Koin Sekarang:</span>
-                <span className="text-lg font-black text-amber-300">{userCoins}</span>
-              </div>
-
-              <button
-                onClick={() => { setSuccessPackage(null); onClose(); }}
-                className="mt-8 px-8 py-3 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white text-xs font-black rounded-lg shadow-lg hover:shadow-amber-500/25 transition-all cursor-pointer"
-              >
-                Selesai
-              </button>
-            </motion.div>
-          ) : (
-            /* Main Coin Store Screen */
-            <>
-              {/* Header */}
-              <div className="border-b border-white/5 pb-4 mb-6">
-                <h3 className="text-2xl font-black text-on-surface flex items-center gap-2">
-                  <Coins className="w-7 h-7 text-amber-400 fill-current" />
-                  MangaFlow Coin Store
+          <div className="overflow-y-auto hide-scrollbar max-h-[90vh] p-6 flex flex-col gap-5">
+            {/* Header */}
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="text-base font-black text-on-surface flex items-center gap-2">
+                  <Coins className="w-5 h-5 text-amber-400 fill-current" />
+                  Isi Koin
                 </h3>
-                <p className="text-xs text-outline mt-1">Gunakan koin untuk membuka chapter terbaru lebih cepat!</p>
+                <p className="text-xs text-outline mt-0.5">Donasi via Trakteer, koin otomatis masuk</p>
               </div>
+              <button onClick={onClose}
+                className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline cursor-pointer">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
 
-              {/* Balance Card */}
-              <div className="bg-gradient-to-r from-amber-500/10 to-yellow-600/10 border border-amber-500/20 rounded-xl p-4 flex items-center justify-between mb-6 shadow-inner">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-amber-400/20 flex items-center justify-center">
-                    <Coins className="w-5 h-5 text-amber-400 fill-current" />
+            {/* Balance */}
+            <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Coins className="w-4 h-4 text-amber-400 fill-current" />
+                <span className="text-xs font-bold text-outline uppercase tracking-wider">Koin Saat Ini</span>
+              </div>
+              <span className="text-lg font-black text-amber-300">{userCoins}</span>
+            </div>
+
+            {/* Packages */}
+            <div className="grid grid-cols-3 gap-2">
+              {packages.map(pkg => (
+                <a
+                  key={pkg.id}
+                  href="https://trakteer.id/NuranantoScanlation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`relative flex flex-col items-center gap-1 p-3 rounded-xl border transition-all cursor-pointer active:scale-95 ${
+                    pkg.isPopular
+                      ? 'bg-amber-500/15 border-amber-500/50 shadow-[0_0_12px_rgba(245,158,11,0.15)]'
+                      : 'bg-surface-container-high border-white/8 hover:border-amber-500/30'
+                  }`}
+                >
+                  {pkg.isPopular && (
+                    <span className="absolute -top-2 left-1/2 -translate-x-1/2 bg-amber-400 text-surface text-[8px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap">
+                      Populer
+                    </span>
+                  )}
+                  <div className="flex items-center gap-1 mt-1">
+                    <Coins className="w-3.5 h-3.5 text-amber-400 fill-current" />
+                    <span className="text-base font-black text-on-surface">{pkg.coins}</span>
                   </div>
+                  <span className="text-[10px] font-bold text-outline">koin</span>
+                  <span className="text-[11px] font-black text-amber-300 mt-1">{pkg.price}</span>
+                </a>
+              ))}
+            </div>
+
+            {/* Cara Isi */}
+            <div className="flex flex-col gap-3">
+              <p className="text-[10px] font-black text-outline uppercase tracking-wider">Cara Isi Koin</p>
+
+              {/* Mockup Trakteer form */}
+              <div className="border border-white/10 rounded-xl overflow-hidden bg-[#1a1a2e]">
+                <div className="px-3 py-2 border-b border-white/5 flex items-center gap-2">
+                  <div className="w-5 h-5 rounded-full bg-sky-500/30 flex items-center justify-center text-[8px] font-black text-sky-300">N</div>
                   <div>
-                    <p className="text-[10px] font-black text-outline uppercase tracking-wider">Koin Anda Saat Ini</p>
-                    <p className="text-xl font-black text-amber-300">{userCoins}</p>
+                    <p className="text-[10px] font-black text-white/80">Nurananto Scanlation</p>
+                    <p className="text-[9px] text-white/40">@NuranantoScanlation</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-1 text-[11px] font-bold text-amber-400/80 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/10">
-                  <Shield className="w-3.5 h-3.5" />
-                  <span>Aman & Terpercaya</span>
+                <div className="p-3 flex flex-col gap-2">
+                  <div className="bg-white/5 rounded-lg p-2.5">
+                    <p className="text-[9px] text-white/40 mb-1">Pesan</p>
+                    <p className="text-[10px] font-bold text-amber-300">
+                      {userEmail || 'email@kamu.com'}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded border border-white/20 bg-white/5 flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 rounded-[1px] bg-red-400" />
+                    </div>
+                    <p className="text-[9px] text-red-400 line-through">Jadikan pesan private</p>
+                    <span className="text-[9px] text-white/40">← jangan dicentang!</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Package Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {packages.map((pkg) => (
-                  <div
-                    key={pkg.id}
-                    onClick={() => handleBuy(pkg)}
-                    className={`relative p-5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between group active:scale-98 ${
-                      pkg.isPopular
-                        ? 'bg-gradient-to-b from-amber-500/25 to-surface-container-high border-amber-500 shadow-[0_4px_20px_rgba(245,158,11,0.15)]'
-                        : 'bg-surface-container-high border-white/5 hover:border-amber-500/30'
-                    }`}
-                  >
-                    {pkg.tagline && (
-                      <span className={`absolute top-3 right-4 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider ${
-                        pkg.isPopular ? 'bg-amber-400 text-surface font-black' : 'bg-white/5 text-outline'
-                      }`}>
-                        {pkg.tagline}
-                      </span>
-                    )}
-
-                    <div>
-                      <p className="text-xs font-black text-outline uppercase tracking-wider group-hover:text-amber-400 transition-colors">
-                        {pkg.title}
-                      </p>
-                      <div className="flex items-baseline gap-1.5 mt-2">
-                        <span className="text-2xl font-black text-on-surface">{pkg.coins}</span>
-                        <span className="text-xs text-outline font-bold">Koin</span>
-                        {pkg.bonus > 0 && (
-                          <span className="text-xs font-black text-amber-400 ml-1">
-                            +{pkg.bonus} Bonus
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <button
-                      className={`w-full h-10 rounded-lg mt-4 text-xs font-black flex items-center justify-center transition-all cursor-pointer ${
-                        pkg.isPopular
-                          ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-md'
-                          : 'bg-white/5 hover:bg-amber-500/10 text-on-surface group-hover:bg-amber-500/10 border border-white/5 group-hover:border-amber-500/20'
-                      }`}
-                    >
-                      Beli • {pkg.price}
-                    </button>
+              {/* Steps */}
+              <div className="flex flex-col gap-2">
+                {[
+                  { n: 1, text: 'Klik nominal koin di atas → akan dibuka ke halaman Trakteer' },
+                  { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan email akun kamu: <span className="text-amber-300 font-bold break-all">{userEmail || '—'}</span></> },
+                  { n: 3, text: <><strong className="text-red-400">Jangan</strong> centang "Jadikan pesan private"</> },
+                  { n: 4, text: 'Koin otomatis masuk dalam beberapa menit setelah donasi dikonfirmasi' },
+                ].map(({ n, text }) => (
+                  <div key={n} className="flex gap-2.5 items-start">
+                    <span className="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-[9px] font-black flex items-center justify-center shrink-0 mt-0.5">{n}</span>
+                    <p className="text-[11px] text-outline/80 leading-relaxed">{text}</p>
                   </div>
                 ))}
               </div>
-            </>
-          )}
+            </div>
+
+            <a href="https://trakteer.id/NuranantoScanlation" target="_blank" rel="noopener noreferrer"
+              className="w-full h-11 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
+              <Coins className="w-4 h-4 fill-current" />
+              Donasi di Trakteer
+            </a>
+          </div>
         </motion.div>
       </div>
     </AnimatePresence>

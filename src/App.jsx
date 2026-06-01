@@ -655,6 +655,7 @@ export default function App() {
         isOpen={isCoinModalOpen}
         onClose={() => setIsCoinModalOpen(false)}
         userCoins={userCoins}
+        userEmail={currentUser?.user_metadata?.trakteer_email || currentUser?.email || ''}
         onPurchase={(addedCoins) => {
           setUserCoins(prev => prev + addedCoins);
         }}
