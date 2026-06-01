@@ -136,12 +136,6 @@ async function handleImages(request, env, ctx) {
   if (!isAllowedReferer(request, env))
     return new Response('Forbidden', { status: 403 });
 
-  // Rate limit + ban check
-  const rl = await checkRateLimit(request, env);
-  if (!rl.allowed)
-    return new Response(rl.banned ? 'Forbidden' : 'Too Many Requests',
-      { status: rl.banned ? 403 : 429 });
-
   const r2Key = new URL(request.url).pathname.replace(/^\/images\//, '');
   if (!r2Key || !isSafePath(r2Key)) return new Response('Bad Request', { status: 400 });
 
@@ -616,6 +610,15 @@ export default {
     if (method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS });
 
     try {
+      // ── Rate limit global (semua endpoint kecuali webhook Trakteer) ──
+      // Webhook Trakteer dikecualikan agar notifikasi donasi tidak terblokir
+      if (pathname !== '/api/webhook/trakteer') {
+        const rl = await checkRateLimit(request, env);
+        if (!rl.allowed)
+          return addCors(new Response(rl.banned ? 'Forbidden' : 'Too Many Requests',
+            { status: rl.banned ? 403 : 429 }));
+      }
+
       if (pathname.startsWith('/images/'))                           return addCors(await handleImages(request, env, ctx));
       if (pathname.startsWith('/api/view/') && method === 'POST')    return addCors(await handleView(request, env));
       if (pathname.startsWith('/api/user/'))                         return addCors(await handleUser(request, env));
