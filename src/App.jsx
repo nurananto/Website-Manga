@@ -321,7 +321,7 @@ export default function App() {
                     
                     {/* Trakteer Donation Banner */}
                     <a
-                      href="https://trakteer.id"
+                      href="https://trakteer.id/NuranantoScanlation"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="relative w-full overflow-hidden bg-gradient-to-r from-red-950/40 via-red-900/25 to-red-950/40 border border-red-500/20 py-3 rounded-xl flex items-center group shadow-md hover:border-red-500/40 hover:bg-red-950/50 transition-all duration-300 -mt-2 -mb-4 cursor-pointer"
