@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { BookOpen, Heart, Key, RotateCcw, LogOut, Coins } from 'lucide-react';
+import { BookOpen, Heart, Key, RotateCcw, LogOut, Coins, Coffee } from 'lucide-react';
 
-export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, userCoins, isLoggedIn, onLoginClick, onLogout, onBuyCoinsClick }) {
+export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, userCoins, isLoggedIn, currentUser, onLoginClick, onLogout, onBuyCoinsClick }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -16,8 +16,11 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const defaultAvatar = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100";
-  const userAvatar = "https://lh3.googleusercontent.com/aida-public/AB6AXuAga_HzDzk1OtChU2zREu_BUOrJMi4taiYX6OLINyLEMxelaVWtoNlQA0dCkEG6ypu8vcHBxd_ijrKwoCAnIL4EY_ZGHyhwkN3V65BQPf6SAtu2hDSBDdM_udAKzk8WKX1DLZ_TyQEhFxN2zFx8YlMowSUpVyrJMQgRY0BkZI6oxWMHj80jgmRjMKAnop27C_WoNzEVu37vwhwdWciRBI_n3qRDQd5H7f8a32p-EEMClj6J5QaiU1L-grX2iaz91TiZhGKsuVPir0s";
+  const avatarUrl = currentUser?.user_metadata?.avatar_url || null;
+  const displayName = currentUser?.user_metadata?.full_name
+    || currentUser?.user_metadata?.name
+    || currentUser?.email?.split('@')[0]
+    || 'Pengguna';
 
   return (
     <nav className="fixed top-0 w-full z-50 h-[72px] bg-surface/70 backdrop-blur-xl border-b border-white/5 shadow-[0_4px_30px_rgba(137,92,246,0.1)]">
@@ -43,17 +46,19 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
         {/* Actions (Profile Avatar with Dropdown) */}
         <div ref={dropdownRef} className="relative">
-          <div 
+          <div
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className={`w-9 h-9 rounded-full overflow-hidden border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md ${
+            className={`w-9 h-9 rounded-full overflow-hidden border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md flex items-center justify-center bg-surface-container-high ${
               activeTab === 'profile' || isDropdownOpen ? 'border-primary' : 'border-white/10'
             }`}
           >
-            <img
-              alt="User profile menu"
-              className="w-full h-full object-cover"
-              src={isLoggedIn ? userAvatar : defaultAvatar}
-            />
+            {avatarUrl ? (
+              <img alt="avatar" className="w-full h-full object-cover" src={avatarUrl} />
+            ) : (
+              <span className="text-xs font-black text-primary select-none">
+                {displayName.slice(0, 2).toUpperCase()}
+              </span>
+            )}
           </div>
 
           {/* Profile Dropdown Menu */}
@@ -61,12 +66,18 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
             <div className="absolute right-0 top-12 w-48 bg-surface-container border border-white/5 rounded-xl shadow-2xl py-2 z-50 animate-[fadeIn_0.15s_ease-out]">
               {isLoggedIn ? (
                 <>
+                  {/* Username */}
+                  <div className="px-4 py-2.5 border-b border-white/5">
+                    <p className="text-xs font-black text-on-surface truncate">{displayName}</p>
+                    <p className="text-[10px] text-outline truncate mt-0.5">{currentUser?.email}</p>
+                  </div>
+
                   {/* Coin Balance Info */}
                   <div className="px-4 py-2.5 border-b border-white/5 flex items-center justify-between">
                     <span className="text-[10px] uppercase font-bold text-outline">Koin Saya</span>
                     <div className="flex items-center gap-1 select-none">
                       <Coins className="w-3.5 h-3.5 text-amber-400 fill-current" />
-                      <span className="text-xs font-black text-amber-300">{userCoins !== undefined ? userCoins : 120}</span>
+                      <span className="text-xs font-black text-amber-300">{userCoins !== undefined ? userCoins : 0}</span>
                     </div>
                   </div>
 
@@ -98,15 +109,12 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                     <RotateCcw className="w-4 h-4 text-sky-400" />
                     <span>History</span>
                   </button>
-                  <button 
-                    onClick={() => { 
-                      setIsDropdownOpen(false); 
-                      if (onChangePasswordClick) onChangePasswordClick();
-                    }}
+                  <button
+                    onClick={() => { setIsDropdownOpen(false); if (onChangePasswordClick) onChangePasswordClick(); }}
                     className="w-full text-left px-4 py-2.5 text-xs font-bold text-on-surface hover:bg-white/5 hover:text-primary flex items-center gap-2.5 cursor-pointer border-t border-white/5"
                   >
                     <Key className="w-4 h-4 text-amber-500" />
-                    <span>Ganti Password</span>
+                    <span>Pengaturan Akun</span>
                   </button>
                   <button 
                     onClick={() => { 

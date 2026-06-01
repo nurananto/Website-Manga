@@ -6,7 +6,7 @@ import ReaderModal from './components/ReaderModal';
 import MangaDetailPage from './components/MangaDetailPage';
 import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield, HelpCircle, Star, Search, Key, X, Coffee, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AuthModal, CoinPurchaseModal, UnlockModal, TrakteerEmailModal } from './components/CoinModals';
+import { AuthModal, CoinPurchaseModal, UnlockModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { supabase } from './lib/supabase';
@@ -258,6 +258,7 @@ export default function App() {
           onChangePasswordClick={() => setIsChangePasswordOpen(true)}
           userCoins={userCoins}
           isLoggedIn={isLoggedIn}
+          currentUser={currentUser}
           onLoginClick={() => setIsAuthModalOpen(true)}
           onLogout={async () => {
             await supabase.auth.signOut();
@@ -614,65 +615,21 @@ export default function App() {
 
       {/* Change Password Modal */}
       {isChangePasswordOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-[fadeIn_0.2s_ease-out]">
-          <div className="bg-surface-container w-full max-w-sm mx-4 rounded-3xl border border-white/10 shadow-2xl p-6 flex flex-col gap-4 animate-[slideUp_0.25s_ease-out]">
-            <div className="flex justify-between items-center border-b border-white/5 pb-3">
-              <h3 className="text-lg font-black text-on-surface flex items-center gap-2">
-                <Key className="w-5 h-5 text-amber-500" />
-                Change Password
-              </h3>
-              <button 
-                onClick={() => setIsChangePasswordOpen(false)} 
-                className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/5 text-outline cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            <div className="flex flex-col gap-3">
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-outline uppercase tracking-wider">Current Password</label>
-                <input 
-                  type="password" 
-                  placeholder="••••••••" 
-                  className="w-full bg-surface-container-high border border-white/5 rounded-xl px-4 py-3 text-sm outline-none focus:border-primary transition-all text-on-surface" 
-                />
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-outline uppercase tracking-wider">New Password</label>
-                <input 
-                  type="password" 
-                  placeholder="••••••••" 
-                  className="w-full bg-surface-container-high border border-white/5 rounded-xl px-4 py-3 text-sm outline-none focus:border-primary transition-all text-on-surface" 
-                />
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-outline uppercase tracking-wider">Confirm New Password</label>
-                <input 
-                  type="password" 
-                  placeholder="••••••••" 
-                  className="w-full bg-surface-container-high border border-white/5 rounded-xl px-4 py-3 text-sm outline-none focus:border-primary transition-all text-on-surface" 
-                />
-              </div>
-            </div>
-            <div className="flex gap-3 mt-2">
-              <button 
-                onClick={() => setIsChangePasswordOpen(false)} 
-                className="flex-1 h-11 rounded-xl border border-white/10 text-xs font-bold text-outline hover:bg-white/5 hover:text-on-surface transition-colors cursor-pointer"
-              >
-                Cancel
-              </button>
-              <button 
-                onClick={() => { 
-                  alert('Password updated successfully!'); 
-                  setIsChangePasswordOpen(false); 
-                }} 
-                className="flex-1 h-11 rounded-xl bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-lg hover:shadow-indigo-500/20"
-              >
-                Save Changes
-              </button>
-            </div>
-          </div>
-        </div>
+        <AccountSettingsModal
+          isOpen={isChangePasswordOpen}
+          onClose={() => setIsChangePasswordOpen(false)}
+          currentUser={currentUser}
+          onSave={async ({ username, trakteerEmail }) => {
+            const updates = {};
+            if (username) updates.full_name = username;
+            if (trakteerEmail) updates.trakteer_email = trakteerEmail;
+            if (Object.keys(updates).length) {
+              await supabase.auth.updateUser({ data: updates });
+            }
+            setIsChangePasswordOpen(false);
+            showToast('Pengaturan berhasil disimpan!');
+          }}
+        />
       )}
       {/* Auth Modal */}
       <AuthModal

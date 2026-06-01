@@ -464,3 +464,83 @@ export function UnlockModal({ isOpen, onClose, chapter, userCoins, onConfirm, on
     </AnimatePresence>
   );
 }
+
+// ── Account Settings Modal — username + Trakteer email ───────
+export function AccountSettingsModal({ isOpen, onClose, currentUser, onSave }) {
+  const [username, setUsername] = useState(
+    currentUser?.user_metadata?.full_name || currentUser?.user_metadata?.name || ''
+  );
+  const [trakteerEmail, setTrakteerEmail] = useState(
+    currentUser?.user_metadata?.trakteer_email || ''
+  );
+  const [loading, setLoading] = useState(false);
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    await onSave({ username, trakteerEmail });
+    setLoading(false);
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          onClick={onClose} className="absolute inset-0" />
+        <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 20 }}
+          className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-2xl shadow-2xl p-6 z-10"
+        >
+          <div className="flex justify-between items-center mb-5">
+            <h3 className="text-base font-black text-on-surface">Pengaturan Akun</h3>
+            <button onClick={onClose}
+              className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline cursor-pointer">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          <form onSubmit={handleSave} className="flex flex-col gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] font-black text-outline uppercase tracking-wider">Username</label>
+              <input
+                type="text"
+                placeholder="Nama tampilan kamu"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+                className="w-full bg-surface-container-high border border-white/5 rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] font-black text-outline uppercase tracking-wider flex items-center gap-1.5">
+                <Coins className="w-3 h-3 text-amber-400" />
+                Email Trakteer
+              </label>
+              <input
+                type="email"
+                placeholder="email@trakteer.id"
+                value={trakteerEmail}
+                onChange={e => setTrakteerEmail(e.target.value)}
+                className="w-full bg-surface-container-high border border-white/5 rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all"
+              />
+              <p className="text-[10px] text-outline/60">Untuk konversi donasi Trakteer ke koin otomatis.</p>
+            </div>
+
+            <div className="flex gap-3 mt-1">
+              <button type="button" onClick={onClose}
+                className="flex-1 h-11 rounded-xl border border-white/10 text-xs font-bold text-outline hover:bg-white/5 cursor-pointer transition-colors">
+                Batal
+              </button>
+              <button type="submit" disabled={loading}
+                className="flex-1 h-11 rounded-xl bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white text-xs font-black cursor-pointer transition-all disabled:opacity-50 active:scale-[0.98]">
+                {loading ? 'Menyimpan...' : 'Simpan'}
+              </button>
+            </div>
+          </form>
+        </motion.div>
+      </div>
+    </AnimatePresence>
+  );
+}
