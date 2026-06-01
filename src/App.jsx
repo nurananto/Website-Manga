@@ -4,7 +4,8 @@ import FeaturedCarousel from './components/FeaturedCarousel';
 import MangaCard from './components/MangaCard';
 import ReaderModal from './components/ReaderModal';
 import MangaDetailPage from './components/MangaDetailPage';
-import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield, HelpCircle, Star, Search, Key, X, Coffee, CheckCircle } from 'lucide-react';
+import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield, HelpCircle, Star, Search, Key, X, Coffee, CheckCircle, ArrowRight } from 'lucide-react';
+import { imgUrl } from './utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthModal, CoinPurchaseModal, UnlockModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
@@ -48,8 +49,11 @@ export default function App() {
   const mangaListRef = useRef([]);
   const [activeTab, setActiveTab] = useState('library'); // 'library', 'discover', 'updates', 'profile'
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
-  const [bookmarkedIds, setBookmarkedIds] = useState(() => new Set([1, 2]));
-  const [historyChapters, setHistoryChapters] = useState({});
+  // Dummy history untuk preview UI — akan diganti data real saat user mulai baca
+  const [historyChapters, setHistoryChapters] = useState({
+    'waka-chan': { id: 'waka-chan-ch-100', chapter_number: 100, title: 'Ch. 100' },
+    'Sankakukei': { id: 'Sankakukei-ch-11', chapter_number: 11, title: 'Ch. 11' },
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const [userCoins, setUserCoins] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -168,18 +172,6 @@ export default function App() {
     }, 3000);
   };
 
-  const toggleBookmark = (id) => {
-    setBookmarkedIds(prev => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
-  };
-
   // Filter manga based on search query
   const filteredManga = MANGA_LIST.filter((m) =>
     m.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -201,10 +193,20 @@ export default function App() {
     navigate(`/${mangaId}/${chapter.chapter_number}`);
     const manga = MANGA_LIST.find(m => m.chapters.some(c => c.id === chapter.id));
     if (manga) {
-      setHistoryChapters(prev => ({
-        ...prev,
-        [manga.id]: chapter
-      }));
+      // Simpan ke localStorage (semua user)
+      setHistoryChapters(prev => ({ ...prev, [manga.id]: chapter }));
+      // Sync ke D1 (user login saja) — upsert, timpa chapter lama
+      if (isLoggedIn && currentUser) {
+        const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+        supabase.auth.getSession().then(({ data: { session } }) => {
+          if (!session?.access_token) return;
+          fetch(`${workerUrl}/api/user/history`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
+            body: JSON.stringify({ manga_id: manga.id, chapter_id: chapter.id, chapter_number: chapter.chapter_number, chapter_title: chapter.title }),
+          }).catch(() => {});
+        });
+      }
     }
   };
 
@@ -290,8 +292,6 @@ export default function App() {
           <MangaDetailPage
             manga={selectedManga}
             onReadChapter={handleReadChapter}
-            isBookmarked={bookmarkedIds.has(selectedManga.id)}
-            onToggleBookmark={() => toggleBookmark(selectedManga.id)}
             lastReadChapter={historyChapters[selectedManga.id]}
           />
         ) : (
@@ -533,45 +533,45 @@ export default function App() {
             )}
 
             {activeTab === 'profile' && (() => {
-              const bookmarkedManga = MANGA_LIST.filter(m => bookmarkedIds.has(m.id));
+              const historyEntries = Object.entries(historyChapters)
+                .map(([mangaId, chapter]) => ({ manga: MANGA_LIST.find(m => m.id === mangaId), chapter }))
+                .filter(e => e.manga);
               return (
                 <section className="flex flex-col gap-6 max-w-2xl mx-auto w-full">
                   <div className="border-b border-white/5 pb-4">
                     <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface flex items-center gap-3">
-                      <Heart className="w-6 h-6 text-rose-500 fill-rose-500" />
-                      Bookmarked Series
+                      <RotateCcw className="w-6 h-6 text-sky-400" />
+                      Riwayat Baca
                     </h2>
-                    <p className="text-outline text-sm mt-1">Readings you have saved to your library.</p>
+                    <p className="text-outline text-sm mt-1">Chapter terakhir yang kamu baca per manga.</p>
                   </div>
 
-                  {bookmarkedManga.length === 0 ? (
+                  {historyEntries.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-20 text-outline">
-                      <Heart className="w-12 h-12 opacity-20 mb-4" />
-                      <p className="text-lg font-bold">No bookmarks yet</p>
-                      <p className="text-sm">Click the bookmark icon on any manga details page to save it here</p>
+                      <RotateCcw className="w-12 h-12 opacity-20 mb-4" />
+                      <p className="text-lg font-bold">Belum ada riwayat</p>
+                      <p className="text-sm">Mulai baca manga untuk melihat riwayat di sini</p>
                     </div>
                   ) : (
-                    <div className="flex flex-col bg-surface-container rounded-[32px] border border-white/5 overflow-hidden divide-y divide-white/5">
-                      {bookmarkedManga.map((manga) => {
-                        const latestChapter = manga.chapters[0];
-                        return (
-                          <div 
-                            key={manga.id} 
-                            onClick={() => { navigate(`/${manga.id}`); }}
-                            className="py-5 px-5 flex items-center gap-5 hover:bg-white/5 cursor-pointer transition-colors"
-                          >
-                            <img 
-                              alt={manga.title} 
-                              className="w-14 aspect-[2/3] object-cover rounded-xl border border-white/10 shrink-0 shadow-md" 
-                              src={manga.coverUrl} 
-                            />
-                            <div className="min-w-0 flex-1 flex flex-col justify-center">
-                              <h3 className="font-extrabold text-sm md:text-base text-on-surface truncate">{manga.title}</h3>
-                              <p className="text-xs text-outline mt-0.5 truncate">Latest: {latestChapter.title}</p>
-                            </div>
+                    <div className="flex flex-col bg-surface-container rounded-2xl border border-white/5 overflow-hidden divide-y divide-white/5">
+                      {historyEntries.map(({ manga, chapter }) => (
+                        <div
+                          key={manga.id}
+                          onClick={() => handleReadChapter(chapter, manga.title)}
+                          className="py-4 px-4 flex items-center gap-4 hover:bg-white/5 cursor-pointer transition-colors"
+                        >
+                          <img
+                            alt={manga.title}
+                            className="w-12 aspect-[2/3] object-cover rounded-lg border border-white/10 shrink-0"
+                            src={imgUrl(manga.coverUrl)}
+                          />
+                          <div className="min-w-0 flex-1">
+                            <p className="font-bold text-sm text-on-surface truncate">{manga.title}</p>
+                            <p className="text-xs text-primary mt-0.5 truncate">{chapter.title}</p>
                           </div>
-                        );
-                      })}
+                          <ArrowRight className="w-4 h-4 text-outline/40 shrink-0" />
+                        </div>
+                      ))}
                     </div>
                   )}
                 </section>

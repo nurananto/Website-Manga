@@ -360,6 +360,32 @@ async function handleUser(request, env) {
     return json(row || { id: user.sub, email: user.email, coins: 0 });
   }
 
+  // GET /api/user/history — semua history user
+  if (pathname === '/api/user/history' && request.method === 'GET') {
+    const rows = await env.DB.prepare(
+      'SELECT manga_id, chapter_id, chapter_number, chapter_title, last_read_at FROM history WHERE user_id = ? ORDER BY last_read_at DESC'
+    ).bind(user.sub).all();
+    return json(rows.results || []);
+  }
+
+  // POST /api/user/history — upsert 1 row per manga (timpa chapter lama)
+  if (pathname === '/api/user/history' && request.method === 'POST') {
+    const { manga_id, chapter_id, chapter_number, chapter_title } = await request.json();
+    if (!manga_id || !chapter_id) return json({ error: 'Missing fields' }, 400);
+
+    await env.DB.prepare(`
+      INSERT INTO history (user_id, manga_id, chapter_id, chapter_number, chapter_title, last_read_at)
+      VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+      ON CONFLICT (user_id, manga_id) DO UPDATE SET
+        chapter_id     = excluded.chapter_id,
+        chapter_number = excluded.chapter_number,
+        chapter_title  = excluded.chapter_title,
+        last_read_at   = CURRENT_TIMESTAMP
+    `).bind(user.sub, manga_id, chapter_id, chapter_number ?? null, chapter_title ?? null).run();
+
+    return json({ ok: true });
+  }
+
   return json({ error: 'Not found' }, 404);
 }
 
