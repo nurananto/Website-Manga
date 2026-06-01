@@ -103,18 +103,12 @@ body {
   animation: gold-pulse 3s ease-in-out infinite;
 }
 
-/* Security: disable drag, context menu, text select on images */
+/* Security: disable drag on images — pointer-events tetap aktif agar rendering tidak rusak */
 img {
   -webkit-user-drag: none;
   user-drag: none;
   -webkit-user-select: none;
   user-select: none;
-  pointer-events: none;
-}
-
-/* Re-enable pointer events for interactive images (covers yang bisa diklik) */
-img.interactive {
-  pointer-events: auto;
 }
 
 /* Disable text selection globally */
