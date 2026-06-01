@@ -25,7 +25,7 @@ export default function MangaDetailPage({ manga, onReadChapter, isBookmarked, on
   }, [manga.chapters, sortNewest]);
 
 const renderChapterRow = (ch, idx) => {
-    const isNew = !!ch.isNew;
+    const isNew = !!ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
     const isUnread = !readChapters.has(ch.id);
     const isLocked = ch.isLocked && !localUnlockedChapters.has(ch.id);
     const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus';

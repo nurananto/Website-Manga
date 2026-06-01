@@ -79,7 +79,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                   <span className="font-body-md text-sm font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
                   </span>
-                  {ch.isNew && (
+                  {ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000 && (
                     <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1 py-0.5 rounded font-label-sm text-[8px] font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
                       <ArrowUp className="w-2 h-2 stroke-[3] shrink-0" />
                       <span>UP</span>

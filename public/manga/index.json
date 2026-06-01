@@ -37,7 +37,6 @@
         "title": "Ch. 8",
         "unlockDate": null,
         "isLocked": false,
-        "isNew": true,
         "views": 1
       },
       {
@@ -50,7 +49,6 @@
         "title": "Ch. 7",
         "unlockDate": null,
         "isLocked": false,
-        "isNew": true,
         "views": 0
       },
       {
@@ -63,7 +61,6 @@
         "title": "Ch. 6",
         "unlockDate": null,
         "isLocked": false,
-        "isNew": true,
         "views": 0
       }
     ]
@@ -103,7 +100,6 @@
         "title": "Ch. 11",
         "unlockDate": null,
         "isLocked": false,
-        "isNew": true,
         "views": 3
       },
       {
@@ -116,7 +112,6 @@
         "title": "Ch. 10",
         "unlockDate": null,
         "isLocked": false,
-        "isNew": true,
         "views": 0
       },
       {
@@ -129,7 +124,6 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "isNew": true,
         "views": 0
       }
     ]
@@ -167,7 +161,6 @@
         "title": "Ch. 100",
         "unlockDate": null,
         "isLocked": false,
-        "isNew": true,
         "views": 1
       },
       {
@@ -180,7 +173,6 @@
         "title": "Ch. 99",
         "unlockDate": null,
         "isLocked": false,
-        "isNew": true,
         "views": 0
       },
       {
@@ -193,7 +185,6 @@
         "title": "Ch. 98",
         "unlockDate": null,
         "isLocked": false,
-        "isNew": true,
         "views": 0
       }
     ]
