@@ -79,7 +79,7 @@ export default function App() {
         setIsLoggedIn(true);
         setCurrentUser(session.user);
         setIsAuthModalOpen(false);
-        // Pertama kali login → tanya email Trakteer
+        // Pertama kali login → tampilkan modal konfirmasi email (pre-filled dari akun)
         if (event === 'SIGNED_IN' && !session.user.user_metadata?.trakteer_email) {
           setShowTrakteerModal(true);
         }
@@ -640,11 +640,13 @@ export default function App() {
       {/* Trakteer Email Modal — muncul saat pertama kali login */}
       <TrakteerEmailModal
         isOpen={showTrakteerModal}
+        defaultEmail={currentUser?.email || ''}
         onClose={() => setShowTrakteerModal(false)}
-        onSave={async (trakteerEmail) => {
-          await supabase.auth.updateUser({ data: { trakteer_email: trakteerEmail } });
+        onSave={async (email) => {
+          await supabase.auth.updateUser({ data: { trakteer_email: email } });
+          setCurrentUser(prev => prev ? { ...prev, user_metadata: { ...prev.user_metadata, trakteer_email: email } } : prev);
           setShowTrakteerModal(false);
-          showToast('Email Trakteer berhasil disimpan!');
+          showToast('Email berhasil disimpan!');
         }}
       />
 

@@ -138,14 +138,17 @@ export function AuthModal({ isOpen, onClose }) {
 }
 
 // ── Trakteer Email Modal — muncul pertama kali login ──────────
-export function TrakteerEmailModal({ isOpen, onClose, onSave }) {
-  const [email, setEmail] = useState('');
+export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' }) {
+  const [email, setEmail] = useState(defaultEmail);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // Sync defaultEmail saat pertama dibuka
+  useState(() => { if (defaultEmail) setEmail(defaultEmail); });
+
   const handleSave = async (e) => {
     e.preventDefault();
-    if (!email) { setError('Masukkan email Trakteer kamu.'); return; }
+    if (!email) { setError('Email wajib diisi.'); return; }
     setLoading(true);
     await onSave(email);
     setLoading(false);
@@ -165,9 +168,9 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave }) {
               <div className="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-3">
                 <Coins className="w-6 h-6 text-amber-400" />
               </div>
-              <h3 className="text-base font-black text-on-surface">Hubungkan Trakteer</h3>
+              <h3 className="text-base font-black text-on-surface">Konfirmasi Email</h3>
               <p className="text-xs text-outline mt-1.5 leading-relaxed">
-                Masukkan email yang kamu gunakan di Trakteer agar donasi kamu otomatis dikonversi menjadi koin.
+                Email ini digunakan sebagai identitas akun kamu dan patokan pengiriman koin dari donasi Trakteer. Pastikan sama dengan email yang kamu gunakan saat donasi.
               </p>
             </div>
 
@@ -178,17 +181,22 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave }) {
             )}
 
             <form onSubmit={handleSave} className="flex flex-col gap-3">
-              <div className="relative">
-                <Mail className="w-4 h-4 text-outline absolute left-3.5 top-1/2 -translate-y-1/2" />
-                <input type="email" placeholder="email@trakteer.id"
-                  value={email} onChange={e => { setEmail(e.target.value); setError(''); }}
-                  className="w-full bg-surface-container-high border border-white/5 rounded-xl py-3 pl-10 pr-4 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all"
-                />
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[10px] font-black text-outline uppercase tracking-wider">
+                  Email <span className="text-red-400">*</span>
+                </label>
+                <div className="relative">
+                  <Mail className="w-4 h-4 text-outline absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <input type="email" placeholder="email@contoh.com" required
+                    value={email} onChange={e => { setEmail(e.target.value); setError(''); }}
+                    className="w-full bg-surface-container-high border border-white/5 rounded-xl py-3 pl-10 pr-4 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all"
+                  />
+                </div>
               </div>
 
               <button type="submit" disabled={loading}
                 className="w-full h-11 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm transition-all cursor-pointer disabled:opacity-50 active:scale-[0.98]">
-                {loading ? 'Menyimpan...' : 'Simpan Email Trakteer'}
+                {loading ? 'Menyimpan...' : 'Konfirmasi & Simpan'}
               </button>
             </form>
 
@@ -470,13 +478,16 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, onSave }) {
   const [username, setUsername] = useState(
     currentUser?.user_metadata?.full_name || currentUser?.user_metadata?.name || ''
   );
+  // Email: pakai trakteer_email jika sudah diset, fallback ke email akun
   const [trakteerEmail, setTrakteerEmail] = useState(
-    currentUser?.user_metadata?.trakteer_email || ''
+    currentUser?.user_metadata?.trakteer_email || currentUser?.email || ''
   );
   const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState('');
 
   const handleSave = async (e) => {
     e.preventDefault();
+    if (!trakteerEmail) { setEmailError('Email wajib diisi.'); return; }
     setLoading(true);
     await onSave({ username, trakteerEmail });
     setLoading(false);
@@ -514,18 +525,21 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, onSave }) {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-black text-outline uppercase tracking-wider flex items-center gap-1.5">
-                <Coins className="w-3 h-3 text-amber-400" />
-                Email Trakteer
+              <label className="text-[10px] font-black text-outline uppercase tracking-wider">
+                Email <span className="text-red-400">*</span>
               </label>
               <input
                 type="email"
-                placeholder="email@trakteer.id"
+                required
+                placeholder="email@contoh.com"
                 value={trakteerEmail}
-                onChange={e => setTrakteerEmail(e.target.value)}
-                className="w-full bg-surface-container-high border border-white/5 rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all"
+                onChange={e => { setTrakteerEmail(e.target.value); setEmailError(''); }}
+                className={`w-full bg-surface-container-high border rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 transition-all ${emailError ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20' : 'border-white/5 focus:border-amber-400 focus:ring-amber-400/20'}`}
               />
-              <p className="text-[10px] text-outline/60">Untuk konversi donasi Trakteer ke koin otomatis.</p>
+              {emailError
+                ? <p className="text-[10px] text-red-400">{emailError}</p>
+                : <p className="text-[10px] text-outline/60">Patokan pengiriman koin dari donasi Trakteer. Pastikan sama dengan email donasi kamu.</p>
+              }
             </div>
 
             <div className="flex gap-3 mt-1">
