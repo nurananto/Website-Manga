@@ -49,11 +49,7 @@ export default function App() {
   const mangaListRef = useRef([]);
   const [activeTab, setActiveTab] = useState('library'); // 'library', 'discover', 'updates', 'profile'
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
-  // Dummy history untuk preview UI — akan diganti data real saat user mulai baca
-  const [historyChapters, setHistoryChapters] = useState({
-    'waka-chan': { id: 'waka-chan-ch-100', chapter_number: 100, title: 'Ch. 100', last_read_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString() },
-    'Sankakukei': { id: 'Sankakukei-ch-11', chapter_number: 11, title: 'Ch. 11', last_read_at: new Date(Date.now() - 25 * 60 * 60 * 1000).toISOString() },
-  });
+  const [historyChapters, setHistoryChapters] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [userCoins, setUserCoins] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
