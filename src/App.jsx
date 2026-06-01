@@ -585,11 +585,11 @@ export default function App() {
       {/* Global Footer (Only on Homepage catalog) */}
       {!selectedManga && activeTab === 'library' && (
         <footer className="w-full py-10 bg-surface-container-lowest border-t border-white/5 mt-auto">
-          <div className="max-w-[640px] mx-auto px-6 flex flex-col items-center gap-4">
+          <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-4">
             <span className="font-headline-md text-lg font-black text-on-surface">
               Nurananto Scanlation
             </span>
-            <div className="w-full border border-white/8 rounded-xl px-5 py-4 bg-white/[0.02]">
+            <div className="w-full border border-white/8 rounded-xl px-5 sm:px-6 py-4 bg-white/[0.02]">
               <p className="font-body-sm text-xs text-outline/70 leading-relaxed text-justify">
                 Ini adalah situs fan terjemahan <em>unofficial</em> yang dibuat semata-mata karena kecintaan terhadap manga.
                 Seluruh karya yang ditampilkan di sini merupakan milik penerbit dan pengarang aslinya.
