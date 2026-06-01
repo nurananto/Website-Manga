@@ -5,7 +5,7 @@ import MangaCard from './components/MangaCard';
 import ReaderModal from './components/ReaderModal';
 import MangaDetailPage from './components/MangaDetailPage';
 import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield, HelpCircle, Star, Search, Key, X, Coffee, CheckCircle, ArrowRight } from 'lucide-react';
-import { imgUrl } from './utils';
+import { imgUrl, timeAgo } from './utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthModal, CoinPurchaseModal, UnlockModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
@@ -51,8 +51,8 @@ export default function App() {
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   // Dummy history untuk preview UI — akan diganti data real saat user mulai baca
   const [historyChapters, setHistoryChapters] = useState({
-    'waka-chan': { id: 'waka-chan-ch-100', chapter_number: 100, title: 'Ch. 100' },
-    'Sankakukei': { id: 'Sankakukei-ch-11', chapter_number: 11, title: 'Ch. 11' },
+    'waka-chan': { id: 'waka-chan-ch-100', chapter_number: 100, title: 'Ch. 100', last_read_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString() },
+    'Sankakukei': { id: 'Sankakukei-ch-11', chapter_number: 11, title: 'Ch. 11', last_read_at: new Date(Date.now() - 25 * 60 * 60 * 1000).toISOString() },
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [userCoins, setUserCoins] = useState(0);
@@ -194,7 +194,7 @@ export default function App() {
     const manga = MANGA_LIST.find(m => m.chapters.some(c => c.id === chapter.id));
     if (manga) {
       // Simpan ke localStorage (semua user)
-      setHistoryChapters(prev => ({ ...prev, [manga.id]: chapter }));
+      setHistoryChapters(prev => ({ ...prev, [manga.id]: { ...chapter, last_read_at: new Date().toISOString() } }));
       // Sync ke D1 (user login saja) — upsert, timpa chapter lama
       if (isLoggedIn && currentUser) {
         const workerUrl = import.meta.env.VITE_WORKER_URL || '';
@@ -547,7 +547,7 @@ export default function App() {
                 .map(([mangaId, chapter]) => ({ manga: MANGA_LIST.find(m => m.id === mangaId), chapter }))
                 .filter(e => e.manga);
               return (
-                <section className="flex flex-col gap-6 max-w-2xl mx-auto w-full">
+                <section className="flex flex-col gap-4 w-full">
                   <div className="border-b border-white/5 pb-4">
                     <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface flex items-center gap-3">
                       <RotateCcw className="w-6 h-6 text-sky-400" />
@@ -563,23 +563,32 @@ export default function App() {
                       <p className="text-sm">Mulai baca manga untuk melihat riwayat di sini</p>
                     </div>
                   ) : (
-                    <div className="flex flex-col bg-surface-container rounded-2xl border border-white/5 overflow-hidden divide-y divide-white/5">
+                    <div className="flex flex-col gap-3">
                       {historyEntries.map(({ manga, chapter }) => (
                         <div
                           key={manga.id}
                           onClick={() => handleReadChapter(chapter, manga.title)}
-                          className="py-4 px-4 flex items-center gap-4 hover:bg-white/5 cursor-pointer transition-colors"
+                          className="flex items-center gap-3 sm:gap-4 md:gap-5 bg-surface-container border border-white/8 hover:border-primary/30 rounded-2xl p-3 sm:p-4 md:p-5 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group"
                         >
+                          {/* Cover */}
                           <img
                             alt={manga.title}
-                            className="w-12 aspect-[2/3] object-cover rounded-lg border border-white/10 shrink-0"
+                            className="w-[64px] sm:w-[80px] md:w-[100px] lg:w-[110px] aspect-[2/3] object-cover rounded-xl border border-white/10 shrink-0 shadow-lg group-hover:scale-[1.02] transition-transform duration-300"
                             src={imgUrl(manga.coverUrl)}
                           />
-                          <div className="min-w-0 flex-1">
-                            <p className="font-bold text-sm text-on-surface truncate">{manga.title}</p>
-                            <p className="text-xs text-primary mt-0.5 truncate">{chapter.title}</p>
+                          {/* Info */}
+                          <div className="min-w-0 flex-1 flex flex-col gap-1 sm:gap-1.5 md:gap-2">
+                            <h3 className="font-headline-md text-sm sm:text-base md:text-lg lg:text-xl font-black text-on-surface leading-tight line-clamp-2">
+                              {manga.title}
+                            </h3>
+                            <p className="text-xs sm:text-sm md:text-base font-bold text-primary">
+                              {chapter.title}
+                            </p>
+                            <p className="text-[10px] sm:text-xs md:text-sm text-outline/60">
+                              Terakhir baca {chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}
+                            </p>
                           </div>
-                          <ArrowRight className="w-4 h-4 text-outline/40 shrink-0" />
+                          <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-outline/30 group-hover:text-primary shrink-0 transition-colors" />
                         </div>
                       ))}
                     </div>
