@@ -578,7 +578,7 @@ export default function App() {
                           />
                           {/* Info */}
                           <div className="min-w-0 flex-1 flex flex-col gap-1 sm:gap-1.5 md:gap-2">
-                            <h3 className="font-headline-md text-sm sm:text-base md:text-lg lg:text-xl font-black text-on-surface leading-tight line-clamp-2">
+                            <h3 className="font-headline-md text-base sm:text-lg md:text-xl lg:text-2xl font-black text-on-surface leading-tight line-clamp-2">
                               {manga.title}
                             </h3>
                             <p className="text-xs sm:text-sm md:text-base font-bold text-primary">
