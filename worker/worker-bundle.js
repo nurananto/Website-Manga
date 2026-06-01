@@ -13,10 +13,24 @@ const CORS = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
 
+// ── Input validation helpers ─────────────────────────────────
+function isStr(v, max = 500) { return typeof v === 'string' && v.length > 0 && v.length <= max; }
+function isNum(v) { return typeof v === 'number' && isFinite(v); }
+
+// ── Request size limit ────────────────────────────────────────
+function checkBodySize(request, maxBytes = 65536) { // 64 KB default
+  const len = parseInt(request.headers.get('Content-Length') || '0');
+  return len <= maxBytes;
+}
+
+// ── Path traversal guard ──────────────────────────────────────
+function isSafePath(p) {
+  return !p.includes('..') && !p.includes('//') && !/[<>:"|?*\x00-\x1f]/.test(p);
+}
+
 // ── Referer check ─────────────────────────────────────────────
 // Env var: ALLOWED_ORIGINS = "nuranantoweb.pages.dev,nuranantoscans.my.id"
 function isAllowedReferer(request, env) {
-  // Referer / Origin check
   const referer = request.headers.get('Referer') || request.headers.get('Origin') || '';
   const allowed = (env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
   if (!allowed.length) return true;
@@ -126,7 +140,7 @@ async function handleImages(request, env, ctx) {
       { status: rl.banned ? 403 : 429 });
 
   const r2Key = new URL(request.url).pathname.replace(/^\/images\//, '');
-  if (!r2Key) return new Response('Bad Request', { status: 400 });
+  if (!r2Key || !isSafePath(r2Key)) return new Response('Bad Request', { status: 400 });
 
   // Deteksi chapter: segment ke-3 adalah angka (misal: 25, 1, 1.5)
   // Path: manga / :mangaId / :segment / :file
@@ -171,7 +185,9 @@ async function servePublic(request, env, ctx, r2Key) {
 // Catat 1 view unik per IP per chapter (permanent dedup)
 async function handleView(request, env) {
   const chapterId = new URL(request.url).pathname.replace('/api/view/', '');
-  if (!chapterId) return json({ error: 'Missing chapterId' }, 400);
+  if (!chapterId || !isStr(chapterId, 200) || !isSafePath(chapterId)) {
+    return json({ error: 'Invalid chapterId' }, 400);
+  }
 
   // Ambil IP asli dari Cloudflare header
   const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
@@ -326,8 +342,8 @@ async function handleCron(env) {
 }
 
 // ── User Handler (disabled sampai auth aktif) ────────────────
-// ── Verify Supabase JWT ───────────────────────────────────────
-// Env var: SUPABASE_JWT_SECRET → dari Supabase Dashboard > Settings > API > JWT Secret
+// ── Verify Supabase JWT (HS256 signature + expiry) ───────────
+// Env var: SUPABASE_JWT_SECRET → Supabase Dashboard > Settings > API > JWT Secret
 async function verifySupabaseToken(request, env) {
   if (!env.SUPABASE_JWT_SECRET) return null;
   const auth = request.headers.get('Authorization') || '';
@@ -335,12 +351,27 @@ async function verifySupabaseToken(request, env) {
   if (!token) return null;
 
   try {
-    // Decode JWT payload (bagian ke-2, base64url)
-    const [, payloadB64] = token.split('.');
+    const parts = token.split('.');
+    if (parts.length !== 3) return null;
+    const [headerB64, payloadB64, sigB64] = parts;
+
+    // Verify HMAC-SHA256 signature
+    const key = await crypto.subtle.importKey(
+      'raw', new TextEncoder().encode(env.SUPABASE_JWT_SECRET),
+      { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']
+    );
+    const data = new TextEncoder().encode(`${headerB64}.${payloadB64}`);
+    const sig  = Uint8Array.from(
+      atob(sigB64.replace(/-/g, '+').replace(/_/g, '/')),
+      c => c.charCodeAt(0)
+    );
+    const valid = await crypto.subtle.verify('HMAC', key, sig, data);
+    if (!valid) return null;
+
+    // Decode payload + cek expire
     const payload = JSON.parse(atob(payloadB64.replace(/-/g, '+').replace(/_/g, '/')));
-    // Cek expire
     if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) return null;
-    return payload; // { sub: userId, email, ... }
+    return payload;
   } catch {
     return null;
   }
@@ -370,8 +401,11 @@ async function handleUser(request, env) {
 
   // POST /api/user/history — upsert 1 row per manga (timpa chapter lama)
   if (pathname === '/api/user/history' && request.method === 'POST') {
-    const { manga_id, chapter_id, chapter_number, chapter_title } = await request.json();
-    if (!manga_id || !chapter_id) return json({ error: 'Missing fields' }, 400);
+    if (!checkBodySize(request, 4096)) return json({ error: 'Payload too large' }, 413);
+    let body;
+    try { body = await request.json(); } catch { return json({ error: 'Invalid JSON' }, 400); }
+    const { manga_id, chapter_id, chapter_number, chapter_title } = body;
+    if (!isStr(manga_id, 100) || !isStr(chapter_id, 200)) return json({ error: 'Invalid fields' }, 400);
 
     await env.DB.prepare(`
       INSERT INTO history (user_id, manga_id, chapter_id, chapter_number, chapter_title, last_read_at)
@@ -391,7 +425,11 @@ async function handleUser(request, env) {
 
 // ── Trakteer Webhook ─────────────────────────────────────────
 async function handleWebhook(request, env) {
+  // Size limit: Trakteer payload kecil, 32KB lebih dari cukup
+  if (!checkBodySize(request, 32768)) return json({ error: 'Payload too large' }, 413);
+
   const body = await request.text();
+  if (!body) return json({ error: 'Empty body' }, 400);
 
   if (env.TRAKTEER_SECRET) {
     const sig      = request.headers.get('X-Trakteer-Signature') || '';
@@ -404,7 +442,10 @@ async function handleWebhook(request, env) {
   catch { return json({ error: 'Invalid JSON' }, 400); }
 
   const { payment_id, supporter_email, supporter_name, amount } = data;
-  if (!payment_id || !supporter_email || !amount) return json({ error: 'Missing fields' }, 400);
+  // Validasi tipe dan panjang field
+  if (!isStr(payment_id, 200) || !isStr(supporter_email, 254) || !isNum(Number(amount))) {
+    return json({ error: 'Invalid fields' }, 400);
+  }
 
   // Cek duplikat
   const exists = await env.DB.prepare(
