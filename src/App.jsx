@@ -584,20 +584,18 @@ export default function App() {
 
       {/* Global Footer (Only on Homepage catalog) */}
       {!selectedManga && activeTab === 'library' && (
-        <footer className="w-full py-12 bg-surface-container-lowest border-t border-white/5 mt-auto">
-          <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6 w-full">
-            <span className="font-headline-md text-xl sm:text-2xl font-black text-on-surface">
-              MangaFlow
+        <footer className="w-full py-10 bg-surface-container-lowest border-t border-white/5 mt-auto">
+          <div className="max-w-[800px] mx-auto px-6 flex flex-col items-center gap-3 text-center">
+            <span className="font-headline-md text-lg font-black text-on-surface">
+              Nurananto Scanlation
             </span>
-            <div className="flex flex-wrap justify-center gap-6">
-              <a className="font-label-sm text-xs text-outline hover:text-primary transition-colors uppercase tracking-wider font-semibold" href="#">Privacy Policy</a>
-              <a className="font-label-sm text-xs text-outline hover:text-primary transition-colors uppercase tracking-wider font-semibold" href="#">Terms of Service</a>
-              <a className="font-label-sm text-xs text-outline hover:text-primary transition-colors uppercase tracking-wider font-semibold" href="#">Help Center</a>
-              <a className="font-label-sm text-xs text-outline hover:text-primary transition-colors uppercase tracking-wider font-semibold" href="#">Discord</a>
-              <a className="font-label-sm text-xs text-outline hover:text-primary transition-colors uppercase tracking-wider font-semibold" href="#">Contact Us</a>
-            </div>
-            <span className="font-body-sm text-xs text-outline/80">
-              © 2024 MangaFlow. Premium Cinematic Reading.
+            <p className="font-body-sm text-xs text-outline/70 leading-relaxed max-w-lg">
+              Ini adalah situs fan terjemahan unofficial yang dibuat semata-mata karena kecintaan terhadap manga.
+              Seluruh karya yang ditampilkan di sini merupakan milik penerbit dan pengarang aslinya.
+              Jika sudah tersedia versi resmi/official dalam bahasa Indonesia, kami sangat mendukung kamu untuk membeli dan mendukung karya aslinya.
+            </p>
+            <span className="font-body-sm text-[10px] text-outline/40">
+              © {new Date().getFullYear()} Nurananto Scanlation. Fan Translation — Not for commercial use.
             </span>
           </div>
         </footer>
