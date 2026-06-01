@@ -95,15 +95,8 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                     </button>
                   </div>
 
-                  <button 
+                  <button
                     onClick={() => { onTabClick('profile'); setIsDropdownOpen(false); }}
-                    className="w-full text-left px-4 py-2.5 text-xs font-bold text-on-surface hover:bg-white/5 hover:text-primary flex items-center gap-2.5 cursor-pointer"
-                  >
-                    <Heart className="w-4 h-4 text-rose-500" />
-                    <span>Bookmark</span>
-                  </button>
-                  <button 
-                    onClick={() => { onTabClick('updates'); setIsDropdownOpen(false); }}
                     className="w-full text-left px-4 py-2.5 text-xs font-bold text-on-surface hover:bg-white/5 hover:text-primary flex items-center gap-2.5 cursor-pointer"
                   >
                     <RotateCcw className="w-4 h-4 text-sky-400" />
