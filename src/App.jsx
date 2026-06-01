@@ -6,9 +6,10 @@ import ReaderModal from './components/ReaderModal';
 import MangaDetailPage from './components/MangaDetailPage';
 import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield, HelpCircle, Star, Search, Key, X, Coffee, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AuthModal, CoinPurchaseModal, UnlockModal } from './components/CoinModals';
+import { AuthModal, CoinPurchaseModal, UnlockModal, TrakteerEmailModal } from './components/CoinModals';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
+import { supabase } from './lib/supabase';
 
 export default function App() {
   const [MANGA_LIST, setMangaList] = useState([]);
@@ -50,8 +51,10 @@ export default function App() {
   const [bookmarkedIds, setBookmarkedIds] = useState(() => new Set([1, 2]));
   const [historyChapters, setHistoryChapters] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const [userCoins, setUserCoins] = useState(120);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [userCoins, setUserCoins] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [showTrakteerModal, setShowTrakteerModal] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isCoinModalOpen, setIsCoinModalOpen] = useState(false);
   const [isUnlockModalOpen, setIsUnlockModalOpen] = useState(false);
@@ -59,6 +62,35 @@ export default function App() {
   const [pendingMangaTitle, setPendingMangaTitle] = useState('');
   const [toastMessage, setToastMessage] = useState(null);
   const ITEMS_PER_PAGE = 6;
+
+  // Supabase auth — listen session changes
+  useEffect(() => {
+    // Cek session saat ini
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setIsLoggedIn(true);
+        setCurrentUser(session.user);
+      }
+    });
+
+    // Listen perubahan auth (login/logout/magic link callback)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        setIsLoggedIn(true);
+        setCurrentUser(session.user);
+        setIsAuthModalOpen(false);
+        // Pertama kali login → tanya email Trakteer
+        if (event === 'SIGNED_IN' && !session.user.user_metadata?.trakteer_email) {
+          setShowTrakteerModal(true);
+        }
+      } else {
+        setIsLoggedIn(false);
+        setCurrentUser(null);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   // Fetch catalog dari /manga/index.json
   useEffect(() => {
@@ -227,9 +259,10 @@ export default function App() {
           userCoins={userCoins}
           isLoggedIn={isLoggedIn}
           onLoginClick={() => setIsAuthModalOpen(true)}
-          onLogout={() => {
+          onLogout={async () => {
+            await supabase.auth.signOut();
             setIsLoggedIn(false);
-            alert('Berhasil keluar!');
+            setCurrentUser(null);
           }}
           onBuyCoinsClick={() => {
             if (isLoggedIn) {
@@ -645,9 +678,16 @@ export default function App() {
       <AuthModal
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
-        onLogin={() => {
-          setIsLoggedIn(true);
-          showToast('Login Berhasil! Selamat datang kembali.');
+      />
+
+      {/* Trakteer Email Modal — muncul saat pertama kali login */}
+      <TrakteerEmailModal
+        isOpen={showTrakteerModal}
+        onClose={() => setShowTrakteerModal(false)}
+        onSave={async (trakteerEmail) => {
+          await supabase.auth.updateUser({ data: { trakteer_email: trakteerEmail } });
+          setShowTrakteerModal(false);
+          showToast('Email Trakteer berhasil disimpan!');
         }}
       />
 
