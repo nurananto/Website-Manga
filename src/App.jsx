@@ -581,10 +581,10 @@ export default function App() {
                             <h3 className="font-headline-md text-base sm:text-lg md:text-xl lg:text-2xl font-black text-on-surface leading-tight line-clamp-2">
                               {manga.title}
                             </h3>
-                            <p className="text-xs sm:text-sm md:text-base font-bold text-primary">
+                            <p className="text-sm sm:text-base md:text-lg font-bold text-primary">
                               {chapter.title}
                             </p>
-                            <p className="text-[10px] sm:text-xs md:text-sm text-outline/60">
+                            <p className="text-xs sm:text-sm md:text-base text-outline/60">
                               Terakhir baca {chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}
                             </p>
                           </div>
