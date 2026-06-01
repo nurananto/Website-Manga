@@ -112,6 +112,11 @@ export default function App() {
       if (page === 'home') {
         setSelectedManga(null);
         setActiveChapter(null);
+        setActiveTab('library');
+      } else if (page === 'history') {
+        setSelectedManga(null);
+        setActiveChapter(null);
+        setActiveTab('profile');
       } else if (page === 'manga') {
         setLoadingManga(true);
         setSelectedManga(null);
@@ -249,7 +254,7 @@ export default function App() {
     setSelectedManga(null);
     setActiveChapter(null);
     setSearchQuery('');
-    navigate('/');
+    navigate(tab === 'profile' ? '/history' : '/');
   };
 
   return (
