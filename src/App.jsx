@@ -245,8 +245,11 @@ export default function App() {
   };
 
   const handleTabClick = (tab) => {
-    navigate('/');
+    setActiveTab(tab);
+    setSelectedManga(null);
+    setActiveChapter(null);
     setSearchQuery('');
+    navigate('/');
   };
 
   return (
