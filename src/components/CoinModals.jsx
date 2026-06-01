@@ -212,12 +212,15 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' 
 }
 
 // Coin Purchase Modal
-export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail, onPurchase }) {
-  const packages = [
-    { id: 'pack-s', coins: 20,  price: 'Rp 2.000',  nominal: 2000  },
-    { id: 'pack-m', coins: 50,  price: 'Rp 5.000',  nominal: 5000,  isPopular: true },
-    { id: 'pack-l', coins: 100, price: 'Rp 10.000', nominal: 10000 },
+export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail }) {
+  const [step, setStep] = useState(1);
+  const rates = [
+    { price: 'Rp 2.000',  coins: 20 },
+    { price: 'Rp 5.000',  coins: 50, isPopular: true },
+    { price: 'Rp 10.000', coins: 100 },
   ];
+
+  const handleClose = () => { setStep(1); onClose(); };
 
   if (!isOpen) return null;
 
@@ -225,7 +228,7 @@ export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail, onPur
     <AnimatePresence>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-          onClick={onClose} className="absolute inset-0" />
+          onClick={handleClose} className="absolute inset-0" />
 
         <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -234,16 +237,20 @@ export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail, onPur
           <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-amber-500/8 rounded-full blur-3xl pointer-events-none" />
 
           <div className="overflow-y-auto hide-scrollbar max-h-[90vh] p-6 flex flex-col gap-5">
+
             {/* Header */}
             <div className="flex justify-between items-start">
               <div>
                 <h3 className="text-base font-black text-on-surface flex items-center gap-2">
                   <Coins className="w-5 h-5 text-amber-400 fill-current" />
                   Isi Koin
+                  <span className="text-[10px] font-bold text-outline bg-white/5 px-2 py-0.5 rounded-full">{step}/2</span>
                 </h3>
-                <p className="text-xs text-outline mt-0.5">Donasi via Trakteer, koin otomatis masuk</p>
+                <p className="text-xs text-outline mt-0.5">
+                  {step === 1 ? 'Informasi konversi koin' : 'Cara donasi di Trakteer'}
+                </p>
               </div>
-              <button onClick={onClose}
+              <button onClick={handleClose}
                 className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline cursor-pointer">
                 <X className="w-4 h-4" />
               </button>
@@ -258,86 +265,94 @@ export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail, onPur
               <span className="text-lg font-black text-amber-300">{userCoins}</span>
             </div>
 
-            {/* Packages */}
-            <div className="grid grid-cols-3 gap-2">
-              {packages.map(pkg => (
-                <a
-                  key={pkg.id}
-                  href="https://trakteer.id/NuranantoScanlation"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`relative flex flex-col items-center gap-1 p-3 rounded-xl border transition-all cursor-pointer active:scale-95 ${
-                    pkg.isPopular
-                      ? 'bg-amber-500/15 border-amber-500/50 shadow-[0_0_12px_rgba(245,158,11,0.15)]'
-                      : 'bg-surface-container-high border-white/8 hover:border-amber-500/30'
-                  }`}
-                >
-                  {pkg.isPopular && (
-                    <span className="absolute -top-2 left-1/2 -translate-x-1/2 bg-amber-400 text-surface text-[8px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap">
-                      Populer
-                    </span>
-                  )}
-                  <div className="flex items-center gap-1 mt-1">
-                    <Coins className="w-3.5 h-3.5 text-amber-400 fill-current" />
-                    <span className="text-base font-black text-on-surface">{pkg.coins}</span>
+            {step === 1 ? (
+              <>
+                {/* Step 1: Rate table */}
+                <div className="flex flex-col gap-2">
+                  <p className="text-[10px] font-black text-outline uppercase tracking-wider">Koin yang kamu dapatkan</p>
+                  <div className="flex flex-col divide-y divide-white/5 border border-white/8 rounded-xl overflow-hidden">
+                    {rates.map(r => (
+                      <div key={r.price} className={`flex items-center justify-between px-4 py-3 ${r.isPopular ? 'bg-amber-500/8' : ''}`}>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-black text-on-surface">{r.price}</span>
+                          {r.isPopular && <span className="text-[8px] bg-amber-400 text-surface font-black px-1.5 py-0.5 rounded-full uppercase">Populer</span>}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Coins className="w-3.5 h-3.5 text-amber-400 fill-current" />
+                          <span className="text-sm font-black text-amber-300">{r.coins} koin</span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <span className="text-[10px] font-bold text-outline">koin</span>
-                  <span className="text-[11px] font-black text-amber-300 mt-1">{pkg.price}</span>
-                </a>
-              ))}
-            </div>
-
-            {/* Cara Isi */}
-            <div className="flex flex-col gap-3">
-              <p className="text-[10px] font-black text-outline uppercase tracking-wider">Cara Isi Koin</p>
-
-              {/* Mockup Trakteer form */}
-              <div className="border border-white/10 rounded-xl overflow-hidden bg-[#1a1a2e]">
-                <div className="px-3 py-2 border-b border-white/5 flex items-center gap-2">
-                  <div className="w-5 h-5 rounded-full bg-sky-500/30 flex items-center justify-center text-[8px] font-black text-sky-300">N</div>
-                  <div>
-                    <p className="text-[10px] font-black text-white/80">Nurananto Scanlation</p>
-                    <p className="text-[9px] text-white/40">@NuranantoScanlation</p>
-                  </div>
+                  <p className="text-[10px] text-outline/50 leading-relaxed">
+                    Di Trakteer kamu bebas pilih jumlah "Permen" — koin dihitung otomatis dari total nominal yang dikirim.
+                  </p>
                 </div>
-                <div className="p-3 flex flex-col gap-2">
-                  <div className="bg-white/5 rounded-lg p-2.5">
-                    <p className="text-[9px] text-white/40 mb-1">Pesan</p>
-                    <p className="text-[10px] font-bold text-amber-300">
-                      {userEmail || 'email@kamu.com'}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-3 h-3 rounded border border-white/20 bg-white/5 flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 rounded-[1px] bg-red-400" />
+
+                <button onClick={() => setStep(2)}
+                  className="w-full h-11 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
+                  Lanjut →
+                </button>
+              </>
+            ) : (
+              <>
+                {/* Step 2: Instructions */}
+                <div className="flex flex-col gap-3">
+                  <p className="text-[10px] font-black text-outline uppercase tracking-wider">Cara Donasi</p>
+
+                  {/* Mockup Trakteer form */}
+                  <div className="border border-white/10 rounded-xl overflow-hidden bg-[#1a1a2e]">
+                    <div className="px-3 py-2 border-b border-white/5 flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-sky-500/30 flex items-center justify-center text-[8px] font-black text-sky-300">N</div>
+                      <div>
+                        <p className="text-[10px] font-black text-white/80">Nurananto Scanlation</p>
+                        <p className="text-[9px] text-white/40">@NuranantoScanlation</p>
+                      </div>
                     </div>
-                    <p className="text-[9px] text-red-400 line-through">Jadikan pesan private</p>
-                    <span className="text-[9px] text-white/40">← jangan dicentang!</span>
+                    <div className="p-3 flex flex-col gap-2">
+                      <div className="bg-white/5 rounded-lg p-2.5">
+                        <p className="text-[9px] text-white/40 mb-1">Pesan</p>
+                        <p className="text-[10px] font-bold text-amber-300">{userEmail || 'email@kamu.com'}</p>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-3 h-3 rounded border border-white/20 flex items-center justify-center bg-white/5">
+                          <div className="w-1.5 h-1.5 rounded-[1px] bg-red-400" />
+                        </div>
+                        <p className="text-[9px] text-red-400 line-through">Jadikan pesan private</p>
+                        <span className="text-[9px] text-white/40">← jangan!</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    {[
+                      { n: 1, text: 'Klik tombol di bawah → buka halaman Trakteer' },
+                      { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan email: <span className="text-amber-300 font-bold break-all">{userEmail || '—'}</span></> },
+                      { n: 3, text: <><strong className="text-red-400">Jangan</strong> centang "Jadikan pesan private"</> },
+                      { n: 4, text: 'Pilih jumlah Permen sesuai koin yang diinginkan, lalu bayar' },
+                      { n: 5, text: 'Koin otomatis masuk setelah donasi dikonfirmasi' },
+                    ].map(({ n, text }) => (
+                      <div key={n} className="flex gap-2.5 items-start">
+                        <span className="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-[9px] font-black flex items-center justify-center shrink-0 mt-0.5">{n}</span>
+                        <p className="text-[11px] text-outline/80 leading-relaxed">{text}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
 
-              {/* Steps */}
-              <div className="flex flex-col gap-2">
-                {[
-                  { n: 1, text: 'Klik nominal koin di atas → akan dibuka ke halaman Trakteer' },
-                  { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan email akun kamu: <span className="text-amber-300 font-bold break-all">{userEmail || '—'}</span></> },
-                  { n: 3, text: <><strong className="text-red-400">Jangan</strong> centang "Jadikan pesan private"</> },
-                  { n: 4, text: 'Koin otomatis masuk dalam beberapa menit setelah donasi dikonfirmasi' },
-                ].map(({ n, text }) => (
-                  <div key={n} className="flex gap-2.5 items-start">
-                    <span className="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-[9px] font-black flex items-center justify-center shrink-0 mt-0.5">{n}</span>
-                    <p className="text-[11px] text-outline/80 leading-relaxed">{text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <a href="https://trakteer.id/NuranantoScanlation" target="_blank" rel="noopener noreferrer"
-              className="w-full h-11 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
-              <Coins className="w-4 h-4 fill-current" />
-              Donasi di Trakteer
-            </a>
+                <div className="flex gap-3">
+                  <button onClick={() => setStep(1)}
+                    className="h-11 px-4 rounded-xl border border-white/10 text-xs font-bold text-outline hover:bg-white/5 cursor-pointer transition-colors">
+                    ← Kembali
+                  </button>
+                  <a href="https://trakteer.id/NuranantoScanlation" target="_blank" rel="noopener noreferrer"
+                    className="flex-1 h-11 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
+                    <Coins className="w-4 h-4 fill-current" />
+                    Buka Trakteer
+                  </a>
+                </div>
+              </>
+            )}
           </div>
         </motion.div>
       </div>

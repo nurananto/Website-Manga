@@ -73,11 +73,10 @@ async function checkRateLimit(request, env) {
 
 // ── Coin mapping Trakteer ────────────────────────────────────
 const COIN_MAP = [
-  { min: 50000, coins: 600 },
-  { min: 20000, coins: 220 },
   { min: 10000, coins: 100 },
   { min:  5000, coins:  50 },
-  { min:     0, coins:  10 },
+  { min:  2000, coins:  20 },
+  { min:     0, coins:   0 },
 ];
 
 function calcCoins(amount) {
