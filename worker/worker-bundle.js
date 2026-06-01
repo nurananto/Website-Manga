@@ -327,9 +327,41 @@ async function handleCron(env) {
 }
 
 // ── User Handler (disabled sampai auth aktif) ────────────────
+// ── Verify Supabase JWT ───────────────────────────────────────
+// Env var: SUPABASE_JWT_SECRET → dari Supabase Dashboard > Settings > API > JWT Secret
+async function verifySupabaseToken(request, env) {
+  if (!env.SUPABASE_JWT_SECRET) return null;
+  const auth = request.headers.get('Authorization') || '';
+  const token = auth.replace('Bearer ', '').trim();
+  if (!token) return null;
+
+  try {
+    // Decode JWT payload (bagian ke-2, base64url)
+    const [, payloadB64] = token.split('.');
+    const payload = JSON.parse(atob(payloadB64.replace(/-/g, '+').replace(/_/g, '/')));
+    // Cek expire
+    if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) return null;
+    return payload; // { sub: userId, email, ... }
+  } catch {
+    return null;
+  }
+}
+
 async function handleUser(request, env) {
-  // TODO: aktifkan setelah Supabase auth ditambahkan
-  return json({ error: 'Auth belum aktif' }, 401);
+  const user = await verifySupabaseToken(request, env);
+  if (!user) return json({ error: 'Unauthorized' }, 401);
+
+  const { pathname } = new URL(request.url);
+
+  // GET /api/user/me — info user + coins
+  if (pathname === '/api/user/me' && request.method === 'GET') {
+    const row = await env.DB.prepare(
+      'SELECT id, email, coins FROM users WHERE id = ?'
+    ).bind(user.sub).first();
+    return json(row || { id: user.sub, email: user.email, coins: 0 });
+  }
+
+  return json({ error: 'Not found' }, 404);
 }
 
 // ── Trakteer Webhook ─────────────────────────────────────────
