@@ -6,9 +6,9 @@ import CountdownTimer from './CountdownTimer';
 export default function MangaCard({ manga, onReadChapter, onViewManga }) {
   const [localUnlocked, setLocalUnlocked] = useState(new Set());
 
-  const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus';
+  const isOneshot = manga.status === 'Oneshot';
+  const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
 
-  // UP aktif 24 jam setelah ada chapter baru — berlaku untuk semua status
   const hasRecentUpdate = manga.chapters.some(ch => {
     if (!ch.release_date) return false;
     return (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
@@ -17,7 +17,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
 
   const borderClass = hasNewChapter
     ? 'border-emerald-500/60 hover:border-emerald-400/80 shadow-[0_0_14px_rgba(52,211,153,0.25)] hover:shadow-[0_0_20px_rgba(52,211,153,0.4)]'
-    : manga.status === 'Tamat'
+    : manga.status === 'Tamat' || isOneshot
     ? 'border-red-500/50 hover:border-red-500/80'
     : manga.status === 'Hiatus'
     ? 'border-zinc-500/40 hover:border-zinc-400/60'
@@ -61,10 +61,10 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
             // Badge Tamat/Hiatus muncul di chapter yang sesuai tamat_at_chapter/hiatus_at_chapter
             const targetChapter = manga.status === 'Tamat'
               ? manga.tamat_at_chapter
+              : isOneshot
+              ? ch.chapter_number // oneshot: badge di semua chapter (cuma 1)
               : manga.hiatus_at_chapter;
-            // Badge hanya muncul di chapter yang sesuai tamat/hiatus_at_chapter
-            const showStatusBadge = isFinished && targetChapter != null
-              && ch.chapter_number === targetChapter;
+            const showStatusBadge = isFinished && (isOneshot || (targetChapter != null && ch.chapter_number === targetChapter));
 
             return (
               <div
@@ -87,11 +87,11 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                   )}
                   {showStatusBadge && (
                     <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-wider ${
-                      manga.status === 'Tamat'
+                      manga.status === 'Tamat' || isOneshot
                         ? 'bg-red-500/15 text-red-400 border border-red-500/30'
                         : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
                     }`}>
-                      {manga.status}
+                      {isOneshot ? 'Oneshot' : manga.status}
                     </span>
                   )}
                 </div>

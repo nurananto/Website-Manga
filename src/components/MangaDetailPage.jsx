@@ -28,13 +28,14 @@ const renderChapterRow = (ch, idx) => {
     const isNew = !!ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
     const isUnread = !readChapters.has(ch.id);
     const isLocked = ch.isLocked && !localUnlockedChapters.has(ch.id);
-    const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus';
-    const targetChapter = manga.status === 'Tamat' ? manga.tamat_at_chapter : manga.hiatus_at_chapter;
-    const showStatusBadge = isFinished && (
+    const isOneshot = manga.status === 'Oneshot';
+    const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
+    const targetChapter = manga.status === 'Tamat' ? manga.tamat_at_chapter : isOneshot ? ch.chapter_number : manga.hiatus_at_chapter;
+    const showStatusBadge = isFinished && (isOneshot || (
       targetChapter != null
         ? ch.chapter_number === targetChapter
         : sortNewest ? idx === 0 : idx === sortedChapters.length - 1
-    );
+    ));
 
     const chapterViews = ch.views && ch.views > 0
       ? ch.views >= 1000 ? `${(ch.views / 1000).toFixed(1)}k` : String(ch.views)
@@ -64,11 +65,11 @@ const renderChapterRow = (ch, idx) => {
               )}
               {showStatusBadge && (
                 <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-wider ${
-                  manga.status === 'Tamat'
+                  manga.status === 'Tamat' || isOneshot
                     ? 'bg-red-500/15 text-red-400 border border-red-500/30'
                     : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
                 }`}>
-                  {manga.status}
+                  {isOneshot ? 'Oneshot' : manga.status}
                 </span>
               )}
             </div>
@@ -274,11 +275,11 @@ const renderChapterRow = (ch, idx) => {
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Status</span>
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full shrink-0 ${
-                    manga.status === 'Tamat' ? 'bg-red-400' :
+                    manga.status === 'Tamat' || manga.status === 'Oneshot' ? 'bg-red-400' :
                     manga.status === 'Hiatus' ? 'bg-zinc-400' : 'bg-emerald-400'
                   }`} />
                   <span className={`font-body-md text-sm sm:text-sm md:text-base font-black ${
-                    manga.status === 'Tamat' ? 'text-red-400' :
+                    manga.status === 'Tamat' || manga.status === 'Oneshot' ? 'text-red-400' :
                     manga.status === 'Hiatus' ? 'text-zinc-400' : 'text-emerald-400'
                   }`}>{manga.status || 'Ongoing'}</span>
                 </div>

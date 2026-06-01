@@ -112,7 +112,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
   const prevChapter = chapters[currentIdx + 1] ?? null; // lebih lama
   const nextChapter = chapters[currentIdx - 1] ?? null; // lebih baru
 
-  const isOneshot = chapters.length === 1 || manga?.status === 'Oneshot';
+  const isOneshot = chapters.length === 1 || activeManga?.status === 'Oneshot';
   const isAtOldest = !prevChapter; // sudah di chapter pertama/terlama
   const isAtNewest = !nextChapter; // sudah di chapter terbaru
 

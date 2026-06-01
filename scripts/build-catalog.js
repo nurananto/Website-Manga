@@ -88,7 +88,7 @@ async function buildCatalog() {
       ch.id = `${slug}-ch-${ch.chapter_number}`;
       ch.r2_prefix = `manga/${slug}/${ch.chapter_number}/`;
       if (!ch.title) {
-        ch.title = `Ch. ${ch.chapter_number}`;
+        ch.title = manga.status === 'ONESHOT' ? 'Oneshot' : `Ch. ${ch.chapter_number}`;
       }
 
       // release_date wajib diisi via generate_meta.py, tidak di-generate otomatis
@@ -132,7 +132,7 @@ async function buildCatalog() {
     if (Array.isArray(manga.genres)) manga.genres.sort();
 
     // Normalisasi status & type — case insensitive
-    const statusMap = { 'ongoing':'Ongoing', 'hiatus':'Hiatus', 'tamat':'Tamat' };
+    const statusMap = { 'ongoing':'Ongoing', 'hiatus':'Hiatus', 'tamat':'Tamat', 'oneshot':'Oneshot', 'oneshoot':'Oneshot' };
     const typeMap   = { 'manga':'MANGA', 'manhwa':'MANHWA', 'manhua':'MANHUA', 'novel':'NOVEL' };
     manga.status = statusMap[manga.status?.toLowerCase()] ?? manga.status;
     manga.type   = typeMap[manga.type?.toLowerCase()] ?? manga.type;
