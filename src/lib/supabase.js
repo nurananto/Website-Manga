@@ -15,12 +15,34 @@ export const supabase = isConfigured
       },
     })
   : {
+      // Mock client — simulasi user sudah login untuk testing UI
       auth: {
-        getSession: async () => ({ data: { session: null }, error: null }),
-        onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+        getSession: async () => ({
+          data: {
+            session: {
+              user: {
+                id: 'dummy-user-id',
+                email: 'nuranantoadhien@gmail.com',
+                user_metadata: {
+                  full_name: 'Nurananto',
+                  avatar_url: null,
+                  trakteer_email: 'nuranantoadhien@gmail.com',
+                },
+              },
+            },
+          },
+          error: null,
+        }),
+        onAuthStateChange: (cb) => {
+          // Tidak fire SIGNED_IN sehingga modal Trakteer tidak muncul saat dummy
+          return { data: { subscription: { unsubscribe: () => {} } } };
+        },
         signInWithOtp: async () => ({ error: { message: 'Supabase belum dikonfigurasi.' } }),
         signInWithOAuth: async () => ({ error: { message: 'Supabase belum dikonfigurasi.' } }),
         signOut: async () => {},
-        updateUser: async () => ({ error: null }),
+        updateUser: async (updates) => {
+          console.log('[Mock] updateUser:', updates);
+          return { error: null };
+        },
       },
     };
