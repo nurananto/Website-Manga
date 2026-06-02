@@ -208,10 +208,23 @@ export default function App() {
         if (event === 'SIGNED_IN' && !session.user.user_metadata?.trakteer_email) {
           setShowTrakteerModal(true);
         }
-        // Fetch coin balance + history dari Worker
+        // Fetch coin balance + history + auto-claim dari Worker
         const workerUrl = import.meta.env.VITE_WORKER_URL || '';
         if (workerUrl && session.access_token) {
           const headers = { 'Authorization': `Bearer ${session.access_token}` };
+          // Auto-claim koin pending dari Trakteer saat login
+          const claimEmail = session.user.user_metadata?.trakteer_email || session.user.email;
+          if (claimEmail) {
+            fetch(`${workerUrl}/api/user/claim-coins`, {
+              method: 'POST',
+              headers: { ...headers, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ trakteer_email: claimEmail }),
+            }).then(r => r.json()).then(d => {
+              if (d.transferred > 0) {
+                localStorage.removeItem(`tx_cache_${session.user.id}`);
+              }
+            }).catch(() => {});
+          }
           // Coins
           fetch(`${workerUrl}/api/user/me`, { headers })
             .then(r => r.json()).then(d => {
