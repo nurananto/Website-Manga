@@ -153,9 +153,10 @@ async function handleImages(request, env, ctx) {
     const isLocked = lockRow && new Date(lockRow.unlock_at).getTime() > now;
 
     if (!isLocked) {
-      // Chapter bebas → serve publik dengan cache penuh
+      // Tidak ada lock record ATAU sudah melewati unlock_at → serve publik
       return servePublic(request, env, ctx, r2Key);
     }
+    // Chapter terkunci → perlu access token
 
     // Chapter terkunci → validasi access token di query param
     const accessToken = new URL(request.url).searchParams.get('access');

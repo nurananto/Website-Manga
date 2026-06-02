@@ -208,15 +208,29 @@ async function buildCatalog() {
       }
     }
     if (locks.length) {
-      try {
-        const res = await fetch(`${workerUrl}/api/admin/sync-locks`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': adminSecret },
-          body: JSON.stringify({ locks }),
-        });
-        console.log(`🔒 Synced ${locks.length} locks → Worker: ${res.ok ? 'OK' : await res.text()}`);
-      } catch (e) {
-        console.warn('⚠️  Lock sync failed:', e.message);
+      // Retry 3x — pastikan lock tersinkron SEBELUM catalog di-deploy ke Pages
+      let synced = false;
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+          const res = await fetch(`${workerUrl}/api/admin/sync-locks`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': adminSecret },
+            body: JSON.stringify({ locks }),
+          });
+          if (res.ok) {
+            console.log(`🔒 Synced ${locks.length} locks → Worker OK (attempt ${attempt})`);
+            synced = true;
+            break;
+          }
+          console.warn(`⚠️  Attempt ${attempt}: ${await res.text()}`);
+        } catch (e) {
+          console.warn(`⚠️  Attempt ${attempt}: ${e.message}`);
+        }
+        if (attempt < 3) await new Promise(r => setTimeout(r, 2000));
+      }
+      if (!synced) {
+        console.error('❌ Lock sync gagal 3x — batalkan deploy agar chapter tidak bocor!');
+        process.exit(1);
       }
     }
   }
