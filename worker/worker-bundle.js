@@ -562,10 +562,12 @@ async function handleUser(request, env) {
         env.DB.prepare('UPDATE users SET coins = 0 WHERE id = ?').bind(trkId),
       ]);
     } else {
-      // Belum ada → rename trk- record ke Supabase UUID (hindari email UNIQUE conflict)
-      await env.DB.prepare(
-        'UPDATE users SET id = ? WHERE id = ?'
-      ).bind(user.sub, trkId).run();
+      // Belum ada → rename trk- record ke Supabase UUID + update semua referensi
+      await env.DB.batch([
+        env.DB.prepare('UPDATE users SET id = ? WHERE id = ?').bind(user.sub, trkId),
+        env.DB.prepare('UPDATE coin_transactions SET user_id = ? WHERE user_id = ?').bind(user.sub, trkId),
+        env.DB.prepare('UPDATE history SET user_id = ? WHERE user_id = ?').bind(user.sub, trkId),
+      ]);
     }
 
     console.log(`Claim coins: ${coinsToTransfer} koin dari ${trkId} → ${user.sub}`);
