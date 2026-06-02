@@ -662,13 +662,26 @@ export default function App() {
               const { data: { session } } = await supabase.auth.getSession();
               if (session?.access_token) {
                 const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-                fetch(`${workerUrl}/api/user/claim-coins`, {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
-                  body: JSON.stringify({ trakteer_email: trakteerEmail }),
-                }).then(r => r.json()).then(d => {
-                  if (d.transferred > 0) showToast(`${d.transferred} koin berhasil diklaim!`);
-                }).catch(() => {});
+                try {
+                  const claimRes = await fetch(`${workerUrl}/api/user/claim-coins`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
+                    body: JSON.stringify({ trakteer_email: trakteerEmail }),
+                  });
+                  const d = await claimRes.json();
+                  if (d.transferred > 0) {
+                    showToast(`${d.transferred} koin berhasil diklaim!`);
+                    setUserCoins(prev => prev + d.transferred);
+                  }
+                  // Re-fetch balance dari Worker untuk pastikan sinkron
+                  const meRes = await fetch(`${workerUrl}/api/user/me`, {
+                    headers: { 'Authorization': `Bearer ${session.access_token}` },
+                  });
+                  const me = await meRes.json();
+                  if (typeof me.coins === 'number') setUserCoins(me.coins);
+                } catch (e) {
+                  console.error('Claim coins error:', e);
+                }
               }
             }
             setIsChangePasswordOpen(false);
