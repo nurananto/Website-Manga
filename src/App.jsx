@@ -513,6 +513,7 @@ export default function App() {
             manga={selectedManga}
             onReadChapter={handleReadChapter}
             lastReadChapter={historyChapters[selectedManga.id]}
+            unlockedChapters={d1UnlockedChapters}
           />
         ) : (
           /* Main Views based on Tab */

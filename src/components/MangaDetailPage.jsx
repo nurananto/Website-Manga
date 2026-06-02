@@ -4,7 +4,7 @@ import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Coins, Clock } from 'lucide-
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
 
-export default function MangaDetailPage({ manga, onReadChapter, isBookmarked, onToggleBookmark, lastReadChapter }) {
+export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, unlockedChapters }) {
   const [isLoading, setIsLoading] = useState(true);
   const [expandedSynopsis, setExpandedSynopsis] = useState(false);
 
@@ -17,6 +17,10 @@ export default function MangaDetailPage({ manga, onReadChapter, isBookmarked, on
   const [showAllChapters, setShowAllChapters] = useState(false);
   const [activeDetailTab, setActiveDetailTab] = useState('info');
   const [localUnlockedChapters, setLocalUnlockedChapters] = useState(new Set());
+  // Gabung local (baru dibeli sesi ini) + D1 (sudah dibeli sebelumnya)
+  const effectiveUnlocked = unlockedChapters
+    ? new Set([...unlockedChapters, ...localUnlockedChapters])
+    : localUnlockedChapters;
   const [readChapters, setReadChapters] = useState(new Set());
 
   const sortedChapters = useMemo(() => {
@@ -27,7 +31,8 @@ export default function MangaDetailPage({ manga, onReadChapter, isBookmarked, on
 const renderChapterRow = (ch, idx) => {
     const isNew = !!ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
     const isUnread = !readChapters.has(ch.id);
-    const isLocked = ch.isLocked && !localUnlockedChapters.has(ch.id);
+    const isTimeUnlocked = ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now();
+    const isLocked = ch.isLocked && !isTimeUnlocked && !effectiveUnlocked.has(ch.id);
     const isOneshot = manga.status === 'Oneshot';
     const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
     const targetChapter = manga.status === 'Tamat' ? manga.tamat_at_chapter : isOneshot ? ch.chapter_number : manga.hiatus_at_chapter;
