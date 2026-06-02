@@ -147,7 +147,7 @@
       "Slice of Life"
     ],
     "rating": 8.69,
-    "total_views": 10,
+    "total_views": 12,
     "isTrending": true,
     "next_update": null,
     "chapters": [
@@ -161,7 +161,7 @@
         "title": "Ch. 100",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 99,
@@ -173,7 +173,7 @@
         "title": "Ch. 99",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 98,
