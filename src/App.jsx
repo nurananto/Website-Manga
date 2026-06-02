@@ -647,6 +647,20 @@ export default function App() {
             if (Object.keys(updates).length) {
               await supabase.auth.updateUser({ data: updates });
             }
+            // Claim koin pending dari donasi Trakteer sebelum akun dibuat
+            if (trakteerEmail) {
+              const { data: { session } } = await supabase.auth.getSession();
+              if (session?.access_token) {
+                const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+                fetch(`${workerUrl}/api/user/claim-coins`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
+                  body: JSON.stringify({ trakteer_email: trakteerEmail }),
+                }).then(r => r.json()).then(d => {
+                  if (d.transferred > 0) showToast(`${d.transferred} koin berhasil diklaim!`);
+                }).catch(() => {});
+              }
+            }
             setIsChangePasswordOpen(false);
             showToast('Pengaturan berhasil disimpan!');
           }}

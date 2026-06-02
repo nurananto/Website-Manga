@@ -516,6 +516,44 @@ async function handleUser(request, env) {
     return json({ token, expires_in: 7200 });
   }
 
+  // POST /api/user/claim-coins — transfer koin dari trk-{email} ke akun Supabase
+  if (pathname === '/api/user/claim-coins' && request.method === 'POST') {
+    if (!checkBodySize(request, 1024)) return json({ error: 'Payload too large' }, 413);
+    let body;
+    try { body = await request.json(); } catch { return json({ error: 'Invalid JSON' }, 400); }
+    const { trakteer_email } = body;
+    if (!isStr(trakteer_email, 254) || !trakteer_email.includes('@')) {
+      return json({ error: 'Invalid email' }, 400);
+    }
+
+    const email = trakteer_email.trim().toLowerCase();
+    const trkId = `trk-${email}`;
+
+    // Cari koin yang pending di akun Trakteer
+    const trkUser = await env.DB.prepare(
+      'SELECT coins FROM users WHERE id = ? AND coins > 0'
+    ).bind(trkId).first();
+
+    if (!trkUser || trkUser.coins <= 0) {
+      return json({ ok: true, transferred: 0, note: 'Tidak ada koin pending' });
+    }
+
+    const coinsToTransfer = trkUser.coins;
+
+    // Transfer ke akun Supabase + reset koin di akun trk
+    await env.DB.batch([
+      env.DB.prepare('INSERT OR IGNORE INTO users (id, email, coins) VALUES (?, ?, 0)')
+        .bind(user.sub, email),
+      env.DB.prepare('UPDATE users SET coins = coins + ? WHERE id = ?')
+        .bind(coinsToTransfer, user.sub),
+      env.DB.prepare('UPDATE users SET coins = 0 WHERE id = ?')
+        .bind(trkId),
+    ]);
+
+    console.log(`Claim coins: ${coinsToTransfer} koin dari ${trkId} → ${user.sub}`);
+    return json({ ok: true, transferred: coinsToTransfer });
+  }
+
   return json({ error: 'Not found' }, 404);
 }
 
