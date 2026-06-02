@@ -561,9 +561,20 @@ async function handleWebhook(request, env) {
   if (!body) return json({ error: 'Empty body' }, 400);
 
   if (env.TRAKTEER_SECRET) {
-    // Trakteer mengirim My Webhook Token langsung di header X-Trakteer-Signature
-    const sig = request.headers.get('X-Trakteer-Signature') || '';
-    if (sig !== env.TRAKTEER_SECRET) return json({ error: 'Invalid signature' }, 401);
+    // Log semua headers untuk debug (hapus setelah ketahuan header yang benar)
+    const allHeaders = {};
+    for (const [k, v] of request.headers.entries()) allHeaders[k] = v;
+    console.log('Trakteer headers:', JSON.stringify(allHeaders));
+
+    // Cek beberapa kemungkinan header nama
+    const sig = request.headers.get('X-Trakteer-Signature')
+      || request.headers.get('X-Trakteer-Token')
+      || request.headers.get('Authorization')
+      || '';
+    if (sig !== env.TRAKTEER_SECRET) {
+      console.log('Signature mismatch. Received:', sig, '| Expected:', env.TRAKTEER_SECRET);
+      return json({ error: 'Invalid signature' }, 401);
+    }
   }
 
   let data;
