@@ -83,9 +83,19 @@ export default function App() {
         if (event === 'SIGNED_IN' && !session.user.user_metadata?.trakteer_email) {
           setShowTrakteerModal(true);
         }
+        // Fetch coin balance dari Worker
+        const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+        if (workerUrl && session.access_token) {
+          fetch(`${workerUrl}/api/user/me`, {
+            headers: { 'Authorization': `Bearer ${session.access_token}` },
+          }).then(r => r.json()).then(d => {
+            if (typeof d.coins === 'number') setUserCoins(d.coins);
+          }).catch(() => {});
+        }
       } else {
         setIsLoggedIn(false);
         setCurrentUser(null);
+        setUserCoins(0);
       }
     });
 
