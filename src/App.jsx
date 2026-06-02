@@ -819,6 +819,7 @@ export default function App() {
           manga={selectedManga}
           onClose={() => { navigate(`/${selectedManga?.id || ''}`); }}
           onReadChapter={handleReadChapter}
+          unlockedChapters={d1UnlockedChapters}
         />
       )}
 

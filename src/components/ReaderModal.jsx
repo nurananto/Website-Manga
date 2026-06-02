@@ -69,7 +69,7 @@ function PageImage({ src, idx, pageRefs }) {
   );
 }
 
-export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) {
+export default function ReaderModal({ chapter, manga, onClose, onReadChapter, unlockedChapters }) {
   // Freeze last known values saat exit animation agar konten tidak hilang
   const frozenChapter = useRef(chapter);
   const frozenManga = useRef(manga);
@@ -111,6 +111,14 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
   const currentIdx = chapters.findIndex(ch => ch.id === chapter?.id);
   const prevChapter = chapters[currentIdx + 1] ?? null; // lebih lama
   const nextChapter = chapters[currentIdx - 1] ?? null; // lebih baru
+
+  // Helper: cek apakah chapter benar-benar locked (belum dibeli & belum free)
+  const isChapterLocked = (ch) => {
+    if (!ch?.isLocked) return false;
+    if (ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now()) return false;
+    if (unlockedChapters?.has(ch.id)) return false;
+    return true;
+  };
 
   const isOneshot = chapters.length === 1 || activeManga?.status === 'Oneshot';
   const isAtOldest = !prevChapter; // sudah di chapter pertama/terlama
@@ -216,8 +224,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       return;
     }
     if (!nextChapter) return;
-    const isTimeUnlocked = nextChapter.unlockDate && new Date(nextChapter.unlockDate).getTime() <= Date.now();
-    if (nextChapter.isLocked && !isTimeUnlocked) {
+    if (isChapterLocked(nextChapter)) {
       setLockedNext(nextChapter);
       setShowLockedModal(true);
       return;
@@ -523,7 +530,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
               >
                 {chapters.map((ch) => {
                   const isActive = ch.id === activeChapter.id;
-                  const isLocked = ch.isLocked && !(ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now());
+                  const isLocked = isChapterLocked(ch);
                   return (
                     <button
                       key={ch.id}
