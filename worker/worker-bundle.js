@@ -88,17 +88,11 @@ async function checkRateLimit(request, env) {
   return { allowed: true };
 }
 
-// ── Coin mapping Trakteer ────────────────────────────────────
-const COIN_MAP = [
-  { min: 10000, coins: 100 },
-  { min:  5000, coins:  50 },
-  { min:  2000, coins:  20 },
-  { min:     0, coins:   0 },
-];
-
+// ── Coin mapping Trakteer — proporsional ─────────────────────
+// 1 koin = Rp 100 | minimum donasi Rp 1.000 (= 10 koin)
 function calcCoins(amount) {
-  for (const t of COIN_MAP) if (amount >= t.min) return t.coins;
-  return 0;
+  if (amount < 1000) return 0;
+  return Math.floor(amount / 100);
 }
 
 // ── Helpers ──────────────────────────────────────────────────
