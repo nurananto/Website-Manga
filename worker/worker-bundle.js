@@ -648,6 +648,7 @@ async function handleWebhook(request, env) {
     ),
   ]);
 
+  console.log(`Donasi berhasil: ${supporter_name || 'Anonim'} → ${supporter_email} → Rp ${Number(amount).toLocaleString('id')} → ${coins} koin`);
   return json({ ok: true, coins_added: coins });
 }
 
