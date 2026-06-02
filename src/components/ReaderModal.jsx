@@ -146,18 +146,35 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
     setPageCount(chapter.pages);
   }, [chapter?.id]);
 
-  // Reset scroll + currentPage saat chapter berganti, restore posisi terakhir jika ada
+  // Reset scroll + currentPage saat chapter berganti
   useEffect(() => {
     if (!chapter?.id) return;
-    const savedTop = parseInt(localStorage.getItem(`reader_pos_${chapter.id}`)) || 0;
-    requestAnimationFrame(() => {
-      scrollRef.current?.scrollTo({ top: savedTop, behavior: 'instant' });
-    });
+    scrollRef.current?.scrollTo({ top: 0, behavior: 'instant' });
     setCurrentPage(0);
     pageRefs.current = [];
   }, [chapter?.id]);
 
-  // Scroll event: update currentPage dari ratio scroll
+  // Restore page setelah gambar-gambar mulai dirender (pages array diset)
+  useEffect(() => {
+    if (!chapter?.id || pages.length === 0) return;
+    const saved = localStorage.getItem(`reader_page_${chapter.id}`);
+    if (!saved) return;
+    const savedPage = parseInt(saved);
+    // Kalau sudah di halaman terakhir sebelumnya → mulai dari atas
+    if (savedPage >= pages.length - 1) return;
+    // Scroll ke halaman yang disimpan setelah render
+    const tryScroll = (attempts = 0) => {
+      const el = pageRefs.current[savedPage];
+      if (el) {
+        el.scrollIntoView({ behavior: 'instant', block: 'start' });
+      } else if (attempts < 10) {
+        setTimeout(() => tryScroll(attempts + 1), 150);
+      }
+    };
+    setTimeout(() => tryScroll(), 300);
+  }, [pages]);
+
+  // Scroll event: update currentPage + simpan page index
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -169,7 +186,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter }) 
       setCurrentPage(page);
       setOpenChapterList(null);
       if (activeChapter?.id) {
-        localStorage.setItem(`reader_pos_${activeChapter.id}`, el.scrollTop);
+        localStorage.setItem(`reader_page_${activeChapter.id}`, page);
       }
     };
     el.addEventListener('scroll', handleScroll, { passive: true });
