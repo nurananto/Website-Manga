@@ -569,8 +569,19 @@ async function handleWebhook(request, env) {
   try { data = JSON.parse(body); }
   catch { return json({ error: 'Invalid JSON' }, 400); }
 
-  // DEBUG: return full payload untuk lihat struktur Trakteer
-  return json({ debug: true, keys: Object.keys(data), payload: data }, 200);
+  // Field mapping Trakteer:
+  // transaction_id  → ID unik transaksi (anti-duplikat)
+  // supporter_message → email user (user wajib isi email akun di kolom pesan)
+  // price           → nominal donasi dalam rupiah
+  const { transaction_id, supporter_name, supporter_message, price } = data;
+
+  const payment_id      = transaction_id;
+  const supporter_email = (supporter_message || '').trim().toLowerCase();
+  const amount          = price;
+
+  if (!isStr(payment_id, 200) || !supporter_email.includes('@') || !isNum(Number(amount))) {
+    return json({ error: 'Invalid fields — pastikan kolom Pesan diisi dengan email akun' }, 400);
+  }
 
   // Cek duplikat
   const exists = await env.DB.prepare(
@@ -579,18 +590,21 @@ async function handleWebhook(request, env) {
   if (exists) return json({ ok: true, duplicate: true });
 
   const coins = calcCoins(amount);
-  if (!coins) return json({ ok: true, coins: 0 });
+  if (!coins) return json({ ok: true, coins: 0, note: 'Nominal terlalu kecil' });
 
+  // Upsert user berdasarkan email dari pesan
   await env.DB.prepare(
     'INSERT OR IGNORE INTO users (id, email, coins) VALUES (?, ?, 0)'
-  ).bind(`trakteer-${supporter_email}`, supporter_email).run();
+  ).bind(`trk-${supporter_email}`, supporter_email).run();
 
   await env.DB.batch([
     env.DB.prepare('UPDATE users SET coins = coins + ? WHERE email = ?').bind(coins, supporter_email),
     env.DB.prepare(
       'INSERT INTO coin_transactions (id, user_id, amount, type, trakteer_ref, note) VALUES (?, (SELECT id FROM users WHERE email = ?), ?, "trakteer", ?, ?)'
-    ).bind(crypto.randomUUID(), supporter_email, coins, payment_id,
-           `Donasi dari ${supporter_name || supporter_email}: Rp ${Number(amount).toLocaleString('id')}`),
+    ).bind(
+      crypto.randomUUID(), supporter_email, coins, payment_id,
+      `Donasi dari ${supporter_name || 'Anonim'}: Rp ${Number(amount).toLocaleString('id')}`
+    ),
   ]);
 
   return json({ ok: true, coins_added: coins });
