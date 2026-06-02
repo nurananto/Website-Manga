@@ -579,8 +579,11 @@ async function handleWebhook(request, env) {
   const supporter_email = (supporter_message || '').trim().toLowerCase();
   const amount          = price;
 
+  // Selalu return 200 ke Trakteer agar tidak di-retry/auto-disabled
+  // Validasi internal — skip proses jika data tidak valid
   if (!isStr(payment_id, 200) || !supporter_email.includes('@') || !isNum(Number(amount))) {
-    return json({ error: 'Invalid fields — pastikan kolom Pesan diisi dengan email akun' }, 400);
+    console.log('Webhook skip: email tidak valid di kolom Pesan:', supporter_message);
+    return json({ ok: true, skipped: 'email tidak valid' });
   }
 
   // Cek duplikat
@@ -590,7 +593,7 @@ async function handleWebhook(request, env) {
   if (exists) return json({ ok: true, duplicate: true });
 
   const coins = calcCoins(amount);
-  if (!coins) return json({ ok: true, coins: 0, note: 'Nominal terlalu kecil' });
+  if (!coins) return json({ ok: true, skipped: 'nominal terlalu kecil' });
 
   // Upsert user berdasarkan email dari pesan
   await env.DB.prepare(
