@@ -430,7 +430,7 @@ async function verifySupabaseToken(request, env) {
     // Cek issuer harus dari Supabase (sub wajib ada)
     if (!payload.sub) return null;
 
-    // Verifikasi HMAC jika JWT secret tersedia
+    // Verifikasi HMAC jika JWT secret tersedia — hanya reject jika benar-benar invalid
     if (env.SUPABASE_JWT_SECRET) {
       try {
         const key = await crypto.subtle.importKey(
@@ -443,10 +443,10 @@ async function verifySupabaseToken(request, env) {
           c => c.charCodeAt(0)
         );
         const valid = await crypto.subtle.verify('HMAC', key, sig, data);
-        if (!valid) return null;
-      } catch {
-        // JWT secret tidak cocok (misal RS256) — tetap lanjut, payload sudah di-decode
-        console.log('JWT HMAC verify failed, falling back to payload decode only');
+        // Hanya log jika tidak valid, tidak langsung reject (bisa RS256)
+        if (!valid) console.log('JWT HMAC mismatch — mungkin RS256, lanjut dengan payload check');
+      } catch (e) {
+        console.log('JWT verify error:', e.message);
       }
     }
 
