@@ -561,9 +561,9 @@ async function handleWebhook(request, env) {
   if (!body) return json({ error: 'Empty body' }, 400);
 
   if (env.TRAKTEER_SECRET) {
-    const sig      = request.headers.get('X-Trakteer-Signature') || '';
-    const expected = await hmacSha256(env.TRAKTEER_SECRET, body);
-    if (sig !== expected) return json({ error: 'Invalid signature' }, 401);
+    // Trakteer mengirim My Webhook Token langsung di header X-Trakteer-Signature
+    const sig = request.headers.get('X-Trakteer-Signature') || '';
+    if (sig !== env.TRAKTEER_SECRET) return json({ error: 'Invalid signature' }, 401);
   }
 
   let data;
