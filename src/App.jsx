@@ -83,19 +83,36 @@ export default function App() {
         if (event === 'SIGNED_IN' && !session.user.user_metadata?.trakteer_email) {
           setShowTrakteerModal(true);
         }
-        // Fetch coin balance dari Worker
+        // Fetch coin balance + history dari Worker
         const workerUrl = import.meta.env.VITE_WORKER_URL || '';
         if (workerUrl && session.access_token) {
-          fetch(`${workerUrl}/api/user/me`, {
-            headers: { 'Authorization': `Bearer ${session.access_token}` },
-          }).then(r => r.json()).then(d => {
-            if (typeof d.coins === 'number') setUserCoins(d.coins);
-          }).catch(() => {});
+          const headers = { 'Authorization': `Bearer ${session.access_token}` };
+          // Coins
+          fetch(`${workerUrl}/api/user/me`, { headers })
+            .then(r => r.json()).then(d => {
+              if (typeof d.coins === 'number') setUserCoins(d.coins);
+            }).catch(() => {});
+          // History — load dari D1 ke state
+          fetch(`${workerUrl}/api/user/history`, { headers })
+            .then(r => r.json()).then(rows => {
+              if (!Array.isArray(rows)) return;
+              const hist = {};
+              rows.forEach(row => {
+                hist[row.manga_id] = {
+                  id: row.chapter_id,
+                  chapter_number: row.chapter_number,
+                  title: row.chapter_title || `Ch. ${row.chapter_number}`,
+                  last_read_at: row.last_read_at,
+                };
+              });
+              setHistoryChapters(hist);
+            }).catch(() => {});
         }
       } else {
         setIsLoggedIn(false);
         setCurrentUser(null);
         setUserCoins(0);
+        setHistoryChapters({});
       }
     });
 
