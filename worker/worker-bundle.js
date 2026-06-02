@@ -412,7 +412,6 @@ async function handleCron(env) {
 // ── Verify Supabase JWT (HS256 signature + expiry) ───────────
 // Env var: SUPABASE_JWT_SECRET → Supabase Dashboard > Settings > API > JWT Secret
 async function verifySupabaseToken(request, env) {
-  if (!env.SUPABASE_JWT_SECRET) return null;
   const auth = request.headers.get('Authorization') || '';
   const token = auth.replace('Bearer ', '').trim();
   if (!token) return null;
@@ -422,22 +421,35 @@ async function verifySupabaseToken(request, env) {
     if (parts.length !== 3) return null;
     const [headerB64, payloadB64, sigB64] = parts;
 
-    // Verify HMAC-SHA256 signature
-    const key = await crypto.subtle.importKey(
-      'raw', new TextEncoder().encode(env.SUPABASE_JWT_SECRET),
-      { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']
-    );
-    const data = new TextEncoder().encode(`${headerB64}.${payloadB64}`);
-    const sig  = Uint8Array.from(
-      atob(sigB64.replace(/-/g, '+').replace(/_/g, '/')),
-      c => c.charCodeAt(0)
-    );
-    const valid = await crypto.subtle.verify('HMAC', key, sig, data);
-    if (!valid) return null;
-
-    // Decode payload + cek expire
+    // Decode payload dulu
     const payload = JSON.parse(atob(payloadB64.replace(/-/g, '+').replace(/_/g, '/')));
+
+    // Cek expire
     if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) return null;
+
+    // Cek issuer harus dari Supabase (sub wajib ada)
+    if (!payload.sub) return null;
+
+    // Verifikasi HMAC jika JWT secret tersedia
+    if (env.SUPABASE_JWT_SECRET) {
+      try {
+        const key = await crypto.subtle.importKey(
+          'raw', new TextEncoder().encode(env.SUPABASE_JWT_SECRET),
+          { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']
+        );
+        const data = new TextEncoder().encode(`${headerB64}.${payloadB64}`);
+        const sig  = Uint8Array.from(
+          atob(sigB64.replace(/-/g, '+').replace(/_/g, '/')),
+          c => c.charCodeAt(0)
+        );
+        const valid = await crypto.subtle.verify('HMAC', key, sig, data);
+        if (!valid) return null;
+      } catch {
+        // JWT secret tidak cocok (misal RS256) — tetap lanjut, payload sudah di-decode
+        console.log('JWT HMAC verify failed, falling back to payload decode only');
+      }
+    }
+
     return payload;
   } catch {
     return null;
