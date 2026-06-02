@@ -70,8 +70,8 @@ function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUse
               <div key={manga.id} onClick={() => handleReadChapter(chapter, manga.title)}
                 className="flex items-stretch gap-3 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
                 <img alt={manga.title} src={imgUrl(manga.coverUrl)}
-                  className="w-auto object-cover rounded-lg border border-white/10 shrink-0 shadow-md"
-                  style={{ aspectRatio: '2/3' }} />
+                  className="object-cover rounded-lg border border-white/10 shrink-0 shadow-md"
+                  style={{ aspectRatio: '2/3', width: 'auto', maxHeight: '72px' }} />
                 <div className="min-w-0 flex-1 flex flex-col justify-center gap-0.5">
                   <h3 className="font-headline-md text-sm sm:text-base font-black text-on-surface line-clamp-1">{manga.title}</h3>
                   <p className="text-xs font-bold text-primary truncate">{chapter.title}</p>
