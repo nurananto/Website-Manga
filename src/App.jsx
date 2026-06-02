@@ -212,24 +212,23 @@ export default function App() {
         const workerUrl = import.meta.env.VITE_WORKER_URL || '';
         if (workerUrl && session.access_token) {
           const headers = { 'Authorization': `Bearer ${session.access_token}` };
-          // Auto-claim koin pending dari Trakteer saat login
+          // Auto-claim dulu, lalu fetch balance terbaru
           const claimEmail = session.user.user_metadata?.trakteer_email || session.user.email;
+          const doFetchBalance = () => fetch(`${workerUrl}/api/user/me`, { headers })
+            .then(r => r.json()).then(d => { if (typeof d.coins === 'number') setUserCoins(d.coins); })
+            .catch(() => {});
+
           if (claimEmail) {
             fetch(`${workerUrl}/api/user/claim-coins`, {
               method: 'POST',
               headers: { ...headers, 'Content-Type': 'application/json' },
               body: JSON.stringify({ trakteer_email: claimEmail }),
             }).then(r => r.json()).then(d => {
-              if (d.transferred > 0) {
-                localStorage.removeItem(`tx_cache_${session.user.id}`);
-              }
-            }).catch(() => {});
+              if (d.transferred > 0) localStorage.removeItem(`tx_cache_${session.user.id}`);
+            }).catch(() => {}).finally(() => doFetchBalance()); // fetch balance SETELAH claim
+          } else {
+            doFetchBalance();
           }
-          // Coins
-          fetch(`${workerUrl}/api/user/me`, { headers })
-            .then(r => r.json()).then(d => {
-              if (typeof d.coins === 'number') setUserCoins(d.coins);
-            }).catch(() => {});
           // History — load dari D1 ke state
           fetch(`${workerUrl}/api/user/history`, { headers })
             .then(r => r.json()).then(rows => {
