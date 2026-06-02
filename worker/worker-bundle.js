@@ -574,6 +574,52 @@ async function handleUser(request, env) {
     return json({ ok: true, transferred: coinsToTransfer });
   }
 
+  // GET /api/user/unlocked — list chapter yang sudah dibeli user
+  if (pathname === '/api/user/unlocked' && request.method === 'GET') {
+    const rows = await env.DB.prepare(
+      'SELECT chapter_id FROM unlocked_chapters WHERE user_id = ?'
+    ).bind(user.sub).all();
+    return json((rows.results || []).map(r => r.chapter_id));
+  }
+
+  // POST /api/user/unlock-chapter — beli chapter dengan koin (atomic)
+  if (pathname === '/api/user/unlock-chapter' && request.method === 'POST') {
+    if (!checkBodySize(request, 1024)) return json({ error: 'Payload too large' }, 413);
+    let body;
+    try { body = await request.json(); } catch { return json({ error: 'Invalid JSON' }, 400); }
+    const { chapter_id, cost = 5 } = body;
+    if (!isStr(chapter_id, 200)) return json({ error: 'Invalid chapter_id' }, 400);
+
+    // Cek sudah pernah beli
+    const alreadyOwned = await env.DB.prepare(
+      'SELECT 1 FROM unlocked_chapters WHERE user_id = ? AND chapter_id = ?'
+    ).bind(user.sub, chapter_id).first();
+    if (alreadyOwned) return json({ ok: true, already_owned: true });
+
+    // Atomic deduction: hanya potong koin jika saldo cukup
+    const deducted = await env.DB.prepare(
+      'UPDATE users SET coins = coins - ? WHERE id = ? AND coins >= ? RETURNING coins'
+    ).bind(cost, user.sub, cost).first();
+
+    if (!deducted) return json({ error: 'Insufficient coins' }, 402);
+
+    // Insert unlock record + transaction
+    try {
+      await env.DB.batch([
+        env.DB.prepare('INSERT OR IGNORE INTO unlocked_chapters (user_id, chapter_id) VALUES (?, ?)').bind(user.sub, chapter_id),
+        env.DB.prepare('INSERT INTO coin_transactions (id, user_id, amount, type, note) VALUES (?, ?, ?, "unlock", ?)').bind(
+          crypto.randomUUID(), user.sub, -cost, `Beli chapter: ${chapter_id}`
+        ),
+      ]);
+    } catch (e) {
+      // Batch gagal → kembalikan koin
+      await env.DB.prepare('UPDATE users SET coins = coins + ? WHERE id = ?').bind(cost, user.sub).run();
+      return json({ error: 'Transaction failed, coins refunded' }, 500);
+    }
+
+    return json({ ok: true, coins_remaining: deducted.coins });
+  }
+
   // GET /api/user/transactions — riwayat transaksi koin
   if (pathname === '/api/user/transactions' && request.method === 'GET') {
     const url   = new URL(request.url);

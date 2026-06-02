@@ -183,6 +183,7 @@ export default function App() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isCoinModalOpen, setIsCoinModalOpen] = useState(false);
   const [isUnlockModalOpen, setIsUnlockModalOpen] = useState(false);
+  const [d1UnlockedChapters, setD1UnlockedChapters] = useState(new Set());
   const [pendingUnlockChapter, setPendingUnlockChapter] = useState(null);
   const [pendingMangaTitle, setPendingMangaTitle] = useState('');
   const [toastMessage, setToastMessage] = useState(null);
@@ -244,12 +245,18 @@ export default function App() {
               });
               setHistoryChapters(hist);
             }).catch(() => {});
+          // Unlocked chapters — load dari D1
+          fetch(`${workerUrl}/api/user/unlocked`, { headers })
+            .then(r => r.json()).then(ids => {
+              if (Array.isArray(ids)) setD1UnlockedChapters(new Set(ids));
+            }).catch(() => {});
         }
       } else {
         setIsLoggedIn(false);
         setCurrentUser(null);
         setUserCoins(0);
         setHistoryChapters({});
+        setD1UnlockedChapters(new Set());
       }
     });
 
@@ -393,20 +400,43 @@ export default function App() {
     openChapterReader(chapter, mangaTitle);
   };
 
-  const handleConfirmUnlock = () => {
+  const handleConfirmUnlock = async () => {
     if (!pendingUnlockChapter) return;
-    
-    if (userCoins >= 5) {
-      setUserCoins(prev => prev - 5);
-      pendingUnlockChapter.isLocked = false; // unlock it in-memory
-      setIsUnlockModalOpen(false);
-      showToast("Chapter berhasil dibuka!");
-      openChapterReader(pendingUnlockChapter, pendingMangaTitle);
-      setPendingUnlockChapter(null);
+    if (userCoins < 5) { setIsUnlockModalOpen(false); setIsCoinModalOpen(true); return; }
+
+    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (workerUrl && session?.access_token) {
+      try {
+        const res = await fetch(`${workerUrl}/api/user/unlock-chapter`, {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${session.access_token}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chapter_id: pendingUnlockChapter.id, cost: 5 }),
+        });
+        const d = await res.json();
+        if (!res.ok && !d.already_owned) {
+          showToast(d.error === 'Insufficient coins' ? 'Koin tidak cukup!' : 'Gagal membuka chapter.');
+          return;
+        }
+        if (typeof d.coins_remaining === 'number') setUserCoins(d.coins_remaining);
+        else setUserCoins(prev => prev - 5);
+        // Invalidate tx cache
+        if (session.user) localStorage.removeItem(`tx_cache_${session.user.id}`);
+      } catch {
+        showToast('Koneksi gagal, coba lagi.');
+        return;
+      }
     } else {
-      setIsUnlockModalOpen(false);
-      setIsCoinModalOpen(true);
+      // Offline fallback
+      setUserCoins(prev => prev - 5);
     }
+
+    setD1UnlockedChapters(prev => new Set([...prev, pendingUnlockChapter.id]));
+    setIsUnlockModalOpen(false);
+    showToast('Chapter berhasil dibuka!');
+    openChapterReader(pendingUnlockChapter, pendingMangaTitle);
+    setPendingUnlockChapter(null);
   };
 
   const handleTabClick = (tab) => {
