@@ -572,6 +572,32 @@ async function handleUser(request, env) {
     return json({ ok: true, transferred: coinsToTransfer });
   }
 
+  // GET /api/user/transactions — riwayat transaksi koin
+  if (pathname === '/api/user/transactions' && request.method === 'GET') {
+    const url   = new URL(request.url);
+    const page  = Math.max(1, parseInt(url.searchParams.get('page') || '1'));
+    const limit = Math.min(20, parseInt(url.searchParams.get('limit') || '10'));
+    const offset = (page - 1) * limit;
+
+    const rows = await env.DB.prepare(
+      `SELECT id, amount, type, note, created_at
+       FROM coin_transactions WHERE user_id = ?
+       ORDER BY created_at DESC LIMIT ? OFFSET ?`
+    ).bind(user.sub, limit, offset).all();
+
+    const total = await env.DB.prepare(
+      'SELECT COUNT(*) as n FROM coin_transactions WHERE user_id = ?'
+    ).bind(user.sub).first();
+
+    return json({
+      data: rows.results || [],
+      page,
+      limit,
+      total: total?.n ?? 0,
+      pages: Math.ceil((total?.n ?? 0) / limit),
+    });
+  }
+
   return json({ error: 'Not found' }, 404);
 }
 

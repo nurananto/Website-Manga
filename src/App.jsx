@@ -4,13 +4,137 @@ import FeaturedCarousel from './components/FeaturedCarousel';
 import MangaCard from './components/MangaCard';
 import ReaderModal from './components/ReaderModal';
 import MangaDetailPage from './components/MangaDetailPage';
-import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield, HelpCircle, Star, Search, Key, X, Coffee, CheckCircle, ArrowRight } from 'lucide-react';
+import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield, HelpCircle, Star, Search, Key, X, Coffee, CheckCircle, ArrowRight, Coins, ChevronLeft, ChevronRight } from 'lucide-react';
 import { imgUrl, timeAgo } from './utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthModal, CoinPurchaseModal, UnlockModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { supabase } from './lib/supabase';
+
+// ── History Tabs: Baca + Koin ────────────────────────────────
+function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUser, workerUrl, supabase }) {
+  const [tab, setTab] = useState('read');
+  const [txData, setTxData] = useState(null);
+  const [txPage, setTxPage] = useState(1);
+  const [txLoading, setTxLoading] = useState(false);
+  const CACHE_KEY = `tx_cache_${currentUser?.id || 'guest'}`;
+  const CACHE_TTL = 365 * 24 * 3600 * 1000; // 1 tahun
+
+  const fetchTransactions = async (page = 1) => {
+    if (!isLoggedIn) return;
+    const cacheRaw = localStorage.getItem(CACHE_KEY);
+    if (cacheRaw && page === 1) {
+      try {
+        const cache = JSON.parse(cacheRaw);
+        if (Date.now() - cache.ts < CACHE_TTL) { setTxData(cache.data); return; }
+      } catch {}
+    }
+    setTxLoading(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.access_token) return;
+      const res = await fetch(`${workerUrl}/api/user/transactions?page=${page}&limit=10`, {
+        headers: { 'Authorization': `Bearer ${session.access_token}` },
+      });
+      const d = await res.json();
+      setTxData(d);
+      if (page === 1) localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: d }));
+    } catch {} finally { setTxLoading(false); }
+  };
+
+  useEffect(() => { if (tab === 'coin') fetchTransactions(txPage); }, [tab, txPage]);
+
+  return (
+    <div className="flex flex-col gap-4">
+      {/* Sub-tabs */}
+      <div className="flex gap-1 bg-surface-container-high rounded-xl p-1">
+        {[{ id: 'read', label: 'Riwayat Baca' }, { id: 'coin', label: 'Riwayat Koin' }].map(t => (
+          <button key={t.id} onClick={() => setTab(t.id)}
+            className={`flex-1 h-9 rounded-lg text-xs font-bold transition-all cursor-pointer ${tab === t.id ? 'bg-surface-container text-on-surface shadow-sm' : 'text-outline hover:text-on-surface'}`}>
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Riwayat Baca */}
+      {tab === 'read' && (
+        historyEntries.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-16 text-outline">
+            <RotateCcw className="w-10 h-10 opacity-20 mb-3" />
+            <p className="font-bold">Belum ada riwayat baca</p>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-2">
+            {historyEntries.map(({ manga, chapter }) => (
+              <div key={manga.id} onClick={() => handleReadChapter(chapter, manga.title)}
+                className="flex items-stretch gap-3 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
+                <img alt={manga.title} src={imgUrl(manga.coverUrl)}
+                  className="w-auto object-cover rounded-lg border border-white/10 shrink-0 shadow-md"
+                  style={{ aspectRatio: '2/3' }} />
+                <div className="min-w-0 flex-1 flex flex-col justify-center gap-0.5">
+                  <h3 className="font-headline-md text-sm sm:text-base font-black text-on-surface line-clamp-1">{manga.title}</h3>
+                  <p className="text-xs font-bold text-primary truncate">{chapter.title}</p>
+                  <p className="text-[10px] text-outline/60">{chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}</p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-outline/30 group-hover:text-primary shrink-0 self-center" />
+              </div>
+            ))}
+          </div>
+        )
+      )}
+
+      {/* Riwayat Koin */}
+      {tab === 'coin' && (
+        !isLoggedIn ? (
+          <p className="text-center text-outline py-10 text-sm">Login untuk melihat riwayat koin</p>
+        ) : txLoading ? (
+          <div className="flex justify-center py-10"><div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin" /></div>
+        ) : !txData || txData.data?.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-16 text-outline">
+            <Coins className="w-10 h-10 opacity-20 mb-3" />
+            <p className="font-bold">Belum ada transaksi koin</p>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-2">
+            {txData.data.map(tx => {
+              const isPositive = tx.type === 'trakteer';
+              const coinAmount = isPositive ? `+${tx.amount}` : `-${Math.abs(tx.amount)}`;
+              return (
+                <div key={tx.id} className="flex items-center gap-3 bg-surface-container border border-white/8 rounded-xl p-3">
+                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${isPositive ? 'bg-emerald-500/10' : 'bg-red-500/10'}`}>
+                    <Coins className={`w-4 h-4 ${isPositive ? 'text-emerald-400' : 'text-red-400'}`} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm font-bold text-on-surface truncate">{tx.note || tx.type}</p>
+                    <p className="text-[10px] text-outline/60">{tx.created_at ? timeAgo(tx.created_at) : '—'}</p>
+                  </div>
+                  <span className={`text-sm font-black shrink-0 ${isPositive ? 'text-emerald-400' : 'text-red-400'}`}>
+                    {coinAmount}
+                  </span>
+                </div>
+              );
+            })}
+            {/* Pagination */}
+            {txData.pages > 1 && (
+              <div className="flex items-center justify-center gap-3 pt-2">
+                <button onClick={() => setTxPage(p => Math.max(1, p - 1))} disabled={txPage === 1}
+                  className="w-8 h-8 rounded-lg bg-surface-container-high border border-white/8 flex items-center justify-center disabled:opacity-30 cursor-pointer">
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <span className="text-xs text-outline">{txPage} / {txData.pages}</span>
+                <button onClick={() => setTxPage(p => Math.min(txData.pages, p + 1))} disabled={txPage === txData.pages}
+                  className="w-8 h-8 rounded-lg bg-surface-container-high border border-white/8 flex items-center justify-center disabled:opacity-30 cursor-pointer">
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            )}
+          </div>
+        )
+      )}
+    </div>
+  );
+}
 
 export default function App() {
   const [MANGA_LIST, setMangaList] = useState([]);
@@ -580,49 +704,19 @@ export default function App() {
                   <div className="border-b border-white/5 pb-4">
                     <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface flex items-center gap-3">
                       <RotateCcw className="w-6 h-6 text-sky-400" />
-                      Riwayat Baca
+                      Riwayat
                     </h2>
-                    <p className="text-outline text-sm mt-1">Chapter terakhir yang kamu baca per manga.</p>
                   </div>
 
-                  {historyEntries.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center py-20 text-outline">
-                      <RotateCcw className="w-12 h-12 opacity-20 mb-4" />
-                      <p className="text-lg font-bold">Belum ada riwayat</p>
-                      <p className="text-sm">Mulai baca manga untuk melihat riwayat di sini</p>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col gap-3">
-                      {historyEntries.map(({ manga, chapter }) => (
-                        <div
-                          key={manga.id}
-                          onClick={() => handleReadChapter(chapter, manga.title)}
-                          className="flex items-stretch gap-3 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group"
-                        >
-                          {/* Cover — tinggi mengikuti konten teks */}
-                          <img
-                            alt={manga.title}
-                            className="w-auto object-cover rounded-lg border border-white/10 shrink-0 shadow-md group-hover:scale-[1.02] transition-transform duration-300"
-                            style={{ aspectRatio: '2/3' }}
-                            src={imgUrl(manga.coverUrl)}
-                          />
-                          {/* Info */}
-                          <div className="min-w-0 flex-1 flex flex-col justify-center gap-0.5 sm:gap-1">
-                            <h3 className="font-headline-md text-sm sm:text-base md:text-lg font-black text-on-surface leading-tight line-clamp-1">
-                              {manga.title}
-                            </h3>
-                            <p className="text-xs sm:text-sm font-bold text-primary truncate">
-                              {chapter.title}
-                            </p>
-                            <p className="text-[10px] sm:text-xs text-outline/60 truncate">
-                              {chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}
-                            </p>
-                          </div>
-                          <ArrowRight className="w-4 h-4 text-outline/30 group-hover:text-primary shrink-0 self-center transition-colors" />
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  {/* Sub-tab */}
+                  <HistoryTabs
+                    historyEntries={historyEntries}
+                    handleReadChapter={handleReadChapter}
+                    isLoggedIn={isLoggedIn}
+                    currentUser={currentUser}
+                    workerUrl={import.meta.env.VITE_WORKER_URL || ''}
+                    supabase={supabase}
+                  />
                 </section>
               );
             })()}
