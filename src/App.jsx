@@ -39,7 +39,8 @@ function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUse
       });
       const d = await res.json();
       setTxData(d);
-      if (page === 1) localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: d }));
+      // Hanya cache kalau ada data
+      if (page === 1 && d.data?.length > 0) localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: d }));
     } catch {} finally { setTxLoading(false); }
   };
 
