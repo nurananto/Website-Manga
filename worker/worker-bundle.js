@@ -556,15 +556,23 @@ async function handleUser(request, env) {
 
     const coinsToTransfer = trkUser.coins;
 
-    // Transfer ke akun Supabase + reset koin di akun trk
-    await env.DB.batch([
-      env.DB.prepare('INSERT OR IGNORE INTO users (id, email, coins) VALUES (?, ?, 0)')
-        .bind(user.sub, email),
-      env.DB.prepare('UPDATE users SET coins = coins + ? WHERE id = ?')
-        .bind(coinsToTransfer, user.sub),
-      env.DB.prepare('UPDATE users SET coins = 0 WHERE id = ?')
-        .bind(trkId),
-    ]);
+    // Cek apakah akun Supabase sudah ada di D1
+    const existingUser = await env.DB.prepare(
+      'SELECT id FROM users WHERE id = ?'
+    ).bind(user.sub).first();
+
+    if (existingUser) {
+      // Akun sudah ada → tambah koin + zero out trk-
+      await env.DB.batch([
+        env.DB.prepare('UPDATE users SET coins = coins + ? WHERE id = ?').bind(coinsToTransfer, user.sub),
+        env.DB.prepare('UPDATE users SET coins = 0 WHERE id = ?').bind(trkId),
+      ]);
+    } else {
+      // Belum ada → rename trk- record ke Supabase UUID (hindari email UNIQUE conflict)
+      await env.DB.prepare(
+        'UPDATE users SET id = ? WHERE id = ?'
+      ).bind(user.sub, trkId).run();
+    }
 
     console.log(`Claim coins: ${coinsToTransfer} koin dari ${trkId} → ${user.sub}`);
     return json({ ok: true, transferred: coinsToTransfer });
