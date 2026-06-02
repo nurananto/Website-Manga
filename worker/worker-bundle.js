@@ -569,15 +569,8 @@ async function handleWebhook(request, env) {
   try { data = JSON.parse(body); }
   catch { return json({ error: 'Invalid JSON' }, 400); }
 
-  // Debug: log payload structure
-  console.log('Trakteer payload keys:', Object.keys(data));
-  console.log('Trakteer payload:', JSON.stringify(data));
-
-  const { payment_id, supporter_email, supporter_name, amount } = data;
-  // Validasi tipe dan panjang field
-  if (!isStr(payment_id, 200) || !isStr(supporter_email, 254) || !isNum(Number(amount))) {
-    return json({ error: 'Invalid fields', received: { payment_id, supporter_email, amount } }, 400);
-  }
+  // DEBUG: return full payload untuk lihat struktur Trakteer
+  return json({ debug: true, keys: Object.keys(data), payload: data }, 200);
 
   // Cek duplikat
   const exists = await env.DB.prepare(
