@@ -69,16 +69,16 @@ function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUse
           <div className="flex flex-col gap-2">
             {historyEntries.map(({ manga, chapter }) => (
               <div key={manga.id} onClick={() => handleReadChapter(chapter, manga.title)}
-                className="flex items-stretch gap-3 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
+                className="flex items-stretch gap-3 sm:gap-4 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 sm:p-3 md:p-4 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
                 <img alt={manga.title} src={imgUrl(manga.coverUrl)}
                   className="object-cover rounded-lg border border-white/10 shrink-0 shadow-md"
-                  style={{ aspectRatio: '2/3', width: 'auto', maxHeight: '72px' }} />
-                <div className="min-w-0 flex-1 flex flex-col justify-center gap-0.5">
-                  <h3 className="font-headline-md text-sm sm:text-base font-black text-on-surface line-clamp-1">{manga.title}</h3>
-                  <p className="text-xs font-bold text-primary truncate">{chapter.title}</p>
-                  <p className="text-[10px] text-outline/60">{chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}</p>
+                  style={{ aspectRatio: '2/3', width: 'auto', maxHeight: 'calc(1.25rem + 2.5rem + 1.25rem + 0.5rem)' }} />
+                <div className="min-w-0 flex-1 flex flex-col justify-center gap-0.5 sm:gap-1">
+                  <h3 className="font-headline-md text-sm sm:text-base md:text-lg font-black text-on-surface line-clamp-1">{manga.title}</h3>
+                  <p className="text-xs sm:text-sm md:text-base font-bold text-primary truncate">{chapter.title}</p>
+                  <p className="text-[10px] sm:text-xs md:text-sm text-outline/60">{chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}</p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-outline/30 group-hover:text-primary shrink-0 self-center" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-outline/30 group-hover:text-primary shrink-0 self-center transition-colors" />
               </div>
             ))}
           </div>
