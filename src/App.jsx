@@ -442,6 +442,28 @@ export default function App() {
               setIsAuthModalOpen(true);
             }
           }}
+          onDropdownOpen={async () => {
+            if (!isLoggedIn || !currentUser) return;
+            const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+            if (!workerUrl) return;
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.access_token) return;
+            const headers = { 'Authorization': `Bearer ${session.access_token}` };
+            const claimEmail = currentUser.user_metadata?.trakteer_email || currentUser.email;
+            if (claimEmail) {
+              fetch(`${workerUrl}/api/user/claim-coins`, {
+                method: 'POST',
+                headers: { ...headers, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ trakteer_email: claimEmail }),
+              }).then(r => r.json()).then(d => {
+                if (d.transferred > 0) localStorage.removeItem(`tx_cache_${currentUser.id}`);
+              }).catch(() => {}).finally(() => {
+                fetch(`${workerUrl}/api/user/me`, { headers })
+                  .then(r => r.json()).then(d => { if (typeof d.coins === 'number') setUserCoins(d.coins); })
+                  .catch(() => {});
+              });
+            }
+          }}
         />
       )}
 
