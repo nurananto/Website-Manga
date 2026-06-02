@@ -541,10 +541,14 @@ async function handleUser(request, env) {
     const email = trakteer_email.trim().toLowerCase();
     const trkId = `trk-${email}`;
 
+    console.log(`claim-coins: user.sub=${user.sub}, email=${email}, trkId=${trkId}`);
+
     // Cari koin yang pending di akun Trakteer
     const trkUser = await env.DB.prepare(
       'SELECT coins FROM users WHERE id = ? AND coins > 0'
     ).bind(trkId).first();
+
+    console.log(`claim-coins: trkUser=`, JSON.stringify(trkUser));
 
     if (!trkUser || trkUser.coins <= 0) {
       return json({ ok: true, transferred: 0, note: 'Tidak ada koin pending' });
