@@ -103,14 +103,14 @@ function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUse
               const coinAmount = isPositive ? `+${tx.amount}` : `-${Math.abs(tx.amount)}`;
               return (
                 <div key={tx.id} className="flex items-center gap-3 bg-surface-container border border-white/8 rounded-xl p-3">
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${isPositive ? 'bg-emerald-500/10' : 'bg-red-500/10'}`}>
-                    <Coins className={`w-4 h-4 ${isPositive ? 'text-emerald-400' : 'text-red-400'}`} />
+                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${isPositive ? 'bg-amber-500/10' : 'bg-red-500/10'}`}>
+                    <Coins className={`w-4 h-4 ${isPositive ? 'text-amber-400' : 'text-red-400'}`} />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-xs sm:text-sm font-bold text-on-surface truncate">{tx.note || tx.type}</p>
                     <p className="text-[10px] text-outline/60">{tx.created_at ? timeAgo(tx.created_at) : '—'}</p>
                   </div>
-                  <span className={`text-sm font-black shrink-0 ${isPositive ? 'text-emerald-400' : 'text-red-400'}`}>
+                  <span className={`text-sm font-black shrink-0 ${isPositive ? 'text-amber-400' : 'text-red-400'}`}>
                     {coinAmount}
                   </span>
                 </div>
