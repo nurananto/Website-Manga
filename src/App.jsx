@@ -597,27 +597,28 @@ export default function App() {
                         <div
                           key={manga.id}
                           onClick={() => handleReadChapter(chapter, manga.title)}
-                          className="flex items-center gap-3 sm:gap-4 md:gap-5 bg-surface-container border border-white/8 hover:border-primary/30 rounded-2xl p-3 sm:p-4 md:p-5 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group"
+                          className="flex items-stretch gap-3 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group"
                         >
-                          {/* Cover */}
+                          {/* Cover — tinggi mengikuti konten teks */}
                           <img
                             alt={manga.title}
-                            className="w-[64px] sm:w-[80px] md:w-[100px] lg:w-[110px] aspect-[2/3] object-cover rounded-xl border border-white/10 shrink-0 shadow-lg group-hover:scale-[1.02] transition-transform duration-300"
+                            className="w-auto object-cover rounded-lg border border-white/10 shrink-0 shadow-md group-hover:scale-[1.02] transition-transform duration-300"
+                            style={{ aspectRatio: '2/3' }}
                             src={imgUrl(manga.coverUrl)}
                           />
                           {/* Info */}
-                          <div className="min-w-0 flex-1 flex flex-col gap-1 sm:gap-1.5 md:gap-2">
-                            <h3 className="font-headline-md text-base sm:text-lg md:text-xl lg:text-2xl font-black text-on-surface leading-tight line-clamp-2">
+                          <div className="min-w-0 flex-1 flex flex-col justify-center gap-0.5 sm:gap-1">
+                            <h3 className="font-headline-md text-sm sm:text-base md:text-lg font-black text-on-surface leading-tight line-clamp-1">
                               {manga.title}
                             </h3>
-                            <p className="text-sm sm:text-base md:text-lg font-bold text-primary">
+                            <p className="text-xs sm:text-sm font-bold text-primary truncate">
                               {chapter.title}
                             </p>
-                            <p className="text-xs sm:text-sm md:text-base text-outline/60">
-                              Terakhir baca {chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}
+                            <p className="text-[10px] sm:text-xs text-outline/60 truncate">
+                              {chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}
                             </p>
                           </div>
-                          <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-outline/30 group-hover:text-primary shrink-0 transition-colors" />
+                          <ArrowRight className="w-4 h-4 text-outline/30 group-hover:text-primary shrink-0 self-center transition-colors" />
                         </div>
                       ))}
                     </div>
