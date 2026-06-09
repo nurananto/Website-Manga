@@ -44,15 +44,18 @@ function CountdownLarge({ unlockDate }) {
 }
 
 function PageImage({ src, idx, pageRefs }) {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded,   setLoaded]   = useState(false);
+  const [failed,   setFailed]   = useState(false);
   const [progress, setProgress] = useState(0);
+  const [retrySrc, setRetrySrc] = useState(src);
 
   useEffect(() => {
     setLoaded(false);
+    setFailed(false);
     setProgress(0);
+    setRetrySrc(src);
     let current = 0;
     const id = setInterval(() => {
-      // Decelerate as we approach 85% — never reaches 100 until actual load
       const step = Math.max(1, Math.round((85 - current) / 8));
       current = Math.min(85, current + step);
       setProgress(current);
@@ -61,9 +64,14 @@ function PageImage({ src, idx, pageRefs }) {
     return () => clearInterval(id);
   }, [src]);
 
-  const handleLoad = () => {
-    setProgress(100);
-    setTimeout(() => setLoaded(true), 150);
+  const handleLoad  = () => { setProgress(100); setTimeout(() => setLoaded(true), 150); };
+  const handleError = () => { setFailed(true); };
+  const handleRetry = () => {
+    setFailed(false);
+    setLoaded(false);
+    setProgress(0);
+    // Append cache-busting param to force re-fetch
+    setRetrySrc(`${src}${src.includes('?') ? '&' : '?'}_r=${Date.now()}`);
   };
 
   return (
@@ -72,7 +80,7 @@ function PageImage({ src, idx, pageRefs }) {
       className="w-full relative"
       style={{ minHeight: loaded ? 'auto' : '85vh' }}
     >
-      {!loaded && (
+      {!loaded && !failed && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11] gap-3">
           <div className="flex flex-col items-center gap-2 w-40">
             <div className="w-full h-1 bg-white/8 rounded-full overflow-hidden">
@@ -81,18 +89,30 @@ function PageImage({ src, idx, pageRefs }) {
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <span className="font-mono text-[11px] font-bold text-outline/40 tabular-nums">{progress}%</span>
+            <span className="font-label-sm text-[10px] sm:text-xs font-bold text-outline/40 tabular-nums">{progress}%</span>
           </div>
+        </div>
+      )}
+      {failed && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11] gap-3">
+          <span className="font-body-md text-sm text-outline/50">Gagal memuat halaman {idx + 1}</span>
+          <button
+            onClick={handleRetry}
+            className="font-label-sm text-xs font-bold px-4 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-colors cursor-pointer"
+          >
+            Coba lagi
+          </button>
         </div>
       )}
       <img
         alt={`Page ${idx + 1}`}
-        loading={idx === 0 ? 'eager' : 'lazy'}
-        decoding={idx === 0 ? 'sync' : 'async'}
+        loading="eager"
+        decoding={idx < 3 ? 'sync' : 'async'}
         fetchpriority={idx === 0 ? 'high' : 'auto'}
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
-        src={src}
+        src={retrySrc}
         onLoad={handleLoad}
+        onError={handleError}
       />
     </div>
   );
@@ -369,7 +389,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             {/* Pemisah navigasi dan gambar pertama */}
             <div className="h-px bg-white/20" />
 
-            <div className="w-full lg:max-w-[720px] lg:mx-auto">
+            <div
+              className="w-full lg:max-w-[720px] lg:mx-auto"
+              onClick={() => setBarExpanded(v => !v)}
+            >
               {pages.map((p, idx) => (
                 <PageImage
                   key={idx}
@@ -424,24 +447,48 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
           onMouseLeave={() => setBarExpanded(false)}
           onClick={() => setBarExpanded(v => !v)}
         >
-          {/* Expanded: pill segments + bubble halaman */}
+          {/* Bubble layer — di luar overflow-hidden agar tidak ter-clip */}
+          {barExpanded && (
+            <div className="flex items-end px-3 gap-2 pointer-events-none select-none">
+              <div className="w-5 shrink-0" />
+              <div className="flex-1 flex gap-[3px]">
+                {Array.from({ length: pageCount }).map((_, i) => (
+                  <div key={i} className="flex-1 flex flex-col items-center">
+                    {i === currentPage ? (
+                      <div className="flex flex-col items-center">
+                        {/* Pill */}
+                        <div className="bg-primary text-on-primary font-label-sm text-[10px] sm:text-xs font-black px-2 py-0.5 rounded-full whitespace-nowrap leading-none min-w-[20px] text-center">
+                          {i + 1}
+                        </div>
+                        {/* Arrow pointing down */}
+                        <div className="w-0 h-0 border-l-[4px] border-r-[4px] border-t-[5px] border-l-transparent border-r-transparent border-t-primary" />
+                      </div>
+                    ) : (
+                      <div className="h-[21px]" />
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="w-5 shrink-0" />
+            </div>
+          )}
+
+          {/* Expanded: pill segments */}
           <div
             className={`overflow-hidden transition-all duration-200 bg-black/80 backdrop-blur-sm flex items-center gap-2 px-3 ${barExpanded ? 'h-9' : 'h-0'}`}
           >
             <span className="font-label-sm text-xs md:text-sm font-bold text-white/50 shrink-0 w-5 text-right tabular-nums">
-              {currentPage + 1}
+              1
             </span>
-            <div className="flex-1 flex items-center gap-[3px] relative">
+            <div className="flex-1 flex items-center gap-[3px]">
               {Array.from({ length: pageCount }).map((_, i) => (
                 <div key={i} className="flex-1 relative group/seg">
-                  {/* Bubble nomor halaman */}
-                  <div className={`absolute bottom-full mb-1.5 left-1/2 -translate-x-1/2
-                    font-label-sm text-[10px] font-black px-1.5 py-0.5 rounded-md pointer-events-none
+                  {/* Bubble hover untuk non-aktif */}
+                  <div className={`absolute bottom-full mb-1 left-1/2 -translate-x-1/2
+                    font-label-sm text-[10px] sm:text-xs font-black px-1.5 py-0.5 rounded-md pointer-events-none
                     opacity-0 group-hover/seg:opacity-100 transition-opacity duration-100 whitespace-nowrap
-                    ${i <= currentPage
-                      ? 'bg-primary text-on-primary'
-                      : 'bg-white/20 text-white/70'
-                    }`}>
+                    bg-white/20 text-white/70
+                    ${i === currentPage ? 'hidden' : ''}`}>
                     {i + 1}
                   </div>
                   {/* Pill */}
