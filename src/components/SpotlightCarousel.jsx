@@ -11,8 +11,8 @@ const STATUS_CFG = {
 const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-400' };
 
 // Scale & opacity for each distance level (0 = active, 1 = adjacent, ...)
-const SCALES    = [1, 0.86, 0.74, 0.64, 0.56, 0.50];
-const OPACITIES = [1, 0.90, 0.76, 0.60, 0.44, 0.30];
+const SCALES    = [1, 0.91, 0.80, 0.70, 0.62, 0.55];
+const OPACITIES = [1, 0.92, 0.78, 0.62, 0.46, 0.32];
 
 // Gap between items (extra offset added to negative margin)
 const ITEM_GAP = 10;
@@ -107,8 +107,8 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
 
       {/* ── Cover row — centered flex, no scroll ── */}
       <div
-        className="absolute inset-0 flex items-start justify-center z-10"
-        style={{ paddingTop: PAD_V }}
+        className="absolute inset-0 flex items-center justify-center z-10"
+        style={{ paddingTop: PAD_V, paddingBottom: PAD_V }}
       >
         {items.map(({ logIdx, offset, dist }) => {
           const manga     = mangaList[logIdx];
@@ -128,7 +128,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
               style={{
                 width:            coverW,
                 transform:        `scale(${scale})`,
-                transformOrigin:  'center top',
+                transformOrigin:  'center center',
                 opacity,
                 marginLeft:       nm,
                 marginRight:      nm,
