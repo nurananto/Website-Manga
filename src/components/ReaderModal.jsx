@@ -44,12 +44,12 @@ function CountdownLarge({ unlockDate }) {
 }
 
 function PageImage({ src, idx, pageRefs }) {
-  const [loaded,   setLoaded]   = useState(false);
-  const [failed,   setFailed]   = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [retrySrc, setRetrySrc] = useState(src);
+  const [loaded,      setLoaded]      = useState(false);
+  const [failed,      setFailed]      = useState(false);
+  const [progress,    setProgress]    = useState(0);
+  const [retryCount,  setRetryCount]  = useState(0);
   // inView: true for first 3 pages immediately, others wait for IntersectionObserver
-  const [inView,   setInView]   = useState(idx < 3);
+  const [inView,      setInView]      = useState(idx < 3);
   const wrapRef = useRef(null);
 
   // Start tracking viewport entry for lazy pages
@@ -71,7 +71,6 @@ function PageImage({ src, idx, pageRefs }) {
     setLoaded(false);
     setFailed(false);
     setProgress(0);
-    setRetrySrc(src);
     let current = 0;
     const id = setInterval(() => {
       const step = Math.max(1, Math.round((85 - current) / 8));
@@ -80,7 +79,7 @@ function PageImage({ src, idx, pageRefs }) {
       if (current >= 85) clearInterval(id);
     }, 120);
     return () => clearInterval(id);
-  }, [src, inView]);
+  }, [src, inView, retryCount]);
 
   const imgRef = useRef(null);
 
@@ -90,7 +89,7 @@ function PageImage({ src, idx, pageRefs }) {
     setFailed(false);
     setLoaded(false);
     setProgress(0);
-    setRetrySrc(`${src}${src.includes('?') ? '&' : '?'}_r=${Date.now()}`);
+    setRetryCount(c => c + 1);
   };
 
   // Gambar mungkin sudah ada di cache sehingga onLoad tidak fire — cek img.complete
@@ -99,7 +98,7 @@ function PageImage({ src, idx, pageRefs }) {
     if (!img || loaded || failed) return;
     if (img.complete && img.naturalWidth > 0) handleLoad();
     else if (img.complete && img.naturalWidth === 0) handleError();
-  }, [retrySrc]); // eslint-disable-line
+  }, [retryCount]); // eslint-disable-line
 
   return (
     <div
@@ -132,13 +131,14 @@ function PageImage({ src, idx, pageRefs }) {
         </div>
       )}
       <img
+        key={retryCount}
         alt={`Page ${idx + 1}`}
         loading={idx < 3 ? 'eager' : 'lazy'}
         decoding={idx < 3 ? 'sync' : 'async'}
         fetchpriority={idx === 0 ? 'high' : 'auto'}
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
         ref={imgRef}
-        src={retrySrc}
+        src={src}
         onLoad={handleLoad}
         onError={handleError}
       />
@@ -481,9 +481,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
               <div className="w-5 shrink-0" />
               <div className="flex-1 flex gap-[3px]">
                 {Array.from({ length: pageCount }).map((_, i) => (
-                  <div key={i} className="flex-1 flex flex-col items-center">
-                    {i === currentPage ? (
-                      <div className="flex flex-col items-center">
+                  <div key={i} className="flex-1 relative" style={{ height: 21 }}>
+                    {i === currentPage && (
+                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center">
                         {/* Pill */}
                         <div className="bg-primary text-on-primary font-label-sm text-[10px] sm:text-xs font-black px-2 py-0.5 rounded-full whitespace-nowrap leading-none min-w-[20px] text-center">
                           {i + 1}
@@ -491,8 +491,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                         {/* Arrow pointing down */}
                         <div className="w-0 h-0 border-l-[4px] border-r-[4px] border-t-[5px] border-l-transparent border-r-transparent border-t-primary" />
                       </div>
-                    ) : (
-                      <div className="h-[21px]" />
                     )}
                   </div>
                 ))}
@@ -505,7 +503,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
           <div
             className={`overflow-hidden transition-all duration-200 bg-black/80 backdrop-blur-sm flex items-center gap-2 px-3 ${barExpanded ? 'h-9' : 'h-0'}`}
           >
-            <span className="font-label-sm text-xs md:text-sm font-bold text-white/50 shrink-0 w-5 text-right tabular-nums">
+            <span className="font-label-sm text-xs md:text-sm font-bold text-white/50 shrink-0 w-5 text-right tabular-nums leading-none">
               1
             </span>
             <div className="flex-1 flex items-center gap-[3px]">
@@ -529,7 +527,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                 </div>
               ))}
             </div>
-            <span className="font-label-sm text-xs md:text-sm font-bold text-white/50 shrink-0 w-5 tabular-nums">
+            <span className="font-label-sm text-xs md:text-sm font-bold text-white/50 shrink-0 w-5 tabular-nums leading-none">
               {pageCount}
             </span>
           </div>
