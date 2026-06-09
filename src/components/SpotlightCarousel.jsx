@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { imgUrl } from '../utils';
 import { Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,10 +10,17 @@ const STATUS_CFG = {
 };
 const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-400' };
 
-const SCALES    = [1, 0.76, 0.60, 0.49, 0.41, 0.35];
-const OPACITIES = [1, 0.85, 0.68, 0.50, 0.34, 0.20];
+// Scale & opacity for each distance level (0 = active, 1 = adjacent, ...)
+const SCALES    = [1, 0.74, 0.58, 0.47, 0.39, 0.33];
+const OPACITIES = [1, 0.82, 0.64, 0.46, 0.30, 0.18];
 
-// Match FeaturedCarousel cover dimensions (height: 220/260/300/340, cover 85-93%)
+// Max items shown on each side of active
+const MAX_SIDE = 3;
+// Gap between items (extra offset added to negative margin)
+const ITEM_GAP = 10;
+const PAD_V    = 12;
+
+// Match FeaturedCarousel cover dimensions (h: 220/260/300/340, cover ~88%)
 function getCoverW() {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
   if (w < 640)  return 120;
@@ -24,108 +31,53 @@ function getCoverW() {
 
 function getMostRecentIdx(list) {
   let best = 0, bestMs = 0;
-  list.forEach((manga, idx) => {
-    const t = (manga.chapters || []).reduce((m, ch) =>
-      Math.max(m, ch.release_date ? new Date(ch.release_date).getTime() : 0), 0);
-    if (t > bestMs) { bestMs = t; best = idx; }
+  list.forEach((manga, i) => {
+    const t = (manga.chapters || []).reduce(
+      (m, ch) => Math.max(m, ch.release_date ? new Date(ch.release_date).getTime() : 0), 0
+    );
+    if (t > bestMs) { bestMs = t; best = i; }
   });
   return best;
 }
 
-// Gap added between cover items
-const ITEM_GAP = 8;
-const PAD_V    = 12;
-
 export default function SpotlightCarousel({ mangaList, onViewManga }) {
   const N = mangaList.length;
+  const [activeIdx, setActiveIdx] = useState(() => getMostRecentIdx(mangaList));
+  const [coverW,    setCoverW]    = useState(getCoverW);
 
-  // Virtual tripled list for infinite loop: [copy_L][original][copy_R]
-  // dispIdx is always kept in [N, 2N).
-  const [dispIdx, setDispIdx] = useState(() => getMostRecentIdx(mangaList) + N);
-  const [coverW,  setCoverW]  = useState(getCoverW);
-  const [spacerW, setSpacerW] = useState(0);
-
-  const scrollRef = useRef(null);
-  const itemRefs  = useRef([]);
-  const autoRef   = useRef(null);
-  const snapping  = useRef(false);
-
-  const logicalIdx = ((dispIdx % N) + N) % N;
   const coverH     = Math.round(coverW * 1.5);
   const containerH = PAD_V + coverH + PAD_V;
 
-  // ── Measure ─────────────────────────────────────────────────────
+  // How many items to show on each side: limited by MAX_SIDE and available items
+  const side = Math.min(MAX_SIDE, Math.floor((N - 1) / 2));
+
+  // Build window: [active-side ... active ... active+side]
+  const items = Array.from({ length: 2 * side + 1 }, (_, i) => {
+    const offset  = i - side;                           // -side … +side
+    const logIdx  = ((activeIdx + offset) % N + N) % N; // circular
+    const dist    = Math.abs(offset);
+    return { logIdx, offset, dist };
+  });
+
   useEffect(() => {
-    const measure = () => {
-      const w = getCoverW();
-      setCoverW(w);
-      if (scrollRef.current)
-        setSpacerW(Math.max(0, Math.round(scrollRef.current.offsetWidth / 2 - w / 2)));
-    };
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
+    const onResize = () => setCoverW(getCoverW());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  // ── Scroll helpers ───────────────────────────────────────────────
-  const centerItem = useCallback((pos, smooth = true) => {
-    const el  = itemRefs.current[pos];
-    const box = scrollRef.current;
-    if (!el || !box) return;
-    const left = el.offsetLeft - box.offsetWidth / 2 + el.offsetWidth / 2;
-    box.scrollTo({ left, behavior: smooth ? 'smooth' : 'instant' });
-  }, []);
-
-  // Scroll and snap-back to middle copy when reaching edge copies
-  useEffect(() => {
-    if (snapping.current) { snapping.current = false; return; }
-
-    centerItem(dispIdx, true);
-
-    const snap = setTimeout(() => {
-      let target = dispIdx;
-      if (dispIdx >= 2 * N)  target = dispIdx - N;
-      else if (dispIdx < N)  target = dispIdx + N;
-      if (target !== dispIdx) {
-        snapping.current = true;
-        centerItem(target, false);
-        setDispIdx(target);
-      }
-    }, 420);
-
-    return () => clearTimeout(snap);
-  }, [dispIdx, N, centerItem]);
-
-  // Re-center instantly when cover size changes
-  useEffect(() => { centerItem(dispIdx, false); }, [coverW]); // eslint-disable-line
-
-  // ── Auto-advance ─────────────────────────────────────────────────
-  const resetAuto = useCallback(() => {
-    clearInterval(autoRef.current);
-    autoRef.current = setInterval(() => setDispIdx(p => p + 1), 5000);
-  }, []);
-
-  useEffect(() => { resetAuto(); return () => clearInterval(autoRef.current); }, [resetAuto]);
-
-  // ── Click handler ─────────────────────────────────────────────────
-  const handleClick = (pos) => {
-    resetAuto();
-    const clickedLogical = ((pos % N) + N) % N;
-    if (clickedLogical === logicalIdx) {
-      onViewManga(mangaList[logicalIdx]);
-    } else {
-      setDispIdx(pos);
-    }
+  const handleClick = (logIdx, dist) => {
+    if (dist === 0) onViewManga(mangaList[logIdx]);
+    else setActiveIdx(logIdx);
   };
 
-  const active = mangaList[logicalIdx];
+  const active = mangaList[activeIdx];
 
   return (
     <div
       className="relative w-full rounded-xl overflow-hidden"
       style={{ height: containerH }}
     >
-      {/* ── Blurred background ── */}
+      {/* ── Blurred background from active cover ── */}
       <AnimatePresence mode="wait">
         <motion.div
           key={active?.id}
@@ -135,52 +87,46 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
           transition={{ duration: 0.5 }}
           className="absolute inset-0 pointer-events-none z-0"
         >
-          <img src={imgUrl(active?.coverUrl)} alt=""
-            className="absolute inset-0 w-full h-full object-cover scale-150 blur-3xl opacity-55" />
+          <img
+            src={imgUrl(active?.coverUrl)} alt=""
+            className="absolute inset-0 w-full h-full object-cover scale-150 blur-3xl opacity-55"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/60 via-surface/10 to-surface/60" />
           <div className="absolute inset-0 bg-gradient-to-r from-surface/80 via-transparent to-surface/80" />
         </motion.div>
       </AnimatePresence>
 
-      {/* ── Covers row ── */}
+      {/* ── Cover row — centered flex, no scroll ── */}
       <div
-        ref={scrollRef}
-        className="absolute inset-0 flex items-start overflow-x-auto hide-scrollbar z-10"
+        className="absolute inset-0 flex items-start justify-center z-10"
         style={{ paddingTop: PAD_V }}
       >
-        {/* Left spacer */}
-        <div className="flex-shrink-0" style={{ width: spacerW }} />
-
-        {Array.from({ length: 3 * N }, (_, pos) => {
-          const logical   = pos % N;
-          const manga     = mangaList[logical];
-          const dist      = Math.abs(pos - dispIdx);
+        {items.map(({ logIdx, offset, dist }) => {
+          const manga     = mangaList[logIdx];
           const scale     = SCALES[Math.min(dist, SCALES.length - 1)];
           const opacity   = OPACITIES[Math.min(dist, OPACITIES.length - 1)];
-          const isActive  = pos === dispIdx;
+          const isActive  = dist === 0;
+          // Negative margin collapses the visual gap created by scale shrink
           const nm        = Math.round(-(coverW * (1 - scale)) / 2) + ITEM_GAP;
           const statusCfg = STATUS_CFG[manga.status] || ONGOING_CFG;
-          const rating    = manga.rating != null
-            ? Number(manga.rating).toFixed(1)
-            : null;
+          const rating    = manga.rating != null ? Number(manga.rating).toFixed(1) : null;
 
           return (
             <div
-              key={`${pos}-${logical}`}
-              ref={el => { itemRefs.current[pos] = el; }}
-              onClick={() => handleClick(pos)}
+              key={offset}   // stable slot key — content swaps, scale transitions smoothly
+              onClick={() => handleClick(logIdx, dist)}
               className="flex-shrink-0 cursor-pointer"
               style={{
-                width: coverW,
-                transform: `scale(${scale})`,
-                transformOrigin: 'center top',
+                width:            coverW,
+                transform:        `scale(${scale})`,
+                transformOrigin:  'center top',
                 opacity,
-                marginLeft:  nm,
-                marginRight: nm,
-                transition: 'transform 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.38s ease, margin 0.38s ease',
+                marginLeft:       nm,
+                marginRight:      nm,
+                transition:       'transform 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.38s ease, margin 0.38s ease',
               }}
             >
-              {/* Cover with title overlay at bottom */}
+              {/* Cover image with overlays */}
               <div
                 className="relative rounded-xl overflow-hidden shadow-2xl"
                 style={{ width: coverW, height: coverH }}
@@ -188,37 +134,43 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
                 <img
                   src={imgUrl(manga.coverUrl)}
                   alt={manga.title}
-                  className={`w-full h-full object-cover ${isActive ? 'brightness-105' : 'brightness-70'}`}
+                  className={`w-full h-full object-cover transition-[filter] duration-300 ${isActive ? 'brightness-105' : 'brightness-[0.65]'}`}
                   draggable={false}
                 />
 
-                {/* Active ring */}
+                {/* Active glow ring */}
                 {isActive && (
-                  <div className="absolute inset-0 rounded-xl ring-[2.5px] ring-white/35 ring-inset pointer-events-none" />
+                  <div className="absolute inset-0 rounded-xl ring-[2px] ring-white/30 ring-inset pointer-events-none" />
                 )}
 
-                {/* Rating — top left (active only) */}
+                {/* Rating badge — top left, squircle */}
                 {isActive && rating && (
-                  <div className="absolute top-2 left-2 flex items-center gap-0.5 bg-black/70 backdrop-blur-sm px-1.5 py-0.5 rounded-md">
-                    <Star className="w-2.5 h-2.5 text-amber-400 fill-current shrink-0" />
+                  <div
+                    className="absolute top-2 left-2 flex items-center gap-0.5 bg-black/72 backdrop-blur-sm px-[6px] py-[3px]"
+                    style={{ borderRadius: 5 }}
+                  >
+                    <Star className="w-[9px] h-[9px] text-amber-400 fill-current shrink-0" />
                     <span className="font-mono text-[10px] font-black text-white leading-none">
                       {rating}
                     </span>
                   </div>
                 )}
 
-                {/* Status — top right (active only), same badge style */}
+                {/* Status badge — top right, squircle, same dark bg */}
                 {isActive && (
-                  <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-sm px-1.5 py-0.5 rounded-md">
+                  <div
+                    className="absolute top-2 right-2 bg-black/72 backdrop-blur-sm px-[6px] py-[3px]"
+                    style={{ borderRadius: 5 }}
+                  >
                     <span className={`font-mono text-[10px] font-black uppercase leading-none ${statusCfg.textCls}`}>
                       {statusCfg.label}
                     </span>
                   </div>
                 )}
 
-                {/* Title overlay — bottom gradient (active only) */}
+                {/* Title — gradient overlay at bottom of cover */}
                 {isActive && (
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pt-6 pb-2 px-2">
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent pt-8 pb-2 px-2">
                     <p
                       className="font-bold text-white/95 text-center truncate leading-tight"
                       style={{ fontSize: coverW < 140 ? 10 : coverW < 170 ? 11 : 12 }}
@@ -231,9 +183,6 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
             </div>
           );
         })}
-
-        {/* Right spacer */}
-        <div className="flex-shrink-0" style={{ width: spacerW }} />
       </div>
     </div>
   );
