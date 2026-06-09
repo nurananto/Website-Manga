@@ -4,106 +4,121 @@ import { Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const STATUS_CFG = {
-  'Tamat':   { label: 'END',     cls: 'bg-red-500/25 text-red-300 border-red-500/50' },
-  'Hiatus':  { label: 'HIATUS',  cls: 'bg-zinc-500/25 text-zinc-300 border-zinc-500/50' },
-  'Oneshot': { label: 'ONESHOT', cls: 'bg-purple-500/25 text-purple-300 border-purple-500/50' },
+  'Tamat':   { label: 'END',     textCls: 'text-red-400' },
+  'Hiatus':  { label: 'HIATUS',  textCls: 'text-zinc-400' },
+  'Oneshot': { label: 'ONESHOT', textCls: 'text-purple-400' },
 };
-const ONGOING_CFG = { label: 'ONGOING', cls: 'bg-emerald-500/25 text-emerald-300 border-emerald-500/50' };
+const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-400' };
 
-// Scale & opacity by distance from active
-const SCALES   = [1, 0.78, 0.63, 0.52, 0.44, 0.38];
-const OPACITIES = [1, 0.88, 0.70, 0.52, 0.36, 0.22];
+const SCALES    = [1, 0.76, 0.60, 0.49, 0.41, 0.35];
+const OPACITIES = [1, 0.85, 0.68, 0.50, 0.34, 0.20];
 
-// Cover width at each breakpoint (px)
-const COVER_W_SM  = 96;   // <640
-const COVER_W_MD  = 112;  // 640-1023
-const COVER_W_LG  = 132;  // ≥1024
-
+// Match FeaturedCarousel cover dimensions (height: 220/260/300/340, cover 85-93%)
 function getCoverW() {
-  const w = typeof window !== 'undefined' ? window.innerWidth : 1024;
-  if (w < 640)  return COVER_W_SM;
-  if (w < 1024) return COVER_W_MD;
-  return COVER_W_LG;
+  const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
+  if (w < 640)  return 120;
+  if (w < 768)  return 150;
+  if (w < 1024) return 184;
+  return 208;
 }
 
-/** Index of manga with the most recent chapter release_date */
-function getMostRecentIdx(mangaList) {
-  let best = 0;
-  let bestMs = 0;
-  mangaList.forEach((manga, idx) => {
-    const latest = (manga.chapters || []).reduce((max, ch) => {
-      const t = ch.release_date ? new Date(ch.release_date).getTime() : 0;
-      return t > max ? t : max;
-    }, 0);
-    if (latest > bestMs) { bestMs = latest; best = idx; }
+function getMostRecentIdx(list) {
+  let best = 0, bestMs = 0;
+  list.forEach((manga, idx) => {
+    const t = (manga.chapters || []).reduce((m, ch) =>
+      Math.max(m, ch.release_date ? new Date(ch.release_date).getTime() : 0), 0);
+    if (t > bestMs) { bestMs = t; best = idx; }
   });
   return best;
 }
 
+// Gap added between cover items
+const ITEM_GAP = 8;
+const PAD_V    = 12;
+
 export default function SpotlightCarousel({ mangaList, onViewManga }) {
-  const [activeIdx, setActiveIdx] = useState(() => getMostRecentIdx(mangaList));
-  const [coverW, setCoverW] = useState(getCoverW);
+  const N = mangaList.length;
+
+  // Virtual tripled list for infinite loop: [copy_L][original][copy_R]
+  // dispIdx is always kept in [N, 2N).
+  const [dispIdx, setDispIdx] = useState(() => getMostRecentIdx(mangaList) + N);
+  const [coverW,  setCoverW]  = useState(getCoverW);
   const [spacerW, setSpacerW] = useState(0);
-  const scrollRef  = useRef(null);
-  const itemRefs   = useRef([]);
-  const autoRef    = useRef(null);
 
-  const coverH = Math.round(coverW * 1.5);
-  // Total container height: cover + title row + vertical padding
-  const containerH = coverH + (coverW < 100 ? 44 : 52);
+  const scrollRef = useRef(null);
+  const itemRefs  = useRef([]);
+  const autoRef   = useRef(null);
+  const snapping  = useRef(false);
 
-  // Update coverW and spacerW on resize
+  const logicalIdx = ((dispIdx % N) + N) % N;
+  const coverH     = Math.round(coverW * 1.5);
+  const containerH = PAD_V + coverH + PAD_V;
+
+  // ── Measure ─────────────────────────────────────────────────────
   useEffect(() => {
-    const onResize = () => {
-      setCoverW(getCoverW());
-      if (scrollRef.current) {
-        setSpacerW(Math.round(scrollRef.current.offsetWidth / 2 - getCoverW() / 2));
-      }
+    const measure = () => {
+      const w = getCoverW();
+      setCoverW(w);
+      if (scrollRef.current)
+        setSpacerW(Math.max(0, Math.round(scrollRef.current.offsetWidth / 2 - w / 2)));
     };
-    onResize();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
   }, []);
 
-  // Re-center when coverW changes
-  useEffect(() => { centerItem(activeIdx, false); }, [coverW]); // eslint-disable-line
-
-  const centerItem = useCallback((idx, smooth = true) => {
-    const container = scrollRef.current;
-    const el = itemRefs.current[idx];
-    if (!container || !el) return;
-    const left = el.offsetLeft - container.offsetWidth / 2 + el.offsetWidth / 2;
-    container.scrollTo({ left, behavior: smooth ? 'smooth' : 'instant' });
+  // ── Scroll helpers ───────────────────────────────────────────────
+  const centerItem = useCallback((pos, smooth = true) => {
+    const el  = itemRefs.current[pos];
+    const box = scrollRef.current;
+    if (!el || !box) return;
+    const left = el.offsetLeft - box.offsetWidth / 2 + el.offsetWidth / 2;
+    box.scrollTo({ left, behavior: smooth ? 'smooth' : 'instant' });
   }, []);
 
-  // Center on active change
-  useEffect(() => { centerItem(activeIdx); }, [activeIdx, centerItem]);
-
-  // Auto-advance every 5s
+  // Scroll and snap-back to middle copy when reaching edge copies
   useEffect(() => {
-    const tick = () => setActiveIdx(p => (p + 1) % mangaList.length);
-    autoRef.current = setInterval(tick, 5000);
-    return () => clearInterval(autoRef.current);
-  }, [mangaList.length]);
+    if (snapping.current) { snapping.current = false; return; }
 
-  const resetAuto = () => {
+    centerItem(dispIdx, true);
+
+    const snap = setTimeout(() => {
+      let target = dispIdx;
+      if (dispIdx >= 2 * N)  target = dispIdx - N;
+      else if (dispIdx < N)  target = dispIdx + N;
+      if (target !== dispIdx) {
+        snapping.current = true;
+        centerItem(target, false);
+        setDispIdx(target);
+      }
+    }, 420);
+
+    return () => clearTimeout(snap);
+  }, [dispIdx, N, centerItem]);
+
+  // Re-center instantly when cover size changes
+  useEffect(() => { centerItem(dispIdx, false); }, [coverW]); // eslint-disable-line
+
+  // ── Auto-advance ─────────────────────────────────────────────────
+  const resetAuto = useCallback(() => {
     clearInterval(autoRef.current);
-    autoRef.current = setInterval(
-      () => setActiveIdx(p => (p + 1) % mangaList.length),
-      5000
-    );
-  };
+    autoRef.current = setInterval(() => setDispIdx(p => p + 1), 5000);
+  }, []);
 
-  const handleClick = (idx) => {
+  useEffect(() => { resetAuto(); return () => clearInterval(autoRef.current); }, [resetAuto]);
+
+  // ── Click handler ─────────────────────────────────────────────────
+  const handleClick = (pos) => {
     resetAuto();
-    if (idx === activeIdx) {
-      onViewManga(mangaList[idx]);
+    const clickedLogical = ((pos % N) + N) % N;
+    if (clickedLogical === logicalIdx) {
+      onViewManga(mangaList[logicalIdx]);
     } else {
-      setActiveIdx(idx);
+      setDispIdx(pos);
     }
   };
 
-  const active = mangaList[activeIdx];
+  const active = mangaList[logicalIdx];
 
   return (
     <div
@@ -117,44 +132,44 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.55 }}
+          transition={{ duration: 0.5 }}
           className="absolute inset-0 pointer-events-none z-0"
         >
-          <img
-            src={imgUrl(active?.coverUrl)}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover scale-150 blur-3xl opacity-60"
-          />
-          {/* Vignettes */}
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/55 via-transparent to-surface/55" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/75 via-transparent to-surface/75" />
+          <img src={imgUrl(active?.coverUrl)} alt=""
+            className="absolute inset-0 w-full h-full object-cover scale-150 blur-3xl opacity-55" />
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/60 via-surface/10 to-surface/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface/80 via-transparent to-surface/80" />
         </motion.div>
       </AnimatePresence>
 
-      {/* ── Scrollable covers row ── */}
+      {/* ── Covers row ── */}
       <div
         ref={scrollRef}
         className="absolute inset-0 flex items-start overflow-x-auto hide-scrollbar z-10"
-        style={{ paddingTop: Math.round((containerH - coverH - (coverW < 100 ? 36 : 42)) / 2) }}
+        style={{ paddingTop: PAD_V }}
       >
-        {/* Left spacer — allows first item to be centered */}
+        {/* Left spacer */}
         <div className="flex-shrink-0" style={{ width: spacerW }} />
 
-        {mangaList.map((manga, idx) => {
-          const dist      = Math.abs(idx - activeIdx);
+        {Array.from({ length: 3 * N }, (_, pos) => {
+          const logical   = pos % N;
+          const manga     = mangaList[logical];
+          const dist      = Math.abs(pos - dispIdx);
           const scale     = SCALES[Math.min(dist, SCALES.length - 1)];
           const opacity   = OPACITIES[Math.min(dist, OPACITIES.length - 1)];
-          const isActive  = idx === activeIdx;
-          // Negative margin to collapse the extra space created by scale
-          const nm = Math.round(-(coverW * (1 - scale)) / 2);
+          const isActive  = pos === dispIdx;
+          const nm        = Math.round(-(coverW * (1 - scale)) / 2) + ITEM_GAP;
           const statusCfg = STATUS_CFG[manga.status] || ONGOING_CFG;
+          const rating    = manga.rating != null
+            ? Number(manga.rating).toFixed(1)
+            : null;
 
           return (
             <div
-              key={manga.id}
-              ref={el => { itemRefs.current[idx] = el; }}
-              onClick={() => handleClick(idx)}
-              className="flex-shrink-0 flex flex-col items-center cursor-pointer"
+              key={`${pos}-${logical}`}
+              ref={el => { itemRefs.current[pos] = el; }}
+              onClick={() => handleClick(pos)}
+              className="flex-shrink-0 cursor-pointer"
               style={{
                 width: coverW,
                 transform: `scale(${scale})`,
@@ -162,59 +177,57 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
                 opacity,
                 marginLeft:  nm,
                 marginRight: nm,
-                transition:  'transform 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.38s ease, margin 0.38s ease',
+                transition: 'transform 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.38s ease, margin 0.38s ease',
               }}
             >
-              {/* Cover image */}
+              {/* Cover with title overlay at bottom */}
               <div
-                className="relative rounded-lg overflow-hidden shadow-2xl"
+                className="relative rounded-xl overflow-hidden shadow-2xl"
                 style={{ width: coverW, height: coverH }}
               >
                 <img
                   src={imgUrl(manga.coverUrl)}
                   alt={manga.title}
-                  className={`w-full h-full object-cover ${isActive ? 'brightness-105' : 'brightness-80'}`}
+                  className={`w-full h-full object-cover ${isActive ? 'brightness-105' : 'brightness-70'}`}
                   draggable={false}
                 />
 
                 {/* Active ring */}
                 {isActive && (
-                  <div className="absolute inset-0 rounded-lg ring-2 ring-white/30 ring-inset pointer-events-none" />
+                  <div className="absolute inset-0 rounded-xl ring-[2.5px] ring-white/35 ring-inset pointer-events-none" />
                 )}
 
-                {/* Rating — top left */}
-                {isActive && (
-                  <div className="absolute top-1.5 left-1.5 flex items-center gap-0.5 bg-black/65 backdrop-blur-sm px-1.5 py-0.5 rounded-md">
+                {/* Rating — top left (active only) */}
+                {isActive && rating && (
+                  <div className="absolute top-2 left-2 flex items-center gap-0.5 bg-black/70 backdrop-blur-sm px-1.5 py-0.5 rounded-md">
                     <Star className="w-2.5 h-2.5 text-amber-400 fill-current shrink-0" />
                     <span className="font-mono text-[10px] font-black text-white leading-none">
-                      {manga.rating || '—'}
+                      {rating}
                     </span>
                   </div>
                 )}
 
-                {/* Status — top right */}
+                {/* Status — top right (active only), same badge style */}
                 {isActive && (
-                  <div
-                    className={`absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded-md text-[8px] font-black uppercase tracking-wider border backdrop-blur-sm ${statusCfg.cls}`}
-                  >
-                    {statusCfg.label}
+                  <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-sm px-1.5 py-0.5 rounded-md">
+                    <span className={`font-mono text-[10px] font-black uppercase leading-none ${statusCfg.textCls}`}>
+                      {statusCfg.label}
+                    </span>
+                  </div>
+                )}
+
+                {/* Title overlay — bottom gradient (active only) */}
+                {isActive && (
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pt-6 pb-2 px-2">
+                    <p
+                      className="font-bold text-white/95 text-center truncate leading-tight"
+                      style={{ fontSize: coverW < 140 ? 10 : coverW < 170 ? 11 : 12 }}
+                    >
+                      {manga.title}
+                    </p>
                   </div>
                 )}
               </div>
-
-              {/* Title — only visible when active */}
-              <p
-                className="font-body-md font-bold text-white/90 text-center truncate px-1 mt-1.5"
-                style={{
-                  width: coverW,
-                  fontSize: coverW < 100 ? 10 : coverW < 120 ? 11 : 12,
-                  opacity: isActive ? 1 : 0,
-                  transition: 'opacity 0.3s ease',
-                  lineHeight: '1.3',
-                }}
-              >
-                {manga.title}
-              </p>
             </div>
           );
         })}
@@ -222,11 +235,6 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
         {/* Right spacer */}
         <div className="flex-shrink-0" style={{ width: spacerW }} />
       </div>
-
-      {/* ── Hint label (tap once = select, twice = detail) — small, bottom center ── */}
-      <p className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[9px] text-white/25 font-semibold tracking-wide pointer-events-none z-10 whitespace-nowrap">
-        Tap sekali untuk pilih · Tap lagi untuk detail
-      </p>
     </div>
   );
 }
