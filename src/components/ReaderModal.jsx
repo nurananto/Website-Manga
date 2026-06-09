@@ -48,8 +48,26 @@ function PageImage({ src, idx, pageRefs }) {
   const [failed,   setFailed]   = useState(false);
   const [progress, setProgress] = useState(0);
   const [retrySrc, setRetrySrc] = useState(src);
+  // inView: true for first 3 pages immediately, others wait for IntersectionObserver
+  const [inView,   setInView]   = useState(idx < 3);
+  const wrapRef = useRef(null);
 
+  // Start tracking viewport entry for lazy pages
   useEffect(() => {
+    if (inView) return;
+    const el = wrapRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setInView(true); },
+      { rootMargin: '300px' } // pre-fetch 300px before visible
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [inView]);
+
+  // Start fake progress only once image is in view (= browser has started fetching)
+  useEffect(() => {
+    if (!inView) return;
     setLoaded(false);
     setFailed(false);
     setProgress(0);
@@ -62,7 +80,9 @@ function PageImage({ src, idx, pageRefs }) {
       if (current >= 85) clearInterval(id);
     }, 120);
     return () => clearInterval(id);
-  }, [src]);
+  }, [src, inView]);
+
+  const imgRef = useRef(null);
 
   const handleLoad  = () => { setProgress(100); setTimeout(() => setLoaded(true), 150); };
   const handleError = () => { setFailed(true); };
@@ -70,17 +90,24 @@ function PageImage({ src, idx, pageRefs }) {
     setFailed(false);
     setLoaded(false);
     setProgress(0);
-    // Append cache-busting param to force re-fetch
     setRetrySrc(`${src}${src.includes('?') ? '&' : '?'}_r=${Date.now()}`);
   };
 
+  // Gambar mungkin sudah ada di cache sehingga onLoad tidak fire — cek img.complete
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img || loaded || failed) return;
+    if (img.complete && img.naturalWidth > 0) handleLoad();
+    else if (img.complete && img.naturalWidth === 0) handleError();
+  }, [retrySrc]); // eslint-disable-line
+
   return (
     <div
-      ref={el => { pageRefs.current[idx] = el; }}
+      ref={el => { wrapRef.current = el; if (pageRefs) pageRefs.current[idx] = el; }}
       className="w-full relative"
       style={{ minHeight: loaded ? 'auto' : '85vh' }}
     >
-      {!loaded && !failed && (
+      {!loaded && !failed && inView && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11] gap-3">
           <div className="flex flex-col items-center gap-2 w-40">
             <div className="w-full h-1 bg-white/8 rounded-full overflow-hidden">
@@ -106,10 +133,11 @@ function PageImage({ src, idx, pageRefs }) {
       )}
       <img
         alt={`Page ${idx + 1}`}
-        loading="eager"
+        loading={idx < 3 ? 'eager' : 'lazy'}
         decoding={idx < 3 ? 'sync' : 'async'}
         fetchpriority={idx === 0 ? 'high' : 'auto'}
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        ref={imgRef}
         src={retrySrc}
         onLoad={handleLoad}
         onError={handleError}
