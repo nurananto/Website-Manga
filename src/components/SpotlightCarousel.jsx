@@ -4,11 +4,11 @@ import { Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const STATUS_CFG = {
-  'Tamat':   { label: 'END',     textCls: 'text-red-400' },
-  'Hiatus':  { label: 'HIATUS',  textCls: 'text-zinc-400' },
-  'Oneshot': { label: 'ONESHOT', textCls: 'text-purple-400' },
+  'Tamat':   { label: 'END',     textCls: 'text-red-300' },
+  'Hiatus':  { label: 'HIATUS',  textCls: 'text-zinc-300' },
+  'Oneshot': { label: 'ONESHOT', textCls: 'text-purple-300' },
 };
-const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-400' };
+const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-300' };
 
 // Scale & opacity for each distance level (0 = active, 1 = adjacent, ...)
 const SCALES    = [1, 0.91, 0.80, 0.70, 0.62, 0.55];
@@ -152,37 +152,47 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
                   <div className="absolute inset-0 rounded-xl ring-[2px] ring-white/30 ring-inset pointer-events-none" />
                 )}
 
-                {/* Rating badge — top left, squircle */}
-                {isActive && rating && (
-                  <div
-                    className="absolute top-2 left-2 flex items-center gap-0.5 bg-black/72 backdrop-blur-sm px-[6px] py-[3px]"
-                    style={{ borderRadius: 5 }}
-                  >
-                    <Star className="w-[9px] h-[9px] text-amber-400 fill-current shrink-0" />
-                    <span className="font-mono text-[10px] font-black text-white leading-none">
-                      {rating}
-                    </span>
-                  </div>
-                )}
-
-                {/* Status badge — top right, squircle, same dark bg */}
-                {isActive && (
-                  <div
-                    className="absolute top-2 right-2 bg-black/72 backdrop-blur-sm px-[6px] py-[2px]"
-                    style={{ borderRadius: 5, lineHeight: 1 }}
-                  >
-                    <span className={`font-mono text-[10px] font-black uppercase leading-none ${statusCfg.textCls}`}>
-                      {statusCfg.label}
-                    </span>
-                  </div>
-                )}
+                {/* Responsive badge sizing — both badges share identical metrics */}
+                {isActive && (() => {
+                  const fs  = coverW < 140 ? 8  : coverW < 170 ? 9  : 10;
+                  const px  = coverW < 140 ? 4  : coverW < 170 ? 5  : 6;
+                  const py  = coverW < 140 ? 2  : 2;
+                  const ico = coverW < 140 ? 7  : coverW < 170 ? 8  : 9;
+                  const br  = coverW < 140 ? 4  : 5;
+                  const badgeBase = {
+                    position: 'absolute', top: 8,
+                    display: 'flex', alignItems: 'center',
+                    background: 'rgba(0,0,0,0.72)',
+                    backdropFilter: 'blur(4px)',
+                    borderRadius: br,
+                    padding: `${py}px ${px}px`,
+                    lineHeight: 1,
+                  };
+                  return (
+                    <>
+                      {/* Rating — top left */}
+                      {rating && (
+                        <div style={{ ...badgeBase, left: 8, gap: 3 }}>
+                          <Star style={{ width: ico, height: ico }} className="text-amber-400 fill-current shrink-0" />
+                          <span style={{ fontSize: fs }} className="font-mono font-black text-white leading-none">{rating}</span>
+                        </div>
+                      )}
+                      {/* Status — top right */}
+                      <div style={{ ...badgeBase, right: 8, justifyContent: 'center' }}>
+                        <span style={{ fontSize: fs }} className={`font-mono font-black uppercase leading-none ${statusCfg.textCls}`}>
+                          {statusCfg.label}
+                        </span>
+                      </div>
+                    </>
+                  );
+                })()}
 
                 {/* Title — gradient overlay at bottom of cover */}
                 {isActive && (
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent pt-8 pb-2 px-2">
                     <p
                       className="font-bold text-white/95 text-center truncate leading-tight"
-                      style={{ fontSize: coverW < 140 ? 10 : coverW < 170 ? 11 : 12 }}
+                      style={{ fontSize: coverW < 140 ? 9 : coverW < 170 ? 10 : coverW < 200 ? 11 : 12 }}
                     >
                       {manga.title}
                     </p>
