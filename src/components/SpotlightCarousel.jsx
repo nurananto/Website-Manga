@@ -11,11 +11,9 @@ const STATUS_CFG = {
 const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-400' };
 
 // Scale & opacity for each distance level (0 = active, 1 = adjacent, ...)
-const SCALES    = [1, 0.74, 0.58, 0.47, 0.39, 0.33];
-const OPACITIES = [1, 0.82, 0.64, 0.46, 0.30, 0.18];
+const SCALES    = [1, 0.86, 0.74, 0.64, 0.56, 0.50];
+const OPACITIES = [1, 0.90, 0.76, 0.60, 0.44, 0.30];
 
-// Max items shown on each side of active
-const MAX_SIDE = 3;
 // Gap between items (extra offset added to negative margin)
 const ITEM_GAP = 10;
 const PAD_V    = 12;
@@ -27,6 +25,16 @@ function getCoverW() {
   if (w < 768)  return 150;
   if (w < 1024) return 184;
   return 208;
+}
+
+// Items shown on each side of active per breakpoint
+// mobile: 1 side → 3 total | sm: 2 → 5 | md: 3 → 7 | lg: 4 → 9
+function getMaxSide() {
+  const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
+  if (w < 640)  return 1;
+  if (w < 768)  return 2;
+  if (w < 1024) return 3;
+  return 4;
 }
 
 function getMostRecentIdx(list) {
@@ -44,12 +52,13 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
   const N = mangaList.length;
   const [activeIdx, setActiveIdx] = useState(() => getMostRecentIdx(mangaList));
   const [coverW,    setCoverW]    = useState(getCoverW);
+  const [maxSide,   setMaxSide]   = useState(getMaxSide);
 
   const coverH     = Math.round(coverW * 1.5);
   const containerH = PAD_V + coverH + PAD_V;
 
-  // How many items to show on each side: limited by MAX_SIDE and available items
-  const side = Math.min(MAX_SIDE, Math.floor((N - 1) / 2));
+  // How many items to show on each side: capped by breakpoint and available items
+  const side = Math.min(maxSide, Math.floor((N - 1) / 2));
 
   // Build window: [active-side ... active ... active+side]
   const items = Array.from({ length: 2 * side + 1 }, (_, i) => {
@@ -60,7 +69,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
   });
 
   useEffect(() => {
-    const onResize = () => setCoverW(getCoverW());
+    const onResize = () => { setCoverW(getCoverW()); setMaxSide(getMaxSide()); };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
@@ -159,8 +168,8 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
                 {/* Status badge — top right, squircle, same dark bg */}
                 {isActive && (
                   <div
-                    className="absolute top-2 right-2 bg-black/72 backdrop-blur-sm px-[6px] py-[3px]"
-                    style={{ borderRadius: 5 }}
+                    className="absolute top-2 right-2 bg-black/72 backdrop-blur-sm px-[6px] py-[2px]"
+                    style={{ borderRadius: 5, lineHeight: 1 }}
                   >
                     <span className={`font-mono text-[10px] font-black uppercase leading-none ${statusCfg.textCls}`}>
                       {statusCfg.label}
