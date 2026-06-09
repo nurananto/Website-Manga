@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { imgUrl, timeAgo } from '../utils';
-import { Coins, Clock, ArrowUp } from 'lucide-react';
+import { Lock, Clock, ArrowUp } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
 export default function MangaCard({ manga, onReadChapter, onViewManga }) {
@@ -76,6 +76,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                 className="flex justify-between items-center hover:bg-surface-container-highest px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border border-white/5 hover:border-white/10 transition-all group/ch"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
+                  {isLocked && <Lock className="w-3 h-3 text-amber-400/80 shrink-0" />}
                   <span className="font-body-md text-sm font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
                   </span>
@@ -97,24 +98,18 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                 </div>
 
                 {isLocked ? (
-                  <div className="flex items-center gap-1 text-amber-400 font-label-sm text-xs font-bold bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/10 shrink-0 whitespace-nowrap">
-                    <div className="flex items-center gap-0.5 border-r border-amber-500/20 pr-1 mr-1 shrink-0">
-                      <Coins className="w-3.5 h-3.5 fill-current shrink-0" />
-                      <span>5</span>
-                    </div>
-                    <div className="flex items-center gap-0.5 shrink-0">
-                      <Clock className="w-3 h-3 text-amber-500/80 shrink-0" />
-                      <CountdownTimer
-                        unlockDate={ch.unlockDate}
-                        onUnlock={() => {
-                          setLocalUnlocked(prev => {
-                            const next = new Set(prev);
-                            next.add(ch.id);
-                            return next;
-                          });
-                        }}
-                      />
-                    </div>
+                  <div className="flex items-center gap-0.5 text-amber-400/80 font-label-sm text-xs font-semibold shrink-0 whitespace-nowrap">
+                    <Clock className="w-3 h-3 shrink-0" />
+                    <CountdownTimer
+                      unlockDate={ch.unlockDate}
+                      onUnlock={() => {
+                        setLocalUnlocked(prev => {
+                          const next = new Set(prev);
+                          next.add(ch.id);
+                          return next;
+                        });
+                      }}
+                    />
                   </div>
                 ) : (
                   <span className="font-label-sm text-[10px] sm:text-xs lg:text-sm text-outline/60 whitespace-nowrap shrink-0">{ch.date || timeAgo(ch.release_date)}</span>

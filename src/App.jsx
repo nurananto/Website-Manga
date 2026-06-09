@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
+import SpotlightCarousel from './components/SpotlightCarousel';
 import MangaCard from './components/MangaCard';
 import ReaderModal from './components/ReaderModal';
 import MangaDetailPage from './components/MangaDetailPage';
 import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield, HelpCircle, Star, Search, Key, X, Coffee, CheckCircle, ArrowRight, Coins, ChevronLeft, ChevronRight } from 'lucide-react';
 import { imgUrl, timeAgo } from './utils';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AuthModal, CoinPurchaseModal, UnlockModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
+import { AuthModal, CoinPurchaseModal, UnlockModal, LockedChapterModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { supabase } from './lib/supabase';
@@ -68,7 +69,7 @@ function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUse
         ) : (
           <div className="flex flex-col gap-2">
             {historyEntries.map(({ manga, chapter }) => (
-              <div key={manga.id} onClick={() => handleReadChapter(chapter, manga.title)}
+              <div key={manga.id} onClick={() => handleReadChapter(chapter, manga.title, manga)}
                 className="flex items-stretch gap-3 sm:gap-4 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 sm:p-3 md:p-4 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
                 <img alt={manga.title} src={imgUrl(manga.coverUrl)}
                   className="object-cover rounded-lg border border-white/10 shrink-0 shadow-md"
@@ -186,6 +187,9 @@ export default function App() {
   const [d1UnlockedChapters, setD1UnlockedChapters] = useState(new Set());
   const [pendingUnlockChapter, setPendingUnlockChapter] = useState(null);
   const [pendingMangaTitle, setPendingMangaTitle] = useState('');
+  const [pendingManga, setPendingManga] = useState(null);
+  const [isLockedModalOpen, setIsLockedModalOpen] = useState(false);
+  const [isCheckingAccess, setIsCheckingAccess] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
   const ITEMS_PER_PAGE = 6;
 
@@ -382,21 +386,22 @@ export default function App() {
     }
   };
 
-  const handleReadChapter = (chapter, mangaTitle) => {
+  const handleReadChapter = (chapter, mangaTitle, mangaObj) => {
     const isTimeUnlocked = chapter.unlockDate && new Date(chapter.unlockDate).getTime() <= new Date().getTime();
+    const isLocked = chapter.isLocked && !isTimeUnlocked && !d1UnlockedChapters.has(chapter.id);
 
-    if (chapter.isLocked && !isTimeUnlocked) {
-      if (!isLoggedIn) {
-        setIsAuthModalOpen(true);
-        return;
-      }
-
-      setPendingUnlockChapter(chapter);
-      setPendingMangaTitle(mangaTitle);
-      setIsUnlockModalOpen(true);
+    if (isLocked) {
+      setIsCheckingAccess(true);
+      setTimeout(() => {
+        setIsCheckingAccess(false);
+        setPendingUnlockChapter(chapter);
+        setPendingMangaTitle(mangaTitle);
+        setPendingManga(mangaObj || selectedManga);
+        setIsLockedModalOpen(true);
+      }, 700);
       return;
     }
-    
+
     openChapterReader(chapter, mangaTitle);
   };
 
@@ -433,6 +438,7 @@ export default function App() {
     }
 
     setD1UnlockedChapters(prev => new Set([...prev, pendingUnlockChapter.id]));
+    setIsLockedModalOpen(false);
     setIsUnlockModalOpen(false);
     showToast('Chapter berhasil dibuka!');
     openChapterReader(pendingUnlockChapter, pendingMangaTitle);
@@ -534,6 +540,11 @@ export default function App() {
                       </div>
                     ) : MANGA_LIST.length > 0 ? (
                     <>
+                    <SpotlightCarousel
+                      mangaList={MANGA_LIST}
+                      onViewManga={(manga) => { navigate(`/${manga.id}`); }}
+                    />
+
                     <FeaturedCarousel
                       mangaList={MANGA_LIST}
                       onReadChapter={(ch, title) => handleReadChapter(ch, title)}
@@ -647,7 +658,7 @@ export default function App() {
                             <MangaCard
                               manga={manga}
                               onViewManga={() => { navigate(`/${manga.id}`); }}
-                              onReadChapter={(ch, title) => handleReadChapter(ch, title || manga.title)}
+                              onReadChapter={(ch, title) => handleReadChapter(ch, title || manga.title, manga)}
                             />
                           </div>
                         ))}
@@ -812,6 +823,25 @@ export default function App() {
         </footer>
       )}
 
+      {/* Checking chapter access overlay */}
+      <AnimatePresence>
+        {isCheckingAccess && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[250] bg-[#090b0d] flex flex-col items-center justify-center gap-4"
+          >
+            <div className="relative w-14 h-14">
+              <div className="absolute inset-0 rounded-full border-4 border-white/8" />
+              <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-primary animate-spin" />
+              <div className="absolute inset-[5px] rounded-full border-2 border-transparent border-t-primary/40 animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.8s' }} />
+            </div>
+            <p className="font-body-md text-sm text-outline/70 font-semibold tracking-wide">Checking chapter access</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Interactive Reader Modal */}
       {activeChapter && (
         <ReaderModal
@@ -898,17 +928,17 @@ export default function App() {
         }}
       />
 
-      {/* Unlock Modal */}
-      <UnlockModal
-        isOpen={isUnlockModalOpen}
-        onClose={() => setIsUnlockModalOpen(false)}
+      {/* Locked Chapter Modal */}
+      <LockedChapterModal
+        isOpen={isLockedModalOpen}
+        onClose={() => setIsLockedModalOpen(false)}
         chapter={pendingUnlockChapter}
+        manga={pendingManga}
+        isLoggedIn={isLoggedIn}
         userCoins={userCoins}
         onConfirm={handleConfirmUnlock}
-        onGoToStore={() => {
-          setIsUnlockModalOpen(false);
-          setIsCoinModalOpen(true);
-        }}
+        onLogin={() => { setIsLockedModalOpen(false); setIsAuthModalOpen(true); }}
+        onGoToStore={() => { setIsLockedModalOpen(false); setIsCoinModalOpen(true); }}
       />
 
       {/* Toast Notification */}

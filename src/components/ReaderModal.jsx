@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUp, Coins, Clock, BookOpen } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUp, Lock, Clock, BookOpen } from 'lucide-react';
+import CountdownTimer from './CountdownTimer';
 import { ReaderPageSkeleton } from './Skeleton';
 import { imgUrl } from '../utils';
 
@@ -44,6 +45,26 @@ function CountdownLarge({ unlockDate }) {
 
 function PageImage({ src, idx, pageRefs }) {
   const [loaded, setLoaded] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    setLoaded(false);
+    setProgress(0);
+    let current = 0;
+    const id = setInterval(() => {
+      // Decelerate as we approach 85% — never reaches 100 until actual load
+      const step = Math.max(1, Math.round((85 - current) / 8));
+      current = Math.min(85, current + step);
+      setProgress(current);
+      if (current >= 85) clearInterval(id);
+    }, 120);
+    return () => clearInterval(id);
+  }, [src]);
+
+  const handleLoad = () => {
+    setProgress(100);
+    setTimeout(() => setLoaded(true), 150);
+  };
 
   return (
     <div
@@ -52,8 +73,16 @@ function PageImage({ src, idx, pageRefs }) {
       style={{ minHeight: loaded ? 'auto' : '85vh' }}
     >
       {!loaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#0d0f11]">
-          <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11] gap-3">
+          <div className="flex flex-col items-center gap-2 w-40">
+            <div className="w-full h-1 bg-white/8 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-primary rounded-full transition-all duration-200 ease-out"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+            <span className="font-mono text-[11px] font-bold text-outline/40 tabular-nums">{progress}%</span>
+          </div>
         </div>
       )}
       <img
@@ -63,7 +92,7 @@ function PageImage({ src, idx, pageRefs }) {
         fetchpriority={idx === 0 ? 'high' : 'auto'}
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
         src={src}
-        onLoad={() => setLoaded(true)}
+        onLoad={handleLoad}
       />
     </div>
   );
@@ -545,17 +574,18 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                           : 'text-on-surface-variant hover:bg-white/5 hover:text-on-surface'
                       }`}
                     >
-                      <div className="flex items-center gap-2 min-w-0">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        {isLocked && <Lock className="w-3 h-3 text-amber-400/80 shrink-0" />}
                         <span className="truncate">{ch.title}</span>
                         {ch.isNew && (
                           <span className="shrink-0 font-label-sm bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase">New</span>
                         )}
                       </div>
                       {isLocked && (
-                        <span className="flex items-center gap-1 text-amber-400 shrink-0 ml-2">
-                          <Coins className="w-3 h-3 fill-current" />
-                          <span>5</span>
-                        </span>
+                        <div className="flex items-center gap-0.5 text-amber-400/80 text-[10px] font-semibold shrink-0 ml-2 whitespace-nowrap">
+                          <Clock className="w-3 h-3 shrink-0" />
+                          <CountdownTimer unlockDate={ch.unlockDate} />
+                        </div>
                       )}
                     </button>
                   );
