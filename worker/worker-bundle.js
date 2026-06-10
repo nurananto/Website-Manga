@@ -60,7 +60,7 @@ const BAN_DURATION_MS   = 70 * 365.25 * 24 * 3600 * 1000;
 async function checkRateLimit(request, env, isImage = false) {
   const ip     = request.headers.get('CF-Connecting-IP') || 'unknown';
   const minute = Math.floor(Date.now() / 60000);
-  const key    = `${ip}:${minute}`;
+  const key    = `${ip}:${isImage ? 'img' : 'api'}:${minute}`;
 
   // Cek ban dulu
   if (await isBanned(ip, env)) return { allowed: false, banned: true };
