@@ -50,12 +50,12 @@ async function isBanned(ip, env) {
 }
 
 // ── Rate limit ────────────────────────────────────────────────
-// Images: 300/menit (1 chapter bisa 82+ gambar)
-// API:    60/menit
-const RATE_LIMIT_IMAGES = 300;
-const RATE_LIMIT_API    = 60;
-// Ban sementara 1 jam (bukan permanen)
-const BAN_DURATION_MS   = 60 * 60 * 1000;
+// Images: 40/menit (max 32 gambar/chapter + buffer retry)
+// API:    30/menit (proteksi endpoint user dari spam/abuse)
+const RATE_LIMIT_IMAGES = 40;
+const RATE_LIMIT_API    = 30;
+// Ban permanen (70 tahun)
+const BAN_DURATION_MS   = 70 * 365.25 * 24 * 3600 * 1000;
 
 async function checkRateLimit(request, env, isImage = false) {
   const ip     = request.headers.get('CF-Connecting-IP') || 'unknown';
