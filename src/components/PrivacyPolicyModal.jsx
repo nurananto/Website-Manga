@@ -22,7 +22,7 @@ export default function PrivacyPolicyModal({ onClose }) {
           <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-white/8 shrink-0">
             <div>
               <h2 className="font-headline-md text-base font-black text-on-surface">Kebijakan Privasi</h2>
-              <p className="font-label-sm text-[10px] text-outline/50 mt-0.5">Terakhir diperbarui: Januari 2025</p>
+              <p className="font-label-sm text-[10px] text-outline/50 mt-0.5">Terakhir diperbarui: 10 Juni 2025</p>
             </div>
             <button
               onClick={onClose}

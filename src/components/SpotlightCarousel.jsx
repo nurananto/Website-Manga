@@ -167,16 +167,16 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
 
                 {/* Rating badge — top left */}
                 {isActive && rating && (
-                  <div className="absolute top-2 left-2 flex items-center gap-0.5 bg-black/70 backdrop-blur-sm px-1.5 py-0.5 rounded">
-                    <Star className="w-2.5 h-2.5 text-amber-400 fill-current shrink-0" />
-                    <span className="font-label-sm text-[8px] font-black text-white leading-none">{rating}</span>
+                  <div className="absolute top-2 left-2 h-5 flex items-center gap-[3px] bg-black/70 backdrop-blur-sm px-1.5 rounded">
+                    <Star className="w-[9px] h-[9px] text-amber-400 fill-current shrink-0" />
+                    <span className="font-label-sm text-[9px] font-black text-white leading-none">{rating}</span>
                   </div>
                 )}
 
                 {/* Status badge — top right */}
                 {isActive && (
-                  <div className="absolute top-2 right-2 flex items-center bg-black/70 backdrop-blur-sm px-1.5 py-0.5 rounded">
-                    <span className={`font-label-sm text-[8px] font-black uppercase leading-none ${statusCfg.textCls}`}>
+                  <div className="absolute top-2 right-2 h-5 flex items-center bg-black/70 backdrop-blur-sm px-1.5 rounded">
+                    <span className={`font-label-sm text-[9px] font-black uppercase leading-none ${statusCfg.textCls}`}>
                       {statusCfg.label}
                     </span>
                   </div>
