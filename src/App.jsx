@@ -199,6 +199,18 @@ export default function App() {
   const [showDmca, setShowDmca] = useState(false);
   const ITEMS_PER_PAGE = 6;
 
+  // Dynamic document title
+  useEffect(() => {
+    const site = 'Nurananto Scanlation';
+    if (activeChapter && activeMangaTitle) {
+      document.title = `${activeChapter.title} - ${activeMangaTitle} | ${site}`;
+    } else if (selectedManga) {
+      document.title = `${selectedManga.title} | ${site}`;
+    } else {
+      document.title = site;
+    }
+  }, [activeChapter, activeMangaTitle, selectedManga]);
+
   // Supabase auth — listen session changes
   useEffect(() => {
     // Cek session saat ini

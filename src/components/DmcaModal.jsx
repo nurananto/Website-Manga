@@ -50,7 +50,6 @@ export default function DmcaModal({ onClose }) {
                 <li>A statement that you have a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or law</li>
                 <li>A statement, made under penalty of perjury, that the above information is accurate, and that you are the copyright owner or are authorized to act on behalf of the owner</li>
               </ol>
-              <p>Send your notice to: <strong>nuranantoadhien@gmail.com</strong></p>
             </Section>
 
             <Section title="3. Counter-Notice">
