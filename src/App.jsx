@@ -9,6 +9,7 @@ import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield
 import { imgUrl, timeAgo } from './utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthModal, CoinPurchaseModal, UnlockModal, LockedChapterModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
+import PrivacyPolicyModal from './components/PrivacyPolicyModal';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { supabase } from './lib/supabase';
@@ -191,6 +192,7 @@ export default function App() {
   const [isLockedModalOpen, setIsLockedModalOpen] = useState(false);
   const [isCheckingAccess, setIsCheckingAccess] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
+  const [showPrivacy, setShowPrivacy] = useState(false);
   const ITEMS_PER_PAGE = 6;
 
   // Supabase auth — listen session changes
@@ -816,12 +818,24 @@ export default function App() {
                 Jika sudah tersedia versi resmi/official dalam bahasa Indonesia, kami sangat mendukung kamu untuk membeli dan mendukung karya aslinya.
               </p>
             </div>
-            <span className="font-body-sm text-[10px] text-outline/40">
-              © {new Date().getFullYear()} Nurananto Scanlation. Fan Translation — Not for commercial use.
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="font-body-sm text-[10px] text-outline/40">
+                © {new Date().getFullYear()} Nurananto Scanlation. Fan Translation — Not for commercial use.
+              </span>
+              <span className="text-outline/20 text-[10px]">·</span>
+              <button
+                onClick={() => setShowPrivacy(true)}
+                className="font-body-sm text-[10px] text-outline/40 hover:text-outline/70 transition-colors cursor-pointer underline underline-offset-2"
+              >
+                Privacy Policy
+              </button>
+            </div>
           </div>
         </footer>
       )}
+
+      {/* Privacy Policy Modal */}
+      {showPrivacy && <PrivacyPolicyModal onClose={() => setShowPrivacy(false)} />}
 
       {/* Checking chapter access overlay */}
       <AnimatePresence>
