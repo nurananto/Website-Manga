@@ -19,11 +19,10 @@ export default function PrivacyPolicyModal({ onClose }) {
           onClick={e => e.stopPropagation()}
           className="bg-surface-container border border-white/10 rounded-t-3xl sm:rounded-2xl w-full sm:max-w-xl max-h-[85vh] flex flex-col shadow-2xl"
         >
-          {/* Header */}
           <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-white/8 shrink-0">
             <div>
-              <h2 className="font-headline-md text-base font-black text-on-surface">Privacy Policy</h2>
-              <p className="font-label-sm text-[10px] text-outline/50 mt-0.5">Last updated: January 2025</p>
+              <h2 className="font-headline-md text-base font-black text-on-surface">Kebijakan Privasi</h2>
+              <p className="font-label-sm text-[10px] text-outline/50 mt-0.5">Terakhir diperbarui: Januari 2025</p>
             </div>
             <button
               onClick={onClose}
@@ -33,43 +32,42 @@ export default function PrivacyPolicyModal({ onClose }) {
             </button>
           </div>
 
-          {/* Content */}
           <div className="overflow-y-auto px-5 py-4 flex flex-col gap-5 hide-scrollbar">
 
-            <Section title="1. Information We Collect">
-              <p>We collect information you provide directly to us, such as when you create an account or contact us for support.</p>
+            <Section title="1. Informasi yang Kami Kumpulkan">
+              <p>Kami mengumpulkan informasi yang kamu berikan secara langsung, seperti saat membuat akun atau menghubungi kami untuk mendapatkan bantuan.</p>
               <ul>
-                <li><strong>Account Information</strong> — email, username, and a securely hashed password (we never store or have access to your actual password)</li>
-                <li><strong>Usage Data</strong> — reading history and preferences</li>
-                <li><strong>Device Information</strong> — browser type and device data</li>
-                <li><strong>Network Data</strong> — IP address and location</li>
+                <li><strong>Informasi Akun</strong> — email, nama pengguna, dan password yang dienkripsi dengan aman (kami tidak pernah menyimpan atau memiliki akses ke password aslimu)</li>
+                <li><strong>Data Penggunaan</strong> — riwayat baca dan preferensi membaca</li>
+                <li><strong>Informasi Perangkat</strong> — jenis browser dan data perangkat</li>
+                <li><strong>Data Jaringan</strong> — alamat IP dan lokasi</li>
               </ul>
             </Section>
 
-            <Section title="2. How We Use Your Information">
-              <p>We use the information we collect to:</p>
+            <Section title="2. Cara Kami Menggunakan Informasi">
+              <p>Kami menggunakan informasi yang dikumpulkan untuk:</p>
               <ul>
-                <li>Provide, maintain, and improve our services</li>
-                <li>Personalize your reading experience</li>
-                <li>Send you updates and notifications</li>
-                <li>Protect against fraud and abuse</li>
+                <li>Menyediakan, memelihara, dan meningkatkan layanan kami</li>
+                <li>Mempersonalisasi pengalaman membacamu</li>
+                <li>Mengirim pembaruan dan notifikasi</li>
+                <li>Melindungi dari penipuan dan penyalahgunaan</li>
               </ul>
             </Section>
 
-            <Section title="3. Information Sharing">
-              <p>We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy or as required by law.</p>
+            <Section title="3. Berbagi Informasi">
+              <p>Kami tidak menjual, memperdagangkan, atau mengalihkan informasi pribadimu kepada pihak ketiga tanpa persetujuanmu, kecuali sebagaimana dijelaskan dalam kebijakan ini atau diwajibkan oleh hukum.</p>
             </Section>
 
-            <Section title="4. Cookies and Tracking">
-              <p>We use cookies and similar tracking technologies to track activity on our website and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</p>
+            <Section title="4. Cookie dan Pelacakan">
+              <p>Kami menggunakan cookie dan teknologi pelacakan serupa untuk melacak aktivitas di situs web kami dan menyimpan informasi tertentu. Kamu dapat mengatur browser untuk menolak semua cookie atau memberikan notifikasi saat cookie dikirim.</p>
             </Section>
 
-            <Section title="5. Data Security">
-              <p>We implement appropriate security measures to protect your personal information. However, no method of transmission over the Internet or electronic storage is 100% secure.</p>
+            <Section title="5. Keamanan Data">
+              <p>Kami menerapkan langkah-langkah keamanan yang sesuai untuk melindungi informasi pribadimu. Namun, tidak ada metode transmisi melalui Internet atau penyimpanan elektronik yang 100% aman.</p>
             </Section>
 
-            <Section title="6. Your Rights">
-              <p>You have the right to access, update, or delete your personal information. You can do this through your account settings or by contacting us directly.</p>
+            <Section title="6. Hak Kamu">
+              <p>Kamu berhak untuk mengakses, memperbarui, atau menghapus informasi pribadimu. Hal ini dapat dilakukan melalui pengaturan akun atau dengan menghubungi kami secara langsung.</p>
             </Section>
 
             <div className="pb-2" />

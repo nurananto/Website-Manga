@@ -843,14 +843,14 @@ export default function App() {
                 onClick={() => setShowPrivacy(true)}
                 className="font-body-sm text-[10px] text-outline/40 hover:text-outline/70 transition-colors cursor-pointer underline underline-offset-2"
               >
-                Privacy Policy
+                Kebijakan Privasi
               </button>
               <span className="text-outline/20 text-[10px]">·</span>
               <button
                 onClick={() => setShowTerms(true)}
                 className="font-body-sm text-[10px] text-outline/40 hover:text-outline/70 transition-colors cursor-pointer underline underline-offset-2"
               >
-                Terms of Service
+                Syarat &amp; Ketentuan
               </button>
               <span className="text-outline/20 text-[10px]">·</span>
               <button

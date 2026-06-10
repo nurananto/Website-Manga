@@ -19,11 +19,10 @@ export default function DmcaModal({ onClose }) {
           onClick={e => e.stopPropagation()}
           className="bg-surface-container border border-white/10 rounded-t-3xl sm:rounded-2xl w-full sm:max-w-xl max-h-[85vh] flex flex-col shadow-2xl"
         >
-          {/* Header */}
           <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-white/8 shrink-0">
             <div>
-              <h2 className="font-headline-md text-base font-black text-on-surface">DMCA</h2>
-              <p className="font-label-sm text-[10px] text-outline/50 mt-0.5">Copyright Infringement Policy</p>
+              <h2 className="font-headline-md text-base font-black text-on-surface">Kebijakan DMCA</h2>
+              <p className="font-label-sm text-[10px] text-outline/50 mt-0.5">Perlindungan Hak Cipta</p>
             </div>
             <button
               onClick={onClose}
@@ -33,32 +32,32 @@ export default function DmcaModal({ onClose }) {
             </button>
           </div>
 
-          {/* Content */}
           <div className="overflow-y-auto px-5 py-4 flex flex-col gap-5 hide-scrollbar">
 
-            <Section title="1. Overview">
-              <p>Nurananto Scanlation respects the intellectual property rights of others and expects its users to do the same. In accordance with the Digital Millennium Copyright Act (DMCA), we will respond to claims of copyright infringement that are reported to us.</p>
+            <Section title="1. Ikhtisar">
+              <p>Nurananto Scanlation menghormati hak kekayaan intelektual pihak lain dan mengharapkan penggunanya untuk melakukan hal yang sama. Sesuai dengan Digital Millennium Copyright Act (DMCA), kami akan merespons klaim pelanggaran hak cipta yang dilaporkan kepada kami.</p>
+              <p>Nurananto Scanlation adalah situs fan terjemahan tidak resmi yang dibuat atas dasar kecintaan terhadap manga. Jika kamu adalah pemilik hak cipta dan merasa kontenmu ditampilkan di sini tanpa izin, silakan hubungi kami dan kami akan segera menindaklanjutinya.</p>
             </Section>
 
-            <Section title="2. Filing a DMCA Notice">
-              <p>If you believe that your copyrighted work has been copied in a way that constitutes copyright infringement and is accessible on this site, please notify us. For your complaint to be valid under the DMCA, you must provide the following information:</p>
+            <Section title="2. Cara Mengajukan Pemberitahuan DMCA">
+              <p>Jika kamu yakin bahwa karya berhak ciptamu telah disalin sehingga melanggar hak cipta dan dapat diakses di situs ini, harap beri tahu kami. Agar pengaduanmu sah berdasarkan DMCA, kamu harus menyertakan informasi berikut:</p>
               <ol>
-                <li>An electronic or physical signature of a person authorized to act on behalf of the copyright owner</li>
-                <li>Identification of the copyrighted work that you claim has been infringed</li>
-                <li>Identification of the material that is claimed to be infringing and where it is located on the service</li>
-                <li>Information reasonably sufficient to permit us to contact you, such as your address, telephone number, and email address</li>
-                <li>A statement that you have a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or law</li>
-                <li>A statement, made under penalty of perjury, that the above information is accurate, and that you are the copyright owner or are authorized to act on behalf of the owner</li>
+                <li>Tanda tangan elektronik atau fisik dari orang yang berwenang atas nama pemilik hak cipta</li>
+                <li>Identifikasi karya berhak cipta yang kamu klaim telah dilanggar</li>
+                <li>Identifikasi materi yang diduga melanggar beserta lokasinya di layanan kami</li>
+                <li>Informasi yang cukup untuk menghubungimu, seperti alamat, nomor telepon, dan alamat email</li>
+                <li>Pernyataan bahwa kamu memiliki keyakinan itikad baik bahwa penggunaan materi tersebut tidak diizinkan oleh pemilik hak cipta, agennya, atau hukum</li>
+                <li>Pernyataan di bawah sumpah bahwa informasi di atas akurat, dan bahwa kamu adalah pemilik hak cipta atau berwenang untuk bertindak atas nama pemilik</li>
               </ol>
             </Section>
 
-            <Section title="3. Counter-Notice">
-              <p>If you believe that your content was removed or disabled by mistake or misidentification, you may file a counter-notification with us. The counter-notification must include:</p>
+            <Section title="3. Pemberitahuan Balik">
+              <p>Jika kamu yakin kontenmu dihapus atau dinonaktifkan karena kesalahan atau salah identifikasi, kamu dapat mengajukan pemberitahuan balik kepada kami. Pemberitahuan balik harus menyertakan:</p>
               <ol>
-                <li>Your physical or electronic signature</li>
-                <li>Identification of the material that has been removed or to which access has been disabled</li>
-                <li>A statement under penalty of perjury that you have a good faith belief that the material was removed or disabled as a result of mistake or misidentification</li>
-                <li>Your name, address, and telephone number</li>
+                <li>Tanda tangan fisik atau elektronikmu</li>
+                <li>Identifikasi materi yang telah dihapus atau aksesnya dinonaktifkan</li>
+                <li>Pernyataan di bawah sumpah bahwa kamu memiliki keyakinan itikad baik bahwa materi dihapus atau dinonaktifkan akibat kesalahan atau salah identifikasi</li>
+                <li>Nama, alamat, dan nomor teleponmu</li>
               </ol>
             </Section>
 

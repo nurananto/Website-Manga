@@ -19,11 +19,10 @@ export default function TermsOfServiceModal({ onClose }) {
           onClick={e => e.stopPropagation()}
           className="bg-surface-container border border-white/10 rounded-t-3xl sm:rounded-2xl w-full sm:max-w-xl max-h-[85vh] flex flex-col shadow-2xl"
         >
-          {/* Header */}
           <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-white/8 shrink-0">
             <div>
-              <h2 className="font-headline-md text-base font-black text-on-surface">Terms of Service</h2>
-              <p className="font-label-sm text-[10px] text-outline/50 mt-0.5">Last updated: January 2025</p>
+              <h2 className="font-headline-md text-base font-black text-on-surface">Syarat dan Ketentuan</h2>
+              <p className="font-label-sm text-[10px] text-outline/50 mt-0.5">Terakhir diperbarui: Januari 2025</p>
             </div>
             <button
               onClick={onClose}
@@ -33,48 +32,47 @@ export default function TermsOfServiceModal({ onClose }) {
             </button>
           </div>
 
-          {/* Content */}
           <div className="overflow-y-auto px-5 py-4 flex flex-col gap-5 hide-scrollbar">
 
-            <Section title="1. Acceptance of Terms">
-              <p>By accessing and using Nurananto Scanlation, you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to these terms, please do not use our services.</p>
+            <Section title="1. Penerimaan Syarat">
+              <p>Dengan mengakses dan menggunakan Nurananto Scanlation, kamu menyetujui dan terikat oleh syarat serta ketentuan yang tercantum dalam perjanjian ini. Jika kamu tidak menyetujui syarat-syarat ini, harap tidak menggunakan layanan kami.</p>
             </Section>
 
-            <Section title="2. Use of Service">
-              <p>You agree to use our services only for lawful purposes and in accordance with these Terms. You agree not to:</p>
+            <Section title="2. Penggunaan Layanan">
+              <p>Kamu setuju untuk menggunakan layanan kami hanya untuk tujuan yang sah dan sesuai dengan Syarat ini. Kamu setuju untuk tidak:</p>
               <ul>
-                <li>Use the service in any way that violates applicable laws or regulations</li>
-                <li>Attempt to gain unauthorized access to any portion of the service</li>
-                <li>Interfere with or disrupt the service or servers</li>
-                <li>Distribute malware or other harmful code</li>
-                <li>Scrape or copy content without permission</li>
-                <li>Use bots, scripts, automation, coordinated accounts, or any deceptive method to interfere with, manipulate, or abuse the service or its features</li>
+                <li>Menggunakan layanan dengan cara yang melanggar hukum atau peraturan yang berlaku</li>
+                <li>Mencoba mendapatkan akses tidak sah ke bagian mana pun dari layanan</li>
+                <li>Mengganggu atau merusak layanan atau server</li>
+                <li>Mendistribusikan malware atau kode berbahaya lainnya</li>
+                <li>Mengambil atau menyalin konten tanpa izin</li>
+                <li>Menggunakan bot, skrip, otomatisasi, akun terkoordinasi, atau metode curang apa pun untuk mengganggu, memanipulasi, atau menyalahgunakan layanan</li>
               </ul>
             </Section>
 
-            <Section title="3. User Accounts">
-              <p>When you create an account with us, you must provide accurate and complete information. You are responsible for safeguarding your account and for all activities that occur under your account.</p>
+            <Section title="3. Akun Pengguna">
+              <p>Saat membuat akun, kamu harus memberikan informasi yang akurat dan lengkap. Kamu bertanggung jawab atas keamanan akun dan seluruh aktivitas yang terjadi di bawah akunmu.</p>
             </Section>
 
-            <Section title="4. Content">
-              <p>All content on Nurananto Scanlation, including manga, manhwa, and manhua, is provided for entertainment purposes. We do not claim ownership of the original works and respect the rights of content creators.</p>
+            <Section title="4. Konten">
+              <p>Seluruh konten di Nurananto Scanlation, termasuk manga, manhwa, dan manhua, disediakan untuk tujuan hiburan semata. Kami tidak mengklaim kepemilikan atas karya asli dan menghormati hak para pencipta konten.</p>
             </Section>
 
-            <Section title="5. Premium Services">
-              <p>Some features may require coins or premium access. By purchasing, you agree to pay the applicable fees and abide by any additional terms specific to premium services.</p>
+            <Section title="5. Koin dan Akses Premium">
+              <p>Beberapa fitur memerlukan koin atau akses premium. Dengan melakukan pembelian, kamu menyetujui biaya yang berlaku dan tunduk pada syarat tambahan yang berkaitan dengan fitur premium.</p>
             </Section>
 
-            <Section title="6. Termination">
-              <p>We may terminate or suspend your account immediately, without prior notice or liability, for any reason, including without limitation if you breach these Terms.</p>
-              <p>Where we reasonably determine that fraud, abuse, manipulation, or coordinated account activity occurred, we may remove related activity, revoke access or benefits, suspend or permanently ban related accounts, and deny refunds to the extent permitted by law.</p>
+            <Section title="6. Penghentian Akun">
+              <p>Kami dapat menghentikan atau menangguhkan akunmu secara langsung, tanpa pemberitahuan atau kewajiban sebelumnya, karena alasan apa pun, termasuk jika kamu melanggar Syarat ini.</p>
+              <p>Jika kami secara wajar menetapkan terjadinya penipuan, penyalahgunaan, manipulasi, atau aktivitas akun terkoordinasi, kami dapat menghapus aktivitas terkait, mencabut akses atau manfaat, menangguhkan atau memblokir akun secara permanen, dan menolak pengembalian dana sesuai hukum yang berlaku.</p>
             </Section>
 
-            <Section title="7. Limitation of Liability">
-              <p>In no event shall Nurananto Scanlation be liable for any indirect, incidental, special, consequential or punitive damages arising out of your use of the service.</p>
+            <Section title="7. Batasan Tanggung Jawab">
+              <p>Dalam keadaan apa pun, Nurananto Scanlation tidak bertanggung jawab atas kerugian tidak langsung, insidental, khusus, konsekuensial, atau punitif yang timbul dari penggunaan layanan kami.</p>
             </Section>
 
-            <Section title="8. Changes to Terms">
-              <p>We reserve the right to modify or replace these Terms at any time. We will provide notice of any significant changes by posting the new Terms on this page.</p>
+            <Section title="8. Perubahan Syarat">
+              <p>Kami berhak untuk mengubah atau mengganti Syarat ini kapan saja. Kami akan memberikan pemberitahuan atas perubahan signifikan dengan memposting Syarat baru di halaman ini.</p>
             </Section>
 
             <div className="pb-2" />
