@@ -68,6 +68,13 @@ function PageImage({ src, idx, pageRefs }) {
   // Start fake progress only once image is in view (= browser has started fetching)
   useEffect(() => {
     if (!inView) return;
+    const img = imgRef.current;
+    // Image already complete (e.g. disk cache hit before inView) — skip fake progress
+    if (img?.complete && img.naturalWidth > 0) {
+      setProgress(100);
+      setTimeout(() => setLoaded(true), 150);
+      return;
+    }
     setLoaded(false);
     setFailed(false);
     setProgress(0);

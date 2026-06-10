@@ -150,7 +150,7 @@ const renderChapterRow = (ch, idx) => {
             </div>
 
             {/* Metadata info */}
-            <div className="flex-grow w-full flex flex-col items-center sm:items-start mt-3 sm:mt-0 pb-1">
+            <div className="flex-grow min-w-0 w-full flex flex-col items-center sm:items-start mt-3 sm:mt-0 pb-1">
               {/* Title — max 2 baris */}
               <h2 className="font-headline-md text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-on-surface font-black tracking-tight mb-1.5 text-center sm:text-left line-clamp-2">
                 {manga.title}
