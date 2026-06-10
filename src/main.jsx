@@ -3,6 +3,21 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
+// Self-hosted fonts — no Google Fonts dependency, no FOUT on reload
+import '@fontsource/inter/latin-300.css'
+import '@fontsource/inter/latin-400.css'
+import '@fontsource/inter/latin-500.css'
+import '@fontsource/inter/latin-ext-300.css'
+import '@fontsource/inter/latin-ext-400.css'
+import '@fontsource/inter/latin-ext-500.css'
+import '@fontsource/hanken-grotesk/latin-300.css'
+import '@fontsource/hanken-grotesk/latin-400.css'
+import '@fontsource/hanken-grotesk/latin-700.css'
+import '@fontsource/hanken-grotesk/latin-ext-300.css'
+import '@fontsource/hanken-grotesk/latin-ext-400.css'
+import '@fontsource/hanken-grotesk/latin-ext-700.css'
+import '@fontsource/geist/latin-500.css'
+
 // Register Service Worker — force refresh saat ada update
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').then(reg => {

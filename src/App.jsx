@@ -307,9 +307,15 @@ export default function App() {
         setActiveChapter(null);
         setActiveTab('profile');
       } else if (page === 'manga') {
+        const current = selectedMangaRef.current;
+        if (current?.id === mangaId) {
+          // Data sudah ada di memory — langsung tampil tanpa loading
+          setSelectedManga(current);
+          setActiveChapter(null);
+        } else {
         setLoadingManga(true);
         setSelectedManga(null);
-        fetch(`/manga/${mangaId}.json?t=${Date.now()}`)
+        fetch(`/manga/${mangaId}.json`)
           .then(r => r.ok ? r.json() : null)
           .then(fullManga => {
             if (fullManga) {
@@ -320,6 +326,7 @@ export default function App() {
           })
           .catch(() => navigate('/', true))
           .finally(() => setLoadingManga(false));
+        }
       } else if (page === 'reader') {
         // Fetch manga kalau belum ada atau berbeda
         const loadReader = (manga) => {
@@ -345,7 +352,7 @@ export default function App() {
         if (current?.id === mangaId) {
           loadReader(current);
         } else {
-          fetch(`/manga/${mangaId}.json?t=${Date.now()}`)
+          fetch(`/manga/${mangaId}.json`)
             .then(r => r.ok ? r.json() : null)
             .then(m => m ? loadReader(m) : navigate('/', true))
             .catch(() => navigate('/', true));
