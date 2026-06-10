@@ -49,10 +49,15 @@ async function isBanned(ip, env) {
   return !!row;
 }
 
-// ── Rate limit: 50 request/menit, langsung ban 70 tahun ──────
-const RATE_LIMIT = 50;
+// ── Rate limit ────────────────────────────────────────────────
+// Images: 300/menit (1 chapter bisa 82+ gambar)
+// API:    60/menit
+const RATE_LIMIT_IMAGES = 300;
+const RATE_LIMIT_API    = 60;
+// Ban sementara 1 jam (bukan permanen)
+const BAN_DURATION_MS   = 60 * 60 * 1000;
 
-async function checkRateLimit(request, env) {
+async function checkRateLimit(request, env, isImage = false) {
   const ip     = request.headers.get('CF-Connecting-IP') || 'unknown';
   const minute = Math.floor(Date.now() / 60000);
   const key    = `${ip}:${minute}`;
@@ -68,12 +73,13 @@ async function checkRateLimit(request, env) {
   `).bind(key, minute).first();
 
   const count = row?.count || 1;
+  const limit = isImage ? RATE_LIMIT_IMAGES : RATE_LIMIT_API;
 
-  if (count > RATE_LIMIT) {
-    // Langsung ban 70 tahun
-    const expires = new Date(Date.now() + 70 * 365.25 * 24 * 3600000).toISOString();
+  if (count > limit) {
+    // Ban sementara 1 jam
+    const expires = new Date(Date.now() + BAN_DURATION_MS).toISOString();
     await env.DB.prepare(`
-      INSERT OR IGNORE INTO banned_ips (ip, reason, expires_at)
+      INSERT OR REPLACE INTO banned_ips (ip, reason, expires_at)
       VALUES (?, 'Auto-ban: exceeded rate limit', ?)
     `).bind(ip, expires).run();
 
@@ -757,8 +763,10 @@ export default {
     try {
       // ── Rate limit global (semua endpoint kecuali webhook Trakteer) ──
       // Webhook Trakteer dikecualikan agar notifikasi donasi tidak terblokir
+      // Images pakai limit lebih tinggi (300/menit) karena 1 chapter = banyak gambar
       if (pathname !== '/api/webhook/trakteer') {
-        const rl = await checkRateLimit(request, env);
+        const isImage = pathname.startsWith('/images/');
+        const rl = await checkRateLimit(request, env, isImage);
         if (!rl.allowed)
           return addCors(new Response(rl.banned ? 'Forbidden' : 'Too Many Requests',
             { status: rl.banned ? 403 : 429 }));
