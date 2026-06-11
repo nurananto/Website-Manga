@@ -446,7 +446,7 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
   const totalCount = comments.reduce((n, c) => n + 1 + (c.replies?.length || 0), 0);
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-3 sm:px-5 md:px-8 py-4 sm:py-6 flex flex-col gap-4 sm:gap-5">
+    <div className="w-full px-3 sm:px-6 md:px-10 lg:px-16 py-4 sm:py-6 flex flex-col gap-4 sm:gap-5">
       {/* Header */}
       <div className="flex items-center gap-2 border-t border-white/10 pt-4 sm:pt-6">
         <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
@@ -465,14 +465,15 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
           </div>
         </div>
       ) : (
-        <div className="flex items-center gap-3 px-4 py-3.5 bg-surface-container rounded-2xl border border-white/5">
-          <MessageCircle className="w-5 h-5 text-outline/20 shrink-0" />
-          <p className="text-xs sm:text-sm text-outline/50 font-semibold flex-1">Login untuk berkomentar</p>
+        <div className="flex gap-2 sm:gap-3">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-surface-container-high border border-white/10 shrink-0 flex items-center justify-center">
+            <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-outline/30" />
+          </div>
           <button
             onClick={onLoginClick}
-            className="px-3 sm:px-4 py-1.5 text-[11px] sm:text-xs font-bold text-on-primary bg-primary hover:bg-primary/90 rounded-xl transition-colors cursor-pointer shrink-0"
+            className="flex-1 h-[72px] sm:h-20 bg-surface-container-high border border-white/10 rounded-xl px-3 py-2 text-xs sm:text-sm text-outline/30 text-left cursor-pointer hover:border-primary/40 hover:text-outline/50 transition-colors"
           >
-            Masuk / Login
+            Tulis komentar... (login untuk berkomentar)
           </button>
         </div>
       )}

@@ -145,6 +145,7 @@ export default function App() {
   const [MANGA_LIST, setMangaList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const initialRoute = useState(() => parsePath())[0];
+  const [currentPage, setCurrentPage] = useState(() => parsePath().page);
 
   // Paksa refresh saat ada versi baru di server
   useEffect(() => {
@@ -300,6 +301,7 @@ export default function App() {
   useEffect(() => {
     const handleRoute = () => {
       const { page, mangaId, chapterNum } = parsePath();
+      setCurrentPage(page);
 
       if (page === 'home') {
         setSelectedManga(null);
@@ -535,9 +537,9 @@ export default function App() {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
-        {loadingManga && initialRoute.page !== 'reader' ? (
+        {loadingManga && currentPage !== 'reader' ? (
           <MangaDetailSkeleton />
-        ) : (isLoading || !activeChapter) && initialRoute.page === 'reader' ? (
+        ) : (isLoading || !activeChapter) && currentPage === 'reader' ? (
           <div className="fixed inset-0 bg-[#090b0d] flex items-center justify-center z-[199]">
             <div className="w-10 h-10 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
           </div>
