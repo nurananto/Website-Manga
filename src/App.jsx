@@ -683,7 +683,7 @@ export default function App() {
           />
         ) : (
           /* Main Views based on Tab */
-          <main className="pb-16 px-2 sm:px-3 md:px-4 flex flex-col gap-6 md:gap-8 xl:gap-12 w-full flex-1">
+          <main className="pt-4 pb-16 px-2 sm:px-3 md:px-4 flex flex-col gap-6 md:gap-8 xl:gap-12 w-full flex-1">
             
             {activeTab === 'library' && (
               <>
