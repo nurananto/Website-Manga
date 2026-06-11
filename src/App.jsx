@@ -561,6 +561,16 @@ export default function App() {
     setActiveChapter(null);
     setSearchQuery('');
     navigate(tab === 'profile' ? '/history' : '/');
+    if (tab === 'profile' && isLoggedIn) {
+      const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+      getAccessToken().then(token => {
+        if (!token || !workerUrl) return;
+        fetch(`${workerUrl}/api/user/me`, { headers: { Authorization: `Bearer ${token}` } })
+          .then(r => r.json())
+          .then(d => { if (typeof d.coins === 'number') setUserCoins(d.coins); })
+          .catch(() => {});
+      });
+    }
   };
 
   return (
@@ -1039,8 +1049,12 @@ export default function App() {
                     onClick={() => {
                       setNotifications(prev => prev.map(n => n.id === notif.id ? { ...n, read: true } : n));
                       setIsNotifOpen(false);
-                      setTargetCommentId(notif.comment_id);
-                      navigate(`/${notif.manga_id}/${notif.chapter_num}`);
+                      if (notif.manga_id && notif.chapter_num != null) {
+                        setTargetCommentId(notif.comment_id || null);
+                        navigate(`/${notif.manga_id}/${notif.chapter_num}`);
+                      } else if (notif.manga_id) {
+                        navigate(`/${notif.manga_id}`);
+                      }
                     }}
                     className={`w-full text-left px-4 py-3.5 flex gap-3 hover:bg-white/5 transition-colors cursor-pointer ${!notif.read ? 'bg-primary/5' : ''}`}
                   >
@@ -1050,7 +1064,7 @@ export default function App() {
                     </div>
                     <div className="flex-1 min-w-0 flex flex-col gap-0.5">
                       <p className="text-xs font-bold text-on-surface leading-snug">
-                        <span className="text-primary">{notif.actor}</span>
+                        <span className="text-primary">{notif.actor_name}</span>
                         {notif.type === 'mention' ? ' menyebut kamu' : ' membalas komentar kamu'}
                       </p>
                       <p className="text-[11px] text-outline/60 truncate">{notif.preview}</p>

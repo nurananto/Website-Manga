@@ -97,7 +97,7 @@ function ReplyItem({ reply, currentUserId, targetCommentId, isLoggedIn, onReplyT
 
   useEffect(() => {
     if (isTarget && ref.current)
-      setTimeout(() => ref.current?.scrollIntoView({ behavior: 'instant', block: 'center' }), 300);
+      setTimeout(() => ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 800);
   }, [isTarget]);
 
   return (
@@ -159,7 +159,7 @@ function CommentItem({ comment, isLoggedIn, currentUserId, onReply, onDelete, on
 
   useEffect(() => {
     if (isTarget && ref.current)
-      setTimeout(() => ref.current?.scrollIntoView({ behavior: 'instant', block: 'center' }), 300);
+      setTimeout(() => ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 800);
   }, [isTarget]);
 
   const handleReply = async (text) => {
