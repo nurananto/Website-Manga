@@ -45,7 +45,7 @@ export function AuthModal({ isOpen, onClose }) {
     setError('');
     const { error: err } = await supabase.auth.signInWithOAuth({
       provider,
-      options: { redirectTo: window.location.origin },
+      options: { redirectTo: window.location.href },
     });
     if (err) setError(err.message);
   };
@@ -54,7 +54,7 @@ export function AuthModal({ isOpen, onClose }) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
+      <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           onClick={onClose} className="absolute inset-0" />
 
@@ -145,7 +145,7 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' 
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
+      <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
         <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-2xl shadow-2xl p-6 z-10"
@@ -213,7 +213,7 @@ export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail }) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
+      <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           onClick={handleClose} className="absolute inset-0" />
 
@@ -355,7 +355,7 @@ export function UnlockModal({ isOpen, onClose, chapter, userCoins, onConfirm, on
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
+      <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -471,7 +471,7 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, onSave }) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+      <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           onClick={onClose} className="absolute inset-0" />
         <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
