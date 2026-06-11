@@ -1,7 +1,7 @@
 // Service Worker — force reload saat ada versi baru
 // Versi di-inject otomatis oleh GitHub Action
 
-const CACHE_NAME = 'mangaflow-v1';
+const CACHE_NAME = 'nuranantoscans-v1';
 
 self.addEventListener('install', () => {
   // Langsung aktif tanpa nunggu tab lama ditutup

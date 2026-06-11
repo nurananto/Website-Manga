@@ -35,7 +35,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
               <BookOpen className="w-5 h-5 text-white" />
             </span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-on-surface via-primary to-surface-tint">
-              MangaFlow
+              Nurananto Scans
             </span>
           </a>
         </div>
