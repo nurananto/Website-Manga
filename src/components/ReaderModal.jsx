@@ -242,11 +242,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   // Lazy-load komentar: fetch hanya saat area komentar mendekati viewport
   const [commentsVisible, setCommentsVisible] = useState(!!targetCommentId);
 
-  const jumpToComments = () => {
-    setCommentsVisible(true);
-    commentsRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
-  };
-
   const imageBase = (import.meta.env.VITE_IMAGE_URL || import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
   const [pages, setPages] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -479,20 +474,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                       className="h-full aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10"
                     />
                   </div>
-                )}
-              </button>
-            </div>
-
-            {/* Tombol ke komentar — atas */}
-            <div className="px-2 pb-1">
-              <button
-                onClick={jumpToComments}
-                className="w-full h-10 sm:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-on-surface active:scale-95 transition-all cursor-pointer"
-              >
-                <MessageCircle className="w-4 h-4 text-primary" />
-                Komentar
-                {commentCount > 0 && (
-                  <span className="text-[11px] font-bold text-outline/60">({commentCount})</span>
                 )}
               </button>
             </div>
