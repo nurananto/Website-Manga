@@ -44,68 +44,88 @@ function CountdownLarge({ unlockDate }) {
 }
 
 function PageImage({ src, idx, pageRefs }) {
-  const [loaded,      setLoaded]      = useState(false);
-  const [failed,      setFailed]      = useState(false);
-  const [progress,    setProgress]    = useState(0);
-  const [retryCount,  setRetryCount]  = useState(0);
-  // inView: true for first 3 pages immediately, others wait for IntersectionObserver
-  const [inView,      setInView]      = useState(idx < 3);
-  const wrapRef = useRef(null);
+  const [loaded,     setLoaded]     = useState(false);
+  const [failed,     setFailed]     = useState(false);
+  const [progress,   setProgress]   = useState(0);
+  const [retryCount, setRetryCount] = useState(0);
+  const [inView,     setInView]     = useState(idx < 3);
+  const wrapRef  = useRef(null);
+  const imgRef   = useRef(null);
+  const timerRef = useRef(null);
 
-  // Start tracking viewport entry for lazy pages
+  // IntersectionObserver untuk lazy pages
   useEffect(() => {
     if (inView) return;
     const el = wrapRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { rootMargin: '300px' } // pre-fetch 300px before visible
+      { rootMargin: '300px' }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, [inView]);
 
-  // Start fake progress only once image is in view (= browser has started fetching)
+  // Main loading effect — native DOM listeners agar tidak miss synchronous cache events
   useEffect(() => {
     if (!inView) return;
     const img = imgRef.current;
-    // Image already complete (e.g. disk cache hit before inView) — skip fake progress
-    if (img?.complete && img.naturalWidth > 0) {
+    if (!img) return;
+
+    // Clear timer sebelumnya
+    clearInterval(timerRef.current);
+
+    // Sudah complete (memory/disk cache) — langsung tampil
+    if (img.complete && img.naturalWidth > 0) {
       setProgress(100);
-      setTimeout(() => setLoaded(true), 150);
+      setLoaded(true);
       return;
     }
+    // Sudah error
+    if (img.complete && img.naturalWidth === 0) {
+      setFailed(true);
+      return;
+    }
+
     setLoaded(false);
     setFailed(false);
     setProgress(0);
+
+    // Fake progress 0 → 85%
     let current = 0;
-    const id = setInterval(() => {
-      const step = Math.max(1, Math.round((85 - current) / 8));
-      current = Math.min(85, current + step);
+    timerRef.current = setInterval(() => {
+      current = Math.min(85, current + Math.max(1, Math.round((85 - current) / 8)));
       setProgress(current);
-      if (current >= 85) clearInterval(id);
+      if (current >= 85) clearInterval(timerRef.current);
     }, 120);
-    return () => clearInterval(id);
-  }, [src, inView, retryCount]);
 
-  const imgRef = useRef(null);
+    // Native listeners — tidak pernah miss event apapun
+    const onLoad = () => {
+      clearInterval(timerRef.current);
+      setProgress(100);
+      setTimeout(() => setLoaded(true), 300); // 300ms > durasi transisi CSS (200ms)
+    };
+    const onError = () => {
+      clearInterval(timerRef.current);
+      setFailed(true);
+    };
 
-  const handleLoad  = () => { setProgress(100); setTimeout(() => setLoaded(true), 150); };
-  const handleError = () => { setFailed(true); };
+    img.addEventListener('load',  onLoad,  { once: true });
+    img.addEventListener('error', onError, { once: true });
+
+    return () => {
+      clearInterval(timerRef.current);
+      img.removeEventListener('load',  onLoad);
+      img.removeEventListener('error', onError);
+    };
+  }, [inView, retryCount]); // src tidak perlu — img key berubah saat retry
+
   const handleRetry = () => {
     setFailed(false);
     setLoaded(false);
     setProgress(0);
     setRetryCount(c => c + 1);
   };
-
-  // Gambar mungkin sudah ada di cache sehingga onLoad tidak fire — cek img.complete
-  useEffect(() => {
-    const img = imgRef.current;
-    if (!img || loaded || failed) return;
-    if (img.complete && img.naturalWidth > 0) handleLoad();
-    else if (img.complete && img.naturalWidth === 0) handleError();
-  }, [retryCount]); // eslint-disable-line
 
   return (
     <div
@@ -146,8 +166,6 @@ function PageImage({ src, idx, pageRefs }) {
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
         ref={imgRef}
         src={src}
-        onLoad={handleLoad}
-        onError={handleError}
       />
     </div>
   );
