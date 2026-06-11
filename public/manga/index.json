@@ -34,14 +34,14 @@
     "chapters": [
       {
         "chapter_number": 20,
-        "lock_hours": 0,
+        "lock_hours": 2,
         "pages": 20,
         "release_date": "2026-06-11T23:25:40+07:00",
         "id": "Yuumei-ch-20",
         "r2_prefix": "manga/Yuumei/20/",
         "title": "Ch. 20",
-        "unlockDate": null,
-        "isLocked": false,
+        "unlockDate": "2026-06-11T18:25:40.000Z",
+        "isLocked": true,
         "views": 0
       },
       {
@@ -101,7 +101,7 @@
       "Video Games"
     ],
     "rating": 7.43,
-    "total_views": 8,
+    "total_views": 12,
     "isTrending": true,
     "next_update": null,
     "chapters": [
@@ -115,7 +115,7 @@
         "title": "Ch. 8",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 4
       },
       {
         "chapter_number": 7,
@@ -139,7 +139,7 @@
         "title": "Ch. 6",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       }
     ]
   },
@@ -171,7 +171,7 @@
       "Time Travel"
     ],
     "rating": 8.47,
-    "total_views": 10,
+    "total_views": 15,
     "isTrending": true,
     "next_update": null,
     "chapters": [
@@ -185,7 +185,7 @@
         "title": "Ch. 11",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 5
       },
       {
         "chapter_number": 10,
@@ -197,7 +197,7 @@
         "title": "Ch. 10",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 9,
@@ -209,7 +209,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       }
     ]
   },
@@ -239,7 +239,7 @@
       "Slice of Life"
     ],
     "rating": 8.69,
-    "total_views": 12,
+    "total_views": 14,
     "isTrending": true,
     "next_update": null,
     "chapters": [
@@ -277,7 +277,7 @@
         "title": "Ch. 98",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       }
     ]
   }
