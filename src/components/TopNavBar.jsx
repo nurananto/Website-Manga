@@ -32,12 +32,13 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
         >
           <img src="/logo-header.webp" alt="Nurananto Scanlation"
             className="h-8 sm:h-9 md:h-10 w-auto shrink-0" />
-          <span className="flex flex-col leading-tight">
-            <span className="text-sm sm:text-base md:text-lg font-black text-blue-400 tracking-tight">Nurananto</span>
-            <span className="text-xs sm:text-sm md:text-base font-bold text-white tracking-tight">Scanlation</span>
+          <span className="flex flex-col leading-none gap-0.5">
+            <span className="text-xs sm:text-sm md:text-base font-black text-blue-400 tracking-tight">Nurananto</span>
+            <span className="text-xs sm:text-xs md:text-sm font-bold text-white tracking-tight">Scanlation</span>
           </span>
         </a>
 
+        <div className="flex-1" />
 
         {/* Actions (Profile Avatar with Dropdown) */}
         <div ref={dropdownRef} className="relative">
