@@ -19,7 +19,9 @@
   ],
   "description": "YÃÂ«to Hatano adalah penggemar berat game bishÃÂjo 'HÃÂkago no Flare Story', sampai-sampai ia memainkannya berulang kali. \"Andai dunia ini seperti itu, pasti pergi ke sekolah akan lebih menyenangkan...\" pikirnya, lalu keesokan paginyaÃ¢ÂÂtak disangka, ia benar-benar masuk ke dunia game tersebut! Namun, ia bukan menjadi sang protagonis, melainkan si penjahat, Kanji Aku! Awalnya, ia berharap bisa melakukan berbagai hal bersama para heroine yang ia kagumi. Namun, sebagai seorang penjahat, tentu saja tingkat kesukaan mereka terhadapnya berada di titik terendah. Dengan kondisi ini, menaklukkan mereka hanyalah impian yang mustahil... Parahnya lagi, jika ia memilih opsi yang salah, maka yang menantinya adalah kematian!! Dengan status terendah dan tingkat kesukaan yang paling buruk, Kanji Aku harus menghadapi berbagai pilihan hidup dan mati, menaklukkan para heroine, dan mencari jalan keluar dari dunia ini!",
   "covers": [
-    "manga/Yarikonda/covers/cover.webp"
+    "manga/Yarikonda/covers/cover.webp",
+    "manga/Yarikonda/covers/cover@tablet.webp",
+    "manga/Yarikonda/covers/cover@mobile.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/a605a5d0-21a6-481f-a055-74735ea4f2c2/yarikonda-renai-game-no-akuyaku-ni-tensei-shita-node-gensaku-chishiki-de-heroine-wo-kouryaku-shimasu",
   "raw_url": "https://www.manga-up.com/titles/1518",
@@ -31,5 +33,6 @@
     "7": 2,
     "8": 3
   },
-  "total_views": 8
+  "total_views": 8,
+  "mangadex_cover": "8668678c-bc32-4ada-8374-53d6962ae431.jpg"
 }

@@ -14,7 +14,9 @@
   ],
   "description": "Tomoya adalah mahasiswi baru dalam misi untuk akhirnya mendapatkan pacar pertamanya, tetapi dengan satu masalah kecil: dia masih perawan! Sementara dia dekat dengan gadis cantik dan menawan Waka Sakuraba di klubnya di sekolah, dia tidak bisa memberanikan diri untuk mengambil langkah pertama dan mengajaknya kencan. Suatu hari, Tomoya menemukan sisi tersembunyi dari gadia yang disukainya, Waka.",
   "covers": [
-    "manga/waka-chan/covers/cover.webp"
+    "manga/waka-chan/covers/cover.webp",
+    "manga/waka-chan/covers/cover@tablet.webp",
+    "manga/waka-chan/covers/cover@mobile.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/57fe3f00-8626-462b-8f75-fce0e6faa6be/waka-chan-wa-kyou-mo-azatoi",
   "raw_url": "https://www.comico.jp/comic/908",
@@ -32,10 +34,16 @@
     "100": 2
   },
   "total_views": 12,
+  "mangadex_cover": "3764c25f-c596-421b-b0c7-9eabba109b5a.jpg",
   "mangadex_id": "57fe3f00-8626-462b-8f75-fce0e6faa6be",
   "rating": 8.69,
   "next_update": null,
   "coverUrl": "manga/waka-chan/covers/cover.webp",
+  "coverUrls": {
+    "desktop": "manga/waka-chan/covers/cover.webp",
+    "tablet": "manga/waka-chan/covers/cover@tablet.webp",
+    "mobile": "manga/waka-chan/covers/cover@mobile.webp"
+  },
   "chapters": [
     {
       "chapter_number": 100,
