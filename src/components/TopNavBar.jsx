@@ -28,7 +28,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
         <a
           href="/"
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
-          className="flex-1 min-w-0"
+          className="flex-1 min-w-0 active:scale-95 transition-transform duration-150"
         >
           {/* Desktop (xl+, 3 col) & Tablet (md–xl, 2 col) */}
           <img src="/header-desktop.webp" alt="Nurananto Scanlation"
