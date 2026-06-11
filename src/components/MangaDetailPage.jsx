@@ -132,7 +132,7 @@ const renderChapterRow = (ch, idx) => {
   return (
     <div className="w-full min-h-screen bg-surface text-on-surface font-body-md relative pb-20">
       {/* Main Section — pt mengikuti TopNavBar (72px) */}
-      <div className="pt-[72px] w-full">
+      <div className="pt-12 md:pt-14 xl:pt-16 w-full">
         {/* Hero Banner Section */}
         <section className="relative mx-3 sm:mx-4 md:mx-5 mt-4 rounded-2xl overflow-hidden border border-white/15 flex items-end pt-3 pb-2">
           {/* Blurred dynamic background */}
