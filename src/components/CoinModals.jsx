@@ -27,7 +27,7 @@ function CountdownBox({ unlockDate }) {
         const cell = (
           <div key={l} className="flex flex-col items-center">
             <span className="font-mono text-4xl sm:text-5xl font-black text-on-surface tabular-nums leading-none">{pad(v)}</span>
-            <span className="font-label-sm text-[9px] sm:text-[10px] text-outline/50 font-bold uppercase tracking-widest mt-1">{l}</span>
+            <span className="font-label-sm text-[10px] sm:text-xs md:text-sm text-outline/50 font-bold uppercase tracking-widest mt-1">{l}</span>
           </div>
         );
         if (i === 0) return [cell];
@@ -539,51 +539,51 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
         >
           <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
           <button onClick={onClose}
-            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-outline cursor-pointer z-10 transition-colors">
-            <X className="w-4 h-4" />
+            className="absolute top-4 right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-outline cursor-pointer z-10 transition-colors">
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
-          <div className="flex items-start gap-3 p-5 pb-4">
+          <div className="flex items-start gap-3 p-5 pb-4 pr-14 sm:pr-16">
             {manga?.coverUrl && (
               <img src={imgUrl(manga.coverUrl)} alt=""
-                className="w-[52px] aspect-[2/3] object-cover rounded-lg border border-white/15 shrink-0 shadow-lg" />
+                className="w-[52px] sm:w-[60px] aspect-[2/3] object-cover rounded-lg border border-white/15 shrink-0 shadow-lg" />
             )}
             <div className="min-w-0 pt-0.5">
               <div className="flex items-center gap-1.5 mb-1">
-                <Lock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span className="font-label-sm text-[10px] font-black text-amber-400 uppercase tracking-wider">Chapter Terkunci</span>
+                <Lock className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
+                <span className="font-label-sm text-xs sm:text-sm md:text-base font-black text-amber-400 uppercase tracking-wider">Chapter Terkunci</span>
               </div>
-              <p className="font-body-md text-xs text-outline/70 font-semibold truncate">{manga?.title || ''}</p>
-              <h3 className="font-headline-md text-sm font-black text-on-surface mt-0.5 line-clamp-2">{chapter.title}</h3>
+              <p className="font-body-md text-sm sm:text-base text-outline/70 font-semibold truncate">{manga?.title || ''}</p>
+              <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface mt-0.5 line-clamp-2">{chapter.title}</h3>
             </div>
           </div>
           {chapter.unlockDate && (
             <div className="mx-5 mb-5 bg-surface-container-high/40 rounded-xl py-4 px-4 border border-white/5 flex flex-col items-center gap-3">
-              <p className="font-label-sm text-[10px] text-outline/50 font-bold uppercase tracking-widest">Gratis untuk semua dalam</p>
+              <p className="font-label-sm text-xs sm:text-sm md:text-base text-outline/50 font-bold uppercase tracking-widest">Gratis untuk semua dalam</p>
               <CountdownBox unlockDate={chapter.unlockDate} />
             </div>
           )}
           <div className="px-5 pb-5 flex flex-col gap-2">
             {!isLoggedIn ? (
               <button onClick={onLogin}
-                className="w-full h-12 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
-                <Coins className="w-4 h-4 fill-current" />
+                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
+                <Coins className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
                 Login &amp; Beli dengan {cost} Koin
               </button>
             ) : canUnlock ? (
               <button onClick={onConfirm}
-                className="w-full h-12 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
-                <Coins className="w-4 h-4 fill-current" />
+                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
+                <Coins className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
                 Beli dengan {cost} Koin
               </button>
             ) : (
               <button onClick={onGoToStore}
-                className="w-full h-12 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
-                <Coins className="w-4 h-4 fill-current" />
+                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
+                <Coins className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
                 Koin tidak cukup — Isi Koin
               </button>
             )}
             <button onClick={onClose}
-              className="w-full h-10 rounded-xl border border-white/10 text-xs font-bold text-outline hover:text-on-surface hover:bg-white/5 transition-all cursor-pointer">
+              className="w-full h-10 sm:h-12 rounded-xl border border-white/10 text-xs sm:text-sm md:text-base font-bold text-outline hover:text-on-surface hover:bg-white/5 transition-all cursor-pointer">
               Tunggu sampai gratis
             </button>
           </div>

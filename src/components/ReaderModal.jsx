@@ -217,8 +217,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
 
   // Helper: cek apakah chapter benar-benar locked (belum dibeli & belum free)
   const isChapterLocked = (ch) => {
-    if (!ch?.isLocked) return false;
-    if (ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now()) return false;
+    if (!ch?.unlockDate) return false;
+    if (new Date(ch.unlockDate).getTime() <= Date.now()) return false;
     if (unlockedChapters?.has(ch.id)) return false;
     return true;
   };

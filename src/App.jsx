@@ -276,6 +276,7 @@ export default function App() {
             // Redirect ke URL sebelum login (disimpan di ?redirect= via loginWithGoogle)
             const redirect = params.get('redirect') || '/';
             navigate(redirect, true);
+            await loadUserData(user);
           } else {
             navigate('/', true);
           }

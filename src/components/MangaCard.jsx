@@ -82,7 +82,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
                   {isLocked && <Lock className="w-3 h-3 text-amber-400/80 shrink-0" />}
-                  <span className="font-body-md text-sm font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
+                  <span className="font-body-md text-sm md:text-base lg:text-lg font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
                   </span>
                   {ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000 && (

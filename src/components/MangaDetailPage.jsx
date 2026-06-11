@@ -52,7 +52,11 @@ const renderChapterRow = (ch, idx) => {
           setReadChapters(prev => new Set([...prev, ch.id]));
           onReadChapter(ch, manga.title);
         }}
-        className="group flex items-center justify-between py-3 px-2 sm:px-3 hover:bg-white/5 transition-all cursor-pointer rounded-xl border border-white/8 hover:border-white/15 bg-surface-container/30"
+        className={`group flex items-center justify-between py-3 px-2 sm:px-3 transition-all cursor-pointer rounded-xl border ${
+          isLocked
+            ? 'bg-amber-500/10 border-amber-500/20 hover:bg-amber-500/15 hover:border-amber-500/35'
+            : 'bg-surface-container/30 border-white/8 hover:bg-white/5 hover:border-white/15'
+        }`}
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
         <div className={`flex items-center gap-2.5 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
@@ -67,8 +71,8 @@ const renderChapterRow = (ch, idx) => {
                 {ch.title}
               </p>
               {isNew && (
-                <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-sm md:text-base font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
-                  <ArrowUp className="w-3 h-3 md:w-3.5 md:h-3.5 stroke-[3] shrink-0" />
+                <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
+                  <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 stroke-[3] shrink-0" />
                   <span>UP</span>
                 </span>
               )}
@@ -82,25 +86,29 @@ const renderChapterRow = (ch, idx) => {
                 </span>
               )}
               {isLocked && (
-                <span className="shrink-0 font-label-sm px-2 py-0.5 rounded text-sm md:text-base font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-1">
-                  <Coins className="w-3.5 h-3.5 md:w-4 md:h-4 fill-current shrink-0" />
+                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
+                  <Coins className="w-2.5 h-2.5 md:w-3 md:h-3 fill-current shrink-0" />
                   <span>5</span>
                 </span>
               )}
             </div>
             {isLocked ? (
-              <div className="flex items-center gap-1 font-label-sm text-xs md:text-sm text-amber-400/80 mt-0.5">
-                <span>Buka dalam</span>
-                <CountdownTimer
-                  unlockDate={ch.unlockDate}
-                  onUnlock={() => {
-                    setLocalUnlockedChapters(prev => {
-                      const next = new Set(prev);
-                      next.add(ch.id);
-                      return next;
-                    });
-                  }}
-                />
+              <div className="flex items-center gap-1.5 font-label-sm text-xs md:text-sm mt-0.5">
+                <span className="text-outline/60">{ch.date || timeAgo(ch.release_date)}</span>
+                <span className="text-outline/40">|</span>
+                <span className="text-amber-400/80 flex items-center gap-1">
+                  <span>Buka dalam</span>
+                  <CountdownTimer
+                    unlockDate={ch.unlockDate}
+                    onUnlock={() => {
+                      setLocalUnlockedChapters(prev => {
+                        const next = new Set(prev);
+                        next.add(ch.id);
+                        return next;
+                      });
+                    }}
+                  />
+                </span>
               </div>
             ) : (
               <p className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/60 mt-0.5">{ch.date || timeAgo(ch.release_date)}</p>
@@ -108,16 +116,12 @@ const renderChapterRow = (ch, idx) => {
           </div>
         </div>
 
-        {/* Right: date for locked / views for unlocked */}
+        {/* Right: views */}
         <div className="flex items-center gap-1.5 shrink-0 ml-2">
-          {isLocked ? (
-            <span className="font-label-sm text-xs md:text-sm text-amber-400/80 whitespace-nowrap shrink-0">{ch.date || timeAgo(ch.release_date)}</span>
-          ) : (
-            <div className="flex items-center gap-1 text-outline/50 font-label-sm text-xs select-none shrink-0">
-              <Eye className="w-3.5 h-3.5 shrink-0" />
-              <span>{chapterViews}</span>
-            </div>
-          )}
+          <div className="flex items-center gap-1 text-outline/50 font-label-sm text-xs md:text-sm select-none shrink-0">
+            <Eye className="w-3.5 h-3.5 md:w-4 md:h-4 shrink-0" />
+            <span>{chapterViews}</span>
+          </div>
         </div>
       </div>
     );
