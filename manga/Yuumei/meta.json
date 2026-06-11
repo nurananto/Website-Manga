@@ -6,7 +6,15 @@
   "type": "MANGA",
   "author": "Ibarakino",
   "artist": "Shio Takoyaki",
-  "genres": ["Adaptation","Shounen","Comedy","Romance","Slice of Life","Harem","School Life"],
+  "genres": [
+    "Adaptation",
+    "Shounen",
+    "Comedy",
+    "Romance",
+    "Slice of Life",
+    "Harem",
+    "School Life"
+  ],
   "description": "Aku punya adik tiri bernama Isuzu. Dia adalah VTuber super populer dengan lebih dari 1 juta subscriber, 'Isuzu Wine'. Suatu hari, dia lupa mematikan siaran, dan percakapan aslinya denganku tanpa sengaja tersebar ke seluruh dunia! Potongan video insiden siaran itu dengan cepat menyebar, dan dalam semalam, aku mendadak jadi selebriti internet...!?Semakin banyak insiden, semakin melonjak popularitasnya!! Bersama adik tiri yang manja dan terlalu cantik, serta senior VTuber yang imut, aku mulai meniti karir di dunia streaming! Kisah komedi romantis tentang VTuber yang mendadak naik daun!",
   "covers": [
     "manga/Yuumei/covers/cover.webp",
@@ -19,5 +27,5 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg"
 }
