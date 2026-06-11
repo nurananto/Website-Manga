@@ -306,7 +306,7 @@ export default function App() {
       .then(r => r.json()).then(d => {
         if (typeof d.coins === 'number') setUserCoins(d.coins);
         if (d.name_changed_at) setNameChangedAt(d.name_changed_at);
-        if (d.name) setCurrentUser(prev => prev ? { ...prev, name: d.name } : prev);
+        setCurrentUser(prev => prev ? { ...prev, ...(d.name ? { name: d.name } : {}), is_donor: !!d.is_donor } : prev);
       })
       .catch(() => {});
 

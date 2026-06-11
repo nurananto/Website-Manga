@@ -64,8 +64,15 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
             <div className="absolute right-0 top-12 w-48 bg-surface-container border border-white/5 rounded-xl shadow-2xl py-2 z-50 animate-[fadeIn_0.15s_ease-out]">
               {isLoggedIn ? (
                 <>
-                  {/* Username */}
+                  {/* Username + badge donatur */}
                   <div className="px-4 py-2.5 border-b border-white/5">
+                    <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded font-label-sm text-[9px] font-black uppercase tracking-wider mb-1 ${
+                      currentUser?.is_donor
+                        ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
+                        : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
+                    }`}>
+                      {currentUser?.is_donor ? '★ Donatur Setia' : 'Pembaca Setia'}
+                    </span>
                     <p className="text-xs font-black text-on-surface truncate">{displayName}</p>
                     <p className="text-[10px] text-outline truncate mt-0.5">{currentUser?.email}</p>
                   </div>
