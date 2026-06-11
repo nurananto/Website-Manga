@@ -103,7 +103,7 @@ function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUse
         ) : (
           <div className="flex flex-col gap-2">
             {txData.data.map(tx => {
-              const isPositive = tx.type === 'trakteer';
+              const isPositive = tx.type === 'trakteer' || tx.type === 'daily';
               const coinAmount = isPositive ? `+${tx.amount}` : `-${Math.abs(tx.amount)}`;
               return (
                 <div key={tx.id} className="flex items-center gap-3 bg-surface-container border border-white/8 rounded-xl p-3">

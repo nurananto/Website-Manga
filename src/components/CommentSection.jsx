@@ -18,7 +18,6 @@ function DailyClaimBanner({ userId, workerUrl }) {
   }, [CACHE_KEY]);
 
   const isClaimed = state === 'claimed' || state === 'done';
-  if (state === 'done') return null;
 
   const handleClaim = async () => {
     setState('claiming');
@@ -394,13 +393,18 @@ function CommentSkeleton() {
   );
 }
 
+const PAGE_SIZE = 15;
+
 // ── Export utama ───────────────────────────────────────────────
 export default function CommentSection({ chapterId, mangaId, mangaTitle, chapterNum, isLoggedIn, currentUser, onLoginClick, targetCommentId, onCommentCountChange }) {
   const [comments,   setComments]   = useState([]);
   const [loading,    setLoading]    = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const [page,       setPage]       = useState(1);
   const workerUrl = (import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
   const currentUserId = currentUser?.id || null;
+
+  useEffect(() => { setPage(1); }, [chapterId]);
 
   useEffect(() => {
     if (!chapterId || !workerUrl) return;
@@ -512,6 +516,9 @@ export default function CommentSection({ chapterId, mangaId, mangaTitle, chapter
   const totalCount = comments.reduce((n, c) => n + 1 + (c.replies?.length || 0), 0);
   useEffect(() => { onCommentCountChange?.(totalCount); }, [totalCount]);
 
+  const totalPages  = Math.max(1, Math.ceil(comments.length / PAGE_SIZE));
+  const pagedComments = comments.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
   return (
     <div className="w-full px-3 sm:px-4 py-4 sm:py-6 flex flex-col gap-4 sm:gap-5 font-body-md">
       {/* Daily Claim Banner */}
@@ -565,21 +572,56 @@ export default function CommentSection({ chapterId, mangaId, mangaTitle, chapter
           Belum ada komentar. Jadilah yang pertama!
         </p>
       ) : (
-        <div className="flex flex-col divide-y divide-white/5">
-          {comments.map((c, i) => (
-            <div key={c.id} className={i > 0 ? 'pt-4 sm:pt-5' : ''}>
-              <CommentItem
-                comment={c}
-                isLoggedIn={isLoggedIn}
-                currentUserId={currentUserId}
-                onReply={handleReply}
-                onDelete={handleDelete}
-                onDeleteReply={handleDeleteReply}
-                targetCommentId={targetCommentId}
-              />
+        <>
+          <div className="flex flex-col divide-y divide-white/5">
+            {pagedComments.map((c, i) => (
+              <div key={c.id} className={i > 0 ? 'pt-4 sm:pt-5' : ''}>
+                <CommentItem
+                  comment={c}
+                  isLoggedIn={isLoggedIn}
+                  currentUserId={currentUserId}
+                  onReply={handleReply}
+                  onDelete={handleDelete}
+                  onDeleteReply={handleDeleteReply}
+                  targetCommentId={targetCommentId}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-1.5 pt-2">
+              <button
+                onClick={() => setPage(p => Math.max(1, p - 1))}
+                disabled={page === 1}
+                className="w-8 h-8 rounded-lg bg-surface-container border border-white/8 text-xs font-bold text-on-surface disabled:opacity-30 hover:bg-surface-container-high transition-colors cursor-pointer disabled:cursor-not-allowed"
+              >
+                ‹
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+                <button
+                  key={p}
+                  onClick={() => setPage(p)}
+                  className={`w-8 h-8 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
+                    p === page
+                      ? 'bg-primary text-on-primary'
+                      : 'bg-surface-container border border-white/8 text-on-surface hover:bg-surface-container-high'
+                  }`}
+                >
+                  {p}
+                </button>
+              ))}
+              <button
+                onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages}
+                className="w-8 h-8 rounded-lg bg-surface-container border border-white/8 text-xs font-bold text-on-surface disabled:opacity-30 hover:bg-surface-container-high transition-colors cursor-pointer disabled:cursor-not-allowed"
+              >
+                ›
+              </button>
             </div>
-          ))}
-        </div>
+          )}
+        </>
       )}
     </div>
   );

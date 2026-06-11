@@ -444,6 +444,20 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
               </button>
             </div>
 
+            {/* Tombol ke komentar — atas */}
+            <div className="px-2 pb-1">
+              <button
+                onClick={jumpToComments}
+                className="w-full h-10 sm:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-on-surface active:scale-95 transition-all cursor-pointer"
+              >
+                <MessageCircle className="w-4 h-4 text-primary" />
+                Komentar
+                {commentCount > 0 && (
+                  <span className="text-[11px] font-bold text-outline/60">({commentCount})</span>
+                )}
+              </button>
+            </div>
+
             {/* Navigasi atas */}
             <NavBar position="top" />
 
@@ -464,25 +478,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
               ))}
             </div>
 
-            {/* Navigasi bawah — di bawah gambar terakhir */}
+            {/* Navigasi bawah */}
             <NavBar position="bottom" />
 
-            {/* Tombol ke komentar */}
-            <div className="px-2 pt-2">
-              <button
-                onClick={jumpToComments}
-                className="w-full h-10 sm:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-on-surface active:scale-95 transition-all cursor-pointer"
-              >
-                <MessageCircle className="w-4 h-4 text-primary" />
-                Komentar
-                {commentCount > 0 && (
-                  <span className="text-[11px] font-bold text-outline/60">({commentCount})</span>
-                )}
-              </button>
-            </div>
-
             {/* Tombol kembali — bawah, squircle */}
-            <div className="px-2 py-2">
+            <div className="px-2 pt-2 pb-2">
               <button
                 onClick={onClose}
                 className="relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-white/15 flex items-center gap-3 active:scale-[0.99] cursor-pointer overflow-hidden"
