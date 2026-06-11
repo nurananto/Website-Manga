@@ -167,15 +167,22 @@ export default function App() {
     return () => window.removeEventListener('app-update', handleSwUpdate);
   }, []);
 
-  // Cek notifikasi baru saat tab kembali aktif (jika sudah > 1 menit sejak fetch terakhir)
+  // Cek notifikasi baru saat tab kembali aktif + polling setiap 5 menit
   useEffect(() => {
+    if (!isLoggedIn) return;
+
     const onVisible = () => {
-      if (document.visibilityState === 'visible' && isLoggedIn) {
-        if (Date.now() - notifLastFetch.current > 60_000) fetchNotifications();
-      }
+      if (document.visibilityState === 'visible') fetchNotifications();
     };
     document.addEventListener('visibilitychange', onVisible);
-    return () => document.removeEventListener('visibilitychange', onVisible);
+
+    // Polling background — hit Worker max setiap 5 menit (dibatasi cache TTL)
+    const interval = setInterval(() => fetchNotifications(), 5 * 60 * 1000);
+
+    return () => {
+      document.removeEventListener('visibilitychange', onVisible);
+      clearInterval(interval);
+    };
   }, [isLoggedIn]);
 
   useEffect(() => {
@@ -349,8 +356,8 @@ export default function App() {
     fetchNotifications({ force: true, userId: user?.sub, workerUrl, token });
   };
 
-  // Cache notifikasi di localStorage — TTL 10 menit, fetch hanya saat stale
-  const NOTIF_TTL = 10 * 60 * 1000;
+  // Cache notifikasi di localStorage — TTL 5 menit, fetch hanya saat stale
+  const NOTIF_TTL = 5 * 60 * 1000;
   const fetchNotifications = async ({ force = false, userId, workerUrl, token: tok } = {}) => {
     const wUrl   = workerUrl || import.meta.env.VITE_WORKER_URL || '';
     const tkn    = tok || await getAccessToken();
