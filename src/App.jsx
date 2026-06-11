@@ -376,7 +376,10 @@ export default function App() {
 
     fetch(`${workerUrl}/api/user/unlocked`, { headers })
       .then(r => r.json()).then(ids => {
-        if (Array.isArray(ids)) setD1UnlockedChapters(new Set(ids));
+        if (Array.isArray(ids)) {
+          unlockedFetchedAt.current = Date.now();
+          setD1UnlockedChapters(new Set(ids));
+        }
       }).catch(() => {});
 
     fetchNotifications({ force: true, userId: user?.sub, workerUrl, token });
@@ -509,16 +512,22 @@ export default function App() {
     }
   };
 
-  // Verifikasi kepemilikan chapter langsung ke server + refresh daftar unlocked
+  // Verifikasi kepemilikan chapter langsung ke server + refresh daftar unlocked.
+  // Hasil di-cache 60 detik agar klik berulang tidak memboroskan request worker.
+  const unlockedFetchedAt = useRef(0);
   const verifyOwnership = async (chapterId) => {
     const workerUrl = import.meta.env.VITE_WORKER_URL || '';
     if (!workerUrl || !isLoggedIn) return false;
+    if (Date.now() - unlockedFetchedAt.current < 60_000) {
+      return d1UnlockedRef.current.has(chapterId);
+    }
     try {
       const token = await getAccessToken();
       if (!token) return false;
       const res = await fetch(`${workerUrl}/api/user/unlocked`, { headers: { Authorization: `Bearer ${token}` } });
       const ids = await res.json();
       if (Array.isArray(ids)) {
+        unlockedFetchedAt.current = Date.now();
         const set = new Set(ids);
         setD1UnlockedChapters(set);
         return set.has(chapterId);
