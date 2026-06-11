@@ -23,15 +23,15 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
   return (
     <nav className="w-full bg-black border-b border-white/5">
-      <div className="flex items-center px-2 sm:px-3 md:px-4 py-1 gap-2 w-full">
+      <div className="flex items-center h-12 md:h-14 xl:h-16 px-2 sm:px-3 md:px-4 gap-2 w-full overflow-hidden">
         {/* Brand (Logo) — grows to fill available space */}
         <a
           href="/"
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
-          className="flex items-center gap-2 sm:gap-3 active:scale-95 transition-transform duration-150"
+          className="flex items-center gap-2 sm:gap-3 active:scale-95 transition-transform duration-150 shrink-0"
         >
           <img src="/logo-header.webp" alt="Nurananto Scanlation"
-            className="h-8 md:h-12 xl:h-16 w-auto shrink-0" />
+            className="h-8 md:h-10 xl:h-12 w-auto" />
           <span className="flex flex-col leading-none gap-0.5">
             <span className="text-xs md:text-base xl:text-xl font-black text-blue-400 tracking-tight">Nurananto</span>
             <span className="text-[10px] md:text-sm xl:text-base font-bold text-white tracking-tight">Scanlation</span>
