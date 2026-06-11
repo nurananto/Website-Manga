@@ -358,7 +358,7 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ chapter_id: chapterId, manga_id: mangaId, text }),
       });
-      if (res.ok) setComments(prev => [await res.json(), ...prev]);
+      if (res.ok) { const data = await res.json(); setComments(prev => [data, ...prev]); }
     } catch {}
     setSubmitting(false);
   };
