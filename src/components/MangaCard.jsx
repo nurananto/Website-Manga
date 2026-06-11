@@ -81,13 +81,13 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
                 className="flex justify-between items-center hover:bg-surface-container-highest px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border border-white/5 hover:border-white/10 transition-all group/ch"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
-                  {isLocked && <Lock className="w-3 h-3 text-amber-400/80 shrink-0" />}
+                  {isLocked && <Lock className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 text-amber-400 shrink-0" />}
                   <span className="font-body-md text-sm md:text-base lg:text-lg font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
                   </span>
                   {ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000 && (
-                    <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1 py-0.5 rounded font-label-sm text-[8px] font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
-                      <ArrowUp className="w-2 h-2 stroke-[3] shrink-0" />
+                    <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
+                      <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 stroke-[3] shrink-0" />
                       <span>UP</span>
                     </span>
                   )}
@@ -103,8 +103,8 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
                 </div>
 
                 {isLocked ? (
-                  <div className="flex items-center gap-0.5 text-amber-400/80 font-label-sm text-xs font-semibold shrink-0 whitespace-nowrap">
-                    <Clock className="w-3 h-3 shrink-0" />
+                  <div className="flex items-center gap-0.5 text-amber-400/80 font-label-sm text-xs md:text-sm lg:text-base font-semibold shrink-0 whitespace-nowrap">
+                    <Clock className="w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 shrink-0" />
                     <CountdownTimer
                       unlockDate={ch.unlockDate}
                       onUnlock={() => {
@@ -117,7 +117,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
                     />
                   </div>
                 ) : (
-                  <span className="font-label-sm text-[10px] sm:text-xs lg:text-sm text-outline/60 whitespace-nowrap shrink-0">{ch.date || timeAgo(ch.release_date)}</span>
+                  <span className="font-label-sm text-xs md:text-sm lg:text-base text-outline/60 whitespace-nowrap shrink-0">{ch.date || timeAgo(ch.release_date)}</span>
                 )}
               </div>
             );
