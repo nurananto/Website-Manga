@@ -115,16 +115,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                     onClick={() => { setIsDropdownOpen(false); if (onNotifClick) onNotifClick(); }}
                     className="w-full text-left px-4 py-2.5 text-xs font-bold text-on-surface hover:bg-white/5 hover:text-primary flex items-center gap-2.5 cursor-pointer"
                   >
-                    <div className="relative">
-                      <Bell className="w-4 h-4 text-violet-400" />
-                      {unreadNotifCount > 0 && (
-                        <div className="absolute -top-1.5 -right-1.5 min-w-[14px] h-3.5 rounded-full bg-red-500 flex items-center justify-center px-0.5">
-                          <span className="text-[8px] font-black text-white leading-none">
-                            {unreadNotifCount > 9 ? '9+' : unreadNotifCount}
-                          </span>
-                        </div>
-                      )}
-                    </div>
+                    <Bell className="w-4 h-4 text-violet-400" />
                     <span className="flex-1">Notifikasi</span>
                     {unreadNotifCount > 0 && (
                       <span className="text-[10px] font-black text-white bg-red-500 rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">

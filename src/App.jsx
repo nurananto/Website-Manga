@@ -927,7 +927,7 @@ export default function App() {
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-black text-on-surface">Notifikasi</span>
                   {unreadNotifCount > 0 && (
-                    <span className="text-[10px] font-black text-white bg-red-500 rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+                    <span className="text-[10px] font-black text-white bg-red-500 rounded-full min-w-[18px] h-[18px] inline-flex items-center justify-center px-1 leading-none">
                       {unreadNotifCount}
                     </span>
                   )}
