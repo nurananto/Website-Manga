@@ -32,7 +32,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
         >
           {/* Desktop & Tablet */}
           <img src="/header-desktop.webp" alt="Nurananto Scanlation"
-            className="hidden sm:block w-full max-w-[480px] md:max-w-[600px] lg:max-w-[720px] h-auto" />
+            className="hidden sm:block h-10 md:h-12 lg:h-14 w-auto" />
           {/* Mobile */}
           <img src="/header-mobile.webp" alt="Nurananto Scanlation"
             className="block sm:hidden h-14 w-auto" />
