@@ -29,8 +29,10 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
           <a
             href="/"
             onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
+            className="flex items-center gap-3"
           >
             <img src="/logo-header.webp" alt="Nurananto Scanlation" className="h-10 sm:h-12 md:h-14 w-auto" />
+            <span className="hidden sm:block text-sm md:text-base font-black text-white tracking-wide">Nurananto Scanlation</span>
           </a>
         </div>
 
