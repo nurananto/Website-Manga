@@ -592,6 +592,11 @@ async function handleComments(request, env) {
       return json({ error: 'Invalid fields' }, 400);
     if (parent_id && !isStr(parent_id, 100)) return json({ error: 'Invalid parent_id' }, 400);
 
+    // Ambil nama terbaru dari DB (bukan JWT, supaya nama yang baru diganti langsung keliatan)
+    const dbUser = await env.DB.prepare('SELECT name, avatar_url FROM users WHERE id = ?').bind(user.sub).first();
+    const displayName = dbUser?.name || user.name || user.email || 'User';
+    const displayAvatar = dbUser?.avatar_url || user.avatar || null;
+
     const id = crypto.randomUUID();
     await env.DB.prepare(
       'INSERT INTO comments (id, chapter_id, manga_id, user_id, parent_id, text) VALUES (?, ?, ?, ?, ?, ?)'
@@ -602,15 +607,15 @@ async function handleComments(request, env) {
       const parent = await env.DB.prepare('SELECT user_id FROM comments WHERE id = ?').bind(parent_id).first();
       if (parent) {
         const notifId = crypto.randomUUID();
-        env.DB.prepare(
+        await env.DB.prepare(
           'INSERT INTO notifications (id, user_id, type, actor_name, manga_id, comment_id, preview) VALUES (?, ?, ?, ?, ?, ?, ?)'
-        ).bind(notifId, parent.user_id, 'reply', user.name || user.email || 'User', manga_id, id, text.trim().slice(0, 100)).run();
+        ).bind(notifId, parent.user_id, 'reply', displayName, manga_id, id, text.trim().slice(0, 100)).run();
       }
     }
 
     return json({
       id, text: text.trim(), deleted: false, parent_id: parent_id || null, created_at: new Date().toISOString(),
-      user: { id: user.sub, name: user.name || user.email || 'User', avatar: user.avatar || null },
+      user: { id: user.sub, name: displayName, avatar: displayAvatar },
       replies: [],
     });
   }
