@@ -509,18 +509,40 @@ export default function App() {
     }
   };
 
+  // Verifikasi kepemilikan chapter langsung ke server + refresh daftar unlocked
+  const verifyOwnership = async (chapterId) => {
+    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+    if (!workerUrl || !isLoggedIn) return false;
+    try {
+      const token = await getAccessToken();
+      if (!token) return false;
+      const res = await fetch(`${workerUrl}/api/user/unlocked`, { headers: { Authorization: `Bearer ${token}` } });
+      const ids = await res.json();
+      if (Array.isArray(ids)) {
+        const set = new Set(ids);
+        setD1UnlockedChapters(set);
+        return set.has(chapterId);
+      }
+    } catch {}
+    return false;
+  };
+
   const handleReadChapter = (chapter, mangaTitle, mangaObj) => {
     const isLocked = !!chapter.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now() && !d1UnlockedChapters.has(chapter.id);
 
     if (isLocked) {
       setIsCheckingAccess(true);
-      setTimeout(() => {
+      verifyOwnership(chapter.id).then(owned => {
         setIsCheckingAccess(false);
+        if (owned) {
+          openChapterReader(chapter, mangaTitle);
+          return;
+        }
         setPendingUnlockChapter(chapter);
         setPendingMangaTitle(mangaTitle);
         setPendingManga(mangaObj || selectedManga);
         setIsLockedModalOpen(true);
-      }, 700);
+      });
       return;
     }
 

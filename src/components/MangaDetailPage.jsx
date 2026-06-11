@@ -54,7 +54,7 @@ const renderChapterRow = (ch, idx) => {
         }}
         className={`group flex items-center justify-between py-3 px-2 sm:px-3 transition-all cursor-pointer rounded-xl border ${
           isLocked
-            ? 'bg-amber-500/10 border-amber-500/20 hover:bg-amber-500/15 hover:border-amber-500/35'
+            ? 'bg-amber-500/5 border-amber-500/20 hover:bg-amber-500/10 hover:border-amber-500/35'
             : 'bg-surface-container/30 border-white/8 hover:bg-white/5 hover:border-white/15'
         }`}
       >
@@ -97,7 +97,7 @@ const renderChapterRow = (ch, idx) => {
                 <span className="text-outline/60">{ch.date || timeAgo(ch.release_date)}</span>
                 <span className="text-outline/40">|</span>
                 <span className="text-amber-400/80 flex items-center gap-1">
-                  <span>Buka dalam</span>
+                  <span>Free dalam</span>
                   <CountdownTimer
                     unlockDate={ch.unlockDate}
                     onUnlock={() => {

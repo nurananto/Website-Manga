@@ -26,7 +26,7 @@ function CountdownBox({ unlockDate }) {
       {[{ v: time.h, l: 'JAM' }, { v: time.m, l: 'MENIT' }, { v: time.s, l: 'DETIK' }].reduce((acc, { v, l }, i) => {
         const cell = (
           <div key={l} className="flex flex-col items-center">
-            <span className="font-mono text-4xl sm:text-5xl font-black text-on-surface tabular-nums leading-none">{pad(v)}</span>
+            <span className="font-mono text-4xl sm:text-5xl md:text-6xl font-black text-on-surface tabular-nums leading-none">{pad(v)}</span>
             <span className="font-label-sm text-[10px] sm:text-xs md:text-sm text-outline/50 font-bold uppercase tracking-widest mt-1">{l}</span>
           </div>
         );
@@ -343,7 +343,7 @@ export function UnlockModal({ isOpen, onClose, chapter, userCoins, onConfirm, on
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-xl shadow-2xl p-6 overflow-hidden z-10 flex flex-col items-center text-center animate-[slideUp_0.25s_ease-out]"
+          className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-surface-container border border-white/10 rounded-xl shadow-2xl p-6 overflow-hidden z-10 flex flex-col items-center text-center animate-[slideUp_0.25s_ease-out]"
         >
           {/* Top golden glow */}
           <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -535,7 +535,7 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.93, y: 20 }}
           transition={{ type: 'spring', damping: 22, stiffness: 320 }}
-          className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10"
+          className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-surface-container border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10"
         >
           <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
           <button onClick={onClose}

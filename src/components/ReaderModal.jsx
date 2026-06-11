@@ -334,11 +334,13 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
       return;
     }
     if (!nextChapter) return;
-    if (isChapterLocked(nextChapter)) {
+    if (isChapterLocked(nextChapter) && !isLoggedIn) {
+      // Belum login — tidak perlu cek server, tampilkan countdown langsung
       setLockedNext(nextChapter);
       setShowLockedModal(true);
       return;
     }
+    // onReadChapter (handleReadChapter di App) memverifikasi kepemilikan ke server
     onReadChapter(nextChapter, activeManga.title);
   };
 
@@ -746,7 +748,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
                 onClick={e => e.stopPropagation()}
-                className="bg-surface-container border border-white/10 rounded-2xl p-6 max-w-sm w-full shadow-2xl flex flex-col gap-5 text-center"
+                className="bg-surface-container border border-white/10 rounded-2xl p-6 max-w-sm sm:max-w-md md:max-w-lg w-full shadow-2xl flex flex-col gap-5 text-center"
               >
                 <div>
                   <p className="font-label-sm text-xs sm:text-sm md:text-base text-outline/70 uppercase tracking-widest font-bold mb-1">Chapter berikutnya</p>
