@@ -30,7 +30,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
             href="/"
             onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
           >
-            <img src="/logo-header.webp" alt="Nurananto Scanlation" className="h-10 w-auto hover:scale-105 transition-transform" />
+            <img src="/logo-header.webp" alt="Nurananto Scanlation" className="h-10 sm:h-12 md:h-14 w-auto hover:scale-105 transition-transform" />
           </a>
         </div>
 
