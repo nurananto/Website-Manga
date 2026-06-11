@@ -383,7 +383,7 @@ export default function CommentSection({ chapterId, mangaId, mangaTitle, chapter
       return;
     }
     try {
-      const res = await fetch(`${workerUrl}/api/comments/${commentId}`, {
+      const res = await fetch(`${workerUrl}/api/comments/${commentId}?chapter=${encodeURIComponent(chapterId)}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` },
       });
@@ -406,7 +406,7 @@ export default function CommentSection({ chapterId, mangaId, mangaTitle, chapter
       return;
     }
     try {
-      const res = await fetch(`${workerUrl}/api/comments/${replyId}`, {
+      const res = await fetch(`${workerUrl}/api/comments/${replyId}?chapter=${encodeURIComponent(chapterId)}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` },
       });
