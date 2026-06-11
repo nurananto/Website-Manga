@@ -33,7 +33,7 @@ jobs:
 
       - name: Generate version file
         run: |
-          echo "{\"v\":\"$(date +%s)\"}" > public/version.json
+          echo "{\"v\":\"$(date +%s)\",\"label\":\"$(date +'%-d %b %Y')\"}" > public/version.json
 
       - name: Commit hasil build
         run: |

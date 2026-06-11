@@ -18,28 +18,22 @@ import '@fontsource/hanken-grotesk/latin-ext-400.css'
 import '@fontsource/hanken-grotesk/latin-ext-700.css'
 import '@fontsource/geist/latin-500.css'
 
-// Register Service Worker — force refresh saat ada update
+// Register Service Worker — notifikasi update ke App lalu reload
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').then(reg => {
-    // Saat ada versi baru → reload otomatis
     reg.addEventListener('updatefound', () => {
       const newSW = reg.installing;
       newSW?.addEventListener('statechange', () => {
         if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
-          newSW.postMessage('SKIP_WAITING');
-          window.location.reload();
+          window.dispatchEvent(new CustomEvent('app-update', { detail: { source: 'sw' } }));
         }
       });
     });
 
-    // Cek update setiap kali user kembali ke tab
     document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') {
-        reg.update(); // trigger cek versi SW terbaru
-      }
+      if (document.visibilityState === 'visible') reg.update();
     });
 
-    // Cek update setiap 5 menit (untuk yang buka lama tanpa pindah tab)
     setInterval(() => reg.update(), 5 * 60 * 1000);
   });
 }

@@ -1,6 +1,5 @@
 // ============================================================
 // MangaFlow — API Worker
-// Deploy sebagai Worker TERPISAH dari image worker.
 // Bindings di Dashboard:
 //   D1  → nama: DB               → database: manga-db
 //   Var → JWT_SECRET             → string panjang acak (min 32 char)
@@ -14,28 +13,7 @@
 //   Var → GITHUB_TOKEN           → untuk cron push views
 //   Var → GITHUB_REPO            → "nurananto/Website-Manga"
 // Route: api.nuranantoscans.my.id/*
-//
-// D1 migration tambahan (jalankan sekali di Dashboard → D1 → Console):
-//   ALTER TABLE users ADD COLUMN google_id TEXT;
-//   ALTER TABLE users ADD COLUMN name TEXT;
-//   ALTER TABLE users ADD COLUMN avatar_url TEXT;
-//   ALTER TABLE users ADD COLUMN name_changed_at TEXT;
-//   CREATE TABLE IF NOT EXISTS refresh_tokens (
-//     token TEXT PRIMARY KEY,
-//     user_id TEXT NOT NULL,
-//     expires_at TEXT NOT NULL,
-//     created_at TEXT DEFAULT CURRENT_TIMESTAMP
-//   );
-//   CREATE TABLE IF NOT EXISTS oauth_states (
-//     state TEXT PRIMARY KEY,
-//     redirect_url TEXT,
-//     expires_at TEXT NOT NULL
-//   );
-//   CREATE TABLE IF NOT EXISTS login_codes (
-//     code TEXT PRIMARY KEY,
-//     user_id TEXT NOT NULL,
-//     expires_at TEXT NOT NULL
-//   );
+// Schema: worker/schema.sql
 // ============================================================
 
 const CORS = {

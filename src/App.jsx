@@ -152,25 +152,39 @@ export default function App() {
   const [routePage, setRoutePage] = useState(() => parsePath().page);
 
   // Paksa refresh saat ada versi baru di server
+  const [showUpdateBanner, setShowUpdateBanner] = useState(false);
+  const [updateLabel, setUpdateLabel] = useState('');
+
+  const triggerUpdate = (label) => {
+    setUpdateLabel(label || '');
+    setShowUpdateBanner(true);
+    setTimeout(() => window.location.reload(), 2000);
+  };
+
+  useEffect(() => {
+    const handleSwUpdate = () => triggerUpdate('');
+    window.addEventListener('app-update', handleSwUpdate);
+    return () => window.removeEventListener('app-update', handleSwUpdate);
+  }, []);
+
   useEffect(() => {
     let currentVersion = null;
 
     const checkVersion = async () => {
       try {
         const res = await fetch('/version.json?t=' + Date.now(), { cache: 'no-store' });
-        const { v } = await res.json();
+        const data = await res.json();
+        const { v, label } = data;
         if (currentVersion === null) {
-          currentVersion = v; // simpan versi pertama
+          currentVersion = v;
         } else if (v !== currentVersion) {
-          window.location.reload(); // versi berbeda → reload
+          triggerUpdate(label || '');
         }
-      } catch {
-        // ignore network error
-      }
+      } catch {}
     };
 
     checkVersion();
-    const interval = setInterval(checkVersion, 60 * 1000); // cek tiap 1 menit
+    const interval = setInterval(checkVersion, 60 * 1000);
     return () => clearInterval(interval);
   }, []);
   const [searchQuery, setSearchQuery] = useState('');
@@ -507,7 +521,18 @@ export default function App() {
 
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container pb-safe-20">
-      
+
+      {/* Update overlay */}
+      {showUpdateBanner && (
+        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-surface/95 backdrop-blur-xl gap-4">
+          <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+          <div className="text-center">
+            <p className="text-sm font-black text-on-surface">Memperbarui MangaFlow...</p>
+            {updateLabel && <p className="text-xs text-outline mt-1">{updateLabel}</p>}
+          </div>
+        </div>
+      )}
+
       {/* Top Nav Bar — sembunyikan saat reader aktif atau auth callback */}
       {!activeChapter && routePage !== 'auth' && (
         <TopNavBar
