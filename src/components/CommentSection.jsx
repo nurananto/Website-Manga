@@ -314,6 +314,29 @@ function CommentSkeleton() {
   );
 }
 
+// ── Cache komentar per chapter di localStorage ─────────────────
+const COMMENT_CACHE_TTL = 365 * 24 * 60 * 60 * 1000; // 1 tahun
+
+function getCacheKey(chapterId) { return `mf_cmts_${chapterId}`; }
+
+function readCache(chapterId) {
+  try {
+    const raw = localStorage.getItem(getCacheKey(chapterId));
+    if (!raw) return null;
+    const { comments, ts } = JSON.parse(raw);
+    if (Date.now() - ts > COMMENT_CACHE_TTL) { localStorage.removeItem(getCacheKey(chapterId)); return null; }
+    return comments;
+  } catch { return null; }
+}
+
+function writeCache(chapterId, comments) {
+  try { localStorage.setItem(getCacheKey(chapterId), JSON.stringify({ comments, ts: Date.now() })); } catch {}
+}
+
+function clearCache(chapterId) {
+  try { localStorage.removeItem(getCacheKey(chapterId)); } catch {}
+}
+
 // ── Export utama ───────────────────────────────────────────────
 export default function CommentSection({ chapterId, mangaId, isLoggedIn, currentUser, onLoginClick, targetCommentId }) {
   const [comments,   setComments]   = useState([]);
@@ -322,13 +345,25 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
   const workerUrl = (import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
   const currentUserId = currentUser?.id || null;
 
+  // Helper: update state + tulis ulang cache
+  const applyAndCache = (chId, updater) => {
+    setComments(prev => {
+      const next = typeof updater === 'function' ? updater(prev) : updater;
+      writeCache(chId, next);
+      return next;
+    });
+  };
+
   useEffect(() => {
     if (!chapterId || !workerUrl) return;
+    // Tampilkan cache dulu supaya tidak blank saat loading
+    const cached = readCache(chapterId);
+    if (cached) { setComments(cached); setLoading(false); return; }
     setLoading(true);
     setComments([]);
     fetch(`${workerUrl}/api/comments?chapter=${encodeURIComponent(chapterId)}`)
       .then(r => r.ok ? r.json() : { comments: [] })
-      .then(data => setComments(data.comments || []))
+      .then(data => { const c = data.comments || []; setComments(c); writeCache(chapterId, c); })
       .catch(() => setComments([]))
       .finally(() => setLoading(false));
   }, [chapterId]);
@@ -345,7 +380,12 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ chapter_id: chapterId, manga_id: mangaId, text }),
       });
-      if (res.ok) { const data = await res.json(); setComments(prev => [...prev, data]); }
+      if (res.ok) {
+        const data = await res.json();
+        // Komentar baru → invalidate cache lama, tulis ulang dengan data terbaru
+        clearCache(chapterId);
+        applyAndCache(chapterId, prev => [...prev, data]);
+      }
     } catch {}
     setSubmitting(false);
   };
@@ -361,7 +401,8 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
       });
       if (res.ok) {
         const data = await res.json();
-        setComments(prev => prev.map(c =>
+        clearCache(chapterId);
+        applyAndCache(chapterId, prev => prev.map(c =>
           c.id === parentId ? { ...c, replies: [...(c.replies || []), data] } : c
         ));
       }
@@ -372,11 +413,10 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
   const handleDelete = async (commentId, hasReplies) => {
     const token = await getToken();
     if (!workerUrl || !token) {
-      // Demo: soft/hard delete lokal
       if (hasReplies) {
-        setComments(prev => prev.map(c => c.id === commentId ? { ...c, deleted: true } : c));
+        applyAndCache(chapterId, prev => prev.map(c => c.id === commentId ? { ...c, deleted: true } : c));
       } else {
-        setComments(prev => prev.filter(c => c.id !== commentId));
+        applyAndCache(chapterId, prev => prev.filter(c => c.id !== commentId));
       }
       return;
     }
@@ -387,9 +427,9 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
       });
       if (res.ok) {
         if (hasReplies) {
-          setComments(prev => prev.map(c => c.id === commentId ? { ...c, deleted: true } : c));
+          applyAndCache(chapterId, prev => prev.map(c => c.id === commentId ? { ...c, deleted: true } : c));
         } else {
-          setComments(prev => prev.filter(c => c.id !== commentId));
+          applyAndCache(chapterId, prev => prev.filter(c => c.id !== commentId));
         }
       }
     } catch {}
@@ -398,7 +438,7 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
   const handleDeleteReply = async (parentId, replyId) => {
     const token = await getToken();
     if (!workerUrl || !token) {
-      setComments(prev => prev.map(c =>
+      applyAndCache(chapterId, prev => prev.map(c =>
         c.id === parentId ? { ...c, replies: (c.replies || []).filter(r => r.id !== replyId) } : c
       ));
       return;
@@ -409,7 +449,7 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
         headers: { 'Authorization': `Bearer ${token}` },
       });
       if (res.ok) {
-        setComments(prev => prev.map(c =>
+        applyAndCache(chapterId, prev => prev.map(c =>
           c.id === parentId ? { ...c, replies: (c.replies || []).filter(r => r.id !== replyId) } : c
         ));
       }
