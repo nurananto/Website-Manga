@@ -229,7 +229,7 @@ function CommentItem({ comment, isLoggedIn, currentUserId, onReply, onDelete, on
                 <div className="flex items-center gap-2 sm:gap-3 mt-1.5 sm:mt-2">
                   {canReply && (
                     <button
-                      onClick={() => setShowReplyInput(v => !v)}
+                      onClick={() => { setShowReplyInput(v => !v); setConfirmDel(false); }}
                       className={`flex items-center gap-1 text-[10px] sm:text-[11px] font-bold transition-colors cursor-pointer ${
                         showReplyInput ? 'text-primary' : 'text-outline/50 hover:text-primary'
                       }`}
@@ -239,7 +239,7 @@ function CommentItem({ comment, isLoggedIn, currentUserId, onReply, onDelete, on
                     </button>
                   )}
                   {isOwn && (
-                    <button onClick={() => setConfirmDel(true)}
+                    <button onClick={() => { setConfirmDel(true); setShowReplyInput(false); }}
                       className="flex items-center gap-1 text-[10px] sm:text-[11px] text-outline/30 hover:text-red-400 transition-colors cursor-pointer">
                       <Trash2 className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                       Hapus
@@ -446,7 +446,7 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
   const totalCount = comments.reduce((n, c) => n + 1 + (c.replies?.length || 0), 0);
 
   return (
-    <div className="w-full px-3 sm:px-6 md:px-10 lg:px-16 py-4 sm:py-6 flex flex-col gap-4 sm:gap-5">
+    <div className="w-full px-3 sm:px-4 py-4 sm:py-6 flex flex-col gap-4 sm:gap-5 font-body-md">
       {/* Header */}
       <div className="flex items-center gap-2 border-t border-white/10 pt-4 sm:pt-6">
         <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
@@ -469,12 +469,20 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
           <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-surface-container-high border border-white/10 shrink-0 flex items-center justify-center">
             <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-outline/30" />
           </div>
-          <button
+          <div
+            className="flex-1 flex items-center gap-2 sm:gap-3 bg-surface-container-high border border-white/10 rounded-xl px-3 py-2.5 cursor-pointer hover:border-primary/40 transition-colors"
             onClick={onLoginClick}
-            className="flex-1 h-[72px] sm:h-20 bg-surface-container-high border border-white/10 rounded-xl px-3 py-2 text-xs sm:text-sm text-outline/30 text-left cursor-pointer hover:border-primary/40 hover:text-outline/50 transition-colors"
+            role="button"
+            tabIndex={0}
+            onKeyDown={e => e.key === 'Enter' && onLoginClick?.()}
           >
-            Tulis komentar... (login untuk berkomentar)
-          </button>
+            <span className="flex-1 text-xs sm:text-sm text-outline/30 pointer-events-none select-none">
+              Login untuk berkomentar...
+            </span>
+            <span className="shrink-0 px-3 py-1.5 text-[11px] sm:text-xs font-bold text-on-primary bg-primary rounded-lg pointer-events-none select-none">
+              Masuk / Login
+            </span>
+          </div>
         </div>
       )}
 
