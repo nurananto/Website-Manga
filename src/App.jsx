@@ -343,7 +343,7 @@ export default function App() {
   const fetchNotifications = async ({ force = false, userId, workerUrl, token: tok } = {}) => {
     const wUrl   = workerUrl || import.meta.env.VITE_WORKER_URL || '';
     const tkn    = tok || await getAccessToken();
-    const uid    = userId;
+    const uid    = userId || currentUser?.id;
     if (!wUrl || !tkn || !uid) return;
 
     const cacheKey = `mf_notifs_${uid}`;
