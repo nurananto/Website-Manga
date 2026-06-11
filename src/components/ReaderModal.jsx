@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, ArrowUp, Lock, Clock, BookOpen } from 'lucide-re
 import CountdownTimer from './CountdownTimer';
 import { ReaderPageSkeleton } from './Skeleton';
 import { imgUrl } from '../utils';
+import CommentSection from './CommentSection';
 
 function CountdownLarge({ unlockDate }) {
   const [time, setTime] = useState({ h: 0, m: 0, s: 0 });
@@ -171,7 +172,7 @@ function PageImage({ src, idx, pageRefs }) {
   );
 }
 
-export default function ReaderModal({ chapter, manga, onClose, onReadChapter, unlockedChapters }) {
+export default function ReaderModal({ chapter, manga, onClose, onReadChapter, unlockedChapters, isLoggedIn, currentUser, onLoginClick, targetCommentId }) {
   // Freeze last known values saat exit animation agar konten tidak hilang
   const frozenChapter = useRef(chapter);
   const frozenManga = useRef(manga);
@@ -460,7 +461,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             <NavBar position="bottom" />
 
             {/* Tombol kembali — bawah, squircle */}
-            <div className="px-2 py-2 pb-8">
+            <div className="px-2 py-2">
               <button
                 onClick={onClose}
                 className="relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-white/15 flex items-center gap-3 active:scale-[0.99] cursor-pointer overflow-hidden"
@@ -489,6 +490,18 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                   </div>
                 )}
               </button>
+            </div>
+
+            {/* Komentar */}
+            <div className="w-full lg:max-w-[720px] lg:mx-auto pb-16">
+              <CommentSection
+                chapterId={activeChapter?.id}
+                mangaId={activeManga?.id}
+                isLoggedIn={isLoggedIn}
+                currentUser={currentUser}
+                onLoginClick={onLoginClick}
+                targetCommentId={targetCommentId}
+              />
             </div>
           </div>
         </div>

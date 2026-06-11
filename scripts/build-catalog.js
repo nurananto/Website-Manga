@@ -4,21 +4,26 @@ import path from 'path';
 const chaptersDir = './manga';
 const outDir = './public/manga';
 
-// Fix double-UTF8 encoding (Latin-1 bytes re-encoded as UTF-8)
-// Setiap karakter di string diperlakukan sebagai byte Latin-1, lalu di-decode ulang sebagai UTF-8
+// Fix multi-level UTF-8 mojibake (bisa double atau triple encoded)
+// Loop sampai stabil: stop saat ada char > U+00FF, atau decode tidak berubah, atau error
 function fixMojibake(str) {
   if (typeof str !== 'string') return str;
-  // Kalau ada karakter > U+00FF → sudah benar (bukan double-encoded), skip
-  for (let i = 0; i < str.length; i++) {
-    if (str.charCodeAt(i) > 255) return str;
+  let current = str;
+  for (let pass = 0; pass < 5; pass++) {
+    for (let i = 0; i < current.length; i++) {
+      if (current.charCodeAt(i) > 255) return current;
+    }
+    try {
+      const bytes = new Uint8Array(current.length);
+      for (let i = 0; i < current.length; i++) bytes[i] = current.charCodeAt(i);
+      const decoded = new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+      if (decoded === current) return current;
+      current = decoded;
+    } catch {
+      return current;
+    }
   }
-  try {
-    const bytes = new Uint8Array(str.length);
-    for (let i = 0; i < str.length; i++) bytes[i] = str.charCodeAt(i);
-    return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
-  } catch {
-    return str; // Bukan double-encoded, kembalikan aslinya
-  }
+  return current;
 }
 
 function fixEncoding(val) {

@@ -197,6 +197,9 @@ export default function App() {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [showDmca, setShowDmca] = useState(false);
+  const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const [unreadNotifCount, setUnreadNotifCount] = useState(0);
+  const [targetCommentId, setTargetCommentId] = useState(null);
   const ITEMS_PER_PAGE = 6;
 
   // Dynamic document title
@@ -491,6 +494,8 @@ export default function App() {
           isLoggedIn={isLoggedIn}
           currentUser={currentUser}
           onLoginClick={() => setIsAuthModalOpen(true)}
+          unreadNotifCount={unreadNotifCount}
+          onNotifClick={() => setIsNotifOpen(true)}
           onLogout={async () => {
             await supabase.auth.signOut();
             setIsLoggedIn(false);
@@ -876,6 +881,46 @@ export default function App() {
       {showTerms && <TermsOfServiceModal onClose={() => setShowTerms(false)} />}
       {showDmca && <DmcaModal onClose={() => setShowDmca(false)} />}
 
+      {/* Notifikasi Panel */}
+      <AnimatePresence>
+        {isNotifOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[300] bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-4"
+            onClick={() => setIsNotifOpen(false)}
+          >
+            <motion.div
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 40, opacity: 0 }}
+              transition={{ type: 'spring', damping: 24, stiffness: 260 }}
+              onClick={e => e.stopPropagation()}
+              className="w-full sm:max-w-sm bg-surface-container border border-white/10 rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col max-h-[80vh]"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-black text-on-surface">Notifikasi</span>
+                  {unreadNotifCount > 0 && (
+                    <span className="text-[10px] font-black text-white bg-red-500 rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+                      {unreadNotifCount}
+                    </span>
+                  )}
+                </div>
+                <button onClick={() => setIsNotifOpen(false)} className="text-outline/50 hover:text-on-surface transition-colors cursor-pointer text-lg leading-none">✕</button>
+              </div>
+              {/* Empty state — akan diisi saat backend siap */}
+              <div className="flex-1 overflow-y-auto flex flex-col items-center justify-center py-12 gap-3">
+                <span className="text-3xl">🔔</span>
+                <p className="text-sm font-semibold text-outline/50">Belum ada notifikasi</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Checking chapter access overlay */}
       <AnimatePresence>
         {isCheckingAccess && (
@@ -900,9 +945,13 @@ export default function App() {
         <ReaderModal
           chapter={activeChapter}
           manga={selectedManga}
-          onClose={() => { navigate(`/${selectedManga?.id || ''}`); }}
+          onClose={() => { setTargetCommentId(null); navigate(`/${selectedManga?.id || ''}`); }}
           onReadChapter={handleReadChapter}
           unlockedChapters={d1UnlockedChapters}
+          isLoggedIn={isLoggedIn}
+          currentUser={currentUser}
+          onLoginClick={() => setIsAuthModalOpen(true)}
+          targetCommentId={targetCommentId}
         />
       )}
 

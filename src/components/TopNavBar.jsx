@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { BookOpen, Heart, Key, RotateCcw, LogOut, Coins, Coffee } from 'lucide-react';
+import { BookOpen, Heart, Key, RotateCcw, LogOut, Coins, Coffee, Bell } from 'lucide-react';
 
-export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, userCoins, isLoggedIn, currentUser, onLoginClick, onLogout, onBuyCoinsClick, onDropdownOpen }) {
+export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, userCoins, isLoggedIn, currentUser, onLoginClick, onLogout, onBuyCoinsClick, onDropdownOpen, unreadNotifCount = 0, onNotifClick }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -46,18 +46,27 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
         {/* Actions (Profile Avatar with Dropdown) */}
         <div ref={dropdownRef} className="relative">
-          <div
-            onClick={() => { setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); }}
-            className={`w-9 h-9 rounded-full overflow-hidden border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md flex items-center justify-center bg-surface-container-high ${
-              activeTab === 'profile' || isDropdownOpen ? 'border-primary' : 'border-white/10'
-            }`}
-          >
-            {avatarUrl ? (
-              <img alt="avatar" className="w-full h-full object-cover" src={avatarUrl} />
-            ) : (
-              <span className="text-xs font-black text-primary select-none">
-                {displayName.slice(0, 2).toUpperCase()}
-              </span>
+          <div className="relative">
+            <div
+              onClick={() => { setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); }}
+              className={`w-9 h-9 rounded-full overflow-hidden border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md flex items-center justify-center bg-surface-container-high ${
+                activeTab === 'profile' || isDropdownOpen ? 'border-primary' : 'border-white/10'
+              }`}
+            >
+              {avatarUrl ? (
+                <img alt="avatar" className="w-full h-full object-cover" src={avatarUrl} referrerPolicy="no-referrer" />
+              ) : (
+                <span className="text-xs font-black text-primary select-none">
+                  {displayName.slice(0, 2).toUpperCase()}
+                </span>
+              )}
+            </div>
+            {isLoggedIn && unreadNotifCount > 0 && (
+              <div className="absolute -top-1 -right-1 min-w-[16px] h-4 rounded-full bg-red-500 border-2 border-surface flex items-center justify-center px-0.5 pointer-events-none">
+                <span className="text-[9px] font-black text-white leading-none">
+                  {unreadNotifCount > 9 ? '9+' : unreadNotifCount}
+                </span>
+              </div>
             )}
           </div>
 
@@ -101,6 +110,27 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                   >
                     <RotateCcw className="w-4 h-4 text-sky-400" />
                     <span>History</span>
+                  </button>
+                  <button
+                    onClick={() => { setIsDropdownOpen(false); if (onNotifClick) onNotifClick(); }}
+                    className="w-full text-left px-4 py-2.5 text-xs font-bold text-on-surface hover:bg-white/5 hover:text-primary flex items-center gap-2.5 cursor-pointer"
+                  >
+                    <div className="relative">
+                      <Bell className="w-4 h-4 text-violet-400" />
+                      {unreadNotifCount > 0 && (
+                        <div className="absolute -top-1.5 -right-1.5 min-w-[14px] h-3.5 rounded-full bg-red-500 flex items-center justify-center px-0.5">
+                          <span className="text-[8px] font-black text-white leading-none">
+                            {unreadNotifCount > 9 ? '9+' : unreadNotifCount}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <span className="flex-1">Notifikasi</span>
+                    {unreadNotifCount > 0 && (
+                      <span className="text-[10px] font-black text-white bg-red-500 rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+                        {unreadNotifCount > 9 ? '9+' : unreadNotifCount}
+                      </span>
+                    )}
                   </button>
                   <button
                     onClick={() => { setIsDropdownOpen(false); if (onChangePasswordClick) onChangePasswordClick(); }}
