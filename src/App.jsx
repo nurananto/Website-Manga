@@ -561,7 +561,11 @@ export default function App() {
         const res = await fetch(`${workerUrl}/api/user/unlock-chapter`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chapter_id: pendingUnlockChapter.id, cost: 5 }),
+          body: JSON.stringify({
+            chapter_id: pendingUnlockChapter.id,
+            manga_id: pendingManga?.id || selectedManga?.id || pendingUnlockChapter.id.split('-ch-')[0],
+            cost: 5,
+          }),
         });
         const d = await res.json();
         if (!res.ok && !d.already_owned) {
