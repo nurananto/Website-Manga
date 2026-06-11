@@ -295,28 +295,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     setPageCount(chapter.pages);
   }, [chapter?.id, imgAccess]);
 
-  // Reset visibilitas komentar tiap ganti chapter (kecuali ada deep-link komentar)
+  // Reset visibilitas komentar tiap ganti chapter (kecuali ada deep-link komentar).
+  // Gaya MangaDex: komentar hanya tampil & dimuat saat tombol Komentar diklik.
   useEffect(() => {
     setCommentsVisible(!!targetCommentId);
   }, [chapter?.id, targetCommentId]);
-
-  // Amati area komentar — baru fetch saat user scroll mendekat (600px sebelum terlihat)
-  useEffect(() => {
-    if (commentsVisible || pages.length === 0) return;
-    const el = commentsRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        if (entries.some(e => e.isIntersecting)) {
-          setCommentsVisible(true);
-          obs.disconnect();
-        }
-      },
-      { root: scrollRef.current, rootMargin: '600px' }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [commentsVisible, chapter?.id, pages.length]);
 
   // Reset scroll + currentPage saat chapter berganti
   useEffect(() => {
@@ -537,6 +520,23 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             {/* Navigasi bawah */}
             <NavBar position="bottom" />
 
+            {/* Tombol komentar — gaya MangaDex: komentar dimuat saat diklik */}
+            <div className="px-2 pt-2">
+              <button
+                onClick={() => {
+                  const next = !commentsVisible;
+                  setCommentsVisible(next);
+                  if (next) setTimeout(() => commentsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+                }}
+                className="w-full h-11 sm:h-12 md:h-14 rounded-2xl border border-white/15 bg-surface-container hover:bg-surface-container-high flex items-center justify-center gap-2 text-sm sm:text-base font-bold text-on-surface active:scale-[0.99] transition-all cursor-pointer"
+              >
+                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+                {commentsVisible
+                  ? 'Sembunyikan Komentar'
+                  : `Komentar${commentCount ? ` (${commentCount})` : ''}`}
+              </button>
+            </div>
+
             {/* Tombol kembali — bawah, squircle */}
             <div className="px-2 pt-2 pb-2">
               <button
@@ -569,9 +569,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
               </button>
             </div>
 
-            {/* Komentar — lazy: dirender saat user scroll mendekati area ini */}
+            {/* Komentar — hanya dirender saat tombol Komentar diklik */}
             <div className="w-full pb-16" ref={commentsRef}>
-              {commentsVisible ? (
+              {commentsVisible && (
                 <CommentSection
                   chapterId={activeChapter?.id}
                   mangaId={activeManga?.id}
@@ -583,8 +583,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                   targetCommentId={targetCommentId}
                   onCommentCountChange={setCommentCount}
                 />
-              ) : (
-                <div className="h-24" />
               )}
             </div>
           </div>
