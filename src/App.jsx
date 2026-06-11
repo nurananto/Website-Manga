@@ -220,6 +220,7 @@ export default function App() {
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [targetCommentId, setTargetCommentId] = useState(null);
   const [notifications, setNotifications] = useState([]);
+  const notifLastFetch = useRef(0); // timestamp fetch terakhir
   const unreadNotifCount = notifications.filter(n => !n.read).length;
   const ITEMS_PER_PAGE = 6;
 
@@ -324,10 +325,37 @@ export default function App() {
         if (Array.isArray(ids)) setD1UnlockedChapters(new Set(ids));
       }).catch(() => {});
 
-    fetch(`${workerUrl}/api/user/notifications`, { headers })
-      .then(r => r.json()).then(data => {
-        if (Array.isArray(data)) setNotifications(data);
-      }).catch(() => {});
+    fetchNotifications({ force: true, userId: user?.sub, workerUrl, token });
+  };
+
+  // Cache notifikasi di localStorage — TTL 10 menit, fetch hanya saat stale
+  const NOTIF_TTL = 10 * 60 * 1000;
+  const fetchNotifications = async ({ force = false, userId, workerUrl, token: tok } = {}) => {
+    const wUrl   = workerUrl || import.meta.env.VITE_WORKER_URL || '';
+    const tkn    = tok || await getAccessToken();
+    const uid    = userId;
+    if (!wUrl || !tkn || !uid) return;
+
+    const cacheKey = `mf_notifs_${uid}`;
+    const now      = Date.now();
+
+    // Kalau tidak force dan cache masih segar (< 10 menit), pakai cache
+    if (!force && now - notifLastFetch.current < NOTIF_TTL) {
+      try {
+        const raw = localStorage.getItem(cacheKey);
+        if (raw) { setNotifications(JSON.parse(raw)); return; }
+      } catch {}
+    }
+
+    try {
+      const res  = await fetch(`${wUrl}/api/user/notifications`, { headers: { Authorization: `Bearer ${tkn}` } });
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        setNotifications(data);
+        notifLastFetch.current = now;
+        try { localStorage.setItem(cacheKey, JSON.stringify(data)); } catch {}
+      }
+    } catch {}
   };
 
   // Fetch catalog dari /manga/index.json
@@ -549,14 +577,7 @@ export default function App() {
           currentUser={currentUser}
           onLoginClick={() => setIsAuthModalOpen(true)}
           unreadNotifCount={unreadNotifCount}
-          onNotifClick={async () => {
-            setIsNotifOpen(true);
-            const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-            const token = await getAccessToken();
-            if (workerUrl && token)
-              fetch(`${workerUrl}/api/user/notifications`, { headers: { Authorization: `Bearer ${token}` } })
-                .then(r => r.json()).then(data => { if (Array.isArray(data)) setNotifications(data); }).catch(() => {});
-          }}
+          onNotifClick={() => { setIsNotifOpen(true); fetchNotifications(); }}
           onLogout={async () => {
             await authLogout();
             setIsLoggedIn(false);
@@ -1018,7 +1039,11 @@ export default function App() {
                 <div className="px-4 py-3 border-t border-white/10 shrink-0">
                   <button
                     onClick={async () => {
-                      setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+                      const updated = notifications.map(n => ({ ...n, read: true }));
+                      setNotifications(updated);
+                      // Update cache lokal sekaligus
+                      if (currentUser?.id) try { localStorage.setItem(`mf_notifs_${currentUser.id}`, JSON.stringify(updated)); } catch {}
+                      notifLastFetch.current = Date.now();
                       const workerUrl = import.meta.env.VITE_WORKER_URL || '';
                       const token = await getAccessToken();
                       if (workerUrl && token)
