@@ -31,11 +31,9 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
             href="/"
             onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
           >
-            <span className="w-9 h-9 rounded-lg bg-gradient-to-tr from-sky-400 to-indigo-600 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-              <BookOpen className="w-5 h-5 text-white" />
-            </span>
+            <img src="/logo-atas.webp" alt="Nurananto Scanlation" className="h-9 w-auto group-hover:scale-105 transition-transform" />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-on-surface via-primary to-surface-tint">
-              Nurananto Scans
+              Nurananto Scanlation
             </span>
           </a>
         </div>

@@ -585,7 +585,7 @@ export default function App() {
         <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-surface/95 backdrop-blur-xl gap-4">
           <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
           <div className="text-center">
-            <p className="text-sm font-black text-on-surface">Memperbarui Nurananto Scans...</p>
+            <p className="text-sm font-black text-on-surface">Memperbarui Nurananto Scanlation...</p>
             {updateLabel && <p className="text-xs text-outline mt-1">{updateLabel}</p>}
           </div>
         </div>
