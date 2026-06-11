@@ -963,21 +963,17 @@ export default function App() {
 
       {/* Global Footer (Only on Homepage catalog) */}
       {!selectedManga && activeTab === 'library' && (
-        <footer className="w-full py-10 bg-surface-container-lowest border-t border-white/5 mt-auto">
-          <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-4">
+        <footer className="w-full pt-4 pb-8 bg-surface-container-lowest border-t border-white/5 mt-auto">
+          <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-3">
             <img src="/logo-header.webp" alt="Nurananto Scanlation" className="h-12 w-auto" />
             <div className="w-full border border-white/8 rounded-xl px-5 sm:px-6 py-4 bg-white/[0.02]">
-              <p className="font-body-sm text-xs text-outline/70 leading-relaxed text-justify">
+              <p className="font-body-sm text-xs text-outline/70 leading-relaxed text-center">
                 Ini adalah situs fan terjemahan <em>unofficial</em> yang dibuat semata-mata karena kecintaan terhadap manga.
                 Seluruh karya yang ditampilkan di sini merupakan milik penerbit dan pengarang aslinya.
                 Jika sudah tersedia versi resmi/official dalam bahasa Indonesia, kami sangat mendukung kamu untuk membeli dan mendukung karya aslinya.
               </p>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-              <span className="font-body-sm text-[10px] text-outline/40">
-                © {new Date().getFullYear()} Nurananto Scanlation. Fan Translation — Not for commercial use.
-              </span>
-              <span className="text-outline/20 text-[10px]">·</span>
               <button
                 onClick={() => setShowPrivacy(true)}
                 className="font-body-sm text-[10px] text-outline/40 hover:text-outline/70 transition-colors cursor-pointer underline underline-offset-2"
@@ -999,6 +995,9 @@ export default function App() {
                 DMCA
               </button>
             </div>
+            <span className="font-body-sm text-[10px] text-outline/40">
+              © {new Date().getFullYear()} Nurananto Scanlation. Fan Translation — Not for commercial use.
+            </span>
           </div>
         </footer>
       )}
