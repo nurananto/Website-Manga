@@ -23,7 +23,7 @@ function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUse
   const [txPage, setTxPage] = useState(1);
   const [txLoading, setTxLoading] = useState(false);
   const CACHE_KEY = `tx_cache_${currentUser?.id || 'guest'}`;
-  const CACHE_TTL = 365 * 24 * 3600 * 1000; // 1 tahun
+  const CACHE_TTL = 2 * 60 * 1000; // 2 menit
 
   const fetchTransactions = async (page = 1) => {
     if (!isLoggedIn) return;
@@ -562,6 +562,7 @@ export default function App() {
     setSearchQuery('');
     navigate(tab === 'profile' ? '/history' : '/');
     if (tab === 'profile' && isLoggedIn) {
+      if (currentUser?.id) localStorage.removeItem(`tx_cache_${currentUser.id}`);
       const workerUrl = import.meta.env.VITE_WORKER_URL || '';
       getAccessToken().then(token => {
         if (!token || !workerUrl) return;
