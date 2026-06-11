@@ -1,7 +1,74 @@
 import { useState, useEffect, useRef } from 'react';
-import { MessageCircle, Reply, Send, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
+import { MessageCircle, Reply, Send, ChevronDown, ChevronUp, Trash2, Zap } from 'lucide-react';
 import { timeAgo } from '../utils';
 import { getAccessToken } from '../lib/auth';
+
+// ── Daily Claim Banner ─────────────────────────────────────────
+function DailyClaimBanner({ userId, workerUrl }) {
+  const CACHE_KEY = `daily_claim_${userId}`;
+  const [state, setState] = useState('idle'); // idle | claiming | claimed | done
+  const [nextAt, setNextAt] = useState(null);
+
+  useEffect(() => {
+    const stored = localStorage.getItem(CACHE_KEY);
+    if (stored) {
+      const next = new Date(stored).getTime();
+      if (Date.now() < next) { setState('done'); setNextAt(stored); }
+    }
+  }, [CACHE_KEY]);
+
+  if (state === 'done') return null;
+
+  const handleClaim = async () => {
+    setState('claiming');
+    const token = await getAccessToken();
+    if (!token) { setState('idle'); return; }
+    try {
+      const res = await fetch(`${workerUrl}/api/user/daily-claim`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const d = await res.json();
+      if (d.ok) {
+        localStorage.setItem(CACHE_KEY, new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString());
+        setState('claimed');
+        setTimeout(() => setState('done'), 3000);
+      } else if (d.already_claimed) {
+        localStorage.setItem(CACHE_KEY, d.next_at);
+        setState('done');
+      } else {
+        setState('idle');
+      }
+    } catch { setState('idle'); }
+  };
+
+  return (
+    <div className="flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-xl px-4 py-3">
+      <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
+        <Zap className="w-4 h-4 text-primary fill-primary" />
+      </div>
+      <div className="flex-1 min-w-0">
+        {state === 'claimed' ? (
+          <p className="text-xs sm:text-sm font-bold text-primary">+1 koin berhasil diklaim!</p>
+        ) : (
+          <>
+            <p className="text-xs sm:text-sm font-bold text-on-surface">Koin harian gratis!</p>
+            <p className="text-[10px] sm:text-xs text-outline/60">Klaim 1 koin gratis setiap 24 jam.</p>
+          </>
+        )}
+      </div>
+      {state !== 'claimed' && (
+        <button
+          onClick={handleClaim}
+          disabled={state === 'claiming'}
+          className="shrink-0 h-8 px-4 rounded-lg bg-primary text-on-primary text-xs font-black disabled:opacity-50 cursor-pointer hover:opacity-90 transition-opacity"
+        >
+          {state === 'claiming' ? '...' : 'Klaim'}
+        </button>
+      )}
+    </div>
+  );
+}
 
 // ── Avatar ─────────────────────────────────────────────────────
 function UserAvatar({ user, size = 'md' }) {
@@ -441,6 +508,10 @@ export default function CommentSection({ chapterId, mangaId, mangaTitle, chapter
 
   return (
     <div className="w-full px-3 sm:px-4 py-4 sm:py-6 flex flex-col gap-4 sm:gap-5 font-body-md">
+      {/* Daily Claim Banner */}
+      {isLoggedIn && currentUser?.id && (
+        <DailyClaimBanner userId={currentUser.id} workerUrl={workerUrl} />
+      )}
       {/* Header */}
       <div className="flex items-center gap-2 border-t border-white/10 pt-4 sm:pt-6">
         <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
