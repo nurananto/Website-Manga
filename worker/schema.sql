@@ -90,3 +90,33 @@ CREATE TABLE IF NOT EXISTS chapter_locks (
   chapter_id TEXT PRIMARY KEY,
   unlock_at  TEXT NOT NULL  -- ISO timestamp kapan chapter jadi gratis
 );
+
+-- Komentar per chapter
+CREATE TABLE IF NOT EXISTS comments (
+  id          TEXT PRIMARY KEY,
+  chapter_id  TEXT NOT NULL,
+  manga_id    TEXT NOT NULL,
+  user_id     TEXT NOT NULL,
+  parent_id   TEXT,              -- NULL = top-level, string = reply ke comment id
+  text        TEXT NOT NULL,
+  deleted     INTEGER DEFAULT 0, -- 1 = soft delete
+  created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_comments_chapter ON comments(chapter_id);
+CREATE INDEX IF NOT EXISTS idx_comments_parent  ON comments(parent_id);
+
+-- Notifikasi per user
+CREATE TABLE IF NOT EXISTS notifications (
+  id          TEXT PRIMARY KEY,
+  user_id     TEXT NOT NULL,
+  type        TEXT NOT NULL,     -- 'reply' | 'system'
+  actor_name  TEXT,
+  manga_id    TEXT,
+  manga_title TEXT,
+  chapter_num REAL,
+  comment_id  TEXT,
+  preview     TEXT,
+  read        INTEGER DEFAULT 0,
+  created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_notifications_user ON notifications(user_id);

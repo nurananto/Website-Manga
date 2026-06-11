@@ -236,14 +236,14 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   // Prev di-disable saat: sudah di chapter paling lama / oneshot
   const prevDisabled = isAtOldest || isOneshot;
 
-  const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+  const imageBase = (import.meta.env.VITE_IMAGE_URL || import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
   const [pages, setPages] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const nextPageRef = useRef(1);
 
   const makeUrl = (idx) => {
     const num = String(idx).padStart(2, '0');
-    return `${workerUrl}/images/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp`;
+    return `${imageBase}/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp`;
   };
 
   // pages wajib — generate semua URL sekaligus, tidak ada 404

@@ -440,6 +440,26 @@ async function handleUser(request, env) {
     return json({ token, expires_in: 7200 });
   }
 
+  if (pathname === '/api/user/claim-coins' && method === 'POST') {
+    if (!checkBodySize(request, 1024)) return json({ error: 'Payload too large' }, 413);
+    let body;
+    try { body = await request.json(); } catch { return json({ error: 'Invalid JSON' }, 400); }
+    const { trakteer_email } = body;
+    if (!isStr(trakteer_email, 254) || !trakteer_email.includes('@'))
+      return json({ error: 'Invalid email' }, 400);
+    const email = trakteer_email.trim().toLowerCase();
+    const trkId = `trk-${email}`;
+    const trkUser = await env.DB.prepare('SELECT coins FROM users WHERE id = ? AND coins > 0').bind(trkId).first();
+    if (!trkUser || trkUser.coins <= 0)
+      return json({ ok: true, transferred: 0 });
+    const coinsToTransfer = trkUser.coins;
+    await env.DB.batch([
+      env.DB.prepare('UPDATE users SET coins = coins + ? WHERE id = ?').bind(coinsToTransfer, user.sub),
+      env.DB.prepare('UPDATE users SET coins = 0 WHERE id = ?').bind(trkId),
+    ]);
+    return json({ ok: true, transferred: coinsToTransfer });
+  }
+
   if (pathname === '/api/user/unlocked' && method === 'GET') {
     const rows = await env.DB.prepare('SELECT chapter_id FROM unlocked_chapters WHERE user_id = ?').bind(user.sub).all();
     return json((rows.results || []).map(r => r.chapter_id));
@@ -514,6 +534,105 @@ async function handleAdmin(request, env) {
     if (stmts.length) await env.DB.batch(stmts);
     return json({ ok: true, synced: stmts.length });
   }
+  return json({ error: 'Not found' }, 404);
+}
+
+// ── Comments ──────────────────────────────────────────────────
+async function handleComments(request, env) {
+  const { pathname } = new URL(request.url);
+  const method = request.method;
+
+  // GET /api/comments?chapter=xxx
+  if (pathname === '/api/comments' && method === 'GET') {
+    const chapterId = new URL(request.url).searchParams.get('chapter');
+    if (!chapterId || !isStr(chapterId, 200)) return json({ comments: [] });
+
+    const rows = await env.DB.prepare(`
+      SELECT c.id, c.text, c.deleted, c.parent_id, c.created_at,
+             u.id as user_id, u.name as user_name, u.avatar_url as user_avatar
+      FROM comments c
+      LEFT JOIN users u ON u.id = c.user_id
+      WHERE c.chapter_id = ?
+      ORDER BY c.created_at ASC
+      LIMIT 200
+    `).bind(chapterId).all();
+
+    const flat = (rows.results || []).map(r => ({
+      id:         r.id,
+      text:       r.deleted ? '[dihapus]' : r.text,
+      deleted:    !!r.deleted,
+      parent_id:  r.parent_id,
+      created_at: r.created_at,
+      user: { id: r.user_id, name: r.user_name || 'User', avatar: r.user_avatar || null },
+    }));
+
+    // Susun jadi tree: top-level + replies
+    const top = [];
+    const byId = {};
+    flat.forEach(c => { byId[c.id] = { ...c, replies: [] }; });
+    flat.forEach(c => {
+      if (c.parent_id && byId[c.parent_id]) byId[c.parent_id].replies.push(byId[c.id]);
+      else if (!c.parent_id) top.push(byId[c.id]);
+    });
+
+    return json({ comments: top });
+  }
+
+  // POST /api/comments  { chapter_id, manga_id, text, parent_id? }
+  if (pathname === '/api/comments' && method === 'POST') {
+    const user = await verifyAuth(request, env);
+    if (!user) return json({ error: 'Unauthorized' }, 401);
+    if (!checkBodySize(request, 4096)) return json({ error: 'Payload too large' }, 413);
+    let body;
+    try { body = await request.json(); } catch { return json({ error: 'Invalid JSON' }, 400); }
+    const { chapter_id, manga_id, text, parent_id } = body;
+    if (!isStr(chapter_id, 200) || !isStr(manga_id, 100) || !isStr(text, 2000))
+      return json({ error: 'Invalid fields' }, 400);
+    if (parent_id && !isStr(parent_id, 100)) return json({ error: 'Invalid parent_id' }, 400);
+
+    const id = crypto.randomUUID();
+    await env.DB.prepare(
+      'INSERT INTO comments (id, chapter_id, manga_id, user_id, parent_id, text) VALUES (?, ?, ?, ?, ?, ?)'
+    ).bind(id, chapter_id, manga_id, user.sub, parent_id || null, text.trim()).run();
+
+    // Notifikasi ke penulis komentar parent (jika reply)
+    if (parent_id) {
+      const parent = await env.DB.prepare('SELECT user_id FROM comments WHERE id = ?').bind(parent_id).first();
+      if (parent && parent.user_id !== user.sub) {
+        const notifId = crypto.randomUUID();
+        env.DB.prepare(
+          'INSERT INTO notifications (id, user_id, type, actor_name, manga_id, comment_id, preview) VALUES (?, ?, ?, ?, ?, ?, ?)'
+        ).bind(notifId, parent.user_id, 'reply', user.name || user.email || 'User', manga_id, id, text.trim().slice(0, 100)).run();
+      }
+    }
+
+    return json({
+      id, text: text.trim(), deleted: false, parent_id: parent_id || null, created_at: new Date().toISOString(),
+      user: { id: user.sub, name: user.name || user.email || 'User', avatar: user.avatar || null },
+      replies: [],
+    });
+  }
+
+  // DELETE /api/comments/:id
+  const deleteMatch = pathname.match(/^\/api\/comments\/([a-f0-9-]{36})$/);
+  if (deleteMatch && method === 'DELETE') {
+    const user = await verifyAuth(request, env);
+    if (!user) return json({ error: 'Unauthorized' }, 401);
+    const commentId = deleteMatch[1];
+    const row = await env.DB.prepare('SELECT user_id, parent_id FROM comments WHERE id = ?').bind(commentId).first();
+    if (!row) return json({ error: 'Not found' }, 404);
+    if (row.user_id !== user.sub) return json({ error: 'Forbidden' }, 403);
+
+    // Jika ada replies → soft delete, jika tidak → hard delete
+    const hasReplies = await env.DB.prepare('SELECT 1 FROM comments WHERE parent_id = ? LIMIT 1').bind(commentId).first();
+    if (hasReplies) {
+      await env.DB.prepare('UPDATE comments SET deleted = 1 WHERE id = ?').bind(commentId).run();
+    } else {
+      await env.DB.prepare('DELETE FROM comments WHERE id = ?').bind(commentId).run();
+    }
+    return json({ ok: true });
+  }
+
   return json({ error: 'Not found' }, 404);
 }
 
@@ -633,7 +752,8 @@ export default {
       if (!(await checkRateLimit(request, env)))
         return addCors(new Response('Too Many Requests', { status: 429 }));
 
-      if (pathname.startsWith('/api/view/') && method === 'POST')   return addCors(await handleView(request, env));
+      if (pathname.startsWith('/api/view/') && method === 'POST')    return addCors(await handleView(request, env));
+      if (pathname.startsWith('/api/comments'))                      return addCors(await handleComments(request, env));
       if (pathname.startsWith('/api/user/'))                         return addCors(await handleUser(request, env));
       if (pathname.startsWith('/api/admin/'))                        return addCors(await handleAdmin(request, env));
       if (pathname === '/')                                           return addCors(json({ status: 'ok', service: 'manga-api' }));

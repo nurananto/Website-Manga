@@ -396,8 +396,8 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
   };
 
   const currentUserInfo = isLoggedIn ? {
-    name:   currentUser?.user_metadata?.full_name || currentUser?.user_metadata?.name || currentUser?.email?.split('@')[0] || 'User',
-    avatar: currentUser?.user_metadata?.avatar_url || null,
+    name:   currentUser?.name || currentUser?.email?.split('@')[0] || 'User',
+    avatar: currentUser?.avatar || null,
   } : null;
 
   const totalCount = comments.reduce((n, c) => n + 1 + (c.replies?.length || 0), 0);
