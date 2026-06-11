@@ -58,12 +58,17 @@ function UserAvatar({ user, size = 'md' }) {
 }
 
 // ── Input komentar / balasan ───────────────────────────────────
-function CommentInput({ onSubmit, submitting, placeholder = 'Tulis komentar...', autoFocus = false, onCancel }) {
-  const [text, setText] = useState('');
+function CommentInput({ onSubmit, submitting, placeholder = 'Tulis komentar...', autoFocus = false, onCancel, initialText = '' }) {
+  const [text, setText] = useState(initialText);
   const ref = useRef(null);
 
   useEffect(() => {
-    if (autoFocus) setTimeout(() => ref.current?.focus(), 50);
+    if (autoFocus) setTimeout(() => {
+      ref.current?.focus();
+      // Taruh kursor di akhir teks
+      const len = ref.current?.value?.length || 0;
+      ref.current?.setSelectionRange(len, len);
+    }, 50);
   }, [autoFocus]);
 
   const handleSubmit = (e) => {
@@ -261,7 +266,8 @@ function CommentItem({ comment, isLoggedIn, currentUserId, onReply, onDelete, on
           <CommentInput
             onSubmit={handleReply}
             submitting={submitting}
-            placeholder={`Balas @${comment.user?.name || 'User'}...`}
+            placeholder="Tulis balasan..."
+            initialText={`@${comment.user?.name || 'User'} `}
             autoFocus
             onCancel={() => setShowReplyInput(false)}
           />
