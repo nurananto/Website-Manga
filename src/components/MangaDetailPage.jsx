@@ -130,11 +130,11 @@ const renderChapterRow = (ch, idx) => {
   if (isLoading) return <MangaDetailSkeleton />;
 
   return (
-    <div className="w-full min-h-screen bg-surface text-on-surface font-body-md relative pb-20">
+    <div className="w-full min-h-screen bg-surface text-on-surface font-body-md relative pb-4 md:pb-6 xl:pb-8">
       {/* Main Section — pt mengikuti TopNavBar (72px) */}
-      <div className="pt-12 md:pt-14 xl:pt-16 w-full">
+      <div className="pt-4 md:pt-6 xl:pt-8 w-full">
         {/* Hero Banner Section */}
-        <section className="relative mx-3 sm:mx-4 md:mx-5 mt-4 rounded-2xl overflow-hidden border border-white/15 flex items-end pt-3 pb-2">
+        <section className="relative mx-3 sm:mx-4 md:mx-5 rounded-2xl overflow-hidden border border-white/15 flex items-end pt-3 pb-2">
           {/* Blurred dynamic background */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <img
@@ -177,7 +177,7 @@ const renderChapterRow = (ch, idx) => {
         </section>
 
         {/* Trakteer Donation Banner - Full Width Below Cover */}
-        <div className="w-full mt-4">
+        <div className="w-full mt-4 md:mt-6 xl:mt-8">
           <a
             href="https://trakteer.id"
             target="_blank"
@@ -222,7 +222,7 @@ const renderChapterRow = (ch, idx) => {
         </div>
 
         {/* Wrapper: border di mobile/tablet, tidak di desktop */}
-        <div className="mx-3 sm:mx-4 md:mx-5 mt-4 border border-white/15 rounded-2xl lg:border-0 lg:rounded-none lg:mx-0 lg:mt-0">
+        <div className="mx-3 sm:mx-4 md:mx-5 mt-4 md:mt-6 border border-white/15 rounded-2xl lg:border-0 lg:rounded-none lg:mx-0 lg:mt-0">
 
           {/* Tab Switcher — mobile/tablet only */}
           <div className="flex border-b border-white/10 lg:hidden">

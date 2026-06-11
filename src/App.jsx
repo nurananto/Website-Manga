@@ -676,7 +676,7 @@ export default function App() {
           />
         ) : (
           /* Main Views based on Tab */
-          <main className="pt-4 pb-16 px-2 sm:px-3 md:px-4 flex flex-col gap-6 md:gap-8 xl:gap-12 w-full flex-1">
+          <main className="pt-4 md:pt-6 xl:pt-8 pb-4 md:pb-6 xl:pb-8 px-2 sm:px-3 md:px-4 flex flex-col gap-4 md:gap-6 xl:gap-8 w-full flex-1">
             
             {activeTab === 'library' && (
               <>
@@ -716,7 +716,7 @@ export default function App() {
                       href="https://trakteer.id/NuranantoScanlation"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative w-full overflow-hidden bg-gradient-to-r from-red-950/40 via-red-900/25 to-red-950/40 border border-red-500/20 py-3 rounded-xl flex items-center group shadow-md hover:border-red-500/40 hover:bg-red-950/50 transition-all duration-300 -mt-2 -mb-4 cursor-pointer"
+                      className="relative w-full overflow-hidden bg-gradient-to-r from-red-950/40 via-red-900/25 to-red-950/40 border border-red-500/20 py-3 rounded-xl flex items-center group shadow-md hover:border-red-500/40 hover:bg-red-950/50 transition-all duration-300 cursor-pointer"
                     >
                       <div className="flex whitespace-nowrap animate-marquee">
                         {/* Track 1 */}
@@ -957,7 +957,7 @@ export default function App() {
 
       {/* Global Footer (Only on Homepage catalog) */}
       {!loadingManga && (activeTab === 'library' || !!selectedManga) && (
-        <footer className="w-full pt-4 pb-8 bg-surface border-t border-white/5 mt-auto">
+        <footer className="w-full pt-4 md:pt-6 xl:pt-8 pb-4 md:pb-6 xl:pb-8 bg-surface border-t border-white/5 mt-auto">
           <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-3">
             <img src="/logo-footer.webp" alt="Nurananto Scanlation" className="h-12 md:h-16 xl:h-20 w-auto" />
             <div className="w-full border border-white/8 rounded-xl px-5 sm:px-6 py-4 bg-white/[0.02]">

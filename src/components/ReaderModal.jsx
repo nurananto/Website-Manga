@@ -435,7 +435,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
           <div className="w-full">
 
             {/* Tombol kembali — atas, squircle */}
-            <div className="px-2 py-2">
+            <div className="px-2 py-2 md:py-3 xl:py-4">
               <button
                 onClick={onClose}
                 className="relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-white/15 flex items-center gap-3 active:scale-[0.99] cursor-pointer overflow-hidden"
@@ -490,7 +490,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             <NavBar position="bottom" />
 
             {/* Tombol kembali — bawah, squircle */}
-            <div className="px-2 pt-2 pb-2">
+            <div className="px-2 py-2 md:py-3 xl:py-4">
               <button
                 onClick={onClose}
                 className="relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-white/15 flex items-center gap-3 active:scale-[0.99] cursor-pointer overflow-hidden"
@@ -521,7 +521,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
               </button>
             </div>
 
-            <div className="pb-16" />
+            <div className="pb-4 md:pb-6 xl:pb-8" />
           </div>
         </div>
 
