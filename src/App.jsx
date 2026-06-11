@@ -965,7 +965,7 @@ export default function App() {
       {!selectedManga && activeTab === 'library' && (
         <footer className="w-full py-10 bg-surface-container-lowest border-t border-white/5 mt-auto">
           <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-4">
-            <img src="/logo-bawah.webp" alt="Nurananto Scanlation" className="h-12 w-auto" />
+            <img src="/logo-header.webp" alt="Nurananto Scanlation" className="h-12 w-auto" />
             <div className="w-full border border-white/8 rounded-xl px-5 sm:px-6 py-4 bg-white/[0.02]">
               <p className="font-body-sm text-xs text-outline/70 leading-relaxed text-justify">
                 Ini adalah situs fan terjemahan <em>unofficial</em> yang dibuat semata-mata karena kecintaan terhadap manga.
