@@ -423,22 +423,24 @@ export function UnlockModal({ isOpen, onClose, chapter, userCoins, onConfirm, on
 }
 
 // ── Account Settings Modal — username + Trakteer email ───────
-export function AccountSettingsModal({ isOpen, onClose, currentUser, onSave }) {
-  const [username, setUsername] = useState(
-    currentUser?.user_metadata?.full_name || currentUser?.user_metadata?.name || ''
-  );
-  // Email: pakai trakteer_email jika sudah diset, fallback ke email akun
-  const [trakteerEmail, setTrakteerEmail] = useState(
-    currentUser?.user_metadata?.trakteer_email || currentUser?.email || ''
-  );
+export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChangedAt, onSave }) {
+  const [username, setUsername] = useState(currentUser?.name || '');
+  const [trakteerEmail, setTrakteerEmail] = useState(currentUser?.email || '');
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
+
+  // Hitung apakah username masih dalam cooldown 1 tahun
+  const nameLockedUntil = (() => {
+    if (!nameChangedAt) return null;
+    const until = new Date(new Date(nameChangedAt).getTime() + 365 * 24 * 60 * 60 * 1000);
+    return until > new Date() ? until : null;
+  })();
 
   const handleSave = async (e) => {
     e.preventDefault();
     if (!trakteerEmail) { setEmailError('Email wajib diisi.'); return; }
     setLoading(true);
-    await onSave({ username, trakteerEmail });
+    await onSave({ username: nameLockedUntil ? null : username, trakteerEmail });
     setLoading(false);
   };
 
@@ -468,9 +470,17 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, onSave }) {
                 type="text"
                 placeholder="Nama tampilan kamu"
                 value={username}
-                onChange={e => setUsername(e.target.value)}
-                className="w-full bg-surface-container-high border border-white/5 rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                onChange={e => !nameLockedUntil && setUsername(e.target.value)}
+                disabled={!!nameLockedUntil}
+                className={`w-full bg-surface-container-high border rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all ${nameLockedUntil ? 'opacity-50 cursor-not-allowed border-white/5' : 'border-white/5'}`}
               />
+              {nameLockedUntil ? (
+                <p className="text-[10px] text-amber-400/80">
+                  Bisa diganti lagi pada {nameLockedUntil.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                </p>
+              ) : (
+                <p className="text-[10px] text-outline/60">Nama tampilan di komentar. Hanya bisa diganti setahun sekali.</p>
+              )}
             </div>
 
             <div className="flex flex-col gap-1.5">

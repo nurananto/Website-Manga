@@ -19,6 +19,7 @@
 //   ALTER TABLE users ADD COLUMN google_id TEXT;
 //   ALTER TABLE users ADD COLUMN name TEXT;
 //   ALTER TABLE users ADD COLUMN avatar_url TEXT;
+//   ALTER TABLE users ADD COLUMN name_changed_at TEXT;
 //   CREATE TABLE IF NOT EXISTS refresh_tokens (
 //     token TEXT PRIMARY KEY,
 //     user_id TEXT NOT NULL,
@@ -397,9 +398,32 @@ async function handleUser(request, env) {
 
   if (pathname === '/api/user/me' && method === 'GET') {
     const row = await env.DB.prepare(
-      'SELECT id, email, name, avatar_url, coins FROM users WHERE id = ?'
+      'SELECT id, email, name, avatar_url, coins, name_changed_at FROM users WHERE id = ?'
     ).bind(user.sub).first();
     return json(row || { id: user.sub, email: user.email, name: user.name, coins: 0 });
+  }
+
+  if (pathname === '/api/user/profile' && method === 'PATCH') {
+    if (!checkBodySize(request, 1024)) return json({ error: 'Payload too large' }, 413);
+    let body;
+    try { body = await request.json(); } catch { return json({ error: 'Invalid JSON' }, 400); }
+    const { name } = body;
+    if (!isStr(name, 50)) return json({ error: 'Nama tidak valid (max 50 karakter)' }, 400);
+
+    const current = await env.DB.prepare('SELECT name_changed_at FROM users WHERE id = ?').bind(user.sub).first();
+    if (current?.name_changed_at) {
+      const lastChange = new Date(current.name_changed_at);
+      const oneYear   = 365 * 24 * 60 * 60 * 1000;
+      if (Date.now() - lastChange.getTime() < oneYear) {
+        const nextAllowed = new Date(lastChange.getTime() + oneYear).toISOString();
+        return json({ error: 'Username hanya bisa diganti setahun sekali', next_allowed_at: nextAllowed }, 429);
+      }
+    }
+
+    await env.DB.prepare(
+      'UPDATE users SET name = ?, name_changed_at = CURRENT_TIMESTAMP WHERE id = ?'
+    ).bind(name.trim(), user.sub).run();
+    return json({ ok: true, name: name.trim() });
   }
 
   if (pathname === '/api/user/history' && method === 'GET') {
@@ -595,10 +619,10 @@ async function handleComments(request, env) {
       'INSERT INTO comments (id, chapter_id, manga_id, user_id, parent_id, text) VALUES (?, ?, ?, ?, ?, ?)'
     ).bind(id, chapter_id, manga_id, user.sub, parent_id || null, text.trim()).run();
 
-    // Notifikasi ke penulis komentar parent (jika reply)
+    // Notifikasi ke penulis komentar parent (jika reply) — termasuk reply ke diri sendiri
     if (parent_id) {
       const parent = await env.DB.prepare('SELECT user_id FROM comments WHERE id = ?').bind(parent_id).first();
-      if (parent && parent.user_id !== user.sub) {
+      if (parent) {
         const notifId = crypto.randomUUID();
         env.DB.prepare(
           'INSERT INTO notifications (id, user_id, type, actor_name, manga_id, comment_id, preview) VALUES (?, ?, ?, ?, ?, ?, ?)'

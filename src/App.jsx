@@ -188,6 +188,7 @@ export default function App() {
   const [userCoins, setUserCoins] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [nameChangedAt, setNameChangedAt] = useState(null);
   const [showTrakteerModal, setShowTrakteerModal] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isCoinModalOpen, setIsCoinModalOpen] = useState(false);
@@ -268,7 +269,11 @@ export default function App() {
     const headers = { 'Authorization': `Bearer ${token}` };
 
     const doFetchBalance = () => fetch(`${workerUrl}/api/user/me`, { headers })
-      .then(r => r.json()).then(d => { if (typeof d.coins === 'number') setUserCoins(d.coins); })
+      .then(r => r.json()).then(d => {
+        if (typeof d.coins === 'number') setUserCoins(d.coins);
+        if (d.name_changed_at) setNameChangedAt(d.name_changed_at);
+        if (d.name) setCurrentUser(prev => prev ? { ...prev, name: d.name } : prev);
+      })
       .catch(() => {});
 
     // Auto-claim coins dari trakteer (pakai email Google)
@@ -1027,31 +1032,46 @@ export default function App() {
           isOpen={isChangePasswordOpen}
           onClose={() => setIsChangePasswordOpen(false)}
           currentUser={currentUser}
-          onSave={async ({ trakteerEmail }) => {
-            if (trakteerEmail) {
-              const token = await getAccessToken();
-              if (token) {
-                const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-                try {
-                  const claimRes = await fetch(`${workerUrl}/api/user/claim-coins`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-                    body: JSON.stringify({ trakteer_email: trakteerEmail }),
-                  });
-                  const d = await claimRes.json();
-                  if (d.transferred > 0) {
-                    showToast(`${d.transferred} koin berhasil diklaim!`);
-                    setUserCoins(prev => prev + d.transferred);
-                  }
-                  const meRes = await fetch(`${workerUrl}/api/user/me`, {
-                    headers: { 'Authorization': `Bearer ${token}` },
-                  });
-                  const me = await meRes.json();
-                  if (typeof me.coins === 'number') setUserCoins(me.coins);
-                } catch (e) {
-                  console.error('Claim coins error:', e);
+          nameChangedAt={nameChangedAt}
+          onSave={async ({ username, trakteerEmail }) => {
+            const token = await getAccessToken();
+            if (!token) return;
+            const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+            try {
+              // Update username jika tidak dalam cooldown
+              if (username && username.trim() && username.trim() !== currentUser?.name) {
+                const nameRes = await fetch(`${workerUrl}/api/user/profile`, {
+                  method: 'PATCH',
+                  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                  body: JSON.stringify({ name: username.trim() }),
+                });
+                const nameData = await nameRes.json();
+                if (nameRes.ok) {
+                  setCurrentUser(prev => prev ? { ...prev, name: nameData.name } : prev);
+                  setNameChangedAt(new Date().toISOString());
+                } else {
+                  showToast(nameData.error || 'Gagal update username');
+                  return;
                 }
               }
+              // Claim koin dari Trakteer
+              if (trakteerEmail) {
+                const claimRes = await fetch(`${workerUrl}/api/user/claim-coins`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                  body: JSON.stringify({ trakteer_email: trakteerEmail }),
+                });
+                const d = await claimRes.json();
+                if (d.transferred > 0) {
+                  showToast(`${d.transferred} koin berhasil diklaim!`);
+                  setUserCoins(prev => prev + d.transferred);
+                }
+                const meRes = await fetch(`${workerUrl}/api/user/me`, { headers: { 'Authorization': `Bearer ${token}` } });
+                const me = await meRes.json();
+                if (typeof me.coins === 'number') setUserCoins(me.coins);
+              }
+            } catch (e) {
+              console.error('Save settings error:', e);
             }
             setIsChangePasswordOpen(false);
             showToast('Pengaturan berhasil disimpan!');
