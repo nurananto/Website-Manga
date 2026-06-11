@@ -245,21 +245,28 @@ async function handleGoogleCallback(request, env) {
 
   if (!googleId || !email) return Response.redirect(`${redirectBase}/?auth_error=profile_data`, 302);
 
-  // Upsert user di D1
-  await env.DB.prepare(`
-    INSERT INTO users (id, google_id, email, name, avatar_url, coins)
-    VALUES (?, ?, ?, ?, ?, 0)
-    ON CONFLICT(id) DO UPDATE SET
-      email      = excluded.email,
-      name       = excluded.name,
-      avatar_url = excluded.avatar_url
-  `).bind(googleId, googleId, email, name || '', avatar_url || '').run();
+  // Upsert user di D1 — handle migrasi dari Supabase (email sudah ada dengan id berbeda)
+  const existingUser = await env.DB.prepare('SELECT id FROM users WHERE email = ?').bind(email).first();
+  let userId;
+  if (existingUser) {
+    // User sudah ada (dari Supabase) — update profile, pertahankan id & coins lama
+    userId = existingUser.id;
+    await env.DB.prepare(
+      'UPDATE users SET google_id = ?, name = ?, avatar_url = ? WHERE id = ?'
+    ).bind(googleId, name || '', avatar_url || '', userId).run();
+  } else {
+    // User baru — insert dengan Google sub sebagai id
+    userId = googleId;
+    await env.DB.prepare(
+      'INSERT INTO users (id, google_id, email, name, avatar_url, coins) VALUES (?, ?, ?, ?, ?, 0)'
+    ).bind(googleId, googleId, email, name || '', avatar_url || '').run();
+  }
 
   // Auto-claim koin Trakteer yang pending (jika ada)
   const trkRow = await env.DB.prepare('SELECT coins FROM users WHERE id = ? AND coins > 0').bind(`trk-${email.toLowerCase()}`).first();
   if (trkRow?.coins > 0) {
     await env.DB.batch([
-      env.DB.prepare('UPDATE users SET coins = coins + ? WHERE id = ?').bind(trkRow.coins, googleId),
+      env.DB.prepare('UPDATE users SET coins = coins + ? WHERE id = ?').bind(trkRow.coins, userId),
       env.DB.prepare('UPDATE users SET coins = 0 WHERE id = ?').bind(`trk-${email.toLowerCase()}`),
     ]);
   }
@@ -268,7 +275,7 @@ async function handleGoogleCallback(request, env) {
   const loginCode = crypto.randomUUID();
   await env.DB.prepare(
     'INSERT INTO login_codes (code, user_id, expires_at) VALUES (?, ?, ?)'
-  ).bind(loginCode, googleId, new Date(Date.now() + 60_000).toISOString()).run();
+  ).bind(loginCode, userId, new Date(Date.now() + 60_000).toISOString()).run();
 
   // Redirect ke frontend dengan login code
   const finalUrl = new URL(redirectUrl);

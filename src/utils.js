@@ -1,10 +1,10 @@
-const WORKER = (import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, ''); // hapus trailing slash
+const IMAGE_BASE = (import.meta.env.VITE_IMAGE_URL || import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
 
-// Convert R2 path ke full URL via Worker
+// Convert R2 path ke full URL via image worker
 export function imgUrl(path) {
   if (!path) return null;
   if (path.startsWith('http')) return path;
-  return `${WORKER}/images/${path}`;
+  return `${IMAGE_BASE}/${path}`;
 }
 
 // Format tanggal relatif: "2 jam lalu", "3 hari lalu", "1 bln lalu"
