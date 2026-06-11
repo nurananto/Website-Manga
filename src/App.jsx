@@ -153,6 +153,7 @@ export default function App() {
 
   // Paksa refresh saat ada versi baru di server
   const [showUpdateBanner, setShowUpdateBanner] = useState(false);
+  const [buildId, setBuildId] = useState(null);
   const [updateLabel, setUpdateLabel] = useState('');
 
   const triggerUpdate = (label) => {
@@ -177,6 +178,7 @@ export default function App() {
         const data = await res.json();
         const { v, label, type } = data;
         if (currentVersion === null) {
+          setBuildId(v);
           currentVersion = v;
         } else if (v !== currentVersion) {
           currentVersion = v;
@@ -1005,6 +1007,11 @@ export default function App() {
             <span className="font-body-sm text-[10px] text-outline/40">
               © {new Date().getFullYear()} Nurananto Scanlation. Fan Translation — Not for commercial use.
             </span>
+            {buildId && (
+              <span className="font-body-sm text-[9px] text-outline/25">
+                build #{buildId.slice(-6)}
+              </span>
+            )}
           </div>
         </footer>
       )}
