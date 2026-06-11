@@ -578,7 +578,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container pb-safe-20">
+    <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
 
       {/* Update overlay */}
       {showUpdateBanner && (
@@ -962,7 +962,7 @@ export default function App() {
       </div>
 
       {/* Global Footer (Only on Homepage catalog) */}
-      {!selectedManga && activeTab === 'library' && (
+      {!selectedManga && !loadingManga && activeTab === 'library' && (
         <footer className="w-full pt-4 pb-8 bg-surface-container-lowest border-t border-white/5 mt-auto">
           <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-3">
             <img src="/logo-header.webp" alt="Nurananto Scanlation" className="h-12 w-auto" />
