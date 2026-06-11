@@ -28,14 +28,14 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
         <a
           href="/"
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
-          className="flex-1 min-w-0 active:scale-95 transition-transform duration-150"
+          className="flex items-center gap-2 sm:gap-3 active:scale-95 transition-transform duration-150"
         >
-          {/* Desktop (xl+, 3 col) & Tablet (md–xl, 2 col) */}
-          <img src="/header-desktop.webp" alt="Nurananto Scanlation"
-            className="hidden md:block md:h-12 xl:h-14 w-auto" />
-          {/* Mobile (<md, 1 col) */}
-          <img src="/header-mobile.webp" alt="Nurananto Scanlation"
-            className="block md:hidden h-12 w-auto" />
+          <img src="/logo-header.webp" alt="Nurananto Scanlation"
+            className="h-8 sm:h-9 md:h-10 w-auto shrink-0" />
+          <span className="flex flex-col leading-tight">
+            <span className="text-sm sm:text-base md:text-lg font-black text-blue-400 tracking-tight">Nurananto</span>
+            <span className="text-xs sm:text-sm md:text-base font-bold text-white tracking-tight">Scanlation</span>
+          </span>
         </a>
 
 
