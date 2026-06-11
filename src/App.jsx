@@ -167,6 +167,17 @@ export default function App() {
     return () => window.removeEventListener('app-update', handleSwUpdate);
   }, []);
 
+  // Cek notifikasi baru saat tab kembali aktif (jika sudah > 1 menit sejak fetch terakhir)
+  useEffect(() => {
+    const onVisible = () => {
+      if (document.visibilityState === 'visible' && isLoggedIn) {
+        if (Date.now() - notifLastFetch.current > 60_000) fetchNotifications();
+      }
+    };
+    document.addEventListener('visibilitychange', onVisible);
+    return () => document.removeEventListener('visibilitychange', onVisible);
+  }, [isLoggedIn]);
+
   useEffect(() => {
     let currentVersion = null;
 
