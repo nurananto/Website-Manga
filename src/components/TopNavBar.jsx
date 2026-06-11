@@ -23,7 +23,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
   return (
     <nav className="w-full bg-black border-b border-white/5">
-      <div className="flex items-center h-12 md:h-14 xl:h-16 px-2 sm:px-3 md:px-4 gap-2 w-full overflow-hidden">
+      <div className="flex items-center h-12 md:h-14 xl:h-16 px-2 sm:px-3 md:px-4 gap-2 w-full">
         {/* Brand (Logo) — grows to fill available space */}
         <a
           href="/"
