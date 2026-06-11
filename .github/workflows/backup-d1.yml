@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
       - name: Install Wrangler
         run: npm install -g wrangler@latest
@@ -26,6 +28,8 @@ jobs:
 
       - name: Upload backup sebagai artifact
         uses: actions/upload-artifact@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
         with:
           name: d1-backup-${{ github.run_id }}
           path: backup-*.sql
