@@ -110,7 +110,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="font-display-lg text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight line-clamp-2"
+            className="font-display-lg text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight line-clamp-1"
           >
             {activeManga.title}
           </motion.h1>
@@ -121,7 +121,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="line-clamp-3 sm:line-clamp-3 md:line-clamp-4 lg:line-clamp-5 font-body-lg text-xs sm:text-sm md:text-base lg:text-lg text-on-surface-variant/80 leading-relaxed text-justify"
+            className="line-clamp-3 sm:line-clamp-3 md:line-clamp-4 lg:line-clamp-4 font-body-lg text-xs sm:text-sm md:text-base lg:text-lg text-on-surface-variant/80 leading-relaxed text-justify"
           >
             {activeManga.description}
           </motion.p>
