@@ -305,9 +305,12 @@ const renderChapterRow = (ch, idx) => {
                     const t = (manga.type || 'manga').toLowerCase();
                     const isWebtoon = t === 'webtoon';
                     return (
-                      <span className={`font-body-md text-sm sm:text-sm md:text-base font-black ${isWebtoon ? 'text-emerald-400' : 'text-sky-400'}`}>
-                        {isWebtoon ? 'webtoon' : 'manga'}
-                      </span>
+                      <>
+                        <span className={`w-2 h-2 rounded-full shrink-0 ${isWebtoon ? 'bg-emerald-400' : 'bg-sky-400'}`} />
+                        <span className={`font-body-md text-sm sm:text-sm md:text-base font-black ${isWebtoon ? 'text-emerald-400' : 'text-sky-400'}`}>
+                          {isWebtoon ? 'Webtoon' : 'Manga'}
+                        </span>
+                      </>
                     );
                   })()}
                 </div>
