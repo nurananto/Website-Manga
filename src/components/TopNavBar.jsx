@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { BookOpen, Heart, Key, RotateCcw, LogOut, Coins, Coffee, Bell } from 'lucide-react';
+import { BookOpen, Heart, Key, RotateCcw, LogOut, Coins, Coffee } from 'lucide-react';
 
-export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, userCoins, isLoggedIn, currentUser, onLoginClick, onLogout, onBuyCoinsClick, onDropdownOpen, unreadNotifCount = 0, onNotifClick }) {
+export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, userCoins, isLoggedIn, currentUser, onLoginClick, onLogout, onBuyCoinsClick, onDropdownOpen }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -57,13 +57,6 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                 </span>
               )}
             </div>
-            {isLoggedIn && unreadNotifCount > 0 && (
-              <div className="absolute -top-1 -right-1 min-w-[16px] h-4 rounded-full bg-red-500 border-2 border-surface flex items-center justify-center px-0.5 pointer-events-none">
-                <span className="text-[9px] font-black text-white leading-none">
-                  {unreadNotifCount > 9 ? '9+' : unreadNotifCount}
-                </span>
-              </div>
-            )}
           </div>
 
           {/* Profile Dropdown Menu */}
@@ -106,18 +99,6 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                   >
                     <RotateCcw className="w-4 h-4 text-sky-400" />
                     <span>History</span>
-                  </button>
-                  <button
-                    onClick={() => { setIsDropdownOpen(false); if (onNotifClick) onNotifClick(); }}
-                    className="w-full text-left px-4 py-2.5 text-xs font-bold text-on-surface hover:bg-white/5 hover:text-primary flex items-center gap-2.5 cursor-pointer"
-                  >
-                    <Bell className="w-4 h-4 text-violet-400" />
-                    <span className="flex-1">Notifikasi</span>
-                    {unreadNotifCount > 0 && (
-                      <span className="text-[10px] font-black text-white bg-red-500 rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
-                        {unreadNotifCount > 9 ? '9+' : unreadNotifCount}
-                      </span>
-                    )}
                   </button>
                   <button
                     onClick={() => { setIsDropdownOpen(false); if (onChangePasswordClick) onChangePasswordClick(); }}

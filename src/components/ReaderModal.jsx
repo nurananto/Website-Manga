@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUp, Lock, Clock, BookOpen, MessageCircle, Coins } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUp, Lock, Clock, BookOpen, Coins } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { ReaderPageSkeleton } from './Skeleton';
 import { imgUrl } from '../utils';
 import { getAccessToken } from '../lib/auth';
-import CommentSection from './CommentSection';
 
 function CountdownLarge({ unlockDate }) {
   const [time, setTime] = useState({ h: 0, m: 0, s: 0 });
@@ -173,7 +172,7 @@ function PageImage({ src, idx, pageRefs }) {
   );
 }
 
-export default function ReaderModal({ chapter, manga, onClose, onReadChapter, unlockedChapters, isLoggedIn, currentUser, onLoginClick, targetCommentId }) {
+export default function ReaderModal({ chapter, manga, onClose, onReadChapter, unlockedChapters, isLoggedIn, currentUser, onLoginClick }) {
   // Freeze last known values saat exit animation agar konten tidak hilang
   const frozenChapter = useRef(chapter);
   const frozenManga = useRef(manga);
@@ -237,11 +236,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   // Prev di-disable saat: sudah di chapter paling lama / oneshot
   const prevDisabled = isAtOldest || isOneshot;
 
-  const commentsRef = useRef(null);
-  const [commentCount, setCommentCount] = useState(0);
-  // Lazy-load komentar: fetch hanya saat area komentar mendekati viewport
-  const [commentsVisible, setCommentsVisible] = useState(!!targetCommentId);
-
   const imageBase = (import.meta.env.VITE_IMAGE_URL || import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
   const [pages, setPages] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -289,12 +283,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     setPages(all);
     setPageCount(chapter.pages);
   }, [chapter?.id, imgAccess]);
-
-  // Reset visibilitas komentar tiap ganti chapter (kecuali ada deep-link komentar).
-  // Gaya MangaDex: komentar hanya tampil & dimuat saat tombol Komentar diklik.
-  useEffect(() => {
-    setCommentsVisible(!!targetCommentId);
-  }, [chapter?.id, targetCommentId]);
 
   // Reset scroll + currentPage saat chapter berganti
   useEffect(() => {
@@ -415,9 +403,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             }
             setOpenChapterList(v => v === position ? null : position);
           }}
-          className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-xs md:text-sm font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
+          className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-sm md:text-base font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
         >
-          <BookOpen className="w-3.5 h-3.5 text-primary shrink-0" />
+          <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary shrink-0" />
           <span className="truncate">{activeChapter.title.split(':')[0]}</span>
         </button>
       </div>
@@ -429,7 +417,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
         className="flex-1 h-9 sm:h-10 md:h-11 rounded-xl bg-primary hover:bg-primary/90 flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base font-bold text-on-primary disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
       >
         <span className="hidden sm:inline">Next</span>
-        <ArrowRight className="w-4 h-4" />
+        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
       </button>
     </div>
   );
@@ -501,23 +489,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             {/* Navigasi bawah */}
             <NavBar position="bottom" />
 
-            {/* Tombol komentar — gaya MangaDex: komentar dimuat saat diklik */}
-            <div className="px-2 pt-2">
-              <button
-                onClick={() => {
-                  const next = !commentsVisible;
-                  setCommentsVisible(next);
-                  if (next) setTimeout(() => commentsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
-                }}
-                className="w-full h-11 sm:h-12 md:h-14 rounded-2xl border border-white/15 bg-surface-container hover:bg-surface-container-high flex items-center justify-center gap-2 text-sm sm:text-base font-bold text-on-surface active:scale-[0.99] transition-all cursor-pointer"
-              >
-                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-                {commentsVisible
-                  ? 'Sembunyikan Komentar'
-                  : `Komentar${commentCount ? ` (${commentCount})` : ''}`}
-              </button>
-            </div>
-
             {/* Tombol kembali — bawah, squircle */}
             <div className="px-2 pt-2 pb-2">
               <button
@@ -550,22 +521,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
               </button>
             </div>
 
-            {/* Komentar — hanya dirender saat tombol Komentar diklik */}
-            <div className="w-full pb-16" ref={commentsRef}>
-              {commentsVisible && (
-                <CommentSection
-                  chapterId={activeChapter?.id}
-                  mangaId={activeManga?.id}
-                  mangaTitle={activeManga?.title}
-                  chapterNum={activeChapter?.chapter_number}
-                  isLoggedIn={isLoggedIn}
-                  currentUser={currentUser}
-                  onLoginClick={onLoginClick}
-                  targetCommentId={targetCommentId}
-                  onCommentCountChange={setCommentCount}
-                />
-              )}
-            </div>
+            <div className="pb-16" />
           </div>
         </div>
 

@@ -240,11 +240,6 @@ export default function App() {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [showDmca, setShowDmca] = useState(false);
-  const [isNotifOpen, setIsNotifOpen] = useState(false);
-  const [targetCommentId, setTargetCommentId] = useState(null);
-  const [notifications, setNotifications] = useState([]);
-  const notifLastFetch = useRef(0); // timestamp fetch terakhir
-  const unreadNotifCount = notifications.filter(n => !n.read).length;
   const ITEMS_PER_PAGE = 6;
 
   // Dynamic document title
@@ -300,36 +295,6 @@ export default function App() {
     initAuth();
   }, []);
 
-  // Cache notifikasi di localStorage — TTL 5 menit, fetch hanya saat stale
-  const NOTIF_TTL = 5 * 60 * 1000;
-  const fetchNotifications = async ({ force = false, userId, workerUrl, token: tok } = {}) => {
-    const wUrl   = workerUrl || import.meta.env.VITE_WORKER_URL || '';
-    const tkn    = tok || await getAccessToken();
-    const uid    = userId || currentUser?.id;
-    if (!wUrl || !tkn || !uid) return;
-
-    const cacheKey = `mf_notifs_${uid}`;
-    const now      = Date.now();
-
-    // Kalau tidak force dan cache masih segar (< 10 menit), pakai cache
-    if (!force && now - notifLastFetch.current < NOTIF_TTL) {
-      try {
-        const raw = localStorage.getItem(cacheKey);
-        if (raw) { setNotifications(JSON.parse(raw)); return; }
-      } catch {}
-    }
-
-    try {
-      const res  = await fetch(`${wUrl}/api/user/notifications`, { headers: { Authorization: `Bearer ${tkn}` } });
-      const data = await res.json();
-      if (Array.isArray(data)) {
-        setNotifications(data);
-        notifLastFetch.current = now;
-        try { localStorage.setItem(cacheKey, JSON.stringify(data)); } catch {}
-      }
-    } catch {}
-  };
-
   const loadUserData = async (user) => {
     const workerUrl = import.meta.env.VITE_WORKER_URL || '';
     if (!workerUrl) return;
@@ -382,7 +347,6 @@ export default function App() {
         }
       }).catch(() => {});
 
-    fetchNotifications({ force: true, userId: user?.sub, workerUrl, token });
   };
 
   // Fetch catalog dari /manga/index.json
@@ -648,24 +612,6 @@ export default function App() {
           isLoggedIn={isLoggedIn}
           currentUser={currentUser}
           onLoginClick={() => setIsAuthModalOpen(true)}
-          unreadNotifCount={unreadNotifCount}
-          onNotifClick={async () => {
-            setIsNotifOpen(true);
-            await fetchNotifications();
-            // Mark semua notif sebagai read saat panel dibuka
-            setNotifications(prev => {
-              if (!prev.some(n => !n.read)) return prev;
-              const updated = prev.map(n => ({ ...n, read: true }));
-              if (currentUser?.id) try { localStorage.setItem(`mf_notifs_${currentUser.id}`, JSON.stringify(updated)); } catch {}
-              notifLastFetch.current = Date.now();
-              const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-              getAccessToken().then(token => {
-                if (workerUrl && token)
-                  fetch(`${workerUrl}/api/user/notifications/read-all`, { method: 'POST', headers: { Authorization: `Bearer ${token}` } }).catch(() => {});
-              });
-              return updated;
-            });
-          }}
           onLogout={async () => {
             await authLogout();
             setIsLoggedIn(false);
@@ -1060,80 +1006,6 @@ export default function App() {
       {showTerms && <TermsOfServiceModal onClose={() => setShowTerms(false)} />}
       {showDmca && <DmcaModal onClose={() => setShowDmca(false)} />}
 
-      {/* Notifikasi Panel */}
-      <AnimatePresence>
-        {isNotifOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[300] bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-4"
-            onClick={() => setIsNotifOpen(false)}
-          >
-            <motion.div
-              initial={{ y: 40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 40, opacity: 0 }}
-              transition={{ type: 'spring', damping: 24, stiffness: 260 }}
-              onClick={e => e.stopPropagation()}
-              className="w-full sm:max-w-sm bg-surface-container border border-white/10 rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col max-h-[80vh]"
-            >
-              {/* Header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-black text-on-surface">Notifikasi</span>
-                  {unreadNotifCount > 0 && (
-                    <span className="text-[10px] font-black text-white bg-red-500 rounded-full min-w-[18px] h-[18px] inline-flex items-center justify-center px-1 leading-none">
-                      {unreadNotifCount}
-                    </span>
-                  )}
-                </div>
-                <button onClick={() => setIsNotifOpen(false)} className="text-outline/50 hover:text-on-surface transition-colors cursor-pointer text-lg leading-none">✕</button>
-              </div>
-              {/* Notif list */}
-              <div className="flex-1 overflow-y-auto flex flex-col divide-y divide-white/5">
-                {notifications.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center py-12 gap-3">
-                    <span className="text-3xl">🔔</span>
-                    <p className="text-sm font-semibold text-outline/50">Belum ada notifikasi</p>
-                  </div>
-                ) : notifications.map(notif => (
-                  <button
-                    key={notif.id}
-                    onClick={() => {
-                      setNotifications(prev => prev.map(n => n.id === notif.id ? { ...n, read: true } : n));
-                      setIsNotifOpen(false);
-                      if (notif.manga_id && notif.chapter_num != null) {
-                        setTargetCommentId(notif.comment_id || null);
-                        navigate(`/${notif.manga_id}/${notif.chapter_num}`);
-                      } else if (notif.manga_id) {
-                        navigate(`/${notif.manga_id}`);
-                      }
-                    }}
-                    className={`w-full text-left px-4 py-3.5 flex gap-3 hover:bg-white/5 transition-colors cursor-pointer ${!notif.read ? 'bg-primary/5' : ''}`}
-                  >
-                    {/* Unread dot */}
-                    <div className="shrink-0 mt-1.5">
-                      <div className={`w-2 h-2 rounded-full ${!notif.read ? 'bg-primary' : 'bg-transparent'}`} />
-                    </div>
-                    <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-                      <p className="text-xs font-bold text-on-surface leading-snug">
-                        <span className="text-primary">{notif.actor_name}</span>
-                        {notif.type === 'mention' ? ' menyebut kamu' : ' membalas komentar kamu'}
-                      </p>
-                      <p className="text-[11px] text-outline/60 truncate">{notif.preview}</p>
-                      <p className="text-[10px] text-outline/40 mt-0.5">
-                        {notif.manga_title} · Ch. {notif.chapter_num} · {timeAgo(notif.created_at)}
-                      </p>
-                    </div>
-                  </button>
-                ))}
-              </div>
-              {/* Tandai semua sudah dibaca */}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Checking chapter access overlay */}
       <AnimatePresence>
@@ -1159,13 +1031,12 @@ export default function App() {
         <ReaderModal
           chapter={activeChapter}
           manga={selectedManga}
-          onClose={() => { setTargetCommentId(null); navigate(`/${selectedManga?.id || ''}`); }}
+          onClose={() => { navigate(`/${selectedManga?.id || ''}`); }}
           onReadChapter={handleReadChapter}
           unlockedChapters={d1UnlockedChapters}
           isLoggedIn={isLoggedIn}
           currentUser={currentUser}
           onLoginClick={() => setIsAuthModalOpen(true)}
-          targetCommentId={targetCommentId}
         />
       )}
 
