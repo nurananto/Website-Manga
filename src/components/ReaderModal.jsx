@@ -239,8 +239,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
 
   const commentsRef = useRef(null);
   const [commentCount, setCommentCount] = useState(0);
+  // Lazy-load komentar: fetch hanya saat area komentar mendekati viewport
+  const [commentsVisible, setCommentsVisible] = useState(!!targetCommentId);
 
   const jumpToComments = () => {
+    setCommentsVisible(true);
     commentsRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
   };
 
@@ -291,6 +294,29 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     setPages(all);
     setPageCount(chapter.pages);
   }, [chapter?.id, imgAccess]);
+
+  // Reset visibilitas komentar tiap ganti chapter (kecuali ada deep-link komentar)
+  useEffect(() => {
+    setCommentsVisible(!!targetCommentId);
+  }, [chapter?.id, targetCommentId]);
+
+  // Amati area komentar — baru fetch saat user scroll mendekat (600px sebelum terlihat)
+  useEffect(() => {
+    if (commentsVisible || pages.length === 0) return;
+    const el = commentsRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries.some(e => e.isIntersecting)) {
+          setCommentsVisible(true);
+          obs.disconnect();
+        }
+      },
+      { root: scrollRef.current, rootMargin: '600px' }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [commentsVisible, chapter?.id, pages.length]);
 
   // Reset scroll + currentPage saat chapter berganti
   useEffect(() => {
@@ -543,19 +569,23 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
               </button>
             </div>
 
-            {/* Komentar */}
+            {/* Komentar — lazy: dirender saat user scroll mendekati area ini */}
             <div className="w-full pb-16" ref={commentsRef}>
-              <CommentSection
-                chapterId={activeChapter?.id}
-                mangaId={activeManga?.id}
-                mangaTitle={activeManga?.title}
-                chapterNum={activeChapter?.chapter_number}
-                isLoggedIn={isLoggedIn}
-                currentUser={currentUser}
-                onLoginClick={onLoginClick}
-                targetCommentId={targetCommentId}
-                onCommentCountChange={setCommentCount}
-              />
+              {commentsVisible ? (
+                <CommentSection
+                  chapterId={activeChapter?.id}
+                  mangaId={activeManga?.id}
+                  mangaTitle={activeManga?.title}
+                  chapterNum={activeChapter?.chapter_number}
+                  isLoggedIn={isLoggedIn}
+                  currentUser={currentUser}
+                  onLoginClick={onLoginClick}
+                  targetCommentId={targetCommentId}
+                  onCommentCountChange={setCommentCount}
+                />
+              ) : (
+                <div className="h-24" />
+              )}
             </div>
           </div>
         </div>
