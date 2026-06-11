@@ -78,7 +78,11 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
                   e.stopPropagation();
                   onReadChapter(ch, manga.title);
                 }}
-                className="flex justify-between items-center hover:bg-surface-container-highest px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border border-white/5 hover:border-white/10 transition-all group/ch"
+                className={`flex justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border transition-all group/ch ${
+                  isLocked
+                    ? 'bg-amber-500/5 border-amber-500/20 hover:bg-amber-500/10 hover:border-amber-500/35'
+                    : 'border-white/5 hover:bg-surface-container-highest hover:border-white/10'
+                }`}
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
                   {isLocked && <Lock className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 text-amber-400 shrink-0" />}
