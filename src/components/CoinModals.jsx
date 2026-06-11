@@ -353,24 +353,24 @@ export function UnlockModal({ isOpen, onClose, chapter, userCoins, onConfirm, on
             <Coins className="w-7 h-7 fill-current text-amber-400" />
           </div>
 
-          <h3 className="text-lg font-black text-on-surface">Buka Chapter Premium</h3>
-          <p className="text-xs text-outline mt-1 mb-4">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-black text-on-surface">Buka Chapter Premium</h3>
+          <p className="text-xs sm:text-sm md:text-base text-outline mt-1 mb-4">
             Membuka <span className="text-on-surface font-bold">{chapter.title}</span>
           </p>
 
           {/* Balance comparison */}
           <div className="w-full bg-surface-container-high border border-white/5 rounded-xl p-4 flex flex-col gap-2 mb-6">
-            <div className="flex justify-between items-center text-xs">
+            <div className="flex justify-between items-center text-xs sm:text-sm md:text-base">
               <span className="text-outline font-medium">Biaya Buka:</span>
               <span className="font-extrabold text-on-surface flex items-center gap-1">
-                <Coins className="w-3.5 h-3.5 fill-current text-amber-500" />
+                <Coins className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current text-amber-500" />
                 {cost} Koin
               </span>
             </div>
-            <div className="flex justify-between items-center text-xs border-t border-white/5 pt-2">
+            <div className="flex justify-between items-center text-xs sm:text-sm md:text-base border-t border-white/5 pt-2">
               <span className="text-outline font-medium">Koin Anda:</span>
               <span className={`font-extrabold flex items-center gap-1 ${canUnlock ? 'text-amber-300' : 'text-red-400'}`}>
-                <Coins className="w-3.5 h-3.5 fill-current text-amber-500" />
+                <Coins className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current text-amber-500" />
                 {userCoins} Koin
               </span>
             </div>
@@ -382,14 +382,14 @@ export function UnlockModal({ isOpen, onClose, chapter, userCoins, onConfirm, on
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 h-11 rounded-lg border border-white/10 text-xs font-bold text-outline hover:bg-white/5 hover:text-on-surface transition-colors cursor-pointer"
+                className="flex-1 h-11 sm:h-12 rounded-lg border border-white/10 text-xs sm:text-sm md:text-base font-bold text-outline hover:bg-white/5 hover:text-on-surface transition-colors cursor-pointer"
               >
                 Batal
               </button>
               <button
                 type="button"
                 onClick={onConfirm}
-                className="flex-1 h-11 rounded-lg bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white text-xs font-black transition-colors cursor-pointer shadow-lg hover:shadow-amber-500/20"
+                className="flex-1 h-11 sm:h-12 rounded-lg bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white text-xs sm:text-sm md:text-base font-black transition-colors cursor-pointer shadow-lg hover:shadow-amber-500/20"
               >
                 Buka Sekarang
               </button>
@@ -397,20 +397,20 @@ export function UnlockModal({ isOpen, onClose, chapter, userCoins, onConfirm, on
           ) : (
             /* Insufficient Coins Warning Buttons */
             <div className="flex flex-col w-full gap-3">
-              <div className="text-[10px] text-red-400 font-bold mb-1">
+              <div className="text-[10px] sm:text-xs md:text-sm text-red-400 font-bold mb-1">
                 ⚠️ Koin Anda tidak mencukupi untuk membuka chapter ini.
               </div>
               <button
                 type="button"
                 onClick={onGoToStore}
-                className="w-full h-11 rounded-lg bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white text-xs font-black transition-colors cursor-pointer shadow-lg hover:shadow-amber-500/20"
+                className="w-full h-11 sm:h-12 rounded-lg bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white text-xs sm:text-sm md:text-base font-black transition-colors cursor-pointer shadow-lg hover:shadow-amber-500/20"
               >
                 Beli Koin Sekarang
               </button>
               <button
                 type="button"
                 onClick={onClose}
-                className="w-full h-11 rounded-lg border border-white/10 text-xs font-bold text-outline hover:bg-white/5 hover:text-on-surface transition-colors cursor-pointer"
+                className="w-full h-11 sm:h-12 rounded-lg border border-white/10 text-xs sm:text-sm md:text-base font-bold text-outline hover:bg-white/5 hover:text-on-surface transition-colors cursor-pointer"
               >
                 Batal
               </button>

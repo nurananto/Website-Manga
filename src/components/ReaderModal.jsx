@@ -749,13 +749,13 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                 className="bg-surface-container border border-white/10 rounded-2xl p-6 max-w-sm w-full shadow-2xl flex flex-col gap-5 text-center"
               >
                 <div>
-                  <p className="font-label-sm text-xs text-outline/70 uppercase tracking-widest font-bold mb-1">Chapter berikutnya</p>
+                  <p className="font-label-sm text-xs sm:text-sm md:text-base text-outline/70 uppercase tracking-widest font-bold mb-1">Chapter berikutnya</p>
                   <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface">{lockedNext.title}</h3>
                 </div>
 
                 {/* Countdown besar — update tiap detik */}
                 <div className="flex flex-col items-center gap-2 bg-surface-container-high/40 rounded-xl py-5 px-4 border border-white/5">
-                  <p className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/60 font-bold uppercase tracking-wider">Gratis dalam</p>
+                  <p className="font-label-sm text-xs sm:text-sm md:text-base text-outline/60 font-bold uppercase tracking-wider">Gratis dalam</p>
                   <CountdownLarge unlockDate={lockedNext.unlockDate} />
                 </div>
 
@@ -765,14 +765,14 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                       setShowLockedModal(false);
                       onReadChapter(lockedNext, manga.title);
                     }}
-                    className="w-full h-12 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md border border-yellow-600/30"
+                    className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md border border-yellow-600/30"
                   >
-                    <Coins className="w-4 h-4 fill-current" />
+                    <Coins className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
                     Beli dengan 5 Koin
                   </button>
                   <button
                     onClick={() => setShowLockedModal(false)}
-                    className="w-full h-10 rounded-xl border border-white/10 text-xs font-bold text-outline hover:text-on-surface hover:bg-white/5 transition-all cursor-pointer"
+                    className="w-full h-10 sm:h-12 rounded-xl border border-white/10 text-xs sm:text-sm md:text-base font-bold text-outline hover:text-on-surface hover:bg-white/5 transition-all cursor-pointer"
                   >
                     Nanti saja
                   </button>
