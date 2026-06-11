@@ -31,10 +31,10 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
           className="flex items-center gap-2 sm:gap-3 active:scale-95 transition-transform duration-150"
         >
           <img src="/logo-header.webp" alt="Nurananto Scanlation"
-            className="h-8 sm:h-9 md:h-10 w-auto shrink-0" />
+            className="h-8 md:h-11 xl:h-14 w-auto shrink-0" />
           <span className="flex flex-col leading-none gap-0.5">
-            <span className="text-xs sm:text-sm md:text-base font-black text-blue-400 tracking-tight">Nurananto</span>
-            <span className="text-xs sm:text-xs md:text-sm font-bold text-white tracking-tight">Scanlation</span>
+            <span className="text-xs md:text-base xl:text-xl font-black text-blue-400 tracking-tight">Nurananto</span>
+            <span className="text-[10px] md:text-sm xl:text-base font-bold text-white tracking-tight">Scanlation</span>
           </span>
         </a>
 
