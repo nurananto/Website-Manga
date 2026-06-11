@@ -112,6 +112,10 @@ function ReplyItem({ reply, currentUserId, targetCommentId, isLoggedIn, onReplyT
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
           <span className="text-[11px] sm:text-xs font-bold text-on-surface">{reply.user?.name || 'User'}</span>
+          {reply.user?.is_donor
+            ? <span className="text-[8px] sm:text-[9px] font-black px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">Donatur Setia</span>
+            : <span className="text-[8px] sm:text-[9px] font-black px-1.5 py-0.5 rounded-full bg-white/5 text-outline/50 border border-white/10">Pembaca Setia</span>
+          }
           <span className="text-[9px] sm:text-[10px] text-outline/50">{timeAgo(reply.created_at)}</span>
           {isOwn && !confirmDel && (
             <button onClick={() => setConfirmDel(true)}
@@ -191,6 +195,10 @@ function CommentItem({ comment, isLoggedIn, currentUserId, onReply, onDelete, on
             <>
               <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                 <span className="text-[11px] sm:text-xs font-bold text-on-surface">{comment.user?.name || 'User'}</span>
+                {comment.user?.is_donor
+                  ? <span className="text-[8px] sm:text-[9px] font-black px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">Donatur Setia</span>
+                  : <span className="text-[8px] sm:text-[9px] font-black px-1.5 py-0.5 rounded-full bg-white/5 text-outline/50 border border-white/10">Pembaca Setia</span>
+                }
                 <span className="text-[9px] sm:text-[10px] text-outline/50">{timeAgo(comment.created_at)}</span>
               </div>
               <p className="text-xs sm:text-sm text-on-surface/80 mt-0.5 break-words leading-relaxed">{comment.text}</p>
