@@ -540,6 +540,11 @@ async function handleAdmin(request, env) {
 }
 
 // ── Comments ──────────────────────────────────────────────────
+// Cache key pakai URL internal — Cloudflare edge cache, semua user benefit
+function commentCacheKey(chapterId) {
+  return new Request(`https://cache-internal.manga/comments?chapter=${encodeURIComponent(chapterId)}`);
+}
+
 async function handleComments(request, env) {
   const { pathname } = new URL(request.url);
   const method = request.method;
@@ -548,6 +553,12 @@ async function handleComments(request, env) {
   if (pathname === '/api/comments' && method === 'GET') {
     const chapterId = new URL(request.url).searchParams.get('chapter');
     if (!chapterId || !isStr(chapterId, 200)) return json({ comments: [] });
+
+    // Cek edge cache dulu
+    const cache    = caches.default;
+    const cacheReq = commentCacheKey(chapterId);
+    const hit      = await cache.match(cacheReq);
+    if (hit) return new Response(hit.body, hit);
 
     const rows = await env.DB.prepare(`
       SELECT c.id, c.text, c.deleted, c.parent_id, c.created_at,
@@ -577,7 +588,16 @@ async function handleComments(request, env) {
       else if (!c.parent_id) top.push(byId[c.id]);
     });
 
-    return json({ comments: top });
+    const res = new Response(JSON.stringify({ comments: top }), {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=31536000', // 1 tahun, di-invalidate manual saat ada komen baru
+        ...SECURITY_HEADERS,
+      },
+    });
+    // Simpan ke edge cache (fire-and-forget, tidak perlu await)
+    cache.put(cacheReq, res.clone());
+    return res;
   }
 
   // POST /api/comments  { chapter_id, manga_id, text, parent_id? }
@@ -601,6 +621,9 @@ async function handleComments(request, env) {
     await env.DB.prepare(
       'INSERT INTO comments (id, chapter_id, manga_id, user_id, parent_id, text) VALUES (?, ?, ?, ?, ?, ?)'
     ).bind(id, chapter_id, manga_id, user.sub, parent_id || null, text.trim()).run();
+
+    // Invalidate edge cache supaya user lain dapat data terbaru
+    caches.default.delete(commentCacheKey(chapter_id));
 
     // Notifikasi ke penulis komentar parent (jika reply) — termasuk reply ke diri sendiri
     if (parent_id) {
@@ -626,7 +649,7 @@ async function handleComments(request, env) {
     const user = await verifyAuth(request, env);
     if (!user) return json({ error: 'Unauthorized' }, 401);
     const commentId = deleteMatch[1];
-    const row = await env.DB.prepare('SELECT user_id, parent_id FROM comments WHERE id = ?').bind(commentId).first();
+    const row = await env.DB.prepare('SELECT user_id, chapter_id FROM comments WHERE id = ?').bind(commentId).first();
     if (!row) return json({ error: 'Not found' }, 404);
     if (row.user_id !== user.sub) return json({ error: 'Forbidden' }, 403);
 
@@ -637,6 +660,10 @@ async function handleComments(request, env) {
     } else {
       await env.DB.prepare('DELETE FROM comments WHERE id = ?').bind(commentId).run();
     }
+
+    // Invalidate edge cache
+    if (row.chapter_id) caches.default.delete(commentCacheKey(row.chapter_id));
+
     return json({ ok: true });
   }
 
