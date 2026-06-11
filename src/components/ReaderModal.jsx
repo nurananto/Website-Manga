@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUp, Lock, Clock, BookOpen } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUp, Lock, Clock, BookOpen, MessageCircle } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { ReaderPageSkeleton } from './Skeleton';
 import { imgUrl } from '../utils';
@@ -236,6 +236,13 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   // Prev di-disable saat: sudah di chapter paling lama / oneshot
   const prevDisabled = isAtOldest || isOneshot;
 
+  const commentsRef = useRef(null);
+  const [commentCount, setCommentCount] = useState(0);
+
+  const jumpToComments = () => {
+    commentsRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
+  };
+
   const imageBase = (import.meta.env.VITE_IMAGE_URL || import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
   const [pages, setPages] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -460,6 +467,20 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             {/* Navigasi bawah — di bawah gambar terakhir */}
             <NavBar position="bottom" />
 
+            {/* Tombol ke komentar */}
+            <div className="px-2 pt-2">
+              <button
+                onClick={jumpToComments}
+                className="w-full h-10 sm:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-on-surface active:scale-95 transition-all cursor-pointer"
+              >
+                <MessageCircle className="w-4 h-4 text-primary" />
+                Komentar
+                {commentCount > 0 && (
+                  <span className="text-[11px] font-bold text-outline/60">({commentCount})</span>
+                )}
+              </button>
+            </div>
+
             {/* Tombol kembali — bawah, squircle */}
             <div className="px-2 py-2">
               <button
@@ -493,7 +514,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             </div>
 
             {/* Komentar */}
-            <div className="w-full pb-16">
+            <div className="w-full pb-16" ref={commentsRef}>
               <CommentSection
                 chapterId={activeChapter?.id}
                 mangaId={activeManga?.id}
@@ -503,6 +524,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                 currentUser={currentUser}
                 onLoginClick={onLoginClick}
                 targetCommentId={targetCommentId}
+                onCommentCountChange={setCommentCount}
               />
             </div>
           </div>

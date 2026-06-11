@@ -17,6 +17,7 @@ function DailyClaimBanner({ userId, workerUrl }) {
     }
   }, [CACHE_KEY]);
 
+  const isClaimed = state === 'claimed' || state === 'done';
   if (state === 'done') return null;
 
   const handleClaim = async () => {
@@ -32,7 +33,6 @@ function DailyClaimBanner({ userId, workerUrl }) {
       if (d.ok) {
         localStorage.setItem(CACHE_KEY, new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString());
         setState('claimed');
-        setTimeout(() => setState('done'), 3000);
       } else if (d.already_claimed) {
         localStorage.setItem(CACHE_KEY, d.next_at);
         setState('done');
@@ -43,13 +43,16 @@ function DailyClaimBanner({ userId, workerUrl }) {
   };
 
   return (
-    <div className="flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-xl px-4 py-3">
-      <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
-        <Zap className="w-4 h-4 text-primary fill-primary" />
+    <div className={`flex items-center gap-3 rounded-xl px-4 py-3 border ${isClaimed ? 'bg-white/5 border-white/10' : 'bg-primary/10 border-primary/20'}`}>
+      <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${isClaimed ? 'bg-white/10' : 'bg-primary/20'}`}>
+        <Zap className={`w-4 h-4 ${isClaimed ? 'text-outline/40' : 'text-primary fill-primary'}`} />
       </div>
       <div className="flex-1 min-w-0">
-        {state === 'claimed' ? (
-          <p className="text-xs sm:text-sm font-bold text-primary">+1 koin berhasil diklaim!</p>
+        {isClaimed ? (
+          <>
+            <p className="text-xs sm:text-sm font-bold text-outline/60">Sudah Diklaim</p>
+            <p className="text-[10px] sm:text-xs text-outline/40">Kembali lagi 48 jam lagi.</p>
+          </>
         ) : (
           <>
             <p className="text-xs sm:text-sm font-bold text-on-surface">Koin harian gratis!</p>
@@ -57,15 +60,17 @@ function DailyClaimBanner({ userId, workerUrl }) {
           </>
         )}
       </div>
-      {state !== 'claimed' && (
-        <button
-          onClick={handleClaim}
-          disabled={state === 'claiming'}
-          className="shrink-0 h-8 px-4 rounded-lg bg-primary text-on-primary text-xs font-black disabled:opacity-50 cursor-pointer hover:opacity-90 transition-opacity"
-        >
-          {state === 'claiming' ? '...' : 'Klaim'}
-        </button>
-      )}
+      <button
+        onClick={isClaimed ? undefined : handleClaim}
+        disabled={isClaimed || state === 'claiming'}
+        className={`shrink-0 h-8 px-4 rounded-lg text-xs font-black transition-opacity ${
+          isClaimed
+            ? 'bg-white/10 text-outline/40 cursor-not-allowed'
+            : 'bg-primary text-on-primary cursor-pointer hover:opacity-90'
+        }`}
+      >
+        {state === 'claiming' ? '...' : isClaimed ? 'Diklaim' : 'Klaim'}
+      </button>
     </div>
   );
 }
@@ -390,7 +395,7 @@ function CommentSkeleton() {
 }
 
 // ── Export utama ───────────────────────────────────────────────
-export default function CommentSection({ chapterId, mangaId, mangaTitle, chapterNum, isLoggedIn, currentUser, onLoginClick, targetCommentId }) {
+export default function CommentSection({ chapterId, mangaId, mangaTitle, chapterNum, isLoggedIn, currentUser, onLoginClick, targetCommentId, onCommentCountChange }) {
   const [comments,   setComments]   = useState([]);
   const [loading,    setLoading]    = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -505,6 +510,7 @@ export default function CommentSection({ chapterId, mangaId, mangaTitle, chapter
   } : null;
 
   const totalCount = comments.reduce((n, c) => n + 1 + (c.replies?.length || 0), 0);
+  useEffect(() => { onCommentCountChange?.(totalCount); }, [totalCount]);
 
   return (
     <div className="w-full px-3 sm:px-4 py-4 sm:py-6 flex flex-col gap-4 sm:gap-5 font-body-md">
