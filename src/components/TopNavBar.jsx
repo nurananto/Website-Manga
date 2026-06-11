@@ -16,9 +16,8 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const avatarUrl = currentUser?.user_metadata?.avatar_url || null;
-  const displayName = currentUser?.user_metadata?.full_name
-    || currentUser?.user_metadata?.name
+  const avatarUrl = currentUser?.avatar || null;
+  const displayName = currentUser?.name
     || currentUser?.email?.split('@')[0]
     || 'Pengguna';
 

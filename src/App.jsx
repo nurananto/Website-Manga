@@ -14,10 +14,10 @@ import TermsOfServiceModal from './components/TermsOfServiceModal';
 import DmcaModal from './components/DmcaModal';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
-import { supabase } from './lib/supabase';
+import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode, clearAuth } from './lib/auth';
 
 // ── History Tabs: Baca + Koin ────────────────────────────────
-function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUser, workerUrl, supabase }) {
+function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUser, workerUrl }) {
   const [tab, setTab] = useState('read');
   const [txData, setTxData] = useState(null);
   const [txPage, setTxPage] = useState(1);
@@ -36,10 +36,10 @@ function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUse
     }
     setTxLoading(true);
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session?.access_token) return;
+      const token = await getAccessToken();
+      if (!token) return;
       const res = await fetch(`${workerUrl}/api/user/transactions?page=${page}&limit=10`, {
-        headers: { 'Authorization': `Bearer ${session.access_token}` },
+        headers: { 'Authorization': `Bearer ${token}` },
       });
       const d = await res.json();
       setTxData(d);
@@ -204,23 +204,7 @@ export default function App() {
   const [showDmca, setShowDmca] = useState(false);
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [targetCommentId, setTargetCommentId] = useState(null);
-  const [notifications, setNotifications] = useState([
-    { id: 'notif-1', read: false, actor: 'MangaFan99', type: 'mention',
-      manga_id: 'Sankakukei', manga_title: 'Seishun wa Sankakukei no Loop',
-      chapter_num: '10', comment_id: 'demo-r1',
-      preview: '@NuraReader Setuju! Apalagi panel terakhirnya, keren abis.',
-      created_at: new Date(Date.now() - 3600000).toISOString() },
-    { id: 'notif-2', read: false, actor: 'NuraReader', type: 'reply',
-      manga_id: 'Sankakukei', manga_title: 'Seishun wa Sankakukei no Loop',
-      chapter_num: '10', comment_id: 'demo-r2',
-      preview: 'Nunggu chapter selanjutnya nih... semoga cepet update 🙏',
-      created_at: new Date(Date.now() - 7200000).toISOString() },
-    { id: 'notif-3', read: true, actor: 'OtakuSejati', type: 'reply',
-      manga_id: 'Yarikonda', manga_title: 'Yarikonda',
-      chapter_num: '1', comment_id: 'demo-c2',
-      preview: 'Terjemahannya bagus dan mudah dipahami, makasih ya sudah translate! 👍',
-      created_at: new Date(Date.now() - 86400000).toISOString() },
-  ]);
+  const [notifications, setNotifications] = useState([]);
   const unreadNotifCount = notifications.filter(n => !n.read).length;
   const ITEMS_PER_PAGE = 6;
 
@@ -236,79 +220,91 @@ export default function App() {
     }
   }, [activeChapter, activeMangaTitle, selectedManga]);
 
-  // Supabase auth — listen session changes
+  // Custom auth init
   useEffect(() => {
-    // Cek session saat ini
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user) {
-        setIsLoggedIn(true);
-        setCurrentUser(session.user);
-      }
-    });
-
-    // Listen perubahan auth (login/logout/magic link callback)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session?.user) {
-        setIsLoggedIn(true);
-        setCurrentUser(session.user);
-        setIsAuthModalOpen(false);
-        // Pertama kali login → tampilkan modal konfirmasi email (pre-filled dari akun)
-        if (event === 'SIGNED_IN' && !session.user.user_metadata?.trakteer_email) {
-          setShowTrakteerModal(true);
-        }
-        // Fetch coin balance + history + auto-claim dari Worker
-        const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-        if (workerUrl && session.access_token) {
-          const headers = { 'Authorization': `Bearer ${session.access_token}` };
-          // Auto-claim dulu, lalu fetch balance terbaru
-          const claimEmail = session.user.user_metadata?.trakteer_email || session.user.email;
-          const doFetchBalance = () => fetch(`${workerUrl}/api/user/me`, { headers })
-            .then(r => r.json()).then(d => { if (typeof d.coins === 'number') setUserCoins(d.coins); })
-            .catch(() => {});
-
-          if (claimEmail) {
-            fetch(`${workerUrl}/api/user/claim-coins`, {
-              method: 'POST',
-              headers: { ...headers, 'Content-Type': 'application/json' },
-              body: JSON.stringify({ trakteer_email: claimEmail }),
-            }).then(r => r.json()).then(d => {
-              if (d.transferred > 0) localStorage.removeItem(`tx_cache_${session.user.id}`);
-            }).catch(() => {}).finally(() => doFetchBalance()); // fetch balance SETELAH claim
+    const initAuth = async () => {
+      // Handle OAuth callback: /auth?code=xxx
+      const { page } = parsePath();
+      if (page === 'auth') {
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+        if (code) {
+          const user = await exchangeLoginCode(code);
+          if (user) {
+            setIsLoggedIn(true);
+            setCurrentUser(user);
+            setIsAuthModalOpen(false);
+            // Redirect ke URL sebelum login (disimpan di ?redirect= via loginWithGoogle)
+            const redirect = params.get('redirect') || '/';
+            navigate(redirect, true);
           } else {
-            doFetchBalance();
+            navigate('/', true);
           }
-          // History — load dari D1 ke state
-          fetch(`${workerUrl}/api/user/history`, { headers })
-            .then(r => r.json()).then(rows => {
-              if (!Array.isArray(rows)) return;
-              const hist = {};
-              rows.forEach(row => {
-                hist[row.manga_id] = {
-                  id: row.chapter_id,
-                  chapter_number: row.chapter_number,
-                  title: row.chapter_title || `Ch. ${row.chapter_number}`,
-                  last_read_at: row.last_read_at,
-                };
-              });
-              setHistoryChapters(hist);
-            }).catch(() => {});
-          // Unlocked chapters — load dari D1
-          fetch(`${workerUrl}/api/user/unlocked`, { headers })
-            .then(r => r.json()).then(ids => {
-              if (Array.isArray(ids)) setD1UnlockedChapters(new Set(ids));
-            }).catch(() => {});
+          return;
         }
-      } else {
-        setIsLoggedIn(false);
-        setCurrentUser(null);
-        setUserCoins(0);
-        setHistoryChapters({});
-        setD1UnlockedChapters(new Set());
+        navigate('/', true);
+        return;
       }
-    });
 
-    return () => subscription.unsubscribe();
+      // Cek session yang sudah ada
+      const user = getCurrentUser();
+      if (!user) return;
+
+      setIsLoggedIn(true);
+      setCurrentUser(user);
+
+      // Fetch balance + history + unlocked dari Worker
+      await loadUserData(user);
+    };
+
+    initAuth();
   }, []);
+
+  const loadUserData = async (user) => {
+    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+    if (!workerUrl) return;
+    const token = await getAccessToken();
+    if (!token) return;
+    const headers = { 'Authorization': `Bearer ${token}` };
+
+    const doFetchBalance = () => fetch(`${workerUrl}/api/user/me`, { headers })
+      .then(r => r.json()).then(d => { if (typeof d.coins === 'number') setUserCoins(d.coins); })
+      .catch(() => {});
+
+    // Auto-claim coins dari trakteer (pakai email Google)
+    const claimEmail = user.email;
+    if (claimEmail) {
+      fetch(`${workerUrl}/api/user/claim-coins`, {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ trakteer_email: claimEmail }),
+      }).then(r => r.json()).then(d => {
+        if (d.transferred > 0) localStorage.removeItem(`tx_cache_${user.id}`);
+      }).catch(() => {}).finally(() => doFetchBalance());
+    } else {
+      doFetchBalance();
+    }
+
+    fetch(`${workerUrl}/api/user/history`, { headers })
+      .then(r => r.json()).then(rows => {
+        if (!Array.isArray(rows)) return;
+        const hist = {};
+        rows.forEach(row => {
+          hist[row.manga_id] = {
+            id: row.chapter_id,
+            chapter_number: row.chapter_number,
+            title: row.chapter_title || `Ch. ${row.chapter_number}`,
+            last_read_at: row.last_read_at,
+          };
+        });
+        setHistoryChapters(hist);
+      }).catch(() => {});
+
+    fetch(`${workerUrl}/api/user/unlocked`, { headers })
+      .then(r => r.json()).then(ids => {
+        if (Array.isArray(ids)) setD1UnlockedChapters(new Set(ids));
+      }).catch(() => {});
+  };
 
   // Fetch catalog dari /manga/index.json
   useEffect(() => {
@@ -425,11 +421,11 @@ export default function App() {
       // Sync ke D1 (user login saja) — upsert, timpa chapter lama
       if (isLoggedIn && currentUser) {
         const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-        supabase.auth.getSession().then(({ data: { session } }) => {
-          if (!session?.access_token) return;
+        getAccessToken().then(token => {
+          if (!token) return;
           fetch(`${workerUrl}/api/user/history`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             body: JSON.stringify({ manga_id: manga.id, chapter_id: chapter.id, chapter_number: chapter.chapter_number, chapter_title: chapter.title }),
           }).catch(() => {});
         });
@@ -461,13 +457,13 @@ export default function App() {
     if (userCoins < 5) { setIsUnlockModalOpen(false); setIsCoinModalOpen(true); return; }
 
     const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-    const { data: { session } } = await supabase.auth.getSession();
+    const token = await getAccessToken();
 
-    if (workerUrl && session?.access_token) {
+    if (workerUrl && token) {
       try {
         const res = await fetch(`${workerUrl}/api/user/unlock-chapter`, {
           method: 'POST',
-          headers: { 'Authorization': `Bearer ${session.access_token}`, 'Content-Type': 'application/json' },
+          headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
           body: JSON.stringify({ chapter_id: pendingUnlockChapter.id, cost: 5 }),
         });
         const d = await res.json();
@@ -478,7 +474,7 @@ export default function App() {
         if (typeof d.coins_remaining === 'number') setUserCoins(d.coins_remaining);
         else setUserCoins(prev => prev - 5);
         // Invalidate tx cache
-        if (session.user) localStorage.removeItem(`tx_cache_${session.user.id}`);
+        if (currentUser) localStorage.removeItem(`tx_cache_${currentUser.id}`);
       } catch {
         showToast('Koneksi gagal, coba lagi.');
         return;
@@ -507,8 +503,8 @@ export default function App() {
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container pb-safe-20">
       
-      {/* Top Nav Bar — sembunyikan saat reader aktif */}
-      {!activeChapter && (
+      {/* Top Nav Bar — sembunyikan saat reader aktif atau auth callback */}
+      {!activeChapter && routePage !== 'auth' && (
         <TopNavBar
           activeTab={activeTab}
           onTabClick={handleTabClick}
@@ -520,9 +516,12 @@ export default function App() {
           unreadNotifCount={unreadNotifCount}
           onNotifClick={() => setIsNotifOpen(true)}
           onLogout={async () => {
-            await supabase.auth.signOut();
+            await authLogout();
             setIsLoggedIn(false);
             setCurrentUser(null);
+            setUserCoins(0);
+            setHistoryChapters({});
+            setD1UnlockedChapters(new Set());
           }}
           onBuyCoinsClick={() => {
             if (isLoggedIn) {
@@ -535,10 +534,10 @@ export default function App() {
             if (!isLoggedIn || !currentUser) return;
             const workerUrl = import.meta.env.VITE_WORKER_URL || '';
             if (!workerUrl) return;
-            const { data: { session } } = await supabase.auth.getSession();
-            if (!session?.access_token) return;
-            const headers = { 'Authorization': `Bearer ${session.access_token}` };
-            const claimEmail = currentUser.user_metadata?.trakteer_email || currentUser.email;
+            const token = await getAccessToken();
+            if (!token) return;
+            const headers = { 'Authorization': `Bearer ${token}` };
+            const claimEmail = currentUser.email;
             if (claimEmail) {
               fetch(`${workerUrl}/api/user/claim-coins`, {
                 method: 'POST',
@@ -558,7 +557,11 @@ export default function App() {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
-        {loadingManga && routePage !== 'reader' ? (
+        {routePage === 'auth' ? (
+          <div className="fixed inset-0 bg-[#090b0d] flex items-center justify-center z-[199]">
+            <div className="w-10 h-10 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+          </div>
+        ) : loadingManga && routePage !== 'reader' ? (
           <MangaDetailSkeleton />
         ) : (isLoading || !activeChapter) && routePage === 'reader' ? (
           <div className="fixed inset-0 bg-[#090b0d] flex items-center justify-center z-[199]">
@@ -845,7 +848,6 @@ export default function App() {
                     isLoggedIn={isLoggedIn}
                     currentUser={currentUser}
                     workerUrl={import.meta.env.VITE_WORKER_URL || ''}
-                    supabase={supabase}
                   />
                 </section>
               );
@@ -1025,22 +1027,15 @@ export default function App() {
           isOpen={isChangePasswordOpen}
           onClose={() => setIsChangePasswordOpen(false)}
           currentUser={currentUser}
-          onSave={async ({ username, trakteerEmail }) => {
-            const updates = {};
-            if (username) updates.full_name = username;
-            if (trakteerEmail) updates.trakteer_email = trakteerEmail;
-            if (Object.keys(updates).length) {
-              await supabase.auth.updateUser({ data: updates });
-            }
-            // Claim koin pending dari donasi Trakteer sebelum akun dibuat
+          onSave={async ({ trakteerEmail }) => {
             if (trakteerEmail) {
-              const { data: { session } } = await supabase.auth.getSession();
-              if (session?.access_token) {
+              const token = await getAccessToken();
+              if (token) {
                 const workerUrl = import.meta.env.VITE_WORKER_URL || '';
                 try {
                   const claimRes = await fetch(`${workerUrl}/api/user/claim-coins`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                     body: JSON.stringify({ trakteer_email: trakteerEmail }),
                   });
                   const d = await claimRes.json();
@@ -1048,9 +1043,8 @@ export default function App() {
                     showToast(`${d.transferred} koin berhasil diklaim!`);
                     setUserCoins(prev => prev + d.transferred);
                   }
-                  // Re-fetch balance dari Worker untuk pastikan sinkron
                   const meRes = await fetch(`${workerUrl}/api/user/me`, {
-                    headers: { 'Authorization': `Bearer ${session.access_token}` },
+                    headers: { 'Authorization': `Bearer ${token}` },
                   });
                   const me = await meRes.json();
                   if (typeof me.coins === 'number') setUserCoins(me.coins);
@@ -1076,8 +1070,6 @@ export default function App() {
         defaultEmail={currentUser?.email || ''}
         onClose={() => setShowTrakteerModal(false)}
         onSave={async (email) => {
-          await supabase.auth.updateUser({ data: { trakteer_email: email } });
-          setCurrentUser(prev => prev ? { ...prev, user_metadata: { ...prev.user_metadata, trakteer_email: email } } : prev);
           setShowTrakteerModal(false);
           showToast('Email berhasil disimpan!');
         }}
@@ -1088,7 +1080,7 @@ export default function App() {
         isOpen={isCoinModalOpen}
         onClose={() => setIsCoinModalOpen(false)}
         userCoins={userCoins}
-        userEmail={currentUser?.user_metadata?.trakteer_email || currentUser?.email || ''}
+        userEmail={currentUser?.email || ''}
         onPurchase={(addedCoins) => {
           setUserCoins(prev => prev + addedCoins);
         }}

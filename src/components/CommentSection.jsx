@@ -1,45 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { MessageCircle, Reply, Send, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 import { timeAgo } from '../utils';
-import { supabase } from '../lib/supabase';
-
-// ── Dummy data untuk preview UI ─────────────────────────────────
-const DUMMY_COMMENTS = [
-  {
-    id: 'demo-c1',
-    user: { id: 'demo-u1', name: 'NuraReader', avatar: null },
-    text: 'Chapter ini bagus banget! Endingnya bikin penasaran sama kelanjutannya.',
-    created_at: new Date(Date.now() - 2 * 3600000).toISOString(),
-    replies: [
-      {
-        id: 'demo-r1',
-        user: { id: 'demo-u2', name: 'MangaFan99', avatar: null },
-        text: '@NuraReader Setuju! Apalagi panel terakhirnya, keren abis.',
-        created_at: new Date(Date.now() - 3600000).toISOString(),
-      },
-      {
-        id: 'demo-r2',
-        user: { id: 'demo-u1', name: 'NuraReader', avatar: null },
-        text: 'Nunggu chapter selanjutnya nih... semoga cepet update 🙏',
-        created_at: new Date(Date.now() - 1800000).toISOString(),
-      },
-    ],
-  },
-  {
-    id: 'demo-c2',
-    user: { id: 'demo-u3', name: 'OtakuSejati', avatar: null },
-    text: 'Terjemahannya bagus dan mudah dipahami, makasih ya sudah translate! 👍',
-    created_at: new Date(Date.now() - 5 * 3600000).toISOString(),
-    replies: [],
-  },
-  {
-    id: 'demo-c3',
-    user: { id: 'demo-u4', name: 'AnimeWatcher', avatar: null },
-    text: 'Kapan chapter berikutnya? Udah ditunggu-tunggu nih 😭',
-    created_at: new Date(Date.now() - 24 * 3600000).toISOString(),
-    replies: [],
-  },
-];
+import { getAccessToken } from '../lib/auth';
 
 // ── Avatar ─────────────────────────────────────────────────────
 function UserAvatar({ user, size = 'md' }) {
@@ -130,8 +92,7 @@ function DeleteConfirm({ onConfirm, onCancel, label = 'Hapus komentar ini?' }) {
 function ReplyItem({ reply, currentUserId, targetCommentId, onDelete }) {
   const [confirmDel, setConfirmDel] = useState(false);
   const isTarget = reply.id === targetCommentId;
-  const isDemo   = reply.id?.startsWith('demo-');
-  const isOwn    = isDemo || reply.user?.id === currentUserId;
+  const isOwn    = reply.user?.id === currentUserId;
   const ref = useRef(null);
 
   useEffect(() => {
@@ -179,9 +140,8 @@ function CommentItem({ comment, isLoggedIn, currentUserId, onReply, onDelete, on
   const [submitting,     setSubmitting]     = useState(false);
   const [confirmDel,     setConfirmDel]     = useState(false);
   const isTarget  = comment.id === targetCommentId;
-  const isDemo    = comment.id?.startsWith('demo-');
-  const isOwn     = isDemo || comment.user?.id === currentUserId;
-  const canReply  = isDemo || isLoggedIn;
+  const isOwn    = comment.user?.id === currentUserId;
+  const canReply = isLoggedIn;
   const isDeleted = comment.deleted === true;
   const replies   = comment.replies || [];
   const ref = useRef(null);
@@ -335,8 +295,8 @@ function CommentSkeleton() {
 
 // ── Export utama ───────────────────────────────────────────────
 export default function CommentSection({ chapterId, mangaId, isLoggedIn, currentUser, onLoginClick, targetCommentId }) {
-  const [comments,   setComments]   = useState(DUMMY_COMMENTS); // ganti [] saat backend siap
-  const [loading,    setLoading]    = useState(false);           // ganti true saat backend siap
+  const [comments,   setComments]   = useState([]);
+  const [loading,    setLoading]    = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const workerUrl = (import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
   const currentUserId = currentUser?.id || null;
@@ -347,15 +307,12 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
     setComments([]);
     fetch(`${workerUrl}/api/comments?chapter=${encodeURIComponent(chapterId)}`)
       .then(r => r.ok ? r.json() : { comments: [] })
-      .then(data => setComments(data.comments?.length ? data.comments : DUMMY_COMMENTS))
-      .catch(() => setComments(DUMMY_COMMENTS))
+      .then(data => setComments(data.comments || []))
+      .catch(() => setComments([]))
       .finally(() => setLoading(false));
   }, [chapterId]);
 
-  const getToken = async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    return session?.access_token || null;
-  };
+  const getToken = () => getAccessToken();
 
   const handleSubmit = async (text) => {
     const token = await getToken();

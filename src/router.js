@@ -4,7 +4,7 @@
 // /waka-chan      → { page: 'manga', mangaId: 'waka-chan' }
 // /waka-chan/35   → { page: 'reader', mangaId: 'waka-chan', chapterNum: '35' }
 
-const RESERVED = new Set(['history']);
+const RESERVED = new Set(['history', 'auth']);
 
 export function parsePath(pathname = window.location.pathname) {
   const parts = pathname.replace(/^\//, '').split('/').filter(Boolean);
