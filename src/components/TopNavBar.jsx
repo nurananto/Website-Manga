@@ -22,17 +22,18 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
     || 'Pengguna';
 
   return (
-    <nav className="w-full h-[72px] bg-surface border-b border-white/5 shadow-[0_4px_30px_rgba(137,92,246,0.1)]">
+    <nav className="w-full bg-black border-b border-white/5">
       <div className="flex justify-between items-center px-2 sm:px-3 md:px-4 h-full w-full">
         {/* Brand (Logo) */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center">
           <a
             href="/"
             onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
-            className="flex items-center gap-3"
           >
-            <img src="/logo-header.webp" alt="Nurananto Scanlation" className="h-10 sm:h-12 md:h-14 w-auto" />
-            <span className="hidden sm:block text-sm md:text-base font-black text-white tracking-wide">Nurananto Scanlation</span>
+            {/* Desktop & Tablet */}
+            <img src="/header-desktop.webp" alt="Nurananto Scanlation" className="hidden sm:block h-14 md:h-16 w-auto" />
+            {/* Mobile */}
+            <img src="/header-mobile.webp" alt="Nurananto Scanlation" className="block sm:hidden h-12 w-auto" />
           </a>
         </div>
 
