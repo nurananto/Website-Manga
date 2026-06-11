@@ -328,7 +328,13 @@ export default function CommentSection({ chapterId, mangaId, mangaTitle, chapter
     setComments([]);
     fetch(`${workerUrl}/api/comments?chapter=${encodeURIComponent(chapterId)}`)
       .then(r => r.ok ? r.json() : { comments: [] })
-      .then(data => setComments(data.comments || []))
+      .then(data => {
+        // Sembunyikan komentar soft-deleted yang tidak punya reply aktif
+        const comments = (data.comments || []).filter(c =>
+          !c.deleted || (c.replies || []).some(r => !r.deleted)
+        );
+        setComments(comments);
+      })
       .catch(() => setComments([]))
       .finally(() => setLoading(false));
   }, [chapterId]);
