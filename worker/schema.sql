@@ -2,11 +2,21 @@
 -- Jalankan: wrangler d1 execute manga-db --file=schema.sql
 
 CREATE TABLE IF NOT EXISTS users (
-  id          TEXT PRIMARY KEY,       -- dari Supabase auth (UUID)
-  email       TEXT UNIQUE NOT NULL,
-  coins       INTEGER DEFAULT 0,
-  created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  id              TEXT PRIMARY KEY,
+  google_id       TEXT UNIQUE,
+  email           TEXT UNIQUE NOT NULL,
+  name            TEXT,
+  avatar_url      TEXT,
+  coins           INTEGER DEFAULT 0,
+  name_changed_at TIMESTAMP,
+  created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Migrasi jika tabel sudah ada (jalankan manual jika perlu):
+-- ALTER TABLE users ADD COLUMN google_id TEXT UNIQUE;
+-- ALTER TABLE users ADD COLUMN name TEXT;
+-- ALTER TABLE users ADD COLUMN avatar_url TEXT;
+-- ALTER TABLE users ADD COLUMN name_changed_at TIMESTAMP;
 
 CREATE TABLE IF NOT EXISTS bookmarks (
   user_id     TEXT NOT NULL,
@@ -69,6 +79,14 @@ CREATE TABLE IF NOT EXISTS rate_limits (
   minute INTEGER
 );
 CREATE INDEX IF NOT EXISTS idx_rate_minute ON rate_limits(minute);
+
+-- OAuth state (PKCE-style anti-CSRF untuk login Google)
+CREATE TABLE IF NOT EXISTS oauth_states (
+  state        TEXT PRIMARY KEY,
+  redirect_url TEXT,
+  expires_at   TIMESTAMP NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_oauth_states_exp ON oauth_states(expires_at);
 
 -- Ban permanen / sementara
 CREATE TABLE IF NOT EXISTS banned_ips (

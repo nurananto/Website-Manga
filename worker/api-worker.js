@@ -16,11 +16,8 @@
 // Schema: worker/schema.sql
 // ============================================================
 
-const CORS = {
-  'Access-Control-Allow-Origin':  '*',
-  'Access-Control-Allow-Methods': 'GET, HEAD, POST, PATCH, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-};
+const CORS_METHODS  = 'GET, HEAD, POST, PATCH, DELETE, OPTIONS';
+const CORS_HEADERS  = 'Content-Type, Authorization';
 
 const SECURITY_HEADERS = {
   'X-Content-Type-Options': 'nosniff',
@@ -44,10 +41,36 @@ function json(data, status = 200) {
   });
 }
 
-function addCors(res) {
+// Kembalikan origin yang diizinkan, atau null jika tidak dikenal
+function getAllowedOrigin(request, env) {
+  const origin = request.headers.get('Origin') || '';
+  if (!origin) return null;
+  if (origin.includes('localhost') || origin.includes('127.0.0.1')) return origin;
+  const allowed = (env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
+  return allowed.some(d => origin.includes(d)) ? origin : null;
+}
+
+function addCors(res, origin) {
   const r = new Response(res.body, res);
-  Object.entries({ ...CORS, ...SECURITY_HEADERS }).forEach(([k, v]) => r.headers.set(k, v));
+  r.headers.set('Access-Control-Allow-Origin',  origin || 'null');
+  r.headers.set('Access-Control-Allow-Methods', CORS_METHODS);
+  r.headers.set('Access-Control-Allow-Headers', CORS_HEADERS);
+  r.headers.set('Vary', 'Origin');
+  Object.entries(SECURITY_HEADERS).forEach(([k, v]) => r.headers.set(k, v));
   return r;
+}
+
+// Constant-time string comparison — cegah timing attack pada secret comparison
+function timingSafeEqual(a, b) {
+  const ba = new TextEncoder().encode(a);
+  const bb = new TextEncoder().encode(b);
+  if (ba.length !== bb.length) {
+    let x = 0; for (let i = 0; i < ba.length; i++) x |= ba[i]; // tetap iterate
+    return false;
+  }
+  let diff = 0;
+  for (let i = 0; i < ba.length; i++) diff |= ba[i] ^ bb[i];
+  return diff === 0;
 }
 
 // ── HMAC / JWT (HS256) ────────────────────────────────────────
@@ -108,16 +131,32 @@ async function verifyAuth(request, env) {
   return verifyJwt(token, env.JWT_SECRET || '');
 }
 
-// ── Rate limit (API: 30/menit) ────────────────────────────────
-async function checkRateLimit(request, env) {
+// ── Ban IP check ──────────────────────────────────────────────
+async function isBanned(request, env) {
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  try {
+    const row = await env.DB.prepare(
+      'SELECT expires_at FROM banned_ips WHERE ip = ?'
+    ).bind(ip).first();
+    if (!row) return false;
+    if (row.expires_at && new Date(row.expires_at) < new Date()) {
+      env.DB.prepare('DELETE FROM banned_ips WHERE ip = ?').bind(ip).run();
+      return false;
+    }
+    return true;
+  } catch { return false; }
+}
+
+// ── Rate limit (limit = req per menit) ───────────────────────
+async function checkRateLimit(request, env, limit = 30) {
   const ip     = request.headers.get('CF-Connecting-IP') || 'unknown';
   const minute = Math.floor(Date.now() / 60000);
-  const key    = `${ip}:api:${minute}`;
+  const key    = `${ip}:${limit}:${minute}`;
   try {
     const row = await env.DB.prepare(
       'INSERT INTO rate_limits (key, count, minute) VALUES (?, 1, ?) ON CONFLICT(key) DO UPDATE SET count = count + 1 RETURNING count'
     ).bind(key, minute).first();
-    if ((row?.count || 1) > 30) return false;
+    if ((row?.count || 1) > limit) return false;
     if (Math.random() < 0.02)
       env.DB.prepare('DELETE FROM rate_limits WHERE minute < ?').bind(minute - 5).run();
     return true;
@@ -692,7 +731,7 @@ async function handleWebhook(request, env) {
   if (!body) return json({ error: 'Empty body' }, 400);
   if (env.TRAKTEER_SECRET) {
     const sig = request.headers.get('x-webhook-token') || '';
-    if (sig !== env.TRAKTEER_SECRET) return json({ error: 'Invalid signature' }, 401);
+    if (!timingSafeEqual(sig, env.TRAKTEER_SECRET)) return json({ error: 'Invalid signature' }, 401);
   }
   let data;
   try { data = JSON.parse(body); } catch { return json({ error: 'Invalid JSON' }, 400); }
@@ -759,8 +798,13 @@ async function handleCron(env) {
     if (!updateRef.ok) throw new Error('ref update failed');
     await env.DB.prepare('DELETE FROM chapter_views').run();
     await env.DB.prepare("UPDATE sync_log SET last_success = CURRENT_TIMESTAMP, status = 'ok' WHERE id = 1").run();
+
+    // Cleanup: hapus notifikasi > 90 hari + oauth_states kadaluarsa + rate_limits lama
+    await env.DB.prepare("DELETE FROM notifications WHERE created_at < datetime('now', '-90 days')").run();
+    await env.DB.prepare("DELETE FROM oauth_states WHERE expires_at < datetime('now')").run();
+    await env.DB.prepare('DELETE FROM rate_limits WHERE minute < ?').bind(Math.floor(Date.now() / 60000) - 60).run();
   } catch (err) {
-    console.error('Cron error:', err);
+    console.error('Cron error:', err?.message || err);
     await env.DB.prepare("UPDATE sync_log SET status = 'failed' WHERE id = 1").run();
   }
 }
@@ -770,34 +814,53 @@ export default {
   async fetch(request, env, ctx) {
     const { pathname } = new URL(request.url);
     const method = request.method;
+    const origin = getAllowedOrigin(request, env);
+    const cors   = (res) => addCors(res, origin);
 
-    if (method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS });
+    if (method === 'OPTIONS') return new Response(null, {
+      status: 204,
+      headers: {
+        'Access-Control-Allow-Origin':  origin || 'null',
+        'Access-Control-Allow-Methods': CORS_METHODS,
+        'Access-Control-Allow-Headers': CORS_HEADERS,
+        'Vary': 'Origin',
+      },
+    });
 
     try {
-      // Auth endpoints — tidak kena rate limit (rate limit ada di OAuth provider)
+      // Cek ban IP sebelum apapun
+      if (await isBanned(request, env))
+        return cors(new Response('Forbidden', { status: 403 }));
+
+      // Auth endpoints — tidak kena rate limit global (rate limit ada di OAuth provider)
       if (pathname === '/api/auth/google' && method === 'GET')           return handleGoogleLogin(request, env);
       if (pathname === '/api/auth/google/callback' && method === 'GET')  return handleGoogleCallback(request, env);
-      if (pathname === '/api/auth/exchange' && method === 'POST')        return addCors(await handleExchange(request, env));
-      if (pathname === '/api/auth/refresh'  && method === 'POST')        return addCors(await handleRefresh(request, env));
-      if (pathname === '/api/auth/logout'   && method === 'POST')        return addCors(await handleLogout(request, env));
+      if (pathname === '/api/auth/exchange' && method === 'POST') {
+        if (!(await checkRateLimit(request, env, 10))) return cors(new Response('Too Many Requests', { status: 429 }));
+        return cors(await handleExchange(request, env));
+      }
+      if (pathname === '/api/auth/refresh'  && method === 'POST')        return cors(await handleRefresh(request, env));
+      if (pathname === '/api/auth/logout'   && method === 'POST')        return cors(await handleLogout(request, env));
 
       // Webhook Trakteer — dikecualikan dari rate limit
-      if (pathname === '/api/webhook/trakteer' && method === 'POST')     return addCors(await handleWebhook(request, env));
+      if (pathname === '/api/webhook/trakteer' && method === 'POST')     return cors(await handleWebhook(request, env));
 
-      // Rate limit untuk semua endpoint lainnya
-      if (!(await checkRateLimit(request, env)))
-        return addCors(new Response('Too Many Requests', { status: 429 }));
+      // Rate limit berbeda per-endpoint
+      const isWriteComment = pathname === '/api/comments' && method === 'POST';
+      const rlLimit = isWriteComment ? 5 : 30;
+      if (!(await checkRateLimit(request, env, rlLimit)))
+        return cors(new Response('Too Many Requests', { status: 429 }));
 
-      if (pathname.startsWith('/api/view/') && method === 'POST')    return addCors(await handleView(request, env));
-      if (pathname.startsWith('/api/comments'))                      return addCors(await handleComments(request, env, ctx));
-      if (pathname.startsWith('/api/user/'))                         return addCors(await handleUser(request, env));
-      if (pathname.startsWith('/api/admin/'))                        return addCors(await handleAdmin(request, env));
-      if (pathname === '/')                                           return addCors(json({ status: 'ok', service: 'manga-api' }));
+      if (pathname.startsWith('/api/view/') && method === 'POST')    return cors(await handleView(request, env));
+      if (pathname.startsWith('/api/comments'))                      return cors(await handleComments(request, env, ctx));
+      if (pathname.startsWith('/api/user/'))                         return cors(await handleUser(request, env));
+      if (pathname.startsWith('/api/admin/'))                        return cors(await handleAdmin(request, env));
+      if (pathname === '/')                                           return cors(json({ status: 'ok', service: 'manga-api' }));
 
-      return addCors(new Response('Not Found', { status: 404 }));
+      return cors(new Response('Not Found', { status: 404 }));
     } catch (err) {
-      console.error(err);
-      return addCors(new Response('Internal Server Error', { status: 500 }));
+      console.error('Worker error:', err?.message || err);
+      return cors(new Response('Internal Server Error', { status: 500 }));
     }
   },
 

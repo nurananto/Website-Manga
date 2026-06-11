@@ -167,7 +167,7 @@ export default function App() {
     return () => window.removeEventListener('app-update', handleSwUpdate);
   }, []);
 
-  // Cek notifikasi baru saat tab kembali aktif + polling setiap 5 menit
+  // Cek notifikasi saat tab kembali aktif (tidak ada polling — hemat Worker request)
   useEffect(() => {
     if (!isLoggedIn) return;
 
@@ -176,13 +176,7 @@ export default function App() {
     };
     document.addEventListener('visibilitychange', onVisible);
 
-    // Polling background — hit Worker max setiap 5 menit (dibatasi cache TTL)
-    const interval = setInterval(() => fetchNotifications(), 5 * 60 * 1000);
-
-    return () => {
-      document.removeEventListener('visibilitychange', onVisible);
-      clearInterval(interval);
-    };
+    return () => document.removeEventListener('visibilitychange', onVisible);
   }, [isLoggedIn]);
 
   useEffect(() => {
@@ -304,6 +298,36 @@ export default function App() {
     initAuth();
   }, []);
 
+  // Cache notifikasi di localStorage — TTL 5 menit, fetch hanya saat stale
+  const NOTIF_TTL = 5 * 60 * 1000;
+  const fetchNotifications = async ({ force = false, userId, workerUrl, token: tok } = {}) => {
+    const wUrl   = workerUrl || import.meta.env.VITE_WORKER_URL || '';
+    const tkn    = tok || await getAccessToken();
+    const uid    = userId || currentUser?.id;
+    if (!wUrl || !tkn || !uid) return;
+
+    const cacheKey = `mf_notifs_${uid}`;
+    const now      = Date.now();
+
+    // Kalau tidak force dan cache masih segar (< 10 menit), pakai cache
+    if (!force && now - notifLastFetch.current < NOTIF_TTL) {
+      try {
+        const raw = localStorage.getItem(cacheKey);
+        if (raw) { setNotifications(JSON.parse(raw)); return; }
+      } catch {}
+    }
+
+    try {
+      const res  = await fetch(`${wUrl}/api/user/notifications`, { headers: { Authorization: `Bearer ${tkn}` } });
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        setNotifications(data);
+        notifLastFetch.current = now;
+        try { localStorage.setItem(cacheKey, JSON.stringify(data)); } catch {}
+      }
+    } catch {}
+  };
+
   const loadUserData = async (user) => {
     const workerUrl = import.meta.env.VITE_WORKER_URL || '';
     if (!workerUrl) return;
@@ -354,36 +378,6 @@ export default function App() {
       }).catch(() => {});
 
     fetchNotifications({ force: true, userId: user?.sub, workerUrl, token });
-  };
-
-  // Cache notifikasi di localStorage — TTL 5 menit, fetch hanya saat stale
-  const NOTIF_TTL = 5 * 60 * 1000;
-  const fetchNotifications = async ({ force = false, userId, workerUrl, token: tok } = {}) => {
-    const wUrl   = workerUrl || import.meta.env.VITE_WORKER_URL || '';
-    const tkn    = tok || await getAccessToken();
-    const uid    = userId || currentUser?.id;
-    if (!wUrl || !tkn || !uid) return;
-
-    const cacheKey = `mf_notifs_${uid}`;
-    const now      = Date.now();
-
-    // Kalau tidak force dan cache masih segar (< 10 menit), pakai cache
-    if (!force && now - notifLastFetch.current < NOTIF_TTL) {
-      try {
-        const raw = localStorage.getItem(cacheKey);
-        if (raw) { setNotifications(JSON.parse(raw)); return; }
-      } catch {}
-    }
-
-    try {
-      const res  = await fetch(`${wUrl}/api/user/notifications`, { headers: { Authorization: `Bearer ${tkn}` } });
-      const data = await res.json();
-      if (Array.isArray(data)) {
-        setNotifications(data);
-        notifLastFetch.current = now;
-        try { localStorage.setItem(cacheKey, JSON.stringify(data)); } catch {}
-      }
-    } catch {}
   };
 
   // Fetch catalog dari /manga/index.json
@@ -605,7 +599,23 @@ export default function App() {
           currentUser={currentUser}
           onLoginClick={() => setIsAuthModalOpen(true)}
           unreadNotifCount={unreadNotifCount}
-          onNotifClick={() => { setIsNotifOpen(true); fetchNotifications(); }}
+          onNotifClick={async () => {
+            setIsNotifOpen(true);
+            await fetchNotifications();
+            // Mark semua notif sebagai read saat panel dibuka
+            setNotifications(prev => {
+              if (!prev.some(n => !n.read)) return prev;
+              const updated = prev.map(n => ({ ...n, read: true }));
+              if (currentUser?.id) try { localStorage.setItem(`mf_notifs_${currentUser.id}`, JSON.stringify(updated)); } catch {}
+              notifLastFetch.current = Date.now();
+              const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+              getAccessToken().then(token => {
+                if (workerUrl && token)
+                  fetch(`${workerUrl}/api/user/notifications/read-all`, { method: 'POST', headers: { Authorization: `Bearer ${token}` } }).catch(() => {});
+              });
+              return updated;
+            });
+          }}
           onLogout={async () => {
             await authLogout();
             setIsLoggedIn(false);
@@ -1063,26 +1073,6 @@ export default function App() {
                 ))}
               </div>
               {/* Tandai semua sudah dibaca */}
-              {notifications.some(n => !n.read) && (
-                <div className="px-4 py-3 border-t border-white/10 shrink-0">
-                  <button
-                    onClick={async () => {
-                      const updated = notifications.map(n => ({ ...n, read: true }));
-                      setNotifications(updated);
-                      // Update cache lokal sekaligus
-                      if (currentUser?.id) try { localStorage.setItem(`mf_notifs_${currentUser.id}`, JSON.stringify(updated)); } catch {}
-                      notifLastFetch.current = Date.now();
-                      const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-                      const token = await getAccessToken();
-                      if (workerUrl && token)
-                        fetch(`${workerUrl}/api/user/notifications/read-all`, { method: 'POST', headers: { Authorization: `Bearer ${token}` } }).catch(() => {});
-                    }}
-                    className="w-full text-xs font-bold text-primary hover:text-primary/80 transition-colors cursor-pointer text-center"
-                  >
-                    Tandai semua sudah dibaca
-                  </button>
-                </div>
-              )}
             </motion.div>
           </motion.div>
         )}
