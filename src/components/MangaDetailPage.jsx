@@ -301,8 +301,15 @@ const renderChapterRow = (ch, idx) => {
               <div className="flex flex-col gap-1 p-3 sm:p-4">
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Type</span>
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-white/60 shrink-0" />
-                  <span className="font-body-md text-sm sm:text-sm md:text-base font-black text-on-surface">{manga.type || 'MANGA'}</span>
+                  {(() => {
+                    const t = (manga.type || 'manga').toLowerCase();
+                    const isWebtoon = t === 'webtoon';
+                    return (
+                      <span className={`font-body-md text-sm sm:text-sm md:text-base font-black ${isWebtoon ? 'text-emerald-400' : 'text-sky-400'}`}>
+                        {isWebtoon ? 'webtoon' : 'manga'}
+                      </span>
+                    );
+                  })()}
                 </div>
               </div>
             </div>
