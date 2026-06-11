@@ -30,7 +30,7 @@ function DailyClaimBanner({ userId, workerUrl }) {
       });
       const d = await res.json();
       if (d.ok) {
-        localStorage.setItem(CACHE_KEY, new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString());
+        localStorage.setItem(CACHE_KEY, new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString());
         setState('claimed');
         setTimeout(() => setState('done'), 3000);
       } else if (d.already_claimed) {
@@ -53,7 +53,7 @@ function DailyClaimBanner({ userId, workerUrl }) {
         ) : (
           <>
             <p className="text-xs sm:text-sm font-bold text-on-surface">Koin harian gratis!</p>
-            <p className="text-[10px] sm:text-xs text-outline/60">Klaim 1 koin gratis setiap 24 jam.</p>
+            <p className="text-[10px] sm:text-xs text-outline/60">Klaim 1 koin gratis setiap 48 jam.</p>
           </>
         )}
       </div>
