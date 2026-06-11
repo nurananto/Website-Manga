@@ -89,7 +89,7 @@ function DeleteConfirm({ onConfirm, onCancel, label = 'Hapus komentar ini?' }) {
 }
 
 // ── Reply item ─────────────────────────────────────────────────
-function ReplyItem({ reply, currentUserId, targetCommentId, onDelete }) {
+function ReplyItem({ reply, currentUserId, targetCommentId, isLoggedIn, onReplyTo, onDelete }) {
   const [confirmDel, setConfirmDel] = useState(false);
   const isTarget = reply.id === targetCommentId;
   const isOwn    = reply.user?.id === currentUserId;
@@ -121,12 +121,22 @@ function ReplyItem({ reply, currentUserId, targetCommentId, onDelete }) {
           )}
         </div>
         <p className="text-xs sm:text-sm text-on-surface/80 mt-0.5 break-words leading-relaxed">{reply.text}</p>
-        {confirmDel && (
+        {confirmDel ? (
           <DeleteConfirm
             label="Hapus balasan ini?"
             onConfirm={() => onDelete(reply.id)}
             onCancel={() => setConfirmDel(false)}
           />
+        ) : isLoggedIn && (
+          <div className="flex items-center gap-2 mt-1">
+            <button
+              onClick={() => onReplyTo(reply.user?.name || 'User')}
+              className="flex items-center gap-1 text-[10px] sm:text-[11px] font-bold text-outline/50 hover:text-primary transition-colors cursor-pointer"
+            >
+              <Reply className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+              Balas
+            </button>
+          </div>
         )}
       </div>
     </div>
@@ -136,6 +146,7 @@ function ReplyItem({ reply, currentUserId, targetCommentId, onDelete }) {
 // ── Comment item ───────────────────────────────────────────────
 function CommentItem({ comment, isLoggedIn, currentUserId, onReply, onDelete, onDeleteReply, targetCommentId }) {
   const [showReplyInput, setShowReplyInput] = useState(false);
+  const [replyingTo,     setReplyingTo]     = useState(null); // nama user yang di-reply
   const [showReplies,    setShowReplies]    = useState(true);
   const [submitting,     setSubmitting]     = useState(false);
   const [confirmDel,     setConfirmDel]     = useState(false);
@@ -189,7 +200,11 @@ function CommentItem({ comment, isLoggedIn, currentUserId, onReply, onDelete, on
                 <div className="flex items-center gap-2 sm:gap-3 mt-1.5 sm:mt-2">
                   {canReply && (
                     <button
-                      onClick={() => { setShowReplyInput(v => !v); setConfirmDel(false); }}
+                      onClick={() => {
+                        setReplyingTo(comment.user?.name || 'User');
+                        setShowReplyInput(v => !v);
+                        setConfirmDel(false);
+                      }}
                       className={`flex items-center gap-1 text-[10px] sm:text-[11px] font-bold transition-colors cursor-pointer ${
                         showReplyInput ? 'text-primary' : 'text-outline/50 hover:text-primary'
                       }`}
@@ -227,7 +242,7 @@ function CommentItem({ comment, isLoggedIn, currentUserId, onReply, onDelete, on
             onSubmit={handleReply}
             submitting={submitting}
             placeholder="Tulis balasan..."
-            initialText={`@${comment.user?.name || 'User'} `}
+            initialText={`@${replyingTo || comment.user?.name || 'User'} `}
             autoFocus
             onCancel={() => setShowReplyInput(false)}
           />
@@ -254,6 +269,12 @@ function CommentItem({ comment, isLoggedIn, currentUserId, onReply, onDelete, on
                     reply={r}
                     currentUserId={currentUserId}
                     targetCommentId={targetCommentId}
+                    isLoggedIn={isLoggedIn}
+                    onReplyTo={(name) => {
+                      setReplyingTo(name);
+                      setShowReplyInput(true);
+                      setShowReplies(true);
+                    }}
                     onDelete={(rid) => onDeleteReply(comment.id, rid)}
                   />
                 ))}
