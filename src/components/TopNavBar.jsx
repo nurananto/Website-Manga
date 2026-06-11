@@ -23,22 +23,21 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
   return (
     <nav className="w-full bg-black border-b border-white/5">
-      <div className="flex justify-between items-center px-2 sm:px-3 md:px-4 h-full w-full">
-        {/* Brand (Logo) */}
-        <div className="flex items-center">
-          <a
-            href="/"
-            onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
-          >
-            {/* Desktop & Tablet */}
-            <img src="/header-desktop.webp" alt="Nurananto Scanlation" className="hidden sm:block h-14 md:h-16 w-auto" />
-            {/* Mobile */}
-            <img src="/header-mobile.webp" alt="Nurananto Scanlation" className="block sm:hidden h-12 w-auto" />
-          </a>
-        </div>
+      <div className="flex items-center px-2 sm:px-3 md:px-4 py-1 gap-2 w-full">
+        {/* Brand (Logo) — grows to fill available space */}
+        <a
+          href="/"
+          onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
+          className="flex-1 min-w-0"
+        >
+          {/* Desktop & Tablet */}
+          <img src="/header-desktop.webp" alt="Nurananto Scanlation"
+            className="hidden sm:block w-full max-w-[480px] md:max-w-[600px] lg:max-w-[720px] h-auto" />
+          {/* Mobile */}
+          <img src="/header-mobile.webp" alt="Nurananto Scanlation"
+            className="block sm:hidden h-14 w-auto" />
+        </a>
 
-        {/* Center Space is Clean / Empty */}
-        <div className="flex-1"></div>
 
         {/* Actions (Profile Avatar with Dropdown) */}
         <div ref={dropdownRef} className="relative">
