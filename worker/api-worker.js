@@ -545,7 +545,7 @@ function commentCacheKey(chapterId) {
   return new Request(`https://cache-internal.manga/comments?chapter=${encodeURIComponent(chapterId)}`);
 }
 
-async function handleComments(request, env) {
+async function handleComments(request, env, ctx) {
   const { pathname } = new URL(request.url);
   const method = request.method;
 
@@ -595,8 +595,8 @@ async function handleComments(request, env) {
         ...SECURITY_HEADERS,
       },
     });
-    // Simpan ke edge cache (fire-and-forget, tidak perlu await)
-    cache.put(cacheReq, res.clone());
+    // Simpan ke edge cache — waitUntil agar tidak terminate sebelum selesai
+    ctx.waitUntil(cache.put(cacheReq, res.clone()));
     return res;
   }
 
@@ -787,7 +787,7 @@ export default {
         return addCors(new Response('Too Many Requests', { status: 429 }));
 
       if (pathname.startsWith('/api/view/') && method === 'POST')    return addCors(await handleView(request, env));
-      if (pathname.startsWith('/api/comments'))                      return addCors(await handleComments(request, env));
+      if (pathname.startsWith('/api/comments'))                      return addCors(await handleComments(request, env, ctx));
       if (pathname.startsWith('/api/user/'))                         return addCors(await handleUser(request, env));
       if (pathname.startsWith('/api/admin/'))                        return addCors(await handleAdmin(request, env));
       if (pathname === '/')                                           return addCors(json({ status: 'ok', service: 'manga-api' }));
