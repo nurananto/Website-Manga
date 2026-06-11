@@ -111,7 +111,11 @@ function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUse
                     <Coins className={`w-4 h-4 ${isPositive ? 'text-amber-400' : 'text-red-400'}`} />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs sm:text-sm font-bold text-on-surface truncate">{tx.note || tx.type}</p>
+                    <p className="text-xs sm:text-sm font-bold text-on-surface truncate">
+                      {isPositive
+                        ? `Beli koin sebanyak ${tx.note?.split(': ').pop() ?? ''}`
+                        : tx.note || tx.type}
+                    </p>
                     <p className="text-[10px] text-outline/60">{tx.created_at ? timeAgo(tx.created_at) : '—'}</p>
                   </div>
                   <span className={`text-sm font-black shrink-0 ${isPositive ? 'text-amber-400' : 'text-red-400'}`}>
@@ -199,8 +203,25 @@ export default function App() {
   const [showTerms, setShowTerms] = useState(false);
   const [showDmca, setShowDmca] = useState(false);
   const [isNotifOpen, setIsNotifOpen] = useState(false);
-  const [unreadNotifCount, setUnreadNotifCount] = useState(0);
   const [targetCommentId, setTargetCommentId] = useState(null);
+  const [notifications, setNotifications] = useState([
+    { id: 'notif-1', read: false, actor: 'MangaFan99', type: 'mention',
+      manga_id: 'Sankakukei', manga_title: 'Seishun wa Sankakukei no Loop',
+      chapter_num: '10', comment_id: 'demo-r1',
+      preview: '@NuraReader Setuju! Apalagi panel terakhirnya, keren abis.',
+      created_at: new Date(Date.now() - 3600000).toISOString() },
+    { id: 'notif-2', read: false, actor: 'NuraReader', type: 'reply',
+      manga_id: 'Sankakukei', manga_title: 'Seishun wa Sankakukei no Loop',
+      chapter_num: '10', comment_id: 'demo-r2',
+      preview: 'Nunggu chapter selanjutnya nih... semoga cepet update 🙏',
+      created_at: new Date(Date.now() - 7200000).toISOString() },
+    { id: 'notif-3', read: true, actor: 'OtakuSejati', type: 'reply',
+      manga_id: 'Yarikonda', manga_title: 'Yarikonda',
+      chapter_num: '1', comment_id: 'demo-c2',
+      preview: 'Terjemahannya bagus dan mudah dipahami, makasih ya sudah translate! 👍',
+      created_at: new Date(Date.now() - 86400000).toISOString() },
+  ]);
+  const unreadNotifCount = notifications.filter(n => !n.read).length;
   const ITEMS_PER_PAGE = 6;
 
   // Dynamic document title
@@ -913,11 +934,52 @@ export default function App() {
                 </div>
                 <button onClick={() => setIsNotifOpen(false)} className="text-outline/50 hover:text-on-surface transition-colors cursor-pointer text-lg leading-none">✕</button>
               </div>
-              {/* Empty state — akan diisi saat backend siap */}
-              <div className="flex-1 overflow-y-auto flex flex-col items-center justify-center py-12 gap-3">
-                <span className="text-3xl">🔔</span>
-                <p className="text-sm font-semibold text-outline/50">Belum ada notifikasi</p>
+              {/* Notif list */}
+              <div className="flex-1 overflow-y-auto flex flex-col divide-y divide-white/5">
+                {notifications.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center py-12 gap-3">
+                    <span className="text-3xl">🔔</span>
+                    <p className="text-sm font-semibold text-outline/50">Belum ada notifikasi</p>
+                  </div>
+                ) : notifications.map(notif => (
+                  <button
+                    key={notif.id}
+                    onClick={() => {
+                      setNotifications(prev => prev.map(n => n.id === notif.id ? { ...n, read: true } : n));
+                      setIsNotifOpen(false);
+                      setTargetCommentId(notif.comment_id);
+                      navigate(`/${notif.manga_id}/${notif.chapter_num}`);
+                    }}
+                    className={`w-full text-left px-4 py-3.5 flex gap-3 hover:bg-white/5 transition-colors cursor-pointer ${!notif.read ? 'bg-primary/5' : ''}`}
+                  >
+                    {/* Unread dot */}
+                    <div className="shrink-0 mt-1.5">
+                      <div className={`w-2 h-2 rounded-full ${!notif.read ? 'bg-primary' : 'bg-transparent'}`} />
+                    </div>
+                    <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+                      <p className="text-xs font-bold text-on-surface leading-snug">
+                        <span className="text-primary">{notif.actor}</span>
+                        {notif.type === 'mention' ? ' menyebut kamu' : ' membalas komentar kamu'}
+                      </p>
+                      <p className="text-[11px] text-outline/60 truncate">{notif.preview}</p>
+                      <p className="text-[10px] text-outline/40 mt-0.5">
+                        {notif.manga_title} · Ch. {notif.chapter_num} · {timeAgo(notif.created_at)}
+                      </p>
+                    </div>
+                  </button>
+                ))}
               </div>
+              {/* Tandai semua sudah dibaca */}
+              {notifications.some(n => !n.read) && (
+                <div className="px-4 py-3 border-t border-white/10 shrink-0">
+                  <button
+                    onClick={() => setNotifications(prev => prev.map(n => ({ ...n, read: true })))}
+                    className="w-full text-xs font-bold text-primary hover:text-primary/80 transition-colors cursor-pointer text-center"
+                  >
+                    Tandai semua sudah dibaca
+                  </button>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}
