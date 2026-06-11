@@ -568,7 +568,10 @@ export default function App() {
         if (!token || !workerUrl) return;
         fetch(`${workerUrl}/api/user/me`, { headers: { Authorization: `Bearer ${token}` } })
           .then(r => r.json())
-          .then(d => { if (typeof d.coins === 'number') setUserCoins(d.coins); })
+          .then(d => {
+            if (typeof d.coins === 'number') setUserCoins(d.coins);
+            if (d.name) setCurrentUser(prev => prev ? { ...prev, name: d.name } : prev);
+          })
           .catch(() => {});
       });
     }
@@ -1139,6 +1142,8 @@ export default function App() {
                 if (nameRes.ok) {
                   setCurrentUser(prev => prev ? { ...prev, name: nameData.name } : prev);
                   setNameChangedAt(new Date().toISOString());
+                  // Force refresh token agar JWT punya nama terbaru
+                  getAccessToken(true).catch(() => {});
                 } else {
                   showToast(nameData.error || 'Gagal update username');
                   return;

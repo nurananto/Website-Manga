@@ -36,9 +36,9 @@ function isValid(token) {
 // ── Get access token (auto-refresh si expired) ────────────────
 let refreshPromise = null; // deduplicate concurrent refresh calls
 
-export async function getAccessToken() {
+export async function getAccessToken(forceRefresh = false) {
   const token = getStoredToken();
-  if (isValid(token)) return token;
+  if (!forceRefresh && isValid(token)) return token;
 
   if (!refreshPromise) {
     refreshPromise = (async () => {
