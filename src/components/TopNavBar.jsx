@@ -30,12 +30,12 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
           className="flex-1 min-w-0"
         >
-          {/* Desktop & Tablet */}
+          {/* Desktop (xl+, 3 col) & Tablet (md–xl, 2 col) */}
           <img src="/header-desktop.webp" alt="Nurananto Scanlation"
-            className="hidden sm:block h-10 md:h-12 lg:h-14 w-auto" />
-          {/* Mobile */}
+            className="hidden md:block md:h-12 xl:h-14 w-auto" />
+          {/* Mobile (<md, 1 col) */}
           <img src="/header-mobile.webp" alt="Nurananto Scanlation"
-            className="block sm:hidden h-14 w-auto" />
+            className="block md:hidden h-12 w-auto" />
         </a>
 
 
