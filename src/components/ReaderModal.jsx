@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, ArrowUp, Lock, Clock, BookOpen, MessageCircle } 
 import CountdownTimer from './CountdownTimer';
 import { ReaderPageSkeleton } from './Skeleton';
 import { imgUrl } from '../utils';
+import { getAccessToken } from '../lib/auth';
 import CommentSection from './CommentSection';
 
 function CountdownLarge({ unlockDate }) {
@@ -246,23 +247,50 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const imageBase = (import.meta.env.VITE_IMAGE_URL || import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
   const [pages, setPages] = useState([]);
   const [pageCount, setPageCount] = useState(0);
+  const [imgAccess, setImgAccess] = useState(null);
   const nextPageRef = useRef(1);
+
+  // Chapter masih dalam masa lock (sudah dibeli, tapi image worker butuh access token)
+  const chapterNeedsToken = !!chapter?.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now();
+
+  // Ambil access token untuk gambar chapter yang masih locked
+  useEffect(() => {
+    setImgAccess(null);
+    if (!chapter?.id || !chapterNeedsToken) return;
+    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+    if (!workerUrl) return;
+    (async () => {
+      try {
+        const tok = await getAccessToken();
+        if (!tok) return;
+        const res = await fetch(`${workerUrl}/api/user/chapter-token`, {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${tok}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chapter_id: chapter.id }),
+        });
+        const d = await res.json();
+        if (d.token) setImgAccess(d.token);
+      } catch {}
+    })();
+  }, [chapter?.id]);
 
   const makeUrl = (idx) => {
     const num = String(idx).padStart(2, '0');
-    return `${imageBase}/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp`;
+    const access = imgAccess ? `?access=${encodeURIComponent(imgAccess)}` : '';
+    return `${imageBase}/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp${access}`;
   };
 
   // pages wajib — generate semua URL sekaligus, tidak ada 404
   useEffect(() => {
     if (!chapter?.id || !manga?.id || !chapter.pages) return;
+    if (chapterNeedsToken && !imgAccess) return; // tunggu access token dulu
     activeChapterIdRef.current = chapter.id;
     pageRefs.current = [];
     const all = Array.from({ length: chapter.pages }, (_, i) => makeUrl(i + 1));
     nextPageRef.current = chapter.pages + 1;
     setPages(all);
     setPageCount(chapter.pages);
-  }, [chapter?.id]);
+  }, [chapter?.id, imgAccess]);
 
   // Reset scroll + currentPage saat chapter berganti
   useEffect(() => {
