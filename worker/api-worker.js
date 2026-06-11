@@ -607,10 +607,12 @@ async function handleComments(request, env, ctx) {
     if (!checkBodySize(request, 4096)) return json({ error: 'Payload too large' }, 413);
     let body;
     try { body = await request.json(); } catch { return json({ error: 'Invalid JSON' }, 400); }
-    const { chapter_id, manga_id, text, parent_id } = body;
+    const { chapter_id, manga_id, manga_title, chapter_num, text, parent_id } = body;
     if (!isStr(chapter_id, 200) || !isStr(manga_id, 100) || !isStr(text, 2000))
       return json({ error: 'Invalid fields' }, 400);
     if (parent_id && !isStr(parent_id, 100)) return json({ error: 'Invalid parent_id' }, 400);
+    const safeTitle = isStr(manga_title, 200) ? manga_title : null;
+    const safeNum   = (typeof chapter_num === 'number' && isFinite(chapter_num)) ? chapter_num : null;
 
     // Ambil nama terbaru dari DB (bukan JWT, supaya nama yang baru diganti langsung keliatan)
     const dbUser = await env.DB.prepare('SELECT name, avatar_url FROM users WHERE id = ?').bind(user.sub).first();
@@ -631,8 +633,8 @@ async function handleComments(request, env, ctx) {
       if (parent) {
         const notifId = crypto.randomUUID();
         await env.DB.prepare(
-          'INSERT INTO notifications (id, user_id, type, actor_name, manga_id, comment_id, preview) VALUES (?, ?, ?, ?, ?, ?, ?)'
-        ).bind(notifId, parent.user_id, 'reply', displayName, manga_id, id, text.trim().slice(0, 100)).run();
+          'INSERT INTO notifications (id, user_id, type, actor_name, manga_id, manga_title, chapter_num, comment_id, preview) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+        ).bind(notifId, parent.user_id, 'reply', displayName, manga_id, safeTitle, safeNum, id, text.trim().slice(0, 100)).run();
       }
     }
 

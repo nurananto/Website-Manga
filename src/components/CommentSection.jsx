@@ -315,7 +315,7 @@ function CommentSkeleton() {
 }
 
 // ── Export utama ───────────────────────────────────────────────
-export default function CommentSection({ chapterId, mangaId, isLoggedIn, currentUser, onLoginClick, targetCommentId }) {
+export default function CommentSection({ chapterId, mangaId, mangaTitle, chapterNum, isLoggedIn, currentUser, onLoginClick, targetCommentId }) {
   const [comments,   setComments]   = useState([]);
   const [loading,    setLoading]    = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -343,7 +343,7 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
       const res = await fetch(`${workerUrl}/api/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-        body: JSON.stringify({ chapter_id: chapterId, manga_id: mangaId, text }),
+        body: JSON.stringify({ chapter_id: chapterId, manga_id: mangaId, manga_title: mangaTitle, chapter_num: chapterNum, text }),
       });
       if (res.ok) {
         const data = await res.json();
@@ -360,7 +360,7 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
       const res = await fetch(`${workerUrl}/api/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-        body: JSON.stringify({ chapter_id: chapterId, manga_id: mangaId, text, parent_id: parentId }),
+        body: JSON.stringify({ chapter_id: chapterId, manga_id: mangaId, manga_title: mangaTitle, chapter_num: chapterNum, text, parent_id: parentId }),
       });
       if (res.ok) {
         const data = await res.json();

@@ -497,6 +497,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
               <CommentSection
                 chapterId={activeChapter?.id}
                 mangaId={activeManga?.id}
+                mangaTitle={activeManga?.title}
+                chapterNum={activeChapter?.chapter_number}
                 isLoggedIn={isLoggedIn}
                 currentUser={currentUser}
                 onLoginClick={onLoginClick}

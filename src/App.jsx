@@ -323,6 +323,11 @@ export default function App() {
       .then(r => r.json()).then(ids => {
         if (Array.isArray(ids)) setD1UnlockedChapters(new Set(ids));
       }).catch(() => {});
+
+    fetch(`${workerUrl}/api/user/notifications`, { headers })
+      .then(r => r.json()).then(data => {
+        if (Array.isArray(data)) setNotifications(data);
+      }).catch(() => {});
   };
 
   // Fetch catalog dari /manga/index.json
@@ -544,7 +549,14 @@ export default function App() {
           currentUser={currentUser}
           onLoginClick={() => setIsAuthModalOpen(true)}
           unreadNotifCount={unreadNotifCount}
-          onNotifClick={() => setIsNotifOpen(true)}
+          onNotifClick={async () => {
+            setIsNotifOpen(true);
+            const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+            const token = await getAccessToken();
+            if (workerUrl && token)
+              fetch(`${workerUrl}/api/user/notifications`, { headers: { Authorization: `Bearer ${token}` } })
+                .then(r => r.json()).then(data => { if (Array.isArray(data)) setNotifications(data); }).catch(() => {});
+          }}
           onLogout={async () => {
             await authLogout();
             setIsLoggedIn(false);
@@ -1005,7 +1017,13 @@ export default function App() {
               {notifications.some(n => !n.read) && (
                 <div className="px-4 py-3 border-t border-white/10 shrink-0">
                   <button
-                    onClick={() => setNotifications(prev => prev.map(n => ({ ...n, read: true })))}
+                    onClick={async () => {
+                      setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+                      const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+                      const token = await getAccessToken();
+                      if (workerUrl && token)
+                        fetch(`${workerUrl}/api/user/notifications/read-all`, { method: 'POST', headers: { Authorization: `Bearer ${token}` } }).catch(() => {});
+                    }}
                     className="w-full text-xs font-bold text-primary hover:text-primary/80 transition-colors cursor-pointer text-center"
                   >
                     Tandai semua sudah dibaca
