@@ -4,6 +4,31 @@ import path from 'path';
 const chaptersDir = './manga';
 const outDir = './public/manga';
 
+// Fix double-UTF8 encoding (Latin-1 bytes re-encoded as UTF-8)
+// Setiap karakter di string diperlakukan sebagai byte Latin-1, lalu di-decode ulang sebagai UTF-8
+function fixMojibake(str) {
+  if (typeof str !== 'string') return str;
+  // Kalau ada karakter > U+00FF → sudah benar (bukan double-encoded), skip
+  for (let i = 0; i < str.length; i++) {
+    if (str.charCodeAt(i) > 255) return str;
+  }
+  try {
+    const bytes = new Uint8Array(str.length);
+    for (let i = 0; i < str.length; i++) bytes[i] = str.charCodeAt(i);
+    return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+  } catch {
+    return str; // Bukan double-encoded, kembalikan aslinya
+  }
+}
+
+function fixEncoding(val) {
+  if (typeof val === 'string') return fixMojibake(val);
+  if (Array.isArray(val))      return val.map(fixEncoding);
+  if (val && typeof val === 'object')
+    return Object.fromEntries(Object.entries(val).map(([k, v]) => [k, fixEncoding(v)]));
+  return val;
+}
+
 // Fetch rating dari MangaDex API
 // mangadex_id: null → rating null (manga original / tidak ada di MangaDex)
 async function fetchMangaDexRating(mangadexId) {
@@ -49,7 +74,7 @@ async function buildCatalog() {
       continue;
     }
 
-    const manga = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+    const manga = fixEncoding(JSON.parse(fs.readFileSync(metaPath, 'utf-8')));
 
     // Extract mangadex_id dari mangadex_url kalau ada
     if (manga.mangadex_url && !manga.mangadex_id) {
@@ -76,7 +101,7 @@ async function buildCatalog() {
       if (!fs.statSync(chapterPath).isDirectory()) continue;
       const chMetaPath = path.join(chapterPath, 'meta.json');
       if (!fs.existsSync(chMetaPath)) continue;
-      const ch = JSON.parse(fs.readFileSync(chMetaPath, 'utf-8'));
+      const ch = fixEncoding(JSON.parse(fs.readFileSync(chMetaPath, 'utf-8')));
 
       // pages wajib diisi
       if (!ch.pages || ch.pages < 1) {
