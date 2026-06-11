@@ -186,6 +186,14 @@ export default function App() {
               .then(r => r.json())
               .then(d => { setMangaList(d); mangaListRef.current = d; })
               .catch(() => {});
+            // Re-fetch manga yang sedang dibuka juga
+            const cur = selectedMangaRef.current;
+            if (cur?.id) {
+              fetch(`/manga/${cur.id}.json`, { cache: 'no-cache' })
+                .then(r => r.ok ? r.json() : null)
+                .then(d => { if (d) { setSelectedManga(d); selectedMangaRef.current = d; } })
+                .catch(() => {});
+            }
           } else {
             // Kode baru — perlu reload penuh
             triggerUpdate(label || '');
@@ -420,8 +428,7 @@ export default function App() {
           );
           if (!ch) { navigate(`/${mangaId}`, true); return; }
 
-          const isTimeUnlocked = ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now();
-          if (ch.isLocked && !isTimeUnlocked) {
+          if (ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()) {
             navigate(`/${mangaId}`, true);
             if (!isLoggedIn) setIsAuthModalOpen(true);
             else { setPendingUnlockChapter(ch); setPendingMangaTitle(manga.title); setIsUnlockModalOpen(true); }

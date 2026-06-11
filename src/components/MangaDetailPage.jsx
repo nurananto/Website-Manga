@@ -31,8 +31,7 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
 const renderChapterRow = (ch, idx) => {
     const isNew = !!ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
     const isUnread = !readChapters.has(ch.id);
-    const isTimeUnlocked = ch.unlockDate && new Date(ch.unlockDate).getTime() <= Date.now();
-    const isLocked = ch.isLocked && !isTimeUnlocked && !effectiveUnlocked.has(ch.id);
+    const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now() && !effectiveUnlocked.has(ch.id);
     const isOneshot = manga.status === 'Oneshot';
     const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
     const targetChapter = manga.status === 'Tamat' ? manga.tamat_at_chapter : isOneshot ? ch.chapter_number : manga.hiatus_at_chapter;
