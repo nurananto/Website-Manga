@@ -962,8 +962,8 @@ export default function App() {
       </div>
 
       {/* Global Footer (Only on Homepage catalog) */}
-      {!selectedManga && !loadingManga && activeTab === 'library' && (
-        <footer className="w-full pt-4 pb-8 bg-surface-container-lowest border-t border-white/5 mt-auto">
+      {!loadingManga && (activeTab === 'library' || !!selectedManga) && (
+        <footer className="w-full pt-4 pb-8 bg-surface border-t border-white/5 mt-auto">
           <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-3">
             <img src="/logo-header.webp" alt="Nurananto Scanlation" className="h-12 w-auto" />
             <div className="w-full border border-white/8 rounded-xl px-5 sm:px-6 py-4 bg-white/[0.02]">
