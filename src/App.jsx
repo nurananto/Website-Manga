@@ -229,6 +229,8 @@ export default function App() {
   const [isCoinModalOpen, setIsCoinModalOpen] = useState(false);
   const [isUnlockModalOpen, setIsUnlockModalOpen] = useState(false);
   const [d1UnlockedChapters, setD1UnlockedChapters] = useState(new Set());
+  const d1UnlockedRef = useRef(d1UnlockedChapters);
+  d1UnlockedRef.current = d1UnlockedChapters;
   const [pendingUnlockChapter, setPendingUnlockChapter] = useState(null);
   const [pendingMangaTitle, setPendingMangaTitle] = useState('');
   const [pendingManga, setPendingManga] = useState(null);
@@ -430,7 +432,8 @@ export default function App() {
           );
           if (!ch) { navigate(`/${mangaId}`, true); return; }
 
-          if (ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()) {
+          const stillLocked = ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now();
+          if (stillLocked && !d1UnlockedRef.current.has(ch.id)) {
             navigate(`/${mangaId}`, true);
             if (!isLoggedIn) setIsAuthModalOpen(true);
             else { setPendingUnlockChapter(ch); setPendingMangaTitle(manga.title); setIsUnlockModalOpen(true); }
@@ -506,8 +509,7 @@ export default function App() {
   };
 
   const handleReadChapter = (chapter, mangaTitle, mangaObj) => {
-    const isTimeUnlocked = chapter.unlockDate && new Date(chapter.unlockDate).getTime() <= new Date().getTime();
-    const isLocked = chapter.isLocked && !isTimeUnlocked && !d1UnlockedChapters.has(chapter.id);
+    const isLocked = !!chapter.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now() && !d1UnlockedChapters.has(chapter.id);
 
     if (isLocked) {
       setIsCheckingAccess(true);
@@ -826,6 +828,7 @@ export default function App() {
                           <div key={manga.id}>
                             <MangaCard
                               manga={manga}
+                              unlockedChapters={d1UnlockedChapters}
                               onViewManga={() => { navigate(`/${manga.id}`); }}
                               onReadChapter={(ch, title) => handleReadChapter(ch, title || manga.title, manga)}
                             />

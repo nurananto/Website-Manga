@@ -10,7 +10,13 @@ export function imgUrl(path) {
 // Format tanggal relatif: "2 jam lalu", "3 hari lalu", "1 bln lalu"
 export function timeAgo(dateStr) {
   if (!dateStr) return '';
-  const diff = Date.now() - new Date(dateStr).getTime();
+  // Timestamp SQLite/D1 ("YYYY-MM-DD HH:MM:SS") adalah UTC tanpa zona waktu —
+  // normalisasi ke ISO UTC agar tidak terbaca sebagai waktu lokal
+  let s = dateStr;
+  if (typeof s === 'string' && /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(s)) {
+    s = s.replace(' ', 'T') + 'Z';
+  }
+  const diff = Date.now() - new Date(s).getTime();
   const m = Math.floor(diff / 60000);
   const h = Math.floor(m / 60);
   const d = Math.floor(h / 24);

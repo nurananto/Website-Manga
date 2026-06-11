@@ -3,7 +3,7 @@ import { imgUrl, timeAgo } from '../utils';
 import { Lock, Clock, ArrowUp } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
-export default function MangaCard({ manga, onReadChapter, onViewManga }) {
+export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedChapters }) {
   const [localUnlocked, setLocalUnlocked] = useState(new Set());
 
   const isOneshot = manga.status === 'Oneshot';
@@ -60,7 +60,8 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
         {/* Chapters List — flex-1 + justify-between agar ngepas bawah cover */}
         <div className="flex flex-col flex-1 justify-between mt-2">
           {manga.chapters.slice(0, 3).map((ch, idx) => {
-            const isLocked = ch.isLocked && !localUnlocked.has(ch.id);
+            const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()
+              && !localUnlocked.has(ch.id) && !unlockedChapters?.has(ch.id);
             // Badge status muncul di chapter pertama (terbaru) saat tidak ada update
             // Badge Tamat/Hiatus muncul di chapter yang sesuai tamat_at_chapter/hiatus_at_chapter
             const targetChapter = manga.status === 'Tamat'
