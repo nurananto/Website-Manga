@@ -66,7 +66,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                 <>
                   {/* Username + badge donatur */}
                   <div className="px-4 py-2.5 border-b border-white/5">
-                    <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded font-label-sm text-[9px] font-black uppercase tracking-wider mb-1 ${
+                    <span className={`flex w-full items-center justify-center gap-1 px-1.5 py-1 rounded-lg font-label-sm text-[9px] font-black uppercase tracking-wider mb-1.5 ${
                       currentUser?.is_donor
                         ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
                         : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
