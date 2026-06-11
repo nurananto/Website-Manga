@@ -800,7 +800,7 @@ async function handleCron(env) {
     await env.DB.prepare("UPDATE sync_log SET last_success = CURRENT_TIMESTAMP, status = 'ok' WHERE id = 1").run();
 
     // Cleanup: hapus notifikasi > 90 hari + oauth_states kadaluarsa + rate_limits lama
-    await env.DB.prepare("DELETE FROM notifications WHERE created_at < datetime('now', '-90 days')").run();
+    await env.DB.prepare("DELETE FROM notifications WHERE created_at < datetime('now', '-30 days')").run();
     await env.DB.prepare("DELETE FROM oauth_states WHERE expires_at < datetime('now')").run();
     await env.DB.prepare('DELETE FROM rate_limits WHERE minute < ?').bind(Math.floor(Date.now() / 60000) - 60).run();
   } catch (err) {

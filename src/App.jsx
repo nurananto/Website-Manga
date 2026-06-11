@@ -167,17 +167,6 @@ export default function App() {
     return () => window.removeEventListener('app-update', handleSwUpdate);
   }, []);
 
-  // Cek notifikasi saat tab kembali aktif (tidak ada polling — hemat Worker request)
-  useEffect(() => {
-    if (!isLoggedIn) return;
-
-    const onVisible = () => {
-      if (document.visibilityState === 'visible') fetchNotifications();
-    };
-    document.addEventListener('visibilitychange', onVisible);
-
-    return () => document.removeEventListener('visibilitychange', onVisible);
-  }, [isLoggedIn]);
 
   useEffect(() => {
     let currentVersion = null;
