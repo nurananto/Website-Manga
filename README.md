@@ -7,11 +7,11 @@ Website baca manga scanlation Indonesia, dibangun dengan React + Vite dan dihost
 | Layer | Teknologi |
 |---|---|
 | Frontend | React 19, Vite, Tailwind CSS v4, Framer Motion |
-| API | Cloudflare Workers (api-worker) |
-| Gambar | Cloudflare Workers + R2 (image-worker) |
+| API | Cloudflare Workers |
+| Gambar | Cloudflare Workers + R2 |
 | Database | Cloudflare D1 (SQLite) |
 | Hosting | Cloudflare Pages |
-| Auth | Google OAuth 2.0 + custom JWT (HS256) |
+| Auth | Google OAuth 2.0 |
 | Donasi | Trakteer webhook → koin otomatis |
 
 ## Fitur
@@ -31,14 +31,6 @@ Website baca manga scanlation Indonesia, dibangun dengan React + Vite dan dihost
 │   ├── components/       # UI components
 │   ├── lib/auth.js       # Custom auth utilities
 │   └── App.jsx           # Main app
-├── worker/
-│   ├── api-worker.js     # Cloudflare Worker (API + OAuth)
-│   ├── image-worker.js   # Cloudflare Worker (R2 images)
-│   └── schema.sql        # D1 database schema
 ├── public/manga/         # Katalog manga (di-generate otomatis)
 └── .github/workflows/    # CI/CD (build catalog, backup D1)
 ```
-
-## Database
-
-Schema tersedia di `worker/schema.sql`.
