@@ -18,7 +18,7 @@ jobs:
 
       - name: Update version.json
         run: |
-          echo "{\"v\":\"$(date +%s)\",\"label\":\"$(date +'%-d %b %Y')\"}" > public/version.json
+          echo "{\"v\":\"$(date +%s)\",\"label\":\"$(date +'%-d %b %Y')\",\"type\":\"code\"}" > public/version.json
 
       - name: Commit & push
         run: |

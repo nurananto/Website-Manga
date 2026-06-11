@@ -174,11 +174,21 @@ export default function App() {
       try {
         const res = await fetch('/version.json?t=' + Date.now(), { cache: 'no-store' });
         const data = await res.json();
-        const { v, label } = data;
+        const { v, label, type } = data;
         if (currentVersion === null) {
           currentVersion = v;
         } else if (v !== currentVersion) {
-          triggerUpdate(label || '');
+          currentVersion = v;
+          if (type === 'catalog') {
+            // Chapter baru — cukup refresh catalog tanpa reload halaman
+            fetch('/manga/index.json', { cache: 'no-cache' })
+              .then(r => r.json())
+              .then(d => { setMangaList(d); mangaListRef.current = d; })
+              .catch(() => {});
+          } else {
+            // Kode baru — perlu reload penuh
+            triggerUpdate(label || '');
+          }
         }
       } catch {}
     };
