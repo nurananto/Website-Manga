@@ -493,7 +493,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             </div>
 
             {/* Komentar */}
-            <div className="w-full lg:max-w-[720px] lg:mx-auto pb-16">
+            <div className="w-full pb-16">
               <CommentSection
                 chapterId={activeChapter?.id}
                 mangaId={activeManga?.id}

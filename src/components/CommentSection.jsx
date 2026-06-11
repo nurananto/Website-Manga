@@ -125,7 +125,8 @@ function DeleteConfirm({ onConfirm, onCancel, label = 'Hapus komentar ini?' }) {
 function ReplyItem({ reply, currentUserId, targetCommentId, onDelete }) {
   const [confirmDel, setConfirmDel] = useState(false);
   const isTarget = reply.id === targetCommentId;
-  const isOwn    = reply.user?.id === currentUserId;
+  const isDemo   = reply.id?.startsWith('demo-');
+  const isOwn    = isDemo || reply.user?.id === currentUserId;
   const ref = useRef(null);
 
   useEffect(() => {
@@ -173,7 +174,9 @@ function CommentItem({ comment, isLoggedIn, currentUserId, onReply, onDelete, on
   const [submitting,     setSubmitting]     = useState(false);
   const [confirmDel,     setConfirmDel]     = useState(false);
   const isTarget  = comment.id === targetCommentId;
-  const isOwn     = comment.user?.id === currentUserId;
+  const isDemo    = comment.id?.startsWith('demo-');
+  const isOwn     = isDemo || comment.user?.id === currentUserId;
+  const canReply  = isDemo || isLoggedIn;
   const isDeleted = comment.deleted === true;
   const replies   = comment.replies || [];
   const ref = useRef(null);
@@ -219,7 +222,7 @@ function CommentItem({ comment, isLoggedIn, currentUserId, onReply, onDelete, on
               {/* Action bar */}
               {!confirmDel && (
                 <div className="flex items-center gap-2 sm:gap-3 mt-1.5 sm:mt-2">
-                  {isLoggedIn && (
+                  {canReply && (
                     <button
                       onClick={() => setShowReplyInput(v => !v)}
                       className={`flex items-center gap-1 text-[10px] sm:text-[11px] font-bold transition-colors cursor-pointer ${
@@ -437,7 +440,7 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
   const totalCount = comments.reduce((n, c) => n + 1 + (c.replies?.length || 0), 0);
 
   return (
-    <div className="w-full px-2 sm:px-3 py-4 sm:py-6 flex flex-col gap-4 sm:gap-5">
+    <div className="w-full max-w-3xl mx-auto px-3 sm:px-5 md:px-8 py-4 sm:py-6 flex flex-col gap-4 sm:gap-5">
       {/* Header */}
       <div className="flex items-center gap-2 border-t border-white/10 pt-4 sm:pt-6">
         <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
@@ -456,12 +459,12 @@ export default function CommentSection({ chapterId, mangaId, isLoggedIn, current
           </div>
         </div>
       ) : (
-        <div className="flex flex-col items-center gap-2.5 sm:gap-3 py-5 sm:py-6 bg-surface-container rounded-2xl border border-white/5">
-          <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-outline/20" />
-          <p className="text-xs sm:text-sm text-outline/50 font-semibold">Login untuk berkomentar</p>
+        <div className="flex items-center gap-3 px-4 py-3.5 bg-surface-container rounded-2xl border border-white/5">
+          <MessageCircle className="w-5 h-5 text-outline/20 shrink-0" />
+          <p className="text-xs sm:text-sm text-outline/50 font-semibold flex-1">Login untuk berkomentar</p>
           <button
             onClick={onLoginClick}
-            className="px-4 sm:px-5 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold text-on-primary bg-primary hover:bg-primary/90 rounded-xl transition-colors cursor-pointer"
+            className="px-3 sm:px-4 py-1.5 text-[11px] sm:text-xs font-bold text-on-primary bg-primary hover:bg-primary/90 rounded-xl transition-colors cursor-pointer shrink-0"
           >
             Masuk / Login
           </button>
