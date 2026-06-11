@@ -55,16 +55,20 @@ const renderChapterRow = (ch, idx) => {
         className="group flex items-center justify-between py-3 px-2 sm:px-3 hover:bg-white/5 transition-all cursor-pointer rounded-xl border border-white/8 hover:border-white/15 bg-surface-container/30"
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
-        <div className={`flex items-center gap-2 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
-          {isLocked && <Lock className="w-3.5 h-3.5 text-amber-400 shrink-0" />}
+        <div className={`flex items-center gap-2.5 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
+          {isLocked && (
+            <span className="w-9 h-9 rounded-lg bg-amber-500/15 border border-amber-500/25 flex items-center justify-center shrink-0">
+              <Lock className="w-4 h-4 text-amber-400" />
+            </span>
+          )}
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 min-w-0">
               <p className="font-body-md text-sm sm:text-sm md:text-base text-on-surface font-bold group-hover:text-primary transition-colors truncate">
                 {ch.title}
               </p>
               {isNew && (
-                <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1 py-0.5 rounded font-label-sm text-[8px] font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
-                  <ArrowUp className="w-2 h-2 stroke-[3] shrink-0" />
+                <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-sm md:text-base font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
+                  <ArrowUp className="w-3 h-3 md:w-3.5 md:h-3.5 stroke-[3] shrink-0" />
                   <span>UP</span>
                 </span>
               )}
@@ -78,14 +82,14 @@ const renderChapterRow = (ch, idx) => {
                 </span>
               )}
               {isLocked && (
-                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
-                  <Coins className="w-2.5 h-2.5 fill-current shrink-0" />
+                <span className="shrink-0 font-label-sm px-2 py-0.5 rounded text-sm md:text-base font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+                  <Coins className="w-3.5 h-3.5 md:w-4 md:h-4 fill-current shrink-0" />
                   <span>5</span>
                 </span>
               )}
             </div>
             {isLocked ? (
-              <div className="flex items-center gap-1 font-label-sm text-xs text-amber-400/70 mt-0.5">
+              <div className="flex items-center gap-1 font-label-sm text-xs md:text-sm text-amber-400/80 mt-0.5">
                 <span>Buka dalam</span>
                 <CountdownTimer
                   unlockDate={ch.unlockDate}
@@ -107,7 +111,7 @@ const renderChapterRow = (ch, idx) => {
         {/* Right: date for locked / views for unlocked */}
         <div className="flex items-center gap-1.5 shrink-0 ml-2">
           {isLocked ? (
-            <span className="font-label-sm text-xs text-outline/60 whitespace-nowrap shrink-0">{ch.date || timeAgo(ch.release_date)}</span>
+            <span className="font-label-sm text-xs md:text-sm text-amber-400/80 whitespace-nowrap shrink-0">{ch.date || timeAgo(ch.release_date)}</span>
           ) : (
             <div className="flex items-center gap-1 text-outline/50 font-label-sm text-xs select-none shrink-0">
               <Eye className="w-3.5 h-3.5 shrink-0" />
