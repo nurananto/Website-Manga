@@ -30,11 +30,15 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
         onClick={onViewManga}
         className="relative w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full flex-shrink-0 flex items-center justify-center py-2 sm:py-2.5 md:py-3 px-2 cursor-pointer"
       >
-        <img
-          alt={manga.title}
-          className="h-full w-full object-cover rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-white/10 hover:scale-105 transition-transform duration-500"
-          src={imgUrl(manga.coverUrl)}
-        />
+        <picture>
+          {manga.coverUrls?.mobile  && <source media="(max-width: 640px)"  srcSet={imgUrl(manga.coverUrls.mobile)} />}
+          {manga.coverUrls?.tablet  && <source media="(max-width: 1024px)" srcSet={imgUrl(manga.coverUrls.tablet)} />}
+          <img
+            alt={manga.title}
+            className="h-full w-full object-cover rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-white/10 hover:scale-105 transition-transform duration-500"
+            src={imgUrl(manga.coverUrls?.desktop ?? manga.coverUrl)}
+          />
+        </picture>
 
       </div>
 

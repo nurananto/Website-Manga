@@ -142,11 +142,15 @@ const renderChapterRow = (ch, idx) => {
           <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-6 pb-4">
             {/* Cover Image */}
             <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[2/3] flex-shrink-0">
-              <img
-                alt={`${manga.title} Cover`}
-                className="w-full h-full object-cover rounded-xl shadow-2xl border-2 border-white/25"
-                src={imgUrl(manga.coverUrl)}
-              />
+              <picture>
+                {manga.coverUrls?.mobile  && <source media="(max-width: 640px)"  srcSet={imgUrl(manga.coverUrls.mobile)} />}
+                {manga.coverUrls?.tablet  && <source media="(max-width: 1024px)" srcSet={imgUrl(manga.coverUrls.tablet)} />}
+                <img
+                  alt={`${manga.title} Cover`}
+                  className="w-full h-full object-cover rounded-xl shadow-2xl border-2 border-white/25"
+                  src={imgUrl(manga.coverUrls?.desktop ?? manga.coverUrl)}
+                />
+              </picture>
             </div>
 
             {/* Metadata info */}

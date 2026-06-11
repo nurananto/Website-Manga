@@ -167,8 +167,13 @@ async function buildCatalog() {
     manga.status = statusMap[manga.status?.toLowerCase()] ?? manga.status;
     manga.type   = typeMap[manga.type?.toLowerCase()] ?? manga.type;
 
-    // coverUrl dari covers[0]
+    // coverUrl dari covers[0] (desktop), coverUrls untuk semua ukuran
     manga.coverUrl = manga.cover_dev ?? manga.covers?.[0] ?? null;
+    manga.coverUrls = {
+      desktop: manga.covers?.[0] ?? manga.coverUrl ?? null,
+      tablet:  manga.covers?.[1] ?? manga.coverUrl ?? null,
+      mobile:  manga.covers?.[2] ?? manga.coverUrl ?? null,
+    };
     delete manga.cover_dev;
 
     // Simpan full detail per manga → public/manga/{id}.json
@@ -191,6 +196,7 @@ async function buildCatalog() {
       type:         manga.type,
       author:       manga.author,
       coverUrl:     manga.coverUrl,
+      coverUrls:    manga.coverUrls,
       covers:       manga.covers,
       genres:       manga.genres,
       rating:       manga.rating,
