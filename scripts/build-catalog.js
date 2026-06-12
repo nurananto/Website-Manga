@@ -226,6 +226,7 @@ async function buildCatalog() {
         .filter(g => g.keys?.length >= 3)
         .map(g => ({
           volume: g.volume ?? null,
+          is_current: g.file === manga.mangadex_cover,
           urls: {
             desktop: coverFull(g.keys[0]),
             tablet:  coverFull(g.keys[1]),
