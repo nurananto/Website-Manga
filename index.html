@@ -9,7 +9,23 @@
     <!-- Preload catalog JSON agar LCP cepat -->
     <link rel="preload" href="/manga/index.json" as="fetch" crossorigin="anonymous" />
     <!-- Fonts are self-hosted via @fontsource (bundled with app, no external dependency) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7406342013650399" crossorigin="anonymous"></script>
+    <!-- Anti-inspect ringan: hambat pembukaan DevTools (penghalang kasual, bukan keamanan) -->
+    <script>
+      (function () {
+        if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var loop = function () {
+          var t0 = performance.now();
+          // eslint-disable-next-line no-debugger
+          debugger;
+          if (performance.now() - t0 > 100) {
+            // DevTools terbuka → arahkan keluar
+            document.body && (document.body.innerHTML = '');
+            location.replace('about:blank');
+          }
+        };
+        setInterval(loop, 1000);
+      })();
+    </script>
   </head>
   <body class="bg-surface text-on-surface" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
     <div id="root"></div>
