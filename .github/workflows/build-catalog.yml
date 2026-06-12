@@ -54,3 +54,26 @@ jobs:
           git diff --staged --quiet || git commit -m "chore: sync covers & update catalog"
           git pull --rebase origin main || true
           git push
+
+      # ── Deploy Direct Upload (commit bot tidak men-trigger deploy-pages.yml) ──
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build website
+        run: npm run build
+
+      - name: Set version.json type catalog (refresh halus tanpa reload)
+        run: |
+          echo "{\"v\":\"$(date +%s)\",\"label\":\"$(date +'%-d %b %Y')\",\"type\":\"catalog\"}" > dist/version.json
+
+      - name: Pastikan project Pages ada (idempotent)
+        run: npx wrangler pages project create nuranantoscans --production-branch=main || true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+
+      - name: Deploy ke Cloudflare Pages (Direct Upload)
+        run: npx wrangler pages deploy dist --project-name=nuranantoscans --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}

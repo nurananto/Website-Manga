@@ -1,0 +1,44 @@
+name: Deploy Pages
+
+# Deploy Direct Upload — tidak memakan kuota 500 build/bulan Cloudflare Pages.
+# Trigger: push kode oleh manusia. Commit bot dari build-catalog TIDAK memicu
+# workflow ini (GitHub tidak men-trigger workflow dari commit GITHUB_TOKEN),
+# karena itu build-catalog.yml punya langkah deploy sendiri.
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'manga/**'        # perubahan data manga ditangani build-catalog.yml
+      - '.github/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Pastikan project Pages ada (idempotent)
+        run: npx wrangler pages project create nuranantoscans --production-branch=main || true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+
+      - name: Deploy ke Cloudflare Pages (Direct Upload)
+        run: npx wrangler pages deploy dist --project-name=nuranantoscans --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
