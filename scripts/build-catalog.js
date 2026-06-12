@@ -1,8 +1,29 @@
 import fs from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 
 const chaptersDir = './manga';
 const outDir = './public/manga';
+
+// Manga yang berubah di push ini (dari workflow, koma-separated).
+// Kosong = full build (cron mingguan / manual dispatch).
+const CHANGED_SLUGS = (process.env.CHANGED_SLUGS || '')
+  .split(',').map(s => s.trim()).filter(Boolean);
+
+// Waktu commit PERTAMA yang menambahkan file — stabil, tidak berubah oleh commit berikutnya
+function gitAddedDate(filePath) {
+  try {
+    const out = execSync(`git log --diff-filter=A --format=%aI -1 -- "${filePath}"`, { encoding: 'utf-8' }).trim();
+    return out || null;
+  } catch { return null; }
+}
+
+// Format ISO apapun → string WIB "YYYY-MM-DDTHH:MM:SS+07:00"
+function toWibString(iso) {
+  const d = new Date(new Date(iso).getTime() + 7 * 3600 * 1000);
+  const p = n => String(n).padStart(2, '0');
+  return `${d.getUTCFullYear()}-${p(d.getUTCMonth() + 1)}-${p(d.getUTCDate())}T${p(d.getUTCHours())}:${p(d.getUTCMinutes())}:${p(d.getUTCSeconds())}+07:00`;
+}
 
 // Fix multi-level UTF-8 mojibake (bisa double atau triple encoded)
 // Loop sampai stabil: stop saat ada char > U+00FF, atau decode tidak berubah, atau error
@@ -87,14 +108,22 @@ async function buildCatalog() {
       if (match) manga.mangadex_id = match[1];
     }
 
-    // Fetch rating dari MangaDex
-    if (manga.mangadex_id) {
+    // Fetch rating dari MangaDex — hanya untuk manga yang berubah di push ini.
+    // Manga lain pakai rating dari hasil build sebelumnya (refresh penuh saat cron mingguan).
+    const isChanged = CHANGED_SLUGS.length === 0 || CHANGED_SLUGS.includes(slug);
+    const prevJsonPath = path.join(outDir, `${slug}.json`);
+    if (manga.mangadex_id && isChanged) {
       console.log(`📡 Fetching rating for ${manga.title}...`);
       manga.rating = await fetchMangaDexRating(manga.mangadex_id);
       if (manga.rating) {
         manga.rating = Math.round(manga.rating * 100) / 100; // 2 desimal (x.xx)
         console.log(`   ⭐ ${manga.rating}`);
       }
+    } else if (manga.mangadex_id && fs.existsSync(prevJsonPath)) {
+      try {
+        manga.rating = JSON.parse(fs.readFileSync(prevJsonPath, 'utf-8')).rating ?? null;
+        console.log(`♻️  ${manga.title} — rating lama dipakai (${manga.rating ?? '—'})`);
+      } catch { manga.rating = null; }
     } else {
       manga.rating = null;
     }
@@ -121,7 +150,18 @@ async function buildCatalog() {
         ch.title = manga.status === 'ONESHOT' ? 'Oneshot' : `Ch. ${ch.chapter_number}`;
       }
 
-      // release_date wajib diisi via generate_meta.py, tidak di-generate otomatis
+      // release_date: kalau belum ada di meta.json, ambil dari waktu commit PERTAMA
+      // file meta.json chapter ini (WIB), lalu tulis balik agar permanen & stabil
+      if (!ch.release_date) {
+        const added = gitAddedDate(chMetaPath);
+        ch.release_date = toWibString(added || Date.now());
+        try {
+          const raw = JSON.parse(fs.readFileSync(chMetaPath, 'utf-8'));
+          raw.release_date = ch.release_date;
+          fs.writeFileSync(chMetaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
+          console.log(`   🕐 ${slug} Ch.${ch.chapter_number} release_date ← waktu commit (${ch.release_date})`);
+        } catch {}
+      }
 
       // Hitung unlockDate (camelCase agar sesuai frontend)
       if (ch.lock_hours > 0) {

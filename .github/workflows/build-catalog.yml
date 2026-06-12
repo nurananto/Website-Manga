@@ -36,11 +36,23 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET_NAME:      ${{ secrets.R2_BUCKET_NAME }}
 
+      - name: Deteksi manga yang berubah di push ini
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "push" ] && git rev-parse --verify "${{ github.event.before }}" >/dev/null 2>&1; then
+            SLUGS=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- manga/ | cut -d/ -f2 | sort -u | paste -sd, -)
+          else
+            SLUGS=""
+          fi
+          echo "slugs=$SLUGS" >> "$GITHUB_OUTPUT"
+          echo "Manga berubah: ${SLUGS:-semua (full build)}"
+
       - name: Generate catalog.json
         run: node scripts/build-catalog.js
         env:
           WORKER_URL: ${{ secrets.WORKER_URL }}
           WORKER_ADMIN_SECRET: ${{ secrets.WORKER_ADMIN_SECRET }}
+          CHANGED_SLUGS: ${{ steps.changed.outputs.slugs }}
 
       - name: Generate version file
         run: |
