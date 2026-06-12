@@ -10,9 +10,9 @@ const STATUS_CFG = {
 };
 const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-300' };
 
-// Scale & opacity for each distance level (0 = active, 1 = adjacent, ...)
-const SCALES    = [1, 0.91, 0.80, 0.70, 0.62, 0.55];
-const OPACITIES = [1, 0.92, 0.78, 0.62, 0.46, 0.32];
+// Scale & opacity: hanya yang aktif membesar; semua sisanya seragam
+const SCALES    = [1, 0.82];
+const OPACITIES = [1, 0.78, 0.78, 0.62, 0.5, 0.4];
 
 // Gap between items (extra offset added to negative margin)
 const ITEM_GAP = 10;
