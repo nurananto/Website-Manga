@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { imgUrl, timeAgo } from '../utils';
-import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Coins, Lock } from 'lucide-react';
+import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Coins, Lock, Images, Download, X } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
 
@@ -22,6 +22,23 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
     ? new Set([...unlockedChapters, ...localUnlockedChapters])
     : localUnlockedChapters;
   const [readChapters, setReadChapters] = useState(new Set());
+  const [lightboxCover, setLightboxCover] = useState(null);
+
+  const downloadCover = async (g) => {
+    const url = g.urls.desktop;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error();
+      const blob = await res.blob();
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${manga.title}${g.volume ? ` - Vol ${g.volume}` : ''}.webp`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    } catch {
+      window.open(url, '_blank');
+    }
+  };
 
   const sortedChapters = useMemo(() => {
     const list = [...manga.chapters];
@@ -426,36 +443,98 @@ const renderChapterRow = (ch, idx) => {
           </div>{/* end grid */}
         </div>{/* end wrapper border */}
 
-        {/* Galeri cover lama — di luar kotak manga info */}
+        {/* Galeri semua cover — di luar kotak manga info */}
         {Array.isArray(manga.cover_gallery) && manga.cover_gallery.length > 0 && (
-          <section className="mx-3 sm:mx-4 md:mx-5 mt-4 md:mt-6 xl:mt-8 border border-white/15 rounded-2xl p-3 sm:p-4 md:p-5">
-            <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface mb-3 md:mb-4">
-              Cover Manga
-            </h3>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3">
-              {manga.cover_gallery.map((g, i) => (
-                <a
-                  key={i}
-                  href={g.urls.desktop}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative rounded-xl overflow-hidden border border-white/10 hover:border-primary/40 transition-all"
-                >
-                  <img
-                    src={g.urls.mobile}
-                    alt={g.volume ? `Cover Vol. ${g.volume}` : 'Cover'}
-                    loading="lazy"
-                    className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  {g.volume && (
-                    <span className="absolute bottom-1 left-1 bg-black/70 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-[9px] sm:text-[10px] md:text-xs font-black">
-                      Vol. {g.volume}
-                    </span>
-                  )}
-                </a>
-              ))}
+          <section className="relative mx-3 sm:mx-4 md:mx-5 mt-4 md:mt-6 xl:mt-8 border border-white/15 rounded-2xl p-3 sm:p-4 md:p-5 overflow-hidden">
+            {/* Background blur dari cover utama, senada hero */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+              <img src={imgUrl(manga.coverUrl)} alt="" aria-hidden
+                className="w-full h-full object-cover scale-150 blur-3xl opacity-20" />
+              <div className="absolute inset-0 bg-gradient-to-b from-surface/80 via-surface/60 to-surface/80" />
+            </div>
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-2 mb-3 md:mb-4">
+                <Images className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary" />
+                <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface">
+                  Cover Manga
+                </h3>
+                <span className="font-label-sm text-[10px] sm:text-xs font-black text-outline/70 bg-white/5 border border-white/10 rounded-full px-2 py-0.5">
+                  {manga.cover_gallery.length}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3">
+                {manga.cover_gallery.map((g, i) => {
+                  const isCurrent = i === 0;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => setLightboxCover(g)}
+                      className={`group relative rounded-xl overflow-hidden border transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.6)] ${
+                        isCurrent ? 'border-primary/50 ring-1 ring-primary/30' : 'border-white/10 hover:border-primary/40'
+                      }`}
+                    >
+                      <img
+                        src={g.urls.mobile}
+                        alt={g.volume ? `Cover Vol. ${g.volume}` : 'Cover'}
+                        loading="lazy"
+                        className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      {/* Gradient bawah agar label terbaca */}
+                      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+                      {g.volume && (
+                        <span className="absolute bottom-1.5 left-1.5 bg-black/70 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-[9px] sm:text-[10px] md:text-xs font-black">
+                          Vol. {g.volume}
+                        </span>
+                      )}
+                      {isCurrent && (
+                        <span className="absolute top-1.5 right-1.5 bg-primary/90 text-on-primary px-1.5 py-0.5 rounded font-label-sm text-[8px] sm:text-[9px] md:text-[10px] font-black uppercase tracking-wider">
+                          Dipakai
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </section>
+        )}
+
+        {/* Lightbox cover — zoom di halaman, tidak menutupi seluruh layar */}
+        {lightboxCover && (
+          <div
+            className="fixed inset-0 z-[400] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 sm:p-10"
+            onClick={() => setLightboxCover(null)}
+          >
+            <button
+              onClick={() => setLightboxCover(null)}
+              className="absolute top-4 right-4 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white cursor-pointer transition-colors z-10"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="relative" onClick={e => e.stopPropagation()}>
+              <img
+                src={lightboxCover.urls.desktop}
+                alt={lightboxCover.volume ? `Cover Vol. ${lightboxCover.volume}` : 'Cover'}
+                className="max-h-[82vh] max-w-[88vw] sm:max-w-[60vw] lg:max-w-[42vw] rounded-xl shadow-2xl border border-white/15 object-contain"
+              />
+              {lightboxCover.volume && (
+                <span className="absolute top-3 left-3 bg-black/70 backdrop-blur-sm text-white px-2 py-1 rounded-lg font-label-sm text-xs sm:text-sm font-black">
+                  Vol. {lightboxCover.volume}
+                </span>
+              )}
+              {/* Tombol download — pojok kanan bawah */}
+              <button
+                onClick={() => downloadCover(lightboxCover)}
+                className="absolute bottom-3 right-3 h-9 sm:h-10 px-3 sm:px-4 rounded-xl bg-primary hover:bg-primary/90 text-on-primary font-black text-xs sm:text-sm flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all shadow-lg"
+              >
+                <Download className="w-4 h-4" />
+                <span className="hidden sm:inline">Download</span>
+              </button>
+            </div>
+          </div>
         )}
       </div>
     </div>
