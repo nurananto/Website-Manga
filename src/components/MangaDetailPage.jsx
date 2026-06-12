@@ -424,6 +424,38 @@ const renderChapterRow = (ch, idx) => {
           </div>
           </div>{/* end grid */}
         </div>{/* end wrapper border */}
+
+        {/* Galeri cover lama — di luar kotak manga info */}
+        {Array.isArray(manga.cover_gallery) && manga.cover_gallery.length > 0 && (
+          <section className="mx-3 sm:mx-4 md:mx-5 mt-4 md:mt-6 xl:mt-8">
+            <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface mb-3 md:mb-4">
+              Cover Manga
+            </h3>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3">
+              {manga.cover_gallery.map((g, i) => (
+                <a
+                  key={i}
+                  href={g.urls.desktop}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative rounded-xl overflow-hidden border border-white/10 hover:border-primary/40 transition-all"
+                >
+                  <img
+                    src={g.urls.mobile}
+                    alt={g.volume ? `Cover Vol. ${g.volume}` : 'Cover'}
+                    loading="lazy"
+                    className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  {g.volume && (
+                    <span className="absolute bottom-1 left-1 bg-black/70 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-[9px] sm:text-[10px] md:text-xs font-black">
+                      Vol. {g.volume}
+                    </span>
+                  )}
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );

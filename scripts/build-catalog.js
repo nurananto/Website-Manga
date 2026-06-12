@@ -220,6 +220,21 @@ async function buildCatalog() {
     };
     delete manga.cover_dev;
 
+    // Galeri cover lama (di luar cover utama) — terbaru duluan, URL via CDN
+    if (Array.isArray(manga.cover_gallery)) {
+      manga.cover_gallery = manga.cover_gallery
+        .filter(g => g.file !== manga.mangadex_cover && g.keys?.length >= 3)
+        .map(g => ({
+          volume: g.volume ?? null,
+          urls: {
+            desktop: coverFull(g.keys[0]),
+            tablet:  coverFull(g.keys[1]),
+            mobile:  coverFull(g.keys[2]),
+          },
+        }))
+        .reverse();
+    }
+
     // Simpan full detail per manga → public/manga/{id}.json
     // Frontend fetch ini saat user buka halaman detail manga
     const mangaPublicDir = './public/manga';
