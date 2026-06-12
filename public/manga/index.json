@@ -1,5 +1,79 @@
 [
   {
+    "id": "TeisouGyakuten",
+    "title": "Teisou Gyakuten Sekai Nara Moteru to Omotte Itara",
+    "alt_title": "貞操逆転世界ならモテると思っていたら",
+    "description": "Dunia dengan moral nafsu yang terbalik —rasio gender 1:20, cewek-cewek memiliki hasrat nafsu yang kuat, sedangkan para cowok ingin menjalani hidup nyaman dan damai dilindungi bodyguard. Bodyguard Cowok yang ada di sekitarnya semuanya tampan, dan Ikuto mengeluh bahwa terutama sahabatnya, Toosaka Rui, terlalu high-spec sehingga membuatnya tersaingi, tetapi… Sebenarnya, para bodyguard itu adalah gadis-gadis cantik yang menyamar sebagai laki-laki! Ikuto yang sama sekali tak sadar dengan hal itu selalu bertingkah polos apa adanya dengan para bodyguard yang menjaganya, membuat setiap cewek merasa punya peluang untuk dapetin dia. Saat harem tak-sengaja terbentuk, Rui—yang ingin dilihat sebagai seorang cewek—mengungkapkan semuanya pada Ikuto—!? Mimpiku sebagai seorang cowok tidak bisa ditahan lagi—romcom harem kehidupan populer SMA tanpa akhir pun dimulai!",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Hinami Yui",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/TeisouGyakuten/covers/cover.webp",
+      "manga/TeisouGyakuten/covers/cover@tablet.webp",
+      "manga/TeisouGyakuten/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Crossdressing",
+      "Harem",
+      "Isekai",
+      "Reincarnation",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 7.38,
+    "total_views": 0,
+    "isTrending": true,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 6.5,
+        "lock_hours": 0,
+        "pages": 8,
+        "id": "TeisouGyakuten-ch-6.5",
+        "r2_prefix": "manga/TeisouGyakuten/6.5/",
+        "title": "Ch. 6.5",
+        "release_date": "2026-06-12T17:47:09+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 6,
+        "lock_hours": 0,
+        "pages": 27,
+        "id": "TeisouGyakuten-ch-6",
+        "r2_prefix": "manga/TeisouGyakuten/6/",
+        "title": "Ch. 6",
+        "release_date": "2026-06-12T17:47:09+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 5,
+        "lock_hours": 0,
+        "pages": 24,
+        "id": "TeisouGyakuten-ch-5",
+        "r2_prefix": "manga/TeisouGyakuten/5/",
+        "title": "Ch. 5",
+        "release_date": "2026-06-12T17:47:09+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "Amari-chan",
     "title": "Kanojo ni Shitai Joshi Ichii, no Tonari de Mitsuketa Amari-chan",
     "alt_title": "彼女にしたい女子一位、の隣で見つけたあまりちゃん",
@@ -36,10 +110,10 @@
         "chapter_number": 9,
         "lock_hours": 0,
         "pages": 19,
+        "release_date": "2026-06-12T17:07:01+07:00",
         "id": "Amari-chan-ch-9",
         "r2_prefix": "manga/Amari-chan/9/",
         "title": "Ch. 9",
-        "release_date": "2026-06-12T17:07:01+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -48,10 +122,10 @@
         "chapter_number": 8,
         "lock_hours": 0,
         "pages": 20,
+        "release_date": "2026-06-12T17:07:01+07:00",
         "id": "Amari-chan-ch-8",
         "r2_prefix": "manga/Amari-chan/8/",
         "title": "Ch. 8",
-        "release_date": "2026-06-12T17:07:01+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -60,10 +134,10 @@
         "chapter_number": 7.5,
         "lock_hours": 0,
         "pages": 6,
+        "release_date": "2026-06-12T17:07:01+07:00",
         "id": "Amari-chan-ch-7.5",
         "r2_prefix": "manga/Amari-chan/7.5/",
         "title": "Ch. 7.5",
-        "release_date": "2026-06-12T17:07:01+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -100,7 +174,7 @@
     ],
     "rating": 8.23,
     "total_views": 0,
-    "isTrending": true,
+    "isTrending": false,
     "next_update": null,
     "chapters": [
       {

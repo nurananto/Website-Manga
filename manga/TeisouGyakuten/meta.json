@@ -6,7 +6,18 @@
   "type": "MANGA",
   "author": "Hinami Yui",
   "artist": "Hakuto",
-  "genres": ["Comedy","Isekai","Romance","Slice of Life","Crossdressing","Harem","Reincarnation","School Life","Shounen","Adaptation"],
+  "genres": [
+    "Comedy",
+    "Isekai",
+    "Romance",
+    "Slice of Life",
+    "Crossdressing",
+    "Harem",
+    "Reincarnation",
+    "School Life",
+    "Shounen",
+    "Adaptation"
+  ],
   "description": "Dunia dengan moral nafsu yang terbalik —rasio gender 1:20, cewek-cewek memiliki hasrat nafsu yang kuat, sedangkan para cowok ingin menjalani hidup nyaman dan damai dilindungi bodyguard. Bodyguard Cowok yang ada di sekitarnya semuanya tampan, dan Ikuto mengeluh bahwa terutama sahabatnya, Toosaka Rui, terlalu high-spec sehingga membuatnya tersaingi, tetapi… Sebenarnya, para bodyguard itu adalah gadis-gadis cantik yang menyamar sebagai laki-laki! Ikuto yang sama sekali tak sadar dengan hal itu selalu bertingkah polos apa adanya dengan para bodyguard yang menjaganya, membuat setiap cewek merasa punya peluang untuk dapetin dia. Saat harem tak-sengaja terbentuk, Rui—yang ingin dilihat sebagai seorang cewek—mengungkapkan semuanya pada Ikuto—!? Mimpiku sebagai seorang cowok tidak bisa ditahan lagi—romcom harem kehidupan populer SMA tanpa akhir pun dimulai!",
   "covers": [
     "manga/TeisouGyakuten/covers/cover.webp",
@@ -19,6 +30,28 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "9afc7e54-6049-4ad9-9592-451a9a11a7f8.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8.webp",
+        "manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@tablet.webp",
+        "manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
+      "volume": "2",
+      "keys": [
+        "manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f.webp",
+        "manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@tablet.webp",
+        "manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }
-
