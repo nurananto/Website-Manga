@@ -120,8 +120,20 @@ async function syncCovers() {
     console.log(`🔍 ${meta.title || slug}`);
     let metaChanged = false;
 
-    // ── Cover utama ────────────────────────────────────────────
-    const coverFileName = await getMangaDexCover(mangadexId);
+    // Ambil semua cover dulu — dipakai untuk galeri DAN memilih cover utama
+    const allCovers = await getAllMangaDexCovers(mangadexId);
+
+    // ── Cover utama = volume TERTINGGI (bukan pilihan MangaDex) ─
+    // Fallback: cover_art pilihan MangaDex kalau tidak ada info volume
+    let coverFileName = null;
+    const numbered = allCovers.filter(c => c.volume != null && !isNaN(parseFloat(c.volume)));
+    if (numbered.length) {
+      coverFileName = numbered.reduce((a, b) => parseFloat(b.volume) >= parseFloat(a.volume) ? b : a).file;
+    } else if (allCovers.length) {
+      coverFileName = allCovers[allCovers.length - 1].file; // terbaru (urut createdAt)
+    } else {
+      coverFileName = await getMangaDexCover(mangadexId);
+    }
     if (!coverFileName) {
       console.log(`   ⚠️  Tidak dapat cover dari MangaDex`);
     } else if (meta.mangadex_cover === coverFileName && meta.covers?.length >= 3 && meta.cover_widths === SIZE_SIGNATURE) {
@@ -145,7 +157,6 @@ async function syncCovers() {
     }
 
     // ── Galeri: semua cover MangaDex, sinkron dua arah ─────────
-    const allCovers = await getAllMangaDexCovers(mangadexId);
     if (allCovers.length) {
       const prev         = Array.isArray(meta.cover_gallery) ? meta.cover_gallery : [];
       const prevByFile   = Object.fromEntries(prev.map(g => [g.file, g]));
