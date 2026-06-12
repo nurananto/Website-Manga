@@ -73,6 +73,9 @@ jobs:
 
       - name: Build website
         run: npm run build
+        env:
+          VITE_WORKER_URL: ${{ secrets.VITE_WORKER_URL }}
+          VITE_IMAGE_URL: ${{ secrets.VITE_IMAGE_URL }}
 
       - name: Set version.json type catalog (refresh halus tanpa reload)
         run: |

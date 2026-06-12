@@ -30,6 +30,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_WORKER_URL: ${{ secrets.VITE_WORKER_URL }}
+          VITE_IMAGE_URL: ${{ secrets.VITE_IMAGE_URL }}
 
       - name: Pastikan project Pages ada (idempotent)
         run: npx wrangler pages project create nuranantoscans --production-branch=main || true
