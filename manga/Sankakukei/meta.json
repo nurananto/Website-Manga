@@ -34,5 +34,18 @@
     "11": 5
   },
   "total_views": 15,
-  "mangadex_cover": "4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.jpg"
+  "mangadex_cover": "4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.webp",
+        "manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16@tablet.webp",
+        "manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }

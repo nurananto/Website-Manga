@@ -28,14 +28,25 @@
   "chapter_views": {},
   "total_views": 0,
   "mangadex_cover": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "volume": "1",
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@mobile.webp"
+      }
+    }
+  ],
   "mangadex_id": "9aebe60e-777f-4a58-a3bf-143c3096b94f",
   "rating": 8.23,
   "next_update": null,
-  "coverUrl": "manga/Yuumei/covers/cover.webp",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp",
   "coverUrls": {
-    "desktop": "manga/Yuumei/covers/cover.webp",
-    "tablet": "manga/Yuumei/covers/cover@tablet.webp",
-    "mobile": "manga/Yuumei/covers/cover@mobile.webp"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp"
   },
   "chapters": [
     {
@@ -47,7 +58,7 @@
       "r2_prefix": "manga/Yuumei/20/",
       "title": "Ch. 20",
       "unlockDate": "2026-06-11T18:25:40.000Z",
-      "isLocked": true,
+      "isLocked": false,
       "views": 0
     },
     {

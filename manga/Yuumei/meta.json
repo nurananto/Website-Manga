@@ -27,5 +27,28 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg"
+  "mangadex_cover": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "23eafd3d-5847-42f6-9909-74c4b3dee9a8.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8.webp",
+        "manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@tablet.webp",
+        "manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg",
+      "volume": "2",
+      "keys": [
+        "manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e.webp",
+        "manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@tablet.webp",
+        "manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }
