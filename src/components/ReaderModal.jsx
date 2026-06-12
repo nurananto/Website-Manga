@@ -346,32 +346,34 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     setPageCount(chapter.pages);
   }, [chapter?.id, imgAccess, imgSession]);
 
-  // Reset scroll + currentPage saat chapter berganti
+  // Reset currentPage saat chapter berganti. Hanya scroll ke atas kalau TIDAK ada
+  // posisi tersimpan — supaya "Lanjut Baca" tidak berkedip atas dulu.
   useEffect(() => {
     if (!chapter?.id) return;
-    scrollRef.current?.scrollTo({ top: 0, behavior: 'instant' });
     setCurrentPage(0);
     pageRefs.current = [];
+    const saved = parseInt(localStorage.getItem(`reader_page_${chapter.id}`) || '');
+    const hasResume = !isNaN(saved) && saved > 0 && saved < (chapter.pages ?? 0) - 1;
+    if (!hasResume) scrollRef.current?.scrollTo({ top: 0, behavior: 'instant' });
   }, [chapter?.id]);
 
-  // Restore page setelah gambar-gambar mulai dirender (pages array diset)
+  // Restore posisi baca terakhir secepat mungkin setelah halaman dirender
   useEffect(() => {
     if (!chapter?.id || pages.length === 0) return;
-    const saved = localStorage.getItem(`reader_page_${chapter.id}`);
-    if (!saved) return;
-    const savedPage = parseInt(saved);
-    // Kalau sudah di halaman terakhir sebelumnya → mulai dari atas
-    if (savedPage >= pages.length - 1) return;
-    // Scroll ke halaman yang disimpan setelah render
+    const saved = parseInt(localStorage.getItem(`reader_page_${chapter.id}`) || '');
+    if (isNaN(saved) || saved <= 0 || saved >= pages.length - 1) return;
+    let cancelled = false;
     const tryScroll = (attempts = 0) => {
-      const el = pageRefs.current[savedPage];
+      if (cancelled) return;
+      const el = pageRefs.current[saved];
       if (el) {
         el.scrollIntoView({ behavior: 'instant', block: 'start' });
-      } else if (attempts < 10) {
-        setTimeout(() => tryScroll(attempts + 1), 150);
+      } else if (attempts < 30) {
+        requestAnimationFrame(() => tryScroll(attempts + 1));
       }
     };
-    setTimeout(() => tryScroll(), 300);
+    requestAnimationFrame(() => tryScroll());
+    return () => { cancelled = true; };
   }, [pages]);
 
   // Scroll event: update currentPage + simpan page index
