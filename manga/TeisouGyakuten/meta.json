@@ -1,7 +1,7 @@
 {
   "id": "TeisouGyakuten",
   "title": "Teisou Gyakuten Sekai Nara Moteru to Omotte Itara",
-  "alt_title": "貞操逆転世界ならモテると思っていたら",
+  "alt_title": "è²æéè»¢ä¸çãªãã¢ããã¨æã£ã¦ããã",
   "status": "ONGOING",
   "type": "MANGA",
   "author": "Hinami Yui",
@@ -18,7 +18,7 @@
     "Shounen",
     "Adaptation"
   ],
-  "description": "Dunia dengan moral nafsu yang terbalik —rasio gender 1:20, cewek-cewek memiliki hasrat nafsu yang kuat, sedangkan para cowok ingin menjalani hidup nyaman dan damai dilindungi bodyguard. Bodyguard Cowok yang ada di sekitarnya semuanya tampan, dan Ikuto mengeluh bahwa terutama sahabatnya, Toosaka Rui, terlalu high-spec sehingga membuatnya tersaingi, tetapi… Sebenarnya, para bodyguard itu adalah gadis-gadis cantik yang menyamar sebagai laki-laki! Ikuto yang sama sekali tak sadar dengan hal itu selalu bertingkah polos apa adanya dengan para bodyguard yang menjaganya, membuat setiap cewek merasa punya peluang untuk dapetin dia. Saat harem tak-sengaja terbentuk, Rui—yang ingin dilihat sebagai seorang cewek—mengungkapkan semuanya pada Ikuto—!? Mimpiku sebagai seorang cowok tidak bisa ditahan lagi—romcom harem kehidupan populer SMA tanpa akhir pun dimulai!",
+  "description": "Dunia dengan moral nafsu yang terbalik ârasio gender 1:20, cewek-cewek memiliki hasrat nafsu yang kuat, sedangkan para cowok ingin menjalani hidup nyaman dan damai dilindungi bodyguard. Bodyguard Cowok yang ada di sekitarnya semuanya tampan, dan Ikuto mengeluh bahwa terutama sahabatnya, Toosaka Rui, terlalu high-spec sehingga membuatnya tersaingi, tetapiâ¦ Sebenarnya, para bodyguard itu adalah gadis-gadis cantik yang menyamar sebagai laki-laki! Ikuto yang sama sekali tak sadar dengan hal itu selalu bertingkah polos apa adanya dengan para bodyguard yang menjaganya, membuat setiap cewek merasa punya peluang untuk dapetin dia. Saat harem tak-sengaja terbentuk, Ruiâyang ingin dilihat sebagai seorang cewekâmengungkapkan semuanya pada Ikutoâ!? Mimpiku sebagai seorang cowok tidak bisa ditahan lagiâromcom harem kehidupan populer SMA tanpa akhir pun dimulai!",
   "covers": [
     "manga/TeisouGyakuten/covers/cover.webp",
     "manga/TeisouGyakuten/covers/cover@tablet.webp",
@@ -28,8 +28,13 @@
   "raw_url": "https://comic-walker.com/detail/KC_007283_S?episodeType=first",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "1": 1,
+    "5": 1,
+    "6": 1,
+    "6.5": 4
+  },
+  "total_views": 7,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
