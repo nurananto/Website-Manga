@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { imgUrl, timeAgo } from '../utils';
-import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Coins, Lock, Images, Download, X } from 'lucide-react';
+import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Coins, Lock, Images, Download, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
 
@@ -23,6 +23,11 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
     : localUnlockedChapters;
   const [readChapters, setReadChapters] = useState(new Set());
   const [lightboxCover, setLightboxCover] = useState(null);
+  const [galleryPage, setGalleryPage] = useState(0);
+  const GALLERY_PER_PAGE = 6;
+  const galleryPages = Math.ceil((manga?.cover_gallery?.length ?? 0) / GALLERY_PER_PAGE);
+
+  useEffect(() => { setGalleryPage(0); }, [manga?.id]);
 
   const downloadCover = async (g) => {
     const url = g.urls.desktop;
@@ -384,6 +389,92 @@ const renderChapterRow = (ch, idx) => {
                 </button>
               </p>
             </div>
+
+            {/* Galeri cover — pagination geser kiri/kanan, terbaru duluan */}
+            {Array.isArray(manga.cover_gallery) && manga.cover_gallery.length > 0 && (
+              <div className="relative border border-white/15 rounded-2xl p-3 sm:p-4 overflow-hidden">
+                {/* Background blur dari cover utama */}
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                  <img src={imgUrl(manga.coverUrl)} alt="" aria-hidden
+                    className="w-full h-full object-cover scale-150 blur-3xl opacity-20" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-surface/80 via-surface/60 to-surface/80" />
+                </div>
+
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Images className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                    <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">Cover Manga</h3>
+                    <span className="font-label-sm text-[10px] sm:text-xs font-black text-outline/70 bg-white/5 border border-white/10 rounded-full px-2 py-0.5">
+                      {manga.cover_gallery.length}
+                    </span>
+                    {galleryPages > 1 && (
+                      <span className="ml-auto font-label-sm text-[10px] sm:text-xs font-bold text-outline/60">
+                        {galleryPage + 1}/{galleryPages}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="relative">
+                    {/* Tombol geser kiri */}
+                    {galleryPages > 1 && (
+                      <button
+                        onClick={() => setGalleryPage(p => Math.max(0, p - 1))}
+                        disabled={galleryPage === 0}
+                        className="absolute -left-1.5 top-1/2 -translate-y-1/2 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/60 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white disabled:opacity-25 disabled:cursor-not-allowed hover:bg-black/80 active:scale-95 transition-all cursor-pointer"
+                      >
+                        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                      </button>
+                    )}
+
+                    <div className="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-3 gap-2 sm:gap-3">
+                      {manga.cover_gallery
+                        .slice(galleryPage * GALLERY_PER_PAGE, (galleryPage + 1) * GALLERY_PER_PAGE)
+                        .map((g, i) => {
+                          const isCurrent = !!g.is_current;
+                          return (
+                            <button
+                              key={`${galleryPage}-${i}`}
+                              onClick={() => setLightboxCover(g)}
+                              className={`group relative rounded-xl overflow-hidden border transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.6)] ${
+                                isCurrent ? 'border-primary/50 ring-1 ring-primary/30' : 'border-white/10 hover:border-primary/40'
+                              }`}
+                            >
+                              <img
+                                src={g.urls.mobile}
+                                alt={g.volume ? `Cover Vol. ${g.volume}` : 'Cover'}
+                                loading="lazy"
+                                className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300"
+                              />
+                              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+                              {g.volume && (
+                                <span className="absolute bottom-1.5 left-1.5 bg-black/70 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-[9px] sm:text-[10px] font-black">
+                                  Vol. {g.volume}
+                                </span>
+                              )}
+                              {isCurrent && (
+                                <span className="absolute top-1.5 right-1.5 bg-primary/90 text-on-primary px-1.5 py-0.5 rounded font-label-sm text-[8px] sm:text-[9px] font-black uppercase tracking-wider">
+                                  Dipakai
+                                </span>
+                              )}
+                            </button>
+                          );
+                        })}
+                    </div>
+
+                    {/* Tombol geser kanan */}
+                    {galleryPages > 1 && (
+                      <button
+                        onClick={() => setGalleryPage(p => Math.min(galleryPages - 1, p + 1))}
+                        disabled={galleryPage >= galleryPages - 1}
+                        className="absolute -right-1.5 top-1/2 -translate-y-1/2 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/60 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white disabled:opacity-25 disabled:cursor-not-allowed hover:bg-black/80 active:scale-95 transition-all cursor-pointer"
+                      >
+                        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Column 2: Chapters */}
@@ -442,66 +533,6 @@ const renderChapterRow = (ch, idx) => {
           </div>
           </div>{/* end grid */}
         </div>{/* end wrapper border */}
-
-        {/* Galeri semua cover — di luar kotak manga info */}
-        {Array.isArray(manga.cover_gallery) && manga.cover_gallery.length > 0 && (
-          <section className={`relative mx-3 sm:mx-4 md:mx-5 mt-4 md:mt-6 xl:mt-8 border border-white/15 rounded-2xl p-3 sm:p-4 md:p-5 overflow-hidden ${
-            activeDetailTab === 'info' ? 'block' : 'hidden'
-          } lg:block`}>
-            {/* Background blur dari cover utama, senada hero */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-              <img src={imgUrl(manga.coverUrl)} alt="" aria-hidden
-                className="w-full h-full object-cover scale-150 blur-3xl opacity-20" />
-              <div className="absolute inset-0 bg-gradient-to-b from-surface/80 via-surface/60 to-surface/80" />
-            </div>
-
-            <div className="relative z-10">
-              <div className="flex items-center gap-2 mb-3 md:mb-4">
-                <Images className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary" />
-                <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface">
-                  Cover Manga
-                </h3>
-                <span className="font-label-sm text-[10px] sm:text-xs font-black text-outline/70 bg-white/5 border border-white/10 rounded-full px-2 py-0.5">
-                  {manga.cover_gallery.length}
-                </span>
-              </div>
-
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3">
-                {manga.cover_gallery.map((g, i) => {
-                  const isCurrent = !!g.is_current;
-                  return (
-                    <button
-                      key={i}
-                      onClick={() => setLightboxCover(g)}
-                      className={`group relative rounded-xl overflow-hidden border transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.6)] ${
-                        isCurrent ? 'border-primary/50 ring-1 ring-primary/30' : 'border-white/10 hover:border-primary/40'
-                      }`}
-                    >
-                      <img
-                        src={g.urls.mobile}
-                        alt={g.volume ? `Cover Vol. ${g.volume}` : 'Cover'}
-                        loading="lazy"
-                        className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      {/* Gradient bawah agar label terbaca */}
-                      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
-                      {g.volume && (
-                        <span className="absolute bottom-1.5 left-1.5 bg-black/70 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-[9px] sm:text-[10px] md:text-xs font-black">
-                          Vol. {g.volume}
-                        </span>
-                      )}
-                      {isCurrent && (
-                        <span className="absolute top-1.5 right-1.5 bg-primary/90 text-on-primary px-1.5 py-0.5 rounded font-label-sm text-[8px] sm:text-[9px] md:text-[10px] font-black uppercase tracking-wider">
-                          Dipakai
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        )}
 
         {/* Lightbox cover — zoom di halaman, tidak menutupi seluruh layar */}
         {lightboxCover && (
