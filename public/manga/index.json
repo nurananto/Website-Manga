@@ -31,7 +31,7 @@
       "Slice of Life"
     ],
     "rating": 7.38,
-    "total_views": 0,
+    "total_views": 7,
     "isTrending": true,
     "next_update": null,
     "chapters": [
@@ -39,37 +39,37 @@
         "chapter_number": 6.5,
         "lock_hours": 0,
         "pages": 8,
+        "release_date": "2026-06-12T17:47:09+07:00",
         "id": "TeisouGyakuten-ch-6.5",
         "r2_prefix": "manga/TeisouGyakuten/6.5/",
         "title": "Ch. 6.5",
-        "release_date": "2026-06-12T17:47:09+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 4
       },
       {
         "chapter_number": 6,
         "lock_hours": 0,
         "pages": 27,
+        "release_date": "2026-06-12T17:47:09+07:00",
         "id": "TeisouGyakuten-ch-6",
         "r2_prefix": "manga/TeisouGyakuten/6/",
         "title": "Ch. 6",
-        "release_date": "2026-06-12T17:47:09+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 5,
         "lock_hours": 0,
         "pages": 24,
+        "release_date": "2026-06-12T17:47:09+07:00",
         "id": "TeisouGyakuten-ch-5",
         "r2_prefix": "manga/TeisouGyakuten/5/",
         "title": "Ch. 5",
-        "release_date": "2026-06-12T17:47:09+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       }
     ]
   },
@@ -102,8 +102,8 @@
       "Slice of Life"
     ],
     "rating": 8.47,
-    "total_views": 0,
-    "isTrending": true,
+    "total_views": 4,
+    "isTrending": false,
     "next_update": null,
     "chapters": [
       {
@@ -116,7 +116,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 8,
@@ -128,7 +128,7 @@
         "title": "Ch. 8",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 7.5,
@@ -173,8 +173,8 @@
       "Slice of Life"
     ],
     "rating": 8.23,
-    "total_views": 0,
-    "isTrending": false,
+    "total_views": 10,
+    "isTrending": true,
     "next_update": null,
     "chapters": [
       {
@@ -187,7 +187,7 @@
         "title": "Ch. 20",
         "unlockDate": "2026-06-11T18:25:40.000Z",
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 19,
@@ -199,7 +199,7 @@
         "title": "Ch. 19",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 3
       },
       {
         "chapter_number": 18,
@@ -211,7 +211,7 @@
         "title": "Ch. 18",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       }
     ]
   },
@@ -246,7 +246,7 @@
       "Video Games"
     ],
     "rating": 7.43,
-    "total_views": 12,
+    "total_views": 14,
     "isTrending": true,
     "next_update": null,
     "chapters": [
@@ -260,7 +260,7 @@
         "title": "Ch. 8",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 5
       },
       {
         "chapter_number": 7,
@@ -316,7 +316,7 @@
       "Time Travel"
     ],
     "rating": 8.47,
-    "total_views": 15,
+    "total_views": 16,
     "isTrending": true,
     "next_update": null,
     "chapters": [
@@ -330,7 +330,7 @@
         "title": "Ch. 11",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 6
       },
       {
         "chapter_number": 10,
@@ -384,7 +384,7 @@
       "Slice of Life"
     ],
     "rating": 8.69,
-    "total_views": 14,
+    "total_views": 20,
     "isTrending": true,
     "next_update": null,
     "chapters": [
@@ -398,7 +398,7 @@
         "title": "Ch. 100",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 99,

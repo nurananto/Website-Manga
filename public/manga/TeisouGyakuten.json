@@ -28,8 +28,13 @@
   "raw_url": "https://comic-walker.com/detail/KC_007283_S?episodeType=first",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "1": 1,
+    "5": 1,
+    "6": 1,
+    "6.5": 4
+  },
+  "total_views": 7,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -66,46 +71,46 @@
       "chapter_number": 6.5,
       "lock_hours": 0,
       "pages": 8,
+      "release_date": "2026-06-12T17:47:09+07:00",
       "id": "TeisouGyakuten-ch-6.5",
       "r2_prefix": "manga/TeisouGyakuten/6.5/",
       "title": "Ch. 6.5",
-      "release_date": "2026-06-12T17:47:09+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 4
     },
     {
       "chapter_number": 6,
       "lock_hours": 0,
       "pages": 27,
+      "release_date": "2026-06-12T17:47:09+07:00",
       "id": "TeisouGyakuten-ch-6",
       "r2_prefix": "manga/TeisouGyakuten/6/",
       "title": "Ch. 6",
-      "release_date": "2026-06-12T17:47:09+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 5,
       "lock_hours": 0,
       "pages": 24,
+      "release_date": "2026-06-12T17:47:09+07:00",
       "id": "TeisouGyakuten-ch-5",
       "r2_prefix": "manga/TeisouGyakuten/5/",
       "title": "Ch. 5",
-      "release_date": "2026-06-12T17:47:09+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 4,
       "lock_hours": 0,
       "pages": 26,
+      "release_date": "2026-06-12T17:47:09+07:00",
       "id": "TeisouGyakuten-ch-4",
       "r2_prefix": "manga/TeisouGyakuten/4/",
       "title": "Ch. 4",
-      "release_date": "2026-06-12T17:47:09+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
@@ -114,10 +119,10 @@
       "chapter_number": 3,
       "lock_hours": 0,
       "pages": 37,
+      "release_date": "2026-06-12T17:47:09+07:00",
       "id": "TeisouGyakuten-ch-3",
       "r2_prefix": "manga/TeisouGyakuten/3/",
       "title": "Ch. 3",
-      "release_date": "2026-06-12T17:47:09+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
@@ -126,10 +131,10 @@
       "chapter_number": 2,
       "lock_hours": 0,
       "pages": 39,
+      "release_date": "2026-06-12T17:47:09+07:00",
       "id": "TeisouGyakuten-ch-2",
       "r2_prefix": "manga/TeisouGyakuten/2/",
       "title": "Ch. 2",
-      "release_date": "2026-06-12T17:47:09+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
@@ -138,13 +143,13 @@
       "chapter_number": 1,
       "lock_hours": 0,
       "pages": 33,
+      "release_date": "2026-06-12T17:47:09+07:00",
       "id": "TeisouGyakuten-ch-1",
       "r2_prefix": "manga/TeisouGyakuten/1/",
       "title": "Ch. 1",
-      "release_date": "2026-06-12T17:47:09+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     }
   ]
 }
