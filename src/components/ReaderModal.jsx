@@ -8,6 +8,50 @@ import { imgUrl } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { ensureSession, getCachedSession } from '../lib/session';
 
+// Info jadwal rilis chapter berikutnya: countdown kalau tanggal, teks kalau bukan
+function NextUpdateInfo({ value }) {
+  const [now, setNow] = useState(Date.now());
+  const t = new Date(value).getTime();
+  useEffect(() => {
+    if (isNaN(t)) return;
+    const id = setInterval(() => setNow(Date.now()), 60_000);
+    return () => clearInterval(id);
+  }, [t]);
+
+  // Bukan tanggal valid → tampilkan teks apa adanya
+  if (isNaN(t)) {
+    return (
+      <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-surface-container-high/50 rounded-lg px-3 py-2 border border-white/5">
+        Chapter berikutnya diupload sekitar <span className="text-primary font-bold">{value}</span>
+      </p>
+    );
+  }
+
+  const diff = t - now;
+  if (diff <= 0) {
+    return (
+      <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-emerald-500/10 rounded-lg px-3 py-2 border border-emerald-500/20">
+        <span className="text-emerald-400 font-bold">Chapter baru segera rilis!</span> Pantau terus ya 🔥
+      </p>
+    );
+  }
+
+  const totalMin = Math.floor(diff / 60_000);
+  const d = Math.floor(totalMin / 1440);
+  const h = Math.floor((totalMin % 1440) / 60);
+  const m = totalMin % 60;
+  const parts = [];
+  if (d) parts.push(`${d} hari`);
+  if (h) parts.push(`${h} jam`);
+  if (!d && m) parts.push(`${m} menit`);
+
+  return (
+    <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-surface-container-high/50 rounded-lg px-3 py-2 border border-white/5">
+      Chapter berikutnya rilis dalam <span className="text-primary font-bold">{parts.join(' ') || 'kurang dari 1 menit'}</span>
+    </p>
+  );
+}
+
 function CountdownLarge({ unlockDate }) {
   const [time, setTime] = useState({ h: 0, m: 0, s: 0 });
 
@@ -651,12 +695,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                   <p className="font-label-sm text-[10px] sm:text-xs text-outline/60 font-bold uppercase tracking-wider mt-1">Chapter saat ini</p>
                   <p className="font-body-md text-sm sm:text-base text-primary font-bold">{activeChapter?.title}</p>
 
-                  {activeManga?.next_update && (
-                    <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-surface-container-high/50 rounded-lg px-3 py-2 border border-white/5">
-                      Chapter berikutnya diupload sekitar{' '}
-                      <span className="text-primary font-bold">{activeManga.next_update}</span>
-                    </p>
-                  )}
+                  {activeManga?.next_update && <NextUpdateInfo value={activeManga.next_update} />}
                 </div>
                 <button
                   onClick={() => { setShowLastChapterModal(false); onClose(); }}
