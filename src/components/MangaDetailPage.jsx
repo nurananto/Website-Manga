@@ -445,7 +445,9 @@ const renderChapterRow = (ch, idx) => {
 
         {/* Galeri semua cover — di luar kotak manga info */}
         {Array.isArray(manga.cover_gallery) && manga.cover_gallery.length > 0 && (
-          <section className="relative mx-3 sm:mx-4 md:mx-5 mt-4 md:mt-6 xl:mt-8 border border-white/15 rounded-2xl p-3 sm:p-4 md:p-5 overflow-hidden">
+          <section className={`relative mx-3 sm:mx-4 md:mx-5 mt-4 md:mt-6 xl:mt-8 border border-white/15 rounded-2xl p-3 sm:p-4 md:p-5 overflow-hidden ${
+            activeDetailTab === 'info' ? 'block' : 'hidden'
+          } lg:block`}>
             {/* Background blur dari cover utama, senada hero */}
             <div className="absolute inset-0 z-0 pointer-events-none">
               <img src={imgUrl(manga.coverUrl)} alt="" aria-hidden
