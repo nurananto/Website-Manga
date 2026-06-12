@@ -207,12 +207,16 @@ async function buildCatalog() {
     manga.status = statusMap[manga.status?.toLowerCase()] ?? manga.status;
     manga.type   = typeMap[manga.type?.toLowerCase()] ?? manga.type;
 
-    // coverUrl dari covers[0] (desktop), coverUrls untuk semua ukuran
-    manga.coverUrl = manga.cover_dev ?? manga.covers?.[0] ?? null;
+    // coverUrl dari covers[0] (desktop), coverUrls untuk semua ukuran.
+    // CDN_BASE (mis. https://cdn.nuranantoscans.my.id) → cover diserve langsung
+    // dari R2 publik tanpa lewat image worker (0 invocation).
+    const cdnBase = (process.env.CDN_BASE || '').replace(/\/$/, '');
+    const coverFull = (key) => (key && cdnBase ? `${cdnBase}/${key}` : key ?? null);
+    manga.coverUrl = coverFull(manga.cover_dev ?? manga.covers?.[0]);
     manga.coverUrls = {
-      desktop: manga.covers?.[0] ?? manga.coverUrl ?? null,
-      tablet:  manga.covers?.[1] ?? manga.coverUrl ?? null,
-      mobile:  manga.covers?.[2] ?? manga.coverUrl ?? null,
+      desktop: coverFull(manga.covers?.[0]) ?? manga.coverUrl,
+      tablet:  coverFull(manga.covers?.[1]) ?? manga.coverUrl,
+      mobile:  coverFull(manga.covers?.[2]) ?? manga.coverUrl,
     };
     delete manga.cover_dev;
 

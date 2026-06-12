@@ -4,11 +4,14 @@ import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client
 import sharp from 'sharp';
 
 const MANGA_DIR = './manga';
+// Lebar 2× ukuran tampil agar tajam di layar high-DPI (retina/ponsel)
 const SIZES = [
-  { suffix: '',        width: 460 }, // desktop
-  { suffix: '@tablet', width: 280 }, // tablet
-  { suffix: '@mobile', width: 160 }, // mobile
+  { suffix: '',        width: 640 }, // desktop
+  { suffix: '@tablet', width: 480 }, // tablet
+  { suffix: '@mobile', width: 320 }, // mobile
 ];
+// Penanda versi ukuran — kalau berubah, semua cover di-generate ulang otomatis
+const SIZE_SIGNATURE = SIZES.map(s => s.width).join('x');
 
 const r2 = new S3Client({
   region: 'auto',
@@ -18,7 +21,8 @@ const r2 = new S3Client({
     secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
   },
 });
-const BUCKET = process.env.R2_BUCKET_NAME;
+// Bucket publik khusus aset (cover) — fallback ke bucket utama jika belum diset
+const BUCKET = process.env.R2_PUBLIC_BUCKET_NAME || process.env.R2_BUCKET_NAME;
 
 async function getMangaDexCover(mangadexId) {
   try {
@@ -85,8 +89,8 @@ async function syncCovers() {
       continue;
     }
 
-    // Sudah up to date — skip
-    if (meta.mangadex_cover === coverFileName && meta.covers?.length >= 3) {
+    // Sudah up to date (cover sama + ukuran sama) — skip
+    if (meta.mangadex_cover === coverFileName && meta.covers?.length >= 3 && meta.cover_widths === SIZE_SIGNATURE) {
       console.log(`   ✓ Cover sudah terbaru (${coverFileName})`);
       skipped++;
       continue;
@@ -126,6 +130,7 @@ async function syncCovers() {
     // Update meta.json
     meta.covers         = newCovers;
     meta.mangadex_cover = coverFileName;
+    meta.cover_widths   = SIZE_SIGNATURE;
     fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2) + '\n', 'utf-8');
     console.log(`   💾 meta.json diperbarui`);
     updated++;
