@@ -6,7 +6,15 @@
   "type": "MANGA",
   "author": "Yuuji Yuuji",
   "artist": "Nemaki Neruzo",
-  "genres": ["Shounen","Adaptation","Comedy","Drama","Romance","Slice of Life","School Life"],
+  "genres": [
+    "Shounen",
+    "Adaptation",
+    "Comedy",
+    "Drama",
+    "Romance",
+    "Slice of Life",
+    "School Life"
+  ],
   "description": "'Kisah Romantis Komedi Dimulai dari Persahabatan dengan Heroine Tersembunyi yang Hanya Aku Tahu.'Dia anak baik, tapi terlalu biasa saja… Itulah Fukusuke Mogi, yang diam-diam mengagumi Kureha Yua, gadis tercantik di kelas.Namun, orang yang digosipkan bersama Yui adalah sahabatnya, Fujisaki Yuusei, bintang tim basket. Saat merasa terpuruk karena menjadi 'karakter figuran' yang tenggelam di balik sahabatnya, Fukusuke menemukan seorang gadis super imut lainnya, yang tersembunyi di balik bayang-bayang Yua dan jarang diperhatikan—Usuha Amari!'A-Apakah… kamu mau jadi temanku?'Berbagi nasib yang serupa, Fukusuke dan Amari memutuskan untuk mulai berlatih 'menjadi orang biasa' bersama—kira-kira apa yang akan terjadi selanjutnya?",
   "covers": [
     "manga/Amari-chan/covers/cover.webp",
@@ -19,5 +27,18 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "6ffed041-aa59-49e2-b79f-dac40ac0ef53.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "6ffed041-aa59-49e2-b79f-dac40ac0ef53.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53.webp",
+        "manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@tablet.webp",
+        "manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }

@@ -1,5 +1,76 @@
 [
   {
+    "id": "Amari-chan",
+    "title": "Kanojo ni Shitai Joshi Ichii, no Tonari de Mitsuketa Amari-chan",
+    "alt_title": "彼女にしたい女子一位、の隣で見つけたあまりちゃん",
+    "description": "'Kisah Romantis Komedi Dimulai dari Persahabatan dengan Heroine Tersembunyi yang Hanya Aku Tahu.'Dia anak baik, tapi terlalu biasa saja… Itulah Fukusuke Mogi, yang diam-diam mengagumi Kureha Yua, gadis tercantik di kelas.Namun, orang yang digosipkan bersama Yui adalah sahabatnya, Fujisaki Yuusei, bintang tim basket. Saat merasa terpuruk karena menjadi 'karakter figuran' yang tenggelam di balik sahabatnya, Fukusuke menemukan seorang gadis super imut lainnya, yang tersembunyi di balik bayang-bayang Yua dan jarang diperhatikan—Usuha Amari!'A-Apakah… kamu mau jadi temanku?'Berbagi nasib yang serupa, Fukusuke dan Amari memutuskan untuk mulai berlatih 'menjadi orang biasa' bersama—kira-kira apa yang akan terjadi selanjutnya?",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Yuuji Yuuji",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/Amari-chan/covers/cover.webp",
+      "manga/Amari-chan/covers/cover@tablet.webp",
+      "manga/Amari-chan/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Drama",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.47,
+    "total_views": 0,
+    "isTrending": true,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 9,
+        "lock_hours": 0,
+        "pages": 19,
+        "id": "Amari-chan-ch-9",
+        "r2_prefix": "manga/Amari-chan/9/",
+        "title": "Ch. 9",
+        "release_date": "2026-06-12T17:07:01+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 8,
+        "lock_hours": 0,
+        "pages": 20,
+        "id": "Amari-chan-ch-8",
+        "r2_prefix": "manga/Amari-chan/8/",
+        "title": "Ch. 8",
+        "release_date": "2026-06-12T17:07:01+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 7.5,
+        "lock_hours": 0,
+        "pages": 6,
+        "id": "Amari-chan-ch-7.5",
+        "r2_prefix": "manga/Amari-chan/7.5/",
+        "title": "Ch. 7.5",
+        "release_date": "2026-06-12T17:07:01+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "Yuumei",
     "title": "Yuumei VTuber no Ani Dakedo, Nazeka Ore ga Yuumei ni Natteita",
     "alt_title": "有名VTuberの兄だけど、何故か俺が有名になっていた",
@@ -221,16 +292,16 @@
     "status": "Tamat",
     "type": "WEBTOON",
     "author": "Shimamura",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/waka-chan/covers/cover.webp",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/waka-chan/covers/cover.webp",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/waka-chan/covers/cover@tablet.webp",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/waka-chan/covers/cover@mobile.webp"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@mobile.webp"
     },
     "covers": [
-      "manga/waka-chan/covers/cover.webp",
-      "manga/waka-chan/covers/cover@tablet.webp",
-      "manga/waka-chan/covers/cover@mobile.webp"
+      "manga/Waka-chan/covers/cover.webp",
+      "manga/Waka-chan/covers/cover@tablet.webp",
+      "manga/Waka-chan/covers/cover@mobile.webp"
     ],
     "genres": [
       "Comedy",

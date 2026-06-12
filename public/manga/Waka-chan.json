@@ -14,9 +14,9 @@
   ],
   "description": "Tomoya adalah mahasiswi baru dalam misi untuk akhirnya mendapatkan pacar pertamanya, tetapi dengan satu masalah kecil: dia masih perawan! Sementara dia dekat dengan gadis cantik dan menawan Waka Sakuraba di klubnya di sekolah, dia tidak bisa memberanikan diri untuk mengambil langkah pertama dan mengajaknya kencan. Suatu hari, Tomoya menemukan sisi tersembunyi dari gadia yang disukainya, Waka.",
   "covers": [
-    "manga/waka-chan/covers/cover.webp",
-    "manga/waka-chan/covers/cover@tablet.webp",
-    "manga/waka-chan/covers/cover@mobile.webp"
+    "manga/Waka-chan/covers/cover.webp",
+    "manga/Waka-chan/covers/cover@tablet.webp",
+    "manga/Waka-chan/covers/cover@mobile.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/57fe3f00-8626-462b-8f75-fce0e6faa6be/waka-chan-wa-kyou-mo-azatoi",
   "raw_url": "https://www.comico.jp/comic/908",
@@ -36,12 +36,12 @@
     "100": 2
   },
   "total_views": 14,
-  "mangadex_cover": "3764c25f-c596-421b-b0c7-9eabba109b5a.jpg",
+  "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
     {
       "volume": "1.0",
-      "is_current": false,
+      "is_current": true,
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba.webp",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba@tablet.webp",
@@ -140,7 +140,7 @@
     },
     {
       "volume": "0",
-      "is_current": true,
+      "is_current": false,
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a.webp",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a@tablet.webp",
@@ -151,11 +151,11 @@
   "mangadex_id": "57fe3f00-8626-462b-8f75-fce0e6faa6be",
   "rating": 8.69,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/waka-chan/covers/cover.webp",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/waka-chan/covers/cover.webp",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/waka-chan/covers/cover@tablet.webp",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/waka-chan/covers/cover@mobile.webp"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@tablet.webp",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@mobile.webp"
   },
   "chapters": [
     {
