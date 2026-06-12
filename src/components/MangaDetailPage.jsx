@@ -504,7 +504,7 @@ const renderChapterRow = (ch, idx) => {
         {/* Lightbox cover — zoom di halaman, tidak menutupi seluruh layar */}
         {lightboxCover && (
           <div
-            className="fixed inset-0 z-[400] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 sm:p-10"
+            className="fixed inset-0 z-[400] bg-black/50 backdrop-blur-xl flex items-center justify-center p-4 sm:p-10"
             onClick={() => setLightboxCover(null)}
           >
             <button
