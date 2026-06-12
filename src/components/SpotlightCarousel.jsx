@@ -28,10 +28,10 @@ function getCoverW() {
 }
 
 // Items shown on each side of active per breakpoint
-// mobile: 1 side → 3 total | sm: 2 → 5 | md: 3 → 7 | lg: 4 → 9
+// mobile: 2 side → 5 total | sm: 2 → 5 | md: 3 → 7 | lg: 4 → 9
 function getMaxSide() {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
-  if (w < 640)  return 1;
+  if (w < 640)  return 2;
   if (w < 768)  return 2;
   if (w < 1024) return 3;
   return 4;
