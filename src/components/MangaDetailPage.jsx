@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { imgUrl, timeAgo } from '../utils';
-import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Coins, Lock, Images, Download, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Coins, Lock, Images, Download, X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
 
@@ -195,6 +195,41 @@ const renderChapterRow = (ch, idx) => {
                 {manga.alternativeTitle || manga.alt_title || ''}
               </p>
 
+              {/* Baca dari Awal + Lanjut Baca */}
+              {(() => {
+                const chaptersAsc = [...(manga.chapters || [])].sort((a, b) => a.chapter_number - b.chapter_number);
+                const firstChapter = chaptersAsc[0];
+                const continueChapter = lastReadChapter
+                  ? (manga.chapters || []).find(c =>
+                      c.id === lastReadChapter.id ||
+                      String(c.chapter_number) === String(lastReadChapter.chapter_number))
+                  : null;
+                if (!firstChapter) return null;
+                return (
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
+                    <button
+                      onClick={() => onReadChapter(firstChapter, manga.title)}
+                      className={`h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer ${
+                        continueChapter
+                          ? 'bg-white/10 hover:bg-white/20 border border-white/15 text-on-surface backdrop-blur-sm'
+                          : 'bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white shadow-lg'
+                      }`}
+                    >
+                      <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                      Baca dari Awal
+                    </button>
+                    {continueChapter && (
+                      <button
+                        onClick={() => onReadChapter(continueChapter, manga.title)}
+                        className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-lg"
+                      >
+                        <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
+                        Lanjut Baca Ch. {continueChapter.chapter_number}
+                      </button>
+                    )}
+                  </div>
+                );
+              })()}
             </div>
           </div>
         </section>
