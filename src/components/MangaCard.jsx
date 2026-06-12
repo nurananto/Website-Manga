@@ -69,7 +69,9 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
               : isOneshot
               ? ch.chapter_number // oneshot: badge di semua chapter (cuma 1)
               : manga.hiatus_at_chapter;
-            const showStatusBadge = isFinished && (isOneshot || (targetChapter != null && ch.chapter_number === targetChapter));
+            const isUp = !!ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
+            // Badge status disembunyikan selama badge UP masih tampil (24 jam pertama)
+            const showStatusBadge = !isUp && isFinished && (isOneshot || (targetChapter != null && ch.chapter_number === targetChapter));
 
             return (
               <div
@@ -89,7 +91,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
                   <span className="font-body-md text-sm md:text-base lg:text-lg font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
                   </span>
-                  {ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000 && (
+                  {isUp && (
                     <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
                       <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 stroke-[3] shrink-0" />
                       <span>UP</span>

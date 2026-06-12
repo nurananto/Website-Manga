@@ -35,7 +35,8 @@ const renderChapterRow = (ch, idx) => {
     const isOneshot = manga.status === 'Oneshot';
     const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
     const targetChapter = manga.status === 'Tamat' ? manga.tamat_at_chapter : isOneshot ? ch.chapter_number : manga.hiatus_at_chapter;
-    const showStatusBadge = isFinished && (isOneshot || (
+    // Badge status disembunyikan selama badge UP (isNew) masih tampil
+    const showStatusBadge = !isNew && isFinished && (isOneshot || (
       targetChapter != null
         ? ch.chapter_number === targetChapter
         : sortNewest ? idx === 0 : idx === sortedChapters.length - 1
