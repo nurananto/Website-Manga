@@ -209,11 +209,7 @@ const renderChapterRow = (ch, idx) => {
                   <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
                     <button
                       onClick={() => onReadChapter(firstChapter, manga.title)}
-                      className={`h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer ${
-                        continueChapter
-                          ? 'bg-white/10 hover:bg-white/20 border border-white/15 text-on-surface backdrop-blur-sm'
-                          : 'bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white shadow-lg'
-                      }`}
+                      className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-white hover:bg-white/90 text-black font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
                     >
                       <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       Baca dari Awal
@@ -221,7 +217,7 @@ const renderChapterRow = (ch, idx) => {
                     {continueChapter && (
                       <button
                         onClick={() => onReadChapter(continueChapter, manga.title)}
-                        className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-lg"
+                        className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest border border-white/10 text-on-surface font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
                       >
                         <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
                         Lanjut Baca Ch. {continueChapter.chapter_number}
