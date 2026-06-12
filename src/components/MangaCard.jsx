@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { imgUrl, timeAgo } from '../utils';
+import { imgUrl, timeAgoShort } from '../utils';
 import { Lock, Clock, ArrowUp } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
@@ -121,7 +121,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
                     />
                   </div>
                 ) : (
-                  <span className="font-label-sm text-xs md:text-sm lg:text-base text-outline/60 whitespace-nowrap shrink-0">{ch.date || timeAgo(ch.release_date)}</span>
+                  <span className="font-label-sm text-xs md:text-sm lg:text-base text-outline/60 whitespace-nowrap shrink-0">{ch.date || timeAgoShort(ch.release_date)}</span>
                 )}
               </div>
             );

@@ -29,3 +29,9 @@ export function timeAgo(dateStr) {
   if (m > 0)   return `${m} mnt lalu`;
   return 'Baru saja';
 }
+
+// Versi ringkas tanpa "lalu" — untuk ruang sempit (manga card)
+export function timeAgoShort(dateStr) {
+  const full = timeAgo(dateStr);
+  return full === 'Baru saja' ? 'Baru' : full.replace(' lalu', '');
+}
