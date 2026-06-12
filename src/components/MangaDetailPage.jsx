@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { imgUrl, timeAgo } from '../utils';
-import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Coins, Lock, Images, Download, X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Coins, Lock, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
 
@@ -24,6 +24,7 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   const [readChapters, setReadChapters] = useState(new Set());
   const [lightboxCover, setLightboxCover] = useState(null);
   const [galleryPage, setGalleryPage] = useState(0);
+  const [galleryOpen, setGalleryOpen] = useState(true);
   const GALLERY_PER_PAGE = 6;
   const galleryPages = Math.ceil((manga?.cover_gallery?.length ?? 0) / GALLERY_PER_PAGE);
 
@@ -409,7 +410,7 @@ const renderChapterRow = (ch, idx) => {
 
             {/* Synopsis */}
             <div className="flex flex-col gap-2">
-              <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">Synopsis</h3>
+              <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">Sinopsis</h3>
               <p className="font-body-md text-sm sm:text-sm md:text-base text-on-surface-variant leading-relaxed opacity-90 text-justify">
                 {expandedSynopsis ? (manga.description || '') : `${(manga.description || '').substring(0, 160)}${(manga.description || '').length > 160 ? '...' : ''}`}
                 <button
@@ -421,31 +422,30 @@ const renderChapterRow = (ch, idx) => {
               </p>
             </div>
 
-            {/* Galeri cover — pagination geser kiri/kanan, terbaru duluan */}
+            {/* Galeri cover — header gaya tab (tengah + garis bawah), bisa di-hide */}
             {Array.isArray(manga.cover_gallery) && manga.cover_gallery.length > 0 && (
-              <div className="relative border border-white/15 rounded-2xl p-3 sm:p-4 overflow-hidden">
-                {/* Background blur dari cover utama */}
-                <div className="absolute inset-0 z-0 pointer-events-none">
-                  <img src={imgUrl(manga.coverUrl)} alt="" aria-hidden
-                    className="w-full h-full object-cover scale-150 blur-3xl opacity-20" />
-                  <div className="absolute inset-0 bg-gradient-to-b from-surface/80 via-surface/60 to-surface/80" />
-                </div>
-
-                <div className="relative z-10">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Images className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-                    <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">Cover Manga</h3>
-                    <span className="font-label-sm text-[10px] sm:text-xs font-black text-outline/70 bg-white/5 border border-white/10 rounded-full px-2 py-0.5">
-                      {manga.cover_gallery.length}
+              <div className="w-full">
+                <button
+                  onClick={() => setGalleryOpen(v => !v)}
+                  className={`w-full py-3 flex items-center justify-center gap-2 border-b-2 transition-all cursor-pointer ${
+                    galleryOpen ? 'border-primary text-primary' : 'border-white/10 text-outline hover:text-on-surface'
+                  }`}
+                >
+                  <Images className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="font-headline-md text-sm sm:text-base font-bold">Cover Manga</span>
+                  <span className="font-label-sm text-[10px] sm:text-xs font-black text-outline/70 bg-white/5 border border-white/10 rounded-full px-2 py-0.5">
+                    {manga.cover_gallery.length}
+                  </span>
+                  {galleryPages > 1 && galleryOpen && (
+                    <span className="font-label-sm text-[10px] sm:text-xs font-bold text-outline/60">
+                      {galleryPage + 1}/{galleryPages}
                     </span>
-                    {galleryPages > 1 && (
-                      <span className="ml-auto font-label-sm text-[10px] sm:text-xs font-bold text-outline/60">
-                        {galleryPage + 1}/{galleryPages}
-                      </span>
-                    )}
-                  </div>
+                  )}
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${galleryOpen ? 'rotate-180' : ''}`} />
+                </button>
 
-                  <div className="relative">
+                {galleryOpen && (
+                  <div className="relative mt-3">
                     {/* Tombol geser kiri */}
                     {galleryPages > 1 && (
                       <button
@@ -503,7 +503,7 @@ const renderChapterRow = (ch, idx) => {
                       </button>
                     )}
                   </div>
-                </div>
+                )}
               </div>
             )}
           </div>
