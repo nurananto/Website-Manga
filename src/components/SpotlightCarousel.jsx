@@ -14,9 +14,16 @@ const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-300' };
 const SCALES    = [1, 0.88];
 const OPACITIES = [1, 0.78, 0.78, 0.62, 0.5, 0.4];
 
-// Gap between items (extra offset added to negative margin)
-const ITEM_GAP = 10;
-const PAD_V    = 12;
+const PAD_V = 12;
+
+// Jarak antar cover per breakpoint (makin kecil = makin rapat)
+function getItemGap() {
+  const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
+  if (w < 640)  return 2;
+  if (w < 768)  return 4;
+  if (w < 1024) return 6;
+  return 8;
+}
 
 // Match FeaturedCarousel cover dimensions (h: 220/260/300/340, cover ~88%)
 function getCoverW() {
@@ -53,6 +60,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
   const [activeIdx, setActiveIdx] = useState(() => getMostRecentIdx(mangaList));
   const [coverW,    setCoverW]    = useState(getCoverW);
   const [maxSide,   setMaxSide]   = useState(getMaxSide);
+  const [itemGap,   setItemGap]   = useState(getItemGap);
 
   const coverH     = Math.round(coverW * 1.5);
   const containerH = PAD_V + coverH + PAD_V;
@@ -69,7 +77,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
   });
 
   useEffect(() => {
-    const onResize = () => { setCoverW(getCoverW()); setMaxSide(getMaxSide()); };
+    const onResize = () => { setCoverW(getCoverW()); setMaxSide(getMaxSide()); setItemGap(getItemGap()); };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
@@ -127,7 +135,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
           const opacity   = OPACITIES[Math.min(dist, OPACITIES.length - 1)];
           const isActive  = dist === 0;
           // Negative margin collapses the visual gap created by scale shrink
-          const nm        = Math.round(-(coverW * (1 - scale)) / 2) + ITEM_GAP;
+          const nm        = Math.round(-(coverW * (1 - scale)) / 2) + itemGap;
           const statusCfg = STATUS_CFG[manga.status] || ONGOING_CFG;
           const rating    = manga.rating != null ? Number(manga.rating).toFixed(1) : null;
 
