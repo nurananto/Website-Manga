@@ -637,26 +637,32 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                 onClick={e => e.stopPropagation()}
                 className="bg-surface-container border border-white/10 rounded-2xl p-6 max-w-sm w-full shadow-2xl flex flex-col gap-4 text-center"
               >
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                  <BookOpen className="w-7 h-7 text-primary" />
-                </div>
+                {/* Cover manga menggantikan ikon buku */}
+                {activeManga?.coverUrl && (
+                  <img
+                    src={imgUrl(activeManga.coverUrl)}
+                    alt={activeManga.title}
+                    className="w-24 aspect-[2/3] object-cover rounded-xl mx-auto shadow-lg border border-white/15"
+                  />
+                )}
                 <div>
-                  <h3 className="font-headline-md text-base sm:text-lg font-black text-on-surface">Kamu sudah sampai chapter terbaru!</h3>
-                  <p className="font-headline-md text-base font-black text-on-surface mt-1">{manga?.title}</p>
-                  <p className="font-body-md text-sm text-outline mt-0.5">{chapters[0]?.title}</p>
-                  <p className="font-label-sm text-xs text-outline/60 mt-0.5">Diupload: {chapters[0]?.date}</p>
-                  {manga?.nextUpdate && (
-                    <p className="font-body-md text-sm text-on-surface/80 mt-3 bg-surface-container-high/50 rounded-lg px-3 py-2 border border-white/5">
-                      Chapter selanjutnya akan diupdate setelah{' '}
-                      <span className="text-primary font-bold">{activeManga.nextUpdate}</span>
+                  <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface">Kamu sudah sampai chapter terbaru!</h3>
+                  <p className="font-headline-md text-sm sm:text-base font-black text-on-surface/90 mt-2 line-clamp-2">{activeManga?.title}</p>
+                  <p className="font-label-sm text-[10px] sm:text-xs text-outline/60 font-bold uppercase tracking-wider mt-1">Chapter saat ini</p>
+                  <p className="font-body-md text-sm sm:text-base text-primary font-bold">{activeChapter?.title}</p>
+
+                  {activeManga?.next_update && (
+                    <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-surface-container-high/50 rounded-lg px-3 py-2 border border-white/5">
+                      Chapter berikutnya diupload sekitar{' '}
+                      <span className="text-primary font-bold">{activeManga.next_update}</span>
                     </p>
                   )}
                 </div>
                 <button
-                  onClick={() => setShowLastChapterModal(false)}
-                  className="w-full h-11 rounded-xl bg-primary text-on-primary font-bold text-sm active:scale-95 transition-all cursor-pointer"
+                  onClick={() => { setShowLastChapterModal(false); onClose(); }}
+                  className="w-full h-11 rounded-xl bg-primary text-on-primary font-bold text-sm sm:text-base active:scale-95 transition-all cursor-pointer"
                 >
-                  Kembali Baca
+                  Kembali ke Detail Manga
                 </button>
               </motion.div>
             </motion.div>
