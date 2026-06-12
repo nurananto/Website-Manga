@@ -13,13 +13,6 @@
     <script>
       (function () {
         if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
-        // Pintu belakang owner: buka /?devmode=nurananto2026 sekali untuk menonaktifkan
-        try {
-          var qp = new URLSearchParams(location.search);
-          if (qp.get('devmode') === 'nurananto2026') localStorage.setItem('mf_dev', '1');
-          if (qp.get('devmode') === 'off') localStorage.removeItem('mf_dev');
-          if (localStorage.getItem('mf_dev') === '1') return;
-        } catch (e) {}
         var overlay;
         var showGuard = function (on) {
           var b = document.body;
