@@ -6,6 +6,7 @@ import CountdownTimer from './CountdownTimer';
 import { ReaderPageSkeleton } from './Skeleton';
 import { imgUrl } from '../utils';
 import { getAccessToken } from '../lib/auth';
+import { ensureSession, getCachedSession } from '../lib/session';
 
 function CountdownLarge({ unlockDate }) {
   const [time, setTime] = useState({ h: 0, m: 0, s: 0 });
@@ -240,6 +241,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const [pages, setPages] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [imgAccess, setImgAccess] = useState(null);
+  const [imgSession, setImgSession] = useState(() => getCachedSession());
   const nextPageRef = useRef(1);
 
   // Chapter masih dalam masa lock (sudah dibeli, tapi image worker butuh access token)
@@ -266,23 +268,33 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     })();
   }, [chapter?.id]);
 
+  // Chapter gratis butuh token sesi Turnstile (?s=). null = belum dicoba,
+  // '' = sudah dicoba tapi gagal (fail-open: gambar tetap dimuat tanpa ?s=).
+  useEffect(() => {
+    if (chapterNeedsToken || imgSession !== null) return;
+    ensureSession().then(t => setImgSession(t || ''));
+  }, [chapter?.id]);
+
   const makeUrl = (idx) => {
     const num = String(idx).padStart(2, '0');
-    const access = imgAccess ? `?access=${encodeURIComponent(imgAccess)}` : '';
-    return `${imageBase}/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp${access}`;
+    const q = chapterNeedsToken
+      ? (imgAccess ? `?access=${encodeURIComponent(imgAccess)}` : '')
+      : (imgSession ? `?s=${encodeURIComponent(imgSession)}` : '');
+    return `${imageBase}/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp${q}`;
   };
 
   // pages wajib — generate semua URL sekaligus, tidak ada 404
   useEffect(() => {
     if (!chapter?.id || !manga?.id || !chapter.pages) return;
-    if (chapterNeedsToken && !imgAccess) return; // tunggu access token dulu
+    if (chapterNeedsToken && !imgAccess) return;        // locked: tunggu access token
+    if (!chapterNeedsToken && imgSession === null) return; // gratis: tunggu hasil token sesi
     activeChapterIdRef.current = chapter.id;
     pageRefs.current = [];
     const all = Array.from({ length: chapter.pages }, (_, i) => makeUrl(i + 1));
     nextPageRef.current = chapter.pages + 1;
     setPages(all);
     setPageCount(chapter.pages);
-  }, [chapter?.id, imgAccess]);
+  }, [chapter?.id, imgAccess, imgSession]);
 
   // Reset scroll + currentPage saat chapter berganti
   useEffect(() => {

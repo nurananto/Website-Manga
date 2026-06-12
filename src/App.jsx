@@ -15,6 +15,7 @@ import DmcaModal from './components/DmcaModal';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode, clearAuth } from './lib/auth';
+import { ensureSession } from './lib/session';
 
 // ── History Tabs: Baca + Koin ────────────────────────────────
 function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUser, workerUrl }) {
@@ -348,6 +349,9 @@ export default function App() {
       }).catch(() => {});
 
   };
+
+  // Prefetch token sesi Turnstile di latar (untuk gambar chapter gratis)
+  useEffect(() => { ensureSession(); }, []);
 
   // Fetch catalog dari /manga/index.json
   useEffect(() => {
