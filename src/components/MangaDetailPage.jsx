@@ -24,7 +24,7 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   const [readChapters, setReadChapters] = useState(new Set());
   const [lightboxCover, setLightboxCover] = useState(null);
   const [galleryPage, setGalleryPage] = useState(0);
-  const [galleryOpen, setGalleryOpen] = useState(true);
+  const [galleryOpen, setGalleryOpen] = useState(false);
   const GALLERY_PER_PAGE = 6;
   const galleryPages = Math.ceil((manga?.cover_gallery?.length ?? 0) / GALLERY_PER_PAGE);
 
