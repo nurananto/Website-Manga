@@ -424,7 +424,7 @@ const renderChapterRow = (ch, idx) => {
 
             {/* Galeri cover — header gaya tab (tengah + garis bawah), bisa di-hide */}
             {Array.isArray(manga.cover_gallery) && manga.cover_gallery.length > 0 && (
-              <div className="w-full">
+              <div className="w-full border-t-2 border-primary">
                 <button
                   onClick={() => setGalleryOpen(v => !v)}
                   className={`w-full py-3 flex items-center justify-center gap-2 border-b-2 transition-all cursor-pointer ${
