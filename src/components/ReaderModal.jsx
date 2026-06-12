@@ -8,18 +8,30 @@ import { imgUrl } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { ensureSession, getCachedSession } from '../lib/session';
 
-// Info jadwal rilis chapter berikutnya: countdown kalau tanggal, teks kalau bukan
+// Info jadwal rilis chapter berikutnya: countdown kalau tanggal, teks kalau bukan,
+// pesan hijau "segera rilis" kalau tidak ada jadwal atau waktunya sudah lewat.
 function NextUpdateInfo({ value }) {
   const [now, setNow] = useState(Date.now());
-  const t = new Date(value).getTime();
+  const hasValue = value != null && String(value).trim() !== '';
+  const t = hasValue ? new Date(value).getTime() : NaN;
+  const isDate = hasValue && !isNaN(t);
   useEffect(() => {
-    if (isNaN(t)) return;
+    if (!isDate) return;
     const id = setInterval(() => setNow(Date.now()), 60_000);
     return () => clearInterval(id);
-  }, [t]);
+  }, [isDate, t]);
 
-  // Bukan tanggal valid → tampilkan teks apa adanya
-  if (isNaN(t)) {
+  const soonBox = (
+    <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-emerald-500/10 rounded-lg px-3 py-2 border border-emerald-500/20">
+      <span className="text-emerald-400 font-bold">Chapter baru segera rilis!</span> Pantau terus ya 🔥
+    </p>
+  );
+
+  // Tidak ada jadwal → pesan default (pembeda)
+  if (!hasValue) return soonBox;
+
+  // Ada isi tapi bukan tanggal → tampilkan teks apa adanya
+  if (!isDate) {
     return (
       <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-surface-container-high/50 rounded-lg px-3 py-2 border border-white/5">
         Chapter berikutnya diupload sekitar <span className="text-primary font-bold">{value}</span>
@@ -28,13 +40,7 @@ function NextUpdateInfo({ value }) {
   }
 
   const diff = t - now;
-  if (diff <= 0) {
-    return (
-      <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-emerald-500/10 rounded-lg px-3 py-2 border border-emerald-500/20">
-        <span className="text-emerald-400 font-bold">Chapter baru segera rilis!</span> Pantau terus ya 🔥
-      </p>
-    );
-  }
+  if (diff <= 0) return soonBox;
 
   const totalMin = Math.floor(diff / 60_000);
   const d = Math.floor(totalMin / 1440);
@@ -695,7 +701,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                   <p className="font-label-sm text-[10px] sm:text-xs text-outline/60 font-bold uppercase tracking-wider mt-1">Chapter saat ini</p>
                   <p className="font-body-md text-sm sm:text-base text-primary font-bold">{activeChapter?.title}</p>
 
-                  {activeManga?.next_update && <NextUpdateInfo value={activeManga.next_update} />}
+                  <NextUpdateInfo value={activeManga?.next_update} />
                 </div>
                 <button
                   onClick={() => { setShowLastChapterModal(false); onClose(); }}
