@@ -427,7 +427,7 @@ const renderChapterRow = (ch, idx) => {
 
         {/* Galeri cover lama — di luar kotak manga info */}
         {Array.isArray(manga.cover_gallery) && manga.cover_gallery.length > 0 && (
-          <section className="mx-3 sm:mx-4 md:mx-5 mt-4 md:mt-6 xl:mt-8">
+          <section className="mx-3 sm:mx-4 md:mx-5 mt-4 md:mt-6 xl:mt-8 border border-white/15 rounded-2xl p-3 sm:p-4 md:p-5">
             <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface mb-3 md:mb-4">
               Cover Manga
             </h3>
