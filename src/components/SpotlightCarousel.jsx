@@ -27,14 +27,14 @@ function getCoverW() {
   return 208;
 }
 
-// Items shown on each side of active per breakpoint
-// mobile: 2 side → 5 total | sm: 2 → 5 | md: 3 → 7 | lg: 4 → 9
+// Items shown on each side of active per breakpoint (pinggir boleh kepotong).
+// mobile: 2 side → 5 | sm: 3 → 7 | md: 4 → 9 | lg: 5 → 11
 function getMaxSide() {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
   if (w < 640)  return 2;
-  if (w < 768)  return 2;
-  if (w < 1024) return 3;
-  return 4;
+  if (w < 768)  return 3;
+  if (w < 1024) return 4;
+  return 5;
 }
 
 function getMostRecentIdx(list) {
