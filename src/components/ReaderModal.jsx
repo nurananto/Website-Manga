@@ -6,7 +6,7 @@ import CountdownTimer from './CountdownTimer';
 import { ReaderPageSkeleton } from './Skeleton';
 import { imgUrl } from '../utils';
 import { getAccessToken } from '../lib/auth';
-import { ensureSession, getCachedSession } from '../lib/session';
+import { ensureSession, getCachedSession, clearCachedSession } from '../lib/session';
 
 // Info jadwal rilis chapter berikutnya: countdown kalau tanggal, teks kalau bukan,
 // pesan hijau "segera rilis" kalau tidak ada jadwal atau waktunya sudah lewat.
@@ -319,6 +319,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const [imageProbeError, setImageProbeError] = useState('');
   const nextPageRef = useRef(1);
   const probeAbortRef = useRef(null);
+  const tokenRefreshInFlightRef = useRef(false);
 
   // Chapter masih dalam masa lock (sudah dibeli, tapi image worker butuh access token)
   const chapterNeedsToken = !!chapter?.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now();
@@ -395,7 +396,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     });
   };
 
-  const imageReady = imageProbeState === 'ready';
+  const imageReady = imageProbeState === 'ready' || imageProbeState === 'failed';
   const sessionFailed = !chapterNeedsToken && sessionState === 'failed';
   const probeFailed = imageProbeState === 'failed';
 
@@ -418,6 +419,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     setPages(all);
     setPageCount(chapter.pages);
   }, [chapter?.id, imgAccess, imgSession]);
+
+  useEffect(() => {
+    tokenRefreshInFlightRef.current = false;
+  }, [chapter?.id]);
 
   useEffect(() => {
     const firstUrl = pages[0];
@@ -452,6 +457,16 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
         setImageProbeStatus(res.status);
         if (res.ok) {
           setImageProbeState('ready');
+          return;
+        }
+        if (!chapterNeedsToken && res.status === 403 && !tokenRefreshInFlightRef.current) {
+          tokenRefreshInFlightRef.current = true;
+          clearCachedSession();
+          setImgSession(null);
+          setSessionState('idle');
+          setSessionAttempt((v) => (v < 4 ? v + 1 : v));
+          setImageProbeError('Sesi kadaluarsa. Mengambil token baru...');
+          setImageProbeState('failed');
           return;
         }
         setImageProbeError(probeMessage(res.status));

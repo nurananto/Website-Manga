@@ -88,3 +88,7 @@ export async function ensureSession() {
 }
 
 export function getCachedSession() { return cached(); }
+
+export function clearCachedSession() {
+  try { localStorage.removeItem(KEY); } catch {}
+}
