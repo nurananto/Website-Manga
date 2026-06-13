@@ -1,5 +1,75 @@
 [
   {
+    "id": "MoshimoYuurei",
+    "title": "Moshimo, Yuurei ga Hatsukoi o Shitara.",
+    "alt_title": "もしも、幽霊が初恋をしたら。",
+    "description": "Aku Souta. Nggak punya pengalaman pacaran, dan ya... bisa dibilang aku itu cowok SMA otaku yang cupu dan pendiem... dulu sih. Hah? Kamu kira aku akhirnya lepas dari status perjaka terus berubah jadi anak gaul gitu? Bukan, bukan gitu. Bukan karena aku udah bukan anak SMA... tapi karena aku udah jadi hantu. Jadi sekarang aku ini mantan manusia yang dulunya otaku, cupu, dan masih perjaka. Ingatan aku soal kehidupan sebelumnya hampir nggak ada. Yang masih aku inget cuma satu... aku mati dalam kondisi masih perjaka. Mungkin itu kali ya penyesalan yang bikin aku belum bisa tenang. Parahnya lagi, pas sadar aku nggak bisa keluar dari sekolah cewek ini. Jadi semacam arwah gentayangan yang terikat di sini. Bikin aku bingung setengah mati. Tapi, meski waktu hidup aku terlalu cupu buat ngajak cewek ngobrol, kalau jadi hantu beda cerita! Berbagai sisi cewek bisa gue lihat sepuasnya! Ya, rasa bersalah sih ada sedikit... tapi aku sempat mikir, 'Jadi hantu ternyata nggak buruk juga!'  Nah, pas lagi begitu, aku nemu gantungan kunci karakter favoritku jatuh di area sekolah, terus aku coba ngambilnya— 'Kenapa ada cowok di sini... padahal ini sekolah cewek...?' Dia imut, baik, dan populer. Tipe orang yang bisa akrab sama siapa aja. Bahkan setelah aku jadi hantu, cuma dia satu-satunya yang bisa melihat dan peduli sama aku... Dan tanpa sadar, aku jatuh cinta sama cewek yang jelas-jelas nggak selevel sama aku.",
+    "status": "END",
+    "type": "WEBTOON",
+    "author": "Shichifuku Sayuri",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/MoshimoYuurei/covers/cover.webp",
+      "manga/MoshimoYuurei/covers/cover@tablet.webp",
+      "manga/MoshimoYuurei/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Comedy",
+      "Fantasy",
+      "Ghosts",
+      "Romance",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.66,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 25,
+        "lock_hours": 0,
+        "pages": 32,
+        "id": "MoshimoYuurei-ch-25",
+        "r2_prefix": "manga/MoshimoYuurei/25/",
+        "title": "Ch. 25",
+        "release_date": "2026-06-13T20:30:05+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 24,
+        "lock_hours": 0,
+        "pages": 32,
+        "id": "MoshimoYuurei-ch-24",
+        "r2_prefix": "manga/MoshimoYuurei/24/",
+        "title": "Ch. 24",
+        "release_date": "2026-06-13T20:30:05+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 23,
+        "lock_hours": 0,
+        "pages": 32,
+        "id": "MoshimoYuurei-ch-23",
+        "r2_prefix": "manga/MoshimoYuurei/23/",
+        "title": "Ch. 23",
+        "release_date": "2026-06-13T20:30:05+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "Madogiwa",
     "title": "Madogiwa Henshuu to Baka ni Sareta Ore ga, Futago JK to Doukyo suru Koto ni Natta",
     "alt_title": "窓際編集とバカにされた俺が、双子JKと同居することになった",
@@ -37,10 +107,10 @@
         "chapter_number": 11,
         "lock_hours": 0,
         "pages": 27,
+        "release_date": "2026-06-13T19:22:14+07:00",
         "id": "Madogiwa-ch-11",
         "r2_prefix": "manga/Madogiwa/11/",
         "title": "Ch. 11",
-        "release_date": "2026-06-13T19:22:14+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -49,10 +119,10 @@
         "chapter_number": 10,
         "lock_hours": 0,
         "pages": 26,
+        "release_date": "2026-06-13T19:22:14+07:00",
         "id": "Madogiwa-ch-10",
         "r2_prefix": "manga/Madogiwa/10/",
         "title": "Ch. 10",
-        "release_date": "2026-06-13T19:22:14+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -61,10 +131,10 @@
         "chapter_number": 9,
         "lock_hours": 0,
         "pages": 28,
+        "release_date": "2026-06-13T19:22:14+07:00",
         "id": "Madogiwa-ch-9",
         "r2_prefix": "manga/Madogiwa/9/",
         "title": "Ch. 9",
-        "release_date": "2026-06-13T19:22:14+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
