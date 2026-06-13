@@ -104,6 +104,7 @@ function PageImage({ src, idx, pageRefs, ready }) {
   const wrapRef  = useRef(null);
   const imgRef   = useRef(null);
   const timerRef = useRef(null);
+  const watchdogRef = useRef(null);
 
   // IntersectionObserver untuk lazy pages
   useEffect(() => {
@@ -126,6 +127,7 @@ function PageImage({ src, idx, pageRefs, ready }) {
 
     // Clear timer sebelumnya
     clearInterval(timerRef.current);
+    clearTimeout(watchdogRef.current);
 
     // Sudah complete (memory/disk cache) — langsung tampil
     if (img.complete && img.naturalWidth > 0) {
@@ -154,19 +156,35 @@ function PageImage({ src, idx, pageRefs, ready }) {
     // Native listeners — tidak pernah miss event apapun
     const onLoad = () => {
       clearInterval(timerRef.current);
+      clearTimeout(watchdogRef.current);
       setProgress(100);
       setTimeout(() => setLoaded(true), 300); // 300ms > durasi transisi CSS (200ms)
     };
     const onError = () => {
       clearInterval(timerRef.current);
+      clearTimeout(watchdogRef.current);
       setFailed(true);
     };
 
     img.addEventListener('load',  onLoad,  { once: true });
     img.addEventListener('error', onError, { once: true });
 
+    // Safety net: jika request menggantung / event miss, tampilkan fallback retry.
+    watchdogRef.current = setTimeout(() => {
+      if (!img.complete || img.naturalWidth === 0) {
+        clearInterval(timerRef.current);
+        setFailed(true);
+      }
+    }, 15000);
+
+    // Recheck setelah listeners terpasang untuk kasus load sangat cepat dari cache.
+    queueMicrotask(() => {
+      if (img.complete && img.naturalWidth > 0) onLoad();
+    });
+
     return () => {
       clearInterval(timerRef.current);
+      clearTimeout(watchdogRef.current);
       img.removeEventListener('load',  onLoad);
       img.removeEventListener('error', onError);
     };

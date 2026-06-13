@@ -15,7 +15,7 @@ import DmcaModal from './components/DmcaModal';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode, clearAuth } from './lib/auth';
-import { ensureSession } from './lib/session';
+import { ensureSession, clearCachedSession } from './lib/session';
 
 // ── History Tabs: Baca + Koin ────────────────────────────────
 function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUser, workerUrl }) {
@@ -156,11 +156,37 @@ export default function App() {
   const [showUpdateBanner, setShowUpdateBanner] = useState(false);
   const [buildId, setBuildId] = useState(null);
   const [updateLabel, setUpdateLabel] = useState('');
+  const [isResettingApp, setIsResettingApp] = useState(false);
+
+  const softResetApp = async () => {
+    if (isResettingApp) return;
+    setIsResettingApp(true);
+    try {
+      clearCachedSession();
+    } catch {}
+    try {
+      if ('caches' in window) {
+        const keys = await caches.keys();
+        await Promise.all(keys.map((k) => caches.delete(k)));
+      }
+    } catch {}
+    try {
+      if ('serviceWorker' in navigator) {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(regs.map((r) => r.unregister()));
+      }
+    } catch {}
+    const next = new URL(window.location.href);
+    next.searchParams.set('r', Date.now().toString());
+    window.location.replace(next.toString());
+  };
 
   const triggerUpdate = (label) => {
     setUpdateLabel(label || '');
     setShowUpdateBanner(true);
-    setTimeout(() => window.location.reload(), 2000);
+    setTimeout(() => {
+      softResetApp();
+    }, 1200);
   };
 
   useEffect(() => {
@@ -602,6 +628,12 @@ export default function App() {
           <div className="text-center">
             <p className="text-sm font-black text-on-surface">Memperbarui Nurananto Scanlation...</p>
             {updateLabel && <p className="text-xs text-outline mt-1">{updateLabel}</p>}
+            <button
+              onClick={softResetApp}
+              className="mt-3 px-3 py-1.5 rounded-lg border border-white/15 text-xs font-bold text-on-surface/90 hover:bg-white/10 transition-colors cursor-pointer"
+            >
+              {isResettingApp ? 'Membersihkan cache...' : 'Refresh Paksa Sekarang'}
+            </button>
           </div>
         </div>
       )}
@@ -997,9 +1029,17 @@ export default function App() {
               © {new Date().getFullYear()} Nurananto Scanlation. Fan Translation — Not for commercial use.
             </span>
             {buildId && (
-              <span className="font-body-sm text-[9px] text-outline/25">
-                build #{buildId.slice(-6)}
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="font-body-sm text-[9px] text-outline/25">
+                  build #{buildId.slice(-6)}
+                </span>
+                <button
+                  onClick={softResetApp}
+                  className="font-body-sm text-[9px] text-outline/35 hover:text-outline/70 underline underline-offset-2 transition-colors cursor-pointer"
+                >
+                  Reset cache app
+                </button>
+              </div>
             )}
           </div>
         </footer>
