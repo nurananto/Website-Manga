@@ -277,12 +277,20 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const isOneshot = chapters.length === 1 || activeManga?.status === 'Oneshot';
   const isAtOldest = !prevChapter; // sudah di chapter pertama/terlama
   const isAtNewest = !nextChapter; // sudah di chapter terbaru
+  const normalizedStatus = String(manga?.status || '').toLowerCase();
+  const configuredEndChapter = normalizedStatus === 'tamat'
+    ? manga?.tamat_at_chapter
+    : normalizedStatus === 'hiatus'
+      ? manga?.hiatus_at_chapter
+      : null;
+  const isAtConfiguredEndChapter = configuredEndChapter != null
+    && Number(activeChapter?.chapter_number) === Number(configuredEndChapter);
+  const isFinishedSeries = normalizedStatus === 'tamat' || normalizedStatus === 'hiatus' || isOneshot;
 
-  // Next di-disable saat: chapter terbaru + (Tamat / Hiatus / Oneshot)
+  // Next di-disable saat: chapter terbaru + series selesai atau chapter akhir sesuai metadata.
   const nextDisabled = isAtNewest && (
-    manga?.status === 'Tamat' ||
-    manga?.status === 'Hiatus' ||
-    isOneshot
+    isFinishedSeries ||
+    isAtConfiguredEndChapter
   );
   // Prev di-disable saat: sudah di chapter paling lama / oneshot
   const prevDisabled = isAtOldest || isOneshot;
@@ -413,7 +421,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const handleNext = () => {
     if (nextDisabled) return;
     // Ongoing di chapter terbaru → tampil modal info
-    if (isAtNewest && manga?.status === 'Ongoing') {
+    if (isAtNewest && normalizedStatus === 'ongoing' && !isAtConfiguredEndChapter) {
       setShowLastChapterModal(true);
       return;
     }
