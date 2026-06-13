@@ -1,7 +1,7 @@
 {
   "id": "MoshimoYuurei",
   "title": "Moshimo, Yuurei ga Hatsukoi o Shitara.",
-  "alt_title": "もしも、幽霊が初恋をしたら。",
+  "alt_title": "ããããå¹½éãåæããããã",
   "status": "END",
   "type": "WEBTOON",
   "author": "Shichifuku Sayuri",
@@ -14,7 +14,7 @@
     "Fantasy",
     "Comedy"
   ],
-  "description": "Aku Souta. Nggak punya pengalaman pacaran, dan ya... bisa dibilang aku itu cowok SMA otaku yang cupu dan pendiem... dulu sih. Hah? Kamu kira aku akhirnya lepas dari status perjaka terus berubah jadi anak gaul gitu? Bukan, bukan gitu. Bukan karena aku udah bukan anak SMA... tapi karena aku udah jadi hantu. Jadi sekarang aku ini mantan manusia yang dulunya otaku, cupu, dan masih perjaka. Ingatan aku soal kehidupan sebelumnya hampir nggak ada. Yang masih aku inget cuma satu... aku mati dalam kondisi masih perjaka. Mungkin itu kali ya penyesalan yang bikin aku belum bisa tenang. Parahnya lagi, pas sadar aku nggak bisa keluar dari sekolah cewek ini. Jadi semacam arwah gentayangan yang terikat di sini. Bikin aku bingung setengah mati. Tapi, meski waktu hidup aku terlalu cupu buat ngajak cewek ngobrol, kalau jadi hantu beda cerita! Berbagai sisi cewek bisa gue lihat sepuasnya! Ya, rasa bersalah sih ada sedikit... tapi aku sempat mikir, 'Jadi hantu ternyata nggak buruk juga!'  Nah, pas lagi begitu, aku nemu gantungan kunci karakter favoritku jatuh di area sekolah, terus aku coba ngambilnya— 'Kenapa ada cowok di sini... padahal ini sekolah cewek...?' Dia imut, baik, dan populer. Tipe orang yang bisa akrab sama siapa aja. Bahkan setelah aku jadi hantu, cuma dia satu-satunya yang bisa melihat dan peduli sama aku... Dan tanpa sadar, aku jatuh cinta sama cewek yang jelas-jelas nggak selevel sama aku.",
+  "description": "Aku Souta. Nggak punya pengalaman pacaran, dan ya... bisa dibilang aku itu cowok SMA otaku yang cupu dan pendiem... dulu sih. Hah? Kamu kira aku akhirnya lepas dari status perjaka terus berubah jadi anak gaul gitu? Bukan, bukan gitu. Bukan karena aku udah bukan anak SMA... tapi karena aku udah jadi hantu. Jadi sekarang aku ini mantan manusia yang dulunya otaku, cupu, dan masih perjaka. Ingatan aku soal kehidupan sebelumnya hampir nggak ada. Yang masih aku inget cuma satu... aku mati dalam kondisi masih perjaka. Mungkin itu kali ya penyesalan yang bikin aku belum bisa tenang. Parahnya lagi, pas sadar aku nggak bisa keluar dari sekolah cewek ini. Jadi semacam arwah gentayangan yang terikat di sini. Bikin aku bingung setengah mati. Tapi, meski waktu hidup aku terlalu cupu buat ngajak cewek ngobrol, kalau jadi hantu beda cerita! Berbagai sisi cewek bisa gue lihat sepuasnya! Ya, rasa bersalah sih ada sedikit... tapi aku sempat mikir, 'Jadi hantu ternyata nggak buruk juga!'  Nah, pas lagi begitu, aku nemu gantungan kunci karakter favoritku jatuh di area sekolah, terus aku coba ngambilnyaâ 'Kenapa ada cowok di sini... padahal ini sekolah cewek...?' Dia imut, baik, dan populer. Tipe orang yang bisa akrab sama siapa aja. Bahkan setelah aku jadi hantu, cuma dia satu-satunya yang bisa melihat dan peduli sama aku... Dan tanpa sadar, aku jatuh cinta sama cewek yang jelas-jelas nggak selevel sama aku.",
   "covers": [
     "manga/MoshimoYuurei/covers/cover.webp",
     "manga/MoshimoYuurei/covers/cover@tablet.webp",
@@ -24,8 +24,12 @@
   "raw_url": "https://bookwalker.jp/series/494400/",
   "tamat_at_chapter": 25,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "23": 1,
+    "24": 1,
+    "25": 2
+  },
+  "total_views": 4,
   "mangadex_cover": "1f5fe857-3e84-451f-8a1c-d25e3960c1b4.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [

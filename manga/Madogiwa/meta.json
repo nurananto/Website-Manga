@@ -1,7 +1,7 @@
 {
   "id": "Madogiwa",
   "title": "Madogiwa Henshuu to Baka ni Sareta Ore ga, Futago JK to Doukyo suru Koto ni Natta",
-  "alt_title": "窓際編集とバカにされた俺が、双子JKと同居することになった",
+  "alt_title": "çªéç·¨éã¨ãã«ã«ãããä¿ºããåå­JKã¨åå±ãããã¨ã«ãªã£ã",
   "status": "ONGOING",
   "type": "MANGA",
   "author": "Ibarakino",
@@ -26,8 +26,11 @@
   "raw_url": "https://comic-walker.com/detail/KC_006388_S",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "10": 1,
+    "11": 2
+  },
+  "total_views": 3,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
