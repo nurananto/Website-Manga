@@ -1,5 +1,73 @@
 [
   {
+    "id": "Waka-chan",
+    "title": "Waka-chan wa Kyou mo Azatoi",
+    "alt_title": "A Hidden Side to my Crush",
+    "description": "Tomoya adalah mahasiswi baru dalam misi untuk akhirnya mendapatkan pacar pertamanya, tetapi dengan satu masalah kecil: dia masih perawan! Sementara dia dekat dengan gadis cantik dan menawan Waka Sakuraba di klubnya di sekolah, dia tidak bisa memberanikan diri untuk mengambil langkah pertama dan mengajaknya kencan. Suatu hari, Tomoya menemukan sisi tersembunyi dari gadia yang disukainya, Waka.",
+    "status": "Tamat",
+    "type": "WEBTOON",
+    "author": "Shimamura",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/Waka-chan/covers/cover.webp",
+      "manga/Waka-chan/covers/cover@tablet.webp",
+      "manga/Waka-chan/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Comedy",
+      "Full color",
+      "Romance",
+      "Slice of Life"
+    ],
+    "rating": 8.69,
+    "total_views": 20,
+    "isTrending": true,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 215.9,
+        "lock_hours": 0,
+        "pages": 33,
+        "id": "Waka-chan-ch-215.9",
+        "r2_prefix": "manga/Waka-chan/215.9/",
+        "title": "Ch. 215.9",
+        "release_date": "2026-06-13T19:03:42+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 215.8,
+        "lock_hours": 0,
+        "pages": 32,
+        "id": "Waka-chan-ch-215.8",
+        "r2_prefix": "manga/Waka-chan/215.8/",
+        "title": "Ch. 215.8",
+        "release_date": "2026-06-13T19:03:42+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 215.7,
+        "lock_hours": 0,
+        "pages": 32,
+        "id": "Waka-chan-ch-215.7",
+        "r2_prefix": "manga/Waka-chan/215.7/",
+        "title": "Ch. 215.7",
+        "release_date": "2026-06-13T19:03:42+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "TeisouGyakuten",
     "title": "Teisou Gyakuten Sekai Nara Moteru to Omotte Itara",
     "alt_title": "貞操逆転世界ならモテると思っていたら",
@@ -355,74 +423,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 2
-      }
-    ]
-  },
-  {
-    "id": "Waka-chan",
-    "title": "Waka-chan wa Kyou mo Azatoi",
-    "alt_title": "A Hidden Side to my Crush",
-    "description": "Tomoya adalah mahasiswi baru dalam misi untuk akhirnya mendapatkan pacar pertamanya, tetapi dengan satu masalah kecil: dia masih perawan! Sementara dia dekat dengan gadis cantik dan menawan Waka Sakuraba di klubnya di sekolah, dia tidak bisa memberanikan diri untuk mengambil langkah pertama dan mengajaknya kencan. Suatu hari, Tomoya menemukan sisi tersembunyi dari gadia yang disukainya, Waka.",
-    "status": "Tamat",
-    "type": "WEBTOON",
-    "author": "Shimamura",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@tablet.webp",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@mobile.webp"
-    },
-    "covers": [
-      "manga/Waka-chan/covers/cover.webp",
-      "manga/Waka-chan/covers/cover@tablet.webp",
-      "manga/Waka-chan/covers/cover@mobile.webp"
-    ],
-    "genres": [
-      "Comedy",
-      "Full color",
-      "Romance",
-      "Slice of Life"
-    ],
-    "rating": 8.69,
-    "total_views": 20,
-    "isTrending": true,
-    "next_update": null,
-    "chapters": [
-      {
-        "chapter_number": 100,
-        "lock_hours": 0,
-        "pages": 36,
-        "release_date": "2026-05-31T14:52:25+07:00",
-        "id": "Waka-chan-ch-100",
-        "r2_prefix": "manga/Waka-chan/100/",
-        "title": "Ch. 100",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 3
-      },
-      {
-        "chapter_number": 99,
-        "lock_hours": 0,
-        "pages": 36,
-        "release_date": "2026-05-31T14:52:25+07:00",
-        "id": "Waka-chan-ch-99",
-        "r2_prefix": "manga/Waka-chan/99/",
-        "title": "Ch. 99",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 1
-      },
-      {
-        "chapter_number": 98,
-        "lock_hours": 0,
-        "pages": 36,
-        "release_date": "2026-05-31T14:52:25+07:00",
-        "id": "Waka-chan-ch-98",
-        "r2_prefix": "manga/Waka-chan/98/",
-        "title": "Ch. 98",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 1
       }
     ]
   }
