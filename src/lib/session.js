@@ -2,7 +2,7 @@
 // Diminta sekali di latar (prefetch saat app load), berlaku ~6 jam, cache di localStorage.
 const SITEKEY = import.meta.env.VITE_TURNSTILE_SITEKEY || '';
 const WORKER  = import.meta.env.VITE_WORKER_URL || '';
-const KEY     = 'mf_sess';
+const KEY     = 'mf_sess2'; // v2: token kini terikat prefix IP /64 (lihat worker ipKey)
 let inflight  = null;
 
 function cached() {
