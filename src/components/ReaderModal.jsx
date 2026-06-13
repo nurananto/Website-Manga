@@ -95,7 +95,7 @@ function CountdownLarge({ unlockDate }) {
   );
 }
 
-function PageImage({ src, idx, pageRefs }) {
+function PageImage({ src, idx, pageRefs, ready }) {
   const [loaded,     setLoaded]     = useState(false);
   const [failed,     setFailed]     = useState(false);
   const [progress,   setProgress]   = useState(0);
@@ -120,7 +120,7 @@ function PageImage({ src, idx, pageRefs }) {
 
   // Main loading effect — native DOM listeners agar tidak miss synchronous cache events
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || !ready || !src) return;
     const img = imgRef.current;
     if (!img) return;
 
@@ -170,7 +170,7 @@ function PageImage({ src, idx, pageRefs }) {
       img.removeEventListener('load',  onLoad);
       img.removeEventListener('error', onError);
     };
-  }, [inView, retryCount]); // src tidak perlu — img key berubah saat retry
+  }, [inView, retryCount, src, ready]);
 
   const handleRetry = () => {
     setFailed(false);
@@ -185,6 +185,11 @@ function PageImage({ src, idx, pageRefs }) {
       className="w-full relative"
       style={{ minHeight: loaded ? 'auto' : '85vh' }}
     >
+      {!ready && inView && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11] gap-3">
+          <span className="font-body-md text-sm text-outline/50">Menunggu Turnstile...</span>
+        </div>
+      )}
       {!loaded && !failed && inView && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11] gap-3">
           <div className="flex flex-col items-center gap-2 w-40">
@@ -217,10 +222,17 @@ function PageImage({ src, idx, pageRefs }) {
         fetchpriority={idx === 0 ? 'high' : 'auto'}
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
         ref={imgRef}
-        src={src}
+        src={ready ? src : undefined}
       />
     </div>
   );
+}
+
+function probeMessage(status, fallback) {
+  if (status === 401) return 'Session token belum ada. Coba muat ulang sesi.';
+  if (status === 403) return 'Session token ditolak. Coba lagi.';
+  if (status === 404) return 'File gambar tidak ditemukan.';
+  return fallback || 'Gagal memeriksa akses gambar.';
 }
 
 export default function ReaderModal({ chapter, manga, onClose, onReadChapter, unlockedChapters, isLoggedIn, currentUser, onLoginClick }) {
@@ -300,7 +312,13 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const [pageCount, setPageCount] = useState(0);
   const [imgAccess, setImgAccess] = useState(null);
   const [imgSession, setImgSession] = useState(() => getCachedSession());
+  const [sessionState, setSessionState] = useState(() => (getCachedSession() ? 'ready' : 'idle'));
+  const [sessionAttempt, setSessionAttempt] = useState(0);
+  const [imageProbeState, setImageProbeState] = useState('idle');
+  const [imageProbeStatus, setImageProbeStatus] = useState(null);
+  const [imageProbeError, setImageProbeError] = useState('');
   const nextPageRef = useRef(1);
+  const probeAbortRef = useRef(null);
 
   // Chapter masih dalam masa lock (sudah dibeli, tapi image worker butuh access token)
   const chapterNeedsToken = !!chapter?.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now();
@@ -329,9 +347,57 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   // Chapter gratis butuh token sesi Turnstile (?s=). null = belum dicoba,
   // '' = sudah dicoba tapi gagal (fail-open: gambar tetap dimuat tanpa ?s=).
   useEffect(() => {
-    if (chapterNeedsToken || imgSession !== null) return;
-    ensureSession().then(t => setImgSession(t || ''));
-  }, [chapter?.id]);
+    if (chapterNeedsToken || sessionState === 'loading' || sessionState === 'ready') return;
+    let cancelled = false;
+    const delay = sessionAttempt === 0 ? 0 : Math.min(15_000, 2_000 * sessionAttempt);
+    const timer = setTimeout(() => {
+      setSessionState('loading');
+      ensureSession().then((t) => {
+        if (cancelled) return;
+        if (t) {
+          setImgSession(t);
+          setSessionState('ready');
+          return;
+        }
+        setImgSession(null);
+        setSessionState('failed');
+        if (sessionAttempt < 4) {
+          setSessionAttempt((v) => v + 1);
+          setSessionState('idle');
+        }
+      });
+    }, delay);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [chapter?.id, chapterNeedsToken, sessionState, sessionAttempt]);
+
+  const retrySession = () => {
+    if (chapterNeedsToken) {
+      setImgAccess(null);
+      return;
+    }
+    setImgSession(null);
+    setSessionAttempt(0);
+    setSessionState('idle');
+    setImageProbeState('idle');
+    setImageProbeStatus(null);
+    setImageProbeError('');
+    ensureSession().then((t) => {
+      if (t) {
+        setImgSession(t);
+        setSessionState('ready');
+      } else {
+        setImgSession(null);
+        setSessionState('failed');
+      }
+    });
+  };
+
+  const imageReady = imageProbeState === 'ready';
+  const sessionFailed = !chapterNeedsToken && sessionState === 'failed';
+  const probeFailed = imageProbeState === 'failed';
 
   const makeUrl = (idx) => {
     const num = String(idx).padStart(2, '0');
@@ -341,11 +407,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     return `${imageBase}/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp${q}`;
   };
 
-  // pages wajib — generate semua URL sekaligus, tidak ada 404
+  // Generate semua URL sekaligus. Halaman tetap bisa dibuka walau Turnstile
+  // masih pending atau gagal; gambar dirender setelah token siap.
   useEffect(() => {
     if (!chapter?.id || !manga?.id || !chapter.pages) return;
-    if (chapterNeedsToken && !imgAccess) return;        // locked: tunggu access token
-    if (!chapterNeedsToken && imgSession === null) return; // gratis: tunggu hasil token sesi
     activeChapterIdRef.current = chapter.id;
     pageRefs.current = [];
     const all = Array.from({ length: chapter.pages }, (_, i) => makeUrl(i + 1));
@@ -353,6 +418,53 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     setPages(all);
     setPageCount(chapter.pages);
   }, [chapter?.id, imgAccess, imgSession]);
+
+  useEffect(() => {
+    const firstUrl = pages[0];
+    if (!firstUrl) return;
+
+    if (!chapterNeedsToken && sessionState !== 'ready') {
+      setImageProbeState(sessionState === 'failed' ? 'failed' : 'idle');
+      return;
+    }
+
+    if (chapterNeedsToken && !imgAccess) {
+      setImageProbeState('idle');
+      return;
+    }
+
+    if (probeAbortRef.current) probeAbortRef.current.abort();
+    const controller = new AbortController();
+    probeAbortRef.current = controller;
+
+    setImageProbeState('checking');
+    setImageProbeStatus(null);
+    setImageProbeError('');
+
+    (async () => {
+      try {
+        const res = await fetch(firstUrl, {
+          method: 'HEAD',
+          cache: 'no-store',
+          signal: controller.signal,
+        });
+        if (controller.signal.aborted) return;
+        setImageProbeStatus(res.status);
+        if (res.ok) {
+          setImageProbeState('ready');
+          return;
+        }
+        setImageProbeError(probeMessage(res.status));
+        setImageProbeState('failed');
+      } catch {
+        if (controller.signal.aborted) return;
+        setImageProbeError('Gagal menjangkau image worker.');
+        setImageProbeState('failed');
+      }
+    })();
+
+    return () => controller.abort();
+  }, [pages, sessionState, imgAccess, chapterNeedsToken]);
 
   // Reset currentPage saat chapter berganti. Hanya scroll ke atas kalau TIDAK ada
   // posisi tersimpan — supaya "Lanjut Baca" tidak berkedip atas dulu.
@@ -544,6 +656,20 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             {/* Pemisah navigasi dan gambar pertama */}
             <div className="h-px bg-white/20" />
 
+            {!imageReady && !chapterNeedsToken && (
+              <div className="mx-auto max-w-4xl px-4 sm:px-6 pt-4">
+                <div className={`rounded-2xl border px-4 py-3 text-sm flex items-center justify-between gap-3 ${probeFailed || sessionFailed ? 'border-amber-500/30 bg-amber-500/10 text-amber-100' : 'border-white/10 bg-white/5 text-white/70'}`}>
+                  <span>{probeFailed ? imageProbeError : sessionFailed ? 'Turnstile gagal dimuat. Chapter tetap bisa dibuka.' : 'Memuat proteksi gambar...'}</span>
+                  <button
+                    onClick={retrySession}
+                    className="shrink-0 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-bold hover:bg-white/20 transition-colors cursor-pointer"
+                  >
+                    Coba lagi
+                  </button>
+                </div>
+              </div>
+            )}
+
             <div
               className="w-full lg:max-w-[720px] lg:mx-auto"
               onClick={() => setBarExpanded(v => !v)}
@@ -554,6 +680,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                   src={p}
                   idx={idx}
                   pageRefs={pageRefs}
+                  ready={imageReady}
                 />
               ))}
             </div>
