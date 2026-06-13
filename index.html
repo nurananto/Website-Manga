@@ -9,36 +9,6 @@
     <!-- Preload catalog JSON agar LCP cepat -->
     <link rel="preload" href="/manga/index.json" as="fetch" crossorigin="anonymous" />
     <!-- Fonts are self-hosted via @fontsource (bundled with app, no external dependency) -->
-    <!-- Anti-inspect ringan: hambat DevTools (penghalang kasual, bukan keamanan) -->
-    <script>
-      (function () {
-        if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
-        var overlay;
-        var showGuard = function (on) {
-          var b = document.body;
-          if (!b) return;
-          b.style.filter = on ? 'blur(16px)' : '';
-          b.style.pointerEvents = on ? 'none' : '';
-          if (on && !overlay) {
-            overlay = document.createElement('div');
-            overlay.textContent = 'DevTools terdeteksi — tutup untuk melanjutkan';
-            overlay.style.cssText = 'position:fixed;inset:0;z-index:2147483647;display:flex;'
-              + 'align-items:center;justify-content:center;background:rgba(0,0,0,.55);'
-              + 'color:#fff;font:600 14px system-ui,sans-serif;text-align:center;padding:24px;'
-              + 'backdrop-filter:blur(4px);pointer-events:auto;';
-            document.documentElement.appendChild(overlay);
-          }
-          if (!on && overlay) { overlay.remove(); overlay = null; }
-        };
-        var loop = function () {
-          var t0 = performance.now();
-          // eslint-disable-next-line no-debugger
-          debugger;
-          showGuard(performance.now() - t0 > 100);
-        };
-        setInterval(loop, 1000);
-      })();
-    </script>
   </head>
   <body class="bg-surface text-on-surface" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
     <div id="root"></div>
