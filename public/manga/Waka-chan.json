@@ -30,14 +30,20 @@
     "30": 1,
     "31": 1,
     "32": 1,
-    "34": 1,
+    "34": 2,
     "35": 2,
     "95": 1,
     "98": 1,
-    "99": 1,
-    "100": 3
+    "99": 2,
+    "100": 5,
+    "201.5": 1,
+    "215.5": 1,
+    "215.6": 1,
+    "215.7": 1,
+    "215.8": 1,
+    "215.9": 2
   },
-  "total_views": 20,
+  "total_views": 31,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -170,7 +176,7 @@
       "title": "Ch. 215.9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 215.8,
@@ -182,7 +188,7 @@
       "title": "Ch. 215.8",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 215.7,
@@ -194,7 +200,7 @@
       "title": "Ch. 215.7",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 215.6,
@@ -206,7 +212,7 @@
       "title": "Ch. 215.6",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 215.5,
@@ -218,7 +224,7 @@
       "title": "Ch. 215.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 215.4,
@@ -470,7 +476,7 @@
       "title": "Ch. 201.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 201,
@@ -1838,7 +1844,7 @@
       "title": "Ch. 100",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 5
     },
     {
       "chapter_number": 99,
@@ -1850,7 +1856,7 @@
       "title": "Ch. 99",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 98,
@@ -2642,7 +2648,7 @@
       "title": "Ch. 34",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 33,

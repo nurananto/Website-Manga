@@ -27,7 +27,7 @@
       "Slice of Life"
     ],
     "rating": 8.66,
-    "total_views": 0,
+    "total_views": 4,
     "isTrending": false,
     "next_update": null,
     "chapters": [
@@ -35,37 +35,37 @@
         "chapter_number": 25,
         "lock_hours": 0,
         "pages": 32,
+        "release_date": "2026-06-13T20:30:05+07:00",
         "id": "MoshimoYuurei-ch-25",
         "r2_prefix": "manga/MoshimoYuurei/25/",
         "title": "Ch. 25",
-        "release_date": "2026-06-13T20:30:05+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 24,
         "lock_hours": 0,
         "pages": 32,
+        "release_date": "2026-06-13T20:30:05+07:00",
         "id": "MoshimoYuurei-ch-24",
         "r2_prefix": "manga/MoshimoYuurei/24/",
         "title": "Ch. 24",
-        "release_date": "2026-06-13T20:30:05+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 23,
         "lock_hours": 0,
         "pages": 32,
+        "release_date": "2026-06-13T20:30:05+07:00",
         "id": "MoshimoYuurei-ch-23",
         "r2_prefix": "manga/MoshimoYuurei/23/",
         "title": "Ch. 23",
-        "release_date": "2026-06-13T20:30:05+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       }
     ]
   },
@@ -99,7 +99,7 @@
       "Slice of Life"
     ],
     "rating": 7.29,
-    "total_views": 0,
+    "total_views": 3,
     "isTrending": false,
     "next_update": null,
     "chapters": [
@@ -113,7 +113,7 @@
         "title": "Ch. 11",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 10,
@@ -125,7 +125,7 @@
         "title": "Ch. 10",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 9,
@@ -167,7 +167,7 @@
       "Slice of Life"
     ],
     "rating": 8.69,
-    "total_views": 20,
+    "total_views": 31,
     "isTrending": true,
     "next_update": null,
     "chapters": [
@@ -181,7 +181,7 @@
         "title": "Ch. 215.9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 215.8,
@@ -193,7 +193,7 @@
         "title": "Ch. 215.8",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 215.7,
@@ -205,7 +205,7 @@
         "title": "Ch. 215.7",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       }
     ]
   },
@@ -241,7 +241,7 @@
       "Slice of Life"
     ],
     "rating": 7.38,
-    "total_views": 7,
+    "total_views": 8,
     "isTrending": true,
     "next_update": null,
     "chapters": [
@@ -312,7 +312,7 @@
       "Slice of Life"
     ],
     "rating": 8.47,
-    "total_views": 4,
+    "total_views": 5,
     "isTrending": false,
     "next_update": null,
     "chapters": [
@@ -326,7 +326,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 8,
@@ -456,7 +456,7 @@
       "Video Games"
     ],
     "rating": 7.43,
-    "total_views": 14,
+    "total_views": 16,
     "isTrending": true,
     "next_update": null,
     "chapters": [
@@ -526,7 +526,7 @@
       "Time Travel"
     ],
     "rating": 8.47,
-    "total_views": 16,
+    "total_views": 17,
     "isTrending": true,
     "next_update": null,
     "chapters": [
@@ -552,7 +552,7 @@
         "title": "Ch. 10",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 9,

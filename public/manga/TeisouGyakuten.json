@@ -29,12 +29,12 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 1,
+    "1": 2,
     "5": 1,
     "6": 1,
     "6.5": 4
   },
-  "total_views": 7,
+  "total_views": 8,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -149,7 +149,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     }
   ]
 }
