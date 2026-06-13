@@ -98,13 +98,9 @@ function CountdownLarge({ unlockDate }) {
 function PageImage({ src, idx, pageRefs, ready }) {
   const [loaded,     setLoaded]     = useState(false);
   const [failed,     setFailed]     = useState(false);
-  const [progress,   setProgress]   = useState(0);
   const [retryCount, setRetryCount] = useState(0);
   const [inView,     setInView]     = useState(idx < 3);
-  const wrapRef  = useRef(null);
-  const imgRef   = useRef(null);
-  const timerRef = useRef(null);
-  const watchdogRef = useRef(null);
+  const wrapRef = useRef(null);
 
   // IntersectionObserver untuk lazy pages
   useEffect(() => {
@@ -119,81 +115,16 @@ function PageImage({ src, idx, pageRefs, ready }) {
     return () => obs.disconnect();
   }, [inView]);
 
-  // Main loading effect — native DOM listeners agar tidak miss synchronous cache events
+  // Reset saat src ganti (chapter/token baru)
   useEffect(() => {
-    if (!inView || !ready || !src) return;
-    const img = imgRef.current;
-    if (!img) return;
-
-    // Clear timer sebelumnya
-    clearInterval(timerRef.current);
-    clearTimeout(watchdogRef.current);
-
-    // Sudah complete (memory/disk cache) — langsung tampil
-    if (img.complete && img.naturalWidth > 0) {
-      setProgress(100);
-      setLoaded(true);
-      return;
-    }
-    // Sudah error
-    if (img.complete && img.naturalWidth === 0) {
-      setFailed(true);
-      return;
-    }
-
     setLoaded(false);
     setFailed(false);
-    setProgress(0);
+  }, [src]);
 
-    // Fake progress 0 → 85%
-    let current = 0;
-    timerRef.current = setInterval(() => {
-      current = Math.min(85, current + Math.max(1, Math.round((85 - current) / 8)));
-      setProgress(current);
-      if (current >= 85) clearInterval(timerRef.current);
-    }, 120);
-
-    // Native listeners — tidak pernah miss event apapun
-    const onLoad = () => {
-      clearInterval(timerRef.current);
-      clearTimeout(watchdogRef.current);
-      setProgress(100);
-      setTimeout(() => setLoaded(true), 300); // 300ms > durasi transisi CSS (200ms)
-    };
-    const onError = () => {
-      clearInterval(timerRef.current);
-      clearTimeout(watchdogRef.current);
-      setFailed(true);
-    };
-
-    img.addEventListener('load',  onLoad,  { once: true });
-    img.addEventListener('error', onError, { once: true });
-
-    // Safety net: jika request menggantung / event miss, tampilkan fallback retry.
-    watchdogRef.current = setTimeout(() => {
-      if (!img.complete || img.naturalWidth === 0) {
-        clearInterval(timerRef.current);
-        setFailed(true);
-      }
-    }, 15000);
-
-    // Recheck setelah listeners terpasang untuk kasus load sangat cepat dari cache.
-    queueMicrotask(() => {
-      if (img.complete && img.naturalWidth > 0) onLoad();
-    });
-
-    return () => {
-      clearInterval(timerRef.current);
-      clearTimeout(watchdogRef.current);
-      img.removeEventListener('load',  onLoad);
-      img.removeEventListener('error', onError);
-    };
-  }, [inView, retryCount, src, ready]);
-
-  const handleRetry = () => {
+  const handleRetry = (e) => {
+    e.stopPropagation();
     setFailed(false);
     setLoaded(false);
-    setProgress(0);
     setRetryCount(c => c + 1);
   };
 
@@ -204,21 +135,13 @@ function PageImage({ src, idx, pageRefs, ready }) {
       style={{ minHeight: loaded ? 'auto' : '85vh' }}
     >
       {!ready && inView && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11] gap-3">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11]">
           <span className="font-body-md text-sm text-outline/50">Menunggu Turnstile...</span>
         </div>
       )}
-      {!loaded && !failed && inView && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11] gap-3">
-          <div className="flex flex-col items-center gap-2 w-40">
-            <div className="w-full h-1 bg-white/8 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-primary rounded-full transition-all duration-200 ease-out"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-            <span className="font-label-sm text-[10px] sm:text-xs font-bold text-outline/40 tabular-nums">{progress}%</span>
-          </div>
+      {ready && !loaded && !failed && inView && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11]">
+          <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
         </div>
       )}
       {failed && (
@@ -226,7 +149,7 @@ function PageImage({ src, idx, pageRefs, ready }) {
           <span className="font-body-md text-sm text-outline/50">Gagal memuat halaman {idx + 1}</span>
           <button
             onClick={handleRetry}
-            className="font-label-sm text-xs font-bold px-4 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-colors cursor-pointer"
+            className="font-label-sm text-xs font-bold px-5 py-2.5 rounded-xl bg-white/10 active:bg-white/25 text-white/70 active:text-white transition-colors cursor-pointer touch-manipulation select-none"
           >
             Coba lagi
           </button>
@@ -236,11 +159,12 @@ function PageImage({ src, idx, pageRefs, ready }) {
         key={retryCount}
         alt={`Page ${idx + 1}`}
         loading={idx < 3 ? 'eager' : 'lazy'}
-        decoding={idx < 3 ? 'sync' : 'async'}
+        decoding="async"
         fetchpriority={idx === 0 ? 'high' : 'auto'}
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
-        ref={imgRef}
-        src={ready ? src : undefined}
+        src={ready && inView ? src : undefined}
+        onLoad={() => setLoaded(true)}
+        onError={() => setFailed(true)}
       />
     </div>
   );
