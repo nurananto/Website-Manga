@@ -6,7 +6,16 @@
   "type": "MANGA",
   "author": "Ibarakino",
   "artist": "Usaotome",
-  "genres": ["Adaptation","Shounen","Office Workers","Harem","Gyaru","Slice of Life","Romance","Comedy"],
+  "genres": [
+    "Adaptation",
+    "Shounen",
+    "Office Workers",
+    "Harem",
+    "Gyaru",
+    "Slice of Life",
+    "Romance",
+    "Comedy"
+  ],
   "description": "'Kalau kamu membiarkan kami menginap... kamu boleh melakukan hal apapun ke kita.' Mitsuhiko Okaya, seorang pria biasa, dikhianati oleh istrinya dan kouhainya di kantor. Di tempat kerja, dia dihina sebagai editor tak berguna dan tenggelam dalam keputusasaan, sampai suatu hari di hadapannya muncul sepasang gadis kembar berseragam SMA yang seharusnya asing, tapi entah kenapa terasa familiar. Si adik, Akari, ceria, aktif, dan suka menggoda dengan santai, sedangkan kakaknya, Nanako, pemalu dan canggung, tapi diam-diam mesum. ...Mereka ternyata adalah mantan murid bimbelnya saat masa kuliah dulu.",
   "covers": [
     "manga/Madogiwa/covers/cover.webp",
@@ -19,6 +28,28 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "ce74d132-81f0-491a-bb19-83de73746c8e.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e.webp",
+        "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@tablet.webp",
+        "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
+      "volume": "2",
+      "keys": [
+        "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756.webp",
+        "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@tablet.webp",
+        "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }
-
