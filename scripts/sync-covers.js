@@ -25,8 +25,12 @@ const r2 = new S3Client({
 const BUCKET = process.env.R2_PUBLIC_BUCKET_NAME || process.env.R2_BUCKET_NAME;
 
 // FORCE_COVER_RESYNC=1 → abaikan cache "sudah up to date", download & upload ulang
-// semua cover. Dipakai saat pindah bucket (cover belum ada di bucket baru).
+// SEMUA cover. Dipakai saat pindah bucket (cover belum ada di bucket baru).
 const FORCE = process.env.FORCE_COVER_RESYNC === '1';
+// FORCE_COVER_SLUG="Waka-chan,Slug2" → force hanya manga tertentu (folder hilang).
+const FORCE_SLUGS = new Set(
+  (process.env.FORCE_COVER_SLUG || '').split(',').map(s => s.trim()).filter(Boolean)
+);
 
 // Cover utama (yang ditandai MangaDex sebagai cover_art manga)
 async function getMangaDexCover(mangadexId) {
@@ -121,7 +125,10 @@ async function syncCovers() {
     if (!match) continue;
     const mangadexId = match[1];
 
-    console.log(`🔍 ${meta.title || slug}`);
+    // Force global (semua) atau hanya slug yang diminta (folder hilang).
+    const force = FORCE || FORCE_SLUGS.has(slug);
+
+    console.log(`🔍 ${meta.title || slug}${force ? ' (FORCE)' : ''}`);
     let metaChanged = false;
 
     // Ambil semua cover dulu — dipakai untuk galeri DAN memilih cover utama
@@ -140,7 +147,7 @@ async function syncCovers() {
     }
     if (!coverFileName) {
       console.log(`   ⚠️  Tidak dapat cover dari MangaDex`);
-    } else if (!FORCE && meta.mangadex_cover === coverFileName && meta.covers?.length >= 3 && meta.cover_widths === SIZE_SIGNATURE) {
+    } else if (!force && meta.mangadex_cover === coverFileName && meta.covers?.length >= 3 && meta.cover_widths === SIZE_SIGNATURE) {
       console.log(`   ✓ Cover utama sudah terbaru (${coverFileName})`);
     } else {
       console.log(`   📥 Cover utama baru: ${coverFileName}`);
@@ -179,7 +186,7 @@ async function syncCovers() {
       // Tambah/regenerasi yang baru atau beda ukuran
       for (const c of allCovers) {
         const existing = prevByFile[c.file];
-        if (!FORCE && existing && existing.widths === SIZE_SIGNATURE) {
+        if (!force && existing && existing.widths === SIZE_SIGNATURE) {
           gallery.push({ ...existing, volume: c.volume });
           continue;
         }

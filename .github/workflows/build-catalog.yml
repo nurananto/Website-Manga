@@ -12,6 +12,10 @@ on:
         description: 'Download & upload ulang SEMUA cover (saat pindah bucket)'
         type: boolean
         default: false
+      force_cover_slug:
+        description: 'Force cover manga tertentu saja (slug, pisah koma). Contoh: Waka-chan'
+        type: string
+        default: ''
 
 jobs:
   build:
@@ -42,6 +46,7 @@ jobs:
           R2_BUCKET_NAME:      ${{ secrets.R2_BUCKET_NAME }}
           R2_PUBLIC_BUCKET_NAME: ${{ secrets.R2_PUBLIC_BUCKET_NAME }}
           FORCE_COVER_RESYNC:  ${{ inputs.force_cover_resync && '1' || '' }}
+          FORCE_COVER_SLUG:    ${{ inputs.force_cover_slug }}
 
       - name: Deteksi manga yang berubah di push ini
         id: changed

@@ -64,8 +64,8 @@ export function AuthModal({ isOpen, onClose }) {
           <div className="relative px-8 pt-10 pb-8 flex flex-col items-center gap-6">
             {/* Logo/Icon */}
             <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-400/20 to-indigo-600/20 border border-white/10 flex items-center justify-center shadow-lg overflow-hidden">
-                <img src="/icon.webp" alt="Logo" className="w-full h-full object-cover" />
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-400/20 to-indigo-600/20 border border-white/10 flex items-center justify-center shadow-lg overflow-hidden p-2">
+                <img src="/icon.webp" alt="Logo" className="w-full h-full object-contain" />
               </div>
               <div className="text-center">
                 <h3 className="text-xl font-black text-on-surface">Selamat Datang</h3>
