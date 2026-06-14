@@ -33,6 +33,7 @@ jobs:
         env:
           VITE_WORKER_URL: ${{ secrets.VITE_WORKER_URL }}
           VITE_IMAGE_URL: ${{ secrets.VITE_IMAGE_URL }}
+          VITE_CDN_URL: ${{ secrets.VITE_CDN_URL }}
           VITE_TURNSTILE_SITEKEY: ${{ secrets.VITE_TURNSTILE_SITEKEY }}
 
       - name: Pastikan project Pages ada (idempotent)

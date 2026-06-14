@@ -6,7 +6,6 @@ import CountdownTimer from './CountdownTimer';
 import { ReaderPageSkeleton } from './Skeleton';
 import { imgUrl } from '../utils';
 import { getAccessToken } from '../lib/auth';
-import { ensureSession, getCachedSession, clearCachedSession } from '../lib/session';
 
 // Info jadwal rilis chapter berikutnya: countdown kalau tanggal, teks kalau bukan,
 // pesan hijau "segera rilis" kalau tidak ada jadwal atau waktunya sudah lewat.
@@ -95,7 +94,7 @@ function CountdownLarge({ unlockDate }) {
   );
 }
 
-function PageImage({ src, idx, pageRefs, ready, onImgError }) {
+function PageImage({ src, idx, pageRefs, ready }) {
   const [loaded,     setLoaded]     = useState(false);
   const [failed,     setFailed]     = useState(false);
   const [retryCount, setRetryCount] = useState(0);
@@ -136,7 +135,7 @@ function PageImage({ src, idx, pageRefs, ready, onImgError }) {
     >
       {!ready && inView && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11]">
-          <span className="font-body-md text-sm text-outline/50">Menunggu Turnstile...</span>
+          <span className="font-body-md text-sm text-outline/50">Memuat akses chapter...</span>
         </div>
       )}
       {ready && !loaded && !failed && inView && (
@@ -164,7 +163,7 @@ function PageImage({ src, idx, pageRefs, ready, onImgError }) {
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
         src={ready && inView ? src : undefined}
         onLoad={() => setLoaded(true)}
-        onError={() => { setFailed(true); onImgError && onImgError(); }}
+        onError={() => setFailed(true)}
       />
     </div>
   );
@@ -242,14 +241,13 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   // Prev di-disable saat: sudah di chapter paling lama / oneshot
   const prevDisabled = isAtOldest || isOneshot;
 
+  // Gambar gratis → CDN publik (R2, tanpa worker/token). Terkunci → worker + access token.
+  const cdnBase   = (import.meta.env.VITE_CDN_URL || '').replace(/\/$/, '');
   const imageBase = (import.meta.env.VITE_IMAGE_URL || import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
   const [pages, setPages] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [imgAccess, setImgAccess] = useState(null);
-  const [imgSession, setImgSession] = useState(() => getCachedSession());
-  const [sessionState, setSessionState] = useState(() => (getCachedSession() ? 'ready' : 'idle'));
   const nextPageRef = useRef(1);
-  const imgErrorRefreshedRef = useRef(false);
 
   // Chapter masih dalam masa lock (sudah dibeli, tapi image worker butuh access token)
   const chapterNeedsToken = !!chapter?.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now();
@@ -275,59 +273,19 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     })();
   }, [chapter?.id]);
 
-  // Chapter gratis butuh token sesi Turnstile (?s=). Cuma bergantung chapter.id +
-  // chapterNeedsToken → tidak self-cancel saat sessionState berubah (bug stuck dulu).
-  useEffect(() => {
-    if (chapterNeedsToken) return;
-    if (imgSession) { setSessionState('ready'); return; }
-    let cancelled = false;
-    setSessionState('loading');
-    ensureSession().then((t) => {
-      if (cancelled) return;
-      setImgSession(t || null);
-      setSessionState(t ? 'ready' : 'failed');
-    });
-    return () => { cancelled = true; };
-  }, [chapter?.id, chapterNeedsToken]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const retrySession = () => {
-    imgErrorRefreshedRef.current = false;
-    if (chapterNeedsToken) {
-      setImgAccess(null);
-      return;
-    }
-    clearCachedSession();
-    setImgSession(null);
-    setSessionState('loading');
-    ensureSession().then((t) => {
-      setImgSession(t || null);
-      setSessionState(t ? 'ready' : 'failed');
-    });
-  };
-
-  // Token siap → gambar boleh dimuat. Karena token di-prefetch saat masuk web,
-  // ini biasanya true sejak render pertama (tanpa glitch/probe).
-  const imageReady = chapterNeedsToken ? !!imgAccess : !!imgSession;
-  const sessionFailed = !chapterNeedsToken && sessionState === 'failed';
-
-  // Gambar gratis gagal (kemungkinan sesi kadaluarsa) → refresh token sekali.
-  const handleFreeImgError = () => {
-    if (chapterNeedsToken || imgErrorRefreshedRef.current) return;
-    imgErrorRefreshedRef.current = true;
-    clearCachedSession();
-    ensureSession().then((t) => { if (t) { setImgSession(t); setSessionState('ready'); } });
-  };
+  // Gratis: CDN langsung siap. Terkunci: tunggu access token.
+  const imageReady = chapterNeedsToken ? !!imgAccess : true;
 
   const makeUrl = (idx) => {
     const num = String(idx).padStart(2, '0');
-    const q = chapterNeedsToken
-      ? (imgAccess ? `?access=${encodeURIComponent(imgAccess)}` : '')
-      : (imgSession ? `?s=${encodeURIComponent(imgSession)}` : '');
-    return `${imageBase}/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp${q}`;
+    const path = `/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp`;
+    if (chapterNeedsToken) {
+      return `${imageBase}${path}${imgAccess ? `?access=${encodeURIComponent(imgAccess)}` : ''}`;
+    }
+    return `${cdnBase || imageBase}${path}`;
   };
 
-  // Generate semua URL sekaligus. Halaman tetap bisa dibuka walau Turnstile
-  // masih pending atau gagal; gambar dirender setelah token siap.
+  // Generate semua URL sekaligus.
   useEffect(() => {
     if (!chapter?.id || !manga?.id || !chapter.pages) return;
     activeChapterIdRef.current = chapter.id;
@@ -336,9 +294,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     nextPageRef.current = chapter.pages + 1;
     setPages(all);
     setPageCount(chapter.pages);
-  }, [chapter?.id, imgAccess, imgSession]);
-
-  useEffect(() => { imgErrorRefreshedRef.current = false; }, [chapter?.id]);
+  }, [chapter?.id, imgAccess]);
 
   // Reset currentPage saat chapter berganti. Hanya scroll ke atas kalau TIDAK ada
   // posisi tersimpan — supaya "Lanjut Baca" tidak berkedip atas dulu.
@@ -530,20 +486,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             {/* Pemisah navigasi dan gambar pertama */}
             <div className="h-px bg-white/20" />
 
-            {!imageReady && !chapterNeedsToken && (
-              <div className="mx-auto max-w-4xl px-4 sm:px-6 pt-4">
-                <div className={`rounded-2xl border px-4 py-3 text-sm flex items-center justify-between gap-3 ${sessionFailed ? 'border-amber-500/30 bg-amber-500/10 text-amber-100' : 'border-white/10 bg-white/5 text-white/70'}`}>
-                  <span>{sessionFailed ? 'Turnstile gagal dimuat. Coba lagi.' : 'Memuat proteksi gambar...'}</span>
-                  <button
-                    onClick={retrySession}
-                    className="shrink-0 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-bold hover:bg-white/20 transition-colors cursor-pointer"
-                  >
-                    Coba lagi
-                  </button>
-                </div>
-              </div>
-            )}
-
             <div
               className="w-full lg:max-w-[720px] lg:mx-auto"
               onClick={() => setBarExpanded(v => !v)}
@@ -555,7 +497,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                   idx={idx}
                   pageRefs={pageRefs}
                   ready={imageReady}
-                  onImgError={handleFreeImgError}
                 />
               ))}
             </div>
