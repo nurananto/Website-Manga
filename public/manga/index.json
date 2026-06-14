@@ -1,5 +1,73 @@
 [
   {
+    "id": "Chikasugiru",
+    "title": "Chikasugiru Futari",
+    "alt_title": "近すぎる２人",
+    "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang greget—ini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun bareng, hingga mereka udah kelihatan kayak suami istri romcom kuso-najimi dengan jarak diantara mereka berdua yang udah ngga biasa—dimulai!",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Yamiaraa",
+    "coverUrl": "manga/Chikasugiru/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "manga/Chikasugiru/covers/cover.webp",
+      "tablet": "manga/Chikasugiru/covers/cover@tablet.webp",
+      "mobile": "manga/Chikasugiru/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/Chikasugiru/covers/cover.webp",
+      "manga/Chikasugiru/covers/cover@tablet.webp",
+      "manga/Chikasugiru/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.43,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 8.1,
+        "lock_hours": 0,
+        "pages": 10,
+        "id": "Chikasugiru-ch-8.1",
+        "r2_prefix": "manga/Chikasugiru/8.1/",
+        "title": "Ch. 8.1",
+        "release_date": "2026-06-14T12:26:53+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 7,
+        "lock_hours": 0,
+        "pages": 20,
+        "id": "Chikasugiru-ch-7",
+        "r2_prefix": "manga/Chikasugiru/7/",
+        "title": "Ch. 7",
+        "release_date": "2026-06-14T12:26:53+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 6,
+        "lock_hours": 0,
+        "pages": 16,
+        "id": "Chikasugiru-ch-6",
+        "r2_prefix": "manga/Chikasugiru/6/",
+        "title": "Ch. 6",
+        "release_date": "2026-06-14T12:26:53+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "MoshimoYuurei",
     "title": "Moshimo, Yuurei ga Hatsukoi o Shitara.",
     "alt_title": "もしも、幽霊が初恋をしたら。",
@@ -7,11 +75,11 @@
     "status": "END",
     "type": "WEBTOON",
     "author": "Shichifuku Sayuri",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp",
+    "coverUrl": "manga/MoshimoYuurei/covers/cover.webp",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@tablet.webp",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@mobile.webp"
+      "desktop": "manga/MoshimoYuurei/covers/cover.webp",
+      "tablet": "manga/MoshimoYuurei/covers/cover@tablet.webp",
+      "mobile": "manga/MoshimoYuurei/covers/cover@mobile.webp"
     },
     "covers": [
       "manga/MoshimoYuurei/covers/cover.webp",
@@ -77,11 +145,11 @@
     "status": "Ongoing",
     "type": "MANGA",
     "author": "Ibarakino",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp",
+    "coverUrl": "manga/Madogiwa/covers/cover.webp",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@tablet.webp",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp"
+      "desktop": "manga/Madogiwa/covers/cover.webp",
+      "tablet": "manga/Madogiwa/covers/cover@tablet.webp",
+      "mobile": "manga/Madogiwa/covers/cover@mobile.webp"
     },
     "covers": [
       "manga/Madogiwa/covers/cover.webp",
@@ -149,11 +217,11 @@
     "status": "Tamat",
     "type": "WEBTOON",
     "author": "Shimamura",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp",
+    "coverUrl": "manga/Waka-chan/covers/cover.webp",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@tablet.webp",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@mobile.webp"
+      "desktop": "manga/Waka-chan/covers/cover.webp",
+      "tablet": "manga/Waka-chan/covers/cover@tablet.webp",
+      "mobile": "manga/Waka-chan/covers/cover@mobile.webp"
     },
     "covers": [
       "manga/Waka-chan/covers/cover.webp",
@@ -217,11 +285,11 @@
     "status": "Ongoing",
     "type": "MANGA",
     "author": "Hinami Yui",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp",
+    "coverUrl": "manga/TeisouGyakuten/covers/cover.webp",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@tablet.webp",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@mobile.webp"
+      "desktop": "manga/TeisouGyakuten/covers/cover.webp",
+      "tablet": "manga/TeisouGyakuten/covers/cover@tablet.webp",
+      "mobile": "manga/TeisouGyakuten/covers/cover@mobile.webp"
     },
     "covers": [
       "manga/TeisouGyakuten/covers/cover.webp",
@@ -291,11 +359,11 @@
     "status": "Ongoing",
     "type": "MANGA",
     "author": "Yuuji Yuuji",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp",
+    "coverUrl": "manga/Amari-chan/covers/cover.webp",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp"
+      "desktop": "manga/Amari-chan/covers/cover.webp",
+      "tablet": "manga/Amari-chan/covers/cover@tablet.webp",
+      "mobile": "manga/Amari-chan/covers/cover@mobile.webp"
     },
     "covers": [
       "manga/Amari-chan/covers/cover.webp",
@@ -362,11 +430,11 @@
     "status": "Ongoing",
     "type": "MANGA",
     "author": "Ibarakino",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp",
+    "coverUrl": "manga/Yuumei/covers/cover.webp",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp"
+      "desktop": "manga/Yuumei/covers/cover.webp",
+      "tablet": "manga/Yuumei/covers/cover@tablet.webp",
+      "mobile": "manga/Yuumei/covers/cover@mobile.webp"
     },
     "covers": [
       "manga/Yuumei/covers/cover.webp",
@@ -433,11 +501,11 @@
     "status": "Tamat",
     "type": "MANGA",
     "author": "Kennoji",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp",
+    "coverUrl": "manga/Yarikonda/covers/cover.webp",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@tablet.webp",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@mobile.webp"
+      "desktop": "manga/Yarikonda/covers/cover.webp",
+      "tablet": "manga/Yarikonda/covers/cover@tablet.webp",
+      "mobile": "manga/Yarikonda/covers/cover@mobile.webp"
     },
     "covers": [
       "manga/Yarikonda/covers/cover.webp",
@@ -506,11 +574,11 @@
     "status": "Ongoing",
     "type": "MANGA",
     "author": "Hozumi Kei",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp",
+    "coverUrl": "manga/Sankakukei/covers/cover.webp",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@tablet.webp",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@mobile.webp"
+      "desktop": "manga/Sankakukei/covers/cover.webp",
+      "tablet": "manga/Sankakukei/covers/cover@tablet.webp",
+      "mobile": "manga/Sankakukei/covers/cover@mobile.webp"
     },
     "covers": [
       "manga/Sankakukei/covers/cover.webp",
