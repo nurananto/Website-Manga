@@ -7,6 +7,7 @@ import { ReaderPageSkeleton } from './Skeleton';
 import { imgUrl } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
+import { DailyClaimButton } from './CoinModals';
 
 // Widget Turnstile interaktif (wajib centang) untuk membuka locked chapter.
 function TurnstileGate({ onToken }) {
@@ -203,7 +204,7 @@ function PageImage({ src, fallbackSrc, idx, pageRefs, ready }) {
   );
 }
 
-export default function ReaderModal({ chapter, manga, onClose, onReadChapter, unlockedChapters, isLoggedIn, currentUser, onLoginClick }) {
+export default function ReaderModal({ chapter, manga, onClose, onReadChapter, unlockedChapters, isLoggedIn, currentUser, userCoins, onDailyClaim, onLoginClick }) {
   // Freeze last known values saat exit animation agar konten tidak hilang
   const frozenChapter = useRef(chapter);
   const frozenManga = useRef(manga);
@@ -545,6 +546,17 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                   ready={imageReady}
                 />
               ))}
+            </div>
+
+            {/* Klaim koin harian — urutan: gambar → tombol claim → navbar → back */}
+            <div className="px-2 py-2">
+              <DailyClaimButton
+                dailyClaimAt={currentUser?.daily_claim_at || null}
+                onDailyClaim={onDailyClaim}
+                userCoins={userCoins}
+                isLoggedIn={isLoggedIn}
+                onLoginClick={onLoginClick}
+              />
             </div>
 
             {/* Navigasi bawah */}

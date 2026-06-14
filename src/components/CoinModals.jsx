@@ -1,8 +1,64 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Coins, Shield, CheckCircle2, AlertCircle, Clock, Lock, Gift } from 'lucide-react';
+import { X, Coins, Shield, CheckCircle2, AlertCircle, Clock, Lock, Gift, Zap } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { imgUrl } from '../utils';
+
+// Tombol klaim koin harian (1 koin / 24 jam). Dipakai di modal Isi Koin & reader.
+// Selalu tampil; setelah diklaim → nonaktif + hitung mundur sampai 24 jam.
+export function DailyClaimButton({ dailyClaimAt, onDailyClaim, userCoins = 0, isLoggedIn = true, onLoginClick, className = '' }) {
+  const MS24H = 24 * 60 * 60 * 1000;
+  const [claimAt, setClaimAt] = useState(dailyClaimAt);
+  const [claiming, setClaiming] = useState(false);
+  const [nowTs, setNowTs] = useState(Date.now());
+  useEffect(() => { setClaimAt(dailyClaimAt); }, [dailyClaimAt]);
+  useEffect(() => {
+    const id = setInterval(() => setNowTs(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const nextClaimAt = (claimAt ? new Date(claimAt).getTime() : 0) + MS24H;
+  const canClaim = nowTs >= nextClaimAt;
+  const remainMs = Math.max(0, nextClaimAt - nowTs);
+  const remainH = Math.floor(remainMs / 3600000);
+  const remainM = Math.floor((remainMs % 3600000) / 60000);
+
+  const handleClaim = async () => {
+    if (!isLoggedIn) { onLoginClick?.(); return; }
+    if (!canClaim || claiming) return;
+    setClaiming(true);
+    const d = await onDailyClaim?.();
+    setClaiming(false);
+    if (d?.ok) setClaimAt(new Date().toISOString());
+    else if (d?.already_claimed && d?.next_at) setClaimAt(new Date(new Date(d.next_at).getTime() - MS24H).toISOString());
+  };
+
+  const active = isLoggedIn ? (canClaim && !claiming) : true;
+  return (
+    <div className={`w-full flex items-center gap-3 rounded-xl border border-blue-500/30 bg-gradient-to-r from-blue-500/15 to-blue-600/10 px-3 py-2.5 ${className}`}>
+      <div className="w-9 h-9 rounded-full bg-blue-500/25 border border-blue-400/30 flex items-center justify-center shrink-0">
+        <Zap className="w-4 h-4 text-blue-300 fill-current" />
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="font-body-md text-sm font-black text-on-surface truncate">Klaim koin harian gratis!</p>
+        <p className="font-label-sm text-[11px] text-outline/70 truncate">Kumpulkan 10 koin untuk buka 1 chapter.</p>
+      </div>
+      <div className="flex items-center gap-2 shrink-0">
+        <span className="font-label-sm text-xs font-bold text-blue-200 bg-blue-500/15 border border-blue-500/25 px-2 py-1 rounded-lg whitespace-nowrap">{userCoins} koin</span>
+        <button
+          onClick={handleClaim}
+          disabled={isLoggedIn && (!canClaim || claiming)}
+          className={`h-9 px-4 rounded-lg text-sm font-black whitespace-nowrap transition-all ${
+            active
+              ? 'bg-blue-500 hover:bg-blue-600 text-white active:scale-95 cursor-pointer'
+              : 'bg-white/10 text-outline cursor-not-allowed'
+          }`}
+        >
+          {claiming ? '...' : !isLoggedIn ? 'Login' : canClaim ? 'Klaim' : `${remainH}j ${remainM}m`}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 function CountdownBox({ unlockDate }) {
   const [time, setTime] = useState({ h: 0, m: 0, s: 0 });
@@ -180,32 +236,6 @@ export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail, daily
     { price: 'Rp 10.000', coins: 100 },
   ];
 
-  // Klaim koin harian (1 koin / 24 jam)
-  const MS24H = 24 * 60 * 60 * 1000;
-  const [claimAt, setClaimAt] = useState(dailyClaimAt);
-  const [claiming, setClaiming] = useState(false);
-  const [nowTs, setNowTs] = useState(Date.now());
-  useEffect(() => { setClaimAt(dailyClaimAt); }, [dailyClaimAt]);
-  useEffect(() => {
-    if (!isOpen) return;
-    const id = setInterval(() => setNowTs(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, [isOpen]);
-  const nextClaimAt = (claimAt ? new Date(claimAt).getTime() : 0) + MS24H;
-  const canClaim = nowTs >= nextClaimAt;
-  const remainMs = Math.max(0, nextClaimAt - nowTs);
-  const remainH = Math.floor(remainMs / 3600000);
-  const remainM = Math.floor((remainMs % 3600000) / 60000);
-
-  const handleClaim = async () => {
-    if (!canClaim || claiming) return;
-    setClaiming(true);
-    const d = await onDailyClaim?.();
-    setClaiming(false);
-    if (d?.ok) setClaimAt(new Date().toISOString());
-    else if (d?.already_claimed && d?.next_at) setClaimAt(new Date(new Date(d.next_at).getTime() - MS24H).toISOString());
-  };
-
   const handleClose = () => { setStep(1); onClose(); };
 
   if (!isOpen) return null;
@@ -251,24 +281,8 @@ export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail, daily
               <span className="text-lg font-black text-amber-300">{userCoins}</span>
             </div>
 
-            {/* Klaim koin harian gratis (1 koin / 48 jam) */}
-            <button
-              onClick={handleClaim}
-              disabled={!canClaim || claiming}
-              className={`w-full h-11 rounded-xl flex items-center justify-center gap-2 text-sm font-black transition-all ${
-                canClaim && !claiming
-                  ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white active:scale-[0.98] cursor-pointer'
-                  : 'bg-white/5 border border-white/10 text-outline cursor-not-allowed'
-              }`}
-            >
-              {claiming ? (
-                'Mengklaim...'
-              ) : canClaim ? (
-                <><Gift className="w-4 h-4" /> Klaim 1 Koin Gratis</>
-              ) : (
-                <><Clock className="w-4 h-4" /> Klaim lagi dalam {remainH}j {remainM}m</>
-              )}
-            </button>
+            {/* Klaim koin harian gratis (1 koin / 24 jam) */}
+            <DailyClaimButton dailyClaimAt={dailyClaimAt} onDailyClaim={onDailyClaim} userCoins={userCoins} />
 
             {step === 1 ? (
               <>

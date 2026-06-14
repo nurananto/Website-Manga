@@ -57,8 +57,9 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
           </div>
         </div>
 
-        {/* Chapters List — flex-1 + justify-between agar ngepas bawah cover */}
-        <div className="flex flex-col flex-1 justify-between mt-2">
+        {/* Chapters List — 3 chapter: justify-between (ngepas tinggi cover).
+            <3 chapter: gap-2 + nempel atas (cegah celah besar di tengah). */}
+        <div className={`flex flex-col flex-1 mt-2 ${manga.chapters.length >= 3 ? 'justify-between' : 'gap-2'}`}>
           {manga.chapters.slice(0, 3).map((ch, idx) => {
             const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()
               && !localUnlocked.has(ch.id) && !unlockedChapters?.has(ch.id);

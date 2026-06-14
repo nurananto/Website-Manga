@@ -1,0 +1,5 @@
+# Kebijakan pelaporan celah keamanan — Nurananto Scanlation
+Contact: mailto:admin@nuranantoscans.my.id
+Expires: 2027-06-14T00:00:00.000Z
+Preferred-Languages: id, en
+Canonical: https://nuranantoscans.my.id/.well-known/security.txt

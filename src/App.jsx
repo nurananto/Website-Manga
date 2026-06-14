@@ -465,6 +465,26 @@ export default function App() {
     }, 3000);
   };
 
+  // Klaim koin harian (1 koin / 24 jam) — dipakai di modal Isi Koin & reader.
+  const handleDailyClaim = async () => {
+    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+    const token = await getAccessToken();
+    if (!workerUrl || !token) return { ok: false };
+    try {
+      const res = await fetch(`${workerUrl}/api/user/daily-claim`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` },
+      });
+      const d = await res.json();
+      if (d.ok) {
+        setUserCoins(prev => prev + (d.coins_added || 1));
+        setCurrentUser(prev => prev ? { ...prev, daily_claim_at: new Date().toISOString() } : prev);
+        showToast(`+${d.coins_added || 1} koin harian diklaim!`);
+      }
+      return d;
+    } catch { return { ok: false }; }
+  };
+
   // Filter manga based on search query
   const filteredManga = MANGA_LIST.filter((m) =>
     m.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -1077,6 +1097,8 @@ export default function App() {
           unlockedChapters={d1UnlockedChapters}
           isLoggedIn={isLoggedIn}
           currentUser={currentUser}
+          userCoins={userCoins}
+          onDailyClaim={handleDailyClaim}
           onLoginClick={() => setIsAuthModalOpen(true)}
         />
       )}
@@ -1159,25 +1181,7 @@ export default function App() {
         userCoins={userCoins}
         userEmail={currentUser?.email || ''}
         dailyClaimAt={currentUser?.daily_claim_at || null}
-        onDailyClaim={async () => {
-          const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-          const token = await getAccessToken();
-          if (!workerUrl || !token) return { ok: false };
-          try {
-            const res = await fetch(`${workerUrl}/api/user/daily-claim`, {
-              method: 'POST',
-              headers: { 'Authorization': `Bearer ${token}` },
-            });
-            const d = await res.json();
-            if (d.ok) {
-              setUserCoins(prev => prev + (d.coins_added || 1));
-              const now = new Date().toISOString();
-              setCurrentUser(prev => prev ? { ...prev, daily_claim_at: now } : prev);
-              showToast(`+${d.coins_added || 1} koin harian diklaim!`);
-            }
-            return d;
-          } catch { return { ok: false }; }
-        }}
+        onDailyClaim={handleDailyClaim}
         onPurchase={(addedCoins) => {
           setUserCoins(prev => prev + addedCoins);
         }}
