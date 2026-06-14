@@ -61,6 +61,19 @@ export default function DmcaModal({ onClose }) {
               </ol>
             </Section>
 
+            <Section title="4. Kebijakan Pelanggar Berulang">
+              <p>Sesuai dengan DMCA dan hukum yang berlaku, kami menerapkan kebijakan untuk menghentikan akun pengguna yang terbukti berulang kali melanggar hak cipta, dalam keadaan yang kami anggap tepat dan atas kebijakan kami sendiri.</p>
+            </Section>
+
+            <Section title="5. Informasi Kontak">
+              <p>Kirimkan semua pemberitahuan DMCA dan pemberitahuan balik kepada:</p>
+              <div className="mt-1 p-3 rounded-xl bg-white/5 border border-white/8 flex flex-col gap-0.5">
+                <strong>DMCA Agent</strong>
+                <span>Nurananto Scanlation</span>
+                <span>Email: <a href="mailto:admin@nuranantoscans.my.id" className="text-primary hover:underline">admin@nuranantoscans.my.id</a></span>
+              </div>
+            </Section>
+
             <div className="pb-2" />
           </div>
         </motion.div>
