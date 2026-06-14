@@ -57,22 +57,27 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
           </div>
         </div>
 
-        {/* Chapters List — 3 chapter: justify-between (ngepas tinggi cover).
-            <3 chapter: gap-2 + nempel atas (cegah celah besar di tengah). */}
-        <div className={`flex flex-col flex-1 mt-2 ${manga.chapters.length >= 3 ? 'justify-between' : 'gap-2'}`}>
-          {manga.chapters.slice(0, 3).map((ch, idx) => {
+        {/* Chapters List — selalu 3 slot dengan justify-between agar posisi
+            konsisten di semua breakpoint, slot kosong jadi invisible spacer. */}
+        <div className="flex flex-col flex-1 mt-2 justify-between">
+          {[...Array(3)].map((_, idx) => {
+            const ch = manga.chapters[idx];
+            if (!ch) return <div key={`ph-${idx}`} className="invisible pointer-events-none py-1 sm:py-1.5 lg:py-2 rounded-xl" />;
             const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()
               && !localUnlocked.has(ch.id) && !unlockedChapters?.has(ch.id);
-            // Badge status muncul di chapter pertama (terbaru) saat tidak ada update
-            // Badge Tamat/Hiatus muncul di chapter yang sesuai tamat_at_chapter/hiatus_at_chapter
             const targetChapter = manga.status === 'Tamat'
               ? manga.tamat_at_chapter
               : isOneshot
-              ? ch.chapter_number // oneshot: badge di semua chapter (cuma 1)
+              ? ch.chapter_number
               : manga.hiatus_at_chapter;
             const isUp = !!ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
-            // Badge status disembunyikan selama badge UP masih tampil (24 jam pertama)
-            const showStatusBadge = !isUp && isFinished && (isOneshot || (targetChapter != null && ch.chapter_number === targetChapter));
+            // Badge Tamat/Hiatus: muncul di chapter yang cocok dengan tamat_at_chapter/hiatus_at_chapter.
+            // Jika tidak di-set, fallback ke chapter pertama (idx === 0).
+            const showStatusBadge = !isUp && isFinished && (
+              isOneshot ||
+              (targetChapter != null && ch.chapter_number === targetChapter) ||
+              (targetChapter == null && idx === 0)
+            );
 
             return (
               <div
