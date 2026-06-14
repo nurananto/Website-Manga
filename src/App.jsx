@@ -333,7 +333,7 @@ export default function App() {
       .then(r => r.json()).then(d => {
         if (typeof d.coins === 'number') setUserCoins(d.coins);
         if (d.name_changed_at) setNameChangedAt(d.name_changed_at);
-        setCurrentUser(prev => prev ? { ...prev, ...(d.name ? { name: d.name } : {}), is_donor: !!d.is_donor } : prev);
+        setCurrentUser(prev => prev ? { ...prev, ...(d.name ? { name: d.name } : {}), is_donor: !!d.is_donor, daily_claim_at: d.daily_claim_at ?? null } : prev);
       })
       .catch(() => {});
 
@@ -564,7 +564,7 @@ export default function App() {
           body: JSON.stringify({
             chapter_id: pendingUnlockChapter.id,
             manga_id: pendingManga?.id || selectedManga?.id || pendingUnlockChapter.id.split('-ch-')[0],
-            cost: 5,
+            cost: 10,
           }),
         });
         const d = await res.json();
@@ -573,7 +573,7 @@ export default function App() {
           return;
         }
         if (typeof d.coins_remaining === 'number') setUserCoins(d.coins_remaining);
-        else setUserCoins(prev => prev - 5);
+        else setUserCoins(prev => prev - 10);
         // Invalidate tx cache
         if (currentUser) localStorage.removeItem(`tx_cache_${currentUser.id}`);
       } catch {
@@ -582,7 +582,7 @@ export default function App() {
       }
     } else {
       // Offline fallback
-      setUserCoins(prev => prev - 5);
+      setUserCoins(prev => prev - 10);
     }
 
     setD1UnlockedChapters(prev => new Set([...prev, pendingUnlockChapter.id]));
@@ -1158,6 +1158,26 @@ export default function App() {
         onClose={() => setIsCoinModalOpen(false)}
         userCoins={userCoins}
         userEmail={currentUser?.email || ''}
+        dailyClaimAt={currentUser?.daily_claim_at || null}
+        onDailyClaim={async () => {
+          const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+          const token = await getAccessToken();
+          if (!workerUrl || !token) return { ok: false };
+          try {
+            const res = await fetch(`${workerUrl}/api/user/daily-claim`, {
+              method: 'POST',
+              headers: { 'Authorization': `Bearer ${token}` },
+            });
+            const d = await res.json();
+            if (d.ok) {
+              setUserCoins(prev => prev + (d.coins_added || 1));
+              const now = new Date().toISOString();
+              setCurrentUser(prev => prev ? { ...prev, daily_claim_at: now } : prev);
+              showToast(`+${d.coins_added || 1} koin harian diklaim!`);
+            }
+            return d;
+          } catch { return { ok: false }; }
+        }}
         onPurchase={(addedCoins) => {
           setUserCoins(prev => prev + addedCoins);
         }}

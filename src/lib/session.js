@@ -13,7 +13,9 @@ function cached() {
   return null;
 }
 
-function loadTurnstile() {
+export const TURNSTILE_SITEKEY = SITEKEY;
+
+export function loadTurnstile() {
   return new Promise((resolve) => {
     if (window.turnstile) return resolve(window.turnstile);
     const id = 'cf-turnstile-script';

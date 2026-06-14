@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Coins, Shield, CheckCircle2, AlertCircle, Clock, Lock } from 'lucide-react';
+import { X, Coins, Shield, CheckCircle2, AlertCircle, Clock, Lock, Gift } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { imgUrl } from '../utils';
 
@@ -64,10 +64,8 @@ export function AuthModal({ isOpen, onClose }) {
           <div className="relative px-8 pt-10 pb-8 flex flex-col items-center gap-6">
             {/* Logo/Icon */}
             <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-400/20 to-indigo-600/20 border border-white/10 flex items-center justify-center shadow-lg">
-                <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" className="text-primary" />
-                </svg>
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-400/20 to-indigo-600/20 border border-white/10 flex items-center justify-center shadow-lg overflow-hidden">
+                <img src="/icon.webp" alt="Logo" className="w-full h-full object-cover" />
               </div>
               <div className="text-center">
                 <h3 className="text-xl font-black text-on-surface">Selamat Datang</h3>
@@ -174,13 +172,39 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' 
 }
 
 // Coin Purchase Modal
-export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail }) {
+export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail, dailyClaimAt, onDailyClaim }) {
   const [step, setStep] = useState(1);
   const rates = [
     { price: 'Rp 2.000',  coins: 20 },
     { price: 'Rp 5.000',  coins: 50, isPopular: true },
     { price: 'Rp 10.000', coins: 100 },
   ];
+
+  // Klaim koin harian (1 koin / 24 jam)
+  const MS24H = 24 * 60 * 60 * 1000;
+  const [claimAt, setClaimAt] = useState(dailyClaimAt);
+  const [claiming, setClaiming] = useState(false);
+  const [nowTs, setNowTs] = useState(Date.now());
+  useEffect(() => { setClaimAt(dailyClaimAt); }, [dailyClaimAt]);
+  useEffect(() => {
+    if (!isOpen) return;
+    const id = setInterval(() => setNowTs(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, [isOpen]);
+  const nextClaimAt = (claimAt ? new Date(claimAt).getTime() : 0) + MS24H;
+  const canClaim = nowTs >= nextClaimAt;
+  const remainMs = Math.max(0, nextClaimAt - nowTs);
+  const remainH = Math.floor(remainMs / 3600000);
+  const remainM = Math.floor((remainMs % 3600000) / 60000);
+
+  const handleClaim = async () => {
+    if (!canClaim || claiming) return;
+    setClaiming(true);
+    const d = await onDailyClaim?.();
+    setClaiming(false);
+    if (d?.ok) setClaimAt(new Date().toISOString());
+    else if (d?.already_claimed && d?.next_at) setClaimAt(new Date(new Date(d.next_at).getTime() - MS24H).toISOString());
+  };
 
   const handleClose = () => { setStep(1); onClose(); };
 
@@ -226,6 +250,25 @@ export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail }) {
               </div>
               <span className="text-lg font-black text-amber-300">{userCoins}</span>
             </div>
+
+            {/* Klaim koin harian gratis (1 koin / 48 jam) */}
+            <button
+              onClick={handleClaim}
+              disabled={!canClaim || claiming}
+              className={`w-full h-11 rounded-xl flex items-center justify-center gap-2 text-sm font-black transition-all ${
+                canClaim && !claiming
+                  ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white active:scale-[0.98] cursor-pointer'
+                  : 'bg-white/5 border border-white/10 text-outline cursor-not-allowed'
+              }`}
+            >
+              {claiming ? (
+                'Mengklaim...'
+              ) : canClaim ? (
+                <><Gift className="w-4 h-4" /> Klaim 1 Koin Gratis</>
+              ) : (
+                <><Clock className="w-4 h-4" /> Klaim lagi dalam {remainH}j {remainM}m</>
+              )}
+            </button>
 
             {step === 1 ? (
               <>
@@ -325,7 +368,7 @@ export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail }) {
 // Unlock Chapter Confirmation Modal
 export function UnlockModal({ isOpen, onClose, chapter, userCoins, onConfirm, onGoToStore }) {
   if (!isOpen || !chapter) return null;
-  const cost = 5;
+  const cost = 10;
   const canUnlock = userCoins >= cost;
 
   return (
@@ -522,7 +565,7 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChanged
 // ── Locked Chapter Modal — unified for all access states ─────
 export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn, userCoins, onConfirm, onLogin, onGoToStore }) {
   if (!isOpen || !chapter) return null;
-  const cost = 5;
+  const cost = 10;
   const canUnlock = isLoggedIn && userCoins >= cost;
 
   return (

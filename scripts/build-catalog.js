@@ -147,7 +147,7 @@ async function buildCatalog() {
       ch.id = `${slug}-ch-${ch.chapter_number}`;
       ch.r2_prefix = `manga/${slug}/${ch.chapter_number}/`;
       if (!ch.title) {
-        ch.title = manga.status === 'ONESHOT' ? 'Oneshot' : `Ch. ${ch.chapter_number}`;
+        ch.title = manga.status?.toLowerCase() === 'oneshot' ? 'Oneshot' : `Ch. ${ch.chapter_number}`;
       }
 
       // release_date: kalau belum ada di meta.json, ambil dari waktu commit PERTAMA
@@ -201,10 +201,17 @@ async function buildCatalog() {
     // Urutkan genre abjad
     if (Array.isArray(manga.genres)) manga.genres.sort();
 
-    // Normalisasi status & type — case insensitive
-    const statusMap = { 'ongoing':'Ongoing', 'hiatus':'Hiatus', 'tamat':'Tamat', 'oneshot':'Oneshot', 'oneshoot':'Oneshot' };
+    // Normalisasi status & type — case insensitive.
+    // Nilai resmi: Ongoing, Tamat, Hiatus, Oneshot. Sinonim umum dipetakan;
+    // nilai tak dikenal default ke 'Ongoing' agar tampilan selalu konsisten.
+    const statusMap = {
+      'ongoing':'Ongoing', 'berlanjut':'Ongoing', 'berjalan':'Ongoing',
+      'hiatus':'Hiatus',
+      'tamat':'Tamat', 'end':'Tamat', 'ended':'Tamat', 'completed':'Tamat', 'finished':'Tamat', 'selesai':'Tamat',
+      'oneshot':'Oneshot', 'oneshoot':'Oneshot',
+    };
     const typeMap   = { 'manga':'MANGA', 'manhwa':'MANHWA', 'manhua':'MANHUA', 'novel':'NOVEL' };
-    manga.status = statusMap[manga.status?.toLowerCase()] ?? manga.status;
+    manga.status = statusMap[manga.status?.toLowerCase()] ?? 'Ongoing';
     manga.type   = typeMap[manga.type?.toLowerCase()] ?? manga.type;
 
     // coverUrl dari covers[0] (desktop), coverUrls untuk semua ukuran.

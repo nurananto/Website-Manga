@@ -6,6 +6,32 @@ import CountdownTimer from './CountdownTimer';
 import { ReaderPageSkeleton } from './Skeleton';
 import { imgUrl } from '../utils';
 import { getAccessToken } from '../lib/auth';
+import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
+
+// Widget Turnstile interaktif (wajib centang) untuk membuka locked chapter.
+function TurnstileGate({ onToken }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    let widgetId;
+    let cancelled = false;
+    loadTurnstile().then((ts) => {
+      if (cancelled || !ts || !ref.current || !TURNSTILE_SITEKEY) return;
+      try {
+        widgetId = ts.render(ref.current, {
+          sitekey: TURNSTILE_SITEKEY,
+          callback: (t) => onToken(t),
+          'error-callback': () => {},
+          'expired-callback': () => {},
+        });
+      } catch {}
+    });
+    return () => {
+      cancelled = true;
+      try { if (widgetId != null && window.turnstile) window.turnstile.remove(widgetId); } catch {}
+    };
+  }, []);
+  return <div ref={ref} className="min-h-[65px] flex items-center justify-center" />;
+}
 
 // Info jadwal rilis chapter berikutnya: countdown kalau tanggal, teks kalau bukan,
 // pesan hijau "segera rilis" kalau tidak ada jadwal atau waktunya sudah lewat.
@@ -94,12 +120,14 @@ function CountdownLarge({ unlockDate }) {
   );
 }
 
-function PageImage({ src, idx, pageRefs, ready }) {
+function PageImage({ src, fallbackSrc, idx, pageRefs, ready }) {
   const [loaded,     setLoaded]     = useState(false);
   const [failed,     setFailed]     = useState(false);
   const [retryCount, setRetryCount] = useState(0);
+  const [useFallback, setUseFallback] = useState(false);
   const [inView,     setInView]     = useState(idx < 3);
   const wrapRef = useRef(null);
+  const activeSrc = useFallback && fallbackSrc ? fallbackSrc : src;
 
   // IntersectionObserver untuk lazy pages
   useEffect(() => {
@@ -118,6 +146,7 @@ function PageImage({ src, idx, pageRefs, ready }) {
   useEffect(() => {
     setLoaded(false);
     setFailed(false);
+    setUseFallback(false);
   }, [src]);
 
   const handleRetry = (e) => {
@@ -161,9 +190,14 @@ function PageImage({ src, idx, pageRefs, ready }) {
         decoding="async"
         fetchpriority={idx === 0 ? 'high' : 'auto'}
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
-        src={ready && inView ? src : undefined}
+        src={ready && inView ? activeSrc : undefined}
         onLoad={() => setLoaded(true)}
-        onError={() => setFailed(true)}
+        onError={() => {
+          // CDN 404 (chapter baru lepas kunci, belum dimigrasi) → coba worker
+          // sekali; worker layani dari manga-locked + copy ke manga-media.
+          if (fallbackSrc && !useFallback) setUseFallback(true);
+          else setFailed(true);
+        }}
       />
     </div>
   );
@@ -247,42 +281,53 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const [pages, setPages] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [imgAccess, setImgAccess] = useState(null);
+  const [imgHash, setImgHash] = useState(null);
+  const [tsToken, setTsToken] = useState(null); // token Turnstile (wajib centang)
   const nextPageRef = useRef(1);
 
   // Chapter masih dalam masa lock (sudah dibeli, tapi image worker butuh access token)
   const chapterNeedsToken = !!chapter?.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now();
 
   // Ambil access token untuk gambar chapter yang masih locked
+  // Reset semua saat ganti chapter — locked wajib centang Turnstile lagi.
   useEffect(() => {
     setImgAccess(null);
-    if (!chapter?.id || !chapterNeedsToken) return;
+    setImgHash(null);
+    setTsToken(null);
+  }, [chapter?.id]);
+
+  // Setelah Turnstile dicentang (tsToken ada) → ambil access token + hash.
+  useEffect(() => {
+    if (!chapter?.id || !chapterNeedsToken || !tsToken) return;
     const workerUrl = import.meta.env.VITE_WORKER_URL || '';
     if (!workerUrl) return;
+    let cancelled = false;
     (async () => {
       try {
         const tok = await getAccessToken();
-        if (!tok) return;
+        if (!tok || cancelled) return;
         const res = await fetch(`${workerUrl}/api/user/chapter-token`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${tok}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chapter_id: chapter.id }),
+          body: JSON.stringify({ chapter_id: chapter.id, turnstile_token: tsToken }),
         });
         const d = await res.json();
-        if (d.token) setImgAccess(d.token);
+        if (!cancelled && d.token) { setImgAccess(d.token); setImgHash(d.h || null); }
       } catch {}
     })();
-  }, [chapter?.id]);
+    return () => { cancelled = true; };
+  }, [chapter?.id, tsToken]);
 
-  // Gratis: CDN langsung siap. Terkunci: tunggu access token.
-  const imageReady = chapterNeedsToken ? !!imgAccess : true;
+  // Gratis: CDN langsung siap. Terkunci: tunggu access token + hash path.
+  const imageReady = chapterNeedsToken ? (!!imgAccess && !!imgHash) : true;
 
   const makeUrl = (idx) => {
     const num = String(idx).padStart(2, '0');
-    const path = `/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp`;
     if (chapterNeedsToken) {
-      return `${imageBase}${path}${imgAccess ? `?access=${encodeURIComponent(imgAccess)}` : ''}`;
+      // Path di-hash agar judul/chapter tidak terbaca di URL: /c/<hash>/<NN>.webp
+      return `${imageBase}/c/${imgHash}/${num}.webp?access=${encodeURIComponent(imgAccess)}`;
     }
-    return `${cdnBase || imageBase}${path}`;
+    return `${cdnBase || imageBase}/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp`;
   };
 
   // Generate semua URL sekaligus.
@@ -294,7 +339,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     nextPageRef.current = chapter.pages + 1;
     setPages(all);
     setPageCount(chapter.pages);
-  }, [chapter?.id, imgAccess]);
+  }, [chapter?.id, imgAccess, imgHash]);
 
   // Reset currentPage saat chapter berganti. Hanya scroll ke atas kalau TIDAK ada
   // posisi tersimpan — supaya "Lanjut Baca" tidak berkedip atas dulu.
@@ -494,6 +539,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                 <PageImage
                   key={idx}
                   src={p}
+                  fallbackSrc={!chapterNeedsToken && cdnBase && imageBase ? p.replace(cdnBase, imageBase) : null}
                   idx={idx}
                   pageRefs={pageRefs}
                   ready={imageReady}
@@ -539,6 +585,33 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             <div className="pb-4 md:pb-6 xl:pb-8" />
           </div>
         </div>
+
+        {/* Gate Turnstile — locked chapter wajib centang sebelum gambar dimuat */}
+        {chapterNeedsToken && !imgAccess && (
+          <div className="absolute inset-0 z-[205] bg-[#090b0d]/95 backdrop-blur-sm flex flex-col items-center justify-center gap-5 px-6">
+            <div className="flex flex-col items-center gap-2 text-center">
+              <Lock className="w-8 h-8 text-primary" />
+              <h3 className="font-headline-md text-base sm:text-lg font-black text-on-surface">Verifikasi untuk membuka chapter</h3>
+              <p className="font-body-md text-xs sm:text-sm text-outline/70 max-w-xs">
+                Chapter berbayar — centang kotak di bawah untuk memuat gambar.
+              </p>
+            </div>
+            {!tsToken ? (
+              <TurnstileGate onToken={setTsToken} />
+            ) : (
+              <div className="flex items-center gap-2 text-outline/70">
+                <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                <span className="font-body-md text-sm">Memuat akses chapter...</span>
+              </div>
+            )}
+            <button
+              onClick={onClose}
+              className="mt-2 font-label-sm text-xs font-bold px-5 py-2 rounded-xl border border-white/10 text-outline hover:text-on-surface hover:bg-white/5 transition-colors cursor-pointer"
+            >
+              ← Kembali
+            </button>
+          </div>
+        )}
 
         {/* Progress Bar — thin default, expand on hover/tap */}
         <div
@@ -779,7 +852,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                     className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md border border-yellow-600/30"
                   >
                     <Coins className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-                    Beli dengan 5 Koin
+                    Beli dengan 10 Koin
                   </button>
                   <button
                     onClick={() => setShowLockedModal(false)}
