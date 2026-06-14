@@ -6,7 +6,15 @@
   "type": "MANGA",
   "author": "Akizuki Tsukihi",
   "artist": "Akizuki Tsukihi, Shio Kazunoko",
-  "genres": ["Shounen", "Comedy", "Slice of Life", "Harem", "Romance", "School Life", "Adaptation"],
+  "genres": [
+    "Shounen",
+    "Comedy",
+    "Slice of Life",
+    "Harem",
+    "Romance",
+    "School Life",
+    "Adaptation"
+  ],
   "description": "Seorang pemuda biasa dan para jenius tinggal bersama di bawah satu atap — romcom harem penuh kekacauan dengan tingkat keimutannya MAX! '…Mau datang ke rumahku?' Setelah rumahnya tiba-tiba hangus terbakar, Riku akhirnya tinggal menumpang di rumah keluarga Tennousu — tiga kakak beradik cantik jelita berbakat yang selalu dipuja banyak orang. Melihat rumah mereka berantakan karena manajemen hidup yang parah, Riku pun memutuskan untuk menggunakan keahlian rumah tangganya untuk membantu mereka!? Para jenius itu pun perlahan mulai tertarik pada sosok Riku yang tulus dan selalu penuh perhatian…",
   "covers": [
     "manga/TensaiBishoujo/covers/cover.webp",
@@ -19,7 +27,18 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371.webp",
+        "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@tablet.webp",
+        "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }
-
-

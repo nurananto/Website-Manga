@@ -6,7 +6,15 @@
   "type": "MANGA",
   "author": "Tomo Shirano",
   "artist": "Ryou Miyazaki",
-  "genres": ["Comedy", "Romance", "Slice of Life", "Cooking", "Gyaru", "School Life", "Adaptation"],
+  "genres": [
+    "Comedy",
+    "Romance",
+    "Slice of Life",
+    "Cooking",
+    "Gyaru",
+    "School Life",
+    "Adaptation"
+  ],
   "description": "akura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik tiri dan pasangan kekasih yang tinggal serumah.Dan tidak ada satu pun teman sekelas mereka yang mengetahui fakta itu.Meski Sakura tampil bersinar dan ceria di sekolah, begitu sampai di rumah, ia langsung santai dan tergila-gila dengan masakan Houri.Dan Houri yang bertanggung jawab atas urusan makan pun sebenarnya sangat menikmati itu――.Sebuah kisah manis tentang memberi makan dan menikmati kehidupan ganda bersama gyaru imut di sekolah dan di rumah!",
   "covers": [
     "manga/ClassdeIchiban/covers/cover.webp",
@@ -19,5 +27,28 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
+      "volume": "2",
+      "keys": [
+        "manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a.webp",
+        "manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@tablet.webp",
+        "manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "ab35247f-dc63-4aa6-a01a-7ebe1353ab41.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41.webp",
+        "manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@tablet.webp",
+        "manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }

@@ -1,0 +1,76 @@
+{
+  "id": "IkemenJoshi",
+  "title": "Ikemen Joshi Demo Kawaii Heroine ni Naremasu ka?",
+  "alt_title": "イケメン女子でもかわいいヒロインになれますか？",
+  "status": "Ongoing",
+  "type": "MANGA",
+  "author": "Tsumikitsuki",
+  "artist": "Tsumikitsuki",
+  "genres": [
+    "Comedy",
+    "Romance",
+    "School Life",
+    "Shounen",
+    "Slice of Life"
+  ],
+  "description": "'Bisakah kamu membuat diriku menjadi seorang princess (Heroine)?' Sumeragi Tsukasa — siswi SMA yang dijuluki ikemen, seorang artis populer, dan selalu dikerubungi cewek-cewek. Sedangkan Mikage Himeno — cowok SMA yang sudah debut jadi mangaka tapi proposal serialisasinya selalu ditolak. Saat tujuan mereka saling bertemu, Mereka langsung sembunyi-sembunyi latihan untuk menjadi seorang heroine dan nggak boleh ketahuan sama siapa pun! dan itu yang bikin situasi diantara mereka menjadi mendebarkan!",
+  "covers": [
+    "manga/IkemenJoshi/covers/cover.webp",
+    "manga/IkemenJoshi/covers/cover@tablet.webp",
+    "manga/IkemenJoshi/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/755733bb-5842-4ff5-af0f-b4c1605bfe85/ikemen-joshi-demo-kawaii-heroine-ni-naremasu-ka?tab=comments",
+  "raw_url": "https://kirapo.jp/meteor/titles/ikemenjoshi",
+  "tamat_at_chapter": null,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": "6beb2e72-2c1b-443f-8348-b6a0a96e7d6a.png",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "volume": "0",
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@mobile.webp"
+      }
+    }
+  ],
+  "mangadex_id": "755733bb-5842-4ff5-af0f-b4c1605bfe85",
+  "rating": 8.5,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@tablet.webp",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@mobile.webp"
+  },
+  "chapters": [
+    {
+      "chapter_number": 2,
+      "lock_hours": 0,
+      "pages": 20,
+      "id": "IkemenJoshi-ch-2",
+      "r2_prefix": "manga/IkemenJoshi/2/",
+      "title": "Ch. 2",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "IkemenJoshi-ch-1",
+      "r2_prefix": "manga/IkemenJoshi/1/",
+      "title": "Ch. 1",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    }
+  ]
+}

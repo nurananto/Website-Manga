@@ -1,0 +1,115 @@
+{
+  "id": "Osananajimi",
+  "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
+  "alt_title": "幼馴染に陰で都合の良い男呼ばわりされた俺は、好意をリセットして普通に青春を送りたい",
+  "status": "Ongoing",
+  "type": "MANGA",
+  "author": "Hitofude Nanashi",
+  "artist": "Nora Usagi",
+  "genres": [
+    "Adaptation",
+    "Comedy",
+    "Drama",
+    "Romance",
+    "School Life",
+    "Shounen",
+    "Slice of Life",
+    "Tragedy"
+  ],
+  "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
+  "covers": [
+    "manga/Osananajimi/covers/cover.webp",
+    "manga/Osananajimi/covers/cover@tablet.webp",
+    "manga/Osananajimi/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/36cf3daf-9770-4f83-a69c-0d5971b5b43d/osananajimi-ni-kage-de-tsugou-no-yoi-otoko-yobawari-sareta-ore-wa-koui-o-reset-shite-futsuu-ni",
+  "raw_url": "https://www.manga-up.com/titles/1680",
+  "tamat_at_chapter": null,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": "9dc62bb4-031a-4ef5-aa8b-fee41ec86b83.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "volume": "0",
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/9dc62bb4-031a-4ef5-aa8b-fee41ec86b83.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/9dc62bb4-031a-4ef5-aa8b-fee41ec86b83@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/9dc62bb4-031a-4ef5-aa8b-fee41ec86b83@mobile.webp"
+      }
+    }
+  ],
+  "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
+  "rating": 8.61,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp"
+  },
+  "chapters": [
+    {
+      "chapter_number": 4.1,
+      "lock_hours": 0,
+      "pages": 10,
+      "id": "Osananajimi-ch-4.1",
+      "r2_prefix": "manga/Osananajimi/4.1/",
+      "title": "Ch. 4.1",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 3.2,
+      "lock_hours": 0,
+      "pages": 20,
+      "id": "Osananajimi-ch-3.2",
+      "r2_prefix": "manga/Osananajimi/3.2/",
+      "title": "Ch. 3.2",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 3.1,
+      "lock_hours": 0,
+      "pages": 22,
+      "id": "Osananajimi-ch-3.1",
+      "r2_prefix": "manga/Osananajimi/3.1/",
+      "title": "Ch. 3.1",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 2,
+      "lock_hours": 0,
+      "pages": 40,
+      "id": "Osananajimi-ch-2",
+      "r2_prefix": "manga/Osananajimi/2/",
+      "title": "Ch. 2",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 50,
+      "id": "Osananajimi-ch-1",
+      "r2_prefix": "manga/Osananajimi/1/",
+      "title": "Ch. 1",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    }
+  ]
+}

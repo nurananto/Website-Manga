@@ -6,7 +6,14 @@
   "type": "MANGA",
   "author": "mty",
   "artist": "You2",
-  "genres": ["Adaptation", "Comedy", "Romance", "School Life", "Shounen", "Harem"],
+  "genres": [
+    "Adaptation",
+    "Comedy",
+    "Romance",
+    "School Life",
+    "Shounen",
+    "Harem"
+  ],
   "description": "Arase Itou bisa melihat beberapa menit ke depan. Namun, masa depan yang ia lihat selalu berhubungan dengan masalah. Arase yang baik hati berusaha menghindari masa depan yang tidak menyenangkan ini, namun pada akhirnya masalah tersebut tetap membuatnya membantu berbagai gadis dengan masalah mereka. Tanpa ia sadari, para gadis mulai menyukainya. Arase tidak menyadari bahwa, diam-diam, para gadis bersaing untuk memperebutkannya.",
   "covers": [
     "manga/Suufungo/covers/cover.webp",
@@ -19,5 +26,28 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "7d301e1e-642b-4b7d-b65b-9777b36e80bf.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf.webp",
+        "manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@tablet.webp",
+        "manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
+      "volume": "2",
+      "keys": [
+        "manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9.webp",
+        "manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@tablet.webp",
+        "manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }

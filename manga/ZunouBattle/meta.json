@@ -6,7 +6,15 @@
   "type": "MANGA",
   "author": "Hotori Katanuma",
   "artist": "Hattori Masaki",
-  "genres": ["Adaptation","Video Games","Action","Comedy","Psychological","School Life","Shounen"],
+  "genres": [
+    "Adaptation",
+    "Video Games",
+    "Action",
+    "Comedy",
+    "Psychological",
+    "School Life",
+    "Shounen"
+  ],
   "description": "Di SMA Teio, segalanya ditentukan lewat duel permainan. Yang harus kulakukan sebagai perwujudan karakter figuran, Tanaka Kanata, bukanlah meraih kejayaan untuk diriku sendiri! Satu-satunya tugasku adalah “menyutradarai” dari balik layar agar Kiriya, murid pindahan terkuat dari bawah, hingga mencapai puncak sebagai 'protagonis terkuat'!…Seharusnya begitu, tapi entah sejak kapan aku sendiri malah ikut jadi pusat perhatian—ini maksudnya apa sih!?Komedi pertarungan akademi terkuat sepanjang sejarah karya dari orang yang mengaku-ngaku sebagai seorang 'sutradara' resmi dimulai! ",
   "covers": [
     "manga/ZunouBattle/covers/cover.webp",
@@ -19,6 +27,18 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "e57c025c-a8b2-4e1c-8868-48f109d9e194.png",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "e57c025c-a8b2-4e1c-8868-48f109d9e194.png",
+      "volume": "0",
+      "keys": [
+        "manga/ZunouBattle/covers/gallery/e57c025c-a8b2-4e1c-8868-48f109d9e194.webp",
+        "manga/ZunouBattle/covers/gallery/e57c025c-a8b2-4e1c-8868-48f109d9e194@tablet.webp",
+        "manga/ZunouBattle/covers/gallery/e57c025c-a8b2-4e1c-8868-48f109d9e194@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }
-

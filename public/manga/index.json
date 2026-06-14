@@ -1,5 +1,697 @@
 [
   {
+    "id": "10-nenburi",
+    "title": "10-Nen Buri ni Saikai shita Kusogaki wa Seijun Bishoujo JK ni Seichou shiteita",
+    "alt_title": "10年ぶりに再会したクソガキは清純美少女JKに成長していた",
+    "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya. Saat Yuu jadi gugup dan salah tingkah, gadis itu malah mendekatinya sambil berkata, 'Kalau begitu, coba tebak namaku.'Romcom penuh salah paham yang menghidupkan kembali masa muda yang telah berlalu selama sepuluh tahun!",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Kanzai Yuki",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/10-nenburi/covers/cover.webp",
+      "manga/10-nenburi/covers/cover@tablet.webp",
+      "manga/10-nenburi/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 7.5,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 18.1,
+        "lock_hours": 0,
+        "pages": 10,
+        "id": "10-nenburi-ch-18.1",
+        "r2_prefix": "manga/10-nenburi/18.1/",
+        "title": "Ch. 18.1",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 17,
+        "lock_hours": 0,
+        "pages": 20,
+        "id": "10-nenburi-ch-17",
+        "r2_prefix": "manga/10-nenburi/17/",
+        "title": "Ch. 17",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 16,
+        "lock_hours": 0,
+        "pages": 24,
+        "id": "10-nenburi-ch-16",
+        "r2_prefix": "manga/10-nenburi/16/",
+        "title": "Ch. 16",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
+    "id": "ClassdeIchiban",
+    "title": "Class de Ichiban Kawaii Gal wo Ezuke shiteiru Hanashi",
+    "alt_title": "クラスで一番かわいいギャルを餌付けしている話",
+    "description": "akura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik tiri dan pasangan kekasih yang tinggal serumah.Dan tidak ada satu pun teman sekelas mereka yang mengetahui fakta itu.Meski Sakura tampil bersinar dan ceria di sekolah, begitu sampai di rumah, ia langsung santai dan tergila-gila dengan masakan Houri.Dan Houri yang bertanggung jawab atas urusan makan pun sebenarnya sangat menikmati itu――.Sebuah kisah manis tentang memberi makan dan menikmati kehidupan ganda bersama gyaru imut di sekolah dan di rumah!",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Tomo Shirano",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/ClassdeIchiban/covers/cover.webp",
+      "manga/ClassdeIchiban/covers/cover@tablet.webp",
+      "manga/ClassdeIchiban/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Cooking",
+      "Gyaru",
+      "Romance",
+      "School Life",
+      "Slice of Life"
+    ],
+    "rating": 7.7,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 12,
+        "lock_hours": 0,
+        "pages": 23,
+        "id": "ClassdeIchiban-ch-12",
+        "r2_prefix": "manga/ClassdeIchiban/12/",
+        "title": "Ch. 12",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 11,
+        "lock_hours": 0,
+        "pages": 22,
+        "id": "ClassdeIchiban-ch-11",
+        "r2_prefix": "manga/ClassdeIchiban/11/",
+        "title": "Ch. 11",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 10.5,
+        "lock_hours": 0,
+        "pages": 24,
+        "id": "ClassdeIchiban-ch-10.5",
+        "r2_prefix": "manga/ClassdeIchiban/10.5/",
+        "title": "Ch. 10.5",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
+    "id": "IkemenJoshi",
+    "title": "Ikemen Joshi Demo Kawaii Heroine ni Naremasu ka?",
+    "alt_title": "イケメン女子でもかわいいヒロインになれますか？",
+    "description": "'Bisakah kamu membuat diriku menjadi seorang princess (Heroine)?' Sumeragi Tsukasa — siswi SMA yang dijuluki ikemen, seorang artis populer, dan selalu dikerubungi cewek-cewek. Sedangkan Mikage Himeno — cowok SMA yang sudah debut jadi mangaka tapi proposal serialisasinya selalu ditolak. Saat tujuan mereka saling bertemu, Mereka langsung sembunyi-sembunyi latihan untuk menjadi seorang heroine dan nggak boleh ketahuan sama siapa pun! dan itu yang bikin situasi diantara mereka menjadi mendebarkan!",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Tsumikitsuki",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/IkemenJoshi/covers/cover.webp",
+      "manga/IkemenJoshi/covers/cover@tablet.webp",
+      "manga/IkemenJoshi/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Comedy",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.5,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 2,
+        "lock_hours": 0,
+        "pages": 20,
+        "id": "IkemenJoshi-ch-2",
+        "r2_prefix": "manga/IkemenJoshi/2/",
+        "title": "Ch. 2",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 1,
+        "lock_hours": 0,
+        "pages": 30,
+        "id": "IkemenJoshi-ch-1",
+        "r2_prefix": "manga/IkemenJoshi/1/",
+        "title": "Ch. 1",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
+    "id": "KiminoNegai",
+    "title": "Kimi no Negai ga Kanau made",
+    "alt_title": "きみの願いが叶うまで",
+    "description": "Minto Shishido, seorang siswa SMA yang mengaku playboy, tiba-tiba diisolasi bersama seluruh teman sekelasnya di sebuah fasilitas yang mirip sekolah saat sedang study tour. Tempat itu adalah ruang tertutup yang dibuat oleh suara misterius—'Tak bisa keluar sampai semua keinginan terpenuhi.'Dan lebih jauh lagi, tubuh seluruh murid mulai mengalami perubahan aneh!?",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Asazuki Norito",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/KiminoNegai/covers/cover.webp",
+      "manga/KiminoNegai/covers/cover@tablet.webp",
+      "manga/KiminoNegai/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Gender Swap",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life",
+      "Supernatural"
+    ],
+    "rating": 8.87,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 9,
+        "lock_hours": 0,
+        "pages": 24,
+        "id": "KiminoNegai-ch-9",
+        "r2_prefix": "manga/KiminoNegai/9/",
+        "title": "Ch. 9",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 8,
+        "lock_hours": 0,
+        "pages": 24,
+        "id": "KiminoNegai-ch-8",
+        "r2_prefix": "manga/KiminoNegai/8/",
+        "title": "Ch. 8",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 7,
+        "lock_hours": 0,
+        "pages": 24,
+        "id": "KiminoNegai-ch-7",
+        "r2_prefix": "manga/KiminoNegai/7/",
+        "title": "Ch. 7",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
+    "id": "Negatte",
+    "title": "Negatte mo Nai Tsuihou Go kara no Slow Life? ~Intai Shita Hazu ga Nariyuki de Bishoujo Gyaru no Shishou ni Nattara Naze ka Mechakucha Natsukareta~",
+    "alt_title": "願ってもない追放後からのスローライフ？～引退したはずが成り行きで美少女ギャルの師匠になったらなぜかめちゃくちゃ懐かれた～",
+    "description": "Reito Harukaze, yang telah naik hingga ranking tertinggi adventurer, telah pensiun. Saat ia berniat untuk hidup santai dan pensiun, suatu hari seorang gadis gal cantik bernama Karen Hiiragi muncul di hadapannya. 'Hey, onii-san, traktir makan dong!' Mendengar bahwa Karen kesulitan uang, Reito memutuskan untuk memberinya pelatihan dasar tentang cara menaklukkan dungeon. 'Berkatmu, aku berhasil menyelesaikan dungeon pertamaku! Sensei!'' Padahal sebenarnya ia ingin pensiun dan menikmati hidup santai…",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Sugar Spoon",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/Negatte/covers/cover.webp",
+      "manga/Negatte/covers/cover@tablet.webp",
+      "manga/Negatte/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Fantasy",
+      "Gyaru",
+      "Magic",
+      "Romance"
+    ],
+    "rating": 6.78,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 13,
+        "lock_hours": 0,
+        "pages": 30,
+        "id": "Negatte-ch-13",
+        "r2_prefix": "manga/Negatte/13/",
+        "title": "Ch. 13",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 12,
+        "lock_hours": 0,
+        "pages": 30,
+        "id": "Negatte-ch-12",
+        "r2_prefix": "manga/Negatte/12/",
+        "title": "Ch. 12",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 11,
+        "lock_hours": 0,
+        "pages": 31,
+        "id": "Negatte-ch-11",
+        "r2_prefix": "manga/Negatte/11/",
+        "title": "Ch. 11",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
+    "id": "Osananajimi",
+    "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
+    "alt_title": "幼馴染に陰で都合の良い男呼ばわりされた俺は、好意をリセットして普通に青春を送りたい",
+    "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Hitofude Nanashi",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/Osananajimi/covers/cover.webp",
+      "manga/Osananajimi/covers/cover@tablet.webp",
+      "manga/Osananajimi/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Drama",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life",
+      "Tragedy"
+    ],
+    "rating": 8.61,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 4.1,
+        "lock_hours": 0,
+        "pages": 10,
+        "id": "Osananajimi-ch-4.1",
+        "r2_prefix": "manga/Osananajimi/4.1/",
+        "title": "Ch. 4.1",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 3.2,
+        "lock_hours": 0,
+        "pages": 20,
+        "id": "Osananajimi-ch-3.2",
+        "r2_prefix": "manga/Osananajimi/3.2/",
+        "title": "Ch. 3.2",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 3.1,
+        "lock_hours": 0,
+        "pages": 22,
+        "id": "Osananajimi-ch-3.1",
+        "r2_prefix": "manga/Osananajimi/3.1/",
+        "title": "Ch. 3.1",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
+    "id": "Suufungo",
+    "title": "Suufungo no Mirai ga Wakaru You ni Natta kedo, Onnagokoro wa Wakaranai.",
+    "alt_title": "数分後の未来が分かるようになったけど、女心は分からない。",
+    "description": "Arase Itou bisa melihat beberapa menit ke depan. Namun, masa depan yang ia lihat selalu berhubungan dengan masalah. Arase yang baik hati berusaha menghindari masa depan yang tidak menyenangkan ini, namun pada akhirnya masalah tersebut tetap membuatnya membantu berbagai gadis dengan masalah mereka. Tanpa ia sadari, para gadis mulai menyukainya. Arase tidak menyadari bahwa, diam-diam, para gadis bersaing untuk memperebutkannya.",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "mty",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/Suufungo/covers/cover.webp",
+      "manga/Suufungo/covers/cover@tablet.webp",
+      "manga/Suufungo/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "School Life",
+      "Shounen"
+    ],
+    "rating": 7.86,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 16,
+        "lock_hours": 0,
+        "pages": 29,
+        "id": "Suufungo-ch-16",
+        "r2_prefix": "manga/Suufungo/16/",
+        "title": "Ch. 16",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 15,
+        "lock_hours": 0,
+        "pages": 29,
+        "id": "Suufungo-ch-15",
+        "r2_prefix": "manga/Suufungo/15/",
+        "title": "Ch. 15",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 14,
+        "lock_hours": 0,
+        "pages": 30,
+        "id": "Suufungo-ch-14",
+        "r2_prefix": "manga/Suufungo/14/",
+        "title": "Ch. 14",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
+    "id": "TensaiBishoujo",
+    "title": "Tensai Bishoujo Sanshimai wa Isourou ni Dake Choro Kawaii",
+    "alt_title": "天才美少女三姉妹がちょろ可愛すぎる!?",
+    "description": "Seorang pemuda biasa dan para jenius tinggal bersama di bawah satu atap — romcom harem penuh kekacauan dengan tingkat keimutannya MAX! '…Mau datang ke rumahku?' Setelah rumahnya tiba-tiba hangus terbakar, Riku akhirnya tinggal menumpang di rumah keluarga Tennousu — tiga kakak beradik cantik jelita berbakat yang selalu dipuja banyak orang. Melihat rumah mereka berantakan karena manajemen hidup yang parah, Riku pun memutuskan untuk menggunakan keahlian rumah tangganya untuk membantu mereka!? Para jenius itu pun perlahan mulai tertarik pada sosok Riku yang tulus dan selalu penuh perhatian…",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Akizuki Tsukihi",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/TensaiBishoujo/covers/cover.webp",
+      "manga/TensaiBishoujo/covers/cover@tablet.webp",
+      "manga/TensaiBishoujo/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 7.69,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 4,
+        "lock_hours": 0,
+        "pages": 21,
+        "id": "TensaiBishoujo-ch-4",
+        "r2_prefix": "manga/TensaiBishoujo/4/",
+        "title": "Ch. 4",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 3,
+        "lock_hours": 0,
+        "pages": 28,
+        "id": "TensaiBishoujo-ch-3",
+        "r2_prefix": "manga/TensaiBishoujo/3/",
+        "title": "Ch. 3",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 2,
+        "lock_hours": 0,
+        "pages": 34,
+        "id": "TensaiBishoujo-ch-2",
+        "r2_prefix": "manga/TensaiBishoujo/2/",
+        "title": "Ch. 2",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
+    "id": "UchinoSeiso-kei",
+    "title": "Uchi no Seiso-kei Iinchou ga Katsute Chuunibyou Idol datta Koto wo Ore Dake ga Shitteiru",
+    "alt_title": "うちの清楚系委員長がかつて中二病アイドルだったことを俺だけが知っている",
+    "description": "Dulu ada idol chuunibyou yang sempat ngetop banget, namanya 'Nightmare Disaster', atau biasa dipanggil Mea. Reo yang dulu sering nemenin kegiatannya, foto bareng, sampai upload ke medsos biar viral, akhirnya ketemu lagi sama dia di SMA tempat mereka lanjut sekolah.",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Mikami Kota",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/UchinoSeiso-kei/covers/cover.webp",
+      "manga/UchinoSeiso-kei/covers/cover@tablet.webp",
+      "manga/UchinoSeiso-kei/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Drama",
+      "Romance",
+      "School Life",
+      "Shounen"
+    ],
+    "rating": 8.38,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 9,
+        "lock_hours": 0,
+        "pages": 38,
+        "id": "UchinoSeiso-kei-ch-9",
+        "r2_prefix": "manga/UchinoSeiso-kei/9/",
+        "title": "Ch. 9",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 8,
+        "lock_hours": 0,
+        "pages": 43,
+        "id": "UchinoSeiso-kei-ch-8",
+        "r2_prefix": "manga/UchinoSeiso-kei/8/",
+        "title": "Ch. 8",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 7,
+        "lock_hours": 0,
+        "pages": 37,
+        "id": "UchinoSeiso-kei-ch-7",
+        "r2_prefix": "manga/UchinoSeiso-kei/7/",
+        "title": "Ch. 7",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
+    "id": "ZunouBattle",
+    "title": "Ore wa Gakuen Zunou Battle no Enshutsuka!: Jishou Mobu ga Kage kara Egaku Saikyou Shujinkou Musou Scenario",
+    "alt_title": "俺は学園頭脳バトルの演出家！　～自称モブが陰から描く最強主人公無双シナリオ～",
+    "description": "Di SMA Teio, segalanya ditentukan lewat duel permainan. Yang harus kulakukan sebagai perwujudan karakter figuran, Tanaka Kanata, bukanlah meraih kejayaan untuk diriku sendiri! Satu-satunya tugasku adalah “menyutradarai” dari balik layar agar Kiriya, murid pindahan terkuat dari bawah, hingga mencapai puncak sebagai 'protagonis terkuat'!…Seharusnya begitu, tapi entah sejak kapan aku sendiri malah ikut jadi pusat perhatian—ini maksudnya apa sih!?Komedi pertarungan akademi terkuat sepanjang sejarah karya dari orang yang mengaku-ngaku sebagai seorang 'sutradara' resmi dimulai! ",
+    "status": "Ongoing",
+    "type": "MANGA",
+    "author": "Hotori Katanuma",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@mobile.webp"
+    },
+    "covers": [
+      "manga/ZunouBattle/covers/cover.webp",
+      "manga/ZunouBattle/covers/cover@tablet.webp",
+      "manga/ZunouBattle/covers/cover@mobile.webp"
+    ],
+    "genres": [
+      "Action",
+      "Adaptation",
+      "Comedy",
+      "Psychological",
+      "School Life",
+      "Shounen",
+      "Video Games"
+    ],
+    "rating": 8.23,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "chapters": [
+      {
+        "chapter_number": 4,
+        "lock_hours": 0,
+        "pages": 34,
+        "id": "ZunouBattle-ch-4",
+        "r2_prefix": "manga/ZunouBattle/4/",
+        "title": "Ch. 4",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 3,
+        "lock_hours": 0,
+        "pages": 32,
+        "id": "ZunouBattle-ch-3",
+        "r2_prefix": "manga/ZunouBattle/3/",
+        "title": "Ch. 3",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 2,
+        "lock_hours": 0,
+        "pages": 36,
+        "id": "ZunouBattle-ch-2",
+        "r2_prefix": "manga/ZunouBattle/2/",
+        "title": "Ch. 2",
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "Chikasugiru",
     "title": "Chikasugiru Futari",
     "alt_title": "近すぎる２人",

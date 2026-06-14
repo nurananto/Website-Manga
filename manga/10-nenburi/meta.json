@@ -6,7 +6,14 @@
   "type": "MANGA",
   "author": "Kanzai Yuki",
   "artist": "Rokushou Kokuu",
-  "genres": ["Adaptation", "Shounen", "Comedy", "Romance", "Slice of Life", "Harem"],
+  "genres": [
+    "Adaptation",
+    "Shounen",
+    "Comedy",
+    "Romance",
+    "Slice of Life",
+    "Harem"
+  ],
   "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya. Saat Yuu jadi gugup dan salah tingkah, gadis itu malah mendekatinya sambil berkata, 'Kalau begitu, coba tebak namaku.'Romcom penuh salah paham yang menghidupkan kembali masa muda yang telah berlalu selama sepuluh tahun!",
   "covers": [
     "manga/10-nenburi/covers/cover.webp",
@@ -19,5 +26,38 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "6d676869-6140-44ed-8210-58264ae612df.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df.webp",
+        "manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@tablet.webp",
+        "manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "254730e0-71bd-4008-9c08-e9d9d1d0989e.jpg",
+      "volume": "2",
+      "keys": [
+        "manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e.webp",
+        "manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@tablet.webp",
+        "manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
+      "volume": "3",
+      "keys": [
+        "manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5.webp",
+        "manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@tablet.webp",
+        "manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }

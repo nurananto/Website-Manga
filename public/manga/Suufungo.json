@@ -1,0 +1,254 @@
+{
+  "id": "Suufungo",
+  "title": "Suufungo no Mirai ga Wakaru You ni Natta kedo, Onnagokoro wa Wakaranai.",
+  "alt_title": "数分後の未来が分かるようになったけど、女心は分からない。",
+  "status": "Ongoing",
+  "type": "MANGA",
+  "author": "mty",
+  "artist": "You2",
+  "genres": [
+    "Adaptation",
+    "Comedy",
+    "Harem",
+    "Romance",
+    "School Life",
+    "Shounen"
+  ],
+  "description": "Arase Itou bisa melihat beberapa menit ke depan. Namun, masa depan yang ia lihat selalu berhubungan dengan masalah. Arase yang baik hati berusaha menghindari masa depan yang tidak menyenangkan ini, namun pada akhirnya masalah tersebut tetap membuatnya membantu berbagai gadis dengan masalah mereka. Tanpa ia sadari, para gadis mulai menyukainya. Arase tidak menyadari bahwa, diam-diam, para gadis bersaing untuk memperebutkannya.",
+  "covers": [
+    "manga/Suufungo/covers/cover.webp",
+    "manga/Suufungo/covers/cover@tablet.webp",
+    "manga/Suufungo/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/16c34950-954c-4f0d-808e-d8278a546339/suufungo-no-mirai-ga-wakaru-you-ni-natta-kedo-onnagokoro-wa-wakaranai",
+  "raw_url": "https://comic-walker.com/detail/KC_005690_S?episodeType=first",
+  "tamat_at_chapter": null,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "volume": "2",
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@mobile.webp"
+      }
+    },
+    {
+      "volume": "1",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@mobile.webp"
+      }
+    }
+  ],
+  "mangadex_id": "16c34950-954c-4f0d-808e-d8278a546339",
+  "rating": 7.86,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@tablet.webp",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@mobile.webp"
+  },
+  "chapters": [
+    {
+      "chapter_number": 16,
+      "lock_hours": 0,
+      "pages": 29,
+      "id": "Suufungo-ch-16",
+      "r2_prefix": "manga/Suufungo/16/",
+      "title": "Ch. 16",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 15,
+      "lock_hours": 0,
+      "pages": 29,
+      "id": "Suufungo-ch-15",
+      "r2_prefix": "manga/Suufungo/15/",
+      "title": "Ch. 15",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 14,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "Suufungo-ch-14",
+      "r2_prefix": "manga/Suufungo/14/",
+      "title": "Ch. 14",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 13,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "Suufungo-ch-13",
+      "r2_prefix": "manga/Suufungo/13/",
+      "title": "Ch. 13",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 12,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "Suufungo-ch-12",
+      "r2_prefix": "manga/Suufungo/12/",
+      "title": "Ch. 12",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 11,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "Suufungo-ch-11",
+      "r2_prefix": "manga/Suufungo/11/",
+      "title": "Ch. 11",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 10,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "Suufungo-ch-10",
+      "r2_prefix": "manga/Suufungo/10/",
+      "title": "Ch. 10",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 9,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "Suufungo-ch-9",
+      "r2_prefix": "manga/Suufungo/9/",
+      "title": "Ch. 9",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 8,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "Suufungo-ch-8",
+      "r2_prefix": "manga/Suufungo/8/",
+      "title": "Ch. 8",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 7,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "Suufungo-ch-7",
+      "r2_prefix": "manga/Suufungo/7/",
+      "title": "Ch. 7",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 6,
+      "lock_hours": 0,
+      "pages": 27,
+      "id": "Suufungo-ch-6",
+      "r2_prefix": "manga/Suufungo/6/",
+      "title": "Ch. 6",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 5,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "Suufungo-ch-5",
+      "r2_prefix": "manga/Suufungo/5/",
+      "title": "Ch. 5",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 4,
+      "lock_hours": 0,
+      "pages": 31,
+      "id": "Suufungo-ch-4",
+      "r2_prefix": "manga/Suufungo/4/",
+      "title": "Ch. 4",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 3,
+      "lock_hours": 0,
+      "pages": 29,
+      "id": "Suufungo-ch-3",
+      "r2_prefix": "manga/Suufungo/3/",
+      "title": "Ch. 3",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 2,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "Suufungo-ch-2",
+      "r2_prefix": "manga/Suufungo/2/",
+      "title": "Ch. 2",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 45,
+      "id": "Suufungo-ch-1",
+      "r2_prefix": "manga/Suufungo/1/",
+      "title": "Ch. 1",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    }
+  ]
+}

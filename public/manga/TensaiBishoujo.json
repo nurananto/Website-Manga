@@ -1,0 +1,102 @@
+{
+  "id": "TensaiBishoujo",
+  "title": "Tensai Bishoujo Sanshimai wa Isourou ni Dake Choro Kawaii",
+  "alt_title": "天才美少女三姉妹がちょろ可愛すぎる!?",
+  "status": "Ongoing",
+  "type": "MANGA",
+  "author": "Akizuki Tsukihi",
+  "artist": "Akizuki Tsukihi, Shio Kazunoko",
+  "genres": [
+    "Adaptation",
+    "Comedy",
+    "Harem",
+    "Romance",
+    "School Life",
+    "Shounen",
+    "Slice of Life"
+  ],
+  "description": "Seorang pemuda biasa dan para jenius tinggal bersama di bawah satu atap — romcom harem penuh kekacauan dengan tingkat keimutannya MAX! '…Mau datang ke rumahku?' Setelah rumahnya tiba-tiba hangus terbakar, Riku akhirnya tinggal menumpang di rumah keluarga Tennousu — tiga kakak beradik cantik jelita berbakat yang selalu dipuja banyak orang. Melihat rumah mereka berantakan karena manajemen hidup yang parah, Riku pun memutuskan untuk menggunakan keahlian rumah tangganya untuk membantu mereka!? Para jenius itu pun perlahan mulai tertarik pada sosok Riku yang tulus dan selalu penuh perhatian…",
+  "covers": [
+    "manga/TensaiBishoujo/covers/cover.webp",
+    "manga/TensaiBishoujo/covers/cover@tablet.webp",
+    "manga/TensaiBishoujo/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/ee1eb629-79c9-410f-927c-dd7a4cd1d87b/tensai-bishoujo-sanshimai-wa-isourou-ni-dake-choro-kawaii",
+  "raw_url": "https://comic-walker.com/detail/KC_006969_S/episodes/KC_0069690000200011_E?episodeType=first",
+  "tamat_at_chapter": null,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "volume": "1",
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp"
+      }
+    }
+  ],
+  "mangadex_id": "ee1eb629-79c9-410f-927c-dd7a4cd1d87b",
+  "rating": 7.69,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp"
+  },
+  "chapters": [
+    {
+      "chapter_number": 4,
+      "lock_hours": 0,
+      "pages": 21,
+      "id": "TensaiBishoujo-ch-4",
+      "r2_prefix": "manga/TensaiBishoujo/4/",
+      "title": "Ch. 4",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 3,
+      "lock_hours": 0,
+      "pages": 28,
+      "id": "TensaiBishoujo-ch-3",
+      "r2_prefix": "manga/TensaiBishoujo/3/",
+      "title": "Ch. 3",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 2,
+      "lock_hours": 0,
+      "pages": 34,
+      "id": "TensaiBishoujo-ch-2",
+      "r2_prefix": "manga/TensaiBishoujo/2/",
+      "title": "Ch. 2",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 42,
+      "id": "TensaiBishoujo-ch-1",
+      "r2_prefix": "manga/TensaiBishoujo/1/",
+      "title": "Ch. 1",
+      "release_date": "2026-06-14T15:10:34+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    }
+  ]
+}

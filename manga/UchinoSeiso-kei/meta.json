@@ -6,7 +6,14 @@
   "type": "MANGA",
   "author": "Mikami Kota",
   "artist": "Kobayashi Shoujo",
-  "genres": ["Adaptation", "Comedy", "Drama", "Romance", "School Life","Shounen"],
+  "genres": [
+    "Adaptation",
+    "Comedy",
+    "Drama",
+    "Romance",
+    "School Life",
+    "Shounen"
+  ],
   "description": "Dulu ada idol chuunibyou yang sempat ngetop banget, namanya 'Nightmare Disaster', atau biasa dipanggil Mea. Reo yang dulu sering nemenin kegiatannya, foto bareng, sampai upload ke medsos biar viral, akhirnya ketemu lagi sama dia di SMA tempat mereka lanjut sekolah.",
   "covers": [
     "manga/UchinoSeiso-kei/covers/cover.webp",
@@ -19,5 +26,28 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "c95c3728-3229-41d7-9d11-e2a01ec94333.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "10d163e1-853d-4bbb-9131-b99534a1836b.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b.webp",
+        "manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@tablet.webp",
+        "manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "c95c3728-3229-41d7-9d11-e2a01ec94333.jpg",
+      "volume": "2",
+      "keys": [
+        "manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333.webp",
+        "manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@tablet.webp",
+        "manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }

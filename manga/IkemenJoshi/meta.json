@@ -6,7 +6,13 @@
   "type": "MANGA",
   "author": "Tsumikitsuki",
   "artist": "Tsumikitsuki",
-  "genres": ["Shounen", "Comedy", "Romance", "School Life", "Slice of Life"],
+  "genres": [
+    "Shounen",
+    "Comedy",
+    "Romance",
+    "School Life",
+    "Slice of Life"
+  ],
   "description": "'Bisakah kamu membuat diriku menjadi seorang princess (Heroine)?' Sumeragi Tsukasa — siswi SMA yang dijuluki ikemen, seorang artis populer, dan selalu dikerubungi cewek-cewek. Sedangkan Mikage Himeno — cowok SMA yang sudah debut jadi mangaka tapi proposal serialisasinya selalu ditolak. Saat tujuan mereka saling bertemu, Mereka langsung sembunyi-sembunyi latihan untuk menjadi seorang heroine dan nggak boleh ketahuan sama siapa pun! dan itu yang bikin situasi diantara mereka menjadi mendebarkan!",
   "covers": [
     "manga/IkemenJoshi/covers/cover.webp",
@@ -19,5 +25,18 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "6beb2e72-2c1b-443f-8348-b6a0a96e7d6a.png",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "6beb2e72-2c1b-443f-8348-b6a0a96e7d6a.png",
+      "volume": "0",
+      "keys": [
+        "manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a.webp",
+        "manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@tablet.webp",
+        "manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }
