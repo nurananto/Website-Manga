@@ -28,9 +28,9 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "10": 1,
-    "11": 2
+    "11": 3
   },
-  "total_views": 3,
+  "total_views": 4,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -73,7 +73,7 @@
       "title": "Ch. 11",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 10,

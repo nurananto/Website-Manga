@@ -26,13 +26,14 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
+    "1": 1,
     "11": 1,
     "17": 2,
     "18": 2,
     "19": 3,
-    "20": 2
+    "20": 4
   },
-  "total_views": 10,
+  "total_views": 13,
   "mangadex_cover": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -75,7 +76,7 @@
       "title": "Ch. 20",
       "unlockDate": "2026-06-11T18:25:40.000Z",
       "isLocked": false,
-      "views": 2
+      "views": 4
     },
     {
       "chapter_number": 19,
@@ -327,7 +328,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     }
   ]
 }

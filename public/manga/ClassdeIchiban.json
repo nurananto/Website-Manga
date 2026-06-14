@@ -25,8 +25,13 @@
   "raw_url": "https://www.manga-up.com/titles/1540",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "10": 1,
+    "11": 1,
+    "12": 2,
+    "10.5": 1
+  },
+  "total_views": 5,
   "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -69,7 +74,7 @@
       "title": "Ch. 12",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 11,
@@ -81,7 +86,7 @@
       "title": "Ch. 11",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 10.5,
@@ -93,7 +98,7 @@
       "title": "Ch. 10.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 10,
@@ -105,7 +110,7 @@
       "title": "Ch. 10",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 9,

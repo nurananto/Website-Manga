@@ -22,8 +22,10 @@
   "raw_url": "https://comic-walker.com/detail/KC_008362_S",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "8.1": 2
+  },
+  "total_views": 2,
   "mangadex_cover": "fadafe71-37cd-4c73-ac98-59fd79e07f58.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -57,7 +59,7 @@
       "title": "Ch. 8.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 7,

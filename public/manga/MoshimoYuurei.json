@@ -25,11 +25,13 @@
   "tamat_at_chapter": 25,
   "hiatus_at_chapter": null,
   "chapter_views": {
+    "1": 1,
+    "22": 1,
     "23": 1,
     "24": 1,
     "25": 2
   },
-  "total_views": 4,
+  "total_views": 6,
   "mangadex_cover": "1f5fe857-3e84-451f-8a1c-d25e3960c1b4.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -99,7 +101,7 @@
       "title": "Ch. 22",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 21,
@@ -351,7 +353,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     }
   ]
 }
