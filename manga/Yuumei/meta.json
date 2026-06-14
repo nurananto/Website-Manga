@@ -1,7 +1,7 @@
 {
   "id": "Yuumei",
   "title": "Yuumei VTuber no Ani Dakedo, Nazeka Ore ga Yuumei ni Natteita",
-  "alt_title": "æåVTuberã®åã ãã©ãä½æãä¿ºãæåã«ãªã£ã¦ãã",
+  "alt_title": "Ã¦ÂÂÃ¥ÂÂVTuberÃ£ÂÂ®Ã¥ÂÂÃ£ÂÂ Ã£ÂÂÃ£ÂÂ©Ã£ÂÂÃ¤Â½ÂÃ¦ÂÂÃ£ÂÂÃ¤Â¿ÂºÃ£ÂÂÃ¦ÂÂÃ¥ÂÂÃ£ÂÂ«Ã£ÂÂªÃ£ÂÂ£Ã£ÂÂ¦Ã£ÂÂÃ£ÂÂ",
   "status": "ONGOING",
   "type": "MANGA",
   "author": "Ibarakino",
@@ -26,13 +26,14 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
+    "1": 1,
     "11": 1,
     "17": 2,
     "18": 2,
     "19": 3,
-    "20": 2
+    "20": 4
   },
-  "total_views": 10,
+  "total_views": 13,
   "mangadex_cover": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [

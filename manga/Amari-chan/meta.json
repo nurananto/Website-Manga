@@ -1,7 +1,7 @@
 {
   "id": "Amari-chan",
   "title": "Kanojo ni Shitai Joshi Ichii, no Tonari de Mitsuketa Amari-chan",
-  "alt_title": "Ã¥Â½Â¼Ã¥Â¥Â³Ã£ÂÂ«Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ¥Â¥Â³Ã¥Â­ÂÃ¤Â¸ÂÃ¤Â½ÂÃ£ÂÂÃ£ÂÂ®Ã©ÂÂ£Ã£ÂÂ§Ã¨Â¦ÂÃ£ÂÂ¤Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¾Ã£ÂÂÃ£ÂÂ¡Ã£ÂÂÃ£ÂÂ",
+  "alt_title": "ÃÂ¥ÃÂ½ÃÂ¼ÃÂ¥ÃÂ¥ÃÂ³ÃÂ£ÃÂÃÂ«ÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂÃÂ¥ÃÂ¥ÃÂ³ÃÂ¥ÃÂ­ÃÂÃÂ¤ÃÂ¸ÃÂÃÂ¤ÃÂ½ÃÂÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂ®ÃÂ©ÃÂÃÂ£ÃÂ£ÃÂÃÂ§ÃÂ¨ÃÂ¦ÃÂÃÂ£ÃÂÃÂ¤ÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂ¾ÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂ¡ÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂ",
   "status": "ONGOING",
   "type": "MANGA",
   "author": "Yuuji Yuuji",
@@ -15,7 +15,7 @@
     "Slice of Life",
     "School Life"
   ],
-  "description": "'Kisah Romantis Komedi Dimulai dari Persahabatan dengan Heroine Tersembunyi yang Hanya Aku Tahu.'Dia anak baik, tapi terlalu biasa sajaÃ¢ÂÂ¦ Itulah Fukusuke Mogi, yang diam-diam mengagumi Kureha Yua, gadis tercantik di kelas.Namun, orang yang digosipkan bersama Yui adalah sahabatnya, Fujisaki Yuusei, bintang tim basket. Saat merasa terpuruk karena menjadi 'karakter figuran' yang tenggelam di balik sahabatnya, Fukusuke menemukan seorang gadis super imut lainnya, yang tersembunyi di balik bayang-bayang Yua dan jarang diperhatikanÃ¢ÂÂUsuha Amari!'A-ApakahÃ¢ÂÂ¦ kamu mau jadi temanku?'Berbagi nasib yang serupa, Fukusuke dan Amari memutuskan untuk mulai berlatih 'menjadi orang biasa' bersamaÃ¢ÂÂkira-kira apa yang akan terjadi selanjutnya?",
+  "description": "'Kisah Romantis Komedi Dimulai dari Persahabatan dengan Heroine Tersembunyi yang Hanya Aku Tahu.'Dia anak baik, tapi terlalu biasa sajaÃÂ¢ÃÂÃÂ¦ Itulah Fukusuke Mogi, yang diam-diam mengagumi Kureha Yua, gadis tercantik di kelas.Namun, orang yang digosipkan bersama Yui adalah sahabatnya, Fujisaki Yuusei, bintang tim basket. Saat merasa terpuruk karena menjadi 'karakter figuran' yang tenggelam di balik sahabatnya, Fukusuke menemukan seorang gadis super imut lainnya, yang tersembunyi di balik bayang-bayang Yua dan jarang diperhatikanÃÂ¢ÃÂÃÂUsuha Amari!'A-ApakahÃÂ¢ÃÂÃÂ¦ kamu mau jadi temanku?'Berbagi nasib yang serupa, Fukusuke dan Amari memutuskan untuk mulai berlatih 'menjadi orang biasa' bersamaÃÂ¢ÃÂÃÂkira-kira apa yang akan terjadi selanjutnya?",
   "covers": [
     "manga/Amari-chan/covers/cover.webp",
     "manga/Amari-chan/covers/cover@tablet.webp",
@@ -27,10 +27,11 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "0": 1,
-    "8": 1,
-    "9": 3
+    "8": 2,
+    "9": 4,
+    "7.5": 1
   },
-  "total_views": 5,
+  "total_views": 8,
   "mangadex_cover": "6ffed041-aa59-49e2-b79f-dac40ac0ef53.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [

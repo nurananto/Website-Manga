@@ -1,7 +1,7 @@
 {
   "id": "Chikasugiru",
   "title": "Chikasugiru Futari",
-  "alt_title": "近すぎる２人",
+  "alt_title": "è¿ãããï¼äºº",
   "status": "ONGOING",
   "type": "MANGA",
   "author": "Yamiaraa",
@@ -12,7 +12,7 @@
     "School Life",
     "Slice of Life"
   ],
-  "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang greget—ini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun bareng, hingga mereka udah kelihatan kayak suami istri romcom kuso-najimi dengan jarak diantara mereka berdua yang udah ngga biasa—dimulai!",
+  "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang gregetâini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun bareng, hingga mereka udah kelihatan kayak suami istri romcom kuso-najimi dengan jarak diantara mereka berdua yang udah ngga biasaâdimulai!",
   "covers": [
     "manga/Chikasugiru/covers/cover.webp",
     "manga/Chikasugiru/covers/cover@tablet.webp",
@@ -22,8 +22,10 @@
   "raw_url": "https://comic-walker.com/detail/KC_008362_S",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "8.1": 2
+  },
+  "total_views": 2,
   "mangadex_cover": "fadafe71-37cd-4c73-ac98-59fd79e07f58.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [

@@ -1,7 +1,7 @@
 {
   "id": "Negatte",
   "title": "Negatte mo Nai Tsuihou Go kara no Slow Life? ~Intai Shita Hazu ga Nariyuki de Bishoujo Gyaru no Shishou ni Nattara Naze ka Mechakucha Natsukareta~",
-  "alt_title": "願ってもない追放後からのスローライフ？～引退したはずが成り行きで美少女ギャルの師匠になったらなぜかめちゃくちゃ懐かれた～",
+  "alt_title": "é¡ã£ã¦ããªãè¿½æ¾å¾ããã®ã¹ã­ã¼ã©ã¤ãï¼ï½å¼éããã¯ããæãè¡ãã§ç¾å°å¥³ã®ã£ã«ã®å¸«å ã«ãªã£ãããªãããã¡ããã¡ãæãããï½",
   "status": "ONGOING",
   "type": "MANGA",
   "author": "Sugar Spoon",
@@ -14,7 +14,7 @@
     "Romance",
     "Magic"
   ],
-  "description": "Reito Harukaze, yang telah naik hingga ranking tertinggi adventurer, telah pensiun. Saat ia berniat untuk hidup santai dan pensiun, suatu hari seorang gadis gal cantik bernama Karen Hiiragi muncul di hadapannya. 'Hey, onii-san, traktir makan dong!' Mendengar bahwa Karen kesulitan uang, Reito memutuskan untuk memberinya pelatihan dasar tentang cara menaklukkan dungeon. 'Berkatmu, aku berhasil menyelesaikan dungeon pertamaku! Sensei!'' Padahal sebenarnya ia ingin pensiun dan menikmati hidup santai…",
+  "description": "Reito Harukaze, yang telah naik hingga ranking tertinggi adventurer, telah pensiun. Saat ia berniat untuk hidup santai dan pensiun, suatu hari seorang gadis gal cantik bernama Karen Hiiragi muncul di hadapannya. 'Hey, onii-san, traktir makan dong!' Mendengar bahwa Karen kesulitan uang, Reito memutuskan untuk memberinya pelatihan dasar tentang cara menaklukkan dungeon. 'Berkatmu, aku berhasil menyelesaikan dungeon pertamaku! Sensei!'' Padahal sebenarnya ia ingin pensiun dan menikmati hidup santaiâ¦",
   "covers": [
     "manga/Negatte/covers/cover.webp",
     "manga/Negatte/covers/cover@tablet.webp",
@@ -24,8 +24,10 @@
   "raw_url": "https://comic-walker.com/detail/KC_006563_S?episodeType=first",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "13": 1
+  },
+  "total_views": 1,
   "mangadex_cover": "ba037f6a-4e4c-4bc3-a8b9-4b200602d268.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
