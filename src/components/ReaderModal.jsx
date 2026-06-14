@@ -248,7 +248,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const [imgAccess, setImgAccess] = useState(null);
   const [imgSession, setImgSession] = useState(() => getCachedSession());
   const [sessionState, setSessionState] = useState(() => (getCachedSession() ? 'ready' : 'idle'));
-  const [sessionAttempt, setSessionAttempt] = useState(0);
   const nextPageRef = useRef(1);
   const imgErrorRefreshedRef = useRef(false);
 
@@ -276,34 +275,20 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     })();
   }, [chapter?.id]);
 
-  // Chapter gratis butuh token sesi Turnstile (?s=). null = belum dicoba,
-  // '' = sudah dicoba tapi gagal (fail-open: gambar tetap dimuat tanpa ?s=).
+  // Chapter gratis butuh token sesi Turnstile (?s=). Cuma bergantung chapter.id +
+  // chapterNeedsToken → tidak self-cancel saat sessionState berubah (bug stuck dulu).
   useEffect(() => {
-    if (chapterNeedsToken || sessionState === 'loading' || sessionState === 'ready') return;
+    if (chapterNeedsToken) return;
+    if (imgSession) { setSessionState('ready'); return; }
     let cancelled = false;
-    const delay = sessionAttempt === 0 ? 0 : Math.min(15_000, 2_000 * sessionAttempt);
-    const timer = setTimeout(() => {
-      setSessionState('loading');
-      ensureSession().then((t) => {
-        if (cancelled) return;
-        if (t) {
-          setImgSession(t);
-          setSessionState('ready');
-          return;
-        }
-        setImgSession(null);
-        setSessionState('failed');
-        if (sessionAttempt < 4) {
-          setSessionAttempt((v) => v + 1);
-          setSessionState('idle');
-        }
-      });
-    }, delay);
-    return () => {
-      cancelled = true;
-      clearTimeout(timer);
-    };
-  }, [chapter?.id, chapterNeedsToken, sessionState, sessionAttempt]);
+    setSessionState('loading');
+    ensureSession().then((t) => {
+      if (cancelled) return;
+      setImgSession(t || null);
+      setSessionState(t ? 'ready' : 'failed');
+    });
+    return () => { cancelled = true; };
+  }, [chapter?.id, chapterNeedsToken]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const retrySession = () => {
     imgErrorRefreshedRef.current = false;
@@ -313,8 +298,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     }
     clearCachedSession();
     setImgSession(null);
-    setSessionAttempt(0);
-    setSessionState('idle');
+    setSessionState('loading');
     ensureSession().then((t) => {
       setImgSession(t || null);
       setSessionState(t ? 'ready' : 'failed');
