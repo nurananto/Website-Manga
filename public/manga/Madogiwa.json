@@ -38,29 +38,29 @@
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756.webp",
-        "tablet": "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@tablet.webp",
-        "mobile": "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@mobile.webp"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e.webp",
-        "tablet": "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@tablet.webp",
-        "mobile": "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@mobile.webp"
       }
     }
   ],
   "mangadex_id": "a0ecce48-aa4c-48e6-8d9b-90f322a5687a",
   "rating": 7.29,
   "next_update": null,
-  "coverUrl": "manga/Madogiwa/covers/cover.webp",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp",
   "coverUrls": {
-    "desktop": "manga/Madogiwa/covers/cover.webp",
-    "tablet": "manga/Madogiwa/covers/cover@tablet.webp",
-    "mobile": "manga/Madogiwa/covers/cover@mobile.webp"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@tablet.webp",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp"
   },
   "chapters": [
     {

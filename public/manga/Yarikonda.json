@@ -43,29 +43,29 @@
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431.webp",
-        "tablet": "manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@tablet.webp",
-        "mobile": "manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@mobile.webp"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b.webp",
-        "tablet": "manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@tablet.webp",
-        "mobile": "manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@mobile.webp"
       }
     }
   ],
   "mangadex_id": "a605a5d0-21a6-481f-a055-74735ea4f2c2",
   "rating": 7.43,
   "next_update": null,
-  "coverUrl": "manga/Yarikonda/covers/cover.webp",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp",
   "coverUrls": {
-    "desktop": "manga/Yarikonda/covers/cover.webp",
-    "tablet": "manga/Yarikonda/covers/cover@tablet.webp",
-    "mobile": "manga/Yarikonda/covers/cover@mobile.webp"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@tablet.webp",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@mobile.webp"
   },
   "chapters": [
     {

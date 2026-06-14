@@ -6,7 +6,12 @@
   "type": "MANGA",
   "author": "Yamiaraa",
   "artist": "Yamiaraa",
-  "genres": ["Shounen", "Romance", "School Life", "Slice of Life"],
+  "genres": [
+    "Shounen",
+    "Romance",
+    "School Life",
+    "Slice of Life"
+  ],
   "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang greget—ini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun bareng, hingga mereka udah kelihatan kayak suami istri romcom kuso-najimi dengan jarak diantara mereka berdua yang udah ngga biasa—dimulai!",
   "covers": [
     "manga/Chikasugiru/covers/cover.webp",
@@ -19,5 +24,18 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "fadafe71-37cd-4c73-ac98-59fd79e07f58.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "fadafe71-37cd-4c73-ac98-59fd79e07f58.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58.webp",
+        "manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58@tablet.webp",
+        "manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }
