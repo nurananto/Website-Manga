@@ -32,20 +32,33 @@ function loadTurnstile() {
 function getTurnstileToken() {
   return new Promise((resolve) => {
     let done = false;
-    const finish = (v) => { if (!done) { done = true; resolve(v); } };
+    // Bersihkan widget total — cegah widget "stuck" tidak hilang setelah selesai
+    const cleanup = () => {
+      const box = document.getElementById('cf-turnstile-box');
+      if (box) box.remove();
+    };
+    const finish = (v) => {
+      if (done) return;
+      done = true;
+      cleanup();
+      resolve(v);
+    };
     setTimeout(() => finish(null), 20_000); // safety timeout
     loadTurnstile().then((ts) => {
       if (!ts || !SITEKEY) return finish(null);
       let box = document.getElementById('cf-turnstile-box');
-      if (!box) {
-        box = document.createElement('div');
-        box.id = 'cf-turnstile-box';
-        box.style.cssText = 'position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:9998;';
-        document.body.appendChild(box);
-      }
-      box.innerHTML = '';
+      if (box) box.remove();
+      box = document.createElement('div');
+      box.id = 'cf-turnstile-box';
+      // Posisi tengah layar. Container transparan & tidak memblokir klik saat
+      // verifikasi senyap; hanya widget (inner) yang interaktif kalau muncul.
+      box.style.cssText = 'position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;pointer-events:none;';
+      const inner = document.createElement('div');
+      inner.style.pointerEvents = 'auto';
+      box.appendChild(inner);
+      document.body.appendChild(box);
       try {
-        ts.render(box, {
+        ts.render(inner, {
           sitekey: SITEKEY,
           appearance: 'interaction-only', // hanya tampil kalau perlu interaksi
           callback: (token) => finish(token),
