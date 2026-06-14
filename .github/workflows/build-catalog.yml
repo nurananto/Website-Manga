@@ -7,6 +7,11 @@ on:
   schedule:
     - cron: '0 0 * * 0'   # Setiap Minggu jam 00:00 UTC (07:00 WIB)
   workflow_dispatch:        # bisa dipicu manual dari GitHub UI
+    inputs:
+      force_cover_resync:
+        description: 'Download & upload ulang SEMUA cover (saat pindah bucket)'
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -36,6 +41,7 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET_NAME:      ${{ secrets.R2_BUCKET_NAME }}
           R2_PUBLIC_BUCKET_NAME: ${{ secrets.R2_PUBLIC_BUCKET_NAME }}
+          FORCE_COVER_RESYNC:  ${{ inputs.force_cover_resync && '1' || '' }}
 
       - name: Deteksi manga yang berubah di push ini
         id: changed

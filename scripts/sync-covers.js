@@ -24,6 +24,10 @@ const r2 = new S3Client({
 // Bucket publik khusus aset (cover) — fallback ke bucket utama jika belum diset
 const BUCKET = process.env.R2_PUBLIC_BUCKET_NAME || process.env.R2_BUCKET_NAME;
 
+// FORCE_COVER_RESYNC=1 → abaikan cache "sudah up to date", download & upload ulang
+// semua cover. Dipakai saat pindah bucket (cover belum ada di bucket baru).
+const FORCE = process.env.FORCE_COVER_RESYNC === '1';
+
 // Cover utama (yang ditandai MangaDex sebagai cover_art manga)
 async function getMangaDexCover(mangadexId) {
   try {
@@ -136,7 +140,7 @@ async function syncCovers() {
     }
     if (!coverFileName) {
       console.log(`   ⚠️  Tidak dapat cover dari MangaDex`);
-    } else if (meta.mangadex_cover === coverFileName && meta.covers?.length >= 3 && meta.cover_widths === SIZE_SIGNATURE) {
+    } else if (!FORCE && meta.mangadex_cover === coverFileName && meta.covers?.length >= 3 && meta.cover_widths === SIZE_SIGNATURE) {
       console.log(`   ✓ Cover utama sudah terbaru (${coverFileName})`);
     } else {
       console.log(`   📥 Cover utama baru: ${coverFileName}`);
@@ -175,7 +179,7 @@ async function syncCovers() {
       // Tambah/regenerasi yang baru atau beda ukuran
       for (const c of allCovers) {
         const existing = prevByFile[c.file];
-        if (existing && existing.widths === SIZE_SIGNATURE) {
+        if (!FORCE && existing && existing.widths === SIZE_SIGNATURE) {
           gallery.push({ ...existing, volume: c.volume });
           continue;
         }
