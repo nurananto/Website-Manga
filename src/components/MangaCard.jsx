@@ -58,8 +58,8 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
         </div>
 
         {/* Chapters List — 3 chapter: justify-between (ngepas tinggi cover).
-            <3 chapter: rapat di atas dengan gap nyaman (bukan terpencar). */}
-        <div className={`flex flex-col flex-1 mt-2 ${manga.chapters.length >= 3 ? 'justify-between' : 'justify-start gap-3 lg:gap-4'}`}>
+            <3 chapter: rapat/nempel di atas (gap kecil), sisa ruang di bawah. */}
+        <div className={`flex flex-col flex-1 mt-2 ${manga.chapters.length >= 3 ? 'justify-between' : 'justify-start gap-2'}`}>
           {manga.chapters.slice(0, 3).map((ch, idx) => {
             const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()
               && !localUnlocked.has(ch.id) && !unlockedChapters?.has(ch.id);
