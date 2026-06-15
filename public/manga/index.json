@@ -1,5 +1,69 @@
 [
   {
+    "id": "10-nenburi",
+    "title": "10-Nen Buri ni Saikai shita Kusogaki wa Seijun Bishoujo JK ni Seichou shiteita",
+    "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 7.5,
+    "total_views": 30,
+    "isTrending": true,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 18.2,
+        "lock_hours": 168,
+        "pages": 11,
+        "id": "10-nenburi-ch-18.2",
+        "r2_prefix": "manga/10-nenburi/18.2/",
+        "title": "Ch. 18.2",
+        "release_date": "2026-06-16T00:57:22+07:00",
+        "unlockDate": "2026-06-22T17:57:22.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 18.1,
+        "lock_hours": 0,
+        "pages": 10,
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "id": "10-nenburi-ch-18.1",
+        "r2_prefix": "manga/10-nenburi/18.1/",
+        "title": "Ch. 18.1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 8
+      },
+      {
+        "chapter_number": 17,
+        "lock_hours": 0,
+        "pages": 20,
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "id": "10-nenburi-ch-17",
+        "r2_prefix": "manga/10-nenburi/17/",
+        "title": "Ch. 17",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 4
+      }
+    ]
+  },
+  {
     "id": "Midari",
     "title": "Midari ni Tsukasete wa Narimasen",
     "description": "Tamotsu Sugawara, seorang karyawan yang tidak bisa menolak permintaan apa pun, mendapati dirinya tidak bisa lagi pergi ke kantor dan memutuskan untuk beristirahat sementara di kuil keluarganya. Suatu malam, hantu yang sangat mirip dengan Makoto Hiiragi, seorang mahasiswi yang bekerja part time di…",
@@ -58,70 +122,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 0
-      }
-    ]
-  },
-  {
-    "id": "10-nenburi",
-    "title": "10-Nen Buri ni Saikai shita Kusogaki wa Seijun Bishoujo JK ni Seichou shiteita",
-    "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Harem",
-      "Romance",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 7.5,
-    "total_views": 30,
-    "isTrending": true,
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 18.1,
-        "lock_hours": 0,
-        "pages": 10,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "id": "10-nenburi-ch-18.1",
-        "r2_prefix": "manga/10-nenburi/18.1/",
-        "title": "Ch. 18.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 8
-      },
-      {
-        "chapter_number": 17,
-        "lock_hours": 0,
-        "pages": 20,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "id": "10-nenburi-ch-17",
-        "r2_prefix": "manga/10-nenburi/17/",
-        "title": "Ch. 17",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 4
-      },
-      {
-        "chapter_number": 16,
-        "lock_hours": 0,
-        "pages": 24,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "id": "10-nenburi-ch-16",
-        "r2_prefix": "manga/10-nenburi/16/",
-        "title": "Ch. 16",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 1
       }
     ]
   },

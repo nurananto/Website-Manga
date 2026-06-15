@@ -87,6 +87,18 @@
   },
   "chapters": [
     {
+      "chapter_number": 18.2,
+      "lock_hours": 168,
+      "pages": 11,
+      "id": "10-nenburi-ch-18.2",
+      "r2_prefix": "manga/10-nenburi/18.2/",
+      "title": "Ch. 18.2",
+      "release_date": "2026-06-16T00:57:22+07:00",
+      "unlockDate": "2026-06-22T17:57:22.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 18.1,
       "lock_hours": 0,
       "pages": 10,
