@@ -31,9 +31,9 @@
     "17": 2,
     "18": 2,
     "19": 3,
-    "20": 4
+    "20": 6
   },
-  "total_views": 13,
+  "total_views": 15,
   "mangadex_cover": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -76,7 +76,7 @@
       "title": "Ch. 20",
       "unlockDate": "2026-06-11T18:25:40.000Z",
       "isLocked": false,
-      "views": 4
+      "views": 6
     },
     {
       "chapter_number": 19,

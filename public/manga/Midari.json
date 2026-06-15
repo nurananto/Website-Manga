@@ -22,8 +22,11 @@
   "raw_url": "https://comic-walker.com/detail/KC_006109_S?episodeType=first",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": 12,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "1": 1,
+    "12": 1
+  },
+  "total_views": 2,
   "mangadex_cover": "d86648a6-77d3-4a95-a8d2-b296da206065.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -57,7 +60,7 @@
       "title": "Ch. 12",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 11,
@@ -249,7 +252,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     }
   ]
 }

@@ -17,7 +17,7 @@
       "Supernatural"
     ],
     "rating": 8.6,
-    "total_views": 0,
+    "total_views": 2,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -33,7 +33,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 11,
@@ -81,7 +81,7 @@
       "Slice of Life"
     ],
     "rating": 7.5,
-    "total_views": 26,
+    "total_views": 30,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -97,7 +97,7 @@
         "title": "Ch. 18.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 8
       },
       {
         "chapter_number": 17,
@@ -109,7 +109,7 @@
         "title": "Ch. 17",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 4
       },
       {
         "chapter_number": 16,
@@ -146,7 +146,7 @@
       "Slice of Life"
     ],
     "rating": 7.7,
-    "total_views": 5,
+    "total_views": 6,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -186,7 +186,7 @@
         "title": "Ch. 10.5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       }
     ]
   },
@@ -209,7 +209,7 @@
       "Slice of Life"
     ],
     "rating": 8.5,
-    "total_views": 0,
+    "total_views": 1,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -225,7 +225,7 @@
         "title": "Ch. 2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 1,
@@ -261,7 +261,7 @@
       "Supernatural"
     ],
     "rating": 8.87,
-    "total_views": 0,
+    "total_views": 2,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -277,7 +277,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 8,
@@ -325,7 +325,7 @@
       "Romance"
     ],
     "rating": 6.78,
-    "total_views": 1,
+    "total_views": 3,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -341,7 +341,7 @@
         "title": "Ch. 13",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 3
       },
       {
         "chapter_number": 12,
@@ -649,7 +649,7 @@
       "Video Games"
     ],
     "rating": 8.23,
-    "total_views": 2,
+    "total_views": 5,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -665,7 +665,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 3
       },
       {
         "chapter_number": 3,
@@ -677,7 +677,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 2,
@@ -840,7 +840,7 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.3,
+    "rating": 7.29,
     "total_views": 4,
     "isTrending": false,
     "next_update": null,
@@ -903,7 +903,7 @@
       "Slice of Life"
     ],
     "rating": 8.69,
-    "total_views": 33,
+    "total_views": 34,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": 215.9,
@@ -919,7 +919,7 @@
         "title": "Ch. 215.9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 215.8,
@@ -1101,7 +1101,7 @@
       "Slice of Life"
     ],
     "rating": 8.23,
-    "total_views": 13,
+    "total_views": 15,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -1117,7 +1117,7 @@
         "title": "Ch. 20",
         "unlockDate": "2026-06-11T18:25:40.000Z",
         "isLocked": false,
-        "views": 4
+        "views": 6
       },
       {
         "chapter_number": 19,
@@ -1231,7 +1231,7 @@
       "Slice of Life",
       "Time Travel"
     ],
-    "rating": 8.48,
+    "rating": 8.47,
     "total_views": 17,
     "isTrending": true,
     "next_update": null,

@@ -24,8 +24,11 @@
   "raw_url": "https://comic-walker.com/detail/KC_006693_S?episodeType=first",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "0": 1,
+    "9": 1
+  },
+  "total_views": 2,
   "mangadex_cover": "b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -68,7 +71,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 8,
@@ -212,7 +215,7 @@
       "title": "Ch. 0",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     }
   ]
 }

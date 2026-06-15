@@ -23,8 +23,10 @@
   "raw_url": "https://kirapo.jp/meteor/titles/ikemenjoshi",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "2": 1
+  },
+  "total_views": 1,
   "mangadex_cover": "6beb2e72-2c1b-443f-8348-b6a0a96e7d6a.png",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -58,7 +60,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 1,
