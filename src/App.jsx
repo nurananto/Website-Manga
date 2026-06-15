@@ -381,7 +381,25 @@ export default function App() {
   useEffect(() => {
     fetch('/manga/index.json', { cache: 'no-cache' })
       .then(r => r.json())
-      .then(data => { setMangaList(data); mangaListRef.current = data; setIsLoading(false); })
+      .then(data => {
+        setMangaList(data); mangaListRef.current = data; setIsLoading(false);
+        // Override trending pakai views terkini (24 jam) dari worker.
+        // Kalau kosong/gagal → tetap pakai isTrending build-time (fallback).
+        const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+        if (!workerUrl) return;
+        fetch(`${workerUrl}/api/trending`)
+          .then(r => r.ok ? r.json() : null)
+          .then(t => {
+            if (!t?.trending?.length) return;
+            const ids = [...t.trending];
+            // lengkapi sampai 5 dari trending build-time agar carousel tidak terlalu sedikit
+            for (const m of data) { if (ids.length >= 5) break; if (m.isTrending && !ids.includes(m.id)) ids.push(m.id); }
+            const set = new Set(ids.slice(0, 5));
+            const updated = data.map(m => ({ ...m, isTrending: set.has(m.id) }));
+            setMangaList(updated); mangaListRef.current = updated;
+          })
+          .catch(() => {});
+      })
       .catch(() => setIsLoading(false));
   }, []);
 

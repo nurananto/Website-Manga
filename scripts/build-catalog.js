@@ -257,13 +257,17 @@ async function buildCatalog() {
     // + 3 chapter terbaru. Field detail-only (description, alt_title, covers, author,
     // type) sengaja TIDAK disertakan — sudah ada di per-manga JSON yang di-load
     // halaman detail. Tujuannya agar index.json tetap ramping saat judul bertambah.
+    // description RINGKAS (~300 char) untuk FeaturedCarousel. Semua manga dapat
+    // karena trending kini dinamis (lihat /api/trending). Versi penuh ada di
+    // per-manga JSON (dipakai halaman detail). Potong di batas kata + elipsis.
+    const rawDesc = manga.description || '';
+    const shortDesc = rawDesc.length > 300
+      ? rawDesc.slice(0, 300).replace(/\s+\S*$/, '') + '…'
+      : rawDesc;
     catalog.push({
       id:           manga.id,
       title:        manga.title,
-      // description hanya dipakai FeaturedCarousel (manga trending). Disertakan
-      // sementara di SEMUA entry, lalu dihapus dari yang non-trending di bawah
-      // (setelah trending dihitung) agar index tetap ramping.
-      description:  manga.description,
+      description:  shortDesc,
       status:       manga.status,
       coverUrl:     manga.coverUrl,
       coverUrls:    manga.coverUrls,
@@ -283,10 +287,8 @@ async function buildCatalog() {
   // Trending: top 5 manga by total_views (otomatis)
   const byViews = [...catalog].sort((a, b) => (b.total_views ?? 0) - (a.total_views ?? 0));
   const trendingIds = new Set(byViews.slice(0, 5).map(m => m.id));
-  catalog.forEach(m => {
-    m.isTrending = trendingIds.has(m.id);
-    if (!m.isTrending) delete m.description; // description hanya perlu untuk carousel trending
-  });
+  // isTrending build-time = fallback (dipakai kalau /api/trending kosong/gagal).
+  catalog.forEach(m => { m.isTrending = trendingIds.has(m.id); });
 
   // Urutkan homepage: manga yang paling baru diupdate tampil paling atas
   catalog.sort((a, b) => {
