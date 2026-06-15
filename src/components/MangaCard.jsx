@@ -57,10 +57,18 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
           </div>
         </div>
 
-        {/* Chapters List — 3 chapter: justify-between (ngepas tinggi cover).
-            <3 chapter: rapat/nempel di atas (gap kecil), sisa ruang di bawah. */}
-        <div className={`flex flex-col flex-1 mt-2 ${manga.chapters.length >= 3 ? 'justify-between' : 'justify-start gap-2 sm:gap-2.5 lg:gap-3'}`}>
-          {manga.chapters.slice(0, 3).map((ch, idx) => {
+        {/* Chapters List — selalu 3 slot + justify-between agar posisi baris
+            PERSIS sama dengan kartu 3-chapter (slot kosong = filler invisible
+            setinggi baris asli, supaya distribusi identik & responsif). */}
+        <div className="flex flex-col flex-1 mt-2 justify-between">
+          {[...Array(3)].map((_, idx) => {
+            const ch = manga.chapters[idx];
+            if (!ch) return (
+              <div key={`ph-${idx}`} aria-hidden
+                className="invisible flex items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border border-transparent">
+                <span className="font-body-md text-sm md:text-base lg:text-lg font-bold">.</span>
+              </div>
+            );
             const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()
               && !localUnlocked.has(ch.id) && !unlockedChapters?.has(ch.id);
             const targetChapter = manga.status === 'Tamat'
