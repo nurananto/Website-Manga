@@ -213,7 +213,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   useEffect(() => { if (manga) frozenManga.current = manga; }, [manga]);
   const activeChapter = chapter || frozenChapter.current;
   const activeManga = manga || frozenManga.current;
-  const discordLink = discordCommentUrl(activeManga?.id); // kosong dulu (lihat src/lib/links.js)
+  const discordLink = discordCommentUrl(activeManga?.discord_channel_id); // channel per judul (meta.json)
 
   // null = tutup, 'top' = dibuka dari navbar atas, 'bottom' = dari navbar bawah
   const [openChapterList, setOpenChapterList] = useState(null);

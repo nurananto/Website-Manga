@@ -278,6 +278,9 @@ async function buildCatalog() {
       next_update:  manga.next_update,
       tamat_at_chapter:  manga.tamat_at_chapter ?? null,
       hiatus_at_chapter: manga.hiatus_at_chapter ?? null,
+      // channel komentar Discord (untuk reader yang dibuka dari kartu homepage).
+      // Hanya disertakan kalau diisi di meta.json, agar index tetap ramping.
+      ...(manga.discord_channel_id ? { discord_channel_id: manga.discord_channel_id } : {}),
       chapters:     chapters.slice(0, 3),
     });
 
