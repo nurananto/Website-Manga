@@ -224,11 +224,35 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const scrollRef = useRef(null);
   const pageRefs = useRef([]);
   const activeChapterIdRef = useRef(null); // guard agar onSuccess tidak fire untuk chapter lama
+  const chapterBtnRefs = useRef({}); // ref tombol chapter selector per posisi (top/bottom)
+
+  // Ukur posisi & LEBAR dropdown dari tombol chapter selector → dropdown selalu
+  // selebar tombolnya, dan bisa diperbarui saat resize (responsif).
+  const measureAnchor = (position) => {
+    const el = chapterBtnRefs.current[position];
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const base = { left: rect.left, width: rect.width };
+    if (position === 'top') {
+      setDropdownAnchor({ ...base, top: rect.bottom + 6 });
+    } else {
+      const spaceAbove = rect.top - 16;
+      setDropdownAnchor({ ...base, bottom: window.innerHeight - rect.top + 6, maxHeight: Math.min(205, spaceAbove) + 'px' });
+    }
+  };
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = ''; };
   }, []);
+
+  // Jaga lebar/posisi dropdown tetap pas tombol saat layar di-resize.
+  useEffect(() => {
+    if (!openChapterList) return;
+    const onResize = () => measureAnchor(openChapterList);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [openChapterList]);
 
   // Kirim view ke Worker — hanya 1x per chapter (localStorage sebagai guard)
   useEffect(() => {
@@ -448,20 +472,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
       {/* Chapter Selector */}
       <div data-chapter-selector className="relative flex-[2]">
         <button
-          onClick={(e) => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const base = { left: rect.left, width: rect.width };
-            if (position === 'top') {
-              setDropdownAnchor({ ...base, top: rect.bottom + 6 });
-            } else {
-              const spaceAbove = rect.top - 16;
-              setDropdownAnchor({
-                ...base,
-                bottom: window.innerHeight - rect.top + 6,
-                maxHeight: Math.min(205, spaceAbove) + 'px',
-              });
-            }
-            setOpenChapterList(v => v === position ? null : position);
+          ref={(el) => { chapterBtnRefs.current[position] = el; }}
+          onClick={() => {
+            const willOpen = openChapterList !== position;
+            if (willOpen) measureAnchor(position);
+            setOpenChapterList(willOpen ? position : null);
           }}
           className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-sm md:text-base font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
         >
