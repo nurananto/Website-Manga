@@ -128,6 +128,7 @@ function PageImage({ src, fallbackSrc, idx, pageRefs, ready }) {
   const [retryCount, setRetryCount] = useState(0);
   const [useFallback, setUseFallback] = useState(false);
   const [inView,     setInView]     = useState(idx < 3);
+  const [blobUrl,    setBlobUrl]    = useState(null);
   const wrapRef = useRef(null);
   const activeSrc = useFallback && fallbackSrc ? fallbackSrc : src;
 
@@ -149,7 +150,30 @@ function PageImage({ src, fallbackSrc, idx, pageRefs, ready }) {
     setLoaded(false);
     setFailed(false);
     setUseFallback(false);
+    setBlobUrl(null);
   }, [src]);
+
+  // Ambil gambar via fetch → blob, supaya <img src> tampil "blob:" bukan path asli
+  // (path tetap terlihat di Network tab — ini cuma obscure DOM/klik-kanan/hotlink).
+  // Kalau fetch CDN gagal (mis. CORS belum di-set), jatuh ke worker (fallbackSrc).
+  useEffect(() => {
+    if (!ready || !inView || !activeSrc) return;
+    let cancelled = false;
+    let objUrl = null;
+    fetch(activeSrc)
+      .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.blob(); })
+      .then(blob => {
+        if (cancelled) return;
+        objUrl = URL.createObjectURL(blob);
+        setBlobUrl(objUrl);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        if (fallbackSrc && !useFallback) setUseFallback(true); // coba worker sekali
+        else setFailed(true);
+      });
+    return () => { cancelled = true; if (objUrl) URL.revokeObjectURL(objUrl); };
+  }, [ready, inView, activeSrc, retryCount]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleRetry = (e) => {
     e.stopPropagation();
@@ -188,18 +212,11 @@ function PageImage({ src, fallbackSrc, idx, pageRefs, ready }) {
       <img
         key={retryCount}
         alt={`Page ${idx + 1}`}
-        loading={idx < 3 ? 'eager' : 'lazy'}
         decoding="async"
-        fetchpriority={idx === 0 ? 'high' : 'auto'}
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
-        src={ready && inView ? activeSrc : undefined}
+        src={blobUrl || undefined}
         onLoad={() => setLoaded(true)}
-        onError={() => {
-          // CDN 404 (chapter baru lepas kunci, belum dimigrasi) → coba worker
-          // sekali; worker layani dari manga-locked + copy ke manga-media.
-          if (fallbackSrc && !useFallback) setUseFallback(true);
-          else setFailed(true);
-        }}
+        onError={() => setFailed(true)}
       />
     </div>
   );
