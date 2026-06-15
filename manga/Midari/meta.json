@@ -1,7 +1,7 @@
 {
   "id": "Midari",
   "title": "Midari ni Tsukasete wa Narimasen",
-  "alt_title": "みだりに憑かせてはなりません",
+  "alt_title": "ã¿ã ãã«æããã¦ã¯ãªãã¾ãã",
   "status": "HIATUS",
   "type": "MANGA",
   "author": "Kurita Aguri",
@@ -12,7 +12,7 @@
     "Shounen",
     "Supernatural"
   ],
-  "description": "Tamotsu Sugawara, seorang karyawan yang tidak bisa menolak permintaan apa pun, mendapati dirinya tidak bisa lagi pergi ke kantor dan memutuskan untuk beristirahat sementara di kuil keluarganya. Suatu malam, hantu yang sangat mirip dengan Makoto Hiiragi, seorang mahasiswi yang bekerja part time di kuil itu pada siang hari, muncul di hadapannya. Komedi romantis yang terinspirasi dari horor ini menghubungkan mantan karyawan yang ngga bisa bilang tidak (yes-man) dengan mahasiswi yang dicurigai sebagai arwah hidup (!?) ♡",
+  "description": "Tamotsu Sugawara, seorang karyawan yang tidak bisa menolak permintaan apa pun, mendapati dirinya tidak bisa lagi pergi ke kantor dan memutuskan untuk beristirahat sementara di kuil keluarganya. Suatu malam, hantu yang sangat mirip dengan Makoto Hiiragi, seorang mahasiswi yang bekerja part time di kuil itu pada siang hari, muncul di hadapannya. Komedi romantis yang terinspirasi dari horor ini menghubungkan mantan karyawan yang ngga bisa bilang tidak (yes-man) dengan mahasiswi yang dicurigai sebagai arwah hidup (!?) â¡",
   "covers": [
     "manga/Midari/covers/cover.webp",
     "manga/Midari/covers/cover@tablet.webp",
@@ -22,8 +22,11 @@
   "raw_url": "https://comic-walker.com/detail/KC_006109_S?episodeType=first",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": 12,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "1": 1,
+    "12": 1
+  },
+  "total_views": 2,
   "mangadex_cover": "d86648a6-77d3-4a95-a8d2-b296da206065.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [

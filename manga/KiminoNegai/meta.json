@@ -1,7 +1,7 @@
 {
   "id": "KiminoNegai",
   "title": "Kimi no Negai ga Kanau made",
-  "alt_title": "きみの願いが叶うまで",
+  "alt_title": "ãã¿ã®é¡ããå¶ãã¾ã§",
   "status": "ONGOING",
   "type": "MANGA",
   "author": "Asazuki Norito",
@@ -14,7 +14,7 @@
     "Slice of Life",
     "Gender Swap"
   ],
-  "description": "Minto Shishido, seorang siswa SMA yang mengaku playboy, tiba-tiba diisolasi bersama seluruh teman sekelasnya di sebuah fasilitas yang mirip sekolah saat sedang study tour. Tempat itu adalah ruang tertutup yang dibuat oleh suara misterius—'Tak bisa keluar sampai semua keinginan terpenuhi.'Dan lebih jauh lagi, tubuh seluruh murid mulai mengalami perubahan aneh!?",
+  "description": "Minto Shishido, seorang siswa SMA yang mengaku playboy, tiba-tiba diisolasi bersama seluruh teman sekelasnya di sebuah fasilitas yang mirip sekolah saat sedang study tour. Tempat itu adalah ruang tertutup yang dibuat oleh suara misteriusâ'Tak bisa keluar sampai semua keinginan terpenuhi.'Dan lebih jauh lagi, tubuh seluruh murid mulai mengalami perubahan aneh!?",
   "covers": [
     "manga/KiminoNegai/covers/cover.webp",
     "manga/KiminoNegai/covers/cover@tablet.webp",
@@ -24,8 +24,11 @@
   "raw_url": "https://comic-walker.com/detail/KC_006693_S?episodeType=first",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "0": 1,
+    "9": 1
+  },
+  "total_views": 2,
   "mangadex_cover": "b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
