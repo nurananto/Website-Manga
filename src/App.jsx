@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
-import DiscordBanner from './components/DiscordBanner';
+import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
 import ReaderModal from './components/ReaderModal';
 import MangaDetailPage from './components/MangaDetailPage';
@@ -783,51 +783,8 @@ export default function App() {
                       }}
                     />
                     
-                    {/* Trakteer Donation Banner */}
-                    <a
-                      href="https://trakteer.id/NuranantoScanlation"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="relative w-full overflow-hidden bg-gradient-to-r from-red-950/40 via-red-900/25 to-red-950/40 border border-red-500/20 py-3 rounded-xl flex items-center group shadow-md hover:border-red-500/40 hover:bg-red-950/50 transition-all duration-300 cursor-pointer"
-                    >
-                      <div className="flex whitespace-nowrap animate-marquee">
-                        {/* Track 1 */}
-                        <div className="flex items-center gap-8 pr-8">
-                          {Array.from({ length: 3 }).map((_, i) => (
-                            <div key={i} className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white">
-                              <img 
-                                src="https://cdn.trakteer.id/images/embed/trbtn-icon.png" 
-                                alt="Trakteer Logo" 
-                                className="w-5 h-5 object-contain shrink-0 brightness-0 invert drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] group-hover:scale-110 transition-transform duration-300"
-                              />
-                              <span>Suka dengan hasil terjemahan ini? Silahkan donasi ke Trakteer!</span>
-                              <span className="flex items-center gap-1.5 bg-red-600 text-white px-2 py-0.5 rounded text-xs font-black shadow-sm group-hover:scale-105 transition-transform shrink-0">
-                                Donasi
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                        {/* Track 2 */}
-                        <div className="flex items-center gap-8 pr-8">
-                          {Array.from({ length: 3 }).map((_, i) => (
-                            <div key={i} className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white">
-                              <img 
-                                src="https://cdn.trakteer.id/images/embed/trbtn-icon.png" 
-                                alt="Trakteer Logo" 
-                                className="w-5 h-5 object-contain shrink-0 brightness-0 invert drop-shadow-[0_0_4px_rgba(255,255,255,0.3)] group-hover:scale-110 transition-transform duration-300"
-                              />
-                              <span>Suka dengan hasil terjemahan ini? Silahkan donasi ke Trakteer!</span>
-                              <span className="flex items-center gap-1.5 bg-red-600 text-white px-2 py-0.5 rounded text-xs font-black shadow-sm group-hover:scale-105 transition-transform shrink-0">
-                                Donasi
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </a>
-
-                    {/* Running text Discord — ajak gabung komunitas */}
-                    <DiscordBanner rounded />
+                    {/* Tombol dukungan: Donasi Trakteer + Gabung Discord */}
+                    <SupportButtons className="mt-2" />
                     </> ) : null}
                   </>
                 )}
