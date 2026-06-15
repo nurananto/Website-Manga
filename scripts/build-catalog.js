@@ -260,6 +260,10 @@ async function buildCatalog() {
     catalog.push({
       id:           manga.id,
       title:        manga.title,
+      // description hanya dipakai FeaturedCarousel (manga trending). Disertakan
+      // sementara di SEMUA entry, lalu dihapus dari yang non-trending di bawah
+      // (setelah trending dihitung) agar index tetap ramping.
+      description:  manga.description,
       status:       manga.status,
       coverUrl:     manga.coverUrl,
       coverUrls:    manga.coverUrls,
@@ -279,7 +283,10 @@ async function buildCatalog() {
   // Trending: top 5 manga by total_views (otomatis)
   const byViews = [...catalog].sort((a, b) => (b.total_views ?? 0) - (a.total_views ?? 0));
   const trendingIds = new Set(byViews.slice(0, 5).map(m => m.id));
-  catalog.forEach(m => { m.isTrending = trendingIds.has(m.id); });
+  catalog.forEach(m => {
+    m.isTrending = trendingIds.has(m.id);
+    if (!m.isTrending) delete m.description; // description hanya perlu untuk carousel trending
+  });
 
   // Urutkan homepage: manga yang paling baru diupdate tampil paling atas
   catalog.sort((a, b) => {

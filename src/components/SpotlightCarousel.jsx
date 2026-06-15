@@ -36,12 +36,15 @@ function getCoverW() {
 
 // Items shown on each side of active per breakpoint (pinggir boleh kepotong).
 // mobile: 2 side → 5 | sm: 3 → 7 | md: 4 → 9 | lg: 5 → 11
+// xl: 6 → 13 | 2xl/ultrawide: 7 → 15 (isi layar lebar agar tidak ada ruang kosong)
 function getMaxSide() {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
   if (w < 640)  return 2;
   if (w < 768)  return 3;
   if (w < 1024) return 4;
-  return 5;
+  if (w < 1280) return 5;
+  if (w < 1600) return 6;
+  return 7;
 }
 
 function getMostRecentIdx(list) {

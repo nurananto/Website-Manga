@@ -3,6 +3,7 @@ import { imgUrl, timeAgo } from '../utils';
 import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Coins, Lock, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
+import DiscordBanner from './DiscordBanner';
 
 export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, unlockedChapters }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -273,6 +274,8 @@ const renderChapterRow = (ch, idx) => {
               </div>
             </div>
           </a>
+          {/* Running text Discord — ajak gabung komunitas */}
+          <DiscordBanner rounded={false} />
         </div>
 
         {/* Wrapper: border di mobile/tablet, tidak di desktop */}

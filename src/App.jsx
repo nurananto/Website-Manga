@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
+import DiscordBanner from './components/DiscordBanner';
 import MangaCard from './components/MangaCard';
 import ReaderModal from './components/ReaderModal';
 import MangaDetailPage from './components/MangaDetailPage';
@@ -806,6 +807,9 @@ export default function App() {
                         </div>
                       </div>
                     </a>
+
+                    {/* Running text Discord — ajak gabung komunitas */}
+                    <DiscordBanner rounded />
                     </> ) : null}
                   </>
                 )}

@@ -82,24 +82,38 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
             <span className="bg-amber-500/20 text-amber-500 px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md border border-amber-500/30 font-semibold shadow-sm">
               Trending
             </span>
-            {activeManga.genres.slice(0, 1).map((g) => (
+            {/* 2 genre pertama: selalu tampil (termasuk mobile) */}
+            {activeManga.genres.slice(0, 2).map((g) => (
               <span key={g} className="bg-surface-variant/85 text-on-surface px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
                 {g}
               </span>
             ))}
-            {activeManga.genres.slice(1, 2).map((g) => (
-              <span key={g} className="hidden sm:inline bg-surface-variant/85 text-on-surface px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
-                {g}
-              </span>
-            ))}
-            {activeManga.genres.length > 1 && (
-              <span className="inline sm:hidden bg-black/40 text-white/80 px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
-                +{activeManga.genres.length - 1}
+            {/* genre ke-3: tablet ke atas */}
+            {activeManga.genres[2] && (
+              <span className="hidden sm:inline bg-surface-variant/85 text-on-surface px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+                {activeManga.genres[2]}
               </span>
             )}
+            {/* genre ke-4: desktop */}
+            {activeManga.genres[3] && (
+              <span className="hidden lg:inline bg-surface-variant/85 text-on-surface px-2.5 py-0.5 rounded-md font-label-sm text-xs uppercase tracking-wider backdrop-blur-md">
+                {activeManga.genres[3]}
+              </span>
+            )}
+            {/* overflow "+N" — sisa genre per breakpoint */}
             {activeManga.genres.length > 2 && (
-              <span className="hidden sm:inline bg-black/40 text-white/80 px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
+              <span className="inline sm:hidden bg-black/40 text-white/80 px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
                 +{activeManga.genres.length - 2}
+              </span>
+            )}
+            {activeManga.genres.length > 3 && (
+              <span className="hidden sm:inline lg:hidden bg-black/40 text-white/80 px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
+                +{activeManga.genres.length - 3}
+              </span>
+            )}
+            {activeManga.genres.length > 4 && (
+              <span className="hidden lg:inline bg-black/40 text-white/80 px-2.5 py-0.5 rounded-md font-label-sm text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
+                +{activeManga.genres.length - 4}
               </span>
             )}
           </div>
