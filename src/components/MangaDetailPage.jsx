@@ -112,7 +112,7 @@ const renderChapterRow = (ch, idx) => {
               {isLocked && (
                 <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
                   <Coins className="w-2.5 h-2.5 md:w-3 md:h-3 fill-current shrink-0" />
-                  <span>5</span>
+                  <span>10</span>
                 </span>
               )}
             </div>
