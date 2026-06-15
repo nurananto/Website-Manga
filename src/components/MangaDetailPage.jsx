@@ -58,12 +58,11 @@ const renderChapterRow = (ch, idx) => {
     const isOneshot = manga.status === 'Oneshot';
     const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
     const targetChapter = manga.status === 'Tamat' ? manga.tamat_at_chapter : isOneshot ? ch.chapter_number : manga.hiatus_at_chapter;
-    // Badge status disembunyikan selama badge UP (isNew) masih tampil
-    const showStatusBadge = !isNew && isFinished && (isOneshot || (
-      targetChapter != null
-        ? ch.chapter_number === targetChapter
-        : sortNewest ? idx === 0 : idx === sortedChapters.length - 1
-    ));
+    // Badge status disembunyikan selama badge UP (isNew) masih tampil.
+    // Hanya muncul di chapter yang persis = tamat_at_chapter/hiatus_at_chapter.
+    const showStatusBadge = !isNew && isFinished && (
+      isOneshot || (targetChapter != null && ch.chapter_number === targetChapter)
+    );
 
     const chapterViews = ch.views && ch.views > 0
       ? ch.views >= 1000 ? `${(ch.views / 1000).toFixed(1)}k` : String(ch.views)
@@ -106,7 +105,7 @@ const renderChapterRow = (ch, idx) => {
                     ? 'bg-red-500/15 text-red-400 border border-red-500/30'
                     : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
                 }`}>
-                  {isOneshot ? 'Oneshot' : manga.status}
+                  {isOneshot ? 'Oneshot' : manga.status === 'Tamat' ? 'END' : manga.status}
                 </span>
               )}
               {isLocked && (
@@ -357,7 +356,7 @@ const renderChapterRow = (ch, idx) => {
                   <span className={`font-body-md text-sm sm:text-sm md:text-base font-black ${
                     manga.status === 'Tamat' || manga.status === 'Oneshot' ? 'text-red-400' :
                     manga.status === 'Hiatus' ? 'text-zinc-400' : 'text-emerald-400'
-                  }`}>{manga.status || 'Ongoing'}</span>
+                  }`}>{manga.status === 'Tamat' ? 'Complete' : (manga.status || 'Ongoing')}</span>
                 </div>
               </div>
               <div className="flex flex-col gap-1 p-3 sm:p-4">

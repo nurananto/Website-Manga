@@ -548,16 +548,19 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
               ))}
             </div>
 
-            {/* Klaim koin harian — urutan: gambar → tombol claim → navbar → back */}
-            <div className="px-2 py-2">
-              <DailyClaimButton
-                dailyClaimAt={currentUser?.daily_claim_at || null}
-                onDailyClaim={onDailyClaim}
-                userCoins={userCoins}
-                isLoggedIn={isLoggedIn}
-                onLoginClick={onLoginClick}
-              />
-            </div>
+            {/* Klaim koin harian — hanya untuk yang login (jangan memaksa login).
+                Urutan: gambar → banner klaim → navbar → back */}
+            {isLoggedIn && (
+              <div className="px-2 py-2">
+                <DailyClaimButton
+                  dailyClaimAt={currentUser?.daily_claim_at || null}
+                  onDailyClaim={onDailyClaim}
+                  userCoins={userCoins}
+                  isLoggedIn={isLoggedIn}
+                  onLoginClick={onLoginClick}
+                />
+              </div>
+            )}
 
             {/* Navigasi bawah */}
             <NavBar position="bottom" />

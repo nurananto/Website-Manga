@@ -57,12 +57,10 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
           </div>
         </div>
 
-        {/* Chapters List — selalu 3 slot dengan justify-between agar posisi
-            konsisten di semua breakpoint, slot kosong jadi invisible spacer. */}
-        <div className="flex flex-col flex-1 mt-2 justify-between">
-          {[...Array(3)].map((_, idx) => {
-            const ch = manga.chapters[idx];
-            if (!ch) return <div key={`ph-${idx}`} className="invisible pointer-events-none py-1 sm:py-1.5 lg:py-2 rounded-xl" />;
+        {/* Chapters List — 3 chapter: justify-between (ngepas tinggi cover).
+            <3 chapter: rapat di atas dengan gap nyaman (bukan terpencar). */}
+        <div className={`flex flex-col flex-1 mt-2 ${manga.chapters.length >= 3 ? 'justify-between' : 'justify-start gap-3 lg:gap-4'}`}>
+          {manga.chapters.slice(0, 3).map((ch, idx) => {
             const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()
               && !localUnlocked.has(ch.id) && !unlockedChapters?.has(ch.id);
             const targetChapter = manga.status === 'Tamat'
@@ -71,12 +69,11 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
               ? ch.chapter_number
               : manga.hiatus_at_chapter;
             const isUp = !!ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
-            // Badge Tamat/Hiatus: muncul di chapter yang cocok dengan tamat_at_chapter/hiatus_at_chapter.
-            // Jika tidak di-set, fallback ke chapter pertama (idx === 0).
+            // Badge Tamat/Hiatus: HANYA muncul di chapter yang persis cocok dengan
+            // tamat_at_chapter/hiatus_at_chapter. Tidak ada fallback ke chapter lain.
             const showStatusBadge = !isUp && isFinished && (
               isOneshot ||
-              (targetChapter != null && ch.chapter_number === targetChapter) ||
-              (targetChapter == null && idx === 0)
+              (targetChapter != null && ch.chapter_number === targetChapter)
             );
 
             return (
@@ -109,7 +106,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
                         ? 'bg-red-500/15 text-red-400 border border-red-500/30'
                         : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
                     }`}>
-                      {isOneshot ? 'Oneshot' : manga.status}
+                      {isOneshot ? 'Oneshot' : manga.status === 'Tamat' ? 'END' : manga.status}
                     </span>
                   )}
                 </div>
