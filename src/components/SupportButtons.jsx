@@ -14,14 +14,14 @@ export default function SupportButtons({ className = '' }) {
         href={TRAKTEER_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex-1 flex items-center justify-center gap-2 py-2.5 sm:py-3 rounded-xl border border-red-500/30 bg-gradient-to-r from-red-950/40 via-red-900/30 to-red-950/40 hover:border-red-500/50 hover:bg-red-950/60 shadow-md active:scale-[0.99] transition-all cursor-pointer group"
+        className="flex-1 flex items-center justify-center gap-2 py-2.5 sm:py-3 rounded-xl border border-red-400/50 bg-gradient-to-r from-red-600 via-red-500 to-red-600 hover:from-red-500 hover:via-red-400 hover:to-red-500 hover:border-red-300/60 shadow-md active:scale-[0.99] transition-all cursor-pointer group"
       >
         <img
           src="https://cdn.trakteer.id/images/embed/trbtn-icon.png"
           alt="Trakteer"
           className="w-5 h-5 object-contain shrink-0 brightness-0 invert group-hover:scale-110 transition-transform"
         />
-        <span className="font-bold text-xs sm:text-sm text-white">Donasi via Trakteer</span>
+        <span className="font-bold text-xs sm:text-sm text-white">Donasi Trakteer</span>
       </a>
 
       {/* Discord */}
@@ -39,7 +39,7 @@ export default function SupportButtons({ className = '' }) {
           alt="Discord"
           className="w-5 h-5 object-contain shrink-0 group-hover:scale-110 transition-transform"
         />
-        <span className="font-bold text-xs sm:text-sm text-white">Gabung Discord</span>
+        <span className="font-bold text-xs sm:text-sm text-white">Gabung Komunitas</span>
       </a>
     </div>
   );
