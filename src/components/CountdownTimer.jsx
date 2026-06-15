@@ -20,15 +20,16 @@ export default function CountdownTimer({ unlockDate, onUnlock }) {
       const hours = totalHours % 24;
       const days = Math.floor(totalHours / 24);
 
+      // Label Indonesia eksplisit — hindari "h"/"d" yang ambigu (hari vs hours, detik vs days)
       let formatted = '';
       if (days > 0) {
-        formatted = `${days}h`;
+        formatted = `${days} hari`;
       } else if (hours > 0) {
-        formatted = `${hours}j`;
+        formatted = `${hours} jam`;
       } else if (minutes > 0) {
-        formatted = `${minutes}m`;
+        formatted = `${minutes} mnt`;
       } else {
-        formatted = `${seconds}d`;
+        formatted = `${seconds} dtk`;
       }
       setTimeLeft(formatted);
     };
