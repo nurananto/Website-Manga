@@ -253,23 +253,23 @@ async function buildCatalog() {
       'utf-8'
     );
 
-    // index.json hanya simpan info dasar + 3 chapter terbaru (untuk kartu)
+    // index.json hanya simpan field yang DIPAKAI homepage (kartu, search, carousel)
+    // + 3 chapter terbaru. Field detail-only (description, alt_title, covers, author,
+    // type) sengaja TIDAK disertakan — sudah ada di per-manga JSON yang di-load
+    // halaman detail. Tujuannya agar index.json tetap ramping saat judul bertambah.
     catalog.push({
       id:           manga.id,
       title:        manga.title,
-      alt_title:    manga.alt_title,
-      description:  manga.description,
       status:       manga.status,
-      type:         manga.type,
-      author:       manga.author,
       coverUrl:     manga.coverUrl,
       coverUrls:    manga.coverUrls,
-      covers:       manga.covers,
       genres:       manga.genres,
       rating:       manga.rating,
       total_views:  manga.total_views,
       isTrending:   manga.isTrending,
       next_update:  manga.next_update,
+      tamat_at_chapter:  manga.tamat_at_chapter ?? null,
+      hiatus_at_chapter: manga.hiatus_at_chapter ?? null,
       chapters:     chapters.slice(0, 3),
     });
 

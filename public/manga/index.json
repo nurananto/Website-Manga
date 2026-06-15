@@ -1,23 +1,75 @@
 [
   {
+    "id": "Midari",
+    "title": "Midari ni Tsukasete wa Narimasen",
+    "status": "Hiatus",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@tablet.webp",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@mobile.webp"
+    },
+    "genres": [
+      "Comedy",
+      "Romance",
+      "Shounen",
+      "Supernatural"
+    ],
+    "rating": 8.6,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": 12,
+    "chapters": [
+      {
+        "chapter_number": 12,
+        "lock_hours": 0,
+        "pages": 16,
+        "id": "Midari-ch-12",
+        "r2_prefix": "manga/Midari/12/",
+        "title": "Ch. 12",
+        "release_date": "2026-06-15T18:33:54+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 11,
+        "lock_hours": 0,
+        "pages": 16,
+        "id": "Midari-ch-11",
+        "r2_prefix": "manga/Midari/11/",
+        "title": "Ch. 11",
+        "release_date": "2026-06-15T18:33:53+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 10,
+        "lock_hours": 0,
+        "pages": 18,
+        "id": "Midari-ch-10",
+        "r2_prefix": "manga/Midari/10/",
+        "title": "Ch. 10",
+        "release_date": "2026-06-15T18:33:53+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "10-nenburi",
     "title": "10-Nen Buri ni Saikai shita Kusogaki wa Seijun Bishoujo JK ni Seichou shiteita",
-    "alt_title": "10年ぶりに再会したクソガキは清純美少女JKに成長していた",
-    "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya. Saat Yuu jadi gugup dan salah tingkah, gadis itu malah mendekatinya sambil berkata, 'Kalau begitu, coba tebak namaku.'Romcom penuh salah paham yang menghidupkan kembali masa muda yang telah berlalu selama sepuluh tahun!",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Kanzai Yuki",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/10-nenburi/covers/cover.webp",
-      "manga/10-nenburi/covers/cover@tablet.webp",
-      "manga/10-nenburi/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Adaptation",
       "Comedy",
@@ -30,6 +82,8 @@
     "total_views": 26,
     "isTrending": true,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 18.1,
@@ -72,22 +126,13 @@
   {
     "id": "ClassdeIchiban",
     "title": "Class de Ichiban Kawaii Gal wo Ezuke shiteiru Hanashi",
-    "alt_title": "クラスで一番かわいいギャルを餌付けしている話",
-    "description": "akura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik tiri dan pasangan kekasih yang tinggal serumah.Dan tidak ada satu pun teman sekelas mereka yang mengetahui fakta itu.Meski Sakura tampil bersinar dan ceria di sekolah, begitu sampai di rumah, ia langsung santai dan tergila-gila dengan masakan Houri.Dan Houri yang bertanggung jawab atas urusan makan pun sebenarnya sangat menikmati itu――.Sebuah kisah manis tentang memberi makan dan menikmati kehidupan ganda bersama gyaru imut di sekolah dan di rumah!",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Tomo Shirano",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/ClassdeIchiban/covers/cover.webp",
-      "manga/ClassdeIchiban/covers/cover@tablet.webp",
-      "manga/ClassdeIchiban/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Adaptation",
       "Comedy",
@@ -101,6 +146,8 @@
     "total_views": 5,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 12,
@@ -143,22 +190,13 @@
   {
     "id": "IkemenJoshi",
     "title": "Ikemen Joshi Demo Kawaii Heroine ni Naremasu ka?",
-    "alt_title": "イケメン女子でもかわいいヒロインになれますか？",
-    "description": "'Bisakah kamu membuat diriku menjadi seorang princess (Heroine)?' Sumeragi Tsukasa — siswi SMA yang dijuluki ikemen, seorang artis populer, dan selalu dikerubungi cewek-cewek. Sedangkan Mikage Himeno — cowok SMA yang sudah debut jadi mangaka tapi proposal serialisasinya selalu ditolak. Saat tujuan mereka saling bertemu, Mereka langsung sembunyi-sembunyi latihan untuk menjadi seorang heroine dan nggak boleh ketahuan sama siapa pun! dan itu yang bikin situasi diantara mereka menjadi mendebarkan!",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Tsumikitsuki",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/IkemenJoshi/covers/cover.webp",
-      "manga/IkemenJoshi/covers/cover@tablet.webp",
-      "manga/IkemenJoshi/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Comedy",
       "Romance",
@@ -170,6 +208,8 @@
     "total_views": 0,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 2,
@@ -200,22 +240,13 @@
   {
     "id": "KiminoNegai",
     "title": "Kimi no Negai ga Kanau made",
-    "alt_title": "きみの願いが叶うまで",
-    "description": "Minto Shishido, seorang siswa SMA yang mengaku playboy, tiba-tiba diisolasi bersama seluruh teman sekelasnya di sebuah fasilitas yang mirip sekolah saat sedang study tour. Tempat itu adalah ruang tertutup yang dibuat oleh suara misterius—'Tak bisa keluar sampai semua keinginan terpenuhi.'Dan lebih jauh lagi, tubuh seluruh murid mulai mengalami perubahan aneh!?",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Asazuki Norito",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/KiminoNegai/covers/cover.webp",
-      "manga/KiminoNegai/covers/cover@tablet.webp",
-      "manga/KiminoNegai/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Gender Swap",
       "Romance",
@@ -228,6 +259,8 @@
     "total_views": 0,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 9,
@@ -270,22 +303,13 @@
   {
     "id": "Negatte",
     "title": "Negatte mo Nai Tsuihou Go kara no Slow Life? ~Intai Shita Hazu ga Nariyuki de Bishoujo Gyaru no Shishou ni Nattara Naze ka Mechakucha Natsukareta~",
-    "alt_title": "願ってもない追放後からのスローライフ？～引退したはずが成り行きで美少女ギャルの師匠になったらなぜかめちゃくちゃ懐かれた～",
-    "description": "Reito Harukaze, yang telah naik hingga ranking tertinggi adventurer, telah pensiun. Saat ia berniat untuk hidup santai dan pensiun, suatu hari seorang gadis gal cantik bernama Karen Hiiragi muncul di hadapannya. 'Hey, onii-san, traktir makan dong!' Mendengar bahwa Karen kesulitan uang, Reito memutuskan untuk memberinya pelatihan dasar tentang cara menaklukkan dungeon. 'Berkatmu, aku berhasil menyelesaikan dungeon pertamaku! Sensei!'' Padahal sebenarnya ia ingin pensiun dan menikmati hidup santai…",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Sugar Spoon",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/Negatte/covers/cover.webp",
-      "manga/Negatte/covers/cover@tablet.webp",
-      "manga/Negatte/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Adaptation",
       "Comedy",
@@ -298,6 +322,8 @@
     "total_views": 1,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 13,
@@ -340,22 +366,13 @@
   {
     "id": "Osananajimi",
     "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
-    "alt_title": "幼馴染に陰で都合の良い男呼ばわりされた俺は、好意をリセットして普通に青春を送りたい",
-    "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Hitofude Nanashi",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/Osananajimi/covers/cover.webp",
-      "manga/Osananajimi/covers/cover@tablet.webp",
-      "manga/Osananajimi/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Adaptation",
       "Comedy",
@@ -370,6 +387,8 @@
     "total_views": 0,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 4.1,
@@ -412,22 +431,13 @@
   {
     "id": "Suufungo",
     "title": "Suufungo no Mirai ga Wakaru You ni Natta kedo, Onnagokoro wa Wakaranai.",
-    "alt_title": "数分後の未来が分かるようになったけど、女心は分からない。",
-    "description": "Arase Itou bisa melihat beberapa menit ke depan. Namun, masa depan yang ia lihat selalu berhubungan dengan masalah. Arase yang baik hati berusaha menghindari masa depan yang tidak menyenangkan ini, namun pada akhirnya masalah tersebut tetap membuatnya membantu berbagai gadis dengan masalah mereka. Tanpa ia sadari, para gadis mulai menyukainya. Arase tidak menyadari bahwa, diam-diam, para gadis bersaing untuk memperebutkannya.",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "mty",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/Suufungo/covers/cover.webp",
-      "manga/Suufungo/covers/cover@tablet.webp",
-      "manga/Suufungo/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Adaptation",
       "Comedy",
@@ -440,6 +450,8 @@
     "total_views": 0,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 16,
@@ -482,22 +494,13 @@
   {
     "id": "TensaiBishoujo",
     "title": "Tensai Bishoujo Sanshimai wa Isourou ni Dake Choro Kawaii",
-    "alt_title": "天才美少女三姉妹がちょろ可愛すぎる!?",
-    "description": "Seorang pemuda biasa dan para jenius tinggal bersama di bawah satu atap — romcom harem penuh kekacauan dengan tingkat keimutannya MAX! '…Mau datang ke rumahku?' Setelah rumahnya tiba-tiba hangus terbakar, Riku akhirnya tinggal menumpang di rumah keluarga Tennousu — tiga kakak beradik cantik jelita berbakat yang selalu dipuja banyak orang. Melihat rumah mereka berantakan karena manajemen hidup yang parah, Riku pun memutuskan untuk menggunakan keahlian rumah tangganya untuk membantu mereka!? Para jenius itu pun perlahan mulai tertarik pada sosok Riku yang tulus dan selalu penuh perhatian…",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Akizuki Tsukihi",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/TensaiBishoujo/covers/cover.webp",
-      "manga/TensaiBishoujo/covers/cover@tablet.webp",
-      "manga/TensaiBishoujo/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Adaptation",
       "Comedy",
@@ -511,6 +514,8 @@
     "total_views": 0,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 4,
@@ -553,22 +558,13 @@
   {
     "id": "UchinoSeiso-kei",
     "title": "Uchi no Seiso-kei Iinchou ga Katsute Chuunibyou Idol datta Koto wo Ore Dake ga Shitteiru",
-    "alt_title": "うちの清楚系委員長がかつて中二病アイドルだったことを俺だけが知っている",
-    "description": "Dulu ada idol chuunibyou yang sempat ngetop banget, namanya 'Nightmare Disaster', atau biasa dipanggil Mea. Reo yang dulu sering nemenin kegiatannya, foto bareng, sampai upload ke medsos biar viral, akhirnya ketemu lagi sama dia di SMA tempat mereka lanjut sekolah.",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Mikami Kota",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/UchinoSeiso-kei/covers/cover.webp",
-      "manga/UchinoSeiso-kei/covers/cover@tablet.webp",
-      "manga/UchinoSeiso-kei/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Adaptation",
       "Comedy",
@@ -581,6 +577,8 @@
     "total_views": 0,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 9,
@@ -623,22 +621,13 @@
   {
     "id": "ZunouBattle",
     "title": "Ore wa Gakuen Zunou Battle no Enshutsuka!: Jishou Mobu ga Kage kara Egaku Saikyou Shujinkou Musou Scenario",
-    "alt_title": "俺は学園頭脳バトルの演出家！　～自称モブが陰から描く最強主人公無双シナリオ～",
-    "description": "Di SMA Teio, segalanya ditentukan lewat duel permainan. Yang harus kulakukan sebagai perwujudan karakter figuran, Tanaka Kanata, bukanlah meraih kejayaan untuk diriku sendiri! Satu-satunya tugasku adalah “menyutradarai” dari balik layar agar Kiriya, murid pindahan terkuat dari bawah, hingga mencapai puncak sebagai 'protagonis terkuat'!…Seharusnya begitu, tapi entah sejak kapan aku sendiri malah ikut jadi pusat perhatian—ini maksudnya apa sih!?Komedi pertarungan akademi terkuat sepanjang sejarah karya dari orang yang mengaku-ngaku sebagai seorang 'sutradara' resmi dimulai! ",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Hotori Katanuma",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/ZunouBattle/covers/cover.webp",
-      "manga/ZunouBattle/covers/cover@tablet.webp",
-      "manga/ZunouBattle/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Action",
       "Adaptation",
@@ -652,6 +641,8 @@
     "total_views": 2,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 4,
@@ -694,22 +685,13 @@
   {
     "id": "Chikasugiru",
     "title": "Chikasugiru Futari",
-    "alt_title": "近すぎる２人",
-    "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang greget—ini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun bareng, hingga mereka udah kelihatan kayak suami istri romcom kuso-najimi dengan jarak diantara mereka berdua yang udah ngga biasa—dimulai!",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Yamiaraa",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/Chikasugiru/covers/cover.webp",
-      "manga/Chikasugiru/covers/cover@tablet.webp",
-      "manga/Chikasugiru/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Romance",
       "School Life",
@@ -720,6 +702,8 @@
     "total_views": 2,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 8.1,
@@ -762,22 +746,13 @@
   {
     "id": "MoshimoYuurei",
     "title": "Moshimo, Yuurei ga Hatsukoi o Shitara.",
-    "alt_title": "もしも、幽霊が初恋をしたら。",
-    "description": "Aku Souta. Nggak punya pengalaman pacaran, dan ya... bisa dibilang aku itu cowok SMA otaku yang cupu dan pendiem... dulu sih. Hah? Kamu kira aku akhirnya lepas dari status perjaka terus berubah jadi anak gaul gitu? Bukan, bukan gitu. Bukan karena aku udah bukan anak SMA... tapi karena aku udah jadi hantu. Jadi sekarang aku ini mantan manusia yang dulunya otaku, cupu, dan masih perjaka. Ingatan aku soal kehidupan sebelumnya hampir nggak ada. Yang masih aku inget cuma satu... aku mati dalam kondisi masih perjaka. Mungkin itu kali ya penyesalan yang bikin aku belum bisa tenang. Parahnya lagi, pas sadar aku nggak bisa keluar dari sekolah cewek ini. Jadi semacam arwah gentayangan yang terikat di sini. Bikin aku bingung setengah mati. Tapi, meski waktu hidup aku terlalu cupu buat ngajak cewek ngobrol, kalau jadi hantu beda cerita! Berbagai sisi cewek bisa gue lihat sepuasnya! Ya, rasa bersalah sih ada sedikit... tapi aku sempat mikir, 'Jadi hantu ternyata nggak buruk juga!'  Nah, pas lagi begitu, aku nemu gantungan kunci karakter favoritku jatuh di area sekolah, terus aku coba ngambilnya— 'Kenapa ada cowok di sini... padahal ini sekolah cewek...?' Dia imut, baik, dan populer. Tipe orang yang bisa akrab sama siapa aja. Bahkan setelah aku jadi hantu, cuma dia satu-satunya yang bisa melihat dan peduli sama aku... Dan tanpa sadar, aku jatuh cinta sama cewek yang jelas-jelas nggak selevel sama aku.",
     "status": "Tamat",
-    "type": "WEBTOON",
-    "author": "Shichifuku Sayuri",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/MoshimoYuurei/covers/cover.webp",
-      "manga/MoshimoYuurei/covers/cover@tablet.webp",
-      "manga/MoshimoYuurei/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Comedy",
       "Fantasy",
@@ -790,6 +765,8 @@
     "total_views": 6,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": 25,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 25,
@@ -832,22 +809,13 @@
   {
     "id": "Madogiwa",
     "title": "Madogiwa Henshuu to Baka ni Sareta Ore ga, Futago JK to Doukyo suru Koto ni Natta",
-    "alt_title": "窓際編集とバカにされた俺が、双子JKと同居することになった",
-    "description": "'Kalau kamu membiarkan kami menginap... kamu boleh melakukan hal apapun ke kita.' Mitsuhiko Okaya, seorang pria biasa, dikhianati oleh istrinya dan kouhainya di kantor. Di tempat kerja, dia dihina sebagai editor tak berguna dan tenggelam dalam keputusasaan, sampai suatu hari di hadapannya muncul sepasang gadis kembar berseragam SMA yang seharusnya asing, tapi entah kenapa terasa familiar. Si adik, Akari, ceria, aktif, dan suka menggoda dengan santai, sedangkan kakaknya, Nanako, pemalu dan canggung, tapi diam-diam mesum. ...Mereka ternyata adalah mantan murid bimbelnya saat masa kuliah dulu.",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Ibarakino",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/Madogiwa/covers/cover.webp",
-      "manga/Madogiwa/covers/cover@tablet.webp",
-      "manga/Madogiwa/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Adaptation",
       "Comedy",
@@ -858,10 +826,12 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.29,
+    "rating": 7.3,
     "total_views": 4,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 11,
@@ -904,22 +874,13 @@
   {
     "id": "Waka-chan",
     "title": "Waka-chan wa Kyou mo Azatoi",
-    "alt_title": "A Hidden Side to my Crush",
-    "description": "Tomoya adalah mahasiswi baru dalam misi untuk akhirnya mendapatkan pacar pertamanya, tetapi dengan satu masalah kecil: dia masih perawan! Sementara dia dekat dengan gadis cantik dan menawan Waka Sakuraba di klubnya di sekolah, dia tidak bisa memberanikan diri untuk mengambil langkah pertama dan mengajaknya kencan. Suatu hari, Tomoya menemukan sisi tersembunyi dari gadia yang disukainya, Waka.",
     "status": "Tamat",
-    "type": "WEBTOON",
-    "author": "Shimamura",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/Waka-chan/covers/cover.webp",
-      "manga/Waka-chan/covers/cover@tablet.webp",
-      "manga/Waka-chan/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Comedy",
       "Full color",
@@ -930,6 +891,8 @@
     "total_views": 33,
     "isTrending": true,
     "next_update": null,
+    "tamat_at_chapter": 215.9,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 215.9,
@@ -972,22 +935,13 @@
   {
     "id": "TeisouGyakuten",
     "title": "Teisou Gyakuten Sekai Nara Moteru to Omotte Itara",
-    "alt_title": "貞操逆転世界ならモテると思っていたら",
-    "description": "Dunia dengan moral nafsu yang terbalik —rasio gender 1:20, cewek-cewek memiliki hasrat nafsu yang kuat, sedangkan para cowok ingin menjalani hidup nyaman dan damai dilindungi bodyguard. Bodyguard Cowok yang ada di sekitarnya semuanya tampan, dan Ikuto mengeluh bahwa terutama sahabatnya, Toosaka Rui, terlalu high-spec sehingga membuatnya tersaingi, tetapi… Sebenarnya, para bodyguard itu adalah gadis-gadis cantik yang menyamar sebagai laki-laki! Ikuto yang sama sekali tak sadar dengan hal itu selalu bertingkah polos apa adanya dengan para bodyguard yang menjaganya, membuat setiap cewek merasa punya peluang untuk dapetin dia. Saat harem tak-sengaja terbentuk, Rui—yang ingin dilihat sebagai seorang cewek—mengungkapkan semuanya pada Ikuto—!? Mimpiku sebagai seorang cowok tidak bisa ditahan lagi—romcom harem kehidupan populer SMA tanpa akhir pun dimulai!",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Hinami Yui",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/TeisouGyakuten/covers/cover.webp",
-      "manga/TeisouGyakuten/covers/cover@tablet.webp",
-      "manga/TeisouGyakuten/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Adaptation",
       "Comedy",
@@ -1004,6 +958,8 @@
     "total_views": 10,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 6.5,
@@ -1046,22 +1002,13 @@
   {
     "id": "Amari-chan",
     "title": "Kanojo ni Shitai Joshi Ichii, no Tonari de Mitsuketa Amari-chan",
-    "alt_title": "彼女にしたい女子一位、の隣で見つけたあまりちゃん",
-    "description": "'Kisah Romantis Komedi Dimulai dari Persahabatan dengan Heroine Tersembunyi yang Hanya Aku Tahu.'Dia anak baik, tapi terlalu biasa saja… Itulah Fukusuke Mogi, yang diam-diam mengagumi Kureha Yua, gadis tercantik di kelas.Namun, orang yang digosipkan bersama Yui adalah sahabatnya, Fujisaki Yuusei, bintang tim basket. Saat merasa terpuruk karena menjadi 'karakter figuran' yang tenggelam di balik sahabatnya, Fukusuke menemukan seorang gadis super imut lainnya, yang tersembunyi di balik bayang-bayang Yua dan jarang diperhatikan—Usuha Amari!'A-Apakah… kamu mau jadi temanku?'Berbagi nasib yang serupa, Fukusuke dan Amari memutuskan untuk mulai berlatih 'menjadi orang biasa' bersama—kira-kira apa yang akan terjadi selanjutnya?",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Yuuji Yuuji",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/Amari-chan/covers/cover.webp",
-      "manga/Amari-chan/covers/cover@tablet.webp",
-      "manga/Amari-chan/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Adaptation",
       "Comedy",
@@ -1075,6 +1022,8 @@
     "total_views": 8,
     "isTrending": false,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 9,
@@ -1117,22 +1066,13 @@
   {
     "id": "Yuumei",
     "title": "Yuumei VTuber no Ani Dakedo, Nazeka Ore ga Yuumei ni Natteita",
-    "alt_title": "有名VTuberの兄だけど、何故か俺が有名になっていた",
-    "description": "Aku punya adik tiri bernama Isuzu. Dia adalah VTuber super populer dengan lebih dari 1 juta subscriber, 'Isuzu Wine'. Suatu hari, dia lupa mematikan siaran, dan percakapan aslinya denganku tanpa sengaja tersebar ke seluruh dunia! Potongan video insiden siaran itu dengan cepat menyebar, dan dalam semalam, aku mendadak jadi selebriti internet...!?Semakin banyak insiden, semakin melonjak popularitasnya!! Bersama adik tiri yang manja dan terlalu cantik, serta senior VTuber yang imut, aku mulai meniti karir di dunia streaming! Kisah komedi romantis tentang VTuber yang mendadak naik daun!",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Ibarakino",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/Yuumei/covers/cover.webp",
-      "manga/Yuumei/covers/cover@tablet.webp",
-      "manga/Yuumei/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Adaptation",
       "Comedy",
@@ -1146,6 +1086,8 @@
     "total_views": 13,
     "isTrending": true,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 20,
@@ -1188,22 +1130,13 @@
   {
     "id": "Yarikonda",
     "title": "Yarikonda Renai Game no Akuyaku ni Tensei shita node, Gensaku Chishiki de Heroine wo Kouryaku shimasu",
-    "alt_title": "やり込んだ恋愛ゲームの悪役に転生したので、原作知識でヒロインを攻略します",
-    "description": "Yūto Hatano adalah penggemar berat game bishōjo 'Hōkago no Flare Story', sampai-sampai ia memainkannya berulang kali. \"Andai dunia ini seperti itu, pasti pergi ke sekolah akan lebih menyenangkan...\" pikirnya, lalu keesokan paginya—tak disangka, ia benar-benar masuk ke dunia game tersebut! Namun, ia bukan menjadi sang protagonis, melainkan si penjahat, Kanji Aku! Awalnya, ia berharap bisa melakukan berbagai hal bersama para heroine yang ia kagumi. Namun, sebagai seorang penjahat, tentu saja tingkat kesukaan mereka terhadapnya berada di titik terendah. Dengan kondisi ini, menaklukkan mereka hanyalah impian yang mustahil... Parahnya lagi, jika ia memilih opsi yang salah, maka yang menantinya adalah kematian!! Dengan status terendah dan tingkat kesukaan yang paling buruk, Kanji Aku harus menghadapi berbagai pilihan hidup dan mati, menaklukkan para heroine, dan mencari jalan keluar dari dunia ini!",
     "status": "Tamat",
-    "type": "MANGA",
-    "author": "Kennoji",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/Yarikonda/covers/cover.webp",
-      "manga/Yarikonda/covers/cover@tablet.webp",
-      "manga/Yarikonda/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Comedy",
       "Delinquents",
@@ -1219,6 +1152,8 @@
     "total_views": 16,
     "isTrending": true,
     "next_update": null,
+    "tamat_at_chapter": 9,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 8,
@@ -1261,22 +1196,13 @@
   {
     "id": "Sankakukei",
     "title": "Seishun wa Sankakukei no Loop",
-    "alt_title": "青春は三角形のループ",
-    "description": "—Karena aku lebih memperhatikannya daripada siapa pun, aku jadi tahu. Kalau dia sedang jatuh cinta sekarang. Dan orang yang dia sukai itu adalah sahabatku sendiri, teman masa kecil kami berdua. Sang protagonis, Tsubaki, memutuskan untuk mengubur perasaannya dan membantu cinta sang gadis terwujud. Berkat usahanya juga, dua teman masa kecil yang selalu bersama itu akhirnya resmi menjadi pasangan. Setelah menyaksikan momen itu, Tsubaki menjalani malam tanpa tidur sambil menahan perasaan ingin berteriak—dan ketika dia terbangun berikutnya— Dia kembali mengubur perasaannya…",
     "status": "Ongoing",
-    "type": "MANGA",
-    "author": "Hozumi Kei",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp",
     "coverUrls": {
       "desktop": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp",
       "tablet": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@tablet.webp",
       "mobile": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@mobile.webp"
     },
-    "covers": [
-      "manga/Sankakukei/covers/cover.webp",
-      "manga/Sankakukei/covers/cover@tablet.webp",
-      "manga/Sankakukei/covers/cover@mobile.webp"
-    ],
     "genres": [
       "Comedy",
       "Romance",
@@ -1285,10 +1211,12 @@
       "Slice of Life",
       "Time Travel"
     ],
-    "rating": 8.47,
+    "rating": 8.48,
     "total_views": 17,
     "isTrending": true,
     "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
     "chapters": [
       {
         "chapter_number": 11,
