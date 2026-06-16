@@ -163,6 +163,7 @@ const renderChapterRow = (ch, idx) => {
           <div className="absolute inset-0 z-0 overflow-hidden">
             <img
               alt=""
+              fetchpriority="high"
               className="w-full h-full object-cover scale-125 blur-2xl opacity-55"
               src={imgUrl(manga.coverUrls?.mobile || manga.coverUrl)}
             />
