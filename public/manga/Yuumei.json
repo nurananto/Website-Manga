@@ -67,6 +67,18 @@
   },
   "chapters": [
     {
+      "chapter_number": 21.1,
+      "lock_hours": 0,
+      "pages": 10,
+      "id": "Yuumei-ch-21.1",
+      "r2_prefix": "manga/Yuumei/21.1/",
+      "title": "Ch. 21.1",
+      "release_date": "2026-06-16T20:05:55+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 20,
       "lock_hours": 2,
       "pages": 20,
