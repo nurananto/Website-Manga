@@ -6,7 +6,7 @@ import { imgUrl } from '../utils';
 
 // Tombol klaim koin harian (1 koin / 24 jam). Dipakai di modal Isi Koin & reader.
 // Selalu tampil; setelah diklaim → nonaktif + hitung mundur sampai 24 jam.
-export function DailyClaimButton({ dailyClaimAt, onDailyClaim, userCoins = 0, isLoggedIn = true, onLoginClick, className = '' }) {
+export function DailyClaimButton({ dailyClaimAt, onDailyClaim, isLoggedIn = true, onLoginClick, className = '' }) {
   const MS24H = 24 * 60 * 60 * 1000;
   const [claimAt, setClaimAt] = useState(dailyClaimAt);
   const [claiming, setClaiming] = useState(false);
@@ -43,7 +43,6 @@ export function DailyClaimButton({ dailyClaimAt, onDailyClaim, userCoins = 0, is
         <p className="font-label-sm text-[11px] text-outline/70 truncate">Kumpulkan 10 koin untuk buka 1 chapter.</p>
       </div>
       <div className="flex items-center gap-2 shrink-0">
-        <span className="h-9 inline-flex items-center font-label-sm text-xs font-bold text-blue-200 bg-blue-500/15 border border-blue-500/25 px-3 rounded-lg whitespace-nowrap">{userCoins} koin</span>
         <button
           onClick={handleClaim}
           disabled={isLoggedIn && (!canClaim || claiming)}
