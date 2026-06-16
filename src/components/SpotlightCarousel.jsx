@@ -90,7 +90,8 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
     const toLoad = new Set();
     for (let d = -side - 1; d <= side + 1; d++) {
       const idx = ((activeIdx + d) % N + N) % N;
-      const url = imgUrl(mangaList[idx]?.coverUrl);
+      const m = mangaList[idx];
+      const url = imgUrl(m?.coverUrls?.mobile || m?.coverUrl);
       if (url) toLoad.add(url);
     }
     toLoad.forEach(url => { new Image().src = url; });
@@ -119,7 +120,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
           className="absolute inset-0 pointer-events-none z-0"
         >
           <img
-            src={imgUrl(active?.coverUrl)} alt=""
+            src={imgUrl(active?.coverUrls?.mobile || active?.coverUrl)} alt=""
             className="absolute inset-0 w-full h-full object-cover scale-150 blur-2xl opacity-75"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/60 via-surface/10 to-surface/60" />
@@ -164,7 +165,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
                 style={{ width: coverW, height: coverH }}
               >
                 <img
-                  src={imgUrl(manga.coverUrl)}
+                  src={imgUrl(manga.coverUrls?.mobile || manga.coverUrl)}
                   alt={manga.title}
                   loading="eager"
                   fetchpriority={isActive ? 'high' : 'low'}

@@ -63,7 +63,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
           <img
             alt=""
             className="w-full h-full object-cover object-center scale-125 blur-xl opacity-75"
-            src={imgUrl(activeManga.coverUrl)}
+            src={imgUrl(activeManga.coverUrls?.mobile || activeManga.coverUrl)}
           />
           {/* Vignette Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent" />

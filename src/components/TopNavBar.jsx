@@ -30,7 +30,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
           className="flex items-center gap-2 sm:gap-3 active:scale-95 transition-transform duration-150 shrink-0"
         >
-          <img src="/logo-header.webp" alt="Nurananto Scanlation"
+          <img src="/logo-header.webp" alt="Nurananto Scanlation" width="1740" height="847"
             className="h-8 md:h-10 xl:h-12 w-auto" />
           <span className="flex flex-col leading-none gap-0">
             <span className="text-xs md:text-base xl:text-xl font-black text-blue-400 tracking-tight">Nurananto</span>
