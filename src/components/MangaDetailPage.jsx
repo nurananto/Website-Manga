@@ -164,7 +164,7 @@ const renderChapterRow = (ch, idx) => {
             <img
               alt=""
               className="w-full h-full object-cover scale-125 blur-2xl opacity-55"
-              src={imgUrl(manga.coverUrl)}
+              src={imgUrl(manga.coverUrls?.mobile || manga.coverUrl)}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-surface/10" />
           </div>
