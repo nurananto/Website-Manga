@@ -20,7 +20,7 @@
       "Slice of Life"
     ],
     "rating": 8.23,
-    "total_views": 15,
+    "total_views": 18,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -30,13 +30,13 @@
         "chapter_number": 21.2,
         "lock_hours": 168,
         "pages": 10,
+        "release_date": "2026-06-16T21:06:03+07:00",
         "id": "Yuumei-ch-21.2",
         "r2_prefix": "manga/Yuumei/21.2/",
         "title": "Ch. 21.2",
-        "release_date": "2026-06-16T21:06:03+07:00",
         "unlockDate": "2026-06-23T14:06:03.000Z",
         "isLocked": true,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 21.1,
@@ -48,7 +48,7 @@
         "title": "Ch. 21.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 20,
@@ -84,7 +84,7 @@
       "Slice of Life"
     ],
     "rating": 7.5,
-    "total_views": 30,
+    "total_views": 33,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -100,7 +100,7 @@
         "title": "Ch. 18.2",
         "unlockDate": "2026-06-22T17:57:22.000Z",
         "isLocked": true,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 18.1,
@@ -112,7 +112,7 @@
         "title": "Ch. 18.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 9
       },
       {
         "chapter_number": 17,
@@ -1215,7 +1215,7 @@
   {
     "id": "Sankakukei",
     "title": "Seishun wa Sankakukei no Loop",
-    "description": "—Karena aku lebih memperhatikannya daripada siapa pun, aku jadi tahu. Kalau dia sedang jatuh cinta sekarang. Dan orang yang dia sukai itu adalah sahabatku sendiri, teman masa kecil kami berdua. Sang protagonis, Tsubaki, memutuskan untuk mengubur perasaannya dan membantu cinta sang gadis terwujud.…",
+    "description": "âKarena aku lebih memperhatikannya daripada siapa pun, aku jadi tahu. Kalau dia sedang jatuh cinta sekarang. Dan orang yang dia sukai itu adalah sahabatku sendiri, teman masa kecil kami berdua. Sang protagonis, Tsubaki, memutuskan untuk mengubur perasaannya dan membantu cinta sang gadis terwujud.…",
     "status": "Ongoing",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp",
     "coverUrls": {
@@ -1231,8 +1231,8 @@
       "Slice of Life",
       "Time Travel"
     ],
-    "rating": 8.47,
-    "total_views": 17,
+    "rating": 8.48,
+    "total_views": 18,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -1248,7 +1248,7 @@
         "title": "Ch. 11",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 7
       },
       {
         "chapter_number": 10,
