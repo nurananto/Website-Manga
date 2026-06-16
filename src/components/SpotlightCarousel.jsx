@@ -120,7 +120,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
         >
           <img
             src={imgUrl(active?.coverUrl)} alt=""
-            className="absolute inset-0 w-full h-full object-cover scale-150 blur-3xl opacity-55"
+            className="absolute inset-0 w-full h-full object-cover scale-150 blur-2xl opacity-75"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/60 via-surface/10 to-surface/60" />
           <div className="absolute inset-0 bg-gradient-to-r from-surface/80 via-transparent to-surface/80" />
