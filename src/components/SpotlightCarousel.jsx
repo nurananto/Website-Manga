@@ -154,7 +154,8 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
                 opacity,
                 marginLeft:       nm,
                 marginRight:      nm,
-                transition:       'transform 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.38s ease, margin 0.38s ease',
+                willChange:       'transform, opacity, margin',
+                transition:       'transform 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.5s cubic-bezier(0.22,1,0.36,1), margin 0.5s cubic-bezier(0.22,1,0.36,1)',
               }}
             >
               {/* Cover image with overlays */}
@@ -167,7 +168,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
                   alt={manga.title}
                   loading="eager"
                   fetchpriority={isActive ? 'high' : 'low'}
-                  className={`w-full h-full object-cover transition-[filter] duration-300 ${isActive ? 'brightness-105' : 'brightness-[0.65]'}`}
+                  className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-105' : 'brightness-[0.65]'}`}
                   draggable={false}
                 />
 
