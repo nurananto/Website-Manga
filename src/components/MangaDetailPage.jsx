@@ -154,7 +154,7 @@ const renderChapterRow = (ch, idx) => {
   if (isLoading) return <MangaDetailSkeleton />;
 
   return (
-    <div className="w-full min-h-screen bg-surface text-on-surface font-body-md relative pb-4 md:pb-6 xl:pb-8">
+    <div role="main" className="w-full min-h-screen bg-surface text-on-surface font-body-md relative pb-4 md:pb-6 xl:pb-8">
       {/* Main Section — pt mengikuti TopNavBar (72px) */}
       <div className="pt-4 md:pt-6 xl:pt-8 w-full">
         {/* Hero Banner Section */}

@@ -186,6 +186,7 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
         <button
           key={idx}
           onClick={() => setCurrent(idx)}
+          aria-label={`Ke slide ${idx + 1}`}
           className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
             idx === current ? 'w-6 bg-primary' : 'w-1.5 bg-white/30 hover:bg-white/50'
           }`}

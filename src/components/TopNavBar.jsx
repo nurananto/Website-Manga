@@ -44,7 +44,12 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
         <div ref={dropdownRef} className="relative">
           <div className="relative">
             <div
+              role="button"
+              tabIndex={0}
+              aria-label="Menu akun"
+              aria-expanded={isDropdownOpen}
               onClick={() => { setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); }}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); } }}
               className={`w-9 h-9 md:w-10 md:h-10 xl:w-12 xl:h-12 rounded-full overflow-hidden border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md flex items-center justify-center bg-surface-container-high ${
                 activeTab === 'profile' || isDropdownOpen ? 'border-primary' : 'border-white/10'
               }`}
