@@ -27,6 +27,18 @@
     "hiatus_at_chapter": null,
     "chapters": [
       {
+        "chapter_number": 22.1,
+        "lock_hours": 312,
+        "pages": 12,
+        "id": "Yuumei-ch-22.1",
+        "r2_prefix": "manga/Yuumei/22.1/",
+        "title": "Ch. 22.1",
+        "release_date": "2026-06-17T20:34:53+07:00",
+        "unlockDate": "2026-06-30T13:34:53.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
         "chapter_number": 21.2,
         "lock_hours": 168,
         "pages": 10,
@@ -49,18 +61,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 2
-      },
-      {
-        "chapter_number": 20,
-        "lock_hours": 2,
-        "pages": 20,
-        "release_date": "2026-06-11T23:25:40+07:00",
-        "id": "Yuumei-ch-20",
-        "r2_prefix": "manga/Yuumei/20/",
-        "title": "Ch. 20",
-        "unlockDate": "2026-06-11T18:25:40.000Z",
-        "isLocked": false,
-        "views": 6
       }
     ]
   },
