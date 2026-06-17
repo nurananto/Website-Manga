@@ -24,9 +24,9 @@
   "hiatus_at_chapter": 12,
   "chapter_views": {
     "1": 1,
-    "12": 1
+    "12": 2
   },
-  "total_views": 2,
+  "total_views": 3,
   "mangadex_cover": "d86648a6-77d3-4a95-a8d2-b296da206065.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -60,7 +60,7 @@
       "title": "Ch. 12",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 11,

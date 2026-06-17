@@ -20,7 +20,7 @@
       "Slice of Life"
     ],
     "rating": 8.23,
-    "total_views": 18,
+    "total_views": 22,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -30,13 +30,13 @@
         "chapter_number": 22.1,
         "lock_hours": 312,
         "pages": 12,
+        "release_date": "2026-06-17T20:34:53+07:00",
         "id": "Yuumei-ch-22.1",
         "r2_prefix": "manga/Yuumei/22.1/",
         "title": "Ch. 22.1",
-        "release_date": "2026-06-17T20:34:53+07:00",
         "unlockDate": "2026-06-30T13:34:53.000Z",
         "isLocked": true,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 21.2,
@@ -48,7 +48,7 @@
         "title": "Ch. 21.2",
         "unlockDate": "2026-06-23T14:06:03.000Z",
         "isLocked": true,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 21.1,
@@ -60,7 +60,7 @@
         "title": "Ch. 21.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 4
       }
     ]
   },
@@ -84,7 +84,7 @@
       "Slice of Life"
     ],
     "rating": 7.5,
-    "total_views": 33,
+    "total_views": 34,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -146,7 +146,7 @@
       "Supernatural"
     ],
     "rating": 8.6,
-    "total_views": 2,
+    "total_views": 3,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -162,7 +162,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 11,
@@ -211,7 +211,7 @@
       "Slice of Life"
     ],
     "rating": 7.7,
-    "total_views": 6,
+    "total_views": 7,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -227,7 +227,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 11,
@@ -456,7 +456,7 @@
       "Tragedy"
     ],
     "rating": 8.61,
-    "total_views": 0,
+    "total_views": 7,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -472,7 +472,7 @@
         "title": "Ch. 4.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 3
       },
       {
         "chapter_number": 3.2,
@@ -484,7 +484,7 @@
         "title": "Ch. 3.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 3.1,
@@ -496,7 +496,7 @@
         "title": "Ch. 3.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       }
     ]
   },

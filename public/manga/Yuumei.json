@@ -32,10 +32,11 @@
     "18": 2,
     "19": 3,
     "20": 6,
-    "21.1": 2,
-    "21.2": 1
+    "21.1": 4,
+    "21.2": 2,
+    "22.1": 1
   },
-  "total_views": 18,
+  "total_views": 22,
   "mangadex_cover": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -72,13 +73,13 @@
       "chapter_number": 22.1,
       "lock_hours": 312,
       "pages": 12,
+      "release_date": "2026-06-17T20:34:53+07:00",
       "id": "Yuumei-ch-22.1",
       "r2_prefix": "manga/Yuumei/22.1/",
       "title": "Ch. 22.1",
-      "release_date": "2026-06-17T20:34:53+07:00",
       "unlockDate": "2026-06-30T13:34:53.000Z",
       "isLocked": true,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 21.2,
@@ -90,7 +91,7 @@
       "title": "Ch. 21.2",
       "unlockDate": "2026-06-23T14:06:03.000Z",
       "isLocked": true,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 21.1,
@@ -102,7 +103,7 @@
       "title": "Ch. 21.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 4
     },
     {
       "chapter_number": 20,
