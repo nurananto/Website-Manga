@@ -42,9 +42,10 @@
     "15": 1,
     "16": 1,
     "17": 4,
-    "18.1": 8
+    "18.1": 9,
+    "18.2": 2
   },
-  "total_views": 30,
+  "total_views": 33,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -96,7 +97,7 @@
       "title": "Ch. 18.2",
       "unlockDate": "2026-06-22T17:57:22.000Z",
       "isLocked": true,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 18.1,
@@ -108,7 +109,7 @@
       "title": "Ch. 18.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 17,
