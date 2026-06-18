@@ -6,7 +6,13 @@
   "type": "MANGA",
   "author": "Mochizaki Yuba",
   "artist": "Coa (こあ)",
-  "genres": ["Adaptation", "Comedy", "Romance", "School Life", "Shounen"],
+  "genres": [
+    "Adaptation",
+    "Comedy",
+    "Romance",
+    "School Life",
+    "Shounen"
+  ],
   "description": "【Anak gaul】dan【anak kuper】Kurang lebih, di dunia ini manusia bisa dibagi jadi dua tipe itu. Kalau mau menikmati masa muda yang cuma datang sekali, cuma ada satu jalan yang harus dipilih. Singkatnya—kalau mau populer dan disukai banyak orang, jadilah anak gaul. Ueda Kyouta, mantan anak kuper, berhasil melakukan 'debut SMA' berkat kerja keras dan tekadnya. Kehidupan sekolahnya berjalan lancar dikelilingi teman-teman gaul. Kalau sekarang bisa dapat pacar gyaru, hidupnya bakal sempurna— Tapi entah kenapa, yang malah terus bikin flag romance cuma cewek-cewek kuper...!?",
   "covers": [
     "manga/YoukyaniNatta/covers/cover.webp",
@@ -20,5 +26,28 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "2c142b06-cf48-405d-b5e6-5af0c1651688.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "3eaf02cf-980c-44af-9ab9-2032f7458fb8.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8.webp",
+        "manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@tablet.webp",
+        "manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "2c142b06-cf48-405d-b5e6-5af0c1651688.jpg",
+      "volume": "2",
+      "keys": [
+        "manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688.webp",
+        "manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@tablet.webp",
+        "manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }

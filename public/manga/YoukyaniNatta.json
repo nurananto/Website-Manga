@@ -1,0 +1,134 @@
+{
+  "id": "YoukyaniNatta",
+  "title": "Youkya ni Natta Ore no Seishun Shijou Shugi",
+  "alt_title": "陽キャになった俺の青春至上主義",
+  "status": "Ongoing",
+  "type": "MANGA",
+  "author": "Mochizaki Yuba",
+  "artist": "Coa (こあ)",
+  "genres": [
+    "Adaptation",
+    "Comedy",
+    "Romance",
+    "School Life",
+    "Shounen"
+  ],
+  "description": "【Anak gaul】dan【anak kuper】Kurang lebih, di dunia ini manusia bisa dibagi jadi dua tipe itu. Kalau mau menikmati masa muda yang cuma datang sekali, cuma ada satu jalan yang harus dipilih. Singkatnya—kalau mau populer dan disukai banyak orang, jadilah anak gaul. Ueda Kyouta, mantan anak kuper, berhasil melakukan 'debut SMA' berkat kerja keras dan tekadnya. Kehidupan sekolahnya berjalan lancar dikelilingi teman-teman gaul. Kalau sekarang bisa dapat pacar gyaru, hidupnya bakal sempurna— Tapi entah kenapa, yang malah terus bikin flag romance cuma cewek-cewek kuper...!?",
+  "covers": [
+    "manga/YoukyaniNatta/covers/cover.webp",
+    "manga/YoukyaniNatta/covers/cover@tablet.webp",
+    "manga/YoukyaniNatta/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/cfcb65ff-cf9b-4628-a666-76d1b06553dc/youkya-ni-natta-ore-no-seishun-shijou-shugi",
+  "raw_url": "https://www.manga-up.com/titles/1388",
+  "discord_channel_id": "",
+  "tamat_at_chapter": null,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": "2c142b06-cf48-405d-b5e6-5af0c1651688.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "volume": "2",
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@mobile.webp"
+      }
+    },
+    {
+      "volume": "1",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@mobile.webp"
+      }
+    }
+  ],
+  "mangadex_id": "cfcb65ff-cf9b-4628-a666-76d1b06553dc",
+  "rating": 8.13,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@tablet.webp",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@mobile.webp"
+  },
+  "chapters": [
+    {
+      "chapter_number": 6,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "YoukyaniNatta-ch-6",
+      "r2_prefix": "manga/YoukyaniNatta/6/",
+      "title": "Ch. 6",
+      "release_date": "2026-06-18T18:38:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 5,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "YoukyaniNatta-ch-5",
+      "r2_prefix": "manga/YoukyaniNatta/5/",
+      "title": "Ch. 5",
+      "release_date": "2026-06-18T18:38:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 4,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "YoukyaniNatta-ch-4",
+      "r2_prefix": "manga/YoukyaniNatta/4/",
+      "title": "Ch. 4",
+      "release_date": "2026-06-18T18:38:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 3,
+      "lock_hours": 0,
+      "pages": 30,
+      "id": "YoukyaniNatta-ch-3",
+      "r2_prefix": "manga/YoukyaniNatta/3/",
+      "title": "Ch. 3",
+      "release_date": "2026-06-18T18:38:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 2,
+      "lock_hours": 0,
+      "pages": 36,
+      "id": "YoukyaniNatta-ch-2",
+      "r2_prefix": "manga/YoukyaniNatta/2/",
+      "title": "Ch. 2",
+      "release_date": "2026-06-18T18:38:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 77,
+      "id": "YoukyaniNatta-ch-1",
+      "r2_prefix": "manga/YoukyaniNatta/1/",
+      "title": "Ch. 1",
+      "release_date": "2026-06-18T18:38:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    }
+  ]
+}
