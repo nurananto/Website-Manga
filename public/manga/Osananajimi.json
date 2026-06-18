@@ -34,16 +34,16 @@
     "4.1": 3
   },
   "total_views": 7,
-  "mangadex_cover": "9dc62bb4-031a-4ef5-aa8b-fee41ec86b83.jpg",
+  "mangadex_cover": "a1bd83b1-b73e-430f-8f3b-cd194cb2c029.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
     {
       "volume": "0",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/9dc62bb4-031a-4ef5-aa8b-fee41ec86b83.webp",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/9dc62bb4-031a-4ef5-aa8b-fee41ec86b83@tablet.webp",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/9dc62bb4-031a-4ef5-aa8b-fee41ec86b83@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029.webp",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029@tablet.webp",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029@mobile.webp"
       }
     }
   ],
@@ -58,13 +58,49 @@
   },
   "chapters": [
     {
+      "chapter_number": 5.3,
+      "lock_hours": 0,
+      "pages": 9,
+      "id": "Osananajimi-ch-5.3",
+      "r2_prefix": "manga/Osananajimi/5.3/",
+      "title": "Ch. 5.3",
+      "release_date": "2026-06-18T21:51:40+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 5.2,
+      "lock_hours": 0,
+      "pages": 13,
+      "id": "Osananajimi-ch-5.2",
+      "r2_prefix": "manga/Osananajimi/5.2/",
+      "title": "Ch. 5.2",
+      "release_date": "2026-06-18T21:51:40+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 5.1,
+      "lock_hours": 0,
+      "pages": 10,
+      "id": "Osananajimi-ch-5.1",
+      "r2_prefix": "manga/Osananajimi/5.1/",
+      "title": "Ch. 5.1",
+      "release_date": "2026-06-18T21:51:40+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 4.3,
       "lock_hours": 0,
       "pages": 9,
+      "release_date": "2026-06-18T20:37:12+07:00",
       "id": "Osananajimi-ch-4.3",
       "r2_prefix": "manga/Osananajimi/4.3/",
       "title": "Ch. 4.3",
-      "release_date": "2026-06-18T20:37:12+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
@@ -73,10 +109,10 @@
       "chapter_number": 4.2,
       "lock_hours": 0,
       "pages": 9,
+      "release_date": "2026-06-18T20:37:12+07:00",
       "id": "Osananajimi-ch-4.2",
       "r2_prefix": "manga/Osananajimi/4.2/",
       "title": "Ch. 4.2",
-      "release_date": "2026-06-18T20:37:12+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
