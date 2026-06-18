@@ -21,8 +21,8 @@
       "Tragedy"
     ],
     "rating": 8.6,
-    "total_views": 7,
-    "isTrending": false,
+    "total_views": 21,
+    "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
     "hiatus_at_chapter": null,
@@ -31,22 +31,22 @@
         "chapter_number": 5.3,
         "lock_hours": 0,
         "pages": 9,
+        "release_date": "2026-06-18T21:51:40+07:00",
         "id": "Osananajimi-ch-5.3",
         "r2_prefix": "manga/Osananajimi/5.3/",
         "title": "Ch. 5.3",
-        "release_date": "2026-06-18T21:51:40+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 5.2,
         "lock_hours": 0,
         "pages": 13,
+        "release_date": "2026-06-18T21:51:40+07:00",
         "id": "Osananajimi-ch-5.2",
         "r2_prefix": "manga/Osananajimi/5.2/",
         "title": "Ch. 5.2",
-        "release_date": "2026-06-18T21:51:40+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -55,10 +55,10 @@
         "chapter_number": 5.1,
         "lock_hours": 0,
         "pages": 10,
+        "release_date": "2026-06-18T21:51:40+07:00",
         "id": "Osananajimi-ch-5.1",
         "r2_prefix": "manga/Osananajimi/5.1/",
         "title": "Ch. 5.1",
-        "release_date": "2026-06-18T21:51:40+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -149,7 +149,7 @@
       "Slice of Life"
     ],
     "rating": 8.23,
-    "total_views": 22,
+    "total_views": 29,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -165,7 +165,7 @@
         "title": "Ch. 22.1",
         "unlockDate": "2026-06-30T13:34:53.000Z",
         "isLocked": true,
-        "views": 1
+        "views": 3
       },
       {
         "chapter_number": 21.2,
@@ -177,7 +177,7 @@
         "title": "Ch. 21.2",
         "unlockDate": "2026-06-23T14:06:03.000Z",
         "isLocked": true,
-        "views": 2
+        "views": 4
       },
       {
         "chapter_number": 21.1,
@@ -189,7 +189,7 @@
         "title": "Ch. 21.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 6
       }
     ]
   },
@@ -340,7 +340,7 @@
       "Slice of Life"
     ],
     "rating": 7.7,
-    "total_views": 7,
+    "total_views": 9,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -380,7 +380,7 @@
         "title": "Ch. 10.5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       }
     ]
   },
@@ -519,7 +519,7 @@
       "Romance"
     ],
     "rating": 6.78,
-    "total_views": 3,
+    "total_views": 8,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -535,7 +535,7 @@
         "title": "Ch. 13",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 6
       },
       {
         "chapter_number": 12,
@@ -547,7 +547,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 11,
@@ -559,7 +559,7 @@
         "title": "Ch. 11",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       }
     ]
   },
@@ -968,8 +968,8 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.29,
-    "total_views": 4,
+    "rating": 7.3,
+    "total_views": 5,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -985,7 +985,7 @@
         "title": "Ch. 11",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 4
       },
       {
         "chapter_number": 10,
@@ -1232,7 +1232,7 @@
     ],
     "rating": 7.43,
     "total_views": 16,
-    "isTrending": true,
+    "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": 9,
     "hiatus_at_chapter": null,
@@ -1278,7 +1278,7 @@
   {
     "id": "Sankakukei",
     "title": "Seishun wa Sankakukei no Loop",
-    "description": "âKarena aku lebih memperhatikannya daripada siapa pun, aku jadi tahu. Kalau dia sedang jatuh cinta sekarang. Dan orang yang dia sukai itu adalah sahabatku sendiri, teman masa kecil kami berdua. Sang protagonis, Tsubaki, memutuskan untuk mengubur perasaannya dan membantu cinta sang gadis terwujud.…",
+    "description": "Ã¢ÂÂKarena aku lebih memperhatikannya daripada siapa pun, aku jadi tahu. Kalau dia sedang jatuh cinta sekarang. Dan orang yang dia sukai itu adalah sahabatku sendiri, teman masa kecil kami berdua. Sang protagonis, Tsubaki, memutuskan untuk mengubur perasaannya dan membantu cinta sang gadis…",
     "status": "Ongoing",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp",
     "coverUrls": {
@@ -1294,8 +1294,8 @@
       "Slice of Life",
       "Time Travel"
     ],
-    "rating": 8.48,
-    "total_views": 18,
+    "rating": 8.45,
+    "total_views": 29,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -1311,7 +1311,7 @@
         "title": "Ch. 11",
         "unlockDate": null,
         "isLocked": false,
-        "views": 7
+        "views": 8
       },
       {
         "chapter_number": 10,
@@ -1323,7 +1323,7 @@
         "title": "Ch. 10",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 4
       },
       {
         "chapter_number": 9,
@@ -1335,7 +1335,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       }
     ]
   }

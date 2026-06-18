@@ -28,9 +28,9 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "10": 1,
-    "11": 3
+    "11": 4
   },
-  "total_views": 4,
+  "total_views": 5,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -54,7 +54,7 @@
     }
   ],
   "mangadex_id": "a0ecce48-aa4c-48e6-8d9b-90f322a5687a",
-  "rating": 7.29,
+  "rating": 7.3,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp",
   "coverUrls": {
@@ -73,7 +73,7 @@
       "title": "Ch. 11",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 10,
