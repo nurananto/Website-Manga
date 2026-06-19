@@ -16,7 +16,7 @@ jobs:
           node-version: '20'
 
       - name: Kirim notifikasi test ke Discord
-        run: node --input-type=module scripts/test-discord.js
+        run: node scripts/test-discord.js
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           SITE_URL:            ${{ secrets.SITE_URL }}
