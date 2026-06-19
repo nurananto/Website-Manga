@@ -314,20 +314,6 @@ async function buildCatalog() {
   console.log(`\n📦 index.json: ${catalog.length} manga`);
   console.log(`🔥 Trending: ${[...trendingIds].join(', ')}`);
 
-  // ── sitemap.xml (untuk Google) — homepage + tiap halaman manga ──
-  const SITE = 'https://nuranantoscans.my.id';
-  const xmlEsc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  const urls = [
-    `  <url><loc>${SITE}/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>`,
-    ...catalog.map(m => {
-      const lastmod = (m.chapters?.[0]?.release_date || '').slice(0, 10);
-      return `  <url><loc>${SITE}/${xmlEsc(m.id)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>0.8</priority></url>`;
-    }),
-  ];
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
-  fs.writeFileSync('./public/sitemap.xml', sitemap, 'utf-8');
-  console.log(`🗺️  sitemap.xml: ${catalog.length + 1} URL`);
-
   // Sync chapter locks ke Worker (jika env var tersedia)
   const workerUrl   = process.env.WORKER_URL;
   const adminSecret = process.env.WORKER_ADMIN_SECRET;
