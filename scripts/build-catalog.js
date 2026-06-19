@@ -92,17 +92,27 @@ async function fetchMangaDexRating(mangadexId) {
 // Hanya berjalan kalau DISCORD_WEBHOOK_URL diset & ada chapter baru.
 async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   if (!webhookUrl || newChapters.length === 0) return;
-  const base = siteUrl.replace(/\/$/, '');
-  const EMBED_COLOR = 0x5865F2; // Discord Blurple
+  const base  = siteUrl.replace(/\/$/, '');
+  const GUILD = '1517520079108182036'; // server Discord (untuk link diskusi per judul)
+  const clip  = (s, n) => { s = (s || '').trim(); return s.length > n ? s.slice(0, n).replace(/\s+\S*$/, '') + '…' : s; };
 
-  const embeds = newChapters.map(ch => ({
-    title:     `${ch.mangaTitle} — ${ch.chapterTitle}${ch.isLocked ? ' 🔒' : ''}`,
-    url:       `${base}/${ch.mangaId}`,
-    color:     EMBED_COLOR,
-    image:     ch.coverUrl ? { url: ch.coverUrl } : undefined,
-    footer:    { text: 'Nurananto Scanlation • Update Terbaru' },
-    timestamp: ch.releaseDate || new Date().toISOString(),
-  }));
+  const embeds = newChapters.map(ch => {
+    const status = ch.isLocked ? '🔒 Akses Awal (koin)' : '🆓 Gratis';
+    const lines  = [`📖 **${ch.chapterTitle}**  •  ${status}`];
+    if (ch.genres?.length)   lines.push(`🏷️ ${ch.genres.slice(0, 4).join(' · ')}`);
+    if (ch.synopsis)         lines.push('', clip(ch.synopsis, 220));
+    if (ch.discordChannelId) lines.push('', `💬 [Diskusi judul ini](https://discord.com/channels/${GUILD}/${ch.discordChannelId})`);
+    return {
+      author:    { name: 'Nurananto Scanlation • Update Baru', url: base },
+      title:     ch.mangaTitle,
+      url:       `${base}/${ch.mangaId}`,
+      description: lines.join('\n'),
+      color:     ch.isLocked ? 0xF59E0B : 0x5865F2, // amber (locked) / blurple (gratis)
+      thumbnail: ch.coverUrl ? { url: ch.coverUrl } : undefined,
+      footer:    { text: ch.rating ? `⭐ ${ch.rating}  •  klik judul untuk baca` : 'klik judul untuk baca' },
+      timestamp: ch.releaseDate || new Date().toISOString(),
+    };
+  });
 
   // Max 10 embed per pesan (limit Discord)
   for (let i = 0; i < embeds.length; i += 10) {
@@ -345,13 +355,17 @@ async function buildCatalog() {
       for (const ch of chapters) {
         if (!prevChapterNums.has(ch.chapter_number)) {
           newChaptersList.push({
-            mangaId:       manga.id,
-            mangaTitle:    manga.title,
-            coverUrl:      manga.coverUrl,
-            chapterNumber: ch.chapter_number,
-            chapterTitle:  ch.title,
-            isLocked:      ch.isLocked,
-            releaseDate:   ch.release_date,
+            mangaId:          manga.id,
+            mangaTitle:       manga.title,
+            coverUrl:         manga.coverUrl,
+            chapterNumber:    ch.chapter_number,
+            chapterTitle:     ch.title,
+            isLocked:         ch.isLocked,
+            releaseDate:      ch.release_date,
+            genres:           manga.genres,
+            rating:           manga.rating,
+            synopsis:         manga.description,
+            discordChannelId: manga.discord_channel_id,
           });
           console.log(`   🔔 Chapter baru terdeteksi: ${manga.title} — ${ch.title}`);
         }
