@@ -96,14 +96,12 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   const EMBED_COLOR = 0x5865F2; // Discord Blurple
 
   const embeds = newChapters.map(ch => ({
-    title:       ch.mangaTitle,
-    url:         `${base}/${ch.mangaId}`,
-    color:       EMBED_COLOR,
-    description: `**${ch.chapterTitle}** baru saja rilis!${ch.isLocked ? '\n🔒 *Chapter terkunci — buka dengan koin*' : ''}\n\n[📖 Baca Sekarang](${base}/${ch.mangaId})`,
-    image:       ch.coverUrl ? { url: ch.coverUrl } : undefined,
-
-    footer:      { text: 'MangaFlow • Update Terbaru' },
-    timestamp:   ch.releaseDate || new Date().toISOString(),
+    title:     `${ch.mangaTitle} — ${ch.chapterTitle}${ch.isLocked ? ' 🔒' : ''}`,
+    url:       `${base}/${ch.mangaId}`,
+    color:     EMBED_COLOR,
+    image:     ch.coverUrl ? { url: ch.coverUrl } : undefined,
+    footer:    { text: 'Nurananto Scanslation • Update Terbaru' },
+    timestamp: ch.releaseDate || new Date().toISOString(),
   }));
 
   // Max 10 embed per pesan (limit Discord)
@@ -113,7 +111,11 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
       const res = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: 'Nurananto Scanslation', embeds: chunk }),
+        body: JSON.stringify({
+          username: 'Nurananto Scanslation',
+          content:  '## 📢 Baru Saja Dirilis!',
+          embeds:   chunk,
+        }),
       });
       if (!res.ok) console.warn(`⚠️  Discord notif gagal: ${res.status} ${await res.text()}`);
       else console.log(`🔔 Discord notifikasi terkirim: ${chunk.length} chapter baru`);
