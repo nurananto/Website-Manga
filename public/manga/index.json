@@ -27,6 +27,18 @@
     "discord_channel_id": "1517524076028104795",
     "chapters": [
       {
+        "chapter_number": 17.2,
+        "lock_hours": 0,
+        "pages": 22,
+        "id": "Suufungo-ch-17.2",
+        "r2_prefix": "manga/Suufungo/17.2/",
+        "title": "Ch. 17.2",
+        "release_date": "2026-06-20T04:40:50+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
         "chapter_number": 17.1,
         "lock_hours": 0,
         "pages": 21,
@@ -46,18 +58,6 @@
         "id": "Suufungo-ch-16",
         "r2_prefix": "manga/Suufungo/16/",
         "title": "Ch. 16",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 0
-      },
-      {
-        "chapter_number": 15,
-        "lock_hours": 0,
-        "pages": 29,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "id": "Suufungo-ch-15",
-        "r2_prefix": "manga/Suufungo/15/",
-        "title": "Ch. 15",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
