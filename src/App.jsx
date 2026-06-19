@@ -277,7 +277,7 @@ export default function App() {
     const site = 'Nurananto Scanlation';
     const setDesc = (txt) => {
       const el = document.querySelector('meta[name="description"]');
-      if (el && txt) el.setAttribute('content', txt);
+      if (el) el.setAttribute('content', txt || '');
     };
     if (activeChapter && activeMangaTitle) {
       document.title = `${activeChapter.title} - ${activeMangaTitle} | ${site}`;
@@ -287,7 +287,7 @@ export default function App() {
       if (d) setDesc(d.length > 160 ? d.slice(0, 160).replace(/\s+\S*$/, '') + '…' : d);
     } else {
       document.title = site;
-      setDesc('Baca manga, manhwa & manhua terjemahan Bahasa Indonesia gratis di Nurananto Scanlation — update tercepat, kualitas terjaga.');
+      setDesc('');
     }
   }, [activeChapter, activeMangaTitle, selectedManga]);
 
