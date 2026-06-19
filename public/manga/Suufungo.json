@@ -59,6 +59,18 @@
   },
   "chapters": [
     {
+      "chapter_number": 17.1,
+      "lock_hours": 0,
+      "pages": 21,
+      "id": "Suufungo-ch-17.1",
+      "r2_prefix": "manga/Suufungo/17.1/",
+      "title": "Ch. 17.1",
+      "release_date": "2026-06-19T23:09:16+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 16,
       "lock_hours": 0,
       "pages": 29,
