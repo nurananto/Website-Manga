@@ -37,29 +37,29 @@
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268.webp",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@tablet.webp",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@mobile.webp?v=1"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d.webp",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@tablet.webp",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@mobile.webp?v=1"
       }
     }
   ],
   "mangadex_id": "748d2aab-cea8-4ffb-89b3-e716872cb027",
   "rating": 6.78,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=1",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@tablet.webp",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@mobile.webp"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=1",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@tablet.webp?v=1",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@mobile.webp?v=1"
   },
   "chapters": [
     {

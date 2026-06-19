@@ -33,29 +33,29 @@
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688.webp",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@tablet.webp",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@mobile.webp?v=1"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8.webp",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@tablet.webp",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@mobile.webp?v=1"
       }
     }
   ],
   "mangadex_id": "cfcb65ff-cf9b-4628-a666-76d1b06553dc",
   "rating": 8.13,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp?v=1",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@tablet.webp",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@mobile.webp"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp?v=1",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@tablet.webp?v=1",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@mobile.webp?v=1"
   },
   "chapters": [
     {

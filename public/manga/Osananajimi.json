@@ -44,20 +44,20 @@
       "volume": "0",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029.webp",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029@tablet.webp",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029@mobile.webp?v=1"
       }
     }
   ],
   "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
   "rating": 8.6,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=1",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=1",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=1",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=1"
   },
   "chapters": [
     {

@@ -218,7 +218,11 @@ async function buildCatalog() {
     // CDN_BASE (mis. https://cdn.nuranantoscans.my.id) → cover diserve langsung
     // dari R2 publik tanpa lewat image worker (0 invocation).
     const cdnBase = (process.env.CDN_BASE || '').replace(/\/$/, '');
-    const coverFull = (key) => (key && cdnBase ? `${cdnBase}/${key}` : key ?? null);
+    // cover_version (default 1) → cache-busting query. Naikkan di meta.json tiap
+    // ganti cover supaya URL berubah → cover bisa di-cache lama (immutable) tanpa stale.
+    const coverVer = Number.isFinite(manga.cover_version) ? manga.cover_version : 1;
+    const vq = `?v=${coverVer}`;
+    const coverFull = (key) => (key ? (cdnBase ? `${cdnBase}/${key}${vq}` : `${key}${vq}`) : null);
     manga.coverUrl = coverFull(manga.cover_dev ?? manga.covers?.[0]);
     manga.coverUrls = {
       desktop: coverFull(manga.covers?.[0]) ?? manga.coverUrl,

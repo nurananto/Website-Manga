@@ -39,20 +39,20 @@
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4.webp",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4@tablet.webp",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4@mobile.webp?v=1"
       }
     }
   ],
   "mangadex_id": "832a0bcb-f58a-4118-9130-43c03d289a8d",
   "rating": 8.66,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp?v=1",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@tablet.webp",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@mobile.webp"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp?v=1",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@tablet.webp?v=1",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@mobile.webp?v=1"
   },
   "chapters": [
     {

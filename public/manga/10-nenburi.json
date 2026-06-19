@@ -53,38 +53,38 @@
       "volume": "3",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5.webp",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@tablet.webp",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@mobile.webp?v=1"
       }
     },
     {
       "volume": "2",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e.webp",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@tablet.webp",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@mobile.webp?v=1"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df.webp",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@tablet.webp",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@mobile.webp?v=1"
       }
     }
   ],
   "mangadex_id": "26854d1a-dfd0-4e5c-b6d1-ab291035b8cc",
   "rating": 7.5,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp?v=1",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp?v=1"
   },
   "chapters": [
     {

@@ -45,20 +45,20 @@
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.webp",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16@tablet.webp",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16@mobile.webp"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16@mobile.webp?v=1"
       }
     }
   ],
   "mangadex_id": "e6d70578-d6b2-4c60-a2f4-7ab16e515480",
-  "rating": 8.45,
+  "rating": 8.42,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp?v=1",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@tablet.webp",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@mobile.webp"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp?v=1",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@tablet.webp?v=1",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@mobile.webp?v=1"
   },
   "chapters": [
     {
