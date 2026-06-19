@@ -25,9 +25,11 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
 
   return (
     <div className={`flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden group border shadow-md ${borderClass}`}>
-      {/* Cover — klik ke detail */}
-      <div
-        onClick={onViewManga}
+      {/* Cover — link crawlable ke detail (SPA: preventDefault + navigate) */}
+      <a
+        href={`/${manga.id}`}
+        onClick={(e) => { e.preventDefault(); onViewManga(); }}
+        aria-label={manga.title}
         className="relative w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full flex-shrink-0 flex items-center justify-center py-2 sm:py-2.5 md:py-3 px-2 cursor-pointer"
       >
         <picture>
@@ -40,19 +42,22 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
           />
         </picture>
 
-      </div>
+      </a>
 
       {/* Details Section */}
       <div className="flex-1 py-3 pr-3 pl-1 sm:py-4 sm:pr-4 sm:pl-1.5 lg:py-5 lg:pr-5 lg:pl-2 flex flex-col min-w-0">
         {/* Title row */}
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
-            <h3
-              onClick={onViewManga}
-              className="font-headline-md text-base md:text-lg lg:text-xl leading-tight font-black text-on-surface truncate hover:text-primary transition-colors cursor-pointer"
+            <a
+              href={`/${manga.id}`}
+              onClick={(e) => { e.preventDefault(); onViewManga(); }}
+              className="min-w-0 flex-1"
             >
-              {manga.title}
-            </h3>
+              <h3 className="font-headline-md text-base md:text-lg lg:text-xl leading-tight font-black text-on-surface truncate hover:text-primary transition-colors cursor-pointer">
+                {manga.title}
+              </h3>
+            </a>
             {/* Badge status hanya tampil di chapter row sesuai tamat/hiatus_at_chapter */}
           </div>
         </div>
