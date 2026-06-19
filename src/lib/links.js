@@ -18,7 +18,7 @@ export const DISCORD_INVITE_URL = 'https://discord.gg/qwTSEYdB4';
 
 // Isi sekali (server ID). Setelah ini + discord_channel_id di meta.json terisi,
 // tombol komentar reader otomatis deep-link ke channel manga ybs.
-export const DISCORD_GUILD_ID = '';
+export const DISCORD_GUILD_ID = '1517520079108182036';
 
 // Bangun URL channel komentar dari channelId milik manga (dari meta.json).
 // Fallback ke invite umum kalau channel/guild belum diisi.

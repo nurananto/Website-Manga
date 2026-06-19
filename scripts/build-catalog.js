@@ -100,7 +100,7 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
     url:       `${base}/${ch.mangaId}`,
     color:     EMBED_COLOR,
     image:     ch.coverUrl ? { url: ch.coverUrl } : undefined,
-    footer:    { text: 'Nurananto Scanslation • Update Terbaru' },
+    footer:    { text: 'Nurananto Scanlation • Update Terbaru' },
     timestamp: ch.releaseDate || new Date().toISOString(),
   }));
 
@@ -112,7 +112,7 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          username: 'Nurananto Scanslation',
+          username: 'Nurananto Scanlation',
           content:  '## 📢 Baru Saja Dirilis!',
           embeds:   chunk,
         }),
