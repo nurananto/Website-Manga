@@ -1,7 +1,7 @@
 {
   "id": "Osananajimi",
   "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
-  "alt_title": "Ã¥Â¹Â¼Ã©Â¦Â´Ã¦ÂÂÃ£ÂÂ«Ã©ÂÂ°Ã£ÂÂ§Ã©ÂÂ½Ã¥ÂÂÃ£ÂÂ®Ã¨ÂÂ¯Ã£ÂÂÃ§ÂÂ·Ã¥ÂÂ¼Ã£ÂÂ°Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂÃ¤Â¿ÂºÃ£ÂÂ¯Ã£ÂÂÃ¥Â¥Â½Ã¦ÂÂÃ£ÂÂÃ£ÂÂªÃ£ÂÂ»Ã£ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ¦Ã¦ÂÂ®Ã©ÂÂÃ£ÂÂ«Ã©ÂÂÃ¦ÂÂ¥Ã£ÂÂÃ©ÂÂÃ£ÂÂÃ£ÂÂÃ£ÂÂ",
+  "alt_title": "ÃÂ¥ÃÂ¹ÃÂ¼ÃÂ©ÃÂ¦ÃÂ´ÃÂ¦ÃÂÃÂÃÂ£ÃÂÃÂ«ÃÂ©ÃÂÃÂ°ÃÂ£ÃÂÃÂ§ÃÂ©ÃÂÃÂ½ÃÂ¥ÃÂÃÂÃÂ£ÃÂÃÂ®ÃÂ¨ÃÂÃÂ¯ÃÂ£ÃÂÃÂÃÂ§ÃÂÃÂ·ÃÂ¥ÃÂÃÂ¼ÃÂ£ÃÂÃÂ°ÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂÃÂ¤ÃÂ¿ÃÂºÃÂ£ÃÂÃÂ¯ÃÂ£ÃÂÃÂÃÂ¥ÃÂ¥ÃÂ½ÃÂ¦ÃÂÃÂÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂªÃÂ£ÃÂÃÂ»ÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂ¦ÃÂ¦ÃÂÃÂ®ÃÂ©ÃÂÃÂÃÂ£ÃÂÃÂ«ÃÂ©ÃÂÃÂÃÂ¦ÃÂÃÂ¥ÃÂ£ÃÂÃÂÃÂ©ÃÂÃÂÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂÃÂ£ÃÂÃÂ",
   "status": "ONGOING",
   "type": "MANGA",
   "author": "Hitofude Nanashi",
@@ -16,7 +16,7 @@
     "Slice of Life",
     "Tragedy"
   ],
-  "description": "Hari itu, Toudou Tsuyoshi nge-Ã¢ÂÂresetÃ¢ÂÂ semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
+  "description": "Hari itu, Toudou Tsuyoshi nge-ÃÂ¢ÃÂÃÂresetÃÂ¢ÃÂÃÂ semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
   "covers": [
     "manga/Osananajimi/covers/cover.webp",
     "manga/Osananajimi/covers/cover@tablet.webp",
@@ -34,9 +34,10 @@
     "4.1": 5,
     "4.2": 1,
     "4.3": 1,
-    "5.3": 2
+    "5.3": 3,
+    "5.2": 1
   },
-  "total_views": 21,
+  "total_views": 23,
   "mangadex_cover": "a1bd83b1-b73e-430f-8f3b-cd194cb2c029.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [

@@ -1,7 +1,7 @@
 {
   "id": "Suufungo",
   "title": "Suufungo no Mirai ga Wakaru You ni Natta kedo, Onnagokoro wa Wakaranai.",
-  "alt_title": "数分後の未来が分かるようになったけど、女心は分からない。",
+  "alt_title": "æ°åå¾ã®æªæ¥ãåããããã«ãªã£ããã©ãå¥³å¿ã¯åãããªãã",
   "status": "ONGOING",
   "type": "MANGA",
   "author": "mty",
@@ -24,8 +24,10 @@
   "raw_url": "https://comic-walker.com/detail/KC_005690_S?episodeType=first",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "17.1": 1
+  },
+  "total_views": 1,
   "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
