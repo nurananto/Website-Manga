@@ -1,22 +1,24 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
 import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
-import ReaderModal from './components/ReaderModal';
-import MangaDetailPage from './components/MangaDetailPage';
 import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield, HelpCircle, Star, Search, Key, X, Coffee, CheckCircle, ArrowRight, Coins, ChevronLeft, ChevronRight } from 'lucide-react';
 import { imgUrl, timeAgo } from './utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthModal, CoinPurchaseModal, UnlockModal, LockedChapterModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
-import PrivacyPolicyModal from './components/PrivacyPolicyModal';
-import TermsOfServiceModal from './components/TermsOfServiceModal';
-import DmcaModal from './components/DmcaModal';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode, clearAuth } from './lib/auth';
 import { clearCachedSession } from './lib/session';
+
+// Lazy-load komponen besar/jarang dipakai → kurangi JS bundle awal (homepage)
+const MangaDetailPage     = lazy(() => import('./components/MangaDetailPage'));
+const ReaderModal         = lazy(() => import('./components/ReaderModal'));
+const PrivacyPolicyModal  = lazy(() => import('./components/PrivacyPolicyModal'));
+const TermsOfServiceModal = lazy(() => import('./components/TermsOfServiceModal'));
+const DmcaModal           = lazy(() => import('./components/DmcaModal'));
 
 // ── History Tabs: Baca + Koin ────────────────────────────────
 function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUser, workerUrl }) {
@@ -740,12 +742,14 @@ export default function App() {
           <MangaDetailSkeleton />
         ) : selectedManga ? (
           /* Manga Detail View */
-          <MangaDetailPage
-            manga={selectedManga}
-            onReadChapter={handleReadChapter}
-            lastReadChapter={historyChapters[selectedManga.id]}
-            unlockedChapters={d1UnlockedChapters}
-          />
+          <Suspense fallback={<MangaDetailSkeleton />}>
+            <MangaDetailPage
+              manga={selectedManga}
+              onReadChapter={handleReadChapter}
+              lastReadChapter={historyChapters[selectedManga.id]}
+              unlockedChapters={d1UnlockedChapters}
+            />
+          </Suspense>
         ) : (
           /* Main Views based on Tab */
           <main className="pt-4 md:pt-6 xl:pt-8 pb-4 md:pb-6 xl:pb-8 px-3 sm:px-4 md:px-5 flex flex-col gap-4 md:gap-6 xl:gap-8 w-full flex-1">
@@ -1042,9 +1046,11 @@ export default function App() {
       )}
 
       {/* Legal Modals */}
-      {showPrivacy && <PrivacyPolicyModal onClose={() => setShowPrivacy(false)} />}
-      {showTerms && <TermsOfServiceModal onClose={() => setShowTerms(false)} />}
-      {showDmca && <DmcaModal onClose={() => setShowDmca(false)} />}
+      <Suspense fallback={null}>
+        {showPrivacy && <PrivacyPolicyModal onClose={() => setShowPrivacy(false)} />}
+        {showTerms && <TermsOfServiceModal onClose={() => setShowTerms(false)} />}
+        {showDmca && <DmcaModal onClose={() => setShowDmca(false)} />}
+      </Suspense>
 
 
       {/* Checking chapter access overlay */}
@@ -1068,18 +1074,20 @@ export default function App() {
 
       {/* Interactive Reader Modal */}
       {activeChapter && (
-        <ReaderModal
-          chapter={activeChapter}
-          manga={selectedManga}
-          onClose={() => { navigate(`/${selectedManga?.id || ''}`); }}
-          onReadChapter={handleReadChapter}
-          unlockedChapters={d1UnlockedChapters}
-          isLoggedIn={isLoggedIn}
-          currentUser={currentUser}
-          userCoins={userCoins}
-          onDailyClaim={handleDailyClaim}
-          onLoginClick={() => setIsAuthModalOpen(true)}
-        />
+        <Suspense fallback={null}>
+          <ReaderModal
+            chapter={activeChapter}
+            manga={selectedManga}
+            onClose={() => { navigate(`/${selectedManga?.id || ''}`); }}
+            onReadChapter={handleReadChapter}
+            unlockedChapters={d1UnlockedChapters}
+            isLoggedIn={isLoggedIn}
+            currentUser={currentUser}
+            userCoins={userCoins}
+            onDailyClaim={handleDailyClaim}
+            onLoginClick={() => setIsAuthModalOpen(true)}
+          />
+        </Suspense>
       )}
 
       {/* Change Password Modal */}
