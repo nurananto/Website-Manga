@@ -27,9 +27,9 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "3": 2,
-    "4": 3
+    "4": 4
   },
-  "total_views": 5,
+  "total_views": 6,
   "mangadex_cover": "e57c025c-a8b2-4e1c-8868-48f109d9e194.png",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -63,7 +63,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 3,

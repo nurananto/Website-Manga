@@ -19,7 +19,7 @@
       "Shounen"
     ],
     "rating": 7.86,
-    "total_views": 0,
+    "total_views": 1,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -29,13 +29,13 @@
         "chapter_number": 17.1,
         "lock_hours": 0,
         "pages": 21,
+        "release_date": "2026-06-19T23:09:16+07:00",
         "id": "Suufungo-ch-17.1",
         "r2_prefix": "manga/Suufungo/17.1/",
         "title": "Ch. 17.1",
-        "release_date": "2026-06-19T23:09:16+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 16,
@@ -84,8 +84,8 @@
       "Slice of Life",
       "Tragedy"
     ],
-    "rating": 8.6,
-    "total_views": 21,
+    "rating": 8.61,
+    "total_views": 23,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -101,7 +101,7 @@
         "title": "Ch. 5.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 5.2,
@@ -113,7 +113,7 @@
         "title": "Ch. 5.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 5.1,
@@ -213,7 +213,7 @@
       "Slice of Life"
     ],
     "rating": 8.23,
-    "total_views": 29,
+    "total_views": 31,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -229,7 +229,7 @@
         "title": "Ch. 22.1",
         "unlockDate": "2026-06-30T13:34:53.000Z",
         "isLocked": true,
-        "views": 3
+        "views": 4
       },
       {
         "chapter_number": 21.2,
@@ -253,7 +253,7 @@
         "title": "Ch. 21.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 7
       }
     ]
   },
@@ -404,7 +404,7 @@
       "Slice of Life"
     ],
     "rating": 7.7,
-    "total_views": 9,
+    "total_views": 11,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -444,7 +444,7 @@
         "title": "Ch. 10.5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 4
       }
     ]
   },
@@ -777,7 +777,7 @@
       "Video Games"
     ],
     "rating": 8.23,
-    "total_views": 5,
+    "total_views": 6,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -793,7 +793,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 4
       },
       {
         "chapter_number": 3,
@@ -1031,7 +1031,7 @@
       "Slice of Life"
     ],
     "rating": 8.69,
-    "total_views": 34,
+    "total_views": 35,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": 215.9,
@@ -1211,7 +1211,7 @@
   {
     "id": "Yarikonda",
     "title": "Yarikonda Renai Game no Akuyaku ni Tensei shita node, Gensaku Chishiki de Heroine wo Kouryaku shimasu",
-    "description": "Yūto Hatano adalah penggemar berat game bishōjo 'Hōkago no Flare Story', sampai-sampai ia memainkannya berulang kali. \"Andai dunia ini seperti itu, pasti pergi ke sekolah akan lebih menyenangkan...\" pikirnya, lalu keesokan paginya—tak disangka, ia benar-benar masuk ke dunia game tersebut! Namun, ia…",
+    "description": "YÅ«to Hatano adalah penggemar berat game bishÅjo 'HÅkago no Flare Story', sampai-sampai ia memainkannya berulang kali. \"Andai dunia ini seperti itu, pasti pergi ke sekolah akan lebih menyenangkan...\" pikirnya, lalu keesokan paginyaâtak disangka, ia benar-benar masuk ke dunia game tersebut!…",
     "status": "Tamat",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp?v=1",
     "coverUrls": {
@@ -1231,7 +1231,7 @@
       "Video Games"
     ],
     "rating": 7.43,
-    "total_views": 16,
+    "total_views": 17,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": 9,
@@ -1247,7 +1247,7 @@
         "title": "Ch. 8",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 6
       },
       {
         "chapter_number": 7,

@@ -24,8 +24,10 @@
   "raw_url": "https://comic-walker.com/detail/KC_005690_S?episodeType=first",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "17.1": 1
+  },
+  "total_views": 1,
   "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -62,13 +64,13 @@
       "chapter_number": 17.1,
       "lock_hours": 0,
       "pages": 21,
+      "release_date": "2026-06-19T23:09:16+07:00",
       "id": "Suufungo-ch-17.1",
       "r2_prefix": "manga/Suufungo/17.1/",
       "title": "Ch. 17.1",
-      "release_date": "2026-06-19T23:09:16+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 16,

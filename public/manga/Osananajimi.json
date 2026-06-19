@@ -34,9 +34,10 @@
     "4.1": 5,
     "4.2": 1,
     "4.3": 1,
-    "5.3": 2
+    "5.3": 3,
+    "5.2": 1
   },
-  "total_views": 21,
+  "total_views": 23,
   "mangadex_cover": "a1bd83b1-b73e-430f-8f3b-cd194cb2c029.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -51,7 +52,7 @@
     }
   ],
   "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
-  "rating": 8.6,
+  "rating": 8.61,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=1",
   "coverUrls": {
@@ -70,7 +71,7 @@
       "title": "Ch. 5.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 5.2,
@@ -82,7 +83,7 @@
       "title": "Ch. 5.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 5.1,
