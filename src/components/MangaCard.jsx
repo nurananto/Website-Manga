@@ -109,7 +109,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
                     </span>
                   )}
                   {showStatusBadge && (
-                    <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-wider ${
+                    <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider ${
                       manga.status === 'Tamat' || isOneshot
                         ? 'bg-red-500/15 text-red-400 border border-red-500/30'
                         : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
