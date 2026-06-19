@@ -286,7 +286,7 @@ export default function App() {
       const d = (selectedManga.description || '').trim();
       if (d) setDesc(d.length > 160 ? d.slice(0, 160).replace(/\s+\S*$/, '') + '…' : d);
     } else {
-      document.title = site;
+      document.title = `${site} - Baca Manga Bahasa Indonesia`;
       setDesc('Baca manga, manhwa & manhua terjemahan Bahasa Indonesia gratis di Nurananto Scanlation — update tercepat, kualitas terjaga.');
     }
   }, [activeChapter, activeMangaTitle, selectedManga]);
