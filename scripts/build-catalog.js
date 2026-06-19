@@ -10,6 +10,10 @@ const outDir = './public/manga';
 const CHANGED_SLUGS = (process.env.CHANGED_SLUGS || '')
   .split(',').map(s => s.trim()).filter(Boolean);
 
+// Discord notifikasi chapter baru
+const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || '';
+const SITE_URL = (process.env.SITE_URL || 'https://nuranantoscans.my.id').replace(/\/$/, '');
+
 // Waktu commit PERTAMA yang menambahkan file — stabil, tidak berubah oleh commit berikutnya
 function gitAddedDate(filePath) {
   try {
@@ -83,8 +87,47 @@ async function fetchMangaDexRating(mangadexId) {
   }
 }
 
+// ── Kirim notifikasi Discord untuk chapter-chapter baru ─────────────────
+// Satu embed per chapter, dikirim setelah catalog selesai dibangun.
+// Hanya berjalan kalau DISCORD_WEBHOOK_URL diset & ada chapter baru.
+async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
+  if (!webhookUrl || newChapters.length === 0) return;
+  const base = siteUrl.replace(/\/$/, '');
+  const EMBED_COLOR = 0x5865F2; // Discord Blurple
+
+  const embeds = newChapters.map(ch => ({
+    title:       ch.mangaTitle,
+    url:         `${base}/${ch.mangaId}`,
+    color:       EMBED_COLOR,
+    description: `**${ch.chapterTitle}** baru saja rilis!${ch.isLocked ? '\n🔒 *Chapter terkunci — buka dengan koin*' : ''}\n\n[📖 Baca Sekarang](${base}/${ch.mangaId})`,
+    image:       ch.coverUrl ? { url: ch.coverUrl } : undefined,
+    fields:      [{ name: 'Chapter', value: ch.chapterTitle, inline: true }],
+    footer:      { text: 'MangaFlow • Update Terbaru' },
+    timestamp:   ch.releaseDate || new Date().toISOString(),
+  }));
+
+  // Max 10 embed per pesan (limit Discord)
+  for (let i = 0; i < embeds.length; i += 10) {
+    const chunk = embeds.slice(i, i + 10);
+    try {
+      const res = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: 'Nurananto Scanslation', embeds: chunk }),
+      });
+      if (!res.ok) console.warn(`⚠️  Discord notif gagal: ${res.status} ${await res.text()}`);
+      else console.log(`🔔 Discord notifikasi terkirim: ${chunk.length} chapter baru`);
+    } catch (e) {
+      console.warn(`⚠️  Discord webhook error: ${e.message}`);
+    }
+    // Hindari rate limit Discord (max 5 req/2 detik per webhook)
+    if (i + 10 < embeds.length) await new Promise(r => setTimeout(r, 1000));
+  }
+}
+
 async function buildCatalog() {
   const catalog = [];
+  const newChaptersList = []; // dikumpulkan untuk notifikasi Discord
 
   // views dibaca langsung dari manga meta.json (field chapter_views)
 
@@ -288,6 +331,31 @@ async function buildCatalog() {
       chapters:     chapters.slice(0, 3),
     });
 
+    // Deteksi chapter baru (hanya saat push spesifik, bukan full cron build)
+    if (CHANGED_SLUGS.length > 0 && CHANGED_SLUGS.includes(slug)) {
+      let prevChapterNums = new Set();
+      if (fs.existsSync(prevJsonPath)) {
+        try {
+          const prevData = JSON.parse(fs.readFileSync(prevJsonPath, 'utf-8'));
+          prevChapterNums = new Set((prevData.chapters || []).map(c => c.chapter_number));
+        } catch {}
+      }
+      for (const ch of chapters) {
+        if (!prevChapterNums.has(ch.chapter_number)) {
+          newChaptersList.push({
+            mangaId:       manga.id,
+            mangaTitle:    manga.title,
+            coverUrl:      manga.coverUrl,
+            chapterNumber: ch.chapter_number,
+            chapterTitle:  ch.title,
+            isLocked:      ch.isLocked,
+            releaseDate:   ch.release_date,
+          });
+          console.log(`   🔔 Chapter baru terdeteksi: ${manga.title} — ${ch.title}`);
+        }
+      }
+    }
+
     console.log(`✅ ${manga.title} — ${chapters.length} chapters`);
   }
 
@@ -353,6 +421,9 @@ async function buildCatalog() {
       }
     }
   }
+
+  // Notifikasi Discord untuk chapter-chapter baru
+  await sendDiscordNotifications(newChaptersList, DISCORD_WEBHOOK_URL, SITE_URL);
 }
 
 buildCatalog().catch(err => {

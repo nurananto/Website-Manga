@@ -66,6 +66,8 @@ jobs:
           WORKER_ADMIN_SECRET: ${{ secrets.WORKER_ADMIN_SECRET }}
           CHANGED_SLUGS: ${{ steps.changed.outputs.slugs }}
           CDN_BASE: ${{ secrets.CDN_BASE }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          SITE_URL: ${{ secrets.SITE_URL }}
 
       - name: Generate version file
         run: |

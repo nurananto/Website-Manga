@@ -1,0 +1,22 @@
+name: Test Discord Notifikasi
+
+on:
+  workflow_dispatch:   # picu manual dari GitHub Actions UI
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Kirim notifikasi test ke Discord
+        run: node --input-type=module scripts/test-discord.js
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          SITE_URL:            ${{ secrets.SITE_URL }}
