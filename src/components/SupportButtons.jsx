@@ -39,7 +39,7 @@ export default function SupportButtons({ className = '' }) {
           alt="Discord"
           className="w-5 h-5 object-contain shrink-0 group-hover:scale-110 transition-transform"
         />
-        <span className="font-bold text-xs sm:text-sm text-white">Gabung Komunitas</span>
+        <span className="font-bold text-xs sm:text-sm text-white">Nurananto Scanlation</span>
       </a>
     </div>
   );

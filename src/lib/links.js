@@ -14,8 +14,10 @@
 //   2. Isi DISCORD_GUILD_ID (sekali, satu server).
 //   3. Isi "discord_channel_id" di meta.json tiap manga → tombol "Komentar di Discord".
 
-export const DISCORD_INVITE_URL = '';
+export const DISCORD_INVITE_URL = 'https://discord.gg/qwTSEYdB4';
 
+// Isi sekali (server ID). Setelah ini + discord_channel_id di meta.json terisi,
+// tombol komentar reader otomatis deep-link ke channel manga ybs.
 export const DISCORD_GUILD_ID = '';
 
 // Bangun URL channel komentar dari channelId milik manga (dari meta.json).
