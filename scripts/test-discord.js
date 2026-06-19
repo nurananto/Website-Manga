@@ -14,7 +14,7 @@ const embed = {
   color:       0x5865F2,
   description: `**Ch. 99** baru saja rilis!\n\n[📖 Baca Sekarang](${siteUrl}/Yuumei)`,
   image:       { url: 'https://picsum.photos/seed/manga/300/450' },
-  fields:      [{ name: 'Chapter', value: 'Ch. 99', inline: true }],
+
   footer:      { text: 'Nurananto Scanslation • Update Terbaru' },
   timestamp:   new Date().toISOString(),
 };

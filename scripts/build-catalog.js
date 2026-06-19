@@ -101,7 +101,7 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
     color:       EMBED_COLOR,
     description: `**${ch.chapterTitle}** baru saja rilis!${ch.isLocked ? '\n🔒 *Chapter terkunci — buka dengan koin*' : ''}\n\n[📖 Baca Sekarang](${base}/${ch.mangaId})`,
     image:       ch.coverUrl ? { url: ch.coverUrl } : undefined,
-    fields:      [{ name: 'Chapter', value: ch.chapterTitle, inline: true }],
+
     footer:      { text: 'MangaFlow • Update Terbaru' },
     timestamp:   ch.releaseDate || new Date().toISOString(),
   }));
