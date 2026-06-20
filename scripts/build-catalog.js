@@ -235,12 +235,14 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
 async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl) {
   if (!pageId || !pageToken || newChapters.length === 0) return;
   const host = siteUrl.replace(/^https?:\/\//, '').replace(/\/$/, ''); // nuranantoscans.my.id
+  // Gambar FB: override per-manga (meta fb_cover, URL penuh) → else cover situs.
+  const fbImage = (ch) => ch.fbCover || ch.coverUrl || '';
 
   // Gabung per judul → 1 post per manga (cegah spam feed saat upload banyak chapter
   // sekaligus). newChapters urut terbaru→lama dari deteksi.
   const byManga = new Map();
   for (const ch of newChapters) {
-    if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, { title: ch.mangaTitle, nums: [] });
+    if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, { title: ch.mangaTitle, image: fbImage(ch), nums: [] });
     byManga.get(ch.mangaId).nums.push(ch.chapterNumber);
   }
 
@@ -255,13 +257,28 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
       `Baca: ${host}/${mangaId}\n` +
       `Diskusi di Discord: discord.gg/qwTSEYdB4`;
     try {
-      const res = await fetch(`https://graph.facebook.com/v21.0/${pageId}/feed`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message, access_token: pageToken }),
-      });
-      if (res.ok) sent++;
-      else console.warn(`⚠️  FB post gagal (${info.title}): ${res.status} ${await res.text()}`);
+      let ok = false;
+      // Photo post → cover jadi gambar utama (caption tetap clickable)
+      if (info.image) {
+        const r = await fetch(`https://graph.facebook.com/v21.0/${pageId}/photos`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: info.image, caption: message, access_token: pageToken }),
+        });
+        if (r.ok) ok = true;
+        else console.warn(`⚠️  FB photo gagal (${info.title}): ${r.status} ${await r.text()} — fallback teks`);
+      }
+      // Fallback: post teks biasa kalau tak ada gambar / photo ditolak
+      if (!ok) {
+        const r = await fetch(`https://graph.facebook.com/v21.0/${pageId}/feed`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message, access_token: pageToken }),
+        });
+        if (r.ok) ok = true;
+        else console.warn(`⚠️  FB feed gagal (${info.title}): ${r.status} ${await r.text()}`);
+      }
+      if (ok) sent++;
     } catch (e) { console.warn(`⚠️  FB error (${info.title}): ${e.message}`); }
     await new Promise(r => setTimeout(r, 1500)); // jeda antar post
   }
@@ -509,6 +526,7 @@ async function buildCatalog() {
             releaseDate:      ch.release_date,
             discordChannelId: manga.discord_channel_id,
             mangadexUrl:      manga.mangadex_url || manga.mangadex_id || '',
+            fbCover:          manga.fb_cover || '',
           });
           console.log(`   🔔 Chapter baru terdeteksi: ${manga.title} — ${ch.title}`);
         }
