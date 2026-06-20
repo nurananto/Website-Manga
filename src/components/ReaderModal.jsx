@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUp, Lock, Clock, BookOpen, Coins, MessageCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUp, Lock, Clock, BookOpen, Coins } from 'lucide-react';
 import { discordCommentUrl } from '../lib/links';
 import CountdownTimer from './CountdownTimer';
 import { ReaderPageSkeleton } from './Skeleton';
@@ -610,8 +610,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                 className={`relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-[#5865F2]/40 flex items-center justify-center gap-2.5 active:scale-[0.99] overflow-hidden ${discordLink ? 'cursor-pointer' : 'cursor-default'}`}
                 style={{ background: 'linear-gradient(to right, rgba(88,101,242,0.30), rgba(88,101,242,0.18), rgba(88,101,242,0.30))' }}
               >
-                <MessageCircle className="w-5 h-5 text-white shrink-0" />
-                <span className="font-body-md text-sm sm:text-base font-extrabold text-white truncate min-w-0">Komentar — {activeManga?.title}</span>
+                <img src="/discord-mark-white.svg" alt="Discord" className="w-5 h-5 object-contain shrink-0" />
+                <span className="font-body-md text-sm sm:text-base font-extrabold text-white">Komentar</span>
                 <img src="/discord-mark-white.svg" alt="Discord" className="w-5 h-5 object-contain shrink-0" />
               </a>
             </div>
