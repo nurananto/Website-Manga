@@ -181,6 +181,9 @@ async function syncCovers() {
         meta.covers         = await resizeAndUpload(imgBuffer, `manga/${slug}/covers/cover`);
         meta.mangadex_cover = coverFileName;
         meta.cover_widths   = SIZE_SIGNATURE;
+        // Bump versi → URL cover.webp?v=N berubah → bust cache CDN/Discord/browser.
+        // Tanpa ini, cover R2 diganti tapi URL sama → cache lama tetap tampil.
+        meta.cover_version  = (Number.isFinite(meta.cover_version) ? meta.cover_version : 1) + 1;
         metaChanged = true;
         console.log(`   ✅ Cover utama terupload (${SIZE_SIGNATURE})`);
       } else {
