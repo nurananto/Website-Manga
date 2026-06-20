@@ -1,0 +1,24 @@
+{
+  "id": "AiwoOshiete",
+  "title": "Watashi ni Ai wo Oshiete",
+  "alt_title": "わたしにアイを教えて",
+  "status": "END",
+  "type": "MANGA",
+  "author": "Shuichi Nimaru",
+  "artist": "Wanda Kuro",
+  "genres": ["Comedy", "Romance", "Sci-Fi", "Harem", "School Life", "Supernatural", "Time Travel"],
+  "description": "Motohisa, seorang siswa kelas 2 SMA yang ceroboh tapi pekerja keras, baru saja menjadi ketua OSIS. Dia sangat menyukai Ririka, wakil ketua OSIS yang cerdas dan tegas. Namun entah kenapa, mereka selalu bertengkar. Suatu hari, Motohisa akhirnya memberanikan diri untuk menyatakan perasaannya kepada Ririka… tapi tepat di saat itu, dia malah terjebak dalam loop waktu! Setiap kali dia mencoba mengungkapkan cintanya, waktu selalu terulang kembali. Dengan begini, dia tidak akan pernah bisa berpacaran dengan Ririka! Apa sebenarnya yang terjadi?! Sebuah kisah romantis, komedi, dan sci-fi yang penuh kejutan dalam kehidupan sekolah!",
+  "covers": [
+    "manga/AiwoOshiete/covers/cover.webp",
+    "manga/AiwoOshiete/covers/cover@tablet.webp",
+    "manga/AiwoOshiete/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/c14b2a85-ca88-4bf7-8937-87baf95491c0/watashi-ni-ai-wo-oshiete",
+  "raw_url": "https://championcross.jp/episodes/312e96c6d46e6/",
+  "discord_channel_id": "",
+  "tamat_at_chapter": 19,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": ""
+}

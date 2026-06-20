@@ -1,0 +1,24 @@
+{
+  "id": "WeAreNotDating",
+  "title": "We Are Not Dating!!",
+  "alt_title": "우리 안 사귀어!!",
+  "status": "HIATUS",
+  "type": "MANHWA",
+  "author": "Lee Kyung-Min",
+  "artist": "Song Joon-Hyuk",
+  "genres": ["Comedy", "Romance", "Slice of Life", "School Life", "Full Color", "Long Strip"],
+  "description": "Kenapa kamu terus tanya kalau kita pacaran? Kita cuma bergandengan tangan, kita nggak pacaran!!",
+  "covers": [
+    "manga/WeAreNotDating/covers/cover.webp",
+    "manga/WeAreNotDating/covers/cover@tablet.webp",
+    "manga/WeAreNotDating/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/02b80fce-8fd0-46dc-a6e4-a65f701fde4a/uli-an-sagwieo",
+  "raw_url": "https://comic.naver.com/webtoon/list?titleId=828670",
+  "discord_channel_id": "",
+  "tamat_at_chapter": null,
+  "hiatus_at_chapter": 141,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": ""
+}
