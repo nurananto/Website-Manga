@@ -45,6 +45,18 @@ async function getMangaDexCover(mangadexId) {
   }
 }
 
+// Bahasa asli manga (ja/ko/zh...) — untuk memilih cover dengan locale yang benar
+async function getOriginalLanguage(mangadexId) {
+  try {
+    const res = await fetch(`https://api.mangadex.org/manga/${mangadexId}`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.data?.attributes?.originalLanguage || null;
+  } catch {
+    return null;
+  }
+}
+
 // Semua cover manga di MangaDex (untuk galeri) — urut volume naik
 async function getAllMangaDexCovers(mangadexId) {
   try {
@@ -52,7 +64,7 @@ async function getAllMangaDexCovers(mangadexId) {
     if (!res.ok) return [];
     const data = await res.json();
     return (data.data || [])
-      .map(c => ({ file: c.attributes?.fileName, volume: c.attributes?.volume ?? null }))
+      .map(c => ({ file: c.attributes?.fileName, volume: c.attributes?.volume ?? null, locale: c.attributes?.locale ?? null }))
       .filter(c => c.file);
   } catch {
     return [];
@@ -134,14 +146,23 @@ async function syncCovers() {
     // Ambil semua cover dulu — dipakai untuk galeri DAN memilih cover utama
     const allCovers = await getAllMangaDexCovers(mangadexId);
 
-    // ── Cover utama = volume TERTINGGI (bukan pilihan MangaDex) ─
-    // Fallback: cover_art pilihan MangaDex kalau tidak ada info volume
+    // ── Cover utama = volume TERTINGGI dari LOCALE bahasa asli manga ─
+    // Cegah cover bahasa lain (mis. terjemahan Vietnam) terpilih hanya karena
+    // di-upload paling baru. Prioritas: cover ber-locale == originalLanguage;
+    // kalau tidak ada, pakai semua cover (perilaku lama).
+    const origLang = await getOriginalLanguage(mangadexId);
+    const sameLocale = origLang ? allCovers.filter(c => c.locale === origLang) : [];
+    const pool = sameLocale.length ? sameLocale : allCovers;
+    if (origLang) {
+      console.log(`   🌐 Bahasa asli: ${origLang} — ${sameLocale.length}/${allCovers.length} cover cocok locale`);
+    }
+
     let coverFileName = null;
-    const numbered = allCovers.filter(c => c.volume != null && !isNaN(parseFloat(c.volume)));
+    const numbered = pool.filter(c => c.volume != null && !isNaN(parseFloat(c.volume)));
     if (numbered.length) {
       coverFileName = numbered.reduce((a, b) => parseFloat(b.volume) >= parseFloat(a.volume) ? b : a).file;
-    } else if (allCovers.length) {
-      coverFileName = allCovers[allCovers.length - 1].file; // terbaru (urut createdAt)
+    } else if (pool.length) {
+      coverFileName = pool[pool.length - 1].file; // terbaru (urut createdAt)
     } else {
       coverFileName = await getMangaDexCover(mangadexId);
     }
