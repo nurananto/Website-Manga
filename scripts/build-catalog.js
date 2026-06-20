@@ -36,8 +36,13 @@ function toWibString(iso) {
   return `${d.getUTCFullYear()}-${p(d.getUTCMonth() + 1)}-${p(d.getUTCDate())}T${p(d.getUTCHours())}:${p(d.getUTCMinutes())}:${p(d.getUTCSeconds())}+07:00`;
 }
 
-// Fix multi-level UTF-8 mojibake (bisa double atau triple encoded)
-// Loop sampai stabil: stop saat ada char > U+00FF, atau decode tidak berubah, atau error
+// SAFETY-NET MOJIBAKE — JANGAN HAPUS.
+// Memperbaiki mojibake UTF-8 bertingkat (double/triple encoded) HANYA untuk output
+// publik (index.json + per-manga JSON); TIDAK menulis balik ke source meta.json.
+// Aman & idempotent: kalau sudah ada karakter CJK asli (>U+00FF) langsung berhenti,
+// jadi tak pernah merusak judul yang sudah benar. Ini yang bikin situs tetap tampil
+// benar walau source sempat rusak. Akar korupsi ada di cron api-worker (decode UTF-8),
+// bukan di sini. Semua read/write meta di file ini WAJIB pakai 'utf-8' — jangan dilepas.
 function fixMojibake(str) {
   if (typeof str !== 'string') return str;
   let current = str;
