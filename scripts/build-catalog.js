@@ -91,6 +91,28 @@ async function fetchMangaDexRating(mangadexId) {
   }
 }
 
+// Hitung karakter embed yang dihitung Discord ke limit 6000/pesan
+// (title + description + footer.text + author.name + fields). URL gambar & timestamp tak dihitung.
+function embedChars(e) {
+  return (e.title?.length || 0) + (e.description?.length || 0) +
+         (e.footer?.text?.length || 0) + (e.author?.name?.length || 0) +
+         (e.fields || []).reduce((s, f) => s + (f.name?.length || 0) + (f.value?.length || 0), 0);
+}
+// Pecah embed jadi beberapa pesan: maks 10 embed DAN maks ~5500 char per pesan.
+function chunkEmbeds(embeds, maxCount = 10, maxChars = 5500) {
+  const chunks = [];
+  let cur = [], curChars = 0;
+  for (const e of embeds) {
+    const c = embedChars(e);
+    if (cur.length && (cur.length >= maxCount || curChars + c > maxChars)) {
+      chunks.push(cur); cur = []; curChars = 0;
+    }
+    cur.push(e); curChars += c;
+  }
+  if (cur.length) chunks.push(cur);
+  return chunks;
+}
+
 // ── Kirim notifikasi Discord untuk chapter-chapter baru ─────────────────
 // Satu embed per chapter, dikirim setelah catalog selesai dibangun.
 // Hanya berjalan kalau DISCORD_WEBHOOK_URL diset & ada chapter baru.
@@ -117,16 +139,17 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
     };
   });
 
-  // Max 10 embed per pesan (limit Discord)
-  for (let i = 0; i < embeds.length; i += 10) {
-    const chunk = embeds.slice(i, i + 10);
+  // Pecah pesan: maks 10 embed DAN ≤5500 char/pesan (limit Discord 6000)
+  const chunks = chunkEmbeds(embeds);
+  for (let i = 0; i < chunks.length; i++) {
+    const chunk = chunks[i];
     try {
       const res = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           username: 'Nurananto Scanlation',
-          content:  '## 📢 Baru Saja Dirilis!',
+          content:  i === 0 ? '## 📢 Baru Saja Dirilis!' : undefined,
           embeds:   chunk,
         }),
       });
@@ -136,7 +159,7 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
       console.warn(`⚠️  Discord webhook error: ${e.message}`);
     }
     // Hindari rate limit Discord (max 5 req/2 detik per webhook)
-    if (i + 10 < embeds.length) await new Promise(r => setTimeout(r, 1000));
+    if (i + 1 < chunks.length) await new Promise(r => setTimeout(r, 1000));
   }
 }
 
