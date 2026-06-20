@@ -129,7 +129,6 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   // "Tombol" link teks (webhook tidak bisa button asli)
   const linksOf = (ch) => {
     const links = [`🌐 [Baca](${base}/${ch.mangaId})`];
-    if (/^https?:/.test(ch.mangadexUrl)) links.push(`📚 [MangaDex](${ch.mangadexUrl})`);
     if (ch.discordChannelId)             links.push(`💬 [Diskusi](https://discord.com/channels/${GUILD}/${ch.discordChannelId})`);
     return links.join('  •  ');
   };
@@ -191,7 +190,6 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
 
   const embeds = newManga.map(m => {
     const links = [`🌐 [Website](${base}/${m.id})`];
-    if (/^https?:/.test(m.mangadexUrl || '')) links.push(`📚 [MangaDex](${m.mangadexUrl})`);
     if (m.discordChannelId) links.push(`💬 [Diskusi](https://discord.com/channels/${GUILD}/${m.discordChannelId})`);
     const desc = [];
     if (m.genres?.length) desc.push(`🏷️ ${m.genres.join(' · ')}`);
