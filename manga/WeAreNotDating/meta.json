@@ -6,7 +6,14 @@
   "type": "MANHWA",
   "author": "Lee Kyung-Min",
   "artist": "Song Joon-Hyuk",
-  "genres": ["Comedy", "Romance", "Slice of Life", "School Life", "Full Color", "Long Strip"],
+  "genres": [
+    "Comedy",
+    "Romance",
+    "Slice of Life",
+    "School Life",
+    "Full Color",
+    "Long Strip"
+  ],
   "description": "Kenapa kamu terus tanya kalau kita pacaran? Kita cuma bergandengan tangan, kita nggak pacaran!!",
   "covers": [
     "manga/WeAreNotDating/covers/cover.webp",
@@ -20,5 +27,38 @@
   "hiatus_at_chapter": 141,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "ff110214-8c55-4479-b7d8-bf2fc4658e4e.png",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "file": "98be450d-fef5-4324-a277-94856f13b8bf.png",
+      "volume": "1",
+      "keys": [
+        "manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf.webp",
+        "manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@tablet.webp",
+        "manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "9343b2f1-2a92-428c-a78d-3bf63a95b5b7.png",
+      "volume": "2",
+      "keys": [
+        "manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7.webp",
+        "manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@tablet.webp",
+        "manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "ff110214-8c55-4479-b7d8-bf2fc4658e4e.png",
+      "volume": "3",
+      "keys": [
+        "manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e.webp",
+        "manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@tablet.webp",
+        "manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }

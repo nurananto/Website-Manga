@@ -1,0 +1,322 @@
+{
+  "id": "AiwoOshiete",
+  "title": "Watashi ni Ai wo Oshiete",
+  "alt_title": "わたしにアイを教えて",
+  "status": "Tamat",
+  "type": "MANGA",
+  "author": "Shuichi Nimaru",
+  "artist": "Wanda Kuro",
+  "genres": [
+    "Comedy",
+    "Harem",
+    "Romance",
+    "School Life",
+    "Sci-Fi",
+    "Supernatural",
+    "Time Travel"
+  ],
+  "description": "Motohisa, seorang siswa kelas 2 SMA yang ceroboh tapi pekerja keras, baru saja menjadi ketua OSIS. Dia sangat menyukai Ririka, wakil ketua OSIS yang cerdas dan tegas. Namun entah kenapa, mereka selalu bertengkar. Suatu hari, Motohisa akhirnya memberanikan diri untuk menyatakan perasaannya kepada Ririka… tapi tepat di saat itu, dia malah terjebak dalam loop waktu! Setiap kali dia mencoba mengungkapkan cintanya, waktu selalu terulang kembali. Dengan begini, dia tidak akan pernah bisa berpacaran dengan Ririka! Apa sebenarnya yang terjadi?! Sebuah kisah romantis, komedi, dan sci-fi yang penuh kejutan dalam kehidupan sekolah!",
+  "covers": [
+    "manga/AiwoOshiete/covers/cover.webp",
+    "manga/AiwoOshiete/covers/cover@tablet.webp",
+    "manga/AiwoOshiete/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/c14b2a85-ca88-4bf7-8937-87baf95491c0/watashi-ni-ai-wo-oshiete",
+  "raw_url": "https://championcross.jp/episodes/312e96c6d46e6/",
+  "discord_channel_id": "",
+  "tamat_at_chapter": 19,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": "511f749e-21de-4ba8-ab27-b6cd74cbb6e5.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_gallery": [
+    {
+      "volume": "3",
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5@mobile.webp?v=1"
+      }
+    },
+    {
+      "volume": "2",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff@mobile.webp?v=1"
+      }
+    },
+    {
+      "volume": "1",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8@mobile.webp?v=1"
+      }
+    },
+    {
+      "volume": "0",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79.webp?v=1",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79@tablet.webp?v=1",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79@mobile.webp?v=1"
+      }
+    }
+  ],
+  "mangadex_id": "c14b2a85-ca88-4bf7-8937-87baf95491c0",
+  "rating": 8.2,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover.webp?v=1",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover.webp?v=1",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover@tablet.webp?v=1",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover@mobile.webp?v=1"
+  },
+  "chapters": [
+    {
+      "chapter_number": 19,
+      "lock_hours": 0,
+      "pages": 12,
+      "id": "AiwoOshiete-ch-19",
+      "r2_prefix": "manga/AiwoOshiete/19/",
+      "title": "Ch. 19",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 18,
+      "lock_hours": 0,
+      "pages": 12,
+      "id": "AiwoOshiete-ch-18",
+      "r2_prefix": "manga/AiwoOshiete/18/",
+      "title": "Ch. 18",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 17,
+      "lock_hours": 0,
+      "pages": 22,
+      "id": "AiwoOshiete-ch-17",
+      "r2_prefix": "manga/AiwoOshiete/17/",
+      "title": "Ch. 17",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 16,
+      "lock_hours": 0,
+      "pages": 24,
+      "id": "AiwoOshiete-ch-16",
+      "r2_prefix": "manga/AiwoOshiete/16/",
+      "title": "Ch. 16",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 15,
+      "lock_hours": 0,
+      "pages": 24,
+      "id": "AiwoOshiete-ch-15",
+      "r2_prefix": "manga/AiwoOshiete/15/",
+      "title": "Ch. 15",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 14,
+      "lock_hours": 0,
+      "pages": 22,
+      "id": "AiwoOshiete-ch-14",
+      "r2_prefix": "manga/AiwoOshiete/14/",
+      "title": "Ch. 14",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 13,
+      "lock_hours": 0,
+      "pages": 18,
+      "id": "AiwoOshiete-ch-13",
+      "r2_prefix": "manga/AiwoOshiete/13/",
+      "title": "Ch. 13",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 12,
+      "lock_hours": 0,
+      "pages": 20,
+      "id": "AiwoOshiete-ch-12",
+      "r2_prefix": "manga/AiwoOshiete/12/",
+      "title": "Ch. 12",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 11,
+      "lock_hours": 0,
+      "pages": 18,
+      "id": "AiwoOshiete-ch-11",
+      "r2_prefix": "manga/AiwoOshiete/11/",
+      "title": "Ch. 11",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 10,
+      "lock_hours": 0,
+      "pages": 16,
+      "id": "AiwoOshiete-ch-10",
+      "r2_prefix": "manga/AiwoOshiete/10/",
+      "title": "Ch. 10",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 9.2,
+      "lock_hours": 0,
+      "pages": 12,
+      "id": "AiwoOshiete-ch-9.2",
+      "r2_prefix": "manga/AiwoOshiete/9.2/",
+      "title": "Ch. 9.2",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 9.1,
+      "lock_hours": 0,
+      "pages": 12,
+      "id": "AiwoOshiete-ch-9.1",
+      "r2_prefix": "manga/AiwoOshiete/9.1/",
+      "title": "Ch. 9.1",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 8,
+      "lock_hours": 0,
+      "pages": 26,
+      "id": "AiwoOshiete-ch-8",
+      "r2_prefix": "manga/AiwoOshiete/8/",
+      "title": "Ch. 8",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 7,
+      "lock_hours": 0,
+      "pages": 26,
+      "id": "AiwoOshiete-ch-7",
+      "r2_prefix": "manga/AiwoOshiete/7/",
+      "title": "Ch. 7",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 6,
+      "lock_hours": 0,
+      "pages": 24,
+      "id": "AiwoOshiete-ch-6",
+      "r2_prefix": "manga/AiwoOshiete/6/",
+      "title": "Ch. 6",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 5,
+      "lock_hours": 0,
+      "pages": 28,
+      "id": "AiwoOshiete-ch-5",
+      "r2_prefix": "manga/AiwoOshiete/5/",
+      "title": "Ch. 5",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 4,
+      "lock_hours": 0,
+      "pages": 26,
+      "id": "AiwoOshiete-ch-4",
+      "r2_prefix": "manga/AiwoOshiete/4/",
+      "title": "Ch. 4",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 3,
+      "lock_hours": 0,
+      "pages": 31,
+      "id": "AiwoOshiete-ch-3",
+      "r2_prefix": "manga/AiwoOshiete/3/",
+      "title": "Ch. 3",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 2,
+      "lock_hours": 0,
+      "pages": 26,
+      "id": "AiwoOshiete-ch-2",
+      "r2_prefix": "manga/AiwoOshiete/2/",
+      "title": "Ch. 2",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 41,
+      "id": "AiwoOshiete-ch-1",
+      "r2_prefix": "manga/AiwoOshiete/1/",
+      "title": "Ch. 1",
+      "release_date": "2026-06-20T14:53:29+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    }
+  ]
+}

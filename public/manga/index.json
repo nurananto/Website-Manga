@@ -1,5 +1,134 @@
 [
   {
+    "id": "AiwoOshiete",
+    "title": "Watashi ni Ai wo Oshiete",
+    "description": "Motohisa, seorang siswa kelas 2 SMA yang ceroboh tapi pekerja keras, baru saja menjadi ketua OSIS. Dia sangat menyukai Ririka, wakil ketua OSIS yang cerdas dan tegas. Namun entah kenapa, mereka selalu bertengkar. Suatu hari, Motohisa akhirnya memberanikan diri untuk menyatakan perasaannya kepada…",
+    "status": "Tamat",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover.webp?v=1",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover.webp?v=1",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover@tablet.webp?v=1",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover@mobile.webp?v=1"
+    },
+    "genres": [
+      "Comedy",
+      "Harem",
+      "Romance",
+      "School Life",
+      "Sci-Fi",
+      "Supernatural",
+      "Time Travel"
+    ],
+    "rating": 8.2,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "tamat_at_chapter": 19,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 19,
+        "lock_hours": 0,
+        "pages": 12,
+        "id": "AiwoOshiete-ch-19",
+        "r2_prefix": "manga/AiwoOshiete/19/",
+        "title": "Ch. 19",
+        "release_date": "2026-06-20T14:53:29+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 18,
+        "lock_hours": 0,
+        "pages": 12,
+        "id": "AiwoOshiete-ch-18",
+        "r2_prefix": "manga/AiwoOshiete/18/",
+        "title": "Ch. 18",
+        "release_date": "2026-06-20T14:53:29+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 17,
+        "lock_hours": 0,
+        "pages": 22,
+        "id": "AiwoOshiete-ch-17",
+        "r2_prefix": "manga/AiwoOshiete/17/",
+        "title": "Ch. 17",
+        "release_date": "2026-06-20T14:53:29+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
+    "id": "WeAreNotDating",
+    "title": "We Are Not Dating!!",
+    "description": "Kenapa kamu terus tanya kalau kita pacaran? Kita cuma bergandengan tangan, kita nggak pacaran!!",
+    "status": "Hiatus",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=1",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=1",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@tablet.webp?v=1",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@mobile.webp?v=1"
+    },
+    "genres": [
+      "Comedy",
+      "Full Color",
+      "Long Strip",
+      "Romance",
+      "School Life",
+      "Slice of Life"
+    ],
+    "rating": 8.6,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": 141,
+    "chapters": [
+      {
+        "chapter_number": 142,
+        "lock_hours": 0,
+        "pages": 6,
+        "id": "WeAreNotDating-ch-142",
+        "r2_prefix": "manga/WeAreNotDating/142/",
+        "title": "Ch. 142",
+        "release_date": "2026-06-20T14:53:29+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 141,
+        "lock_hours": 0,
+        "pages": 1,
+        "id": "WeAreNotDating-ch-141",
+        "r2_prefix": "manga/WeAreNotDating/141/",
+        "title": "Ch. 141",
+        "release_date": "2026-06-20T14:53:29+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 140,
+        "lock_hours": 0,
+        "pages": 1,
+        "id": "WeAreNotDating-ch-140",
+        "r2_prefix": "manga/WeAreNotDating/140/",
+        "title": "Ch. 140",
+        "release_date": "2026-06-20T14:53:29+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "Suufungo",
     "title": "Suufungo no Mirai ga Wakaru You ni Natta kedo, Onnagokoro wa Wakaranai.",
     "description": "Arase Itou bisa melihat beberapa menit ke depan. Namun, masa depan yang ia lihat selalu berhubungan dengan masalah. Arase yang baik hati berusaha menghindari masa depan yang tidak menyenangkan ini, namun pada akhirnya masalah tersebut tetap membuatnya membantu berbagai gadis dengan masalah mereka.…",
