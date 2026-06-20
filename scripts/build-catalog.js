@@ -12,6 +12,8 @@ const CHANGED_SLUGS = (process.env.CHANGED_SLUGS || '')
 
 // Discord notifikasi chapter baru
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || '';
+// Webhook channel #manga-list — intro 1× saat manga BARU ditambah (opsional)
+const DISCORD_MANGALIST_WEBHOOK_URL = process.env.DISCORD_MANGALIST_WEBHOOK_URL || '';
 const SITE_URL = (process.env.SITE_URL || 'https://nuranantoscans.my.id').replace(/\/$/, '');
 
 // Waktu commit PERTAMA yang menambahkan file — stabil, tidak berubah oleh commit berikutnya
@@ -136,9 +138,50 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   }
 }
 
+// ── Intro 1× per manga BARU ke channel #manga-list (sinopsis lengkap + cover) ──
+async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
+  if (!webhookUrl || newManga.length === 0) return;
+  const base  = siteUrl.replace(/\/$/, '');
+  const GUILD = '1517520079108182036';
+
+  const embeds = newManga.map(m => {
+    const links = [`🌐 [Website](${base}/${m.id})`];
+    if (/^https?:/.test(m.mangadexUrl || '')) links.push(`📚 [MangaDex](${m.mangadexUrl})`);
+    if (m.discordChannelId) links.push(`💬 [Diskusi](https://discord.com/channels/${GUILD}/${m.discordChannelId})`);
+    const desc = [];
+    if (m.genres?.length) desc.push(`🏷️ ${m.genres.join(' · ')}`);
+    if (m.synopsis)       desc.push('', (m.synopsis || '').trim());
+    desc.push('', links.join('  •  '));
+    return {
+      author:    { name: '📚 Judul Baru di Nurananto Scanlation', url: base },
+      title:     m.title,
+      url:       `${base}/${m.id}`,
+      description: desc.join('\n').slice(0, 4000),
+      color:     0x5865F2,
+      image:     m.coverUrl ? { url: m.coverUrl } : undefined,
+      footer:    { text: m.rating ? `⭐ ${m.rating}` : 'Nurananto Scanlation' },
+    };
+  });
+
+  for (let i = 0; i < embeds.length; i += 10) {
+    const chunk = embeds.slice(i, i + 10);
+    try {
+      const res = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: 'Nurananto Scanlation', embeds: chunk }),
+      });
+      if (!res.ok) console.warn(`⚠️  Manga-list notif gagal: ${res.status} ${await res.text()}`);
+      else console.log(`📚 Intro manga-list terkirim: ${chunk.length} judul baru`);
+    } catch (e) { console.warn(`⚠️  Manga-list webhook error: ${e.message}`); }
+    if (i + 10 < embeds.length) await new Promise(r => setTimeout(r, 1000));
+  }
+}
+
 async function buildCatalog() {
   const catalog = [];
   const newChaptersList = []; // dikumpulkan untuk notifikasi Discord
+  const newMangaList    = []; // manga BARU (intro 1× ke #manga-list)
 
   // views dibaca langsung dari manga meta.json (field chapter_views)
 
@@ -169,6 +212,7 @@ async function buildCatalog() {
 
     // Tangkap chapter LAMA SEKARANG, sebelum per-manga JSON ditimpa di bawah —
     // kalau dibaca setelah ditimpa, semua chapter dianggap "lama" (notif tak pernah jalan).
+    const isNewManga = !fs.existsSync(prevJsonPath); // manga belum pernah ada → intro 1×
     let prevChapterNums = new Set();
     if (fs.existsSync(prevJsonPath)) {
       try {
@@ -320,6 +364,20 @@ async function buildCatalog() {
       'utf-8'
     );
 
+    // Manga BARU (belum pernah ada JSON-nya) → intro 1× ke #manga-list
+    if (isNewManga) {
+      newMangaList.push({
+        id:               manga.id,
+        title:            manga.title,
+        coverUrl:         manga.coverUrl,
+        genres:           manga.genres,
+        rating:           manga.rating,
+        synopsis:         manga.description,
+        discordChannelId: manga.discord_channel_id,
+        mangadexUrl:      manga.mangadex_url || manga.mangadex_id || '',
+      });
+    }
+
     // index.json hanya simpan field yang DIPAKAI homepage (kartu, search, carousel)
     // + 3 chapter terbaru. Field detail-only (description, alt_title, covers, author,
     // type) sengaja TIDAK disertakan — sudah ada di per-manga JSON yang di-load
@@ -440,6 +498,7 @@ async function buildCatalog() {
 
   // Notifikasi Discord untuk chapter-chapter baru
   await sendDiscordNotifications(newChaptersList, DISCORD_WEBHOOK_URL, SITE_URL);
+  await sendMangaIntros(newMangaList, DISCORD_MANGALIST_WEBHOOK_URL, SITE_URL);
 }
 
 buildCatalog().catch(err => {
