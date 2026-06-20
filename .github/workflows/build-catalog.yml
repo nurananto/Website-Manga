@@ -16,6 +16,10 @@ on:
         description: 'Force cover manga tertentu saja (slug, pisah koma). Contoh: Waka-chan'
         type: string
         default: ''
+      mangalist_backfill:
+        description: 'Kirim intro SEMUA manga ke #manga-list (sekali, untuk isi channel kosong)'
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -68,6 +72,7 @@ jobs:
           CDN_BASE: ${{ secrets.CDN_BASE }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_MANGALIST_WEBHOOK_URL: ${{ secrets.DISCORD_MANGALIST_WEBHOOK_URL }}
+          MANGALIST_BACKFILL: ${{ inputs.mangalist_backfill && '1' || '' }}
           SITE_URL: ${{ secrets.SITE_URL }}
 
       - name: Generate version file

@@ -14,6 +14,8 @@ const CHANGED_SLUGS = (process.env.CHANGED_SLUGS || '')
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || '';
 // Webhook channel #manga-list — intro 1× saat manga BARU ditambah (opsional)
 const DISCORD_MANGALIST_WEBHOOK_URL = process.env.DISCORD_MANGALIST_WEBHOOK_URL || '';
+// Backfill: kirim intro SEMUA manga ke #manga-list (sekali, untuk isi channel kosong)
+const MANGALIST_BACKFILL = process.env.MANGALIST_BACKFILL === '1';
 const SITE_URL = (process.env.SITE_URL || 'https://nuranantoscans.my.id').replace(/\/$/, '');
 
 // Waktu commit PERTAMA yang menambahkan file — stabil, tidak berubah oleh commit berikutnya
@@ -97,20 +99,20 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   const base  = siteUrl.replace(/\/$/, '');
   const GUILD = '1517520079108182036'; // server Discord (untuk link diskusi per judul)
 
+  const logoIcon = `${base}/logo-header.webp`;
   const embeds = newChapters.map(ch => {
-    const status = ch.isLocked ? '🔒 Akses Awal (koin)' : '🆓 Gratis';
     // "Tombol" link teks (webhook tidak bisa button asli)
     const links = [`🌐 [Baca](${base}/${ch.mangaId})`];
     if (/^https?:/.test(ch.mangadexUrl))   links.push(`📚 [MangaDex](${ch.mangadexUrl})`);
     if (ch.discordChannelId)               links.push(`💬 [Diskusi](https://discord.com/channels/${GUILD}/${ch.discordChannelId})`);
-    const lines = [`📖 **${ch.chapterTitle}**  •  ${status}`, links.join('  •  ')];
+    const lines = [`📖 **${ch.chapterTitle}**`, links.join('  •  ')];
     return {
-      author:    { name: 'Nurananto Scanlation • Update', url: base },
       title:     ch.mangaTitle,
       url:       `${base}/${ch.mangaId}`,
       description: lines.join('\n'),
-      color:     ch.isLocked ? 0xF59E0B : 0x5865F2, // amber (locked) / blurple (gratis)
+      color:     0x5865F2,
       image:     ch.coverUrl ? { url: ch.coverUrl } : undefined, // cover besar
+      footer:    { text: 'Nurananto Scanlation • Update Terbaru', icon_url: logoIcon },
       timestamp: ch.releaseDate || new Date().toISOString(),
     };
   });
@@ -159,7 +161,7 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
       description: desc.join('\n').slice(0, 4000),
       color:     0x5865F2,
       image:     m.coverUrl ? { url: m.coverUrl } : undefined,
-      footer:    { text: m.rating ? `⭐ ${m.rating}` : 'Nurananto Scanlation' },
+      footer:    { text: m.rating ? `Nurananto Scanlation • ⭐ ${m.rating}` : 'Nurananto Scanlation', icon_url: `${base}/logo-header.webp` },
     };
   });
 
@@ -358,8 +360,9 @@ async function buildCatalog() {
       'utf-8'
     );
 
-    // Manga BARU (belum pernah ada JSON-nya) → intro 1× ke #manga-list
-    if (isNewManga) {
+    // Manga BARU (belum pernah ada JSON-nya) → intro 1× ke #manga-list.
+    // MANGALIST_BACKFILL=1 → kirim SEMUA manga (sekali, untuk isi channel kosong).
+    if (isNewManga || MANGALIST_BACKFILL) {
       newMangaList.push({
         id:               manga.id,
         title:            manga.title,
