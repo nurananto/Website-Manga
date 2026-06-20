@@ -16,6 +16,9 @@ const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || '';
 const DISCORD_MANGALIST_WEBHOOK_URL = process.env.DISCORD_MANGALIST_WEBHOOK_URL || '';
 // Backfill: kirim intro SEMUA manga ke #manga-list (sekali, untuk isi channel kosong)
 const MANGALIST_BACKFILL = process.env.MANGALIST_BACKFILL === '1';
+// Facebook Page — post chapter baru (opsional). Butuh Page ID + Page Access Token.
+const FB_PAGE_ID    = process.env.FB_PAGE_ID || '';
+const FB_PAGE_TOKEN = process.env.FB_PAGE_TOKEN || '';
 const SITE_URL = (process.env.SITE_URL || 'https://nuranantoscans.my.id').replace(/\/$/, '');
 
 // Waktu commit PERTAMA yang menambahkan file — stabil, tidak berubah oleh commit berikutnya
@@ -210,6 +213,31 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
     await new Promise(r => setTimeout(r, 1200)); // anti rate-limit (5 req / 2 dtk)
   }
   console.log(`📚 Intro manga-list terkirim: ${sent}/${embeds.length} judul`);
+}
+
+// ── Post chapter baru ke Facebook Page (teks polos, link tanpa html) ──
+// Butuh FB_PAGE_ID + FB_PAGE_TOKEN (Page Access Token long-lived).
+async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl) {
+  if (!pageId || !pageToken || newChapters.length === 0) return;
+  const host = siteUrl.replace(/^https?:\/\//, '').replace(/\/$/, ''); // nuranantoscans.my.id
+  let sent = 0;
+  for (const ch of newChapters) {
+    const message =
+      `📖 ${ch.mangaTitle} — ${ch.chapterTitle} sudah update!\n\n` +
+      `Baca: ${host}/${ch.mangaId}\n` +
+      `Diskusi di Discord: discord.gg/qwTSEYdB4`;
+    try {
+      const res = await fetch(`https://graph.facebook.com/v21.0/${pageId}/feed`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message, access_token: pageToken }),
+      });
+      if (res.ok) sent++;
+      else console.warn(`⚠️  FB post gagal (${ch.mangaTitle}): ${res.status} ${await res.text()}`);
+    } catch (e) { console.warn(`⚠️  FB error (${ch.mangaTitle}): ${e.message}`); }
+    await new Promise(r => setTimeout(r, 1500)); // jeda antar post
+  }
+  console.log(`📘 Facebook posting terkirim: ${sent}/${newChapters.length}`);
 }
 
 async function buildCatalog() {
@@ -528,6 +556,7 @@ async function buildCatalog() {
   // Notifikasi Discord untuk chapter-chapter baru
   await sendDiscordNotifications(newChaptersList, DISCORD_WEBHOOK_URL, SITE_URL);
   await sendMangaIntros(newMangaList, DISCORD_MANGALIST_WEBHOOK_URL, SITE_URL);
+  await sendFacebookNotifications(newChaptersList, FB_PAGE_ID, FB_PAGE_TOKEN, SITE_URL);
 }
 
 buildCatalog().catch(err => {
