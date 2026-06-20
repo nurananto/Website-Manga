@@ -165,19 +165,28 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
     };
   });
 
-  for (let i = 0; i < embeds.length; i += 10) {
-    const chunk = embeds.slice(i, i + 10);
+  // Sinopsis panjang → kirim 1 embed per pesan (limit Discord ~6000 char/pesan
+  // bila digabung; 10 sekaligus pasti ditolak). Jeda + retry 429.
+  const post = (embed) => fetch(webhookUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username: 'Nurananto Scanlation', embeds: [embed] }),
+  });
+  let sent = 0;
+  for (const embed of embeds) {
     try {
-      const res = await fetch(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: 'Nurananto Scanlation', embeds: chunk }),
-      });
-      if (!res.ok) console.warn(`⚠️  Manga-list notif gagal: ${res.status} ${await res.text()}`);
-      else console.log(`📚 Intro manga-list terkirim: ${chunk.length} judul baru`);
-    } catch (e) { console.warn(`⚠️  Manga-list webhook error: ${e.message}`); }
-    if (i + 10 < embeds.length) await new Promise(r => setTimeout(r, 1000));
+      let res = await post(embed);
+      if (res.status === 429) {
+        const wait = ((await res.json().catch(() => ({}))).retry_after || 2);
+        await new Promise(r => setTimeout(r, (wait + 0.5) * 1000));
+        res = await post(embed); // retry sekali
+      }
+      if (res.ok) sent++;
+      else console.warn(`⚠️  Manga-list notif gagal (${embed.title}): ${res.status} ${await res.text()}`);
+    } catch (e) { console.warn(`⚠️  Manga-list webhook error (${embed.title}): ${e.message}`); }
+    await new Promise(r => setTimeout(r, 1200)); // anti rate-limit (5 req / 2 dtk)
   }
+  console.log(`📚 Intro manga-list terkirim: ${sent}/${embeds.length} judul`);
 }
 
 async function buildCatalog() {
