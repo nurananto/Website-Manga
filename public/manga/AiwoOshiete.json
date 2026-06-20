@@ -26,8 +26,10 @@
   "discord_channel_id": "",
   "tamat_at_chapter": 19,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "19": 1
+  },
+  "total_views": 1,
   "mangadex_cover": "511f749e-21de-4ba8-ab27-b6cd74cbb6e5.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -88,7 +90,7 @@
       "title": "Ch. 19",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 18,

@@ -24,9 +24,10 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 1,
-    "12": 2
+    "12": 2,
+    "13": 1
   },
-  "total_views": 3,
+  "total_views": 4,
   "mangadex_cover": "d86648a6-77d3-4a95-a8d2-b296da206065.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -61,7 +62,7 @@
       "title": "Ch. 13",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 12,

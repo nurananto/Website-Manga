@@ -17,7 +17,7 @@
       "Supernatural"
     ],
     "rating": 8.6,
-    "total_views": 3,
+    "total_views": 4,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -34,7 +34,7 @@
         "title": "Ch. 13",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 12,
@@ -83,7 +83,7 @@
       "Time Travel"
     ],
     "rating": 8.2,
-    "total_views": 0,
+    "total_views": 1,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": 19,
@@ -99,7 +99,7 @@
         "title": "Ch. 19",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 18,
@@ -211,7 +211,7 @@
       "Shounen"
     ],
     "rating": 7.86,
-    "total_views": 1,
+    "total_views": 7,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -228,7 +228,7 @@
         "title": "Ch. 17.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 3
       },
       {
         "chapter_number": 17.1,
@@ -240,7 +240,7 @@
         "title": "Ch. 17.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 3
       },
       {
         "chapter_number": 16,
@@ -278,7 +278,7 @@
       "Tragedy"
     ],
     "rating": 8.61,
-    "total_views": 23,
+    "total_views": 25,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -295,7 +295,7 @@
         "title": "Ch. 5.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 4
       },
       {
         "chapter_number": 5.2,
@@ -319,7 +319,7 @@
         "title": "Ch. 5.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       }
     ]
   },
@@ -342,7 +342,7 @@
       "Shounen"
     ],
     "rating": 8.13,
-    "total_views": 0,
+    "total_views": 1,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,

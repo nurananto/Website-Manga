@@ -34,10 +34,11 @@
     "4.1": 5,
     "4.2": 1,
     "4.3": 1,
-    "5.3": 3,
-    "5.2": 1
+    "5.3": 4,
+    "5.2": 1,
+    "5.1": 1
   },
-  "total_views": 23,
+  "total_views": 25,
   "mangadex_cover": "a1bd83b1-b73e-430f-8f3b-cd194cb2c029.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -72,7 +73,7 @@
       "title": "Ch. 5.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 5.2,
@@ -96,7 +97,7 @@
       "title": "Ch. 5.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 4.3,
