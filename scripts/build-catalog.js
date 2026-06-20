@@ -220,11 +220,24 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
 async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl) {
   if (!pageId || !pageToken || newChapters.length === 0) return;
   const host = siteUrl.replace(/^https?:\/\//, '').replace(/\/$/, ''); // nuranantoscans.my.id
-  let sent = 0;
+
+  // Gabung per judul → 1 post per manga (cegah spam feed saat upload banyak chapter
+  // sekaligus). newChapters urut terbaru→lama dari deteksi.
+  const byManga = new Map();
   for (const ch of newChapters) {
+    if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, { title: ch.mangaTitle, nums: [] });
+    byManga.get(ch.mangaId).nums.push(ch.chapterNumber);
+  }
+
+  let sent = 0;
+  for (const [mangaId, info] of byManga) {
+    const nums = info.nums;
+    const head = nums.length === 1
+      ? `Chapter ${nums[0]} sudah update!`
+      : `${nums.length} chapter baru (Ch ${nums[nums.length - 1]}–${nums[0]}) sudah update!`;
     const message =
-      `📖 ${ch.mangaTitle} — ${ch.chapterTitle} sudah update!\n\n` +
-      `Baca: ${host}/${ch.mangaId}\n` +
+      `📖 ${info.title}\n${head}\n\n` +
+      `Baca: ${host}/${mangaId}\n` +
       `Diskusi di Discord: discord.gg/qwTSEYdB4`;
     try {
       const res = await fetch(`https://graph.facebook.com/v21.0/${pageId}/feed`, {
@@ -233,11 +246,11 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
         body: JSON.stringify({ message, access_token: pageToken }),
       });
       if (res.ok) sent++;
-      else console.warn(`⚠️  FB post gagal (${ch.mangaTitle}): ${res.status} ${await res.text()}`);
-    } catch (e) { console.warn(`⚠️  FB error (${ch.mangaTitle}): ${e.message}`); }
+      else console.warn(`⚠️  FB post gagal (${info.title}): ${res.status} ${await res.text()}`);
+    } catch (e) { console.warn(`⚠️  FB error (${info.title}): ${e.message}`); }
     await new Promise(r => setTimeout(r, 1500)); // jeda antar post
   }
-  console.log(`📘 Facebook posting terkirim: ${sent}/${newChapters.length}`);
+  console.log(`📘 Facebook posting terkirim: ${sent}/${byManga.size} judul`);
 }
 
 async function buildCatalog() {
