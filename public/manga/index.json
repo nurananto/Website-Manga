@@ -69,11 +69,11 @@
     "title": "We Are Not Dating!!",
     "description": "Kenapa kamu terus tanya kalau kita pacaran? Kita cuma bergandengan tangan, kita nggak pacaran!!",
     "status": "Hiatus",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=1",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=2",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@mobile.webp?v=1"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@mobile.webp?v=2"
     },
     "genres": [
       "Comedy",
@@ -94,10 +94,10 @@
         "chapter_number": 142,
         "lock_hours": 0,
         "pages": 6,
+        "release_date": "2026-06-20T14:53:29+07:00",
         "id": "WeAreNotDating-ch-142",
         "r2_prefix": "manga/WeAreNotDating/142/",
         "title": "Ch. 142",
-        "release_date": "2026-06-20T14:53:29+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0

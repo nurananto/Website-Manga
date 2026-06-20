@@ -34,49 +34,50 @@
       "volume": "3",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@mobile.webp?v=2"
       }
     },
     {
       "volume": "2",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@mobile.webp?v=2"
       }
     },
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@mobile.webp?v=2"
       }
     }
   ],
   "fb_cover": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf.webp",
+  "cover_version": 2,
   "mangadex_id": "02b80fce-8fd0-46dc-a6e4-a65f701fde4a",
   "rating": 8.6,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
       "chapter_number": 142,
       "lock_hours": 0,
       "pages": 6,
+      "release_date": "2026-06-20T14:53:29+07:00",
       "id": "WeAreNotDating-ch-142",
       "r2_prefix": "manga/WeAreNotDating/142/",
       "title": "Ch. 142",
-      "release_date": "2026-06-20T14:53:29+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
