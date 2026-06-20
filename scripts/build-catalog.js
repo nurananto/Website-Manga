@@ -97,8 +97,11 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
 
   const embeds = newChapters.map(ch => {
     const status = ch.isLocked ? '🔒 Akses Awal (koin)' : '🆓 Gratis';
-    const lines  = [`📖 **${ch.chapterTitle}**  •  ${status}`];
-    if (ch.discordChannelId) lines.push(`💬 [Diskusi judul ini](https://discord.com/channels/${GUILD}/${ch.discordChannelId})`);
+    // "Tombol" link teks (webhook tidak bisa button asli)
+    const links = [`🌐 [Baca](${base}/${ch.mangaId})`];
+    if (/^https?:/.test(ch.mangadexUrl))   links.push(`📚 [MangaDex](${ch.mangadexUrl})`);
+    if (ch.discordChannelId)               links.push(`💬 [Diskusi](https://discord.com/channels/${GUILD}/${ch.discordChannelId})`);
+    const lines = [`📖 **${ch.chapterTitle}**  •  ${status}`, links.join('  •  ')];
     return {
       author:    { name: 'Nurananto Scanlation • Update', url: base },
       title:     ch.mangaTitle,
@@ -163,6 +166,15 @@ async function buildCatalog() {
     // Manga lain pakai rating dari hasil build sebelumnya (refresh penuh saat cron mingguan).
     const isChanged = CHANGED_SLUGS.length === 0 || CHANGED_SLUGS.includes(slug);
     const prevJsonPath = path.join(outDir, `${slug}.json`);
+
+    // Tangkap chapter LAMA SEKARANG, sebelum per-manga JSON ditimpa di bawah —
+    // kalau dibaca setelah ditimpa, semua chapter dianggap "lama" (notif tak pernah jalan).
+    let prevChapterNums = new Set();
+    if (fs.existsSync(prevJsonPath)) {
+      try {
+        prevChapterNums = new Set((JSON.parse(fs.readFileSync(prevJsonPath, 'utf-8')).chapters || []).map(c => c.chapter_number));
+      } catch {}
+    }
     if (manga.mangadex_id && isChanged) {
       console.log(`📡 Fetching rating for ${manga.title}...`);
       manga.rating = await fetchMangaDexRating(manga.mangadex_id);
@@ -339,15 +351,9 @@ async function buildCatalog() {
       chapters:     chapters.slice(0, 3),
     });
 
-    // Deteksi chapter baru (hanya saat push spesifik, bukan full cron build)
+    // Deteksi chapter baru (hanya saat push spesifik, bukan full cron build).
+    // prevChapterNums sudah ditangkap di atas SEBELUM file ditimpa.
     if (CHANGED_SLUGS.length > 0 && CHANGED_SLUGS.includes(slug)) {
-      let prevChapterNums = new Set();
-      if (fs.existsSync(prevJsonPath)) {
-        try {
-          const prevData = JSON.parse(fs.readFileSync(prevJsonPath, 'utf-8'));
-          prevChapterNums = new Set((prevData.chapters || []).map(c => c.chapter_number));
-        } catch {}
-      }
       for (const ch of chapters) {
         if (!prevChapterNums.has(ch.chapter_number)) {
           newChaptersList.push({
@@ -359,6 +365,7 @@ async function buildCatalog() {
             isLocked:         ch.isLocked,
             releaseDate:      ch.release_date,
             discordChannelId: manga.discord_channel_id,
+            mangadexUrl:      manga.mangadex_url || manga.mangadex_id || '',
           });
           console.log(`   🔔 Chapter baru terdeteksi: ${manga.title} — ${ch.title}`);
         }
