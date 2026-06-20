@@ -125,22 +125,39 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   const GUILD = '1517520079108182036'; // server Discord (untuk link diskusi per judul)
 
   const logoIcon = `${base}/logo-header.webp`;
-  const embeds = newChapters.map(ch => {
-    // "Tombol" link teks (webhook tidak bisa button asli)
+  const footer   = { text: 'Nurananto Scanlation • Update Terbaru', icon_url: logoIcon };
+  // "Tombol" link teks (webhook tidak bisa button asli)
+  const linksOf = (ch) => {
     const links = [`🌐 [Baca](${base}/${ch.mangaId})`];
-    if (/^https?:/.test(ch.mangadexUrl))   links.push(`📚 [MangaDex](${ch.mangadexUrl})`);
-    if (ch.discordChannelId)               links.push(`💬 [Diskusi](https://discord.com/channels/${GUILD}/${ch.discordChannelId})`);
-    const lines = [`📖 **${ch.chapterTitle}**`, links.join('  •  ')];
-    return {
-      title:     ch.mangaTitle,
-      url:       `${base}/${ch.mangaId}`,
-      description: lines.join('\n'),
-      color:     0x5865F2,
-      image:     ch.coverUrl ? { url: ch.coverUrl } : undefined, // cover besar
-      footer:    { text: 'Nurananto Scanlation • Update Terbaru', icon_url: logoIcon },
-      timestamp: ch.releaseDate || new Date().toISOString(),
-    };
+    if (/^https?:/.test(ch.mangadexUrl)) links.push(`📚 [MangaDex](${ch.mangadexUrl})`);
+    if (ch.discordChannelId)             links.push(`💬 [Diskusi](https://discord.com/channels/${GUILD}/${ch.discordChannelId})`);
+    return links.join('  •  ');
+  };
+  const mkEmbed = (ch, descTop) => ({
+    title:     ch.mangaTitle,
+    url:       `${base}/${ch.mangaId}`,
+    description: [descTop, linksOf(ch)].join('\n'),
+    color:     0x5865F2,
+    image:     ch.coverUrl ? { url: ch.coverUrl } : undefined, // cover besar
+    footer,
+    timestamp: ch.releaseDate || new Date().toISOString(),
   });
+
+  // >3 chapter dari judul SAMA → 1 embed gabungan. Selain itu per-chapter (kaya).
+  const byManga = new Map();
+  for (const ch of newChapters) {
+    if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, []);
+    byManga.get(ch.mangaId).push(ch);
+  }
+  const embeds = [];
+  for (const list of byManga.values()) {
+    if (list.length > 3) {
+      const nums = list.map(c => c.chapterNumber);
+      embeds.push(mkEmbed(list[0], `📖 **${list.length} chapter baru** (Ch ${nums[nums.length - 1]}–${nums[0]})`));
+    } else {
+      for (const ch of list) embeds.push(mkEmbed(ch, `📖 **${ch.chapterTitle}**`));
+    }
+  }
 
   // Pecah pesan: maks 10 embed DAN ≤5500 char/pesan (limit Discord 6000)
   const chunks = chunkEmbeds(embeds);
