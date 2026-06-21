@@ -73,8 +73,6 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_MANGALIST_WEBHOOK_URL: ${{ secrets.DISCORD_MANGALIST_WEBHOOK_URL }}
           MANGALIST_BACKFILL: ${{ inputs.mangalist_backfill && '1' || '' }}
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           SITE_URL: ${{ secrets.SITE_URL }}
 
       - name: Generate version file
