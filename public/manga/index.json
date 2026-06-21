@@ -30,10 +30,10 @@
         "chapter_number": 12,
         "lock_hours": 0,
         "pages": 22,
+        "release_date": "2026-06-21T17:41:08+07:00",
         "id": "Sankakukei-ch-12",
         "r2_prefix": "manga/Sankakukei/12/",
         "title": "Ch. 12",
-        "release_date": "2026-06-21T17:41:08+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -216,7 +216,7 @@
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
-    "hiatus_at_chapter": 141,
+    "hiatus_at_chapter": 142,
     "chapters": [
       {
         "chapter_number": 142,
