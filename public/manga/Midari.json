@@ -23,11 +23,14 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 1,
-    "12": 2,
-    "13": 1
+    "1": 2,
+    "9": 1,
+    "10": 1,
+    "11": 1,
+    "12": 4,
+    "13": 4
   },
-  "total_views": 4,
+  "total_views": 13,
   "mangadex_cover": "d86648a6-77d3-4a95-a8d2-b296da206065.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -62,7 +65,7 @@
       "title": "Ch. 13",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 4
     },
     {
       "chapter_number": 12,
@@ -74,7 +77,7 @@
       "title": "Ch. 12",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 4
     },
     {
       "chapter_number": 11,
@@ -86,7 +89,7 @@
       "title": "Ch. 11",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 10,
@@ -98,7 +101,7 @@
       "title": "Ch. 10",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 9,
@@ -110,7 +113,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 8,
@@ -266,7 +269,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     }
   ]
 }

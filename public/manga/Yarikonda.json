@@ -32,10 +32,10 @@
     "2": 1,
     "5": 2,
     "6": 1,
-    "7": 2,
-    "8": 6
+    "7": 3,
+    "8": 7
   },
-  "total_views": 17,
+  "total_views": 19,
   "mangadex_cover": "8668678c-bc32-4ada-8374-53d6962ae431.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -79,7 +79,7 @@
       "title": "Ch. 8",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 7,
@@ -91,7 +91,7 @@
       "title": "Ch. 7",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 6,

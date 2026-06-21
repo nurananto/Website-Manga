@@ -34,10 +34,11 @@
     "7": 2,
     "8": 3,
     "9": 3,
-    "10": 4,
-    "11": 8
+    "10": 5,
+    "11": 9,
+    "12": 1
   },
-  "total_views": 29,
+  "total_views": 32,
   "mangadex_cover": "4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -72,7 +73,7 @@
       "title": "Ch. 12",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 11,
@@ -84,7 +85,7 @@
       "title": "Ch. 11",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 10,
@@ -96,7 +97,7 @@
       "title": "Ch. 10",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 9,
