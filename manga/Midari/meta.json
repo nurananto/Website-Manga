@@ -23,11 +23,14 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 1,
-    "12": 2,
-    "13": 1
+    "1": 2,
+    "9": 1,
+    "10": 1,
+    "11": 1,
+    "12": 4,
+    "13": 4
   },
-  "total_views": 4,
+  "total_views": 13,
   "mangadex_cover": "d86648a6-77d3-4a95-a8d2-b296da206065.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
