@@ -8,7 +8,8 @@
     "build": "node -e \"const fs=require('fs');fs.writeFileSync('public/version.json',JSON.stringify({v:Date.now().toString(),label:new Date().toLocaleDateString('id'),type:'code'}))\" && vite build && node scripts/inline-css.cjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "check:locked": "node scripts/check-locked-leak.js"
+    "check:locked": "node scripts/check-locked-leak.js",
+    "check:unlock": "node scripts/check-unlock-migration.js"
   },
   "dependencies": {
     "@fontsource/geist": "^5.2.9",
