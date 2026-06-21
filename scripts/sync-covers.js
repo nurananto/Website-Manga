@@ -31,6 +31,11 @@ const FORCE = process.env.FORCE_COVER_RESYNC === '1';
 const FORCE_SLUGS = new Set(
   (process.env.FORCE_COVER_SLUG || '').split(',').map(s => s.trim()).filter(Boolean)
 );
+// CHANGED_SLUGS (dari workflow) → hanya sync cover manga yang berubah di push ini,
+// hindari ~46 call MangaDex tiap push. Kosong = full scan (cron mingguan / dispatch).
+const CHANGED_SLUGS = new Set(
+  (process.env.CHANGED_SLUGS || '').split(',').map(s => s.trim()).filter(Boolean)
+);
 
 // fetch dengan timeout — cegah Action menggantung kalau MangaDex lambat/down.
 async function fetchT(url, options = {}, ms = 15000) {
@@ -138,6 +143,12 @@ async function syncCovers() {
   let skipped = 0;
 
   for (const slug of slugs) {
+    // Lewati manga yang TIDAK berubah di push ini (kecuali full scan / force).
+    // Hemat call MangaDex: incremental push cuma cek manga yang disentuh.
+    if (CHANGED_SLUGS.size > 0 && !CHANGED_SLUGS.has(slug) && !FORCE && !FORCE_SLUGS.has(slug)) {
+      continue;
+    }
+
     const metaPath = path.join(MANGA_DIR, slug, 'meta.json');
     if (!fs.existsSync(metaPath)) continue;
 

@@ -435,7 +435,6 @@ async function buildCatalog() {
         rating:           manga.rating,
         synopsis:         manga.description,
         discordChannelId: manga.discord_channel_id,
-        mangadexUrl:      manga.mangadex_url || manga.mangadex_id || '',
       });
     }
 
@@ -484,7 +483,6 @@ async function buildCatalog() {
             isLocked:         ch.isLocked,
             releaseDate:      ch.release_date,
             discordChannelId: manga.discord_channel_id,
-            mangadexUrl:      manga.mangadex_url || manga.mangadex_id || '',
           });
           console.log(`   🔔 Chapter baru terdeteksi: ${manga.title} — ${ch.title}`);
         }
