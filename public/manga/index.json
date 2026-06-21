@@ -1,5 +1,70 @@
 [
   {
+    "id": "Sankakukei",
+    "title": "Seishun wa Sankakukei no Loop",
+    "description": "Karena aku lebih memperhatikannya daripada siapa pun, aku jadi tahu. Kalau dia sedang jatuh cinta sekarang. Dan orang yang dia sukai itu adalah sahabatku sendiri, teman masa kecil kami berdua. Sang protagonis, Tsubaki, memutuskan untuk mengubur perasaannya dan membantu cinta sang gadis terwujud.…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp?v=1",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp?v=1",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@tablet.webp?v=1",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@mobile.webp?v=1"
+    },
+    "genres": [
+      "Comedy",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life",
+      "Time Travel"
+    ],
+    "rating": 8.42,
+    "total_views": 29,
+    "isTrending": true,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "discord_channel_id": "1517524057111662742",
+    "chapters": [
+      {
+        "chapter_number": 12,
+        "lock_hours": 0,
+        "pages": 22,
+        "id": "Sankakukei-ch-12",
+        "r2_prefix": "manga/Sankakukei/12/",
+        "title": "Ch. 12",
+        "release_date": "2026-06-21T17:41:08+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 11,
+        "lock_hours": 0,
+        "pages": 31,
+        "release_date": "2026-05-31T14:56:31+07:00",
+        "id": "Sankakukei-ch-11",
+        "r2_prefix": "manga/Sankakukei/11/",
+        "title": "Ch. 11",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 8
+      },
+      {
+        "chapter_number": 10,
+        "lock_hours": 0,
+        "pages": 14,
+        "release_date": "2026-05-31T14:56:31+07:00",
+        "id": "Sankakukei-ch-10",
+        "r2_prefix": "manga/Sankakukei/10/",
+        "title": "Ch. 10",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 4
+      }
+    ]
+  },
+  {
     "id": "Midari",
     "title": "Midari ni Tsukasete wa Narimasen",
     "description": "Tamotsu Sugawara, seorang karyawan yang tidak bisa menolak permintaan apa pun, mendapati dirinya tidak bisa lagi pergi ke kantor dan memutuskan untuk beristirahat sementara di kuil keluarganya. Suatu malam, hantu yang sangat mirip dengan Makoto Hiiragi, seorang mahasiswi yang bekerja part time di…",
@@ -1421,71 +1486,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 1
-      }
-    ]
-  },
-  {
-    "id": "Sankakukei",
-    "title": "Seishun wa Sankakukei no Loop",
-    "description": "Karena aku lebih memperhatikannya daripada siapa pun, aku jadi tahu. Kalau dia sedang jatuh cinta sekarang. Dan orang yang dia sukai itu adalah sahabatku sendiri, teman masa kecil kami berdua. Sang protagonis, Tsubaki, memutuskan untuk mengubur perasaannya dan membantu cinta sang gadis terwujud.…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp?v=1",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@mobile.webp?v=1"
-    },
-    "genres": [
-      "Comedy",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life",
-      "Time Travel"
-    ],
-    "rating": 8.42,
-    "total_views": 29,
-    "isTrending": true,
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "discord_channel_id": "1517524057111662742",
-    "chapters": [
-      {
-        "chapter_number": 11,
-        "lock_hours": 0,
-        "pages": 31,
-        "release_date": "2026-05-31T14:56:31+07:00",
-        "id": "Sankakukei-ch-11",
-        "r2_prefix": "manga/Sankakukei/11/",
-        "title": "Ch. 11",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 8
-      },
-      {
-        "chapter_number": 10,
-        "lock_hours": 0,
-        "pages": 14,
-        "release_date": "2026-05-31T14:56:31+07:00",
-        "id": "Sankakukei-ch-10",
-        "r2_prefix": "manga/Sankakukei/10/",
-        "title": "Ch. 10",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 4
-      },
-      {
-        "chapter_number": 9,
-        "lock_hours": 0,
-        "pages": 32,
-        "release_date": "2026-05-31T14:56:31+07:00",
-        "id": "Sankakukei-ch-9",
-        "r2_prefix": "manga/Sankakukei/9/",
-        "title": "Ch. 9",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 3
       }
     ]
   }
