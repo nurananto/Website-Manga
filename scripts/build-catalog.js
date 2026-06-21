@@ -71,12 +71,24 @@ function fixEncoding(val) {
   return val;
 }
 
+// fetch dengan timeout (AbortController) — cegah Action menggantung kalau server
+// eksternal (MangaDex/Discord/FB/Worker) lambat atau tidak merespons.
+async function fetchT(url, options = {}, ms = 15000) {
+  const ctrl  = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), ms);
+  try {
+    return await fetch(url, { ...options, signal: ctrl.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 // Fetch rating dari MangaDex API
 // mangadex_id: null → rating null (manga original / tidak ada di MangaDex)
 async function fetchMangaDexRating(mangadexId) {
   if (!mangadexId) return null;
   try {
-    const res = await fetch(
+    const res = await fetchT(
       `https://api.mangadex.org/statistics/manga/${mangadexId}`
     );
     if (!res.ok) return null;
@@ -168,7 +180,7 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   for (let i = 0; i < chunks.length; i++) {
     const chunk = chunks[i];
     try {
-      const res = await fetch(webhookUrl, {
+      const res = await fetchT(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -213,7 +225,7 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
 
   // Sinopsis panjang → kirim 1 embed per pesan (limit Discord ~6000 char/pesan
   // bila digabung; 10 sekaligus pasti ditolak). Jeda + retry 429.
-  const post = (embed) => fetch(webhookUrl, {
+  const post = (embed) => fetchT(webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username: 'Nurananto Scanlation', embeds: [embed] }),
@@ -265,7 +277,7 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
       let ok = false;
       // Photo post → cover jadi gambar utama (caption tetap clickable)
       if (info.image) {
-        const r = await fetch(`https://graph.facebook.com/v21.0/${pageId}/photos`, {
+        const r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/photos`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ url: info.image, caption: message, access_token: pageToken }),
@@ -275,7 +287,7 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
       }
       // Fallback: post teks biasa kalau tak ada gambar / photo ditolak
       if (!ok) {
-        const r = await fetch(`https://graph.facebook.com/v21.0/${pageId}/feed`, {
+        const r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/feed`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message, access_token: pageToken }),
@@ -581,7 +593,7 @@ async function buildCatalog() {
       let synced = false;
       for (let attempt = 1; attempt <= 3; attempt++) {
         try {
-          const res = await fetch(`${workerUrl}/api/admin/sync-locks`, {
+          const res = await fetchT(`${workerUrl}/api/admin/sync-locks`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': adminSecret },
             body: JSON.stringify({ locks }),

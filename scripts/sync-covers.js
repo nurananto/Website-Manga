@@ -32,10 +32,21 @@ const FORCE_SLUGS = new Set(
   (process.env.FORCE_COVER_SLUG || '').split(',').map(s => s.trim()).filter(Boolean)
 );
 
+// fetch dengan timeout — cegah Action menggantung kalau MangaDex lambat/down.
+async function fetchT(url, options = {}, ms = 15000) {
+  const ctrl  = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), ms);
+  try {
+    return await fetch(url, { ...options, signal: ctrl.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 // Cover utama (yang ditandai MangaDex sebagai cover_art manga)
 async function getMangaDexCover(mangadexId) {
   try {
-    const res = await fetch(`https://api.mangadex.org/manga/${mangadexId}?includes[]=cover_art`);
+    const res = await fetchT(`https://api.mangadex.org/manga/${mangadexId}?includes[]=cover_art`);
     if (!res.ok) return null;
     const data = await res.json();
     const rel = data.data?.relationships?.find(r => r.type === 'cover_art');
@@ -48,7 +59,7 @@ async function getMangaDexCover(mangadexId) {
 // Bahasa asli manga (ja/ko/zh...) — untuk memilih cover dengan locale yang benar
 async function getOriginalLanguage(mangadexId) {
   try {
-    const res = await fetch(`https://api.mangadex.org/manga/${mangadexId}`);
+    const res = await fetchT(`https://api.mangadex.org/manga/${mangadexId}`);
     if (!res.ok) return null;
     const data = await res.json();
     return data.data?.attributes?.originalLanguage || null;
@@ -60,7 +71,7 @@ async function getOriginalLanguage(mangadexId) {
 // Semua cover manga di MangaDex (untuk galeri) — urut volume naik
 async function getAllMangaDexCovers(mangadexId) {
   try {
-    const res = await fetch(`https://api.mangadex.org/cover?manga[]=${mangadexId}&limit=100&order[createdAt]=asc`);
+    const res = await fetchT(`https://api.mangadex.org/cover?manga[]=${mangadexId}&limit=100&order[createdAt]=asc`);
     if (!res.ok) return [];
     const data = await res.json();
     return (data.data || [])
@@ -87,9 +98,13 @@ async function deleteFromR2(key) {
 }
 
 async function downloadCover(mangadexId, fileName) {
-  const res = await fetch(`https://uploads.mangadex.org/covers/${mangadexId}/${fileName}`);
-  if (!res.ok) return null;
-  return Buffer.from(await res.arrayBuffer());
+  try {
+    const res = await fetchT(`https://uploads.mangadex.org/covers/${mangadexId}/${fileName}`, {}, 25000);
+    if (!res.ok) return null;
+    return Buffer.from(await res.arrayBuffer());
+  } catch {
+    return null; // timeout/network → skip cover (pakai yang lama)
+  }
 }
 
 async function resizeAndUpload(buffer, keyBase) {
