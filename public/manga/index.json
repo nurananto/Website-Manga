@@ -19,7 +19,7 @@
       "Time Travel"
     ],
     "rating": 8.42,
-    "total_views": 32,
+    "total_views": 33,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -36,7 +36,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 11,
@@ -276,7 +276,7 @@
       "Shounen"
     ],
     "rating": 7.86,
-    "total_views": 22,
+    "total_views": 23,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -293,7 +293,7 @@
         "title": "Ch. 17.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 5
       },
       {
         "chapter_number": 17.1,

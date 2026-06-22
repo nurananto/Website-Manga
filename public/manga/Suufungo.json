@@ -39,9 +39,9 @@
     "12": 1,
     "13": 1,
     "17.1": 4,
-    "17.2": 4
+    "17.2": 5
   },
-  "total_views": 22,
+  "total_views": 23,
   "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -85,7 +85,7 @@
       "title": "Ch. 17.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 17.1,
