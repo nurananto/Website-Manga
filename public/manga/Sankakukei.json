@@ -36,9 +36,9 @@
     "9": 3,
     "10": 5,
     "11": 9,
-    "12": 2
+    "12": 5
   },
-  "total_views": 33,
+  "total_views": 36,
   "mangadex_cover": "4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -73,7 +73,7 @@
       "title": "Ch. 12",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 5
     },
     {
       "chapter_number": 11,

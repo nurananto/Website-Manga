@@ -25,42 +25,53 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "11": 1,
-    "12": 1,
-    "13": 6
+    "10": 1,
+    "11": 2,
+    "12": 2,
+    "13": 7
   },
-  "total_views": 8,
-  "mangadex_cover": "ba037f6a-4e4c-4bc3-a8b9-4b200602d268.jpg",
+  "total_views": 12,
+  "mangadex_cover": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
     {
-      "volume": "2",
+      "volume": "3",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/0c426de6-aa3a-4957-a5b8-6ba7ca87022e.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/0c426de6-aa3a-4957-a5b8-6ba7ca87022e@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/0c426de6-aa3a-4957-a5b8-6ba7ca87022e@mobile.webp?v=2"
+      }
+    },
+    {
+      "volume": "2",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@mobile.webp?v=2"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@mobile.webp?v=2"
       }
     }
   ],
   "discord_channel_id": "1517524008457863168",
+  "cover_version": 2,
   "mangadex_id": "748d2aab-cea8-4ffb-89b3-e716872cb027",
   "rating": 6.78,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
@@ -73,7 +84,7 @@
       "title": "Ch. 13",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 12,
@@ -85,7 +96,7 @@
       "title": "Ch. 12",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 11,
@@ -97,7 +108,7 @@
       "title": "Ch. 11",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 10,
@@ -109,7 +120,7 @@
       "title": "Ch. 10",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 9,

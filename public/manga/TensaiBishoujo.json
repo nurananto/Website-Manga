@@ -25,8 +25,10 @@
   "raw_url": "https://comic-walker.com/detail/KC_006969_S/episodes/KC_0069690000200011_E?episodeType=first",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "1": 1
+  },
+  "total_views": 1,
   "mangadex_cover": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -42,7 +44,7 @@
   ],
   "discord_channel_id": "1517524124526837912",
   "mangadex_id": "ee1eb629-79c9-410f-927c-dd7a4cd1d87b",
-  "rating": 7.7,
+  "rating": 7.72,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=1",
   "coverUrls": {
@@ -97,7 +99,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     }
   ]
 }
