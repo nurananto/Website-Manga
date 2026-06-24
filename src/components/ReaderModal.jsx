@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUp, Lock, Clock, BookOpen, Coins } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUp, Lock, Clock, BookOpen } from 'lucide-react';
 import { discordCommentUrl } from '../lib/links';
 import CountdownTimer from './CountdownTimer';
-import { ReaderPageSkeleton } from './Skeleton';
 import { imgUrl } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
@@ -82,43 +81,6 @@ function NextUpdateInfo({ value }) {
     <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-surface-container-high/50 rounded-lg px-3 py-2 border border-white/5">
       Chapter berikutnya rilis dalam <span className="text-primary font-bold">{parts.join(' ') || 'kurang dari 1 menit'}</span>
     </p>
-  );
-}
-
-function CountdownLarge({ unlockDate }) {
-  const [time, setTime] = useState({ h: 0, m: 0, s: 0 });
-
-  useEffect(() => {
-    const update = () => {
-      const diff = new Date(unlockDate).getTime() - Date.now();
-      if (diff <= 0) { setTime({ h: 0, m: 0, s: 0 }); return; }
-      const totalSec = Math.floor(diff / 1000);
-      setTime({
-        h: Math.floor(totalSec / 3600),
-        m: Math.floor((totalSec % 3600) / 60),
-        s: totalSec % 60,
-      });
-    };
-    update();
-    const id = setInterval(update, 1000);
-    return () => clearInterval(id);
-  }, [unlockDate]);
-
-  const pad = (n) => String(n).padStart(2, '0');
-
-  return (
-    <div className="flex items-end gap-2 justify-center">
-      {[{ v: time.h, l: 'JAM' }, { v: time.m, l: 'MENIT' }, { v: time.s, l: 'DETIK' }].reduce((acc, { v, l }, i) => {
-        const cell = (
-          <div key={l} className="flex flex-col items-center">
-            <span className="font-mono text-4xl sm:text-5xl md:text-6xl font-black text-on-surface tabular-nums leading-none">{pad(v)}</span>
-            <span className="font-label-sm text-[10px] sm:text-xs md:text-sm text-outline/60 font-bold uppercase tracking-widest mt-1">{l}</span>
-          </div>
-        );
-        if (i === 0) return [cell];
-        return [...acc, <span key={`sep${i}`} className="font-mono text-3xl font-black text-outline/40 pb-5">:</span>, cell];
-      }, [])}
-    </div>
   );
 }
 
@@ -236,8 +198,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const [openChapterList, setOpenChapterList] = useState(null);
   const [dropdownAnchor, setDropdownAnchor] = useState(null); // pixel position dari getBoundingClientRect
   const [showLastChapterModal, setShowLastChapterModal] = useState(false);
-  const [showLockedModal, setShowLockedModal] = useState(false);
-  const [lockedNext, setLockedNext] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [barExpanded, setBarExpanded] = useState(false);
   const scrollRef = useRef(null);
@@ -457,13 +417,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
       return;
     }
     if (!nextChapter) return;
-    if (isChapterLocked(nextChapter) && !isLoggedIn) {
-      // Belum login — tidak perlu cek server, tampilkan countdown langsung
-      setLockedNext(nextChapter);
-      setShowLockedModal(true);
-      return;
-    }
-    // onReadChapter (handleReadChapter di App) memverifikasi kepemilikan ke server
+    // Chapter terkunci ditangani sepenuhnya oleh handleReadChapter di App:
+    // ia membuka LockedChapterModal (yang sudah punya tombol Login/Beli + countdown).
+    // Tidak perlu modal countdown terpisah di sini agar tidak muncul dua modal.
     onReadChapter(nextChapter, activeManga.title);
   };
 
@@ -881,56 +837,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
           document.body
         )}
 
-        {/* Modal: Chapter Terkunci */}
-        <AnimatePresence>
-          {showLockedModal && lockedNext && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
-              onClick={() => setShowLockedModal(false)}
-            >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                onClick={e => e.stopPropagation()}
-                className="bg-surface-container border border-white/10 rounded-2xl p-6 max-w-sm sm:max-w-md md:max-w-lg w-full shadow-2xl flex flex-col gap-5 text-center"
-              >
-                <div>
-                  <p className="font-label-sm text-xs sm:text-sm md:text-base text-outline/70 uppercase tracking-widest font-bold mb-1">Chapter berikutnya</p>
-                  <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface">{lockedNext.title}</h3>
-                </div>
-
-                {/* Countdown besar — update tiap detik */}
-                <div className="flex flex-col items-center gap-2 bg-surface-container-high/40 rounded-xl py-5 px-4 border border-white/5">
-                  <p className="font-label-sm text-xs sm:text-sm md:text-base text-outline/60 font-bold uppercase tracking-wider">Gratis dalam</p>
-                  <CountdownLarge unlockDate={lockedNext.unlockDate} />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <button
-                    onClick={() => {
-                      setShowLockedModal(false);
-                      onReadChapter(lockedNext, manga.title);
-                    }}
-                    className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md border border-yellow-600/30"
-                  >
-                    <Coins className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-                    Beli dengan 10 Koin
-                  </button>
-                  <button
-                    onClick={() => setShowLockedModal(false)}
-                    className="w-full h-10 sm:h-12 rounded-xl border border-white/10 text-xs sm:text-sm md:text-base font-bold text-outline hover:text-on-surface hover:bg-white/5 transition-all cursor-pointer"
-                  >
-                    Nanti saja
-                  </button>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </motion.div>
     </AnimatePresence>
   );

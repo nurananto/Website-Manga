@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Coins, Shield, CheckCircle2, AlertCircle, Clock, Lock, Gift, Zap } from 'lucide-react';
+import { X, Coins, Shield, CheckCircle2, AlertCircle, Clock, Lock, Gift, Zap, Mail } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { imgUrl } from '../utils';
 
