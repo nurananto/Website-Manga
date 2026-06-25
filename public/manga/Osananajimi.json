@@ -64,13 +64,25 @@
   },
   "chapters": [
     {
+      "chapter_number": 6.2,
+      "lock_hours": 240,
+      "pages": 12,
+      "id": "Osananajimi-ch-6.2",
+      "r2_prefix": "manga/Osananajimi/6.2/",
+      "title": "Ch. 6.2",
+      "release_date": "2026-06-25T19:24:18+07:00",
+      "unlockDate": "2026-07-05T12:24:18.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 6.1,
       "lock_hours": 48,
       "pages": 12,
+      "release_date": "2026-06-25T17:49:58+07:00",
       "id": "Osananajimi-ch-6.1",
       "r2_prefix": "manga/Osananajimi/6.1/",
       "title": "Ch. 6.1",
-      "release_date": "2026-06-25T17:49:58+07:00",
       "unlockDate": "2026-06-27T10:49:58.000Z",
       "isLocked": true,
       "views": 0
