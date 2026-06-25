@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { BookOpen, Heart, Key, RotateCcw, LogOut, Coins, Coffee } from 'lucide-react';
+import { Key, RotateCcw, LogOut, Coins } from 'lucide-react';
 
 export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, userCoins, isLoggedIn, currentUser, onLoginClick, onLogout, onBuyCoinsClick, onDropdownOpen }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

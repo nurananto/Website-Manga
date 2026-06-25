@@ -52,7 +52,7 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
     return sortNewest ? list : list.reverse();
   }, [manga.chapters, sortNewest]);
 
-const renderChapterRow = (ch, idx) => {
+const renderChapterRow = (ch) => {
     const isNew = !!ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
     const isUnread = !readChapters.has(ch.id);
     const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now() && !effectiveUnlocked.has(ch.id);

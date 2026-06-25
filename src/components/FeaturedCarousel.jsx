@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { imgUrl } from '../utils';
-import { navigate } from '../router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Info } from 'lucide-react';
 
-export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga, onReadFirst }) {
+export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }) {
   const trending = mangaList.filter((m) => m.isTrending) || [mangaList[0]];
   const [current, setCurrent] = useState(0);
   const touchStartX = useRef(null);
@@ -17,16 +16,6 @@ export default function FeaturedCarousel({ mangaList, onReadChapter, onViewManga
   }, [current, trending.length]);
 
   const activeManga = trending[current] || mangaList[0];
-
-  const handlePrev = (e) => {
-    e.stopPropagation();
-    setCurrent((prev) => (prev - 1 + trending.length) % trending.length);
-  };
-
-  const handleNext = (e) => {
-    e.stopPropagation();
-    setCurrent((prev) => (prev + 1) % trending.length);
-  };
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;

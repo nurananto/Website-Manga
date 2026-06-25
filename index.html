@@ -17,7 +17,10 @@
     <meta name="twitter:card" content="summary" />
     <!-- Preconnect ke origin gambar & API agar koneksi siap lebih awal (hemat LCP) -->
     <link rel="preconnect" href="https://cdn.nuranantoscans.my.id" crossorigin />
+    <link rel="preconnect" href="https://images.nuranantoscans.my.id" crossorigin />
     <link rel="preconnect" href="https://api.nuranantoscans.my.id" />
+    <!-- Turnstile (verifikasi sebelum ambil token chapter terkunci) -->
+    <link rel="preconnect" href="https://challenges.cloudflare.com" />
     <!-- Preload catalog JSON agar LCP cepat -->
     <link rel="preload" href="/manga/index.json" as="fetch" crossorigin="anonymous" />
     <!-- Fonts are self-hosted via @fontsource (bundled with app, no external dependency) -->

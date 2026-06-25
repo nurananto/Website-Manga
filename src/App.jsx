@@ -4,13 +4,13 @@ import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
 import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
-import { Sparkles, TrendingUp, BookOpen, Compass, RotateCcw, User, Heart, Shield, HelpCircle, Star, Search, Key, X, Coffee, CheckCircle, ArrowRight, Coins, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Sparkles, TrendingUp, Compass, RotateCcw, Search, CheckCircle, ArrowRight, Coins, ChevronLeft, ChevronRight } from 'lucide-react';
 import { imgUrl, timeAgo } from './utils';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AuthModal, CoinPurchaseModal, UnlockModal, LockedChapterModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
+import { AuthModal, CoinPurchaseModal, LockedChapterModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
-import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode, clearAuth } from './lib/auth';
+import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
 import { clearCachedSession } from './lib/session';
 
 // Lazy-load komponen besar/jarang dipakai → kurangi JS bundle awal (homepage)
@@ -152,7 +152,6 @@ function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUse
 export default function App() {
   const [MANGA_LIST, setMangaList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const initialRoute = useState(() => parsePath())[0];
   const [routePage, setRoutePage] = useState(() => parsePath().page);
 
   // Paksa refresh saat ada versi baru di server
@@ -257,7 +256,7 @@ export default function App() {
   const [showTrakteerModal, setShowTrakteerModal] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isCoinModalOpen, setIsCoinModalOpen] = useState(false);
-  const [isUnlockModalOpen, setIsUnlockModalOpen] = useState(false);
+  const [, setIsUnlockModalOpen] = useState(false);
   const [d1UnlockedChapters, setD1UnlockedChapters] = useState(new Set());
   const d1UnlockedRef = useRef(d1UnlockedChapters);
   d1UnlockedRef.current = d1UnlockedChapters;
@@ -1162,7 +1161,7 @@ export default function App() {
         isOpen={showTrakteerModal}
         defaultEmail={currentUser?.email || ''}
         onClose={() => setShowTrakteerModal(false)}
-        onSave={async (email) => {
+        onSave={async () => {
           setShowTrakteerModal(false);
           showToast('Email berhasil disimpan!');
         }}

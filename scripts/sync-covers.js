@@ -183,7 +183,7 @@ async function syncCovers() {
       console.log(`   🌐 Bahasa asli: ${origLang} — ${sameLocale.length}/${allCovers.length} cover cocok locale`);
     }
 
-    let coverFileName = null;
+    let coverFileName;
     const numbered = pool.filter(c => c.volume != null && !isNaN(parseFloat(c.volume)));
     if (numbered.length) {
       coverFileName = numbered.reduce((a, b) => parseFloat(b.volume) >= parseFloat(a.volume) ? b : a).file;
