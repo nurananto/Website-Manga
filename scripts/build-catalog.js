@@ -276,15 +276,21 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
       `Baca: ${host}/${mangaId}`;
     try {
       let ok = false;
-      // Photo post → cover jadi gambar utama (caption tetap clickable)
+      // Photo post → cover jadi gambar utama (caption tetap clickable).
+      // Timeout 45s: FB mengunduh & memproses gambar server-side, kadang >15s.
+      // Dibungkus try sendiri agar timeout/error JATUH ke fallback teks, bukan ter-skip.
       if (info.image) {
-        const r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/photos`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ url: info.image, caption: message, access_token: pageToken }),
-        });
-        if (r.ok) ok = true;
-        else console.warn(`⚠️  FB photo gagal (${info.title}): ${r.status} ${await r.text()} — fallback teks`);
+        try {
+          const r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/photos`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: info.image, caption: message, access_token: pageToken }),
+          }, 45000);
+          if (r.ok) ok = true;
+          else console.warn(`⚠️  FB photo gagal (${info.title}): ${r.status} ${await r.text()} — fallback teks`);
+        } catch (e) {
+          console.warn(`⚠️  FB photo timeout/error (${info.title}): ${e.message} — fallback teks`);
+        }
       }
       // Fallback: post teks biasa kalau tak ada gambar / photo ditolak
       if (!ok) {
