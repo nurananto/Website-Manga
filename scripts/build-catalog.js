@@ -16,6 +16,9 @@ const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || '';
 const DISCORD_MANGALIST_WEBHOOK_URL = process.env.DISCORD_MANGALIST_WEBHOOK_URL || '';
 // Backfill: kirim intro SEMUA manga ke #manga-list (sekali, untuk isi channel kosong)
 const MANGALIST_BACKFILL = process.env.MANGALIST_BACKFILL === '1';
+// Facebook Page — post chapter baru (opsional). Butuh Page ID + Page Access Token.
+const FB_PAGE_ID    = process.env.FB_PAGE_ID || '';
+const FB_PAGE_TOKEN = process.env.FB_PAGE_TOKEN || '';
 const SITE_URL = (process.env.SITE_URL || 'https://nuranantoscans.my.id').replace(/\/$/, '');
 
 // Waktu commit PERTAMA yang menambahkan file — stabil, tidak berubah oleh commit berikutnya
@@ -242,6 +245,60 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
     await new Promise(r => setTimeout(r, 1200)); // anti rate-limit (5 req / 2 dtk)
   }
   console.log(`📚 Intro manga-list terkirim: ${sent}/${embeds.length} judul`);
+}
+
+// ── Post chapter baru ke Facebook Page (teks polos, link tanpa html) ──
+// Butuh FB_PAGE_ID + FB_PAGE_TOKEN (Page Access Token long-lived).
+async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl) {
+  if (!pageId || !pageToken || newChapters.length === 0) return;
+  const host = siteUrl.replace(/^https?:\/\//, '').replace(/\/$/, ''); // nuranantoscans.my.id
+  // Gambar FB: override per-manga (meta fb_cover, URL penuh) → else cover situs.
+  const fbImage = (ch) => ch.fbCover || ch.coverUrl || '';
+
+  // Gabung per judul → 1 post per manga (cegah spam feed saat upload banyak chapter
+  // sekaligus). newChapters urut terbaru→lama dari deteksi.
+  const byManga = new Map();
+  for (const ch of newChapters) {
+    if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, { title: ch.mangaTitle, image: fbImage(ch), nums: [] });
+    byManga.get(ch.mangaId).nums.push(ch.chapterNumber);
+  }
+
+  let sent = 0;
+  for (const [mangaId, info] of byManga) {
+    const nums = info.nums;
+    const head = nums.length === 1
+      ? `Chapter ${nums[0]} sudah update!`
+      : `${nums.length} chapter baru (Ch ${nums[nums.length - 1]}–${nums[0]}) sudah update!`;
+    const message =
+      `📖 ${info.title}\n${head}\n\n` +
+      `Baca: ${host}/${mangaId}`;
+    try {
+      let ok = false;
+      // Photo post → cover jadi gambar utama (caption tetap clickable)
+      if (info.image) {
+        const r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/photos`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: info.image, caption: message, access_token: pageToken }),
+        });
+        if (r.ok) ok = true;
+        else console.warn(`⚠️  FB photo gagal (${info.title}): ${r.status} ${await r.text()} — fallback teks`);
+      }
+      // Fallback: post teks biasa kalau tak ada gambar / photo ditolak
+      if (!ok) {
+        const r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/feed`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message, access_token: pageToken }),
+        });
+        if (r.ok) ok = true;
+        else console.warn(`⚠️  FB feed gagal (${info.title}): ${r.status} ${await r.text()}`);
+      }
+      if (ok) sent++;
+    } catch (e) { console.warn(`⚠️  FB error (${info.title}): ${e.message}`); }
+    await new Promise(r => setTimeout(r, 1500)); // jeda antar post
+  }
+  console.log(`📘 Facebook posting terkirim: ${sent}/${byManga.size} judul`);
 }
 
 async function buildCatalog() {
@@ -483,6 +540,7 @@ async function buildCatalog() {
             isLocked:         ch.isLocked,
             releaseDate:      ch.release_date,
             discordChannelId: manga.discord_channel_id,
+            fbCover:          manga.fb_cover || '',
           });
           console.log(`   🔔 Chapter baru terdeteksi: ${manga.title} — ${ch.title}`);
         }
@@ -558,6 +616,7 @@ async function buildCatalog() {
   // Notifikasi Discord untuk chapter-chapter baru
   await sendDiscordNotifications(newChaptersList, DISCORD_WEBHOOK_URL, SITE_URL);
   await sendMangaIntros(newMangaList, DISCORD_MANGALIST_WEBHOOK_URL, SITE_URL);
+  await sendFacebookNotifications(newChaptersList, FB_PAGE_ID, FB_PAGE_TOKEN, SITE_URL);
 }
 
 buildCatalog().catch(err => {
