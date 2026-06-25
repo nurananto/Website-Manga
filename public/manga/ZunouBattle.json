@@ -32,28 +32,38 @@
     "4": 5
   },
   "total_views": 10,
-  "mangadex_cover": "e57c025c-a8b2-4e1c-8868-48f109d9e194.png",
+  "mangadex_cover": "d98e2228-a07a-4a31-881b-159f1b0eb0f1.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
     {
-      "volume": "0",
+      "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/e57c025c-a8b2-4e1c-8868-48f109d9e194.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/e57c025c-a8b2-4e1c-8868-48f109d9e194@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/e57c025c-a8b2-4e1c-8868-48f109d9e194@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/d98e2228-a07a-4a31-881b-159f1b0eb0f1.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/d98e2228-a07a-4a31-881b-159f1b0eb0f1@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/d98e2228-a07a-4a31-881b-159f1b0eb0f1@mobile.webp?v=2"
+      }
+    },
+    {
+      "volume": "0",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/e57c025c-a8b2-4e1c-8868-48f109d9e194.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/e57c025c-a8b2-4e1c-8868-48f109d9e194@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/e57c025c-a8b2-4e1c-8868-48f109d9e194@mobile.webp?v=2"
       }
     }
   ],
   "discord_channel_id": "1517524270371311676",
+  "cover_version": 2,
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
   "rating": 8.21,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
