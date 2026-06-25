@@ -17,8 +17,10 @@ const DISCORD_MANGALIST_WEBHOOK_URL = process.env.DISCORD_MANGALIST_WEBHOOK_URL 
 // Backfill: kirim intro SEMUA manga ke #manga-list (sekali, untuk isi channel kosong)
 const MANGALIST_BACKFILL = process.env.MANGALIST_BACKFILL === '1';
 // Facebook Page — post chapter baru (opsional). Butuh Page ID + Page Access Token.
-const FB_PAGE_ID    = process.env.FB_PAGE_ID || '';
-const FB_PAGE_TOKEN = process.env.FB_PAGE_TOKEN || '';
+// .trim() — secret di GitHub sering kebawa spasi/newline saat paste; tanpa trim, ID jadi
+// "1183...924 " → URL Graph rusak → error 100/33 "Object does not exist".
+const FB_PAGE_ID    = (process.env.FB_PAGE_ID || '').trim();
+const FB_PAGE_TOKEN = (process.env.FB_PAGE_TOKEN || '').trim();
 const SITE_URL = (process.env.SITE_URL || 'https://nuranantoscans.my.id').replace(/\/$/, '');
 
 // Waktu commit PERTAMA yang menambahkan file — stabil, tidak berubah oleh commit berikutnya
