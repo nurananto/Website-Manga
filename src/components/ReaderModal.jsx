@@ -280,7 +280,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const prevDisabled = isAtOldest || isOneshot;
 
   // Gambar gratis → CDN publik (R2, tanpa worker/token). Terkunci → worker + access token.
-  const cdnBase   = (import.meta.env.VITE_CDN_URL || '').replace(/\/$/, '');
+  // CDN publik untuk chapter free — di-hardcode (sama dengan preconnect di index.html).
+  // URL ini infrastruktur tetap & publik; di-hardcode agar tidak bergantung pada secret
+  // VITE_CDN_URL yang terbukti tidak reliabel (sering berisi nilai salah).
+  const cdnBase   = 'https://cdn.nuranantoscans.my.id';
   const imageBase = (import.meta.env.VITE_IMAGE_URL || import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
   const [pages, setPages] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -325,13 +328,24 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   // Gratis: CDN langsung siap. Terkunci: tunggu access token + hash path.
   const imageReady = chapterNeedsToken ? (!!imgAccess && !!imgHash) : true;
 
+  // Chapter yang BARU lepas kunci (< 2 jam) mungkin belum selesai dimigrasi dari
+  // manga-locked ke manga-media. CDN (R2 langsung) akan balas 404 yang ter-cache lama →
+  // arahkan ke worker (images.) yang punya migrasi-on-access. Cron memigrasi dalam menit,
+  // jadi setelah jendela ini chapter sudah aman dilayani CDN langsung.
+  const FRESHLY_FREED_MS = 2 * 60 * 60 * 1000;
+  const freshlyFreed = !!chapter?.unlockDate &&
+    Date.now() - new Date(chapter.unlockDate).getTime() >= 0 &&
+    Date.now() - new Date(chapter.unlockDate).getTime() < FRESHLY_FREED_MS;
+
   const makeUrl = (idx) => {
     const num = String(idx).padStart(2, '0');
     if (chapterNeedsToken) {
       // Path di-hash agar judul/chapter tidak terbaca di URL: /c/<hash>/<NN>.webp
       return `${imageBase}/c/${imgHash}/${num}.webp?access=${encodeURIComponent(imgAccess)}`;
     }
-    return `${cdnBase || imageBase}/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp`;
+    // Baru lepas kunci → lewat worker (migrasi-on-access). Selain itu → CDN langsung.
+    const base = freshlyFreed && imageBase ? imageBase : (cdnBase || imageBase);
+    return `${base}/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp`;
   };
 
   // Generate semua URL sekaligus.
