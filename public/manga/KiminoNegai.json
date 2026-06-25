@@ -26,9 +26,9 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "0": 1,
-    "9": 1
+    "9": 2
   },
-  "total_views": 2,
+  "total_views": 3,
   "mangadex_cover": "b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -72,7 +72,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 8,
