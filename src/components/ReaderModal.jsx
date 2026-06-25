@@ -328,11 +328,12 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   // Gratis: CDN langsung siap. Terkunci: tunggu access token + hash path.
   const imageReady = chapterNeedsToken ? (!!imgAccess && !!imgHash) : true;
 
-  // Chapter yang BARU lepas kunci (< 2 jam) mungkin belum selesai dimigrasi dari
-  // manga-locked ke manga-media. CDN (R2 langsung) akan balas 404 yang ter-cache lama →
-  // arahkan ke worker (images.) yang punya migrasi-on-access. Cron memigrasi dalam menit,
-  // jadi setelah jendela ini chapter sudah aman dilayani CDN langsung.
-  const FRESHLY_FREED_MS = 2 * 60 * 60 * 1000;
+  // Chapter yang BARU lepas kunci mungkin belum selesai dimigrasi dari manga-locked ke
+  // manga-media. CDN (R2 langsung) akan balas 404 yang ter-cache lama → arahkan ke worker
+  // (images.) yang punya migrasi-on-access selama jendela ini, setelahnya aman ke CDN.
+  // PENTING: jendela ini HARUS > interval cron migrasi. Cron = tiap 3 jam → pakai 6 jam
+  // (2× interval) agar tetap aman walau satu run cron terlewat.
+  const FRESHLY_FREED_MS = 6 * 60 * 60 * 1000;
   const freshlyFreed = !!chapter?.unlockDate &&
     Date.now() - new Date(chapter.unlockDate).getTime() >= 0 &&
     Date.now() - new Date(chapter.unlockDate).getTime() < FRESHLY_FREED_MS;
