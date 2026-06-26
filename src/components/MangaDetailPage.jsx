@@ -73,7 +73,9 @@ const renderChapterRow = (ch) => {
       <div
         key={ch.id}
         onClick={() => {
-          setReadChapters(prev => new Set([...prev, ch.id]));
+          // Chapter terkunci hanya membuka modal beli — belum benar-benar dibaca,
+          // jadi jangan tandai "sudah dibaca" (cegah row meredup setelah modal ditutup).
+          if (!isLocked) setReadChapters(prev => new Set([...prev, ch.id]));
           onReadChapter(ch, manga.title);
         }}
         className={`group flex items-center justify-between py-3 px-2 sm:px-3 transition-all cursor-pointer rounded-xl border ${
