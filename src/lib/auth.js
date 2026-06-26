@@ -70,9 +70,11 @@ export function getCurrentUser() {
 }
 
 // ── Login via Google OAuth ────────────────────────────────────
-export function loginWithGoogle() {
+// Opsional kirim token Turnstile (?ts=) — worker verifikasi sebelum redirect ke Google.
+export function loginWithGoogle(turnstileToken) {
   const redirect = window.location.href;
-  window.location.href = `${API}/api/auth/google?redirect=${encodeURIComponent(redirect)}`;
+  const ts = turnstileToken ? `&ts=${encodeURIComponent(turnstileToken)}` : '';
+  window.location.href = `${API}/api/auth/google?redirect=${encodeURIComponent(redirect)}${ts}`;
 }
 
 // ── Exchange one-time login code for tokens ───────────────────

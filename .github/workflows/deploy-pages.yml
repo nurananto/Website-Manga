@@ -37,7 +37,13 @@ jobs:
           VITE_TURNSTILE_SITEKEY: ${{ secrets.VITE_TURNSTILE_SITEKEY }}
 
       - name: Pastikan project Pages ada (idempotent)
-        run: npx wrangler pages project create nuranantoscans --production-branch=main || true
+        run: |
+          if npx wrangler pages project list 2>/dev/null | grep -q "nuranantoscans"; then
+            echo "Project 'nuranantoscans' sudah ada, lewati create."
+          else
+            echo "Project belum ada, membuat..."
+            npx wrangler pages project create nuranantoscans --production-branch=main
+          fi
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}

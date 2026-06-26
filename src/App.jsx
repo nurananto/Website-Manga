@@ -12,6 +12,7 @@ import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
 import { clearCachedSession } from './lib/session';
+import { getDeviceId } from './lib/device';
 
 // Lazy-load komponen besar/jarang dipakai → kurangi JS bundle awal (homepage)
 const MangaDetailPage     = lazy(() => import('./components/MangaDetailPage'));
@@ -191,12 +192,6 @@ export default function App() {
     }, 1200);
   };
 
-  useEffect(() => {
-    const handleSwUpdate = () => triggerUpdate('');
-    window.addEventListener('app-update', handleSwUpdate);
-    return () => window.removeEventListener('app-update', handleSwUpdate);
-  }, []);
-
 
   useEffect(() => {
     let currentVersion = null;
@@ -255,6 +250,11 @@ export default function App() {
   const [nameChangedAt, setNameChangedAt] = useState(null);
   const [showTrakteerModal, setShowTrakteerModal] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authReason, setAuthReason] = useState(null);
+  // Splash "menyelesaikan masuk" — aktif bila balik dari OAuth (URL bawa ?code=)
+  const [finishingLogin, setFinishingLogin] = useState(() => {
+    try { return new URLSearchParams(window.location.search).has('code'); } catch { return false; }
+  });
   const [isCoinModalOpen, setIsCoinModalOpen] = useState(false);
   const [, setIsUnlockModalOpen] = useState(false);
   const [d1UnlockedChapters, setD1UnlockedChapters] = useState(new Set());
@@ -290,30 +290,66 @@ export default function App() {
     }
   }, [activeChapter, activeMangaTitle, selectedManga]);
 
+  // Buka modal login dengan konteks (reason) + simpan "intent" yang dilanjutkan
+  // setelah login (mis. beli chapter terkunci). Disimpan di sessionStorage agar
+  // bertahan melintasi redirect OAuth (full-page ke Google lalu balik).
+  const openAuth = (reason = null, intent = null) => {
+    try {
+      if (intent) sessionStorage.setItem('mf_login_intent', JSON.stringify(intent));
+      else sessionStorage.removeItem('mf_login_intent');
+    } catch {}
+    setAuthReason(reason);
+    setIsAuthModalOpen(true);
+  };
+
+  // Lanjutkan niat tertunda setelah login berhasil (buka kembali modal beli chapter).
+  const resumeLoginIntent = async () => {
+    let raw = null;
+    try { raw = sessionStorage.getItem('mf_login_intent'); sessionStorage.removeItem('mf_login_intent'); } catch {}
+    if (!raw) return;
+    let intent;
+    try { intent = JSON.parse(raw); } catch { return; }
+    if (intent?.type !== 'unlock' || !intent.mangaId || intent.chapterNum == null) return;
+    try {
+      const cur = selectedMangaRef.current;
+      const manga = cur?.id === intent.mangaId ? cur
+        : await fetch(`/manga/${intent.mangaId}.json`).then(r => (r.ok ? r.json() : null));
+      if (!manga) return;
+      const ch = (manga.chapters || []).find(c => String(c.chapter_number) === String(intent.chapterNum));
+      if (!ch || d1UnlockedRef.current.has(ch.id)) return;
+      setPendingUnlockChapter(ch);
+      setPendingMangaTitle(manga.title);
+      setPendingManga(manga);
+      setIsLockedModalOpen(true);
+    } catch {}
+  };
+
   // Custom auth init
   useEffect(() => {
     const initAuth = async () => {
-      // Handle OAuth callback: /auth?code=xxx
-      const { page } = parsePath();
-      if (page === 'auth') {
-        const params = new URLSearchParams(window.location.search);
-        const code = params.get('code');
-        if (code) {
-          const user = await exchangeLoginCode(code);
+      // OAuth callback: login code bisa muncul di path mana pun, mis.
+      // /waka-chan/35?code=... → user kembali persis ke chapter tempat dia login.
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get('code');
+      if (code) {
+        try {
+          const user = await exchangeLoginCode(code).catch(() => null);
+          // Buang ?code= dari URL tapi pertahankan path (chapter) + param lain
+          params.delete('code');
+          const clean = window.location.pathname + (params.toString() ? `?${params}` : '') + window.location.hash;
+          window.history.replaceState(null, '', clean);
           if (user) {
             setIsLoggedIn(true);
             setCurrentUser(user);
             setIsAuthModalOpen(false);
-            // Redirect ke URL sebelum login (disimpan di ?redirect= via loginWithGoogle)
-            const redirect = params.get('redirect') || '/';
-            navigate(redirect, true);
             await loadUserData(user);
-          } else {
-            navigate('/', true);
+            await resumeLoginIntent();
+          } else if (parsePath().page === 'auth') {
+            navigate('/', true); // legacy /auth tanpa hasil → balik ke home
           }
-          return;
+        } finally {
+          setFinishingLogin(false);
         }
-        navigate('/', true);
         return;
       }
 
@@ -457,7 +493,7 @@ export default function App() {
           const stillLocked = ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now();
           if (stillLocked && !d1UnlockedRef.current.has(ch.id)) {
             navigate(`/${mangaId}`, true);
-            if (!isLoggedIn) setIsAuthModalOpen(true);
+            if (!isLoggedIn) openAuth('unlock', { type: 'unlock', mangaId, chapterNum: ch.chapter_number });
             else { setPendingUnlockChapter(ch); setPendingMangaTitle(manga.title); setIsUnlockModalOpen(true); }
             return;
           }
@@ -500,13 +536,15 @@ export default function App() {
     try {
       const res = await fetch(`${workerUrl}/api/user/daily-claim`, {
         method: 'POST',
-        headers: { 'Authorization': `Bearer ${token}` },
+        headers: { 'Authorization': `Bearer ${token}`, 'X-Device-Id': getDeviceId() },
       });
       const d = await res.json();
       if (d.ok) {
         setUserCoins(prev => prev + (d.coins_added || 1));
         setCurrentUser(prev => prev ? { ...prev, daily_claim_at: new Date().toISOString() } : prev);
         showToast(`+${d.coins_added || 1} koin harian diklaim!`);
+      } else if (d.blocked) {
+        showToast('Klaim harian dibatasi pada perangkat ini.');
       }
       return d;
     } catch { return { ok: false }; }
@@ -665,6 +703,14 @@ export default function App() {
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
 
+      {/* Splash saat balik dari OAuth — sebelum reader/halaman tampil kembali */}
+      {finishingLogin && (
+        <div className="fixed inset-0 z-[9998] flex flex-col items-center justify-center bg-surface/95 backdrop-blur-xl gap-4">
+          <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+          <p className="text-sm font-bold text-on-surface">Menyelesaikan masuk…</p>
+        </div>
+      )}
+
       {/* Update overlay */}
       {showUpdateBanner && (
         <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-surface/95 backdrop-blur-xl gap-4">
@@ -691,7 +737,7 @@ export default function App() {
           userCoins={userCoins}
           isLoggedIn={isLoggedIn}
           currentUser={currentUser}
-          onLoginClick={() => setIsAuthModalOpen(true)}
+          onLoginClick={() => openAuth()}
           onLogout={async () => {
             await authLogout();
             setIsLoggedIn(false);
@@ -704,7 +750,7 @@ export default function App() {
             if (isLoggedIn) {
               setIsCoinModalOpen(true);
             } else {
-              setIsAuthModalOpen(true);
+              openAuth();
             }
           }}
           onDropdownOpen={async () => {
@@ -1091,7 +1137,7 @@ export default function App() {
             currentUser={currentUser}
             userCoins={userCoins}
             onDailyClaim={handleDailyClaim}
-            onLoginClick={() => setIsAuthModalOpen(true)}
+            onLoginClick={() => openAuth('reader')}
           />
         </Suspense>
       )}
@@ -1153,7 +1199,11 @@ export default function App() {
       {/* Auth Modal */}
       <AuthModal
         isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
+        reason={authReason}
+        onClose={() => {
+          setIsAuthModalOpen(false);
+          try { sessionStorage.removeItem('mf_login_intent'); } catch {}
+        }}
       />
 
       {/* Trakteer Email Modal — muncul saat pertama kali login */}
@@ -1189,7 +1239,7 @@ export default function App() {
         isLoggedIn={isLoggedIn}
         userCoins={userCoins}
         onConfirm={handleConfirmUnlock}
-        onLogin={() => { setIsLockedModalOpen(false); setIsAuthModalOpen(true); }}
+        onLogin={() => { setIsLockedModalOpen(false); openAuth('unlock', { type: 'unlock', mangaId: pendingManga?.id, chapterNum: pendingUnlockChapter?.chapter_number }); }}
         onGoToStore={() => { setIsLockedModalOpen(false); setIsCoinModalOpen(true); }}
       />
 

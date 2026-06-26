@@ -1,5 +1,9 @@
-// Service Worker — force reload saat ada versi baru
-// Versi di-inject otomatis oleh GitHub Action
+// Service Worker — auto-update ringan (BUKAN PWA: tidak ada cache/offline).
+//
+// Tugasnya hanya memastikan versi terbaru cepat aktif: skipWaiting + claim,
+// dan membersihkan cache lama bila ada. Deteksi versi & reload pintar
+// ditangani oleh poll version.json di App.jsx, jadi SW ini tidak meng-cache
+// aset apa pun dan tidak memunculkan prompt update sendiri.
 
 const CACHE_NAME = 'nuranantoscans-v1';
 
@@ -10,10 +14,10 @@ self.addEventListener('install', () => {
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    // Hapus cache lama
-    caches.keys().then(keys =>
+    // Hapus cache lama (jika ada sisa dari versi sebelumnya)
+    caches.keys().then((keys) =>
       Promise.all(
-        keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
+        keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k))
       )
     ).then(() => self.clients.claim())
   );

@@ -1,8 +1,37 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Coins, AlertCircle, Lock, Zap, Mail } from 'lucide-react';
+import { X, Coins, AlertCircle, Lock, Zap, Mail, Check } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
+import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { imgUrl } from '../utils';
+
+// Widget Turnstile terlihat (centang) untuk gate login — sama seperti saat
+// membuka locked chapter. Memanggil onToken setelah pengguna lolos verifikasi.
+function LoginTurnstile({ onToken }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    // Tidak ada sitekey → lewati (fail-open, worker juga fail-open tanpa secret)
+    if (!TURNSTILE_SITEKEY) { onToken(''); return; }
+    let widgetId;
+    let cancelled = false;
+    loadTurnstile().then((ts) => {
+      if (cancelled || !ts || !ref.current) return;
+      try {
+        widgetId = ts.render(ref.current, {
+          sitekey: TURNSTILE_SITEKEY,
+          callback: (t) => onToken(t),
+          'error-callback': () => {},
+          'timeout-callback': () => {},
+        });
+      } catch {}
+    });
+    return () => {
+      cancelled = true;
+      try { if (widgetId != null && window.turnstile) window.turnstile.remove(widgetId); } catch {}
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  return <div ref={ref} className="flex justify-center min-h-[65px]" />;
+}
 
 // Tombol klaim koin harian (1 koin / 24 jam). Dipakai di modal Isi Koin & reader.
 // Selalu tampil; setelah diklaim → nonaktif + hitung mundur sampai 24 jam.
@@ -93,22 +122,62 @@ function CountdownBox({ unlockDate }) {
 }
 
 // ── Auth Modal — Google OAuth ─────────────────────────────────
-export function AuthModal({ isOpen, onClose }) {
+// Copy kontekstual sesuai dari mana login dipicu (reader, beli chapter, dll).
+const AUTH_COPY = {
+  unlock: {
+    title: 'Masuk untuk buka chapter',
+    subtitle: 'Login sebentar — setelah itu kamu langsung lanjut beli chapter ini.',
+  },
+  reader: {
+    title: 'Masuk untuk lanjut',
+    subtitle: 'Kamu akan kembali ke halaman yang sama setelah masuk.',
+  },
+  default: {
+    title: 'Selamat Datang',
+    subtitle: 'Masuk untuk akses koin & riwayat baca.',
+  },
+};
+
+const AUTH_BENEFITS = [
+  'Lanjut baca dari halaman terakhir',
+  'Klaim koin harian gratis',
+  'Buka chapter terkunci lebih awal',
+];
+
+// Bottom-sheet di mobile, kartu di layar besar. `reason` mengubah judul/subjudul.
+export function AuthModal({ isOpen, onClose, reason }) {
+  const [verifying, setVerifying] = useState(false);     // widget Turnstile tampil
+  const [redirecting, setRedirecting] = useState(false); // token didapat → menuju Google
+  // Reset state tiap kali modal ditutup
+  useEffect(() => { if (!isOpen) { setVerifying(false); setRedirecting(false); } }, [isOpen]);
   if (!isOpen) return null;
+  const copy = AUTH_COPY[reason] || AUTH_COPY.default;
+  const handleToken = (token) => {
+    setRedirecting(true);
+    loginWithGoogle(token || undefined);
+  };
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
+      <div className="fixed inset-0 z-[400] flex items-end sm:items-center justify-center bg-black/75 backdrop-blur-md">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           onClick={onClose} className="absolute inset-0" />
 
-        <motion.div initial={{ opacity: 0, scale: 0.92, y: 24 }} animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.92, y: 24 }} transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-          className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-3xl shadow-2xl overflow-hidden z-10"
+        <motion.div
+          initial={{ opacity: 0, y: '100%' }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: '100%' }}
+          transition={{ type: 'spring', damping: 30, stiffness: 320 }}
+          className="relative w-full sm:max-w-sm bg-surface-container border-t sm:border border-white/10 rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden z-10 pb-safe-4"
         >
           {/* Background glow */}
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
           <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Grab handle (mobile bottom-sheet) */}
+          <div className="sm:hidden flex justify-center pt-3">
+            <div className="w-10 h-1.5 rounded-full bg-white/15" />
+          </div>
 
           {/* Close */}
           <button onClick={onClose}
@@ -116,21 +185,31 @@ export function AuthModal({ isOpen, onClose }) {
             <X className="w-4 h-4" />
           </button>
 
-          <div className="relative px-8 pt-10 pb-8 flex flex-col items-center gap-6">
+          <div className="relative px-7 pt-6 sm:pt-9 pb-7 flex flex-col items-center gap-5">
             {/* Logo/Icon */}
             <div className="flex flex-col items-center gap-3">
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-400/20 to-indigo-600/20 border border-white/10 flex items-center justify-center shadow-lg overflow-hidden p-2">
                 <img src="/icon.webp" alt="Logo" className="w-full h-full object-contain" />
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-black text-on-surface">Selamat Datang</h3>
-                <p className="text-xs text-outline/70 mt-1">Masuk untuk akses koin &amp; riwayat baca</p>
+                <h3 className="text-xl font-black text-on-surface">{copy.title}</h3>
+                <p className="text-xs text-outline/70 mt-1 leading-relaxed max-w-[16rem] mx-auto">{copy.subtitle}</p>
               </div>
             </div>
 
-            {/* OAuth button */}
-            <div className="w-full flex flex-col gap-3">
-              <button onClick={loginWithGoogle}
+            {/* Value props */}
+            <div className="w-full flex flex-col gap-2 px-1">
+              {AUTH_BENEFITS.map((t) => (
+                <div key={t} className="flex items-center gap-2.5 text-xs text-outline">
+                  <Check className="w-4 h-4 text-primary shrink-0" />
+                  <span>{t}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* OAuth: klik → Turnstile (terlihat) → redirect ke Google */}
+            {!verifying ? (
+              <button onClick={() => setVerifying(true)}
                 className="w-full h-13 py-3.5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 flex items-center justify-center gap-3 text-sm font-bold text-on-surface cursor-pointer active:scale-[0.97] transition-all group">
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -140,10 +219,20 @@ export function AuthModal({ isOpen, onClose }) {
                 </svg>
                 Lanjutkan dengan Google
               </button>
-            </div>
+            ) : redirecting ? (
+              <div className="w-full h-13 flex items-center justify-center gap-2.5 text-sm font-bold text-on-surface">
+                <div className="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                Mengarahkan ke Google…
+              </div>
+            ) : (
+              <div className="w-full flex flex-col items-center gap-2.5">
+                <p className="text-xs text-outline/80">Selesaikan verifikasi untuk lanjut</p>
+                <LoginTurnstile onToken={handleToken} />
+              </div>
+            )}
 
             <p className="text-center text-[10px] text-outline/40 leading-relaxed">
-              Dengan masuk, kamu menyetujui syarat &amp; ketentuan layanan kami.
+              Akun hanya bisa aktif di satu perangkat. Dengan masuk, kamu menyetujui syarat &amp; ketentuan layanan kami.
             </p>
           </div>
         </motion.div>

@@ -445,7 +445,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
 
   if (!activeChapter) return null;
 
-  const NavBar = ({ position }) => (
+  // Render helper (bukan komponen) — dipanggil sebagai fungsi agar tidak
+  // di-remount tiap render dan tidak melanggar react-hooks/static-components.
+  const renderNavBar = (position) => (
     <div className={`flex items-center gap-2 w-full px-2 py-2 bg-surface-container-lowest/90 backdrop-blur-md border-white/20 ${
       position === 'top' ? 'border-b' : 'border-t pb-safe-4'
     }`}>
@@ -532,7 +534,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             </div>
 
             {/* Navigasi atas */}
-            <NavBar position="top" />
+            {renderNavBar('top')}
 
             {/* Pemisah navigasi dan gambar pertama */}
             <div className="h-px bg-white/20" />
@@ -568,7 +570,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
             )}
 
             {/* Navigasi bawah */}
-            <NavBar position="bottom" />
+            {renderNavBar('bottom')}
 
             {/* Tombol komentar — arahkan ke channel Discord judul ini (link kosong dulu) */}
             <div className="px-2 py-2">
