@@ -13,6 +13,7 @@ import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
 import { clearCachedSession } from './lib/session';
 import { getDeviceId } from './lib/device';
+import { clearChapterTokens } from './lib/chapterToken';
 
 // Lazy-load komponen besar/jarang dipakai → kurangi JS bundle awal (homepage)
 const MangaDetailPage     = lazy(() => import('./components/MangaDetailPage'));
@@ -634,9 +635,18 @@ export default function App() {
     openChapterReader(chapter, mangaTitle);
   };
 
+  const UNLOCK_COST = 10;
+  // Pindah modal: tutup modal chapter terkunci, buka modal beli koin.
+  const goToBuyCoins = () => {
+    setIsLockedModalOpen(false);
+    setIsUnlockModalOpen(false);
+    setIsCoinModalOpen(true);
+  };
+
   const handleConfirmUnlock = async () => {
     if (!pendingUnlockChapter) return;
-    if (userCoins < 5) { setIsUnlockModalOpen(false); setIsCoinModalOpen(true); return; }
+    // Koin tidak cukup → arahkan ke modal beli koin.
+    if (userCoins < UNLOCK_COST) { goToBuyCoins(); return; }
 
     const workerUrl = import.meta.env.VITE_WORKER_URL || '';
     const token = await getAccessToken();
@@ -649,16 +659,20 @@ export default function App() {
           body: JSON.stringify({
             chapter_id: pendingUnlockChapter.id,
             manga_id: pendingManga?.id || selectedManga?.id || pendingUnlockChapter.id.split('-ch-')[0],
-            cost: 10,
+            cost: UNLOCK_COST,
           }),
         });
         const d = await res.json();
         if (!res.ok && !d.already_owned) {
-          showToast(d.error === 'Insufficient coins' ? 'Koin tidak cukup!' : 'Gagal membuka chapter.');
+          // Saldo berubah / kurang di server → buka modal beli koin, bukan sekadar toast.
+          if (d.error === 'Insufficient coins') goToBuyCoins();
+          else showToast('Gagal membuka chapter.');
           return;
         }
-        if (typeof d.coins_remaining === 'number') setUserCoins(d.coins_remaining);
-        else setUserCoins(prev => prev - 10);
+        // Sudah dimiliki → server TIDAK memotong koin, jadi jangan kurangi lokal.
+        if (d.already_owned) { /* tanpa potongan */ }
+        else if (typeof d.coins_remaining === 'number') setUserCoins(d.coins_remaining);
+        else setUserCoins(prev => prev - UNLOCK_COST);
         // Invalidate tx cache
         if (currentUser) localStorage.removeItem(`tx_cache_${currentUser.id}`);
       } catch {
@@ -667,10 +681,15 @@ export default function App() {
       }
     } else {
       // Offline fallback
-      setUserCoins(prev => prev - 10);
+      setUserCoins(prev => prev - UNLOCK_COST);
     }
 
-    setD1UnlockedChapters(prev => new Set([...prev, pendingUnlockChapter.id]));
+    // Tandai owned secara SINKRON (ref + state) supaya pengecekan rute saat
+    // openChapterReader→navigate tidak menendang balik chapter yang baru dibeli.
+    const owned = new Set([...d1UnlockedRef.current, pendingUnlockChapter.id]);
+    d1UnlockedRef.current = owned;
+    setD1UnlockedChapters(owned);
+
     setIsLockedModalOpen(false);
     setIsUnlockModalOpen(false);
     showToast('Chapter berhasil dibuka!');
@@ -740,6 +759,7 @@ export default function App() {
           onLoginClick={() => openAuth()}
           onLogout={async () => {
             await authLogout();
+            clearChapterTokens(); // cegah reuse token chapter oleh akun lain di device ini
             setIsLoggedIn(false);
             setCurrentUser(null);
             setUserCoins(0);

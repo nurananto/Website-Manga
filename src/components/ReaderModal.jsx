@@ -7,6 +7,7 @@ import CountdownTimer from './CountdownTimer';
 import { imgUrl } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
+import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
 import { DailyClaimButton } from './CoinModals';
 
 // Widget Turnstile interaktif (wajib centang) untuk membuka locked chapter.
@@ -84,7 +85,7 @@ function NextUpdateInfo({ value }) {
   );
 }
 
-function PageImage({ src, fallbackSrc, idx, pageRefs, ready }) {
+function PageImage({ src, fallbackSrc, idx, pageRefs, ready, onAccessError }) {
   const [loaded,     setLoaded]     = useState(false);
   const [failed,     setFailed]     = useState(false);
   const [retryCount, setRetryCount] = useState(0);
@@ -132,7 +133,7 @@ function PageImage({ src, fallbackSrc, idx, pageRefs, ready }) {
       .catch(() => {
         if (cancelled) return;
         if (fallbackSrc && !useFallback) setUseFallback(true); // coba worker sekali
-        else setFailed(true);
+        else { setFailed(true); onAccessError?.(); }
       });
     return () => { cancelled = true; if (objUrl) URL.revokeObjectURL(objUrl); };
   }, [ready, inView, activeSrc, retryCount]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -290,20 +291,32 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const [imgAccess, setImgAccess] = useState(null);
   const [imgHash, setImgHash] = useState(null);
   const [tsToken, setTsToken] = useState(null); // token Turnstile (wajib centang)
+  const tokenFromCacheRef = useRef(false);      // token aktif berasal dari cache?
   const nextPageRef = useRef(1);
+  const userId = currentUser?.id || null;
 
   // Chapter masih dalam masa lock (sudah dibeli, tapi image worker butuh access token)
   const chapterNeedsToken = !!chapter?.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now();
 
-  // Ambil access token untuk gambar chapter yang masih locked
-  // Reset semua saat ganti chapter — locked wajib centang Turnstile lagi.
+  // Saat ganti chapter: kalau ada token cache yang masih berlaku (chapter sudah
+  // dibeli & dibuka < 30 menit lalu) → pakai langsung, lewati Turnstile.
+  // Kalau tidak → reset, gate Turnstile akan tampil.
   useEffect(() => {
-    setImgAccess(null);
-    setImgHash(null);
     setTsToken(null);
-  }, [chapter?.id]);
+    tokenFromCacheRef.current = false;
+    const cached = (chapterNeedsToken && userId && chapter?.id)
+      ? getCachedChapterToken(userId, chapter.id) : null;
+    if (cached) {
+      tokenFromCacheRef.current = true;
+      setImgAccess(cached.token);
+      setImgHash(cached.h);
+    } else {
+      setImgAccess(null);
+      setImgHash(null);
+    }
+  }, [chapter?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Setelah Turnstile dicentang (tsToken ada) → ambil access token + hash.
+  // Setelah Turnstile dicentang (tsToken ada) → ambil access token + hash, lalu cache.
   useEffect(() => {
     if (!chapter?.id || !chapterNeedsToken || !tsToken) return;
     const workerUrl = import.meta.env.VITE_WORKER_URL || '';
@@ -319,11 +332,28 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
           body: JSON.stringify({ chapter_id: chapter.id, turnstile_token: tsToken }),
         });
         const d = await res.json();
-        if (!cancelled && d.token) { setImgAccess(d.token); setImgHash(d.h || null); }
+        if (!cancelled && d.token) {
+          tokenFromCacheRef.current = false; // token segar (bukan dari cache)
+          setImgAccess(d.token);
+          setImgHash(d.h || null);
+          if (userId && d.h) setCachedChapterToken(userId, chapter.id, d.token, d.h, d.expires_in);
+        }
       } catch {}
     })();
     return () => { cancelled = true; };
-  }, [chapter?.id, tsToken]);
+  }, [chapter?.id, tsToken]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Token cache ditolak server (IP berubah / kedaluwarsa di server) → gambar 403.
+  // Hanya token dari cache yang bisa basi saat dipakai; token segar valid saat dicetak.
+  // Buang cache & minta Turnstile baru.
+  const handleLockedImageError = () => {
+    if (!tokenFromCacheRef.current) return;
+    tokenFromCacheRef.current = false;
+    if (userId && chapter?.id) invalidateChapterToken(userId, chapter.id);
+    setImgAccess(null);
+    setImgHash(null);
+    setTsToken(null);
+  };
 
   // Gratis: CDN langsung siap. Terkunci: tunggu access token + hash path.
   const imageReady = chapterNeedsToken ? (!!imgAccess && !!imgHash) : true;
@@ -551,6 +581,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                   idx={idx}
                   pageRefs={pageRefs}
                   ready={imageReady}
+                  onAccessError={chapterNeedsToken ? handleLockedImageError : undefined}
                 />
               ))}
             </div>
