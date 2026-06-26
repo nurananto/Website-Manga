@@ -159,25 +159,20 @@ export function AuthModal({ isOpen, onClose, reason }) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[400] flex items-end sm:items-center justify-center bg-black/75 backdrop-blur-md">
+      <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           onClick={onClose} className="absolute inset-0" />
 
         <motion.div
-          initial={{ opacity: 0, y: '100%' }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: '100%' }}
-          transition={{ type: 'spring', damping: 30, stiffness: 320 }}
-          className="relative w-full sm:max-w-sm bg-surface-container border-t sm:border border-white/10 rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden z-10 pb-safe-4"
+          initial={{ opacity: 0, scale: 0.92, y: 24 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.92, y: 24 }}
+          transition={{ type: 'spring', damping: 22, stiffness: 300 }}
+          className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-3xl shadow-2xl overflow-hidden z-10"
         >
           {/* Background glow */}
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
           <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-
-          {/* Grab handle (mobile bottom-sheet) */}
-          <div className="sm:hidden flex justify-center pt-3">
-            <div className="w-10 h-1.5 rounded-full bg-white/15" />
-          </div>
 
           {/* Close */}
           <button onClick={onClose}
