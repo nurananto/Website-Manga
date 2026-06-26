@@ -20,7 +20,7 @@
       "Video Games"
     ],
     "rating": 8.21,
-    "total_views": 10,
+    "total_views": 14,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -31,13 +31,13 @@
         "chapter_number": 5.3,
         "lock_hours": 0,
         "pages": 10,
+        "release_date": "2026-06-26T14:59:28+07:00",
         "id": "ZunouBattle-ch-5.3",
         "r2_prefix": "manga/ZunouBattle/5.3/",
         "title": "Ch. 5.3",
-        "release_date": "2026-06-26T14:59:28+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 5.2,
@@ -49,7 +49,7 @@
         "title": "Ch. 5.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 5.1,
@@ -87,7 +87,7 @@
       "Tragedy"
     ],
     "rating": 8.62,
-    "total_views": 42,
+    "total_views": 45,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -153,7 +153,7 @@
       "Slice of Life"
     ],
     "rating": 8.23,
-    "total_views": 46,
+    "total_views": 51,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -194,7 +194,7 @@
         "title": "Ch. 21.2",
         "unlockDate": "2026-06-23T14:06:03.000Z",
         "isLocked": false,
-        "views": 6
+        "views": 9
       }
     ]
   },
@@ -218,7 +218,7 @@
       "Time Travel"
     ],
     "rating": 8.42,
-    "total_views": 36,
+    "total_views": 37,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -235,7 +235,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 6
       },
       {
         "chapter_number": 11,
@@ -475,7 +475,7 @@
       "Shounen"
     ],
     "rating": 7.86,
-    "total_views": 28,
+    "total_views": 30,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -492,7 +492,7 @@
         "title": "Ch. 17.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 7
       },
       {
         "chapter_number": 17.1,
@@ -504,7 +504,7 @@
         "title": "Ch. 17.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 6
       },
       {
         "chapter_number": 16,
@@ -852,7 +852,7 @@
       "Romance"
     ],
     "rating": 6.79,
-    "total_views": 13,
+    "total_views": 14,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -869,7 +869,7 @@
         "title": "Ch. 13",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 9
       },
       {
         "chapter_number": 12,
@@ -1444,7 +1444,7 @@
       "Video Games"
     ],
     "rating": 7.42,
-    "total_views": 19,
+    "total_views": 21,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": 9,

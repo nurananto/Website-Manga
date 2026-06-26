@@ -39,7 +39,7 @@
     "5.1": 2,
     "6.1": 2
   },
-  "total_views": 42,
+  "total_views": 45,
   "mangadex_cover": "a1bd83b1-b73e-430f-8f3b-cd194cb2c029.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -54,6 +54,7 @@
     }
   ],
   "discord_channel_id": "1517524030142550058",
+  "detail_views": 3,
   "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
   "rating": 8.62,
   "next_update": null,

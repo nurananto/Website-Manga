@@ -32,12 +32,12 @@
     "18": 2,
     "19": 3,
     "20": 9,
-    "21.1": 11,
-    "21.2": 6,
+    "21.1": 12,
+    "21.2": 9,
     "22.1": 9,
     "22.2": 1
   },
-  "total_views": 46,
+  "total_views": 51,
   "mangadex_cover": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -61,6 +61,7 @@
     }
   ],
   "discord_channel_id": "1517524250175737906",
+  "detail_views": 1,
   "mangadex_id": "9aebe60e-777f-4a58-a3bf-143c3096b94f",
   "rating": 8.23,
   "next_update": null,
@@ -105,7 +106,7 @@
       "title": "Ch. 21.2",
       "unlockDate": "2026-06-23T14:06:03.000Z",
       "isLocked": false,
-      "views": 6
+      "views": 9
     },
     {
       "chapter_number": 21.1,
@@ -117,7 +118,7 @@
       "title": "Ch. 21.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 20,
