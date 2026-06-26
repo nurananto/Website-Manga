@@ -14,6 +14,21 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
     const t = setTimeout(() => setIsLoading(false), 400);
     return () => clearTimeout(t);
   }, [manga?.id]);
+
+  // Rekam view halaman detail (manga dibuka tapi belum tentu dibaca).
+  // Dedup ringan per sesi; server juga dedup per IP/hari. chapter_id = slug manga
+  // (tanpa "-ch-") → cron menghitungnya sebagai detail_views.
+  useEffect(() => {
+    if (!manga?.id) return;
+    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+    if (!workerUrl) return;
+    const key = `mf_dview_${manga.id}`;
+    try {
+      if (sessionStorage.getItem(key)) return;
+      sessionStorage.setItem(key, '1');
+    } catch {}
+    fetch(`${workerUrl}/api/view/${encodeURIComponent(manga.id)}`, { method: 'POST' }).catch(() => {});
+  }, [manga?.id]);
   const [sortNewest, setSortNewest] = useState(true);
   const [showAllChapters, setShowAllChapters] = useState(false);
   const [activeDetailTab, setActiveDetailTab] = useState('info');

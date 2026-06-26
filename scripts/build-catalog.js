@@ -424,8 +424,9 @@ async function buildCatalog() {
     // Urutkan chapter: terbaru di atas (descending)
     chapters.sort((a, b) => b.chapter_number - a.chapter_number);
 
-    // Total views manga = jumlah semua chapter views (tidak di-log; views disync harian oleh cron)
-    manga.total_views = chapters.reduce((sum, ch) => sum + ch.views, 0);
+    // Total views manga = jumlah view semua chapter + view halaman detail
+    // (detail_views diakumulasi cron dari /api/view/<slug> tanpa "-ch-").
+    manga.total_views = chapters.reduce((sum, ch) => sum + ch.views, 0) + (manga.detail_views ?? 0);
 
     // next_update diambil dari chapter terbaru (chapters sudah diurutkan desc)
     manga.next_update = chapters[0]?.next_update ?? null;
