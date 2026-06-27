@@ -1,6 +1,11 @@
 # Script lokal
 manga/generate_meta.py
 
+# Gambar chapter — disimpan di R2, BUKAN di repo. Repo hanya simpan meta.json.
+manga/**/*.webp
+manga/**/*.jpg
+manga/**/*.png
+
 # Dependencies
 node_modules
 
