@@ -77,9 +77,9 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
                 {activeManga.genres[0]}
               </span>
             )}
-            {/* genre 2: tablet ke atas — di mobile cukup 1 genre agar "+N" tidak wrap */}
+            {/* genre 2: tampil juga di mobile */}
             {activeManga.genres[1] && (
-              <span className="hidden sm:inline bg-surface-variant/85 text-on-surface px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+              <span className="bg-surface-variant/85 text-on-surface px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
                 {activeManga.genres[1]}
               </span>
             )}
@@ -95,12 +95,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
                 {activeManga.genres[3]}
               </span>
             )}
-            {/* overflow "+N" — sisa genre per breakpoint */}
-            {activeManga.genres.length > 1 && (
-              <span className="inline sm:hidden bg-black/40 text-white/80 px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
-                +{activeManga.genres.length - 1}
-              </span>
-            )}
+            {/* overflow "+N" — mulai dari tablet (mobile tanpa "+N" agar tak wrap) */}
             {activeManga.genres.length > 3 && (
               <span className="hidden sm:inline lg:hidden bg-black/40 text-white/80 px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
                 +{activeManga.genres.length - 3}
@@ -119,7 +114,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="font-display-lg text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight line-clamp-1"
+            className="font-display-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight line-clamp-1"
           >
             {activeManga.title}
           </motion.h1>

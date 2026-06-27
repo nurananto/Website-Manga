@@ -93,11 +93,7 @@ const renderChapterRow = (ch) => {
           if (!isLocked) setReadChapters(prev => new Set([...prev, ch.id]));
           onReadChapter(ch, manga.title);
         }}
-        className={`group flex items-center justify-between py-3 px-2 sm:px-3 transition-all cursor-pointer rounded-xl border ${
-          isLocked
-            ? 'bg-amber-500/5 border-amber-500/20 hover:bg-amber-500/10 hover:border-amber-500/35'
-            : 'bg-surface-container/30 border-white/8 hover:bg-white/5 hover:border-white/15'
-        }`}
+        className="group flex items-center justify-between py-3 px-2 sm:px-3 transition-all cursor-pointer rounded-xl border bg-surface-container/30 border-white/8 hover:bg-white/5 hover:border-white/15"
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
         <div className={`flex items-center gap-2.5 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
