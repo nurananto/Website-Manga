@@ -27,7 +27,7 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
       if (sessionStorage.getItem(key)) return;
       sessionStorage.setItem(key, '1');
     } catch {}
-    fetch(`${workerUrl}/api/view/${encodeURIComponent(manga.id)}`, { method: 'POST' }).catch(() => {});
+    fetch(`${workerUrl}/api/r/${encodeURIComponent(manga.id)}`, { method: 'POST' }).catch(() => {});
   }, [manga?.id]);
   const [sortNewest, setSortNewest] = useState(true);
   const [showAllChapters, setShowAllChapters] = useState(false);

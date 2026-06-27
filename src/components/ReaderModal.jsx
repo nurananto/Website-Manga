@@ -242,7 +242,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
     localStorage.setItem(key, '1');
     const workerUrl = import.meta.env.VITE_WORKER_URL;
     if (workerUrl) {
-      fetch(`${workerUrl}/api/view/${chapter.id}`, { method: 'POST' }).catch(() => {});
+      fetch(`${workerUrl}/api/r/${chapter.id}`, { method: 'POST' }).catch(() => {});
     }
   }, [chapter?.id]);
 

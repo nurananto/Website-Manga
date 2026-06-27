@@ -4,6 +4,7 @@ import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
 import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
+import VisitorCount from './components/VisitorCount';
 import { Sparkles, TrendingUp, Compass, RotateCcw, Search, CheckCircle, ArrowRight, Coins, ChevronLeft, ChevronRight } from 'lucide-react';
 import { imgUrl, timeAgo } from './utils';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -937,11 +938,22 @@ export default function App() {
                             Previous
                           </button>
                           
-                          <button
-                            className="w-9 h-9 rounded-xl text-xs font-black transition-all bg-primary text-on-primary shadow-lg shadow-primary/20 cursor-default"
-                          >
-                            {currentPage}
-                          </button>
+                          {(() => {
+                            // Jendela 2 nomor halaman: [current, current+1], kecuali di
+                            // halaman terakhir → [last-1, last]. Yang aktif di-highlight.
+                            const startP = currentPage === totalPages ? currentPage - 1 : currentPage;
+                            return [startP, startP + 1].map((p) => (
+                              <button
+                                key={p}
+                                onClick={() => setCurrentPage(p)}
+                                className={p === currentPage
+                                  ? "w-9 h-9 rounded-xl text-xs font-black transition-all bg-primary text-on-primary shadow-lg shadow-primary/20 cursor-default"
+                                  : "w-9 h-9 rounded-xl text-xs font-black transition-all bg-surface-container border border-white/5 text-outline hover:text-on-surface hover:bg-surface-container-high cursor-pointer"}
+                              >
+                                {p}
+                              </button>
+                            ));
+                          })()}
 
                           <button
                             onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
@@ -1100,6 +1112,7 @@ export default function App() {
             <span className="font-body-sm text-[10px] text-outline/40">
               © {new Date().getFullYear()} Nurananto Scanlation. Fan Translation — Not for commercial use.
             </span>
+            <VisitorCount />
             {buildId && (
               <div className="flex items-center gap-2">
                 <span className="font-body-sm text-[9px] text-outline/25">
