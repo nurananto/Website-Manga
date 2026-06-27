@@ -67,13 +67,13 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
         {/* Satu blok konten, di-center secara vertikal */}
         <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5">
           {/* Badges */}
-          <div className="flex gap-1.5 sm:gap-2 items-center flex-wrap">
-            <span className="bg-amber-500/20 text-amber-500 px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md border border-amber-500/30 font-semibold shadow-sm">
+          <div className="flex gap-1 sm:gap-2 items-center flex-wrap">
+            <span className="bg-amber-500/20 text-amber-500 px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md border border-amber-500/30 font-semibold shadow-sm">
               Trending
             </span>
             {/* 2 genre pertama: selalu tampil (termasuk mobile) */}
             {activeManga.genres.slice(0, 2).map((g) => (
-              <span key={g} className="bg-surface-variant/85 text-on-surface px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+              <span key={g} className="bg-surface-variant/85 text-on-surface px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
                 {g}
               </span>
             ))}
@@ -91,7 +91,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
             )}
             {/* overflow "+N" — sisa genre per breakpoint */}
             {activeManga.genres.length > 2 && (
-              <span className="inline sm:hidden bg-black/40 text-white/80 px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
+              <span className="inline sm:hidden bg-black/40 text-white/80 px-1.5 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
                 +{activeManga.genres.length - 2}
               </span>
             )}
