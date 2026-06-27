@@ -78,6 +78,11 @@ jobs:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           SITE_URL: ${{ secrets.SITE_URL }}
+          # R2 privat — ambil Image01.webp chapter LOCKED untuk notifikasi (upload byte)
+          CF_ACCOUNT_ID:        ${{ secrets.CF_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID:     ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_LOCKED_BUCKET_NAME: ${{ secrets.R2_LOCKED_BUCKET_NAME }}
 
       - name: Generate version file
         run: |

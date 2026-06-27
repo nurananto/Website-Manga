@@ -135,6 +135,59 @@ function chunkEmbeds(embeds, maxCount = 10, maxChars = 5500) {
   return chunks;
 }
 
+// ── Halaman pertama chapter (Image01.webp) untuk notifikasi ───────────────
+// Menggantikan cover di Discord & Facebook. Chapter GRATIS: URL publik via CDN
+// (langsung embed). Chapter LOCKED: byte diambil dari bucket privat manga-locked
+// (R2), karena halaman locked TIDAK boleh ada di bucket publik (lihat
+// scripts/check-locked-leak.js). Butuh CF_ACCOUNT_ID + R2_ACCESS_KEY_ID +
+// R2_SECRET_ACCESS_KEY + R2_LOCKED_BUCKET_NAME di env (lihat build-catalog.yml).
+const CDN_BASE = (process.env.CDN_BASE || '').replace(/\/$/, '');
+const pageFileName = (n) => `Image${String(n).padStart(2, '0')}.webp`; // samakan ReaderModal/check-locked-leak
+const firstPageKey = (slug, chapterNumber) => `manga/${slug}/${chapterNumber}/${pageFileName(1)}`;
+
+// Klien R2 privat dibuat lazy (sekali) — hanya saat ada chapter locked.
+let _r2Locked = null;
+async function getLockedPageBytes(slug, chapterNumber) {
+  const { CF_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_LOCKED_BUCKET_NAME } = process.env;
+  if (!CF_ACCOUNT_ID || !R2_ACCESS_KEY_ID || !R2_SECRET_ACCESS_KEY || !R2_LOCKED_BUCKET_NAME) {
+    console.warn(`⚠️  R2 locked belum dikonfigurasi — lewati gambar locked ${slug} Ch.${chapterNumber}`);
+    return null;
+  }
+  try {
+    const { S3Client, GetObjectCommand } = await import('@aws-sdk/client-s3');
+    if (!_r2Locked) {
+      _r2Locked = new S3Client({
+        region: 'auto',
+        endpoint: `https://${CF_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+        credentials: { accessKeyId: R2_ACCESS_KEY_ID, secretAccessKey: R2_SECRET_ACCESS_KEY },
+      });
+    }
+    const res = await _r2Locked.send(new GetObjectCommand({
+      Bucket: R2_LOCKED_BUCKET_NAME,
+      Key: firstPageKey(slug, chapterNumber),
+    }));
+    const chunks = [];
+    for await (const c of res.Body) chunks.push(c);
+    return Buffer.concat(chunks);
+  } catch (e) {
+    console.warn(`⚠️  Gagal ambil gambar locked ${slug} Ch.${chapterNumber}: ${e.message}`);
+    return null;
+  }
+}
+
+// → { url } (gratis, embed langsung) | { bytes, name } (locked, upload file) | null
+async function resolveFirstPage(ch) {
+  if (!ch.slug || ch.chapterNumber == null) return null;
+  if (!ch.isLocked) {
+    if (!CDN_BASE) return null;
+    return { url: `${CDN_BASE}/${firstPageKey(ch.slug, ch.chapterNumber)}` };
+  }
+  const bytes = await getLockedPageBytes(ch.slug, ch.chapterNumber);
+  if (!bytes) return null;
+  const name = `${ch.mangaId}-ch-${ch.chapterNumber}.webp`.replace(/[^a-zA-Z0-9._-]/g, '_');
+  return { bytes, name };
+}
+
 // ── Kirim notifikasi Discord untuk chapter-chapter baru ─────────────────
 // Satu embed per chapter, dikirim setelah catalog selesai dibangun.
 // Hanya berjalan kalau DISCORD_WEBHOOK_URL diset & ada chapter baru.
@@ -151,46 +204,71 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
     if (ch.discordChannelId)             links.push(`💬 [Diskusi](https://discord.com/channels/${GUILD}/${ch.discordChannelId})`);
     return links.join('  •  ');
   };
-  const mkEmbed = (ch, descTop) => ({
-    title:     ch.mangaTitle,
-    url:       `${base}/${ch.mangaId}`,
-    description: [descTop, linksOf(ch)].join('\n'),
-    color:     0x5865F2,
-    image:     ch.coverUrl ? { url: ch.coverUrl } : undefined, // cover besar
-    footer,
-    timestamp: ch.releaseDate || new Date().toISOString(),
-  });
-
   // >3 chapter dari judul SAMA → 1 embed gabungan. Selain itu per-chapter (kaya).
   const byManga = new Map();
   for (const ch of newChapters) {
     if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, []);
     byManga.get(ch.mangaId).push(ch);
   }
-  const embeds = [];
+  const items = [];
   for (const list of byManga.values()) {
     if (list.length > 3) {
       const nums = list.map(c => c.chapterNumber);
-      embeds.push(mkEmbed(list[0], `📖 **${list.length} chapter baru** (Ch ${nums[nums.length - 1]}–${nums[0]})`));
+      items.push({ ch: list[0], descTop: `📖 **${list.length} chapter baru** (Ch ${nums[nums.length - 1]}–${nums[0]})` });
     } else {
-      for (const ch of list) embeds.push(mkEmbed(ch, `📖 **${ch.chapterTitle}**`));
+      for (const ch of list) items.push({ ch, descTop: `📖 **${ch.chapterTitle}**` });
     }
+  }
+
+  // Gambar embed = halaman 1 (Image01.webp), MENGGANTIKAN cover.
+  // Gratis: URL CDN publik. Locked: byte R2 privat → lampiran (attachment://).
+  const embeds = [];
+  const attByName = new Map();
+  for (const { ch, descTop } of items) {
+    const img = await resolveFirstPage(ch);
+    let image;
+    if (img?.url) image = { url: img.url };
+    else if (img?.bytes) { attByName.set(img.name, img); image = { url: `attachment://${img.name}` }; }
+    embeds.push({
+      title:     ch.mangaTitle,
+      url:       `${base}/${ch.mangaId}`,
+      description: [descTop, linksOf(ch)].join('\n'),
+      color:     0x5865F2,
+      image,     // halaman 1 chapter (pengganti cover)
+      footer,
+      timestamp: ch.releaseDate || new Date().toISOString(),
+    });
   }
 
   // Pecah pesan: maks 10 embed DAN ≤5500 char/pesan (limit Discord 6000)
   const chunks = chunkEmbeds(embeds);
   for (let i = 0; i < chunks.length; i++) {
     const chunk = chunks[i];
+    const payload = {
+      username: 'Nurananto Scanlation',
+      content:  i === 0 ? '## 📢 Baru Saja Dirilis!' : undefined,
+      embeds:   chunk,
+    };
+    // Lampiran (gambar locked) yang direferensikan embed di chunk ini
+    const files = [];
+    for (const e of chunk) {
+      const m = /^attachment:\/\/(.+)$/.exec(e.image?.url || '');
+      if (m && attByName.has(m[1])) files.push(attByName.get(m[1]));
+    }
     try {
-      const res = await fetchT(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: 'Nurananto Scanlation',
-          content:  i === 0 ? '## 📢 Baru Saja Dirilis!' : undefined,
-          embeds:   chunk,
-        }),
-      });
+      let res;
+      if (files.length) {
+        const form = new FormData();
+        form.append('payload_json', JSON.stringify(payload));
+        files.forEach((a, idx) => form.append(`files[${idx}]`, new Blob([a.bytes], { type: 'image/webp' }), a.name));
+        res = await fetchT(webhookUrl, { method: 'POST', body: form }, 30000);
+      } else {
+        res = await fetchT(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      }
       if (!res.ok) console.warn(`⚠️  Discord notif gagal: ${res.status} ${await res.text()}`);
       else console.log(`🔔 Discord notifikasi terkirim: ${chunk.length} chapter baru`);
     } catch (e) {
@@ -254,14 +332,12 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
 async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl) {
   if (!pageId || !pageToken || newChapters.length === 0) return;
   const host = siteUrl.replace(/^https?:\/\//, '').replace(/\/$/, ''); // nuranantoscans.my.id
-  // Gambar FB: override per-manga (meta fb_cover, URL penuh) → else cover situs.
-  const fbImage = (ch) => ch.fbCover || ch.coverUrl || '';
 
   // Gabung per judul → 1 post per manga (cegah spam feed saat upload banyak chapter
-  // sekaligus). newChapters urut terbaru→lama dari deteksi.
+  // sekaligus). newChapters urut terbaru→lama: chapter pertama = representatif (rep).
   const byManga = new Map();
   for (const ch of newChapters) {
-    if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, { title: ch.mangaTitle, image: fbImage(ch), nums: [] });
+    if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, { title: ch.mangaTitle, rep: ch, nums: [] });
     byManga.get(ch.mangaId).nums.push(ch.chapterNumber);
   }
 
@@ -276,16 +352,27 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
       `Baca: ${host}/${mangaId}`;
     try {
       let ok = false;
-      // Photo post → cover jadi gambar utama (caption tetap clickable).
+      // Photo post → halaman 1 (Image01.webp) jadi gambar utama (caption clickable).
+      // Gratis: kirim URL CDN. Locked: kirim byte (source) dari R2 privat.
       // Timeout 45s: FB mengunduh & memproses gambar server-side, kadang >15s.
       // Dibungkus try sendiri agar timeout/error JATUH ke fallback teks, bukan ter-skip.
-      if (info.image) {
+      const img = await resolveFirstPage(info.rep);
+      if (img) {
         try {
-          const r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/photos`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ url: info.image, caption: message, access_token: pageToken }),
-          }, 45000);
+          let r;
+          if (img.url) {
+            r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/photos`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ url: img.url, caption: message, access_token: pageToken }),
+            }, 45000);
+          } else {
+            const form = new FormData();
+            form.append('caption', message);
+            form.append('access_token', pageToken);
+            form.append('source', new Blob([img.bytes], { type: 'image/webp' }), img.name);
+            r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/photos`, { method: 'POST', body: form }, 45000);
+          }
           if (r.ok) ok = true;
           else console.warn(`⚠️  FB photo gagal (${info.title}): ${r.status} ${await r.text()} — fallback teks`);
         } catch (e) {
@@ -543,13 +630,12 @@ async function buildCatalog() {
           newChaptersList.push({
             mangaId:          manga.id,
             mangaTitle:       manga.title,
-            coverUrl:         manga.coverUrl,
+            slug,                         // path R2: manga/<slug>/<chapter>/Image01.webp
             chapterNumber:    ch.chapter_number,
             chapterTitle:     ch.title,
             isLocked:         ch.isLocked,
             releaseDate:      ch.release_date,
             discordChannelId: manga.discord_channel_id,
-            fbCover:          manga.fb_cover || '',
           });
           console.log(`   🔔 Chapter baru terdeteksi: ${manga.title} — ${ch.title}`);
         }
