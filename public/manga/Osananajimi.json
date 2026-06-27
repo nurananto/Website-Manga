@@ -66,6 +66,18 @@
   },
   "chapters": [
     {
+      "chapter_number": 7.1,
+      "lock_hours": 504,
+      "pages": 11,
+      "id": "Osananajimi-ch-7.1",
+      "r2_prefix": "manga/Osananajimi/7.1/",
+      "title": "Ch. 7.1",
+      "release_date": "2026-06-27T09:52:50+07:00",
+      "unlockDate": "2026-07-18T02:52:50.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 6.3,
       "lock_hours": 384,
       "pages": 10,
