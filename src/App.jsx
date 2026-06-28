@@ -928,7 +928,13 @@ export default function App() {
 
       {/* Interactive Reader Modal */}
       {activeChapter && (
-        <Suspense fallback={null}>
+        <Suspense fallback={
+          /* Tutup layar penuh saat chunk reader masih dimuat — cegah skeleton
+             halaman detail (yang baru mount di belakang) sempat berkedip. */
+          <div className="fixed inset-0 bg-[#090b0d] flex items-center justify-center z-[300]">
+            <div className="w-10 h-10 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+          </div>
+        }>
           <ReaderModal
             chapter={activeChapter}
             manga={selectedManga}
