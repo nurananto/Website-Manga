@@ -29,13 +29,25 @@
     "discord_channel_id": "1517523939935649985",
     "chapters": [
       {
+        "chapter_number": 12.2,
+        "lock_hours": 0,
+        "pages": 13,
+        "id": "Madogiwa-ch-12.2",
+        "r2_prefix": "manga/Madogiwa/12.2/",
+        "title": "Ch. 12.2",
+        "release_date": "2026-06-28T14:39:44+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
         "chapter_number": 12.1,
         "lock_hours": 0,
         "pages": 10,
+        "release_date": "2026-06-28T14:02:41+07:00",
         "id": "Madogiwa-ch-12.1",
         "r2_prefix": "manga/Madogiwa/12.1/",
         "title": "Ch. 12.1",
-        "release_date": "2026-06-28T14:02:41+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -51,18 +63,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 7
-      },
-      {
-        "chapter_number": 10,
-        "lock_hours": 0,
-        "pages": 26,
-        "release_date": "2026-06-13T19:22:14+07:00",
-        "id": "Madogiwa-ch-10",
-        "r2_prefix": "manga/Madogiwa/10/",
-        "title": "Ch. 10",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 3
       }
     ]
   },
