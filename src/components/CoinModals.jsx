@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, AlertCircle, Lock, Mail, Check, Heart } from 'lucide-react';
+import { X, AlertCircle, Lock, Mail, Check, Crown } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { imgUrl } from '../utils';
@@ -199,7 +199,7 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' 
           <div className="flex flex-col gap-5">
             <div className="text-center">
               <div className="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-3">
-                <Heart className="w-6 h-6 text-amber-400" />
+                <Crown className="w-6 h-6 text-amber-400" />
               </div>
               <h3 className="text-base font-black text-on-surface">Konfirmasi Email</h3>
               <p className="text-xs text-outline mt-1.5 leading-relaxed">
@@ -264,7 +264,7 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
             <div className="flex justify-between items-start">
               <div>
                 <h3 className="text-base font-black text-on-surface flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-amber-400 fill-current" />
+                  <Crown className="w-5 h-5 text-amber-400 fill-current" />
                   Jadi Supporter
                 </h3>
                 <p className="text-xs text-outline mt-0.5">Buka semua chapter terkunci</p>
@@ -331,7 +331,7 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
 
             <a href={TRAKTEER_URL} target="_blank" rel="noopener noreferrer"
               className="w-full h-12 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
-              <Heart className="w-4 h-4 fill-current" />
+              <Crown className="w-4 h-4 fill-current" />
               Dukung via Trakteer
             </a>
           </div>
@@ -481,13 +481,13 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
             {!isLoggedIn ? (
               <button onClick={onLogin}
                 className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
-                <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
+                <Crown className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
                 Login untuk jadi Supporter
               </button>
             ) : (
               <button onClick={onBecomeSupporter}
                 className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
-                <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
+                <Crown className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
                 {isSupporter ? 'Perpanjang Supporter' : 'Jadi Supporter — buka semua'}
               </button>
             )}

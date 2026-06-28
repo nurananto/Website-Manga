@@ -9,7 +9,7 @@ import { Sparkles, TrendingUp, Compass, RotateCcw, Search, CheckCircle, ArrowRig
 import { imgUrl, timeAgo } from './utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthModal, SupporterModal, LockedChapterModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
-import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
+import { MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
 import { clearCachedSession } from './lib/session';
@@ -581,9 +581,7 @@ export default function App() {
         ) : loadingManga && routePage !== 'reader' ? (
           <MangaDetailSkeleton />
         ) : (isLoading || !activeChapter) && routePage === 'reader' ? (
-          <div className="fixed inset-0 bg-[#090b0d] flex items-center justify-center z-[199]">
-            <div className="w-10 h-10 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-          </div>
+          <ReaderLoadingSkeleton />
         ) : loadingManga ? (
           <MangaDetailSkeleton />
         ) : selectedManga ? (
@@ -722,8 +720,8 @@ export default function App() {
                                 key={p}
                                 onClick={() => setCurrentPage(p)}
                                 className={p === currentPage
-                                  ? "w-9 h-9 rounded-xl text-xs font-black transition-all bg-primary text-on-primary shadow-lg shadow-primary/20 cursor-default"
-                                  : "w-9 h-9 rounded-xl text-xs font-black transition-all bg-surface-container border border-white/5 text-outline hover:text-on-surface hover:bg-surface-container-high cursor-pointer"}
+                                  ? "w-9 h-9 rounded-xl text-xs font-black bg-primary text-on-primary shadow-lg shadow-primary/20 cursor-default"
+                                  : "w-9 h-9 rounded-xl text-xs font-black bg-surface-container border border-white/5 text-outline hover:text-on-surface hover:bg-surface-container-high cursor-pointer"}
                               >
                                 {p}
                               </button>
@@ -928,13 +926,7 @@ export default function App() {
 
       {/* Interactive Reader Modal */}
       {activeChapter && (
-        <Suspense fallback={
-          /* Tutup layar penuh saat chunk reader masih dimuat — cegah skeleton
-             halaman detail (yang baru mount di belakang) sempat berkedip. */
-          <div className="fixed inset-0 bg-[#090b0d] flex items-center justify-center z-[300]">
-            <div className="w-10 h-10 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-          </div>
-        }>
+        <Suspense fallback={<ReaderLoadingSkeleton />}>
           <ReaderModal
             chapter={activeChapter}
             manga={selectedManga}

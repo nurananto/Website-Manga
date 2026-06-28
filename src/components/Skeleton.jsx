@@ -1,6 +1,6 @@
-export function Skeleton({ className = '' }) {
+export function Skeleton({ className = '', style }) {
   return (
-    <div className={`animate-pulse bg-surface-container-high rounded-lg ${className}`} />
+    <div style={style} className={`animate-pulse bg-surface-container-high rounded-lg ${className}`} />
   );
 }
 
@@ -89,6 +89,24 @@ export function ReaderPageSkeleton() {
   return (
     <div className="w-full animate-pulse">
       <Skeleton className="w-full rounded-none" style={{ aspectRatio: '3/4' }} />
+    </div>
+  );
+}
+
+// Skeleton saat membuka chapter (sebelum chunk reader siap). Layar penuh agar
+// menutup halaman detail di belakang — cegah skeleton detail berkedip.
+export function ReaderLoadingSkeleton() {
+  return (
+    <div className="fixed inset-0 z-[300] bg-[#090b0d] overflow-hidden flex flex-col items-center">
+      <div className="w-full h-12 md:h-14 border-b border-white/5 flex items-center px-3 gap-3 shrink-0">
+        <Skeleton className="h-7 w-7 rounded-lg" />
+        <Skeleton className="h-4 w-40 max-w-[50%]" />
+      </div>
+      <div className="w-full max-w-2xl flex flex-col gap-1 mt-1">
+        {[1, 2, 3].map((i) => (
+          <Skeleton key={i} className="w-full rounded-none" style={{ aspectRatio: '3/4' }} />
+        ))}
+      </div>
     </div>
   );
 }
