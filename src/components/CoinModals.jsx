@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, AlertCircle, Lock, Mail, Check, Crown } from 'lucide-react';
+import { X, Lock, Check, Crown } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { imgUrl } from '../utils';
@@ -164,79 +164,6 @@ export function AuthModal({ isOpen, onClose, reason }) {
             <p className="text-center text-[10px] text-outline/40 leading-relaxed">
               Akun hanya bisa aktif di satu perangkat. Dengan masuk, kamu menyetujui syarat &amp; ketentuan layanan kami.
             </p>
-          </div>
-        </motion.div>
-      </div>
-    </AnimatePresence>
-  );
-}
-
-// ── Trakteer Email Modal — muncul pertama kali login ──────────
-export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' }) {
-  const [email, setEmail] = useState(defaultEmail);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-
-  useState(() => { if (defaultEmail) setEmail(defaultEmail); });
-
-  const handleSave = async (e) => {
-    e.preventDefault();
-    if (!email) { setError('Email wajib diisi.'); return; }
-    setLoading(true);
-    await onSave(email);
-    setLoading(false);
-  };
-
-  if (!isOpen) return null;
-
-  return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
-        <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-2xl shadow-2xl p-6 z-10"
-        >
-          <div className="flex flex-col gap-5">
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-3">
-                <Crown className="w-6 h-6 text-amber-400" />
-              </div>
-              <h3 className="text-base font-black text-on-surface">Konfirmasi Email</h3>
-              <p className="text-xs text-outline mt-1.5 leading-relaxed">
-                Email ini jadi identitas akun & patokan pencocokan donasi Supporter dari Trakteer. Pastikan sama dengan email yang kamu pakai saat donasi.
-              </p>
-            </div>
-
-            {error && (
-              <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/25 p-3 rounded-xl text-xs font-bold text-red-400">
-                <AlertCircle className="w-4 h-4 shrink-0" /><span>{error}</span>
-              </div>
-            )}
-
-            <form onSubmit={handleSave} className="flex flex-col gap-3">
-              <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-black text-outline uppercase tracking-wider">
-                  Email <span className="text-red-400">*</span>
-                </label>
-                <div className="relative">
-                  <Mail className="w-4 h-4 text-outline absolute left-3.5 top-1/2 -translate-y-1/2" />
-                  <input type="email" placeholder="email@contoh.com" required
-                    value={email} onChange={e => { setEmail(e.target.value); setError(''); }}
-                    className="w-full bg-surface-container-high border border-white/5 rounded-xl py-3 pl-10 pr-4 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all"
-                  />
-                </div>
-              </div>
-
-              <button type="submit" disabled={loading}
-                className="w-full h-11 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm transition-all cursor-pointer disabled:opacity-50 active:scale-[0.98]">
-                {loading ? 'Menyimpan...' : 'Konfirmasi & Simpan'}
-              </button>
-            </form>
-
-            <button onClick={onClose}
-              className="w-full h-9 rounded-xl border border-white/8 text-xs font-bold text-outline hover:text-on-surface hover:bg-white/5 transition-all cursor-pointer">
-              Lewati untuk sekarang
-            </button>
           </div>
         </motion.div>
       </div>

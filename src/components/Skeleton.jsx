@@ -85,14 +85,6 @@ export function MangaDetailSkeleton() {
   );
 }
 
-export function ReaderPageSkeleton() {
-  return (
-    <div className="w-full animate-pulse">
-      <Skeleton className="w-full rounded-none" style={{ aspectRatio: '3/4' }} />
-    </div>
-  );
-}
-
 // Skeleton saat membuka chapter (sebelum chunk reader siap). Layar penuh agar
 // menutup halaman detail di belakang — cegah skeleton detail berkedip.
 export function ReaderLoadingSkeleton() {
