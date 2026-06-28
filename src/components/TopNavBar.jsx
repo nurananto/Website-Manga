@@ -1,11 +1,40 @@
 import { useState, useEffect, useRef } from 'react';
-import { Key, RotateCcw, LogOut, Coins } from 'lucide-react';
+import { Key, RotateCcw, LogOut, Heart, Bell } from 'lucide-react';
+import { DISCORD_INVITE_URL } from '../lib/links';
 
-export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, userCoins, isLoggedIn, currentUser, onLoginClick, onLogout, onBuyCoinsClick, onDropdownOpen }) {
+const FACEBOOK_URL = 'https://web.facebook.com/profile.php?id=61590960336418';
+
+// Menu "Ikuti Update" — Discord + Facebook (info update manga, bukan sekadar sosmed).
+function FollowUpdate() {
+  return (
+    <div className="px-2 py-2 border-t border-white/5">
+      <p className="px-2 pb-1.5 text-[9px] uppercase font-black text-outline tracking-wider flex items-center gap-1">
+        <Bell className="w-3 h-3" /> Ikuti Update
+      </p>
+      <div className="flex flex-col gap-1.5">
+        <a href={DISCORD_INVITE_URL || undefined} target="_blank" rel="noopener noreferrer"
+          className="flex items-center gap-2 px-2.5 py-2 rounded-lg border border-[#5865F2]/40 hover:border-[#5865F2]/70 transition-all"
+          style={{ background: 'linear-gradient(to right, rgba(88,101,242,0.32), rgba(88,101,242,0.18))' }}>
+          <img src="/discord-mark-white.svg" alt="" className="w-3.5 h-3.5" />
+          <span className="text-[11px] font-bold text-white">Discord</span>
+        </a>
+        <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer"
+          className="flex items-center gap-2 px-2.5 py-2 rounded-lg border border-[#1877F2]/40 hover:border-[#1877F2]/70 transition-all"
+          style={{ background: 'linear-gradient(to right, rgba(24,119,242,0.32), rgba(24,119,242,0.18))' }}>
+          <svg viewBox="0 0 24 24" fill="white" aria-hidden="true" className="w-3.5 h-3.5">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+          </svg>
+          <span className="text-[11px] font-bold text-white">Facebook</span>
+        </a>
+      </div>
+    </div>
+  );
+}
+
+export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, isSupporter, supporterUntil, isLoggedIn, currentUser, onLoginClick, onLogout, onBecomeSupporter, onDropdownOpen }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  // Close dropdown when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -21,10 +50,16 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
     || currentUser?.email?.split('@')[0]
     || 'Pengguna';
 
+  // Countdown masa aktif Supporter (dihitung dari supporter_until backend).
+  const supRemainMs = (isSupporter && supporterUntil) ? new Date(supporterUntil).getTime() - Date.now() : 0;
+  const supActive = supRemainMs > 0;
+  const supLabel = !supActive
+    ? null
+    : (supRemainMs < 86400000 ? 'hari ini berakhir' : `${Math.floor(supRemainMs / 86400000)} hari tersisa`);
+
   return (
     <nav className="w-full bg-black border-b border-white/60">
       <div className="flex items-center h-12 md:h-14 xl:h-16 px-2 sm:px-3 md:px-4 gap-2 w-full">
-        {/* Brand (Logo) — grows to fill available space */}
         <a
           href="/"
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
@@ -40,7 +75,6 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
         <div className="flex-1" />
 
-        {/* Actions (Profile Avatar with Dropdown) */}
         <div ref={dropdownRef} className="relative">
           <div className="relative">
             <div
@@ -64,44 +98,36 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
             </div>
           </div>
 
-          {/* Profile Dropdown Menu */}
           {isDropdownOpen && (
-            <div className="absolute right-0 top-12 w-48 bg-surface-container border border-white/5 rounded-xl shadow-2xl py-2 z-50 animate-[fadeIn_0.15s_ease-out]">
+            <div className="absolute right-0 top-12 w-52 bg-surface-container border border-white/5 rounded-xl shadow-2xl py-2 z-50 animate-[fadeIn_0.15s_ease-out]">
               {isLoggedIn ? (
                 <>
-                  {/* Username + badge donatur */}
+                  {/* Nama + badge + countdown Supporter (tepat di bawah nama) */}
                   <div className="px-4 py-2.5 border-b border-white/5">
                     <span className={`flex w-full items-center justify-center gap-1 px-1.5 py-1 rounded-lg font-label-sm text-[9px] font-black uppercase tracking-wider mb-1.5 ${
-                      currentUser?.is_donor
-                        ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
+                      supActive
+                        ? 'bg-pink-500/15 text-pink-400 border border-pink-500/30'
                         : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
                     }`}>
-                      {currentUser?.is_donor ? '★ Donatur Setia' : 'Pembaca Setia'}
+                      {supActive ? '★ Supporter' : 'Pembaca Setia'}
                     </span>
                     <p className="text-xs font-black text-on-surface truncate">{displayName}</p>
                     <p className="text-[10px] text-outline truncate mt-0.5">{currentUser?.email}</p>
+                    {supActive && (
+                      <p className="text-[10px] font-bold text-pink-300 mt-1.5">
+                        Supporter aktif: {supLabel}
+                      </p>
+                    )}
                   </div>
 
-                  {/* Coin Balance Info */}
-                  <div className="px-4 py-2.5 border-b border-white/5 flex items-center justify-between">
-                    <span className="text-[10px] uppercase font-bold text-outline">Koin Saya</span>
-                    <div className="flex items-center gap-1 select-none">
-                      <Coins className="w-3.5 h-3.5 text-amber-400 fill-current" />
-                      <span className="text-xs font-black text-amber-300">{userCoins !== undefined ? userCoins : 0}</span>
-                    </div>
-                  </div>
-
-                  {/* Buy Coins (Golden Button) */}
-                  <div className="px-2 py-2 border-b border-white/5 mb-1.5">
-                    <button 
-                      onClick={() => { 
-                        onBuyCoinsClick();
-                        setIsDropdownOpen(false); 
-                      }}
-                      className="w-full h-9 rounded-lg bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white text-[11px] font-black flex items-center justify-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer border border-yellow-600/30"
+                  {/* Jadi / Perpanjang Supporter */}
+                  <div className="px-2 py-2 border-b border-white/5 mb-1">
+                    <button
+                      onClick={() => { onBecomeSupporter?.(); setIsDropdownOpen(false); }}
+                      className="w-full h-9 rounded-lg bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white text-[11px] font-black flex items-center justify-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer"
                     >
-                      <Coins className="w-3.5 h-3.5 fill-current" />
-                      <span>Beli Coin</span>
+                      <Heart className="w-3.5 h-3.5 fill-current" />
+                      <span>{supActive ? 'Perpanjang Supporter' : 'Jadi Supporter'}</span>
                     </button>
                   </div>
 
@@ -119,11 +145,11 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                     <Key className="w-4 h-4 text-amber-500" />
                     <span>Pengaturan Akun</span>
                   </button>
-                  <button 
-                    onClick={() => { 
-                      setIsDropdownOpen(false); 
-                      onLogout();
-                    }}
+
+                  <FollowUpdate />
+
+                  <button
+                    onClick={() => { setIsDropdownOpen(false); onLogout(); }}
                     className="w-full text-left px-4 py-2.5 text-xs font-bold text-red-400 hover:bg-red-500/10 flex items-center gap-2.5 cursor-pointer border-t border-white/5"
                   >
                     <LogOut className="w-4 h-4" />
@@ -136,16 +162,15 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                     <p className="text-[10px] uppercase font-bold text-outline">Anda belum login</p>
                   </div>
                   <div className="px-2 py-2">
-                    <button 
-                      onClick={() => { 
-                        onLoginClick();
-                        setIsDropdownOpen(false); 
-                      }}
+                    <button
+                      onClick={() => { onLoginClick(); setIsDropdownOpen(false); }}
                       className="w-full h-10 rounded-lg bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer"
                     >
                       <span>Masuk / Login</span>
                     </button>
                   </div>
+
+                  <FollowUpdate />
                 </>
               )}
             </div>

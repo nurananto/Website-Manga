@@ -1,16 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Coins, AlertCircle, Lock, Zap, Mail, Check } from 'lucide-react';
+import { X, AlertCircle, Lock, Mail, Check, Heart } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { imgUrl } from '../utils';
 
-// Widget Turnstile terlihat (centang) untuk gate login — sama seperti saat
-// membuka locked chapter. Memanggil onToken setelah pengguna lolos verifikasi.
+const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
+const SUPPORTER_MIN = 'Rp 5.000';
+
+// Widget Turnstile terlihat (centang) untuk gate login.
 function LoginTurnstile({ onToken }) {
   const ref = useRef(null);
   useEffect(() => {
-    // Tidak ada sitekey → lewati (fail-open, worker juga fail-open tanpa secret)
     if (!TURNSTILE_SITEKEY) { onToken(''); return; }
     let widgetId;
     let cancelled = false;
@@ -33,64 +34,8 @@ function LoginTurnstile({ onToken }) {
   return <div ref={ref} className="flex justify-center min-h-[65px]" />;
 }
 
-// Tombol klaim koin harian (1 koin / 24 jam). Dipakai di modal Isi Koin & reader.
-// Selalu tampil; setelah diklaim → nonaktif + hitung mundur sampai 24 jam.
-export function DailyClaimButton({ dailyClaimAt, onDailyClaim, isLoggedIn = true, onLoginClick, className = '' }) {
-  const MS24H = 24 * 60 * 60 * 1000;
-  const [claimAt, setClaimAt] = useState(dailyClaimAt);
-  const [claiming, setClaiming] = useState(false);
-  const [nowTs, setNowTs] = useState(Date.now());
-  useEffect(() => { setClaimAt(dailyClaimAt); }, [dailyClaimAt]);
-  useEffect(() => {
-    const id = setInterval(() => setNowTs(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  const nextClaimAt = (claimAt ? new Date(claimAt).getTime() : 0) + MS24H;
-  const canClaim = nowTs >= nextClaimAt;
-  const remainMs = Math.max(0, nextClaimAt - nowTs);
-  const remainH = Math.floor(remainMs / 3600000);
-  const remainM = Math.floor((remainMs % 3600000) / 60000);
-
-  const handleClaim = async () => {
-    if (!isLoggedIn) { onLoginClick?.(); return; }
-    if (!canClaim || claiming) return;
-    setClaiming(true);
-    const d = await onDailyClaim?.();
-    setClaiming(false);
-    if (d?.ok) setClaimAt(new Date().toISOString());
-    else if (d?.already_claimed && d?.next_at) setClaimAt(new Date(new Date(d.next_at).getTime() - MS24H).toISOString());
-  };
-
-  const active = isLoggedIn ? (canClaim && !claiming) : true;
-  return (
-    <div className={`w-full flex items-center gap-3 rounded-xl border border-blue-500/30 bg-gradient-to-r from-blue-500/15 to-blue-600/10 px-3 py-2.5 ${className}`}>
-      <div className="w-9 h-9 rounded-full bg-blue-500/25 border border-blue-400/30 flex items-center justify-center shrink-0">
-        <Zap className="w-4 h-4 text-blue-300 fill-current" />
-      </div>
-      <div className="flex-1 min-w-0">
-        <p className="font-body-md text-sm font-black text-on-surface truncate">Klaim koin harian gratis!</p>
-        <p className="font-label-sm text-[11px] text-outline/70 truncate">Kumpulkan 10 koin untuk buka 1 chapter.</p>
-      </div>
-      <div className="flex items-center gap-2 shrink-0">
-        <button
-          onClick={handleClaim}
-          disabled={isLoggedIn && (!canClaim || claiming)}
-          className={`h-9 px-4 rounded-lg text-sm font-black whitespace-nowrap transition-all ${
-            active
-              ? 'bg-blue-500 hover:bg-blue-600 text-white active:scale-95 cursor-pointer'
-              : 'bg-white/10 text-outline cursor-not-allowed'
-          }`}
-        >
-          {claiming ? '...' : !isLoggedIn ? 'Login' : canClaim ? 'Klaim' : `${remainH}j ${remainM}m`}
-        </button>
-      </div>
-    </div>
-  );
-}
-
 function CountdownBox({ unlockDate }) {
   const [time, setTime] = useState({ h: 0, m: 0, s: 0 });
-
   useEffect(() => {
     const update = () => {
       const diff = new Date(unlockDate).getTime() - Date.now();
@@ -102,9 +47,7 @@ function CountdownBox({ unlockDate }) {
     const id = setInterval(update, 1000);
     return () => clearInterval(id);
   }, [unlockDate]);
-
   const pad = (n) => String(n).padStart(2, '0');
-
   return (
     <div className="flex items-end gap-2 justify-center">
       {[{ v: time.h, l: 'JAM' }, { v: time.m, l: 'MENIT' }, { v: time.s, l: 'DETIK' }].reduce((acc, { v, l }, i) => {
@@ -122,11 +65,10 @@ function CountdownBox({ unlockDate }) {
 }
 
 // ── Auth Modal — Google OAuth ─────────────────────────────────
-// Copy kontekstual sesuai dari mana login dipicu (reader, beli chapter, dll).
 const AUTH_COPY = {
   unlock: {
-    title: 'Masuk untuk buka chapter',
-    subtitle: 'Login sebentar — setelah itu kamu langsung lanjut beli chapter ini.',
+    title: 'Masuk untuk lanjut',
+    subtitle: 'Login sebentar — Supporter bisa langsung buka chapter ini.',
   },
   reader: {
     title: 'Masuk untuk lanjut',
@@ -134,21 +76,19 @@ const AUTH_COPY = {
   },
   default: {
     title: 'Selamat Datang',
-    subtitle: 'Masuk untuk akses koin & riwayat baca.',
+    subtitle: 'Masuk untuk akses Supporter & riwayat baca.',
   },
 };
 
 const AUTH_BENEFITS = [
   'Lanjut baca dari halaman terakhir',
-  'Klaim koin harian gratis',
-  'Buka chapter terkunci lebih awal',
+  'Akses semua chapter terkunci (Supporter)',
+  'Dukung rilis chapter berikutnya',
 ];
 
-// Bottom-sheet di mobile, kartu di layar besar. `reason` mengubah judul/subjudul.
 export function AuthModal({ isOpen, onClose, reason }) {
-  const [verifying, setVerifying] = useState(false);     // widget Turnstile tampil
-  const [redirecting, setRedirecting] = useState(false); // token didapat → menuju Google
-  // Reset state tiap kali modal ditutup
+  const [verifying, setVerifying] = useState(false);
+  const [redirecting, setRedirecting] = useState(false);
   useEffect(() => { if (!isOpen) { setVerifying(false); setRedirecting(false); } }, [isOpen]);
   if (!isOpen) return null;
   const copy = AUTH_COPY[reason] || AUTH_COPY.default;
@@ -170,18 +110,15 @@ export function AuthModal({ isOpen, onClose, reason }) {
           transition={{ type: 'spring', damping: 22, stiffness: 300 }}
           className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-3xl shadow-2xl overflow-hidden z-10"
         >
-          {/* Background glow */}
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
           <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
-          {/* Close */}
           <button onClick={onClose}
             className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline cursor-pointer z-10 transition-colors">
             <X className="w-4 h-4" />
           </button>
 
           <div className="relative px-7 pt-6 sm:pt-9 pb-7 flex flex-col items-center gap-5">
-            {/* Logo/Icon */}
             <div className="flex flex-col items-center gap-3">
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-400/20 to-indigo-600/20 border border-white/10 flex items-center justify-center shadow-lg overflow-hidden p-2">
                 <img src="/icon.webp" alt="Logo" className="w-full h-full object-contain" />
@@ -192,7 +129,6 @@ export function AuthModal({ isOpen, onClose, reason }) {
               </div>
             </div>
 
-            {/* Value props */}
             <div className="w-full flex flex-col gap-2 px-1">
               {AUTH_BENEFITS.map((t) => (
                 <div key={t} className="flex items-center gap-2.5 text-xs text-outline">
@@ -202,7 +138,6 @@ export function AuthModal({ isOpen, onClose, reason }) {
               ))}
             </div>
 
-            {/* OAuth: klik → Turnstile (terlihat) → redirect ke Google */}
             {!verifying ? (
               <button onClick={() => setVerifying(true)}
                 className="w-full h-13 py-3.5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 flex items-center justify-center gap-3 text-sm font-bold text-on-surface cursor-pointer active:scale-[0.97] transition-all group">
@@ -242,7 +177,6 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Sync defaultEmail saat pertama dibuka
   useState(() => { if (defaultEmail) setEmail(defaultEmail); });
 
   const handleSave = async (e) => {
@@ -264,12 +198,12 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' 
         >
           <div className="flex flex-col gap-5">
             <div className="text-center">
-              <div className="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-3">
-                <Coins className="w-6 h-6 text-amber-400" />
+              <div className="w-12 h-12 rounded-full bg-pink-500/10 border border-pink-500/20 flex items-center justify-center mx-auto mb-3">
+                <Heart className="w-6 h-6 text-pink-400" />
               </div>
               <h3 className="text-base font-black text-on-surface">Konfirmasi Email</h3>
               <p className="text-xs text-outline mt-1.5 leading-relaxed">
-                Email ini digunakan sebagai identitas akun kamu dan patokan pengiriman koin dari donasi Trakteer. Pastikan sama dengan email yang kamu gunakan saat donasi.
+                Email ini jadi identitas akun & patokan pencocokan donasi Supporter dari Trakteer. Pastikan sama dengan email yang kamu pakai saat donasi.
               </p>
             </div>
 
@@ -288,13 +222,13 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' 
                   <Mail className="w-4 h-4 text-outline absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input type="email" placeholder="email@contoh.com" required
                     value={email} onChange={e => { setEmail(e.target.value); setError(''); }}
-                    className="w-full bg-surface-container-high border border-white/5 rounded-xl py-3 pl-10 pr-4 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all"
+                    className="w-full bg-surface-container-high border border-white/5 rounded-xl py-3 pl-10 pr-4 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-400/20 transition-all"
                   />
                 </div>
               </div>
 
               <button type="submit" disabled={loading}
-                className="w-full h-11 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm transition-all cursor-pointer disabled:opacity-50 active:scale-[0.98]">
+                className="w-full h-11 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-black text-sm transition-all cursor-pointer disabled:opacity-50 active:scale-[0.98]">
                 {loading ? 'Menyimpan...' : 'Konfirmasi & Simpan'}
               </button>
             </form>
@@ -310,151 +244,72 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' 
   );
 }
 
-// Coin Purchase Modal
-export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail, dailyClaimAt, onDailyClaim }) {
-  const [step, setStep] = useState(1);
-  const rates = [
-    { price: 'Rp 2.000',  coins: 20 },
-    { price: 'Rp 5.000',  coins: 50, isPopular: true },
-    { price: 'Rp 10.000', coins: 100 },
-  ];
-
-  const handleClose = () => { setStep(1); onClose(); };
-
+// ── Supporter Modal — ajakan jadi Supporter via Trakteer ──────
+// Donasi >= Rp 5.000 → akses semua chapter terkunci selama 30 hari.
+export function SupporterModal({ isOpen, onClose, userEmail }) {
   if (!isOpen) return null;
-
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-          onClick={handleClose} className="absolute inset-0" />
+          onClick={onClose} className="absolute inset-0" />
 
         <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-2xl shadow-2xl z-10 overflow-hidden"
         >
-          <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-amber-500/8 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="overflow-y-auto hide-scrollbar max-h-[90vh] p-6 flex flex-col gap-5">
-
-            {/* Header */}
             <div className="flex justify-between items-start">
               <div>
                 <h3 className="text-base font-black text-on-surface flex items-center gap-2">
-                  <Coins className="w-5 h-5 text-amber-400 fill-current" />
-                  Isi Koin
-                  <span className="text-[10px] font-bold text-outline bg-white/5 px-2 py-0.5 rounded-full">{step}/2</span>
+                  <Heart className="w-5 h-5 text-pink-400 fill-current" />
+                  Jadi Supporter
                 </h3>
-                <p className="text-xs text-outline mt-0.5">
-                  {step === 1 ? 'Informasi konversi koin' : 'Cara donasi di Trakteer'}
-                </p>
+                <p className="text-xs text-outline mt-0.5">Buka semua chapter terkunci</p>
               </div>
-              <button onClick={handleClose}
+              <button onClick={onClose}
                 className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline cursor-pointer">
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Balance */}
-            <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-3 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Coins className="w-4 h-4 text-amber-400 fill-current" />
-                <span className="text-xs font-bold text-outline uppercase tracking-wider">Koin Saat Ini</span>
+            {/* Benefit */}
+            <div className="bg-pink-500/10 border border-pink-500/20 rounded-xl px-4 py-3 flex flex-col gap-2">
+              <div className="flex items-center gap-2 text-sm font-black text-pink-300">
+                <Check className="w-4 h-4 shrink-0" /> Akses SEMUA chapter terkunci
               </div>
-              <span className="text-lg font-black text-amber-300">{userCoins}</span>
+              <div className="flex items-center gap-2 text-sm font-black text-pink-300">
+                <Check className="w-4 h-4 shrink-0" /> Aktif 30 hari sejak donasi
+              </div>
+              <p className="text-[11px] text-outline/70 leading-relaxed">
+                Cukup donasi minimal <strong className="text-on-surface">{SUPPORTER_MIN}</strong> di Trakteer. Status Supporter otomatis aktif setelah donasi dikonfirmasi.
+              </p>
             </div>
 
-            {/* Klaim koin harian gratis (1 koin / 24 jam) */}
-            <DailyClaimButton dailyClaimAt={dailyClaimAt} onDailyClaim={onDailyClaim} userCoins={userCoins} />
-
-            {step === 1 ? (
-              <>
-                {/* Step 1: Rate table */}
-                <div className="flex flex-col gap-2">
-                  <p className="text-[10px] font-black text-outline uppercase tracking-wider">Koin yang kamu dapatkan</p>
-                  <div className="flex flex-col divide-y divide-white/5 border border-white/8 rounded-xl overflow-hidden">
-                    {rates.map(r => (
-                      <div key={r.price} className={`flex items-center justify-between px-4 py-3 ${r.isPopular ? 'bg-amber-500/8' : ''}`}>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-black text-on-surface">{r.price}</span>
-                          {r.isPopular && <span className="text-[8px] bg-amber-400 text-surface font-black px-1.5 py-0.5 rounded-full uppercase">Populer</span>}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Coins className="w-3.5 h-3.5 text-amber-400 fill-current" />
-                          <span className="text-sm font-black text-amber-300">{r.coins} koin</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-[10px] text-outline/50 leading-relaxed">
-                    Di Trakteer kamu bebas pilih jumlah "Permen" — koin dihitung otomatis dari total nominal yang dikirim.
-                  </p>
+            {/* Cara donasi */}
+            <div className="flex flex-col gap-2">
+              <p className="text-[10px] font-black text-outline uppercase tracking-wider">Cara jadi Supporter</p>
+              {[
+                { n: 1, text: 'Klik tombol di bawah → buka halaman Trakteer' },
+                { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan email akunmu: <span className="text-pink-300 font-bold break-all">{userEmail || '—'}</span></> },
+                { n: 3, text: <><strong className="text-red-400">Jangan</strong> centang "Jadikan pesan private"</> },
+                { n: 4, text: <>Donasi minimal <strong className="text-on-surface">{SUPPORTER_MIN}</strong>, lalu bayar</> },
+                { n: 5, text: 'Status Supporter aktif otomatis setelah donasi dikonfirmasi (30 hari)' },
+              ].map(({ n, text }) => (
+                <div key={n} className="flex gap-2.5 items-start">
+                  <span className="w-4 h-4 rounded-full bg-pink-500/20 border border-pink-500/30 text-pink-400 text-[9px] font-black flex items-center justify-center shrink-0 mt-0.5">{n}</span>
+                  <p className="text-[11px] text-outline/80 leading-relaxed">{text}</p>
                 </div>
+              ))}
+            </div>
 
-                <button onClick={() => setStep(2)}
-                  className="w-full h-11 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
-                  Lanjut →
-                </button>
-              </>
-            ) : (
-              <>
-                {/* Step 2: Instructions */}
-                <div className="flex flex-col gap-3">
-                  <p className="text-[10px] font-black text-outline uppercase tracking-wider">Cara Donasi</p>
-
-                  {/* Mockup Trakteer form */}
-                  <div className="border border-white/10 rounded-xl overflow-hidden bg-[#1a1a2e]">
-                    <div className="px-3 py-2 border-b border-white/5 flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-sky-500/30 flex items-center justify-center text-[8px] font-black text-sky-300">N</div>
-                      <div>
-                        <p className="text-[10px] font-black text-white/80">Nurananto Scanlation</p>
-                        <p className="text-[9px] text-white/40">@NuranantoScanlation</p>
-                      </div>
-                    </div>
-                    <div className="p-3 flex flex-col gap-2">
-                      <div className="bg-white/5 rounded-lg p-2.5">
-                        <p className="text-[9px] text-white/40 mb-1">Pesan</p>
-                        <p className="text-[10px] font-bold text-amber-300">{userEmail || 'email@kamu.com'}</p>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-3 h-3 rounded border border-white/20 flex items-center justify-center bg-white/5">
-                          <div className="w-1.5 h-1.5 rounded-[1px] bg-red-400" />
-                        </div>
-                        <p className="text-[9px] text-red-400 line-through">Jadikan pesan private</p>
-                        <span className="text-[9px] text-white/40">← jangan!</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    {[
-                      { n: 1, text: 'Klik tombol di bawah → buka halaman Trakteer' },
-                      { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan email: <span className="text-amber-300 font-bold break-all">{userEmail || '—'}</span></> },
-                      { n: 3, text: <><strong className="text-red-400">Jangan</strong> centang "Jadikan pesan private"</> },
-                      { n: 4, text: 'Pilih jumlah Permen sesuai koin yang diinginkan, lalu bayar' },
-                      { n: 5, text: 'Koin otomatis masuk setelah donasi dikonfirmasi' },
-                    ].map(({ n, text }) => (
-                      <div key={n} className="flex gap-2.5 items-start">
-                        <span className="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-[9px] font-black flex items-center justify-center shrink-0 mt-0.5">{n}</span>
-                        <p className="text-[11px] text-outline/80 leading-relaxed">{text}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex gap-3">
-                  <button onClick={() => setStep(1)}
-                    className="h-11 px-4 rounded-xl border border-white/10 text-xs font-bold text-outline hover:bg-white/5 cursor-pointer transition-colors">
-                    ← Kembali
-                  </button>
-                  <a href="https://trakteer.id/NuranantoScanlation" target="_blank" rel="noopener noreferrer"
-                    className="flex-1 h-11 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
-                    <Coins className="w-4 h-4 fill-current" />
-                    Buka Trakteer
-                  </a>
-                </div>
-              </>
-            )}
+            <a href={TRAKTEER_URL} target="_blank" rel="noopener noreferrer"
+              className="w-full h-12 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
+              <Heart className="w-4 h-4 fill-current" />
+              Dukung via Trakteer
+            </a>
           </div>
         </motion.div>
       </div>
@@ -462,114 +317,13 @@ export function CoinPurchaseModal({ isOpen, onClose, userCoins, userEmail, daily
   );
 }
 
-// Unlock Chapter Confirmation Modal
-export function UnlockModal({ isOpen, onClose, chapter, userCoins, onConfirm, onGoToStore }) {
-  if (!isOpen || !chapter) return null;
-  const cost = 10;
-  const canUnlock = userCoins >= cost;
-
-  return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/75 backdrop-blur-md px-4">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-          className="absolute inset-0"
-        />
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-surface-container border border-white/10 rounded-xl shadow-2xl p-6 overflow-hidden z-10 flex flex-col items-center text-center animate-[slideUp_0.25s_ease-out]"
-        >
-          {/* Top golden glow */}
-          <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
-
-          {/* Icon */}
-          <div className="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4 text-amber-400">
-            <Coins className="w-7 h-7 fill-current text-amber-400" />
-          </div>
-
-          <h3 className="text-lg sm:text-xl md:text-2xl font-black text-on-surface">Buka Chapter Premium</h3>
-          <p className="text-xs sm:text-sm md:text-base text-outline mt-1 mb-4">
-            Membuka <span className="text-on-surface font-bold">{chapter.title}</span>
-          </p>
-
-          {/* Balance comparison */}
-          <div className="w-full bg-surface-container-high border border-white/5 rounded-xl p-4 flex flex-col gap-2 mb-6">
-            <div className="flex justify-between items-center text-xs sm:text-sm md:text-base">
-              <span className="text-outline font-medium">Biaya Buka:</span>
-              <span className="font-extrabold text-on-surface flex items-center gap-1">
-                <Coins className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current text-amber-500" />
-                {cost} Koin
-              </span>
-            </div>
-            <div className="flex justify-between items-center text-xs sm:text-sm md:text-base border-t border-white/5 pt-2">
-              <span className="text-outline font-medium">Koin Anda:</span>
-              <span className={`font-extrabold flex items-center gap-1 ${canUnlock ? 'text-amber-300' : 'text-red-400'}`}>
-                <Coins className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current text-amber-500" />
-                {userCoins} Koin
-              </span>
-            </div>
-          </div>
-
-          {canUnlock ? (
-            /* Confirm Action Buttons */
-            <div className="flex w-full gap-3">
-              <button
-                type="button"
-                onClick={onClose}
-                className="flex-1 h-11 sm:h-12 rounded-lg border border-white/10 text-xs sm:text-sm md:text-base font-bold text-outline hover:bg-white/5 hover:text-on-surface transition-colors cursor-pointer"
-              >
-                Batal
-              </button>
-              <button
-                type="button"
-                onClick={onConfirm}
-                className="flex-1 h-11 sm:h-12 rounded-lg bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white text-xs sm:text-sm md:text-base font-black transition-colors cursor-pointer shadow-lg hover:shadow-amber-500/20"
-              >
-                Buka Sekarang
-              </button>
-            </div>
-          ) : (
-            /* Insufficient Coins Warning Buttons */
-            <div className="flex flex-col w-full gap-3">
-              <div className="text-[10px] sm:text-xs md:text-sm text-red-400 font-bold mb-1">
-                ⚠️ Koin Anda tidak mencukupi untuk membuka chapter ini.
-              </div>
-              <button
-                type="button"
-                onClick={onGoToStore}
-                className="w-full h-11 sm:h-12 rounded-lg bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white text-xs sm:text-sm md:text-base font-black transition-colors cursor-pointer shadow-lg hover:shadow-amber-500/20"
-              >
-                Beli Koin Sekarang
-              </button>
-              <button
-                type="button"
-                onClick={onClose}
-                className="w-full h-11 sm:h-12 rounded-lg border border-white/10 text-xs sm:text-sm md:text-base font-bold text-outline hover:bg-white/5 hover:text-on-surface transition-colors cursor-pointer"
-              >
-                Batal
-              </button>
-            </div>
-          )}
-        </motion.div>
-      </div>
-    </AnimatePresence>
-  );
-}
-
-// ── Account Settings Modal — username + Trakteer email ───────
+// ── Account Settings Modal — username + email ─────────────────
 export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChangedAt, onSave }) {
   const [username, setUsername] = useState(currentUser?.name || '');
   const [trakteerEmail, setTrakteerEmail] = useState(currentUser?.email || '');
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
 
-  // Hitung apakah username masih dalam cooldown 1 tahun
   const nameLockedUntil = (() => {
     if (!nameChangedAt) return null;
     const until = new Date(new Date(nameChangedAt).getTime() + 365 * 24 * 60 * 60 * 1000);
@@ -633,11 +387,11 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChanged
                 placeholder="email@contoh.com"
                 value={trakteerEmail}
                 onChange={e => { setTrakteerEmail(e.target.value); setEmailError(''); }}
-                className={`w-full bg-surface-container-high border rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 transition-all ${emailError ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20' : 'border-white/5 focus:border-amber-400 focus:ring-amber-400/20'}`}
+                className={`w-full bg-surface-container-high border rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 transition-all ${emailError ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20' : 'border-white/5 focus:border-pink-400 focus:ring-pink-400/20'}`}
               />
               {emailError
                 ? <p className="text-[10px] text-red-400">{emailError}</p>
-                : <p className="text-[10px] text-outline/60">Patokan pengiriman koin dari donasi Trakteer. Pastikan sama dengan email donasi kamu.</p>
+                : <p className="text-[10px] text-outline/60">Patokan pencocokan donasi Supporter. Pastikan sama dengan email donasi Trakteer kamu.</p>
               }
             </div>
 
@@ -658,12 +412,9 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChanged
   );
 }
 
-
-// ── Locked Chapter Modal — unified for all access states ─────
-export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn, userCoins, onConfirm, onLogin, onGoToStore }) {
+// ── Locked Chapter Modal — gate Supporter ─────────────────────
+export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn, isSupporter, onLogin, onBecomeSupporter }) {
   if (!isOpen || !chapter) return null;
-  const cost = 10;
-  const canUnlock = isLoggedIn && userCoins >= cost;
 
   return (
     <AnimatePresence>
@@ -677,7 +428,7 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
           transition={{ type: 'spring', damping: 22, stiffness: 320 }}
           className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-surface-container border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10"
         >
-          <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-48 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
           <button onClick={onClose}
             className="absolute top-4 right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-outline cursor-pointer z-10 transition-colors">
             <X className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -689,8 +440,8 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
             )}
             <div className="min-w-0 pt-0.5">
               <div className="flex items-center gap-1.5 mb-1">
-                <Lock className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
-                <span className="font-label-sm text-xs sm:text-sm md:text-base font-black text-amber-400 uppercase tracking-wider">Chapter Terkunci</span>
+                <Lock className="w-4 h-4 sm:w-5 sm:h-5 text-pink-400 shrink-0" />
+                <span className="font-label-sm text-xs sm:text-sm md:text-base font-black text-pink-400 uppercase tracking-wider">Chapter Terkunci</span>
               </div>
               <p className="font-body-md text-sm sm:text-base text-outline/70 font-semibold truncate">{manga?.title || ''}</p>
               <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface mt-0.5 line-clamp-2">{chapter.title}</h3>
@@ -705,21 +456,15 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
           <div className="px-5 pb-5 flex flex-col gap-2">
             {!isLoggedIn ? (
               <button onClick={onLogin}
-                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
-                <Coins className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-                Login &amp; Beli dengan {cost} Koin
-              </button>
-            ) : canUnlock ? (
-              <button onClick={onConfirm}
-                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
-                <Coins className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-                Beli dengan {cost} Koin
+                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-pink-900/30">
+                <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
+                Login untuk jadi Supporter
               </button>
             ) : (
-              <button onClick={onGoToStore}
-                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
-                <Coins className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-                Koin tidak cukup — Isi Koin
+              <button onClick={onBecomeSupporter}
+                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-pink-900/30">
+                <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
+                {isSupporter ? 'Perpanjang Supporter' : 'Jadi Supporter — buka semua'}
               </button>
             )}
             <button onClick={onClose}

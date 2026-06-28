@@ -1,11 +1,11 @@
 import { useState, useMemo, useEffect } from 'react';
 import { imgUrl, timeAgo } from '../utils';
-import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Coins, Lock, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play } from 'lucide-react';
+import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Lock, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
 import SupportButtons from './SupportButtons';
 
-export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, unlockedChapters }) {
+export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, isSupporter }) {
   const [isLoading, setIsLoading] = useState(true);
   const [expandedSynopsis, setExpandedSynopsis] = useState(false);
 
@@ -32,11 +32,8 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   const [sortNewest, setSortNewest] = useState(true);
   const [showAllChapters, setShowAllChapters] = useState(false);
   const [activeDetailTab, setActiveDetailTab] = useState('info');
+  // Chapter yang baru lepas kunci sesi ini (countdown habis) → tampil free langsung.
   const [localUnlockedChapters, setLocalUnlockedChapters] = useState(new Set());
-  // Gabung local (baru dibeli sesi ini) + D1 (sudah dibeli sebelumnya)
-  const effectiveUnlocked = unlockedChapters
-    ? new Set([...unlockedChapters, ...localUnlockedChapters])
-    : localUnlockedChapters;
   const [readChapters, setReadChapters] = useState(new Set());
   const [lightboxCover, setLightboxCover] = useState(null);
   const [galleryPage, setGalleryPage] = useState(0);
@@ -70,7 +67,7 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
 const renderChapterRow = (ch) => {
     const isNew = !!ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
     const isUnread = !readChapters.has(ch.id);
-    const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now() && !effectiveUnlocked.has(ch.id);
+    const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now() && !isSupporter && !localUnlockedChapters.has(ch.id);
     const isOneshot = manga.status === 'Oneshot';
     const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
     const targetChapter = manga.status === 'Tamat' ? manga.tamat_at_chapter : isOneshot ? ch.chapter_number : manga.hiatus_at_chapter;
@@ -123,9 +120,9 @@ const renderChapterRow = (ch) => {
                 </span>
               )}
               {isLocked && (
-                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
-                  <Coins className="w-2.5 h-2.5 md:w-3 md:h-3 fill-current shrink-0" />
-                  <span>10</span>
+                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider bg-pink-500/15 text-pink-400 border border-pink-500/30 flex items-center gap-0.5">
+                  <Lock className="w-2.5 h-2.5 md:w-3 md:h-3 shrink-0" />
+                  <span>Supporter</span>
                 </span>
               )}
             </div>

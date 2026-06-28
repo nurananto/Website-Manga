@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-// Pengunjung hari ini — angka dari Cloudflare Analytics (server-side, tahan ad-blocker)
-// via endpoint worker /api/stats. Sembunyi diam-diam kalau data tak tersedia
-// (worker belum dikonfigurasi / fetch gagal) supaya footer tetap rapi.
+// "Pengunjung hari ini" — angka dari worker /api/stats (Cloudflare Analytics,
+// server-side & tahan ad-blocker). Kotak biru, ditaruh tepat di bawah logo footer.
+// Sembunyi diam-diam kalau data tak tersedia (worker belum dikonfigurasi / gagal).
 export default function VisitorCount() {
   const [visitors, setVisitors] = useState(null);
 
@@ -20,8 +20,11 @@ export default function VisitorCount() {
   if (visitors === null) return null;
 
   return (
-    <span className="font-body-sm text-[10px] text-outline/40">
-      👁 {visitors.toLocaleString('id-ID')} pengunjung hari ini
-    </span>
+    <div className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#1877F2]/40 bg-[#1877F2]/10 shadow-sm">
+      <span className="text-base leading-none">👁</span>
+      <span className="font-black text-xs sm:text-sm text-[#1877F2]">
+        {visitors.toLocaleString('id-ID')} pengunjung hari ini
+      </span>
+    </div>
   );
 }

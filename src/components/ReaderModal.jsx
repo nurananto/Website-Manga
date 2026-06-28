@@ -8,7 +8,6 @@ import { imgUrl } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
-import { DailyClaimButton } from './CoinModals';
 
 // Widget Turnstile interaktif (wajib centang) untuk membuka locked chapter.
 function TurnstileGate({ onToken }) {
@@ -124,16 +123,19 @@ function PageImage({ src, fallbackSrc, idx, pageRefs, ready, onAccessError }) {
     let cancelled = false;
     let objUrl = null;
     fetch(activeSrc)
-      .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.blob(); })
+      .then(r => { if (!r.ok) { const e = new Error(`HTTP ${r.status}`); e.status = r.status; throw e; } return r.blob(); })
       .then(blob => {
         if (cancelled) return;
         objUrl = URL.createObjectURL(blob);
         setBlobUrl(objUrl);
       })
-      .catch(() => {
+      .catch((err) => {
         if (cancelled) return;
         if (fallbackSrc && !useFallback) setUseFallback(true); // coba worker sekali
-        else { setFailed(true); onAccessError?.(); }
+        // Hanya laporkan error AKSES (401/403 = token ditolak server). Error lain
+        // (404/429/jaringan) cukup gagalkan halaman ini saja — JANGAN reset token
+        // (mencegah loop Turnstile di gambar ke-2, ke-3, dst).
+        else { setFailed(true); onAccessError?.(err?.status); }
       });
     return () => { cancelled = true; if (objUrl) URL.revokeObjectURL(objUrl); };
   }, [ready, inView, activeSrc, retryCount]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -185,7 +187,7 @@ function PageImage({ src, fallbackSrc, idx, pageRefs, ready, onAccessError }) {
   );
 }
 
-export default function ReaderModal({ chapter, manga, onClose, onReadChapter, unlockedChapters, isLoggedIn, currentUser, userCoins, onDailyClaim, onLoginClick }) {
+export default function ReaderModal({ chapter, manga, onClose, onReadChapter, isSupporter, isLoggedIn, currentUser, onLoginClick }) {
   // Freeze last known values saat exit animation agar konten tidak hilang
   const frozenChapter = useRef(chapter);
   const frozenManga = useRef(manga);
@@ -251,11 +253,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const prevChapter = chapters[currentIdx + 1] ?? null; // lebih lama
   const nextChapter = chapters[currentIdx - 1] ?? null; // lebih baru
 
-  // Helper: cek apakah chapter benar-benar locked (belum dibeli & belum free)
+  // Helper: cek apakah chapter benar-benar locked (belum free & user bukan Supporter)
   const isChapterLocked = (ch) => {
     if (!ch?.unlockDate) return false;
     if (new Date(ch.unlockDate).getTime() <= Date.now()) return false;
-    if (unlockedChapters?.has(ch.id)) return false;
+    if (isSupporter) return false;
     return true;
   };
 
@@ -292,6 +294,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   const [imgHash, setImgHash] = useState(null);
   const [tsToken, setTsToken] = useState(null); // token Turnstile (wajib centang)
   const tokenFromCacheRef = useRef(false);      // token aktif berasal dari cache?
+  const reauthAttemptRef  = useRef(0);          // maks 1× re-Turnstile per buka chapter (anti-loop)
   const nextPageRef = useRef(1);
   const userId = currentUser?.id || null;
 
@@ -304,6 +307,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   useEffect(() => {
     setTsToken(null);
     tokenFromCacheRef.current = false;
+    reauthAttemptRef.current = 0;
     const cached = (chapterNeedsToken && userId && chapter?.id)
       ? getCachedChapterToken(userId, chapter.id) : null;
     if (cached) {
@@ -346,8 +350,12 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
   // Token cache ditolak server (IP berubah / kedaluwarsa di server) → gambar 403.
   // Hanya token dari cache yang bisa basi saat dipakai; token segar valid saat dicetak.
   // Buang cache & minta Turnstile baru.
-  const handleLockedImageError = () => {
-    if (!tokenFromCacheRef.current) return;
+  const handleLockedImageError = (status) => {
+    // Hanya re-Turnstile kalau server menolak token (401/403) — bukan 404/429/jaringan.
+    if (status !== 401 && status !== 403) return;
+    if (!tokenFromCacheRef.current) return;      // token segar valid saat dicetak; jangan reset
+    if (reauthAttemptRef.current >= 1) return;   // sudah 1× re-auth → stop (anti-loop)
+    reauthAttemptRef.current += 1;
     tokenFromCacheRef.current = false;
     if (userId && chapter?.id) invalidateChapterToken(userId, chapter.id);
     setImgAccess(null);
@@ -585,20 +593,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, un
                 />
               ))}
             </div>
-
-            {/* Klaim koin harian — hanya untuk yang login (jangan memaksa login).
-                Urutan: gambar → banner klaim → navbar → back */}
-            {isLoggedIn && (
-              <div className="px-2 py-2">
-                <DailyClaimButton
-                  dailyClaimAt={currentUser?.daily_claim_at || null}
-                  onDailyClaim={onDailyClaim}
-                  userCoins={userCoins}
-                  isLoggedIn={isLoggedIn}
-                  onLoginClick={onLoginClick}
-                />
-              </div>
-            )}
 
             {/* Navigasi bawah */}
             {renderNavBar('bottom')}

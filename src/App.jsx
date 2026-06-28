@@ -5,15 +5,14 @@ import SpotlightCarousel from './components/SpotlightCarousel';
 import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
-import { Sparkles, TrendingUp, Compass, RotateCcw, Search, CheckCircle, ArrowRight, Coins, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Sparkles, TrendingUp, Compass, RotateCcw, Search, CheckCircle, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { imgUrl, timeAgo } from './utils';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AuthModal, CoinPurchaseModal, LockedChapterModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
+import { AuthModal, SupporterModal, LockedChapterModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
 import { MangaCardSkeleton, MangaDetailSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
 import { clearCachedSession } from './lib/session';
-import { getDeviceId } from './lib/device';
 import { clearChapterTokens } from './lib/chapterToken';
 
 // Lazy-load komponen besar/jarang dipakai → kurangi JS bundle awal (homepage)
@@ -246,7 +245,10 @@ export default function App() {
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [historyChapters, setHistoryChapters] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const [userCoins, setUserCoins] = useState(0);
+  const [isSupporter, setIsSupporter] = useState(false);
+  const [supporterUntil, setSupporterUntil] = useState(null);
+  const isSupporterRef = useRef(false);
+  isSupporterRef.current = isSupporter;
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [nameChangedAt, setNameChangedAt] = useState(null);
@@ -257,11 +259,7 @@ export default function App() {
   const [finishingLogin, setFinishingLogin] = useState(() => {
     try { return new URLSearchParams(window.location.search).has('code'); } catch { return false; }
   });
-  const [isCoinModalOpen, setIsCoinModalOpen] = useState(false);
-  const [, setIsUnlockModalOpen] = useState(false);
-  const [d1UnlockedChapters, setD1UnlockedChapters] = useState(new Set());
-  const d1UnlockedRef = useRef(d1UnlockedChapters);
-  d1UnlockedRef.current = d1UnlockedChapters;
+  const [isCoinModalOpen, setIsCoinModalOpen] = useState(false); // dipakai utk SupporterModal
   const [pendingUnlockChapter, setPendingUnlockChapter] = useState(null);
   const [pendingMangaTitle, setPendingMangaTitle] = useState('');
   const [pendingManga, setPendingManga] = useState(null);
@@ -318,7 +316,7 @@ export default function App() {
         : await fetch(`/manga/${intent.mangaId}.json`).then(r => (r.ok ? r.json() : null));
       if (!manga) return;
       const ch = (manga.chapters || []).find(c => String(c.chapter_number) === String(intent.chapterNum));
-      if (!ch || d1UnlockedRef.current.has(ch.id)) return;
+      if (!ch || isSupporterRef.current) return;
       setPendingUnlockChapter(ch);
       setPendingMangaTitle(manga.title);
       setPendingManga(manga);
@@ -378,25 +376,14 @@ export default function App() {
 
     const doFetchBalance = () => fetch(`${workerUrl}/api/user/me`, { headers })
       .then(r => r.json()).then(d => {
-        if (typeof d.coins === 'number') setUserCoins(d.coins);
+        setIsSupporter(!!d.is_supporter);
+        setSupporterUntil(d.supporter_until ?? null);
         if (d.name_changed_at) setNameChangedAt(d.name_changed_at);
-        setCurrentUser(prev => prev ? { ...prev, ...(d.name ? { name: d.name } : {}), is_donor: !!d.is_donor, daily_claim_at: d.daily_claim_at ?? null } : prev);
+        setCurrentUser(prev => prev ? { ...prev, ...(d.name ? { name: d.name } : {}), is_supporter: !!d.is_supporter, supporter_until: d.supporter_until ?? null } : prev);
       })
       .catch(() => {});
 
-    // Auto-claim coins dari trakteer (pakai email Google)
-    const claimEmail = user.email;
-    if (claimEmail) {
-      fetch(`${workerUrl}/api/user/claim-coins`, {
-        method: 'POST',
-        headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ trakteer_email: claimEmail }),
-      }).then(r => r.json()).then(d => {
-        if (d.transferred > 0) localStorage.removeItem(`tx_cache_${user.id}`);
-      }).catch(() => {}).finally(() => doFetchBalance());
-    } else {
-      doFetchBalance();
-    }
+    doFetchBalance();
 
     fetch(`${workerUrl}/api/user/history`, { headers })
       .then(r => r.json()).then(rows => {
@@ -411,14 +398,6 @@ export default function App() {
           };
         });
         setHistoryChapters(hist);
-      }).catch(() => {});
-
-    fetch(`${workerUrl}/api/user/unlocked`, { headers })
-      .then(r => r.json()).then(ids => {
-        if (Array.isArray(ids)) {
-          unlockedFetchedAt.current = Date.now();
-          setD1UnlockedChapters(new Set(ids));
-        }
       }).catch(() => {});
 
   };
@@ -493,10 +472,10 @@ export default function App() {
           if (!ch) { navigate(`/${mangaId}`, true); return; }
 
           const stillLocked = ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now();
-          if (stillLocked && !d1UnlockedRef.current.has(ch.id)) {
+          if (stillLocked && !isSupporterRef.current) {
             navigate(`/${mangaId}`, true);
             if (!isLoggedIn) openAuth('unlock', { type: 'unlock', mangaId, chapterNum: ch.chapter_number });
-            else { setPendingUnlockChapter(ch); setPendingMangaTitle(manga.title); setIsUnlockModalOpen(true); }
+            else { setPendingUnlockChapter(ch); setPendingMangaTitle(manga.title); setPendingManga(manga); setIsLockedModalOpen(true); }
             return;
           }
           setSelectedManga(manga);
@@ -531,27 +510,6 @@ export default function App() {
   };
 
   // Klaim koin harian (1 koin / 24 jam) — dipakai di modal Isi Koin & reader.
-  const handleDailyClaim = async () => {
-    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-    const token = await getAccessToken();
-    if (!workerUrl || !token) return { ok: false };
-    try {
-      const res = await fetch(`${workerUrl}/api/user/daily-claim`, {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${token}`, 'X-Device-Id': getDeviceId() },
-      });
-      const d = await res.json();
-      if (d.ok) {
-        setUserCoins(prev => prev + (d.coins_added || 1));
-        setCurrentUser(prev => prev ? { ...prev, daily_claim_at: new Date().toISOString() } : prev);
-        showToast(`+${d.coins_added || 1} koin harian diklaim!`);
-      } else if (d.blocked) {
-        showToast('Klaim harian dibatasi pada perangkat ini.');
-      }
-      return d;
-    } catch { return { ok: false }; }
-  };
-
   // Filter manga based on search query
   const filteredManga = MANGA_LIST.filter((m) =>
     m.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -590,112 +548,16 @@ export default function App() {
     }
   };
 
-  // Verifikasi kepemilikan chapter langsung ke server + refresh daftar unlocked.
-  // Hasil di-cache 60 detik agar klik berulang tidak memboroskan request worker.
-  const unlockedFetchedAt = useRef(0);
-  const verifyOwnership = async (chapterId) => {
-    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-    if (!workerUrl || !isLoggedIn) return false;
-    if (Date.now() - unlockedFetchedAt.current < 60_000) {
-      return d1UnlockedRef.current.has(chapterId);
-    }
-    try {
-      const token = await getAccessToken();
-      if (!token) return false;
-      const res = await fetch(`${workerUrl}/api/user/unlocked`, { headers: { Authorization: `Bearer ${token}` } });
-      const ids = await res.json();
-      if (Array.isArray(ids)) {
-        unlockedFetchedAt.current = Date.now();
-        const set = new Set(ids);
-        setD1UnlockedChapters(set);
-        return set.has(chapterId);
-      }
-    } catch {}
-    return false;
-  };
-
   const handleReadChapter = (chapter, mangaTitle, mangaObj) => {
-    const isLocked = !!chapter.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now() && !d1UnlockedChapters.has(chapter.id);
-
+    const isLocked = !!chapter.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now() && !isSupporter;
     if (isLocked) {
-      setIsCheckingAccess(true);
-      verifyOwnership(chapter.id).then(owned => {
-        setIsCheckingAccess(false);
-        if (owned) {
-          openChapterReader(chapter, mangaTitle);
-          return;
-        }
-        setPendingUnlockChapter(chapter);
-        setPendingMangaTitle(mangaTitle);
-        setPendingManga(mangaObj || selectedManga);
-        setIsLockedModalOpen(true);
-      });
+      setPendingUnlockChapter(chapter);
+      setPendingMangaTitle(mangaTitle);
+      setPendingManga(mangaObj || selectedManga);
+      setIsLockedModalOpen(true);
       return;
     }
-
     openChapterReader(chapter, mangaTitle);
-  };
-
-  const UNLOCK_COST = 10;
-  // Pindah modal: tutup modal chapter terkunci, buka modal beli koin.
-  const goToBuyCoins = () => {
-    setIsLockedModalOpen(false);
-    setIsUnlockModalOpen(false);
-    setIsCoinModalOpen(true);
-  };
-
-  const handleConfirmUnlock = async () => {
-    if (!pendingUnlockChapter) return;
-    // Koin tidak cukup → arahkan ke modal beli koin.
-    if (userCoins < UNLOCK_COST) { goToBuyCoins(); return; }
-
-    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-    const token = await getAccessToken();
-
-    if (workerUrl && token) {
-      try {
-        const res = await fetch(`${workerUrl}/api/user/unlock-chapter`, {
-          method: 'POST',
-          headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chapter_id: pendingUnlockChapter.id,
-            manga_id: pendingManga?.id || selectedManga?.id || pendingUnlockChapter.id.split('-ch-')[0],
-            cost: UNLOCK_COST,
-          }),
-        });
-        const d = await res.json();
-        if (!res.ok && !d.already_owned) {
-          // Saldo berubah / kurang di server → buka modal beli koin, bukan sekadar toast.
-          if (d.error === 'Insufficient coins') goToBuyCoins();
-          else showToast('Gagal membuka chapter.');
-          return;
-        }
-        // Sudah dimiliki → server TIDAK memotong koin, jadi jangan kurangi lokal.
-        if (d.already_owned) { /* tanpa potongan */ }
-        else if (typeof d.coins_remaining === 'number') setUserCoins(d.coins_remaining);
-        else setUserCoins(prev => prev - UNLOCK_COST);
-        // Invalidate tx cache
-        if (currentUser) localStorage.removeItem(`tx_cache_${currentUser.id}`);
-      } catch {
-        showToast('Koneksi gagal, coba lagi.');
-        return;
-      }
-    } else {
-      // Offline fallback
-      setUserCoins(prev => prev - UNLOCK_COST);
-    }
-
-    // Tandai owned secara SINKRON (ref + state) supaya pengecekan rute saat
-    // openChapterReader→navigate tidak menendang balik chapter yang baru dibeli.
-    const owned = new Set([...d1UnlockedRef.current, pendingUnlockChapter.id]);
-    d1UnlockedRef.current = owned;
-    setD1UnlockedChapters(owned);
-
-    setIsLockedModalOpen(false);
-    setIsUnlockModalOpen(false);
-    showToast('Chapter berhasil dibuka!');
-    openChapterReader(pendingUnlockChapter, pendingMangaTitle);
-    setPendingUnlockChapter(null);
   };
 
   const handleTabClick = (tab) => {
@@ -712,7 +574,8 @@ export default function App() {
         fetch(`${workerUrl}/api/user/me`, { headers: { Authorization: `Bearer ${token}` } })
           .then(r => r.json())
           .then(d => {
-            if (typeof d.coins === 'number') setUserCoins(d.coins);
+            setIsSupporter(!!d.is_supporter);
+            setSupporterUntil(d.supporter_until ?? null);
             if (d.name) setCurrentUser(prev => prev ? { ...prev, name: d.name } : prev);
           })
           .catch(() => {});
@@ -754,7 +617,8 @@ export default function App() {
           activeTab={activeTab}
           onTabClick={handleTabClick}
           onChangePasswordClick={() => setIsChangePasswordOpen(true)}
-          userCoins={userCoins}
+          isSupporter={isSupporter}
+          supporterUntil={supporterUntil}
           isLoggedIn={isLoggedIn}
           currentUser={currentUser}
           onLoginClick={() => openAuth()}
@@ -763,16 +627,13 @@ export default function App() {
             clearChapterTokens(); // cegah reuse token chapter oleh akun lain di device ini
             setIsLoggedIn(false);
             setCurrentUser(null);
-            setUserCoins(0);
+            setIsSupporter(false);
+            setSupporterUntil(null);
             setHistoryChapters({});
-            setD1UnlockedChapters(new Set());
           }}
-          onBuyCoinsClick={() => {
-            if (isLoggedIn) {
-              setIsCoinModalOpen(true);
-            } else {
-              openAuth();
-            }
+          onBecomeSupporter={() => {
+            if (isLoggedIn) setIsCoinModalOpen(true);
+            else openAuth();
           }}
           onDropdownOpen={async () => {
             if (!isLoggedIn || !currentUser) return;
@@ -780,21 +641,9 @@ export default function App() {
             if (!workerUrl) return;
             const token = await getAccessToken();
             if (!token) return;
-            const headers = { 'Authorization': `Bearer ${token}` };
-            const claimEmail = currentUser.email;
-            if (claimEmail) {
-              fetch(`${workerUrl}/api/user/claim-coins`, {
-                method: 'POST',
-                headers: { ...headers, 'Content-Type': 'application/json' },
-                body: JSON.stringify({ trakteer_email: claimEmail }),
-              }).then(r => r.json()).then(d => {
-                if (d.transferred > 0) localStorage.removeItem(`tx_cache_${currentUser.id}`);
-              }).catch(() => {}).finally(() => {
-                fetch(`${workerUrl}/api/user/me`, { headers })
-                  .then(r => r.json()).then(d => { if (typeof d.coins === 'number') setUserCoins(d.coins); })
-                  .catch(() => {});
-              });
-            }
+            fetch(`${workerUrl}/api/user/me`, { headers: { Authorization: `Bearer ${token}` } })
+              .then(r => r.json()).then(d => { setIsSupporter(!!d.is_supporter); setSupporterUntil(d.supporter_until ?? null); })
+              .catch(() => {});
           }}
         />
       )}
@@ -820,7 +669,7 @@ export default function App() {
               manga={selectedManga}
               onReadChapter={handleReadChapter}
               lastReadChapter={historyChapters[selectedManga.id]}
-              unlockedChapters={d1UnlockedChapters}
+              isSupporter={isSupporter}
             />
           </Suspense>
         ) : (
@@ -914,12 +763,13 @@ export default function App() {
                     </div>
                   ) : (
                     <div className="flex flex-col gap-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6">
+                      {/* key={currentPage} + fade → transisi antar halaman halus (tak berkedip) */}
+                      <div key={currentPage} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 animate-[fadeIn_0.25s_ease-out]">
                         {paginatedManga.map((manga) => (
                           <div key={manga.id}>
                             <MangaCard
                               manga={manga}
-                              unlockedChapters={d1UnlockedChapters}
+                              isSupporter={isSupporter}
                               onViewManga={() => { navigate(`/${manga.id}`); }}
                               onReadChapter={(ch, title) => handleReadChapter(ch, title || manga.title, manga)}
                             />
@@ -1080,6 +930,7 @@ export default function App() {
         <footer className="w-full pt-4 md:pt-6 xl:pt-8 pb-4 md:pb-6 xl:pb-8 bg-surface border-t border-white/60 mt-auto">
           <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-3">
             <img src="/logo-footer.webp" alt="Nurananto Scanlation" width="1843" height="552" className="h-11 md:h-14 xl:h-16 w-auto" />
+            <VisitorCount />
             <div className="w-full border border-white/8 rounded-xl px-5 sm:px-6 py-4 bg-white/[0.02]">
               <p className="font-body-sm text-xs text-outline/70 leading-relaxed text-center">
                 Ini adalah situs fan terjemahan <em>unofficial</em> yang dibuat semata-mata karena kecintaan terhadap manga.
@@ -1112,18 +963,11 @@ export default function App() {
             <span className="font-body-sm text-[10px] text-outline/40">
               © {new Date().getFullYear()} Nurananto Scanlation. Fan Translation — Not for commercial use.
             </span>
-            <VisitorCount />
             {buildId && (
               <div className="flex items-center gap-2">
                 <span className="font-body-sm text-[9px] text-outline/25">
                   build #{buildId.slice(-6)}
                 </span>
-                <button
-                  onClick={softResetApp}
-                  className="font-body-sm text-[9px] text-outline/35 hover:text-outline/70 underline underline-offset-2 transition-colors cursor-pointer"
-                >
-                  Reset cache app
-                </button>
               </div>
             )}
           </div>
@@ -1165,11 +1009,9 @@ export default function App() {
             manga={selectedManga}
             onClose={() => { navigate(`/${selectedManga?.id || ''}`); }}
             onReadChapter={handleReadChapter}
-            unlockedChapters={d1UnlockedChapters}
+            isSupporter={isSupporter}
             isLoggedIn={isLoggedIn}
             currentUser={currentUser}
-            userCoins={userCoins}
-            onDailyClaim={handleDailyClaim}
             onLoginClick={() => openAuth('reader')}
           />
         </Suspense>
@@ -1205,22 +1047,7 @@ export default function App() {
                   return;
                 }
               }
-              // Claim koin dari Trakteer
-              if (trakteerEmail) {
-                const claimRes = await fetch(`${workerUrl}/api/user/claim-coins`, {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-                  body: JSON.stringify({ trakteer_email: trakteerEmail }),
-                });
-                const d = await claimRes.json();
-                if (d.transferred > 0) {
-                  showToast(`${d.transferred} koin berhasil diklaim!`);
-                  setUserCoins(prev => prev + d.transferred);
-                }
-                const meRes = await fetch(`${workerUrl}/api/user/me`, { headers: { 'Authorization': `Bearer ${token}` } });
-                const me = await meRes.json();
-                if (typeof me.coins === 'number') setUserCoins(me.coins);
-              }
+              // Email disimpan sebagai patokan pencocokan donasi Supporter (tanpa klaim koin).
             } catch (e) {
               console.error('Save settings error:', e);
             }
@@ -1250,17 +1077,11 @@ export default function App() {
         }}
       />
 
-      {/* Coin Purchase Modal */}
-      <CoinPurchaseModal
+      {/* Supporter Modal */}
+      <SupporterModal
         isOpen={isCoinModalOpen}
         onClose={() => setIsCoinModalOpen(false)}
-        userCoins={userCoins}
         userEmail={currentUser?.email || ''}
-        dailyClaimAt={currentUser?.daily_claim_at || null}
-        onDailyClaim={handleDailyClaim}
-        onPurchase={(addedCoins) => {
-          setUserCoins(prev => prev + addedCoins);
-        }}
       />
 
       {/* Locked Chapter Modal */}
@@ -1270,10 +1091,9 @@ export default function App() {
         chapter={pendingUnlockChapter}
         manga={pendingManga}
         isLoggedIn={isLoggedIn}
-        userCoins={userCoins}
-        onConfirm={handleConfirmUnlock}
+        isSupporter={isSupporter}
         onLogin={() => { setIsLockedModalOpen(false); openAuth('unlock', { type: 'unlock', mangaId: pendingManga?.id, chapterNum: pendingUnlockChapter?.chapter_number }); }}
-        onGoToStore={() => { setIsLockedModalOpen(false); setIsCoinModalOpen(true); }}
+        onBecomeSupporter={() => { setIsLockedModalOpen(false); setIsCoinModalOpen(true); }}
       />
 
       {/* Toast Notification */}

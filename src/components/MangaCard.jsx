@@ -3,7 +3,7 @@ import { imgUrl, timeAgoShort } from '../utils';
 import { Lock, Clock, ArrowUp } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
-export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedChapters }) {
+export default function MangaCard({ manga, onReadChapter, onViewManga, isSupporter }) {
   const [localUnlocked, setLocalUnlocked] = useState(new Set());
 
   const isOneshot = manga.status === 'Oneshot';
@@ -75,7 +75,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, unlockedC
               </div>
             );
             const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()
-              && !localUnlocked.has(ch.id) && !unlockedChapters?.has(ch.id);
+              && !localUnlocked.has(ch.id) && !isSupporter;
             const targetChapter = manga.status === 'Tamat'
               ? manga.tamat_at_chapter
               : isOneshot
