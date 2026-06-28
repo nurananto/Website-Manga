@@ -120,7 +120,7 @@ const renderChapterRow = (ch) => {
                 </span>
               )}
               {isLocked && (
-                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider bg-pink-500/15 text-pink-400 border border-pink-500/30 flex items-center gap-0.5">
+                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
                   <Lock className="w-2.5 h-2.5 md:w-3 md:h-3 shrink-0" />
                   <span>Supporter</span>
                 </span>

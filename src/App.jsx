@@ -22,130 +22,32 @@ const PrivacyPolicyModal  = lazy(() => import('./components/PrivacyPolicyModal')
 const TermsOfServiceModal = lazy(() => import('./components/TermsOfServiceModal'));
 const DmcaModal           = lazy(() => import('./components/DmcaModal'));
 
-// ── History Tabs: Baca + Koin ────────────────────────────────
-function HistoryTabs({ historyEntries, handleReadChapter, isLoggedIn, currentUser, workerUrl }) {
-  const [tab, setTab] = useState('read');
-  const [txData, setTxData] = useState(null);
-  const [txPage, setTxPage] = useState(1);
-  const [txLoading, setTxLoading] = useState(false);
-  const CACHE_KEY = `tx_cache_${currentUser?.id || 'guest'}`;
-  const CACHE_TTL = 2 * 60 * 1000; // 2 menit
-
-  const fetchTransactions = async (page = 1) => {
-    if (!isLoggedIn) return;
-    const cacheRaw = localStorage.getItem(CACHE_KEY);
-    if (cacheRaw && page === 1) {
-      try {
-        const cache = JSON.parse(cacheRaw);
-        if (Date.now() - cache.ts < CACHE_TTL) { setTxData(cache.data); return; }
-      } catch {}
-    }
-    setTxLoading(true);
-    try {
-      const token = await getAccessToken();
-      if (!token) return;
-      const res = await fetch(`${workerUrl}/api/user/transactions?page=${page}&limit=10`, {
-        headers: { 'Authorization': `Bearer ${token}` },
-      });
-      const d = await res.json();
-      setTxData(d);
-      // Hanya cache kalau ada data
-      if (page === 1 && d.data?.length > 0) localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: d }));
-    } catch {} finally { setTxLoading(false); }
-  };
-
-  useEffect(() => { if (tab === 'coin') fetchTransactions(txPage); }, [tab, txPage]);
-
+// ── Riwayat Baca ──────────────────────────────────────────────
+function HistoryTabs({ historyEntries, handleReadChapter }) {
   return (
     <div className="flex flex-col gap-4">
-      {/* Sub-tabs */}
-      <div className="flex gap-1 bg-surface-container-high rounded-xl p-1">
-        {[{ id: 'read', label: 'Riwayat Baca' }, { id: 'coin', label: 'Riwayat Koin' }].map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)}
-            className={`flex-1 h-9 rounded-lg text-xs font-bold transition-all cursor-pointer ${tab === t.id ? 'bg-surface-container text-on-surface shadow-sm' : 'text-outline hover:text-on-surface'}`}>
-            {t.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Riwayat Baca */}
-      {tab === 'read' && (
-        historyEntries.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-outline">
-            <RotateCcw className="w-10 h-10 opacity-20 mb-3" />
-            <p className="font-bold">Belum ada riwayat baca</p>
-          </div>
-        ) : (
-          <div className="flex flex-col gap-2">
-            {historyEntries.map(({ manga, chapter }) => (
-              <div key={manga.id} onClick={() => handleReadChapter(chapter, manga.title, manga)}
-                className="flex items-stretch gap-3 sm:gap-4 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 sm:p-3 md:p-4 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
-                <img alt={manga.title} src={imgUrl(manga.coverUrl)}
-                  className="object-cover rounded-lg border border-white/10 shrink-0 shadow-md"
-                  style={{ aspectRatio: '2/3', width: 'auto', maxHeight: 'calc(1.25rem + 2.5rem + 1.25rem + 0.5rem)' }} />
-                <div className="min-w-0 flex-1 flex flex-col justify-center gap-0.5 sm:gap-1">
-                  <h3 className="font-headline-md text-sm sm:text-base md:text-lg font-black text-on-surface line-clamp-1">{manga.title}</h3>
-                  <p className="text-xs sm:text-sm md:text-base font-bold text-primary truncate">{chapter.title}</p>
-                  <p className="text-[10px] sm:text-xs md:text-sm text-outline/60">{chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}</p>
-                </div>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-outline/30 group-hover:text-primary shrink-0 self-center transition-colors" />
+      {historyEntries.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-16 text-outline">
+          <RotateCcw className="w-10 h-10 opacity-20 mb-3" />
+          <p className="font-bold">Belum ada riwayat baca</p>
+        </div>
+      ) : (
+        <div className="flex flex-col gap-2">
+          {historyEntries.map(({ manga, chapter }) => (
+            <div key={manga.id} onClick={() => handleReadChapter(chapter, manga.title, manga)}
+              className="flex items-stretch gap-3 sm:gap-4 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 sm:p-3 md:p-4 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
+              <img alt={manga.title} src={imgUrl(manga.coverUrl)}
+                className="object-cover rounded-lg border border-white/10 shrink-0 shadow-md"
+                style={{ aspectRatio: '2/3', width: 'auto', maxHeight: 'calc(1.25rem + 2.5rem + 1.25rem + 0.5rem)' }} />
+              <div className="min-w-0 flex-1 flex flex-col justify-center gap-0.5 sm:gap-1">
+                <h3 className="font-headline-md text-sm sm:text-base md:text-lg font-black text-on-surface line-clamp-1">{manga.title}</h3>
+                <p className="text-xs sm:text-sm md:text-base font-bold text-primary truncate">{chapter.title}</p>
+                <p className="text-[10px] sm:text-xs md:text-sm text-outline/60">{chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}</p>
               </div>
-            ))}
-          </div>
-        )
-      )}
-
-      {/* Riwayat Koin */}
-      {tab === 'coin' && (
-        !isLoggedIn ? (
-          <p className="text-center text-outline py-10 text-sm">Login untuk melihat riwayat koin</p>
-        ) : txLoading ? (
-          <div className="flex justify-center py-10"><div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin" /></div>
-        ) : !txData || txData.data?.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-outline">
-            <Coins className="w-10 h-10 opacity-20 mb-3" />
-            <p className="font-bold">Belum ada transaksi koin</p>
-          </div>
-        ) : (
-          <div className="flex flex-col gap-2">
-            {txData.data.map(tx => {
-              const isPositive = tx.type === 'trakteer' || tx.type === 'daily';
-              const coinAmount = isPositive ? `+${tx.amount}` : `-${Math.abs(tx.amount)}`;
-              return (
-                <div key={tx.id} className="flex items-center gap-3 bg-surface-container border border-white/8 rounded-xl p-3">
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${isPositive ? 'bg-amber-500/10' : 'bg-red-500/10'}`}>
-                    <Coins className={`w-4 h-4 ${isPositive ? 'text-amber-400' : 'text-red-400'}`} />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs sm:text-sm font-bold text-on-surface truncate">
-                      {isPositive
-                        ? `Beli koin sebanyak ${tx.note?.split(': ').pop() ?? ''}`
-                        : tx.note || tx.type}
-                    </p>
-                    <p className="text-[10px] text-outline/60">{tx.created_at ? timeAgo(tx.created_at) : '—'}</p>
-                  </div>
-                  <span className={`text-sm font-black shrink-0 ${isPositive ? 'text-amber-400' : 'text-red-400'}`}>
-                    {coinAmount}
-                  </span>
-                </div>
-              );
-            })}
-            {/* Pagination */}
-            {txData.pages > 1 && (
-              <div className="flex items-center justify-center gap-3 pt-2">
-                <button onClick={() => setTxPage(p => Math.max(1, p - 1))} disabled={txPage === 1}
-                  className="w-8 h-8 rounded-lg bg-surface-container-high border border-white/8 flex items-center justify-center disabled:opacity-30 cursor-pointer">
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <span className="text-xs text-outline">{txPage} / {txData.pages}</span>
-                <button onClick={() => setTxPage(p => Math.min(txData.pages, p + 1))} disabled={txPage === txData.pages}
-                  className="w-8 h-8 rounded-lg bg-surface-container-high border border-white/8 flex items-center justify-center disabled:opacity-30 cursor-pointer">
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            )}
-          </div>
-        )
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-outline/30 group-hover:text-primary shrink-0 self-center transition-colors" />
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
@@ -316,11 +218,33 @@ export default function App() {
         : await fetch(`/manga/${intent.mangaId}.json`).then(r => (r.ok ? r.json() : null));
       if (!manga) return;
       const ch = (manga.chapters || []).find(c => String(c.chapter_number) === String(intent.chapterNum));
-      if (!ch || isSupporterRef.current) return;
-      setPendingUnlockChapter(ch);
-      setPendingMangaTitle(manga.title);
-      setPendingManga(manga);
-      setIsLockedModalOpen(true);
+      if (!ch) return;
+
+      // Ambil status Supporter terkini — hindari race dgn me-fetch yang async
+      // (kalau tidak, supporter yang baru login bisa terlanjur dianggap non-supporter).
+      let supporter = isSupporterRef.current;
+      if (!supporter) {
+        const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+        const token = await getAccessToken();
+        if (workerUrl && token) {
+          try {
+            const me = await fetch(`${workerUrl}/api/user/me`, { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json());
+            supporter = !!me.is_supporter;
+            setIsSupporter(!!me.is_supporter);
+            setSupporterUntil(me.supporter_until ?? null);
+          } catch {}
+        }
+      }
+
+      // Supporter → langsung buka chapter. Bukan supporter → modal "Jadi Supporter".
+      if (supporter) {
+        openChapterReader(ch, manga.title);
+      } else {
+        setPendingUnlockChapter(ch);
+        setPendingMangaTitle(manga.title);
+        setPendingManga(manga);
+        setIsLockedModalOpen(true);
+      }
     } catch {}
   };
 
@@ -763,10 +687,11 @@ export default function App() {
                     </div>
                   ) : (
                     <div className="flex flex-col gap-4">
-                      {/* key={currentPage} + fade → transisi antar halaman halus (tak berkedip) */}
-                      <div key={currentPage} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 animate-[fadeIn_0.25s_ease-out]">
-                        {paginatedManga.map((manga) => (
-                          <div key={manga.id}>
+                      {/* key per-posisi (i) → DOM kartu dipakai ulang antar halaman: cover
+                          hanya ganti src (tak remount) sehingga transisi mulus, tak berkedip. */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6">
+                        {paginatedManga.map((manga, i) => (
+                          <div key={i}>
                             <MangaCard
                               manga={manga}
                               isSupporter={isSupporter}

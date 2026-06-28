@@ -198,8 +198,8 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' 
         >
           <div className="flex flex-col gap-5">
             <div className="text-center">
-              <div className="w-12 h-12 rounded-full bg-pink-500/10 border border-pink-500/20 flex items-center justify-center mx-auto mb-3">
-                <Heart className="w-6 h-6 text-pink-400" />
+              <div className="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-3">
+                <Heart className="w-6 h-6 text-amber-400" />
               </div>
               <h3 className="text-base font-black text-on-surface">Konfirmasi Email</h3>
               <p className="text-xs text-outline mt-1.5 leading-relaxed">
@@ -222,13 +222,13 @@ export function TrakteerEmailModal({ isOpen, onClose, onSave, defaultEmail = '' 
                   <Mail className="w-4 h-4 text-outline absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input type="email" placeholder="email@contoh.com" required
                     value={email} onChange={e => { setEmail(e.target.value); setError(''); }}
-                    className="w-full bg-surface-container-high border border-white/5 rounded-xl py-3 pl-10 pr-4 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-400/20 transition-all"
+                    className="w-full bg-surface-container-high border border-white/5 rounded-xl py-3 pl-10 pr-4 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all"
                   />
                 </div>
               </div>
 
               <button type="submit" disabled={loading}
-                className="w-full h-11 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-black text-sm transition-all cursor-pointer disabled:opacity-50 active:scale-[0.98]">
+                className="w-full h-11 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm transition-all cursor-pointer disabled:opacity-50 active:scale-[0.98]">
                 {loading ? 'Menyimpan...' : 'Konfirmasi & Simpan'}
               </button>
             </form>
@@ -258,13 +258,13 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-2xl shadow-2xl z-10 overflow-hidden"
         >
-          <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="overflow-y-auto hide-scrollbar max-h-[90vh] p-6 flex flex-col gap-5">
             <div className="flex justify-between items-start">
               <div>
                 <h3 className="text-base font-black text-on-surface flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-pink-400 fill-current" />
+                  <Heart className="w-5 h-5 text-amber-400 fill-current" />
                   Jadi Supporter
                 </h3>
                 <p className="text-xs text-outline mt-0.5">Buka semua chapter terkunci</p>
@@ -276,11 +276,11 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
             </div>
 
             {/* Benefit */}
-            <div className="bg-pink-500/10 border border-pink-500/20 rounded-xl px-4 py-3 flex flex-col gap-2">
-              <div className="flex items-center gap-2 text-sm font-black text-pink-300">
+            <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-3 flex flex-col gap-2">
+              <div className="flex items-center gap-2 text-sm font-black text-amber-300">
                 <Check className="w-4 h-4 shrink-0" /> Akses SEMUA chapter terkunci
               </div>
-              <div className="flex items-center gap-2 text-sm font-black text-pink-300">
+              <div className="flex items-center gap-2 text-sm font-black text-amber-300">
                 <Check className="w-4 h-4 shrink-0" /> Aktif 30 hari sejak donasi
               </div>
               <p className="text-[11px] text-outline/70 leading-relaxed">
@@ -288,25 +288,49 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
               </p>
             </div>
 
+            {/* Mockup Trakteer — tunjukkan email di kolom Pesan & jangan dijadikan private */}
+            <div className="border border-white/10 rounded-xl overflow-hidden bg-[#1a1a2e]">
+              <div className="px-3 py-2 border-b border-white/5 flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-sky-500/30 flex items-center justify-center text-[8px] font-black text-sky-300">N</div>
+                <div>
+                  <p className="text-[10px] font-black text-white/80">Nurananto Scanlation</p>
+                  <p className="text-[9px] text-white/40">@NuranantoScanlation</p>
+                </div>
+              </div>
+              <div className="p-3 flex flex-col gap-2">
+                <div className="bg-white/5 rounded-lg p-2.5">
+                  <p className="text-[9px] text-white/40 mb-1">Pesan</p>
+                  <p className="text-[10px] font-bold text-amber-300 break-all">{userEmail || 'email@kamu.com'}</p>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-3 h-3 rounded border border-white/20 flex items-center justify-center bg-white/5">
+                    <div className="w-1.5 h-1.5 rounded-[1px] bg-red-400" />
+                  </div>
+                  <p className="text-[9px] text-red-400 line-through">Jadikan pesan private</p>
+                  <span className="text-[9px] text-white/40">← jangan!</span>
+                </div>
+              </div>
+            </div>
+
             {/* Cara donasi */}
             <div className="flex flex-col gap-2">
               <p className="text-[10px] font-black text-outline uppercase tracking-wider">Cara jadi Supporter</p>
               {[
                 { n: 1, text: 'Klik tombol di bawah → buka halaman Trakteer' },
-                { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan email akunmu: <span className="text-pink-300 font-bold break-all">{userEmail || '—'}</span></> },
+                { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan email akunmu: <span className="text-amber-300 font-bold break-all">{userEmail || '—'}</span></> },
                 { n: 3, text: <><strong className="text-red-400">Jangan</strong> centang "Jadikan pesan private"</> },
                 { n: 4, text: <>Donasi minimal <strong className="text-on-surface">{SUPPORTER_MIN}</strong>, lalu bayar</> },
                 { n: 5, text: 'Status Supporter aktif otomatis setelah donasi dikonfirmasi (30 hari)' },
               ].map(({ n, text }) => (
                 <div key={n} className="flex gap-2.5 items-start">
-                  <span className="w-4 h-4 rounded-full bg-pink-500/20 border border-pink-500/30 text-pink-400 text-[9px] font-black flex items-center justify-center shrink-0 mt-0.5">{n}</span>
+                  <span className="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-[9px] font-black flex items-center justify-center shrink-0 mt-0.5">{n}</span>
                   <p className="text-[11px] text-outline/80 leading-relaxed">{text}</p>
                 </div>
               ))}
             </div>
 
             <a href={TRAKTEER_URL} target="_blank" rel="noopener noreferrer"
-              className="w-full h-12 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
+              className="w-full h-12 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
               <Heart className="w-4 h-4 fill-current" />
               Dukung via Trakteer
             </a>
@@ -387,7 +411,7 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChanged
                 placeholder="email@contoh.com"
                 value={trakteerEmail}
                 onChange={e => { setTrakteerEmail(e.target.value); setEmailError(''); }}
-                className={`w-full bg-surface-container-high border rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 transition-all ${emailError ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20' : 'border-white/5 focus:border-pink-400 focus:ring-pink-400/20'}`}
+                className={`w-full bg-surface-container-high border rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 transition-all ${emailError ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20' : 'border-white/5 focus:border-amber-400 focus:ring-amber-400/20'}`}
               />
               {emailError
                 ? <p className="text-[10px] text-red-400">{emailError}</p>
@@ -428,7 +452,7 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
           transition={{ type: 'spring', damping: 22, stiffness: 320 }}
           className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-surface-container border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10"
         >
-          <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-48 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
           <button onClick={onClose}
             className="absolute top-4 right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-outline cursor-pointer z-10 transition-colors">
             <X className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -440,8 +464,8 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
             )}
             <div className="min-w-0 pt-0.5">
               <div className="flex items-center gap-1.5 mb-1">
-                <Lock className="w-4 h-4 sm:w-5 sm:h-5 text-pink-400 shrink-0" />
-                <span className="font-label-sm text-xs sm:text-sm md:text-base font-black text-pink-400 uppercase tracking-wider">Chapter Terkunci</span>
+                <Lock className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
+                <span className="font-label-sm text-xs sm:text-sm md:text-base font-black text-amber-400 uppercase tracking-wider">Chapter Terkunci</span>
               </div>
               <p className="font-body-md text-sm sm:text-base text-outline/70 font-semibold truncate">{manga?.title || ''}</p>
               <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface mt-0.5 line-clamp-2">{chapter.title}</h3>
@@ -456,13 +480,13 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
           <div className="px-5 pb-5 flex flex-col gap-2">
             {!isLoggedIn ? (
               <button onClick={onLogin}
-                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-pink-900/30">
+                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
                 <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
                 Login untuk jadi Supporter
               </button>
             ) : (
               <button onClick={onBecomeSupporter}
-                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-pink-900/30">
+                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
                 <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
                 {isSupporter ? 'Perpanjang Supporter' : 'Jadi Supporter — buka semua'}
               </button>

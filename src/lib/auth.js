@@ -66,7 +66,7 @@ export function getCurrentUser() {
   const token = getStoredToken();
   if (!isValid(token)) return null;
   const p = parseJWT(token);
-  return p ? { id: p.sub, email: p.email, name: p.name, avatar: p.avatar, coins: p.coins } : null;
+  return p ? { id: p.sub, email: p.email, name: p.name, avatar: p.avatar } : null;
 }
 
 // ── Login via Google OAuth ────────────────────────────────────
@@ -88,7 +88,7 @@ export async function exchangeLoginCode(code) {
   const data = await res.json();
   storeTokens(data.access_token, data.refresh_token);
   return data.user
-    ? { id: data.user.id, email: data.user.email, name: data.user.name, avatar: data.user.avatar, coins: data.user.coins }
+    ? { id: data.user.id, email: data.user.email, name: data.user.name, avatar: data.user.avatar }
     : getCurrentUser();
 }
 
