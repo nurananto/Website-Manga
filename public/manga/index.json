@@ -21,7 +21,7 @@
       "Slice of Life"
     ],
     "rating": 7.32,
-    "total_views": 17,
+    "total_views": 23,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -32,10 +32,10 @@
         "chapter_number": 14.1,
         "lock_hours": 0,
         "pages": 12,
+        "release_date": "2026-06-28T21:08:57+07:00",
         "id": "Madogiwa-ch-14.1",
         "r2_prefix": "manga/Madogiwa/14.1/",
         "title": "Ch. 14.1",
-        "release_date": "2026-06-28T21:08:57+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -86,7 +86,7 @@
       "Slice of Life"
     ],
     "rating": 7.5,
-    "total_views": 53,
+    "total_views": 59,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -103,7 +103,7 @@
         "title": "Ch. 20.2",
         "unlockDate": "2026-07-17T13:24:29.000Z",
         "isLocked": true,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 20.1,
@@ -115,7 +115,7 @@
         "title": "Ch. 20.1",
         "unlockDate": "2026-07-03T12:38:27.000Z",
         "isLocked": true,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 19,
@@ -127,7 +127,7 @@
         "title": "Ch. 19",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       }
     ]
   },
@@ -153,7 +153,7 @@
       "Tragedy"
     ],
     "rating": 8.63,
-    "total_views": 52,
+    "total_views": 60,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -182,7 +182,7 @@
         "title": "Ch. 6.3",
         "unlockDate": "2026-07-11T13:25:25.000Z",
         "isLocked": true,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 6.2,
@@ -194,7 +194,7 @@
         "title": "Ch. 6.2",
         "unlockDate": "2026-07-05T12:24:18.000Z",
         "isLocked": true,
-        "views": 0
+        "views": 1
       }
     ]
   },
@@ -219,7 +219,7 @@
       "Video Games"
     ],
     "rating": 8.21,
-    "total_views": 20,
+    "total_views": 26,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -236,7 +236,7 @@
         "title": "Ch. 5.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 5.2,
@@ -248,7 +248,7 @@
         "title": "Ch. 5.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 5.1,
@@ -260,7 +260,7 @@
         "title": "Ch. 5.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       }
     ]
   },
@@ -285,7 +285,7 @@
       "Slice of Life"
     ],
     "rating": 8.23,
-    "total_views": 54,
+    "total_views": 56,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -302,7 +302,7 @@
         "title": "Ch. 22.2",
         "unlockDate": "2026-07-08T04:27:34.000Z",
         "isLocked": true,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 22.1,
@@ -413,7 +413,7 @@
       "Supernatural"
     ],
     "rating": 8.6,
-    "total_views": 33,
+    "total_views": 34,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,

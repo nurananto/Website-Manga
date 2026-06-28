@@ -35,9 +35,11 @@
     "8": 1,
     "9": 1,
     "10": 3,
-    "11": 7
+    "11": 7,
+    "12.1": 1,
+    "12.2": 2
   },
-  "total_views": 17,
+  "total_views": 23,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -61,6 +63,7 @@
     }
   ],
   "discord_channel_id": "1517523939935649985",
+  "detail_views": 3,
   "mangadex_id": "a0ecce48-aa4c-48e6-8d9b-90f322a5687a",
   "rating": 7.32,
   "next_update": null,
@@ -75,10 +78,10 @@
       "chapter_number": 14.1,
       "lock_hours": 0,
       "pages": 12,
+      "release_date": "2026-06-28T21:08:57+07:00",
       "id": "Madogiwa-ch-14.1",
       "r2_prefix": "manga/Madogiwa/14.1/",
       "title": "Ch. 14.1",
-      "release_date": "2026-06-28T21:08:57+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
@@ -117,7 +120,7 @@
       "title": "Ch. 12.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 12.1,
@@ -129,7 +132,7 @@
       "title": "Ch. 12.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 11,
