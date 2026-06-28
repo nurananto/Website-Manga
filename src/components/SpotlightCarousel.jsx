@@ -25,13 +25,14 @@ function getItemGap() {
   return 8;
 }
 
-// Match FeaturedCarousel cover dimensions (h: 220/260/300/340, cover ~88%)
+// Lebar cover per breakpoint (+25% dari 120/150/184/208). coverH & containerH
+// turunan dari sini, jadi seluruh cover & tinggi carousel ikut membesar 25%.
 function getCoverW() {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
-  if (w < 640)  return 120;
-  if (w < 768)  return 150;
-  if (w < 1024) return 184;
-  return 208;
+  if (w < 640)  return 150;
+  if (w < 768)  return 188;
+  if (w < 1024) return 230;
+  return 260;
 }
 
 // Items shown on each side of active per breakpoint (pinggir boleh kepotong).

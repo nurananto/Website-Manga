@@ -8,7 +8,7 @@ import VisitorCount from './components/VisitorCount';
 import { Sparkles, TrendingUp, Compass, RotateCcw, Search, CheckCircle, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { imgUrl, timeAgo } from './utils';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AuthModal, SupporterModal, LockedChapterModal, TrakteerEmailModal, AccountSettingsModal } from './components/CoinModals';
+import { AuthModal, SupporterModal, LockedChapterModal, AccountSettingsModal } from './components/CoinModals';
 import { MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
@@ -154,7 +154,6 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [nameChangedAt, setNameChangedAt] = useState(null);
-  const [showTrakteerModal, setShowTrakteerModal] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authReason, setAuthReason] = useState(null);
   // Splash "menyelesaikan masuk" — aktif bila balik dari OAuth (URL bawa ?code=)
@@ -986,17 +985,6 @@ export default function App() {
         onClose={() => {
           setIsAuthModalOpen(false);
           try { sessionStorage.removeItem('mf_login_intent'); } catch {}
-        }}
-      />
-
-      {/* Trakteer Email Modal — muncul saat pertama kali login */}
-      <TrakteerEmailModal
-        isOpen={showTrakteerModal}
-        defaultEmail={currentUser?.email || ''}
-        onClose={() => setShowTrakteerModal(false)}
-        onSave={async () => {
-          setShowTrakteerModal(false);
-          showToast('Email berhasil disimpan!');
         }}
       />
 
