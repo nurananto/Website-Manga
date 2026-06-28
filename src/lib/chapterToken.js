@@ -1,9 +1,9 @@
 // Cache access token gambar untuk chapter TERKUNCI yang sudah dibeli, supaya
-// membuka ulang chapter dalam masa berlaku token (~30 menit) tidak meminta
+// membuka ulang chapter dalam masa berlaku token (~10 menit) tidak meminta
 // Turnstile lagi.
 //
 // Keamanan (anti-abuse):
-// - Token sudah terikat IP /64 + kedaluwarsa 30 menit + path di-hash, dan
+// - Token sudah terikat IP /64 + kedaluwarsa 10 menit + path di-hash, dan
 //   DIVALIDASI server (image-worker lookup D1). Cache ini hanya menyimpan ulang
 //   yang sudah terlihat di URL gambar — tidak membuka permukaan abuse baru.
 // - Disimpan PER (userId, chapterId): token user A tak bisa dipakai user B di
@@ -39,7 +39,7 @@ export function getCachedChapterToken(userId, chapterId) {
 export function setCachedChapterToken(userId, chapterId, token, h, expiresInSec) {
   if (!userId || !chapterId || !token || !h) return;
   try {
-    const secs = Number(expiresInSec) > 0 ? Number(expiresInSec) : 1800;
+    const secs = Number(expiresInSec) > 0 ? Number(expiresInSec) : 600;
     const exp = Date.now() + secs * 1000;
     localStorage.setItem(key(userId, chapterId), JSON.stringify({ token, h, exp }));
   } catch {}
