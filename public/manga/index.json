@@ -1,5 +1,71 @@
 [
   {
+    "id": "ZunouBattle",
+    "title": "Ore wa Gakuen Zunou Battle no Enshutsuka!: Jishou Mobu ga Kage kara Egaku Saikyou Shujinkou Musou Scenario",
+    "description": "Di SMA Teio, segalanya ditentukan lewat duel permainan. Yang harus kulakukan sebagai perwujudan karakter figuran, Tanaka Kanata, bukanlah meraih kejayaan untuk diriku sendiri! Satu-satunya tugasku adalah “menyutradarai” dari balik layar agar Kiriya, murid pindahan terkuat dari bawah, hingga…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Action",
+      "Adaptation",
+      "Comedy",
+      "Psychological",
+      "School Life",
+      "Shounen",
+      "Video Games"
+    ],
+    "rating": 8.21,
+    "total_views": 26,
+    "isTrending": false,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "discord_channel_id": "1517524270371311676",
+    "chapters": [
+      {
+        "chapter_number": 6.1,
+        "lock_hours": 0,
+        "pages": 12,
+        "id": "ZunouBattle-ch-6.1",
+        "r2_prefix": "manga/ZunouBattle/6.1/",
+        "title": "Ch. 6.1",
+        "release_date": "2026-06-29T20:44:02+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 5.3,
+        "lock_hours": 0,
+        "pages": 10,
+        "release_date": "2026-06-26T14:59:28+07:00",
+        "id": "ZunouBattle-ch-5.3",
+        "r2_prefix": "manga/ZunouBattle/5.3/",
+        "title": "Ch. 5.3",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 3
+      },
+      {
+        "chapter_number": 5.2,
+        "lock_hours": 0,
+        "pages": 11,
+        "release_date": "2026-06-26T14:15:41+07:00",
+        "id": "ZunouBattle-ch-5.2",
+        "r2_prefix": "manga/ZunouBattle/5.2/",
+        "title": "Ch. 5.2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 3
+      }
+    ]
+  },
+  {
     "id": "TeisouGyakuten",
     "title": "Teisou Gyakuten Sekai Nara Moteru to Omotte Itara",
     "description": "Dunia dengan moral nafsu yang terbalik —rasio gender 1:20, cewek-cewek memiliki hasrat nafsu yang kuat, sedangkan para cowok ingin menjalani hidup nyaman dan damai dilindungi bodyguard. Bodyguard Cowok yang ada di sekitarnya semuanya tampan, dan Ikuto mengeluh bahwa terutama sahabatnya, Toosaka…",
@@ -34,10 +100,10 @@
         "chapter_number": 7.2,
         "lock_hours": 0,
         "pages": 12,
+        "release_date": "2026-06-29T18:30:52+07:00",
         "id": "TeisouGyakuten-ch-7.2",
         "r2_prefix": "manga/TeisouGyakuten/7.2/",
         "title": "Ch. 7.2",
-        "release_date": "2026-06-29T18:30:52+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -264,72 +330,6 @@
         "unlockDate": "2026-07-05T12:24:18.000Z",
         "isLocked": true,
         "views": 1
-      }
-    ]
-  },
-  {
-    "id": "ZunouBattle",
-    "title": "Ore wa Gakuen Zunou Battle no Enshutsuka!: Jishou Mobu ga Kage kara Egaku Saikyou Shujinkou Musou Scenario",
-    "description": "Di SMA Teio, segalanya ditentukan lewat duel permainan. Yang harus kulakukan sebagai perwujudan karakter figuran, Tanaka Kanata, bukanlah meraih kejayaan untuk diriku sendiri! Satu-satunya tugasku adalah “menyutradarai” dari balik layar agar Kiriya, murid pindahan terkuat dari bawah, hingga…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Action",
-      "Adaptation",
-      "Comedy",
-      "Psychological",
-      "School Life",
-      "Shounen",
-      "Video Games"
-    ],
-    "rating": 8.21,
-    "total_views": 26,
-    "isTrending": false,
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "discord_channel_id": "1517524270371311676",
-    "chapters": [
-      {
-        "chapter_number": 5.3,
-        "lock_hours": 0,
-        "pages": 10,
-        "release_date": "2026-06-26T14:59:28+07:00",
-        "id": "ZunouBattle-ch-5.3",
-        "r2_prefix": "manga/ZunouBattle/5.3/",
-        "title": "Ch. 5.3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 3
-      },
-      {
-        "chapter_number": 5.2,
-        "lock_hours": 0,
-        "pages": 11,
-        "release_date": "2026-06-26T14:15:41+07:00",
-        "id": "ZunouBattle-ch-5.2",
-        "r2_prefix": "manga/ZunouBattle/5.2/",
-        "title": "Ch. 5.2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 3
-      },
-      {
-        "chapter_number": 5.1,
-        "lock_hours": 0,
-        "pages": 11,
-        "release_date": "2026-06-26T13:15:29+07:00",
-        "id": "ZunouBattle-ch-5.1",
-        "r2_prefix": "manga/ZunouBattle/5.1/",
-        "title": "Ch. 5.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 2
       }
     ]
   },
