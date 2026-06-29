@@ -135,7 +135,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
                     />
                   </div>
                 ) : (
-                  <span className="font-label-sm text-xs md:text-sm lg:text-base text-outline/60 whitespace-nowrap shrink-0">{ch.date || timeAgoShort(ch.release_date)}</span>
+                  <span className="font-label-sm text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0">{ch.date || timeAgoShort(ch.release_date)}</span>
                 )}
               </div>
             );
@@ -145,4 +145,3 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
     </div>
   );
 }
-

@@ -5,10 +5,8 @@ import SpotlightCarousel from './components/SpotlightCarousel';
 import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
-import { Sparkles, TrendingUp, Compass, RotateCcw, Search, CheckCircle, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Sparkles, TrendingUp, Compass, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
 import { imgUrl, timeAgo } from './utils';
-import { motion, AnimatePresence } from 'framer-motion';
-import { AuthModal, SupporterModal, LockedChapterModal, AccountSettingsModal } from './components/CoinModals';
 import { MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
@@ -21,6 +19,10 @@ const ReaderModal         = lazy(() => import('./components/ReaderModal'));
 const PrivacyPolicyModal  = lazy(() => import('./components/PrivacyPolicyModal'));
 const TermsOfServiceModal = lazy(() => import('./components/TermsOfServiceModal'));
 const DmcaModal           = lazy(() => import('./components/DmcaModal'));
+const AuthModal           = lazy(() => import('./components/CoinModals').then(m => ({ default: m.AuthModal })));
+const SupporterModal      = lazy(() => import('./components/CoinModals').then(m => ({ default: m.SupporterModal })));
+const LockedChapterModal  = lazy(() => import('./components/CoinModals').then(m => ({ default: m.LockedChapterModal })));
+const AccountSettingsModal = lazy(() => import('./components/CoinModals').then(m => ({ default: m.AccountSettingsModal })));
 
 // ── Riwayat Baca ──────────────────────────────────────────────
 function HistoryTabs({ historyEntries, handleReadChapter }) {
@@ -42,9 +44,9 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
               <div className="min-w-0 flex-1 flex flex-col justify-center gap-0.5 sm:gap-1">
                 <h3 className="font-headline-md text-sm sm:text-base md:text-lg font-black text-on-surface line-clamp-1">{manga.title}</h3>
                 <p className="text-xs sm:text-sm md:text-base font-bold text-primary truncate">{chapter.title}</p>
-                <p className="text-[10px] sm:text-xs md:text-sm text-outline/60">{chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}</p>
+                <p className="text-[10px] sm:text-xs md:text-sm text-outline">{chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}</p>
               </div>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-outline/30 group-hover:text-primary shrink-0 self-center transition-colors" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-outline/80 group-hover:text-primary shrink-0 self-center transition-colors" />
             </div>
           ))}
         </div>
@@ -165,7 +167,7 @@ export default function App() {
   const [pendingMangaTitle, setPendingMangaTitle] = useState('');
   const [pendingManga, setPendingManga] = useState(null);
   const [isLockedModalOpen, setIsLockedModalOpen] = useState(false);
-  const [isCheckingAccess, setIsCheckingAccess] = useState(false);
+  const [isCheckingAccess] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
@@ -265,7 +267,7 @@ export default function App() {
             setIsLoggedIn(true);
             setCurrentUser(user);
             setIsAuthModalOpen(false);
-            await loadUserData(user);
+            await loadUserData();
             await resumeLoginIntent();
           } else if (parsePath().page === 'auth') {
             navigate('/', true); // legacy /auth tanpa hasil → balik ke home
@@ -284,13 +286,13 @@ export default function App() {
       setCurrentUser(user);
 
       // Fetch balance + history + unlocked dari Worker
-      await loadUserData(user);
+      await loadUserData();
     };
 
     initAuth();
   }, []);
 
-  const loadUserData = async (user) => {
+  const loadUserData = async () => {
     const workerUrl = import.meta.env.VITE_WORKER_URL || '';
     if (!workerUrl) return;
     const token = await getAccessToken();
@@ -720,11 +722,7 @@ export default function App() {
 
                   {/* Expandable Search Input (Full Width) */}
                   {isSearchOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="relative w-full group"
-                    >
+                    <div className="relative w-full group animate-[slideDownFade_0.18s_ease-out]">
                       <Search className="w-5 h-5 text-outline absolute left-4.5 top-1/2 -translate-y-1/2 group-focus-within:text-primary transition-colors" />
                       <input
                         type="text"
@@ -733,7 +731,7 @@ export default function App() {
                         onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
                         className="w-full bg-surface-container/60 border border-outline-variant/40 rounded-2xl py-3.5 pl-12 pr-4 text-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-body-md shadow-inner"
                       />
-                    </motion.div>
+                    </div>
                   )}
 
                   {isLoading ? (
@@ -870,7 +868,7 @@ export default function App() {
                         <div className="min-w-0 flex-1 flex flex-col justify-center">
                           <h3 className="font-extrabold text-sm md:text-base text-on-surface truncate">{manga.title}</h3>
                           <p className="text-xs text-outline mt-0.5 truncate">Read: {latestChapter.title}</p>
-                          <span className="text-[10px] text-outline/60 mt-1 font-semibold">
+                          <span className="text-[10px] text-outline mt-1 font-semibold">
                             {readTimes[idx % readTimes.length]}
                           </span>
                         </div>
@@ -927,31 +925,31 @@ export default function App() {
             <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
               <button
                 onClick={() => setShowPrivacy(true)}
-                className="font-body-sm text-[10px] text-outline/40 hover:text-outline/70 transition-colors cursor-pointer underline underline-offset-2"
+                className="font-body-sm text-[10px] text-outline hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
               >
                 Kebijakan Privasi
               </button>
-              <span className="text-outline/20 text-[10px]">·</span>
+              <span className="text-outline/70 text-[10px]">·</span>
               <button
                 onClick={() => setShowTerms(true)}
-                className="font-body-sm text-[10px] text-outline/40 hover:text-outline/70 transition-colors cursor-pointer underline underline-offset-2"
+                className="font-body-sm text-[10px] text-outline hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
               >
                 Syarat &amp; Ketentuan
               </button>
-              <span className="text-outline/20 text-[10px]">·</span>
+              <span className="text-outline/70 text-[10px]">·</span>
               <button
                 onClick={() => setShowDmca(true)}
-                className="font-body-sm text-[10px] text-outline/40 hover:text-outline/70 transition-colors cursor-pointer underline underline-offset-2"
+                className="font-body-sm text-[10px] text-outline hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
               >
                 DMCA
               </button>
             </div>
-            <span className="font-body-sm text-[10px] text-outline/40">
+            <span className="font-body-sm text-[10px] text-outline/80">
               © {new Date().getFullYear()} Nurananto Scanlation. Fan Translation — Not for commercial use.
             </span>
             {buildId && (
               <div className="flex items-center gap-2">
-                <span className="font-body-sm text-[9px] text-outline/25">
+                <span className="font-body-sm text-[9px] text-outline/70">
                   build #{buildId.slice(-6)}
                 </span>
               </div>
@@ -969,23 +967,16 @@ export default function App() {
 
 
       {/* Checking chapter access overlay */}
-      <AnimatePresence>
-        {isCheckingAccess && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[250] bg-[#090b0d] flex flex-col items-center justify-center gap-4"
-          >
+      {isCheckingAccess && (
+        <div className="fixed inset-0 z-[250] bg-[#090b0d] flex flex-col items-center justify-center gap-4 animate-[fadeIn_0.16s_ease-out]">
             <div className="relative w-14 h-14">
               <div className="absolute inset-0 rounded-full border-4 border-white/8" />
               <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-primary animate-spin" />
               <div className="absolute inset-[5px] rounded-full border-2 border-transparent border-t-primary/40 animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.8s' }} />
             </div>
             <p className="font-body-md text-sm text-outline/70 font-semibold tracking-wide">Checking chapter access</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
 
       {/* Interactive Reader Modal */}
       {activeChapter && (
@@ -1005,88 +996,95 @@ export default function App() {
 
       {/* Change Password Modal */}
       {isChangePasswordOpen && (
-        <AccountSettingsModal
-          isOpen={isChangePasswordOpen}
-          onClose={() => setIsChangePasswordOpen(false)}
-          currentUser={currentUser}
-          nameChangedAt={nameChangedAt}
-          onSave={async ({ username, trakteerEmail }) => {
-            const token = await getAccessToken();
-            if (!token) return;
-            const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-            try {
-              // Update username jika tidak dalam cooldown
-              if (username && username.trim() && username.trim() !== currentUser?.name) {
-                const nameRes = await fetch(`${workerUrl}/api/user/profile`, {
-                  method: 'PATCH',
-                  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-                  body: JSON.stringify({ name: username.trim() }),
-                });
-                const nameData = await nameRes.json();
-                if (nameRes.ok) {
-                  setCurrentUser(prev => prev ? { ...prev, name: nameData.name } : prev);
-                  setNameChangedAt(new Date().toISOString());
-                  // Force refresh token agar JWT punya nama terbaru
-                  getAccessToken(true).catch(() => {});
-                } else {
-                  showToast(nameData.error || 'Gagal update username');
-                  return;
+        <Suspense fallback={null}>
+          <AccountSettingsModal
+            isOpen={isChangePasswordOpen}
+            onClose={() => setIsChangePasswordOpen(false)}
+            currentUser={currentUser}
+            nameChangedAt={nameChangedAt}
+            onSave={async ({ username }) => {
+              const token = await getAccessToken();
+              if (!token) return;
+              const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+              try {
+                // Update username jika tidak dalam cooldown
+                if (username && username.trim() && username.trim() !== currentUser?.name) {
+                  const nameRes = await fetch(`${workerUrl}/api/user/profile`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                    body: JSON.stringify({ name: username.trim() }),
+                  });
+                  const nameData = await nameRes.json();
+                  if (nameRes.ok) {
+                    setCurrentUser(prev => prev ? { ...prev, name: nameData.name } : prev);
+                    setNameChangedAt(new Date().toISOString());
+                    // Force refresh token agar JWT punya nama terbaru
+                    getAccessToken(true).catch(() => {});
+                  } else {
+                    showToast(nameData.error || 'Gagal update username');
+                    return;
+                  }
                 }
+                // Email disimpan sebagai patokan pencocokan donasi Supporter (tanpa klaim koin).
+              } catch (e) {
+                console.error('Save settings error:', e);
               }
-              // Email disimpan sebagai patokan pencocokan donasi Supporter (tanpa klaim koin).
-            } catch (e) {
-              console.error('Save settings error:', e);
-            }
-            setIsChangePasswordOpen(false);
-            showToast('Pengaturan berhasil disimpan!');
-          }}
-        />
+              setIsChangePasswordOpen(false);
+              showToast('Pengaturan berhasil disimpan!');
+            }}
+          />
+        </Suspense>
       )}
       {/* Auth Modal */}
-      <AuthModal
-        isOpen={isAuthModalOpen}
-        reason={authReason}
-        onClose={() => {
-          setIsAuthModalOpen(false);
-          try { sessionStorage.removeItem('mf_login_intent'); } catch {}
-        }}
-      />
+      {isAuthModalOpen && (
+        <Suspense fallback={null}>
+          <AuthModal
+            isOpen={isAuthModalOpen}
+            reason={authReason}
+            onClose={() => {
+              setIsAuthModalOpen(false);
+              try { sessionStorage.removeItem('mf_login_intent'); } catch {}
+            }}
+          />
+        </Suspense>
+      )}
 
       {/* Supporter Modal */}
-      <SupporterModal
-        isOpen={isCoinModalOpen}
-        onClose={() => { setIsCoinModalOpen(false); refreshSupporter(); }}
-        userEmail={currentUser?.email || ''}
-      />
+      {isCoinModalOpen && (
+        <Suspense fallback={null}>
+          <SupporterModal
+            isOpen={isCoinModalOpen}
+            onClose={() => { setIsCoinModalOpen(false); refreshSupporter(); }}
+            userEmail={currentUser?.email || ''}
+          />
+        </Suspense>
+      )}
 
       {/* Locked Chapter Modal */}
-      <LockedChapterModal
-        isOpen={isLockedModalOpen}
-        onClose={() => setIsLockedModalOpen(false)}
-        chapter={pendingUnlockChapter}
-        manga={pendingManga}
-        isLoggedIn={isLoggedIn}
-        isSupporter={isSupporter}
-        onLogin={() => { setIsLockedModalOpen(false); openAuth('unlock', { type: 'unlock', mangaId: pendingManga?.id, chapterNum: pendingUnlockChapter?.chapter_number }); }}
-        onBecomeSupporter={() => { setIsLockedModalOpen(false); setIsCoinModalOpen(true); }}
-      />
+      {isLockedModalOpen && (
+        <Suspense fallback={null}>
+          <LockedChapterModal
+            isOpen={isLockedModalOpen}
+            onClose={() => setIsLockedModalOpen(false)}
+            chapter={pendingUnlockChapter}
+            manga={pendingManga}
+            isLoggedIn={isLoggedIn}
+            isSupporter={isSupporter}
+            onLogin={() => { setIsLockedModalOpen(false); openAuth('unlock', { type: 'unlock', mangaId: pendingManga?.id, chapterNum: pendingUnlockChapter?.chapter_number }); }}
+            onBecomeSupporter={() => { setIsLockedModalOpen(false); setIsCoinModalOpen(true); }}
+          />
+        </Suspense>
+      )}
 
       {/* Toast Notification */}
-      <AnimatePresence>
-        {toastMessage && (
-          <motion.div
-            initial={{ opacity: 0, y: -50, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -50, scale: 0.9 }}
-            className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] bg-surface-container-high border border-primary/20 text-on-surface px-6 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 animate-[fadeIn_0.2s_ease-out]"
-          >
+      {toastMessage && (
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] bg-surface-container-high border border-primary/20 text-on-surface px-6 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 animate-[toastIn_0.2s_ease-out]">
             <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center">
               <CheckCircle className="w-3.5 h-3.5 text-primary" />
             </div>
             <span className="text-xs font-bold">{toastMessage}</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </div>
   );
 }

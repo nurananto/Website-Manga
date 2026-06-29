@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { imgUrl } from '../utils';
 import { Star } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const STATUS_CFG = {
   'Tamat':   { label: 'END',     textCls: 'text-red-300' },
@@ -111,23 +110,14 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
       style={{ height: containerH }}
     >
       {/* ── Blurred background from active cover ── */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={active?.id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0 pointer-events-none z-0"
-        >
+      <div key={active?.id} className="absolute inset-0 pointer-events-none z-0 animate-[fadeIn_0.4s_ease-out]">
           <img
             src={imgUrl(active?.coverUrls?.mobile || active?.coverUrl)} alt=""
             className="absolute inset-0 w-full h-full object-cover scale-150 blur-2xl opacity-75"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/60 via-surface/10 to-surface/60" />
           <div className="absolute inset-0 bg-gradient-to-r from-surface/80 via-transparent to-surface/80" />
-        </motion.div>
-      </AnimatePresence>
+      </div>
 
       {/* ── Cover row — centered flex, no scroll ── */}
       <div

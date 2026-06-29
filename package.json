@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node -e \"const fs=require('fs');fs.writeFileSync('public/version.json',JSON.stringify({v:Date.now().toString(),label:new Date().toLocaleDateString('id'),type:'code'}))\" && vite build && node scripts/inline-css.cjs",
+    "build": "node -e \"const fs=require('fs');fs.writeFileSync('public/version.json',JSON.stringify({v:Date.now().toString(),label:new Date().toLocaleDateString('id'),type:'code'}))\" && npm run sitemap && vite build && node scripts/inline-css.cjs",
     "lint": "eslint .",
     "preview": "vite preview",
+    "sitemap": "node scripts/generate-sitemap.js",
     "check:locked": "node scripts/check-locked-leak.js",
     "check:unlock": "node scripts/check-unlock-migration.js"
   },

@@ -15,12 +15,15 @@ export default defineConfig({
         // berubah, jadi tetap ter-cache lintas deploy (yang sering: sync-covers/viewcounts)
         // — returning visitor hanya unduh ulang chunk app, bukan ~123KB vendor.
         manualChunks(id) {
-          if (!id.includes('node_modules')) return
-          if (id.includes('@heroui')) return 'heroui'
-          if (id.includes('framer-motion')) return 'framer'
-          if (id.includes('lucide-react')) return 'icons'
-          if (id.includes('/react-dom/') || id.includes('/react/') || id.includes('/scheduler/')) return 'react'
-          return 'vendor'
+          const normalizedId = id.replace(/\\/g, '/')
+          if (!normalizedId.includes('node_modules')) return
+          if (
+            /node_modules\/(?:\.vite\/deps\/)?react(?:\/|\.js|$)/.test(normalizedId) ||
+            /node_modules\/(?:\.vite\/deps\/)?react-dom(?:\/|\.js|$)/.test(normalizedId) ||
+            /node_modules\/(?:\.vite\/deps\/)?scheduler(?:\/|\.js|$)/.test(normalizedId)
+          ) return 'react'
+          if (normalizedId.includes('@heroui')) return 'heroui'
+          if (normalizedId.includes('lucide-react')) return 'icons'
         },
       },
     },

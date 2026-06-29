@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { imgUrl } from '../utils';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Info } from 'lucide-react';
 
 export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }) {
@@ -39,15 +38,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeManga.id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
-          className="absolute inset-0 w-full h-full"
-        >
+      <div key={activeManga.id} className="absolute inset-0 w-full h-full animate-[fadeIn_0.45s_ease-out]">
           {/* Background Image (Blurred cover) */}
           <img
             alt=""
@@ -57,8 +48,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
           {/* Vignette Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/30 to-transparent" />
-        </motion.div>
-      </AnimatePresence>
+      </div>
 
       {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}
       {/* pr pixel tetap agar gap ke cover konsisten di semua lebar viewport */}
@@ -109,34 +99,25 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
           </div>
 
           {/* Title */}
-          <motion.h1
+          <h1
             key={`title-${activeManga.id}`}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="font-display-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight line-clamp-1"
+            className="font-display-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight line-clamp-1 animate-[slideUpFade_0.3s_ease-out]"
           >
             {activeManga.title}
-          </motion.h1>
+          </h1>
 
           {/* Description */}
-          <motion.p
+          <p
             key={`desc-${activeManga.id}`}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="line-clamp-3 sm:line-clamp-3 md:line-clamp-4 lg:line-clamp-4 font-body-lg text-xs sm:text-sm md:text-base lg:text-lg text-on-surface-variant/80 leading-relaxed text-justify"
+            className="line-clamp-3 sm:line-clamp-3 md:line-clamp-4 lg:line-clamp-4 font-body-lg text-xs sm:text-sm md:text-base lg:text-lg text-on-surface-variant leading-relaxed text-justify animate-[slideUpFade_0.34s_ease-out]"
           >
             {activeManga.description}
-          </motion.p>
+          </p>
 
           {/* Buttons */}
-          <motion.div
+          <div
             key={`btn-${activeManga.id}`}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="flex items-center gap-2 sm:gap-3 mt-1 sm:mt-2"
+            className="flex items-center gap-2 sm:gap-3 mt-1 sm:mt-2 animate-[slideUpFade_0.38s_ease-out]"
           >
             <button
               onClick={() => onReadFirst(activeManga.id)}
@@ -152,7 +133,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
               <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
               View
             </button>
-          </motion.div>
+          </div>
         </div>
       </div>
 

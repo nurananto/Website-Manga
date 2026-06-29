@@ -20,9 +20,9 @@ export default function VisitorCount() {
   if (visitors === null) return null;
 
   return (
-    <div className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#1877F2]/40 bg-[#1877F2]/10 shadow-sm">
+    <div className="flex items-center gap-2 px-4 py-2 rounded-xl border border-primary/40 bg-primary/10 shadow-sm">
       <span className="text-base leading-none">👁</span>
-      <span className="font-black text-xs sm:text-sm text-[#1877F2]">
+      <span className="font-black text-xs sm:text-sm text-primary">
         {visitors.toLocaleString('id-ID')} pengunjung hari ini
       </span>
     </div>
