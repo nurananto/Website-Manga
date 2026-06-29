@@ -325,6 +325,42 @@ export default function App() {
 
   };
 
+  // Satu pintu refresh status Supporter dari server — dipakai saat modal donasi
+  // ditutup & polling, agar transisi non↔supporter selalu sinkron.
+  const refreshSupporter = async () => {
+    if (!isLoggedIn) return;
+    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+    if (!workerUrl) return;
+    const token = await getAccessToken().catch(() => null);
+    if (!token) return;
+    try {
+      const d = await fetch(`${workerUrl}/api/user/me`, { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json());
+      setIsSupporter(!!d.is_supporter);
+      setSupporterUntil(d.supporter_until ?? null);
+    } catch {}
+  };
+
+  // Transisi SUPPORTER → non saat masa aktif habis sementara user masih di halaman
+  // (tanpa reload). Server tetap penjaga akses; ini sekadar menyinkronkan UI agar tak
+  // "nyangkut supporter". setTimeout dibatasi ~24 hari (limit int32).
+  useEffect(() => {
+    if (!isSupporter || !supporterUntil) return;
+    const ms = new Date(supporterUntil).getTime() - Date.now();
+    if (ms <= 0) { setIsSupporter(false); return; }      // sudah lewat → cabut sekarang
+    if (ms > 2_000_000_000) return;                       // terlalu jauh → biar refetch nanti
+    const t = setTimeout(() => setIsSupporter(false), ms);
+    return () => clearTimeout(t);
+  }, [isSupporter, supporterUntil]);
+
+  // Transisi non → SUPPORTER setelah donasi mid-sesi: polling saat modal donasi terbuka
+  // (webhook Trakteer→D1 nyaris instan) agar status langsung kebaca tanpa reload.
+  useEffect(() => {
+    if (!isCoinModalOpen || !isLoggedIn) return;
+    const id = setInterval(refreshSupporter, 12000);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCoinModalOpen, isLoggedIn]);
+
   // Fetch catalog dari /manga/index.json
   useEffect(() => {
     fetch('/manga/index.json', { cache: 'no-cache' })
@@ -1019,7 +1055,7 @@ export default function App() {
       {/* Supporter Modal */}
       <SupporterModal
         isOpen={isCoinModalOpen}
-        onClose={() => setIsCoinModalOpen(false)}
+        onClose={() => { setIsCoinModalOpen(false); refreshSupporter(); }}
         userEmail={currentUser?.email || ''}
       />
 
