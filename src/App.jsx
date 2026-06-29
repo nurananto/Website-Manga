@@ -388,7 +388,7 @@ export default function App() {
         }
       } else if (page === 'reader') {
         // Fetch manga kalau belum ada atau berbeda
-        const loadReader = (manga) => {
+        const loadReader = async (manga) => {
           const ch = (manga.chapters || []).find(
             c => String(c.chapter_number) === chapterNum
           );
@@ -396,10 +396,26 @@ export default function App() {
 
           const stillLocked = ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now();
           if (stillLocked && !isSupporterRef.current) {
-            navigate(`/${mangaId}`, true);
-            if (!isLoggedIn) openAuth('unlock', { type: 'unlock', mangaId, chapterNum: ch.chapter_number });
-            else { setPendingUnlockChapter(ch); setPendingMangaTitle(manga.title); setPendingManga(manga); setIsLockedModalOpen(true); }
-            return;
+            // Cek status Supporter terkini dulu sebelum bounce — supporter yang BARU
+            // login bisa punya isSupporterRef basi (render me-fetch belum jalan).
+            let supporter = false;
+            if (isLoggedIn) {
+              const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+              const token = await getAccessToken().catch(() => null);
+              if (workerUrl && token) {
+                try {
+                  const me = await fetch(`${workerUrl}/api/user/me`, { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json());
+                  supporter = !!me.is_supporter;
+                  if (supporter) { setIsSupporter(true); if (me.supporter_until) setSupporterUntil(me.supporter_until); }
+                } catch {}
+              }
+            }
+            if (!supporter) {
+              navigate(`/${mangaId}`, true);
+              if (!isLoggedIn) openAuth('unlock', { type: 'unlock', mangaId, chapterNum: ch.chapter_number });
+              else { setPendingUnlockChapter(ch); setPendingMangaTitle(manga.title); setPendingManga(manga); setIsLockedModalOpen(true); }
+              return;
+            }
           }
           setSelectedManga(manga);
           selectedMangaRef.current = manga;
@@ -467,6 +483,21 @@ export default function App() {
       });
     }
   };
+
+  // Auto-recovery race pasca-login: begitu status Supporter terkonfirmasi (me-fetch
+  // selesai), kalau modal locked masih nyangkut untuk chapter tertunda → tutup &
+  // langsung buka chapternya. Menambal kasus di mana isSupporterRef sempat basi saat
+  // route/resume jalan sehingga sempat ke-bounce ke halaman detail + modal supporter.
+  useEffect(() => {
+    if (isSupporter && isLockedModalOpen && pendingUnlockChapter) {
+      const ch = pendingUnlockChapter;
+      const title = pendingMangaTitle;
+      setIsLockedModalOpen(false);
+      setPendingUnlockChapter(null);
+      openChapterReader(ch, title);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSupporter]);
 
   const handleReadChapter = (chapter, mangaTitle, mangaObj) => {
     const isLocked = !!chapter.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now() && !isSupporter;
