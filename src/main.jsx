@@ -18,6 +18,16 @@ import '@fontsource/hanken-grotesk/latin-ext-400.css'
 import '@fontsource/hanken-grotesk/latin-ext-700.css'
 import '@fontsource/geist/latin-500.css'
 
+window.addEventListener('vite:preloadError', (event) => {
+  event.preventDefault()
+  const key = 'mf-preload-reload'
+  try {
+    if (sessionStorage.getItem(key)) return
+    sessionStorage.setItem(key, '1')
+  } catch {}
+  window.location.reload()
+})
+
 // Register Service Worker — auto-update di latar belakang.
 // Deteksi versi & reload pintar ditangani poll version.json di App.jsx,
 // jadi SW di sini cukup di-refresh saat tab kembali aktif (tanpa jalur

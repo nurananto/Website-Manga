@@ -27,6 +27,19 @@
     <!-- Preload catalog JSON agar LCP cepat -->
     <link rel="preload" href="/manga/index.json" as="fetch" crossorigin="anonymous" />
     <!-- Fonts are self-hosted via @fontsource (bundled with app, no external dependency) -->
+    <script>
+      window.addEventListener('error', function (event) {
+        var target = event.target;
+        if (!target || target.tagName !== 'SCRIPT' || target.type !== 'module') return;
+        if (!target.src || target.src.indexOf('/assets/') === -1) return;
+        var key = 'mf-module-reload';
+        try {
+          if (sessionStorage.getItem(key)) return;
+          sessionStorage.setItem(key, '1');
+        } catch (e) {}
+        window.location.reload();
+      }, true);
+    </script>
   </head>
   <body class="bg-surface text-on-surface" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
     <div id="root"></div>
