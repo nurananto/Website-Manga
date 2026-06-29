@@ -452,22 +452,19 @@ export default function App() {
       || '';
     if (!mangaId) return; // tidak bisa navigasi tanpa mangaId
     navigate(`/${mangaId}/${chapter.chapter_number}`);
-    const manga = MANGA_LIST.find(m => m.chapters.some(c => c.id === chapter.id));
-    if (manga) {
-      // Simpan ke localStorage (semua user)
-      setHistoryChapters(prev => ({ ...prev, [manga.id]: { ...chapter, last_read_at: new Date().toISOString() } }));
-      // Sync ke D1 (user login saja) — upsert, timpa chapter lama
-      if (isLoggedIn && currentUser) {
-        const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-        getAccessToken().then(token => {
-          if (!token) return;
-          fetch(`${workerUrl}/api/user/history`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-            body: JSON.stringify({ manga_id: manga.id, chapter_id: chapter.id, chapter_number: chapter.chapter_number, chapter_title: chapter.title }),
-          }).catch(() => {});
-        });
-      }
+    // Simpan history pakai mangaId langsung. (Sebelumnya cari manga via chapter id di
+    // MANGA_LIST yang cuma simpan 3 chapter terbaru → baca chapter lama = tak tersimpan.)
+    setHistoryChapters(prev => ({ ...prev, [mangaId]: { ...chapter, last_read_at: new Date().toISOString() } }));
+    if (isLoggedIn && currentUser) {
+      const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+      getAccessToken().then(token => {
+        if (!token) return;
+        fetch(`${workerUrl}/api/user/history`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify({ manga_id: mangaId, chapter_id: chapter.id, chapter_number: chapter.chapter_number, chapter_title: chapter.title }),
+        }).catch(() => {});
+      });
     }
   };
 

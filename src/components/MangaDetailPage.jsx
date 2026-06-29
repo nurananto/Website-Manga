@@ -22,10 +22,13 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
     if (!manga?.id) return;
     const workerUrl = import.meta.env.VITE_WORKER_URL || '';
     if (!workerUrl) return;
-    const key = `mf_dview_${manga.id}`;
+    // Dedup PER HARI (WIB) di localStorage — pembaca yang balik lagi besok tetap
+    // terhitung (server tetap dedup ip+id+hari). Sebelumnya sessionStorage per-sesi.
+    const day = new Date(Date.now() + 7 * 3600 * 1000).toISOString().slice(0, 10);
+    const key = `dvw_${manga.id}_${day}`;
     try {
-      if (sessionStorage.getItem(key)) return;
-      sessionStorage.setItem(key, '1');
+      if (localStorage.getItem(key)) return;
+      localStorage.setItem(key, '1');
     } catch {}
     fetch(`${workerUrl}/api/r/${encodeURIComponent(manga.id)}`, { method: 'POST' }).catch(() => {});
   }, [manga?.id]);

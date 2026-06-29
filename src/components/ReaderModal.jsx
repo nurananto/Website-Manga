@@ -236,16 +236,24 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     return () => window.removeEventListener('resize', onResize);
   }, [openChapterList]);
 
-  // Kirim view ke Worker — hanya 1x per chapter (localStorage sebagai guard)
+  // Kirim view ke Worker. Dedup PER HARI (WIB), bukan permanen — biar pembaca yang
+  // balik lagi besok tetap terhitung (server tetap dedup ip+chapter+hari = anti-inflasi).
   useEffect(() => {
     if (!chapter?.id) return;
-    const key = `viewed_${chapter.id}`;
-    if (localStorage.getItem(key)) return; // sudah pernah buka
-    localStorage.setItem(key, '1');
     const workerUrl = import.meta.env.VITE_WORKER_URL;
-    if (workerUrl) {
-      fetch(`${workerUrl}/api/r/${chapter.id}`, { method: 'POST' }).catch(() => {});
-    }
+    if (!workerUrl) return;
+    const day = new Date(Date.now() + 7 * 3600 * 1000).toISOString().slice(0, 10); // WIB
+    const key = `vw_${chapter.id}_${day}`;
+    try {
+      if (localStorage.getItem(key)) return; // sudah dihitung hari ini
+      // bersihkan penanda lama (hari sebelumnya + format permanen "viewed_" lama)
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const k = localStorage.key(i);
+        if (k && (k.startsWith('vw_') || k.startsWith('dvw_') || k.startsWith('viewed_')) && !k.endsWith(day)) localStorage.removeItem(k);
+      }
+      localStorage.setItem(key, '1');
+    } catch {}
+    fetch(`${workerUrl}/api/r/${chapter.id}`, { method: 'POST' }).catch(() => {});
   }, [chapter?.id]);
 
   const chapters = manga?.chapters || [];
