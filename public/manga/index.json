@@ -20,8 +20,8 @@
       "Video Games"
     ],
     "rating": 8.21,
-    "total_views": 26,
-    "isTrending": false,
+    "total_views": 41,
+    "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
     "hiatus_at_chapter": null,
@@ -31,13 +31,13 @@
         "chapter_number": 6.1,
         "lock_hours": 0,
         "pages": 12,
+        "release_date": "2026-06-29T20:44:02+07:00",
         "id": "ZunouBattle-ch-6.1",
         "r2_prefix": "manga/ZunouBattle/6.1/",
         "title": "Ch. 6.1",
-        "release_date": "2026-06-29T20:44:02+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 3
       },
       {
         "chapter_number": 5.3,
@@ -49,7 +49,7 @@
         "title": "Ch. 5.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 5
       },
       {
         "chapter_number": 5.2,
@@ -61,7 +61,7 @@
         "title": "Ch. 5.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 4
       }
     ]
   },
@@ -89,7 +89,7 @@
       "Slice of Life"
     ],
     "rating": 7.39,
-    "total_views": 10,
+    "total_views": 19,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -106,7 +106,7 @@
         "title": "Ch. 7.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 7.1,
@@ -118,7 +118,7 @@
         "title": "Ch. 7.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 6.5,
@@ -155,9 +155,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.32,
-    "total_views": 23,
-    "isTrending": false,
+    "rating": 7.33,
+    "total_views": 47,
+    "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
     "hiatus_at_chapter": null,
@@ -173,7 +173,7 @@
         "title": "Ch. 14.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 4
       },
       {
         "chapter_number": 13.2,
@@ -185,7 +185,7 @@
         "title": "Ch. 13.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 3
       },
       {
         "chapter_number": 13.1,
@@ -197,7 +197,7 @@
         "title": "Ch. 13.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       }
     ]
   },
@@ -221,7 +221,7 @@
       "Slice of Life"
     ],
     "rating": 7.5,
-    "total_views": 59,
+    "total_views": 65,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -238,7 +238,7 @@
         "title": "Ch. 20.2",
         "unlockDate": "2026-07-17T13:24:29.000Z",
         "isLocked": true,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 20.1,
@@ -250,7 +250,7 @@
         "title": "Ch. 20.1",
         "unlockDate": "2026-07-03T12:38:27.000Z",
         "isLocked": true,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 19,
@@ -262,7 +262,7 @@
         "title": "Ch. 19",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       }
     ]
   },
@@ -288,7 +288,7 @@
       "Tragedy"
     ],
     "rating": 8.63,
-    "total_views": 60,
+    "total_views": 65,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -305,7 +305,7 @@
         "title": "Ch. 7.1",
         "unlockDate": "2026-07-18T02:52:50.000Z",
         "isLocked": true,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 6.3,
@@ -420,7 +420,7 @@
     ],
     "rating": 8.41,
     "total_views": 37,
-    "isTrending": true,
+    "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
     "hiatus_at_chapter": null,
@@ -677,7 +677,7 @@
     ],
     "rating": 7.86,
     "total_views": 36,
-    "isTrending": true,
+    "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
     "hiatus_at_chapter": null,
@@ -1444,7 +1444,7 @@
       "Video Games"
     ],
     "rating": 7.42,
-    "total_views": 21,
+    "total_views": 23,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": 9,
