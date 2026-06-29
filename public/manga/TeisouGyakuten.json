@@ -69,6 +69,18 @@
   },
   "chapters": [
     {
+      "chapter_number": 7.1,
+      "lock_hours": 0,
+      "pages": 18,
+      "id": "TeisouGyakuten-ch-7.1",
+      "r2_prefix": "manga/TeisouGyakuten/7.1/",
+      "title": "Ch. 7.1",
+      "release_date": "2026-06-29T17:35:44+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 6.5,
       "lock_hours": 0,
       "pages": 8,
