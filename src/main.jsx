@@ -25,7 +25,9 @@ window.addEventListener('vite:preloadError', (event) => {
     if (sessionStorage.getItem(key)) return
     sessionStorage.setItem(key, '1')
   } catch {}
-  window.location.reload()
+  const next = new URL(window.location.href)
+  next.searchParams.set('r', Date.now().toString())
+  window.location.replace(next.toString())
 })
 
 // Register Service Worker — auto-update di latar belakang.

@@ -23,7 +23,6 @@ export default defineConfig({
             /node_modules\/(?:\.vite\/deps\/)?scheduler(?:\/|\.js|$)/.test(normalizedId)
           ) return 'react'
           if (normalizedId.includes('@heroui')) return 'heroui'
-          if (normalizedId.includes('lucide-react')) return 'icons'
         },
       },
     },

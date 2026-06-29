@@ -24,8 +24,6 @@
     <link rel="preconnect" href="https://api.nuranantoscans.my.id" />
     <!-- Turnstile (verifikasi sebelum ambil token chapter terkunci) -->
     <link rel="preconnect" href="https://challenges.cloudflare.com" />
-    <!-- Preload catalog JSON agar LCP cepat -->
-    <link rel="preload" href="/manga/index.json" as="fetch" crossorigin="anonymous" />
     <!-- Fonts are self-hosted via @fontsource (bundled with app, no external dependency) -->
     <script>
       window.addEventListener('error', function (event) {
@@ -37,7 +35,9 @@
           if (sessionStorage.getItem(key)) return;
           sessionStorage.setItem(key, '1');
         } catch (e) {}
-        window.location.reload();
+        var next = new URL(window.location.href);
+        next.searchParams.set('r', Date.now().toString());
+        window.location.replace(next.toString());
       }, true);
     </script>
   </head>
