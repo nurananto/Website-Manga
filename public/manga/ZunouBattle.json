@@ -72,6 +72,30 @@
   },
   "chapters": [
     {
+      "chapter_number": 6.3,
+      "lock_hours": 528,
+      "pages": 9,
+      "id": "ZunouBattle-ch-6.3",
+      "r2_prefix": "manga/ZunouBattle/6.3/",
+      "title": "Ch. 6.3",
+      "release_date": "2026-06-30T18:03:47+07:00",
+      "unlockDate": "2026-07-22T11:03:47.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
+      "chapter_number": 6.2,
+      "lock_hours": 192,
+      "pages": 11,
+      "id": "ZunouBattle-ch-6.2",
+      "r2_prefix": "manga/ZunouBattle/6.2/",
+      "title": "Ch. 6.2",
+      "release_date": "2026-06-30T18:03:47+07:00",
+      "unlockDate": "2026-07-08T11:03:47.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 6.1,
       "lock_hours": 0,
       "pages": 12,

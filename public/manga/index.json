@@ -28,6 +28,30 @@
     "discord_channel_id": "1517524270371311676",
     "chapters": [
       {
+        "chapter_number": 6.3,
+        "lock_hours": 528,
+        "pages": 9,
+        "id": "ZunouBattle-ch-6.3",
+        "r2_prefix": "manga/ZunouBattle/6.3/",
+        "title": "Ch. 6.3",
+        "release_date": "2026-06-30T18:03:47+07:00",
+        "unlockDate": "2026-07-22T11:03:47.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 6.2,
+        "lock_hours": 192,
+        "pages": 11,
+        "id": "ZunouBattle-ch-6.2",
+        "r2_prefix": "manga/ZunouBattle/6.2/",
+        "title": "Ch. 6.2",
+        "release_date": "2026-06-30T18:03:47+07:00",
+        "unlockDate": "2026-07-08T11:03:47.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
         "chapter_number": 6.1,
         "lock_hours": 0,
         "pages": 12,
@@ -38,30 +62,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 3
-      },
-      {
-        "chapter_number": 5.3,
-        "lock_hours": 0,
-        "pages": 10,
-        "release_date": "2026-06-26T14:59:28+07:00",
-        "id": "ZunouBattle-ch-5.3",
-        "r2_prefix": "manga/ZunouBattle/5.3/",
-        "title": "Ch. 5.3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 5
-      },
-      {
-        "chapter_number": 5.2,
-        "lock_hours": 0,
-        "pages": 11,
-        "release_date": "2026-06-26T14:15:41+07:00",
-        "id": "ZunouBattle-ch-5.2",
-        "r2_prefix": "manga/ZunouBattle/5.2/",
-        "title": "Ch. 5.2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 4
       }
     ]
   },
