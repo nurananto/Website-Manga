@@ -37,7 +37,7 @@
     "6.3": 1
   },
   "total_views": 47,
-  "mangadex_cover": "d98e2228-a07a-4a31-881b-159f1b0eb0f1.jpg",
+  "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
     {
@@ -51,17 +51,17 @@
       "widths": "1280x960x640"
     },
     {
-      "file": "d98e2228-a07a-4a31-881b-159f1b0eb0f1.jpg",
+      "file": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
       "volume": "1",
       "keys": [
-        "manga/ZunouBattle/covers/gallery/d98e2228-a07a-4a31-881b-159f1b0eb0f1.webp",
-        "manga/ZunouBattle/covers/gallery/d98e2228-a07a-4a31-881b-159f1b0eb0f1@tablet.webp",
-        "manga/ZunouBattle/covers/gallery/d98e2228-a07a-4a31-881b-159f1b0eb0f1@mobile.webp"
+        "manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c.webp",
+        "manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@tablet.webp",
+        "manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@mobile.webp"
       ],
       "widths": "1280x960x640"
     }
   ],
   "discord_channel_id": "1517524270371311676",
-  "cover_version": 2,
+  "cover_version": 3,
   "detail_views": 17
 }
