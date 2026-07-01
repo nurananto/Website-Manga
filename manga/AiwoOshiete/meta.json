@@ -36,7 +36,7 @@
     "18": 1,
     "19": 3
   },
-  "total_views": 10,
+  "total_views": 11,
   "mangadex_cover": "511f749e-21de-4ba8-ab27-b6cd74cbb6e5.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -80,5 +80,6 @@
       ],
       "widths": "1280x960x640"
     }
-  ]
+  ],
+  "detail_views": 1
 }

@@ -26,7 +26,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": 142,
   "chapter_views": {},
-  "total_views": 0,
+  "total_views": 1,
   "mangadex_cover": "98be450d-fef5-4324-a277-94856f13b8bf.png",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -62,5 +62,6 @@
     }
   ],
   "fb_cover": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf.webp",
-  "cover_version": 2
+  "cover_version": 2,
+  "detail_views": 1
 }

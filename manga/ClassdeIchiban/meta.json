@@ -28,10 +28,10 @@
   "chapter_views": {
     "10": 3,
     "11": 1,
-    "12": 4,
+    "12": 5,
     "10.5": 4
   },
-  "total_views": 13,
+  "total_views": 15,
   "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -57,5 +57,5 @@
     }
   ],
   "discord_channel_id": "1517523866111447143",
-  "detail_views": 1
+  "detail_views": 2
 }
