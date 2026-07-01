@@ -40,11 +40,11 @@
     "13": 1,
     "14": 1,
     "15": 1,
-    "16": 1,
-    "17.1": 7,
-    "17.2": 9
+    "16": 2,
+    "17.1": 8,
+    "17.2": 10
   },
-  "total_views": 36,
+  "total_views": 41,
   "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -68,7 +68,7 @@
     }
   ],
   "discord_channel_id": "1517524076028104795",
-  "detail_views": 3,
+  "detail_views": 5,
   "mangadex_id": "16c34950-954c-4f0d-808e-d8278a546339",
   "rating": 7.86,
   "next_update": null,
@@ -89,7 +89,7 @@
       "title": "Ch. 17.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 17.1,
@@ -101,7 +101,7 @@
       "title": "Ch. 17.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     },
     {
       "chapter_number": 16,
@@ -113,7 +113,7 @@
       "title": "Ch. 16",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 15,

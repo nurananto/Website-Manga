@@ -38,7 +38,7 @@
     "22.2": 2
   },
   "total_views": 66,
-  "mangadex_cover": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg",
+  "mangadex_cover": "2ba7ca0a-654d-4c3e-a05c-dd10aef904d9.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
     {
@@ -60,8 +60,19 @@
         "manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@mobile.webp"
       ],
       "widths": "1280x960x640"
+    },
+    {
+      "file": "2ba7ca0a-654d-4c3e-a05c-dd10aef904d9.jpg",
+      "volume": "3",
+      "keys": [
+        "manga/Yuumei/covers/gallery/2ba7ca0a-654d-4c3e-a05c-dd10aef904d9.webp",
+        "manga/Yuumei/covers/gallery/2ba7ca0a-654d-4c3e-a05c-dd10aef904d9@tablet.webp",
+        "manga/Yuumei/covers/gallery/2ba7ca0a-654d-4c3e-a05c-dd10aef904d9@mobile.webp"
+      ],
+      "widths": "1280x960x640"
     }
   ],
   "discord_channel_id": "1517524250175737906",
-  "detail_views": 11
+  "detail_views": 11,
+  "cover_version": 2
 }

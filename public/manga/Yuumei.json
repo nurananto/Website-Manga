@@ -33,43 +33,53 @@
     "19": 3,
     "20": 9,
     "21.1": 12,
-    "21.2": 9,
-    "22.1": 10,
+    "21.2": 10,
+    "22.1": 12,
     "22.2": 2
   },
-  "total_views": 60,
-  "mangadex_cover": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg",
+  "total_views": 66,
+  "mangadex_cover": "2ba7ca0a-654d-4c3e-a05c-dd10aef904d9.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
     {
-      "volume": "2",
+      "volume": "3",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/2ba7ca0a-654d-4c3e-a05c-dd10aef904d9.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/2ba7ca0a-654d-4c3e-a05c-dd10aef904d9@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/2ba7ca0a-654d-4c3e-a05c-dd10aef904d9@mobile.webp?v=2"
+      }
+    },
+    {
+      "volume": "2",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@mobile.webp?v=2"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@mobile.webp?v=2"
       }
     }
   ],
   "discord_channel_id": "1517524250175737906",
-  "detail_views": 8,
+  "detail_views": 11,
+  "cover_version": 2,
   "mangadex_id": "9aebe60e-777f-4a58-a3bf-143c3096b94f",
   "rating": 8.23,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
@@ -94,7 +104,7 @@
       "title": "Ch. 22.1",
       "unlockDate": "2026-06-30T13:34:53.000Z",
       "isLocked": false,
-      "views": 10
+      "views": 12
     },
     {
       "chapter_number": 21.2,
@@ -106,7 +116,7 @@
       "title": "Ch. 21.2",
       "unlockDate": "2026-06-23T14:06:03.000Z",
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 21.1,
