@@ -31,55 +31,55 @@
     "17": 2,
     "18": 2,
     "19": 3,
-    "20": 9,
+    "20": 10,
     "21.1": 12,
     "21.2": 10,
-    "22.1": 12,
+    "22.1": 13,
     "22.2": 2
   },
-  "total_views": 66,
-  "mangadex_cover": "2ba7ca0a-654d-4c3e-a05c-dd10aef904d9.jpg",
+  "total_views": 71,
+  "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
     {
       "volume": "3",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/2ba7ca0a-654d-4c3e-a05c-dd10aef904d9.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/2ba7ca0a-654d-4c3e-a05c-dd10aef904d9@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/2ba7ca0a-654d-4c3e-a05c-dd10aef904d9@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991@mobile.webp?v=3"
       }
     },
     {
       "volume": "2",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@mobile.webp?v=3"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@mobile.webp?v=3"
       }
     }
   ],
   "discord_channel_id": "1517524250175737906",
-  "detail_views": 11,
-  "cover_version": 2,
+  "detail_views": 14,
+  "cover_version": 3,
   "mangadex_id": "9aebe60e-777f-4a58-a3bf-143c3096b94f",
   "rating": 8.23,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {
@@ -104,7 +104,7 @@
       "title": "Ch. 22.1",
       "unlockDate": "2026-06-30T13:34:53.000Z",
       "isLocked": false,
-      "views": 12
+      "views": 13
     },
     {
       "chapter_number": 21.2,
@@ -140,7 +140,7 @@
       "title": "Ch. 20",
       "unlockDate": "2026-06-11T18:25:40.000Z",
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 19,

@@ -22,7 +22,7 @@
       "Video Games"
     ],
     "rating": 7.41,
-    "total_views": 23,
+    "total_views": 25,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": 9,
@@ -33,10 +33,10 @@
         "chapter_number": 9,
         "lock_hours": 0,
         "pages": 81,
+        "release_date": "2026-07-02T18:06:40+07:00",
         "id": "Yarikonda-ch-9",
         "r2_prefix": "manga/Yarikonda/9/",
         "title": "Ch. 9",
-        "release_date": "2026-07-02T18:06:40+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -88,7 +88,7 @@
       "Video Games"
     ],
     "rating": 8.21,
-    "total_views": 52,
+    "total_views": 64,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -129,7 +129,7 @@
         "title": "Ch. 6.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 7
       }
     ]
   },
@@ -223,8 +223,8 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.33,
-    "total_views": 60,
+    "rating": 7.34,
+    "total_views": 66,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -241,7 +241,7 @@
         "title": "Ch. 14.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 7
+        "views": 9
       },
       {
         "chapter_number": 13.2,
@@ -289,7 +289,7 @@
       "Slice of Life"
     ],
     "rating": 7.5,
-    "total_views": 70,
+    "total_views": 71,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -356,7 +356,7 @@
       "Tragedy"
     ],
     "rating": 8.64,
-    "total_views": 97,
+    "total_views": 128,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -406,11 +406,11 @@
     "title": "Yuumei VTuber no Ani Dakedo, Nazeka Ore ga Yuumei ni Natteita",
     "description": "Aku punya adik tiri bernama Isuzu. Dia adalah VTuber super populer dengan lebih dari 1 juta subscriber, 'Isuzu Wine'. Suatu hari, dia lupa mematikan siaran, dan percakapan aslinya denganku tanpa sengaja tersebar ke seluruh dunia! Potongan video insiden siaran itu dengan cepat menyebar, dan dalam…",
     "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=2",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=2"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=3"
     },
     "genres": [
       "Adaptation",
@@ -422,7 +422,7 @@
       "Slice of Life"
     ],
     "rating": 8.23,
-    "total_views": 66,
+    "total_views": 71,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -451,7 +451,7 @@
         "title": "Ch. 22.1",
         "unlockDate": "2026-06-30T13:34:53.000Z",
         "isLocked": false,
-        "views": 12
+        "views": 13
       },
       {
         "chapter_number": 21.2,
@@ -487,7 +487,7 @@
       "Time Travel"
     ],
     "rating": 8.41,
-    "total_views": 39,
+    "total_views": 41,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -504,7 +504,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 7
       },
       {
         "chapter_number": 11,
@@ -744,7 +744,7 @@
       "Shounen"
     ],
     "rating": 7.86,
-    "total_views": 41,
+    "total_views": 42,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,

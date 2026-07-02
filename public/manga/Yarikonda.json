@@ -35,7 +35,7 @@
     "7": 3,
     "8": 7
   },
-  "total_views": 23,
+  "total_views": 25,
   "mangadex_cover": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -68,7 +68,7 @@
     }
   ],
   "discord_channel_id": "1517524210547818596",
-  "detail_views": 2,
+  "detail_views": 4,
   "cover_version": 2,
   "mangadex_id": "a605a5d0-21a6-481f-a055-74735ea4f2c2",
   "rating": 7.41,
@@ -84,10 +84,10 @@
       "chapter_number": 9,
       "lock_hours": 0,
       "pages": 81,
+      "release_date": "2026-07-02T18:06:40+07:00",
       "id": "Yarikonda-ch-9",
       "r2_prefix": "manga/Yarikonda/9/",
       "title": "Ch. 9",
-      "release_date": "2026-07-02T18:06:40+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
