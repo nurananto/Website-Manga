@@ -4,8 +4,8 @@ import { X, Check } from 'lucide-react';
 // Banner ajakan donasi Trakteer — tampil di bawah TopNavBar, di atas konten.
 // Sama di semua halaman (home & detail) via satu key localStorage, jadi ditutup
 // di satu halaman berarti ikut tertutup di halaman lain. Muncul lagi otomatis
-// setelah 24 jam. Klik tombol membuka modal login (donasi diproses lewat alur
-// Supporter setelah login).
+// setelah 24 jam. Tombol: kalau belum login → buka modal login; kalau sudah
+// login → langsung buka modal Supporter.
 const DISMISS_KEY = 'donation_banner_dismissed_at';
 const DISMISS_MS = 24 * 60 * 60 * 1000;
 
@@ -16,7 +16,7 @@ const PERKS = [
   'Dukung tim scanlator',
 ];
 
-export default function DonationBanner({ onLoginClick }) {
+export default function DonationBanner({ isLoggedIn, onDonateClick }) {
   const [dismissed, setDismissed] = useState(() => {
     try {
       const dismissedAt = Number(localStorage.getItem(DISMISS_KEY) || 0);
@@ -62,10 +62,10 @@ export default function DonationBanner({ onLoginClick }) {
       </div>
 
       <button
-        onClick={onLoginClick}
+        onClick={onDonateClick}
         className="w-full sm:w-auto text-center px-4 sm:px-5 py-2.5 rounded-xl font-black text-xs sm:text-sm text-white bg-white/15 hover:bg-white/25 border border-white/25 active:scale-95 transition-all cursor-pointer shadow-md whitespace-nowrap shrink-0"
       >
-        Login &amp; Donasi Sekarang
+        {isLoggedIn ? 'Donasi Sekarang' : 'Login & Donasi Sekarang'}
       </button>
 
       <button
