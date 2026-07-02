@@ -2,9 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nuranantoscans.my.id/</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://nuranantoscans.my.id/ZunouBattle</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nuranantoscans.my.id/TeisouGyakuten</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nuranantoscans.my.id/Madogiwa</loc>
@@ -21,12 +33,6 @@
   <url>
     <loc>https://nuranantoscans.my.id/Osananajimi</loc>
     <lastmod>2026-06-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nuranantoscans.my.id/ZunouBattle</loc>
-    <lastmod>2026-06-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -124,12 +130,6 @@
     <loc>https://nuranantoscans.my.id/Waka-chan</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nuranantoscans.my.id/TeisouGyakuten</loc>
-    <lastmod>2026-06-12</lastmod>
-    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>

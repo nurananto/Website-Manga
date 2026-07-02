@@ -113,28 +113,6 @@ async function fetchMangaDexRating(mangadexId) {
   }
 }
 
-// Hitung karakter embed yang dihitung Discord ke limit 6000/pesan
-// (title + description + footer.text + author.name + fields). URL gambar & timestamp tak dihitung.
-function embedChars(e) {
-  return (e.title?.length || 0) + (e.description?.length || 0) +
-         (e.footer?.text?.length || 0) + (e.author?.name?.length || 0) +
-         (e.fields || []).reduce((s, f) => s + (f.name?.length || 0) + (f.value?.length || 0), 0);
-}
-// Pecah embed jadi beberapa pesan: maks 10 embed DAN maks ~5500 char per pesan.
-function chunkEmbeds(embeds, maxCount = 10, maxChars = 5500) {
-  const chunks = [];
-  let cur = [], curChars = 0;
-  for (const e of embeds) {
-    const c = embedChars(e);
-    if (cur.length && (cur.length >= maxCount || curChars + c > maxChars)) {
-      chunks.push(cur); cur = []; curChars = 0;
-    }
-    cur.push(e); curChars += c;
-  }
-  if (cur.length) chunks.push(cur);
-  return chunks;
-}
-
 // ── Halaman pertama chapter (Image01.webp) untuk notifikasi ───────────────
 // Menggantikan cover di Discord & Facebook. Chapter GRATIS: URL publik via CDN
 // (langsung embed). Chapter LOCKED: byte diambil dari bucket privat manga-locked
@@ -189,7 +167,11 @@ async function resolveFirstPage(ch) {
 }
 
 // ── Kirim notifikasi Discord untuk chapter-chapter baru ─────────────────
-// Satu embed per chapter, dikirim setelah catalog selesai dibangun.
+// Dikelompokkan per judul manga:
+//  - ≤3 chapter baru  → tiap chapter jadi PESAN terpisah (biar tidak numpuk
+//    jadi 1 notifikasi yang isinya banyak embed sekaligus).
+//  - >3 chapter baru  → digabung jadi 1 pesan ringkas (cegah banjir notif /
+//    kena rate-limit saat upload chapter massal atau backfill).
 // Hanya berjalan kalau DISCORD_WEBHOOK_URL diset & ada chapter baru.
 async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   if (!webhookUrl || newChapters.length === 0) return;
@@ -204,32 +186,23 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
     if (ch.discordChannelId)             links.push(`💬 [Diskusi](https://discord.com/channels/${GUILD}/${ch.discordChannelId})`);
     return links.join('  •  ');
   };
-  // >3 chapter dari judul SAMA → 1 embed gabungan. Selain itu per-chapter (kaya).
+
   const byManga = new Map();
   for (const ch of newChapters) {
     if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, []);
     byManga.get(ch.mangaId).push(ch);
   }
-  const items = [];
-  for (const list of byManga.values()) {
-    if (list.length > 3) {
-      const nums = list.map(c => c.chapterNumber);
-      items.push({ ch: list[0], descTop: `📖 **${list.length} chapter baru** (Ch ${nums[nums.length - 1]}–${nums[0]})` });
-    } else {
-      for (const ch of list) items.push({ ch, descTop: `📖 **${ch.chapterTitle}**` });
-    }
-  }
 
-  // Gambar embed = halaman 1 (Image01.webp), MENGGANTIKAN cover.
-  // Gratis: URL CDN publik. Locked: byte R2 privat → lampiran (attachment://).
-  const embeds = [];
-  const attByName = new Map();
-  for (const { ch, descTop } of items) {
+  // Bangun 1 embed → satu embed SELALU jadi satu pesan tersendiri (attByName
+  // dibawa per-pesan, bukan digabung global) agar judul tidak pernah tercampur
+  // dalam 1 notifikasi, walau embed-nya kecil dan sebenarnya muat digabung.
+  const buildEmbed = async (ch, descTop) => {
     const img = await resolveFirstPage(ch);
     let image;
+    const attByName = new Map();
     if (img?.url) image = { url: img.url };
     else if (img?.bytes) { attByName.set(img.name, img); image = { url: `attachment://${img.name}` }; }
-    embeds.push({
+    const embed = {
       title:     ch.mangaTitle,
       url:       `${base}/${ch.mangaId}`,
       description: [descTop, linksOf(ch)].join('\n'),
@@ -237,30 +210,36 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
       image,     // halaman 1 chapter (pengganti cover)
       footer,
       timestamp: ch.releaseDate || new Date().toISOString(),
-    });
+    };
+    return { embed, attByName };
+  };
+
+  const messages = []; // { embed, attByName } — tiap elemen = 1 pesan Discord
+  for (const list of byManga.values()) {
+    if (list.length > 3) {
+      const ch = list[0]; // chapter terbaru = representatif (list sudah desc)
+      const nums = list.map(c => c.chapterNumber);
+      messages.push(await buildEmbed(ch, `📖 **${list.length} chapter baru** (Ch ${nums[nums.length - 1]}–${nums[0]})`));
+    } else {
+      for (const ch of list) messages.push(await buildEmbed(ch, `📖 **${ch.chapterTitle}**`));
+    }
   }
 
-  // Pecah pesan: maks 10 embed DAN ≤5500 char/pesan (limit Discord 6000)
-  const chunks = chunkEmbeds(embeds);
-  for (let i = 0; i < chunks.length; i++) {
-    const chunk = chunks[i];
+  // Kirim satu per satu, jeda ~1.2 detik antar pesan — di bawah limit webhook
+  // Discord (~5 req/2 detik) agar aman dari 429 / terdeteksi sebagai spam.
+  for (let i = 0; i < messages.length; i++) {
+    const { embed, attByName } = messages[i];
     const payload = {
       username: 'Nurananto Scanlation',
       content:  i === 0 ? '## 📢 Baru Saja Dirilis!' : undefined,
-      embeds:   chunk,
+      embeds:   [embed],
     };
-    // Lampiran (gambar locked) yang direferensikan embed di chunk ini
-    const files = [];
-    for (const e of chunk) {
-      const m = /^attachment:\/\/(.+)$/.exec(e.image?.url || '');
-      if (m && attByName.has(m[1])) files.push(attByName.get(m[1]));
-    }
     try {
       let res;
-      if (files.length) {
+      if (attByName.size) {
         const form = new FormData();
         form.append('payload_json', JSON.stringify(payload));
-        files.forEach((a, idx) => form.append(`files[${idx}]`, new Blob([a.bytes], { type: 'image/webp' }), a.name));
+        [...attByName.values()].forEach((a, idx) => form.append(`files[${idx}]`, new Blob([a.bytes], { type: 'image/webp' }), a.name));
         res = await fetchT(webhookUrl, { method: 'POST', body: form }, 30000);
       } else {
         res = await fetchT(webhookUrl, {
@@ -270,12 +249,12 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
         });
       }
       if (!res.ok) console.warn(`⚠️  Discord notif gagal: ${res.status} ${await res.text()}`);
-      else console.log(`🔔 Discord notifikasi terkirim: ${chunk.length} chapter baru`);
+      else console.log(`🔔 Discord notifikasi terkirim (${i + 1}/${messages.length}): ${embed.title}`);
     } catch (e) {
       console.warn(`⚠️  Discord webhook error: ${e.message}`);
     }
-    // Hindari rate limit Discord (max 5 req/2 detik per webhook)
-    if (i + 1 < chunks.length) await new Promise(r => setTimeout(r, 1000));
+    // Jeda antar pesan (juga sebelum retry 429 kalau Discord membalas dibatasi)
+    if (i + 1 < messages.length) await new Promise(r => setTimeout(r, 1200));
   }
 }
 
@@ -329,34 +308,48 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
 
 // ── Post chapter baru ke Facebook Page (teks polos, link tanpa html) ──
 // Butuh FB_PAGE_ID + FB_PAGE_TOKEN (Page Access Token long-lived).
+// Sama seperti Discord: ≤3 chapter baru/judul → post terpisah per chapter;
+// >3 chapter baru/judul → digabung jadi 1 post ringkas (cegah banjir feed
+// saat upload chapter massal / backfill).
 async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl) {
   if (!pageId || !pageToken || newChapters.length === 0) return;
   const host = siteUrl.replace(/^https?:\/\//, '').replace(/\/$/, ''); // nuranantoscans.my.id
 
-  // Gabung per judul → 1 post per manga (cegah spam feed saat upload banyak chapter
-  // sekaligus). newChapters urut terbaru→lama: chapter pertama = representatif (rep).
+  // newChapters urut terbaru→lama per judul (chapters sudah desc dari build-catalog).
   const byManga = new Map();
   for (const ch of newChapters) {
-    if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, { title: ch.mangaTitle, rep: ch, nums: [] });
-    byManga.get(ch.mangaId).nums.push(ch.chapterNumber);
+    if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, []);
+    byManga.get(ch.mangaId).push(ch);
+  }
+
+  const posts = []; // { title, rep, message } — tiap elemen = 1 post FB
+  for (const [mangaId, list] of byManga) {
+    const title = list[0].mangaTitle;
+    if (list.length > 3) {
+      const nums = list.map(c => c.chapterNumber);
+      const message =
+        `📖 ${title}\n${list.length} chapter baru (Ch ${nums[nums.length - 1]}–${nums[0]}) sudah update!\n\n` +
+        `Baca: ${host}/${mangaId}`;
+      posts.push({ title, rep: list[0], message });
+    } else {
+      for (const ch of list) {
+        const message =
+          `📖 ${title}\nChapter ${ch.chapterNumber} sudah update!\n\n` +
+          `Baca: ${host}/${mangaId}`;
+        posts.push({ title, rep: ch, message });
+      }
+    }
   }
 
   let sent = 0;
-  for (const [mangaId, info] of byManga) {
-    const nums = info.nums;
-    const head = nums.length === 1
-      ? `Chapter ${nums[0]} sudah update!`
-      : `${nums.length} chapter baru (Ch ${nums[nums.length - 1]}–${nums[0]}) sudah update!`;
-    const message =
-      `📖 ${info.title}\n${head}\n\n` +
-      `Baca: ${host}/${mangaId}`;
+  for (const { title, rep, message } of posts) {
     try {
       let ok = false;
       // Photo post → halaman 1 (Image01.webp) jadi gambar utama (caption clickable).
       // Gratis: kirim URL CDN. Locked: kirim byte (source) dari R2 privat.
       // Timeout 45s: FB mengunduh & memproses gambar server-side, kadang >15s.
       // Dibungkus try sendiri agar timeout/error JATUH ke fallback teks, bukan ter-skip.
-      const img = await resolveFirstPage(info.rep);
+      const img = await resolveFirstPage(rep);
       if (img) {
         try {
           let r;
@@ -374,9 +367,9 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
             r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/photos`, { method: 'POST', body: form }, 45000);
           }
           if (r.ok) ok = true;
-          else console.warn(`⚠️  FB photo gagal (${info.title}): ${r.status} ${await r.text()} — fallback teks`);
+          else console.warn(`⚠️  FB photo gagal (${title}): ${r.status} ${await r.text()} — fallback teks`);
         } catch (e) {
-          console.warn(`⚠️  FB photo timeout/error (${info.title}): ${e.message} — fallback teks`);
+          console.warn(`⚠️  FB photo timeout/error (${title}): ${e.message} — fallback teks`);
         }
       }
       // Fallback: post teks biasa kalau tak ada gambar / photo ditolak
@@ -387,13 +380,13 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
           body: JSON.stringify({ message, access_token: pageToken }),
         });
         if (r.ok) ok = true;
-        else console.warn(`⚠️  FB feed gagal (${info.title}): ${r.status} ${await r.text()}`);
+        else console.warn(`⚠️  FB feed gagal (${title}): ${r.status} ${await r.text()}`);
       }
       if (ok) sent++;
-    } catch (e) { console.warn(`⚠️  FB error (${info.title}): ${e.message}`); }
+    } catch (e) { console.warn(`⚠️  FB error (${title}): ${e.message}`); }
     await new Promise(r => setTimeout(r, 1500)); // jeda antar post
   }
-  console.log(`📘 Facebook posting terkirim: ${sent}/${byManga.size} judul`);
+  console.log(`📘 Facebook posting terkirim: ${sent}/${posts.length} post`);
 }
 
 async function buildCatalog() {

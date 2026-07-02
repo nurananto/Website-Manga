@@ -151,7 +151,12 @@ function PageImage({ src, fallbackSrc, idx, pageRefs, ready, onAccessError }) {
     <div
       ref={el => { wrapRef.current = el; if (pageRefs) pageRefs.current[idx] = el; }}
       className="w-full relative"
-      style={{ minHeight: loaded ? 'auto' : '85vh' }}
+      // Placeholder pakai aspect-ratio (bukan minHeight:85vh) — tingginya turunan dari
+      // LEBAR kontainer, sama seperti gambar asli nanti (w-full h-auto). Rasio 2/3 adalah
+      // perkiraan umum halaman manga; jauh lebih dekat ke ukuran akhir daripada 85% tinggi
+      // viewport (yang tak ada hubungannya sama sekali dengan dimensi gambar), sehingga
+      // pergeseran layout (CLS) saat gambar selesai dimuat jauh lebih kecil.
+      style={loaded ? undefined : { aspectRatio: '2 / 3' }}
     >
       {!ready && inView && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11]">

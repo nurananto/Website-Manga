@@ -94,7 +94,9 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
       const url = imgUrl(m?.coverUrls?.mobile || m?.coverUrl);
       if (url) toLoad.add(url);
     }
-    toLoad.forEach(url => { new Image().src = url; });
+    // fetchPriority 'low' agar preload tetangga tidak berebut bandwidth dengan
+    // gambar LCP (background blur + cover aktif) yang sedang dimuat.
+    toLoad.forEach(url => { const img = new Image(); img.fetchPriority = 'low'; img.src = url; });
   }, [activeIdx]); // eslint-disable-line
 
   const handleClick = (logIdx, dist) => {
@@ -113,6 +115,8 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
       <div key={active?.id} className="absolute inset-0 pointer-events-none z-0 animate-[fadeIn_0.4s_ease-out]">
           <img
             src={imgUrl(active?.coverUrls?.mobile || active?.coverUrl)} alt=""
+            loading="eager"
+            fetchpriority="high"
             className="absolute inset-0 w-full h-full object-cover scale-150 blur-2xl opacity-75"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/60 via-surface/10 to-surface/60" />

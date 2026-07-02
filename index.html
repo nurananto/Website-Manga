@@ -24,6 +24,35 @@
     <link rel="preconnect" href="https://api.nuranantoscans.my.id" />
     <!-- Turnstile (verifikasi sebelum ambil token chapter terkunci) -->
     <link rel="preconnect" href="https://challenges.cloudflare.com" />
+    <!-- Prefetch data JSON halaman ini SEDINI mungkin — sebelum bundle JS di-download,
+         di-parse, dieksekusi, dan React mount+useEffect jalan. Tanpa ini, URL gambar
+         LCP (hero cover) baru diketahui browser setelah seluruh rangkaian itu selesai,
+         menyebabkan LCP molor beberapa detik terutama di koneksi lambat. App.jsx
+         memakai window.__PREFETCH__ ini (kalau ada & cocok) ketimbang fetch ulang. -->
+    <script>
+      (function () {
+        try {
+          var parts = location.pathname.replace(/^\//, '').split('/').filter(Boolean);
+          var RESERVED = ['history', 'auth'];
+          var url = null, slug = null;
+          if (parts.length === 0) {
+            url = '/manga/index.json';
+          } else if (!(parts.length === 1 && RESERVED.indexOf(parts[0]) !== -1)) {
+            slug = parts[0];
+            url = '/manga/' + slug + '.json';
+          }
+          if (url) {
+            window.__PREFETCH__ = {
+              type: slug ? 'manga' : 'index',
+              slug: slug,
+              promise: fetch(url, { cache: 'no-cache' })
+                .then(function (r) { return r.ok ? r.json() : null; })
+                .catch(function () { return null; }),
+            };
+          }
+        } catch (e) {}
+      })();
+    </script>
     <!-- Fonts are self-hosted via @fontsource (bundled with app, no external dependency) -->
     <script>
       window.addEventListener('error', function (event) {

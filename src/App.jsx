@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
+import DonationBanner from './components/DonationBanner';
 import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
@@ -23,6 +24,17 @@ const AuthModal           = lazy(() => import('./components/CoinModals').then(m 
 const SupporterModal      = lazy(() => import('./components/CoinModals').then(m => ({ default: m.SupporterModal })));
 const LockedChapterModal  = lazy(() => import('./components/CoinModals').then(m => ({ default: m.LockedChapterModal })));
 const AccountSettingsModal = lazy(() => import('./components/CoinModals').then(m => ({ default: m.AccountSettingsModal })));
+
+// Ambil hasil prefetch yang di-kickoff dari index.html (kalau ada & cocok) supaya
+// tidak fetch ulang — menghindari waterfall mount→fetch yang bikin LCP molor.
+// Prefetch hanya tersedia sekali di initial load; navigasi client-side berikutnya
+// tetap fetch normal seperti biasa.
+function takePrefetch(type, slug) {
+  const pf = window.__PREFETCH__;
+  if (!pf || pf.type !== type || (type === 'manga' && pf.slug !== slug)) return null;
+  delete window.__PREFETCH__;
+  return pf.promise;
+}
 
 // ── Riwayat Baca ──────────────────────────────────────────────
 function HistoryTabs({ historyEntries, handleReadChapter }) {
@@ -363,11 +375,13 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCoinModalOpen, isLoggedIn]);
 
-  // Fetch catalog dari /manga/index.json
+  // Fetch catalog dari /manga/index.json (pakai hasil prefetch index.html kalau ada)
   useEffect(() => {
-    fetch('/manga/index.json', { cache: 'no-cache' })
-      .then(r => r.json())
+    const prefetched = takePrefetch('index');
+    const req = prefetched || fetch('/manga/index.json', { cache: 'no-cache' }).then(r => r.json());
+    req
       .then(data => {
+        if (!data) { setIsLoading(false); return; }
         setMangaList(data); mangaListRef.current = data; setIsLoading(false);
         // Override trending pakai views terkini (24 jam) dari worker.
         // Kalau kosong/gagal → tetap pakai isTrending build-time (fallback).
@@ -412,8 +426,9 @@ export default function App() {
         } else {
         setLoadingManga(true);
         setSelectedManga(null);
-        fetch(`/manga/${mangaId}.json`)
-          .then(r => r.ok ? r.json() : null)
+        const prefetched = takePrefetch('manga', mangaId);
+        const req = prefetched || fetch(`/manga/${mangaId}.json`).then(r => r.ok ? r.json() : null);
+        req
           .then(fullManga => {
             if (fullManga) {
               setSelectedManga(fullManga);
@@ -465,8 +480,9 @@ export default function App() {
         if (current?.id === mangaId) {
           loadReader(current);
         } else {
-          fetch(`/manga/${mangaId}.json`)
-            .then(r => r.ok ? r.json() : null)
+          const prefetched = takePrefetch('manga', mangaId);
+          const req = prefetched || fetch(`/manga/${mangaId}.json`).then(r => r.ok ? r.json() : null);
+          req
             .then(m => m ? loadReader(m) : navigate('/', true))
             .catch(() => navigate('/', true));
         }
@@ -665,12 +681,18 @@ export default function App() {
             
             {activeTab === 'library' && (
               <>
+                {/* Banner ajakan donasi Trakteer — di atas carousel unggulan */}
+                <DonationBanner />
+
                 {/* Featured Carousel — skeleton saat loading agar tidak CLS */}
                 {!searchQuery && (
                   <>
                     {isLoading ? (
                       <div className="flex flex-col gap-2">
-                        <div className="h-[220px] sm:h-[260px] md:h-[300px] lg:h-[340px] rounded-xl bg-surface-container animate-pulse border border-white/5" />
+                        {/* Tinggi disamakan persis dengan SpotlightCarousel asli
+                            (containerH = PAD_V*2 + coverW*1.5 per breakpoint getCoverW())
+                            agar tidak ada CLS saat carousel asli menggantikan skeleton ini. */}
+                        <div className="h-[249px] sm:h-[306px] md:h-[369px] lg:h-[414px] rounded-xl bg-surface-container animate-pulse border border-white/5" />
                         <div className="flex justify-center gap-2">
                           <div className="h-1.5 w-6 rounded-full bg-surface-container-high animate-pulse" />
                           <div className="h-1.5 w-1.5 rounded-full bg-surface-container-high animate-pulse" />

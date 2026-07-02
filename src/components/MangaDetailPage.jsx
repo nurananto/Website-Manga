@@ -176,6 +176,7 @@ const renderChapterRow = (ch) => {
           <div className="absolute inset-0 z-0 overflow-hidden">
             <img
               alt=""
+              loading="eager"
               fetchpriority="high"
               className="w-full h-full object-cover scale-125 blur-2xl opacity-55"
               src={imgUrl(manga.coverUrls?.mobile || manga.coverUrl)}
@@ -192,6 +193,8 @@ const renderChapterRow = (ch) => {
                 {manga.coverUrls?.tablet  && <source media="(max-width: 1024px)" srcSet={imgUrl(manga.coverUrls.tablet)} />}
                 <img
                   alt={`${manga.title} Cover`}
+                  loading="eager"
+                  fetchpriority="high"
                   className="w-full h-full object-cover rounded-xl shadow-2xl border-2 border-white/25"
                   src={imgUrl(manga.coverUrls?.desktop ?? manga.coverUrl)}
                 />

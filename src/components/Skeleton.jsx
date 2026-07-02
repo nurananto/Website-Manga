@@ -30,13 +30,19 @@ export function MangaDetailSkeleton() {
       {/* Hero Banner */}
       <div className="mx-3 sm:mx-4 md:mx-5 mt-4 rounded-2xl overflow-hidden border border-white/15 bg-surface-container">
         <div className="w-full px-4 sm:px-6 md:px-8 py-4 sm:py-6 flex flex-col sm:flex-row gap-5 items-center sm:items-end">
-          <div className="w-[160px] sm:w-[200px] md:w-[220px] aspect-[2/3] rounded-xl bg-surface-container-high shrink-0" />
+          <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[2/3] rounded-xl bg-surface-container-high shrink-0" />
           <div className="flex-1 flex flex-col gap-3 w-full pb-2">
-            <Skeleton className="h-7 sm:h-9 md:h-11 w-3/4" />
+            {/* Judul bisa 2 baris (line-clamp-2 di konten asli) — reservasi 2 baris
+                agar tidak ada lompatan besar saat skeleton diganti judul panjang. */}
+            <div className="flex flex-col gap-2">
+              <Skeleton className="h-7 sm:h-9 md:h-11 w-3/4" />
+              <Skeleton className="h-7 sm:h-9 md:h-11 w-1/2" />
+            </div>
             <Skeleton className="h-4 sm:h-5 w-1/2" />
-            <div className="flex gap-2 mt-1">
-              <Skeleton className="h-7 w-20 rounded-full" />
-              <Skeleton className="h-7 w-20 rounded-full" />
+            {/* Ukuran mendekati tombol asli (h-9/10/11, rounded-xl) — bukan pill kecil */}
+            <div className="flex flex-wrap gap-2 sm:gap-3 mt-1">
+              <Skeleton className="h-9 sm:h-10 md:h-11 w-32 sm:w-36 rounded-xl" />
+              <Skeleton className="h-9 sm:h-10 md:h-11 w-40 sm:w-44 rounded-xl" />
             </div>
           </div>
         </div>
