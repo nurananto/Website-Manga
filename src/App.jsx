@@ -656,7 +656,7 @@ export default function App() {
           kecuali reader & auth (sinkron dengan tampilnya TopNavBar) */}
       {!activeChapter && routePage !== 'auth' && (
         <div className="px-3 sm:px-4 md:px-5 pt-3 md:pt-4">
-          <DonationBanner />
+          <DonationBanner onLoginClick={() => openAuth()} />
         </div>
       )}
 
