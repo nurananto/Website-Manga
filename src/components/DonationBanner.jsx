@@ -33,12 +33,12 @@ export default function DonationBanner() {
 
   return (
     <div
-      className="relative w-full rounded-xl border border-red-400/40 overflow-hidden px-3 sm:px-4 py-3 pr-9 sm:pr-4 flex flex-col sm:flex-row sm:items-center gap-3"
+      className="relative w-full rounded-xl border border-red-400/40 overflow-hidden px-3 sm:px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-3"
       style={{ background: 'linear-gradient(to right, rgba(220,38,38,0.9), rgba(239,68,68,0.75), rgba(220,38,38,0.9))' }}
     >
-      <div className="flex items-center gap-3 flex-1 min-w-0">
-        {/* Logo Trakteer — merah senada dengan tombol Donasi Sekarang */}
-        <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-red-700 border border-white/15 flex items-center justify-center shrink-0 shadow-md">
+      <div className="flex items-center gap-3 flex-1 min-w-0 pr-7 sm:pr-0">
+        {/* Logo Trakteer — warna & border sama seperti tombol Donasi Sekarang */}
+        <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center shrink-0 shadow-md">
           <img
             src="https://cdn.trakteer.id/images/embed/trbtn-icon.png"
             alt="Trakteer"
