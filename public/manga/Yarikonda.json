@@ -36,40 +36,62 @@
     "8": 7
   },
   "total_views": 23,
-  "mangadex_cover": "8668678c-bc32-4ada-8374-53d6962ae431.jpg",
+  "mangadex_cover": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
     {
-      "volume": "2",
+      "volume": "3",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@mobile.webp?v=2"
+      }
+    },
+    {
+      "volume": "2",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@mobile.webp?v=2"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@mobile.webp?v=2"
       }
     }
   ],
   "discord_channel_id": "1517524210547818596",
   "detail_views": 2,
+  "cover_version": 2,
   "mangadex_id": "a605a5d0-21a6-481f-a055-74735ea4f2c2",
-  "rating": 7.42,
+  "rating": 7.41,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
+    {
+      "chapter_number": 9,
+      "lock_hours": 0,
+      "pages": 81,
+      "id": "Yarikonda-ch-9",
+      "r2_prefix": "manga/Yarikonda/9/",
+      "title": "Ch. 9",
+      "release_date": "2026-07-02T18:06:40+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
     {
       "chapter_number": 8,
       "lock_hours": 0,

@@ -36,7 +36,7 @@
     "8": 7
   },
   "total_views": 23,
-  "mangadex_cover": "8668678c-bc32-4ada-8374-53d6962ae431.jpg",
+  "mangadex_cover": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
     {
@@ -58,8 +58,19 @@
         "manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@mobile.webp"
       ],
       "widths": "1280x960x640"
+    },
+    {
+      "file": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
+      "volume": "3",
+      "keys": [
+        "manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f.webp",
+        "manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@tablet.webp",
+        "manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@mobile.webp"
+      ],
+      "widths": "1280x960x640"
     }
   ],
   "discord_channel_id": "1517524210547818596",
-  "detail_views": 2
+  "detail_views": 2,
+  "cover_version": 2
 }
