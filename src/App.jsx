@@ -653,6 +653,14 @@ export default function App() {
         />
       )}
 
+      {/* Banner ajakan donasi Trakteer — di bawah header, tampil di semua halaman
+          kecuali reader & auth (sinkron dengan tampilnya TopNavBar) */}
+      {!activeChapter && routePage !== 'auth' && (
+        <div className="px-3 sm:px-4 md:px-5 pt-3 md:pt-4">
+          <DonationBanner />
+        </div>
+      )}
+
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
         {routePage === 'auth' ? (
@@ -681,9 +689,6 @@ export default function App() {
             
             {activeTab === 'library' && (
               <>
-                {/* Banner ajakan donasi Trakteer — di atas carousel unggulan */}
-                <DonationBanner />
-
                 {/* Featured Carousel — skeleton saat loading agar tidak CLS */}
                 {!searchQuery && (
                   <>
