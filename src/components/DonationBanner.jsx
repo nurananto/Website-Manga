@@ -37,8 +37,8 @@ export default function DonationBanner() {
       style={{ background: 'linear-gradient(to right, rgba(220,38,38,0.9), rgba(239,68,68,0.75), rgba(220,38,38,0.9))' }}
     >
       <div className="flex items-center gap-3 flex-1 min-w-0">
-        {/* Logo Trakteer — warna dasar biru, senada dengan ikon di footer */}
-        <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-primary-container flex items-center justify-center shrink-0 shadow-md">
+        {/* Logo Trakteer — merah senada dengan tombol Donasi Sekarang */}
+        <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-red-700 border border-white/15 flex items-center justify-center shrink-0 shadow-md">
           <img
             src="https://cdn.trakteer.id/images/embed/trbtn-icon.png"
             alt="Trakteer"
