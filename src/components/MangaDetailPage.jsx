@@ -3,7 +3,6 @@ import { imgUrl, timeAgo } from '../utils';
 import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Lock, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
-import SupportButtons from './SupportButtons';
 
 export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, isSupporter }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -247,11 +246,6 @@ const renderChapterRow = (ch) => {
             </div>
           </div>
         </section>
-
-        {/* Tombol dukungan: Donasi Trakteer + Gabung Discord */}
-        <div className="w-full mt-4 md:mt-6 xl:mt-8 px-3 sm:px-4 md:px-5">
-          <SupportButtons />
-        </div>
 
         {/* Wrapper: border di mobile/tablet, tidak di desktop */}
         <div className="mx-3 sm:mx-4 md:mx-5 mt-4 md:mt-6 border border-white/15 rounded-2xl lg:border-0 lg:rounded-none lg:mx-0 lg:mt-0">

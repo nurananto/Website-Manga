@@ -47,11 +47,11 @@ export default function DonationBanner() {
         </div>
 
         <div className="min-w-0 flex-1">
-          <p className="font-black text-xs sm:text-base text-white leading-tight">Dukung Nurananto Scanlation!</p>
-          <p className="text-[11px] sm:text-sm text-white/85 font-semibold leading-snug mt-0.5">
+          <p className="font-black text-sm sm:text-base text-white leading-tight">Dukung Nurananto Scanlation!</p>
+          <p className="text-xs sm:text-sm text-white/85 font-semibold leading-snug mt-0.5">
             Bantu donasi untuk membuka akses chapter lainnya &amp; menjaga server tetap online.
           </p>
-          <div className="hidden md:flex items-center gap-3 mt-1.5 flex-wrap">
+          <div className="flex items-center gap-3 mt-1.5 flex-wrap">
             {PERKS.map((t) => (
               <span key={t} className="flex items-center gap-1 text-[11px] text-white/80 font-semibold">
                 <Check className="w-3 h-3 text-white shrink-0" /> {t}
@@ -65,7 +65,7 @@ export default function DonationBanner() {
         href={TRAKTEER_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full sm:w-auto text-center px-4 sm:px-5 py-2.5 rounded-xl font-black text-xs sm:text-sm text-white bg-white/15 hover:bg-white/25 border border-white/25 active:scale-95 transition-all cursor-pointer shadow-md whitespace-nowrap shrink-0"
+        className="w-full sm:w-auto text-center px-4 sm:px-5 py-2.5 rounded-xl font-black text-sm text-white bg-white/15 hover:bg-white/25 border border-white/25 active:scale-95 transition-all cursor-pointer shadow-md whitespace-nowrap shrink-0"
       >
         Donasi Sekarang
       </a>
