@@ -89,7 +89,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
     if (N <= 1) return undefined;
     const timer = setInterval(() => {
       setActiveIdx((idx) => (idx + 1) % N);
-    }, 5000);
+    }, 8000);
     return () => clearInterval(timer);
   }, [N]);
 

@@ -335,7 +335,7 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChanged
 
 // ── Locked Chapter Modal — gate Supporter ─────────────────────
 export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn, isSupporter, onLogin, onBecomeSupporter }) {
-  if (!isOpen || !chapter) return null;
+  if (!isOpen || !chapter || isSupporter) return null;
 
   return (
     <AnimatePresence>
@@ -381,13 +381,13 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
               <button onClick={onLogin}
                 className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
                 <Crown className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-                Login untuk jadi Supporter
+                Login untuk membaca Early Access
               </button>
             ) : (
               <button onClick={onBecomeSupporter}
                 className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
                 <Crown className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-                {isSupporter ? 'Perpanjang Supporter' : 'Jadi Supporter — buka semua'}
+                {isSupporter ? 'Perpanjang Supporter' : 'Jadi Supporter untuk membaca Early Access'}
               </button>
             )}
             <button onClick={onClose}
