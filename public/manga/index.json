@@ -1,5 +1,70 @@
 [
   {
+    "id": "10-nenburi",
+    "title": "10-Nen Buri ni Saikai shita Kusogaki wa Seijun Bishoujo JK ni Seichou shiteita",
+    "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp?v=1",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp?v=1"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 7.5,
+    "total_views": 71,
+    "isTrending": true,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "discord_channel_id": "1517523784821768212",
+    "chapters": [
+      {
+        "chapter_number": 21.1,
+        "lock_hours": 672,
+        "pages": 10,
+        "id": "10-nenburi-ch-21.1",
+        "r2_prefix": "manga/10-nenburi/21.1/",
+        "title": "Ch. 21.1",
+        "release_date": "2026-07-03T11:30:39+07:00",
+        "unlockDate": "2026-07-31T04:30:39.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 20.2,
+        "lock_hours": 480,
+        "pages": 10,
+        "release_date": "2026-06-27T20:24:29+07:00",
+        "id": "10-nenburi-ch-20.2",
+        "r2_prefix": "manga/10-nenburi/20.2/",
+        "title": "Ch. 20.2",
+        "unlockDate": "2026-07-17T13:24:29.000Z",
+        "isLocked": true,
+        "views": 2
+      },
+      {
+        "chapter_number": 20.1,
+        "lock_hours": 144,
+        "pages": 10,
+        "release_date": "2026-06-27T19:38:27+07:00",
+        "id": "10-nenburi-ch-20.1",
+        "r2_prefix": "manga/10-nenburi/20.1/",
+        "title": "Ch. 20.1",
+        "unlockDate": "2026-07-03T12:38:27.000Z",
+        "isLocked": true,
+        "views": 2
+      }
+    ]
+  },
+  {
     "id": "Yarikonda",
     "title": "Yarikonda Renai Game no Akuyaku ni Tensei shita node, Gensaku Chishiki de Heroine wo Kouryaku shimasu",
     "description": "Yūto Hatano adalah penggemar berat game bishōjo 'Hōkago no Flare Story' , sampai-sampai ia memainkannya berulang kali. \"Andai dunia ini seperti itu, pasti pergi ke sekolah akan lebih menyenangkan...\" pikirnya, lalu keesokan paginya—tak disangka, ia benar-benar masuk ke dunia game tersebut! Namun,…",
@@ -263,71 +328,6 @@
         "id": "Madogiwa-ch-13.1",
         "r2_prefix": "manga/Madogiwa/13.1/",
         "title": "Ch. 13.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 2
-      }
-    ]
-  },
-  {
-    "id": "10-nenburi",
-    "title": "10-Nen Buri ni Saikai shita Kusogaki wa Seijun Bishoujo JK ni Seichou shiteita",
-    "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp?v=1"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Harem",
-      "Romance",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 7.5,
-    "total_views": 71,
-    "isTrending": true,
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "discord_channel_id": "1517523784821768212",
-    "chapters": [
-      {
-        "chapter_number": 20.2,
-        "lock_hours": 480,
-        "pages": 10,
-        "release_date": "2026-06-27T20:24:29+07:00",
-        "id": "10-nenburi-ch-20.2",
-        "r2_prefix": "manga/10-nenburi/20.2/",
-        "title": "Ch. 20.2",
-        "unlockDate": "2026-07-17T13:24:29.000Z",
-        "isLocked": true,
-        "views": 2
-      },
-      {
-        "chapter_number": 20.1,
-        "lock_hours": 144,
-        "pages": 10,
-        "release_date": "2026-06-27T19:38:27+07:00",
-        "id": "10-nenburi-ch-20.1",
-        "r2_prefix": "manga/10-nenburi/20.1/",
-        "title": "Ch. 20.1",
-        "unlockDate": "2026-07-03T12:38:27.000Z",
-        "isLocked": true,
-        "views": 2
-      },
-      {
-        "chapter_number": 19,
-        "lock_hours": 0,
-        "pages": 14,
-        "release_date": "2026-06-27T11:08:33+07:00",
-        "id": "10-nenburi-ch-19",
-        "r2_prefix": "manga/10-nenburi/19/",
-        "title": "Ch. 19",
         "unlockDate": null,
         "isLocked": false,
         "views": 2
