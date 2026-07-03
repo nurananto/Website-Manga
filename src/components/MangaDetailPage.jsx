@@ -180,8 +180,9 @@ const renderChapterRow = (ch) => {
               className="w-full h-full object-cover"
               src={imgUrl(manga.coverUrls?.mobile || manga.coverUrl)}
             />
-            <div className="absolute inset-0 bg-black/40" />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface/95 via-surface/55 to-surface/15" />
+            <div className="absolute inset-0 bg-black/58" />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/75 to-surface/25" />
+            <div className="absolute inset-0 bg-gradient-to-r from-surface/70 via-transparent to-surface/55" />
           </div>
 
           {/* Info Over Cover Container */}

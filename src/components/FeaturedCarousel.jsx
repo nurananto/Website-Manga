@@ -53,6 +53,9 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
         >
           <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
+        <div className="min-w-10 h-9 sm:h-10 px-2 rounded-xl border border-white/10 bg-surface-container text-on-surface flex items-center justify-center font-label-sm text-xs sm:text-sm font-black tabular-nums">
+          {current + 1}/{Math.max(slides.length, 1)}
+        </div>
         <button
           type="button"
           onClick={goNext}
@@ -77,9 +80,9 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
             src={imgUrl(activeManga.coverUrls?.mobile || activeManga.coverUrl)}
           />
           {/* Vignette Overlay */}
-          <div className="absolute inset-0 bg-black/35" />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/45 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/84 via-surface/34 to-transparent" />
+          <div className="absolute inset-0 bg-black/45" />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface/95 via-surface/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/44 to-transparent" />
       </div>
 
       {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}

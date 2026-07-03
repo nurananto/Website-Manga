@@ -736,7 +736,7 @@ export default function App() {
                 <section className="flex flex-col gap-3">
                   <div className="flex items-center justify-between border-b border-white/5 pb-4">
                     <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface flex items-center gap-3">
-                      <TrendingUp className="w-6 h-6 text-amber-500" />
+                      <TrendingUp className="w-6 h-6 text-primary" />
                       {searchQuery ? `Search Results for "${searchQuery}"` : 'Latest Updates'}
                     </h2>
                     <button
