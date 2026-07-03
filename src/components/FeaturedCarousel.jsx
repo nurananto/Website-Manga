@@ -3,30 +3,32 @@ import { imgUrl } from '../utils';
 import { Play, Info } from 'lucide-react';
 
 export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }) {
-  const trending = mangaList.filter((m) => m.isTrending) || [mangaList[0]];
+  const trending = mangaList.filter((m) => m.isTrending);
+  const slides = trending.length ? trending : mangaList.slice(0, 5);
   const [current, setCurrent] = useState(0);
   const touchStartX = useRef(null);
 
   useEffect(() => {
+    if (slides.length <= 1) return undefined;
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % trending.length);
+      setCurrent((prev) => (prev + 1) % slides.length);
     }, 7000);
     return () => clearInterval(timer);
-  }, [current, trending.length]);
+  }, [slides.length]);
 
-  const activeManga = trending[current] || mangaList[0];
+  const activeManga = slides[current] || mangaList[0];
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchEnd = (e) => {
-    if (touchStartX.current === null) return;
+    if (touchStartX.current === null || slides.length <= 1) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) {
       diff > 0
-        ? setCurrent((prev) => (prev + 1) % trending.length)
-        : setCurrent((prev) => (prev - 1 + trending.length) % trending.length);
+        ? setCurrent((prev) => (prev + 1) % slides.length)
+        : setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
     }
     touchStartX.current = null;
   };
@@ -38,16 +40,17 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div key={activeManga.id} className="absolute inset-0 w-full h-full animate-[fadeIn_0.45s_ease-out]">
-          {/* Background Image (Blurred cover) */}
+      <div key={activeManga.id} className="absolute inset-0 w-full h-full animate-[featuredSlideIn_0.45s_cubic-bezier(0.22,1,0.36,1)]">
+          {/* Background Image with dark overlays */}
           <img
             alt=""
-            className="w-full h-full object-cover object-center scale-125 blur-xl opacity-75"
+            className="w-full h-full object-cover object-center"
             src={imgUrl(activeManga.coverUrls?.mobile || activeManga.coverUrl)}
           />
           {/* Vignette Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/30 to-transparent" />
+          <div className="absolute inset-0 bg-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface/85 via-surface/35 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface/78 via-surface/25 to-transparent" />
       </div>
 
       {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}
@@ -142,7 +145,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
       <div className="absolute inset-y-0 right-2 sm:right-3 md:right-4 flex items-center justify-center h-full z-10 py-2 sm:py-3">
         <img
           alt={activeManga.title}
-          className="h-[85%] sm:h-[90%] md:h-[93%] aspect-[2/3] object-cover rounded-lg sm:rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500"
+          className="h-[85%] sm:h-[90%] md:h-[93%] aspect-[2/3] object-cover rounded-lg sm:rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500 animate-[featuredCoverIn_0.45s_cubic-bezier(0.22,1,0.36,1)]"
           src={imgUrl(activeManga.coverUrl)}
           loading="eager"
           fetchpriority="high"
@@ -153,7 +156,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
 
     {/* Dots — di luar carousel, tengah bawah */}
     <div className="flex justify-center gap-2">
-      {trending.map((_, idx) => (
+      {slides.map((_, idx) => (
         <button
           key={idx}
           onClick={() => setCurrent(idx)}

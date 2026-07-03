@@ -118,6 +118,16 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes featuredSlideIn {
+  from { opacity: 0; transform: translateX(1.25rem); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes featuredCoverIn {
+  from { opacity: 0; transform: translateX(0.9rem) scale(0.98); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
 @keyframes toastIn {
   from { opacity: 0; transform: translate(-50%, -0.75rem) scale(0.96); }
   to { opacity: 1; transform: translate(-50%, 0) scale(1); }

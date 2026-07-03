@@ -171,16 +171,17 @@ const renderChapterRow = (ch) => {
       <div className="pt-4 md:pt-6 xl:pt-8 w-full">
         {/* Hero Banner Section */}
         <section className="relative mx-3 sm:mx-4 md:mx-5 rounded-2xl overflow-hidden border border-white/15 flex items-end pt-3 pb-2">
-          {/* Blurred dynamic background */}
+          {/* Darkened dynamic background */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <img
               alt=""
               loading="eager"
               fetchpriority="high"
-              className="w-full h-full object-cover scale-125 blur-2xl opacity-55"
+              className="w-full h-full object-cover"
               src={imgUrl(manga.coverUrls?.mobile || manga.coverUrl)}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-surface/10" />
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/45 to-surface/10" />
           </div>
 
           {/* Info Over Cover Container */}
@@ -539,7 +540,7 @@ const renderChapterRow = (ch) => {
         {/* Lightbox cover — zoom di halaman, tidak menutupi seluruh layar */}
         {lightboxCover && (
           <div
-            className="fixed inset-0 z-[400] bg-black/50 backdrop-blur-xl flex items-center justify-center p-4 sm:p-10"
+            className="fixed inset-0 z-[400] bg-black/65 flex items-center justify-center p-4 sm:p-10"
             onClick={() => setLightboxCover(null)}
           >
             <button

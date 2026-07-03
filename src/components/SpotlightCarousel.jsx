@@ -85,6 +85,14 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  useEffect(() => {
+    if (N <= 1) return undefined;
+    const timer = setInterval(() => {
+      setActiveIdx((idx) => (idx + 1) % N);
+    }, 6500);
+    return () => clearInterval(timer);
+  }, [N]);
+
   // Preload all covers in the current window + 1 step ahead on each side
   useEffect(() => {
     const toLoad = new Set();
@@ -111,16 +119,17 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
       className="relative w-full rounded-xl overflow-hidden"
       style={{ height: containerH }}
     >
-      {/* ── Blurred background from active cover ── */}
+      {/* ── Darkened background from active cover ── */}
       <div key={active?.id} className="absolute inset-0 pointer-events-none z-0 animate-[fadeIn_0.4s_ease-out]">
           <img
             src={imgUrl(active?.coverUrls?.mobile || active?.coverUrl)} alt=""
             loading="eager"
             fetchpriority="high"
-            className="absolute inset-0 w-full h-full object-cover scale-150 blur-2xl opacity-75"
+            className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/60 via-surface/10 to-surface/60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/80 via-transparent to-surface/80" />
+          <div className="absolute inset-0 bg-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/65 via-surface/15 to-surface/65" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface/72 via-transparent to-surface/72" />
       </div>
 
       {/* ── Cover row — centered flex, no scroll ── */}

@@ -558,13 +558,14 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 onClick={onClose}
                 className="relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-white/15 flex items-center gap-3 active:scale-[0.99] cursor-pointer overflow-hidden"
               >
-                {/* Blurred cover background */}
+                {/* Darkened cover background */}
                 {activeManga?.coverUrl && (
                   <>
                     <img src={imgUrl(activeManga.coverUrl)} alt="" aria-hidden
-                      className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl opacity-40 pointer-events-none"
+                      className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                     />
-                    <div className="absolute inset-0 bg-surface-container/60 pointer-events-none" />
+                    <div className="absolute inset-0 bg-black/25 pointer-events-none" />
+                    <div className="absolute inset-0 bg-surface-container/35 pointer-events-none" />
                   </>
                 )}
                 <ArrowLeft className="relative w-5 h-5 text-primary shrink-0" />
@@ -633,13 +634,14 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 onClick={onClose}
                 className="relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-white/15 flex items-center gap-3 active:scale-[0.99] cursor-pointer overflow-hidden"
               >
-                {/* Blurred cover background */}
+                {/* Darkened cover background */}
                 {activeManga?.coverUrl && (
                   <>
                     <img src={imgUrl(activeManga.coverUrl)} alt="" aria-hidden
-                      className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl opacity-40 pointer-events-none"
+                      className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                     />
-                    <div className="absolute inset-0 bg-surface-container/60 pointer-events-none" />
+                    <div className="absolute inset-0 bg-black/25 pointer-events-none" />
+                    <div className="absolute inset-0 bg-surface-container/35 pointer-events-none" />
                   </>
                 )}
                 <ArrowLeft className="relative w-5 h-5 text-primary shrink-0" />
