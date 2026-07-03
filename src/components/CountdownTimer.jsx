@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function CountdownTimer({ unlockDate, onUnlock }) {
+export default function CountdownTimer({ unlockDate, onUnlock, silent = false }) {
   const [timeLeft, setTimeLeft] = useState('');
 
   useEffect(() => {
@@ -39,5 +39,6 @@ export default function CountdownTimer({ unlockDate, onUnlock }) {
     return () => clearInterval(interval);
   }, [unlockDate, onUnlock]);
 
+  if (silent) return null;
   return <span className="font-mono">{timeLeft}</span>;
 }

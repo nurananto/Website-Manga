@@ -124,27 +124,24 @@ const renderChapterRow = (ch) => {
               {isLocked && (
                 <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
                   <Lock className="w-2.5 h-2.5 md:w-3 md:h-3 shrink-0" />
-                  <span>Supporter</span>
+                  <span>Early Access</span>
                 </span>
               )}
             </div>
             {isLocked ? (
               <div className="flex items-center gap-1.5 font-label-sm text-xs md:text-sm mt-0.5">
                 <span className="text-outline/60">{ch.date || timeAgo(ch.release_date)}</span>
-                <span className="text-outline/40">|</span>
-                <span className="text-amber-400/80 flex items-center gap-1">
-                  <span>Free dalam</span>
-                  <CountdownTimer
-                    unlockDate={ch.unlockDate}
-                    onUnlock={() => {
-                      setLocalUnlockedChapters(prev => {
-                        const next = new Set(prev);
-                        next.add(ch.id);
-                        return next;
-                      });
-                    }}
-                  />
-                </span>
+                <CountdownTimer
+                  unlockDate={ch.unlockDate}
+                  silent
+                  onUnlock={() => {
+                    setLocalUnlockedChapters(prev => {
+                      const next = new Set(prev);
+                      next.add(ch.id);
+                      return next;
+                    });
+                  }}
+                />
               </div>
             ) : (
               <p className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/60 mt-0.5">{ch.date || timeAgo(ch.release_date)}</p>

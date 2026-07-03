@@ -34,41 +34,11 @@ function LoginTurnstile({ onToken }) {
   return <div ref={ref} className="flex justify-center min-h-[65px]" />;
 }
 
-function CountdownBox({ unlockDate }) {
-  const [time, setTime] = useState({ h: 0, m: 0, s: 0 });
-  useEffect(() => {
-    const update = () => {
-      const diff = new Date(unlockDate).getTime() - Date.now();
-      if (diff <= 0) { setTime({ h: 0, m: 0, s: 0 }); return; }
-      const t = Math.floor(diff / 1000);
-      setTime({ h: Math.floor(t / 3600), m: Math.floor((t % 3600) / 60), s: t % 60 });
-    };
-    update();
-    const id = setInterval(update, 1000);
-    return () => clearInterval(id);
-  }, [unlockDate]);
-  const pad = (n) => String(n).padStart(2, '0');
-  return (
-    <div className="flex items-end gap-2 justify-center">
-      {[{ v: time.h, l: 'JAM' }, { v: time.m, l: 'MENIT' }, { v: time.s, l: 'DETIK' }].reduce((acc, { v, l }, i) => {
-        const cell = (
-          <div key={l} className="flex flex-col items-center">
-            <span className="font-mono text-4xl sm:text-5xl md:text-6xl font-black text-on-surface tabular-nums leading-none">{pad(v)}</span>
-            <span className="font-label-sm text-[10px] sm:text-xs md:text-sm text-outline/50 font-bold uppercase tracking-widest mt-1">{l}</span>
-          </div>
-        );
-        if (i === 0) return [cell];
-        return [...acc, <span key={`s${i}`} className="font-mono text-3xl font-black text-outline/30 pb-5">:</span>, cell];
-      }, [])}
-    </div>
-  );
-}
-
 // ── Auth Modal — Google OAuth ─────────────────────────────────
 const AUTH_COPY = {
   unlock: {
     title: 'Masuk untuk lanjut',
-    subtitle: 'Login sebentar — Supporter bisa langsung buka chapter ini.',
+    subtitle: 'Login sebentar — Supporter bisa langsung baca chapter Early Access.',
   },
   reader: {
     title: 'Masuk untuk lanjut',
@@ -82,7 +52,7 @@ const AUTH_COPY = {
 
 const AUTH_BENEFITS = [
   'Lanjut baca dari halaman terakhir',
-  'Akses semua chapter terkunci (Supporter)',
+  'Akses chapter Early Access sebagai Supporter',
   'Dukung rilis chapter berikutnya',
 ];
 
@@ -194,7 +164,7 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
                   <Crown className="w-5 h-5 text-amber-400 fill-current" />
                   Jadi Supporter
                 </h3>
-                <p className="text-xs text-outline mt-0.5">Buka semua chapter terkunci</p>
+                <p className="text-xs text-outline mt-0.5">Buka chapter Early Access</p>
               </div>
               <button onClick={onClose}
                 className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline cursor-pointer">
@@ -205,7 +175,7 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
             {/* Benefit */}
             <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-3 flex flex-col gap-2">
               <div className="flex items-center gap-2 text-sm font-black text-amber-300">
-                <Check className="w-4 h-4 shrink-0" /> Akses SEMUA chapter terkunci
+                <Check className="w-4 h-4 shrink-0" /> Akses SEMUA chapter Early Access
               </div>
               <div className="flex items-center gap-2 text-sm font-black text-amber-300">
                 <Check className="w-4 h-4 shrink-0" /> Aktif 30 hari sejak donasi
@@ -392,16 +362,18 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
             <div className="min-w-0 pt-0.5">
               <div className="flex items-center gap-1.5 mb-1">
                 <Lock className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
-                <span className="font-label-sm text-xs sm:text-sm md:text-base font-black text-amber-400 uppercase tracking-wider">Chapter Terkunci</span>
+                <span className="font-label-sm text-xs sm:text-sm md:text-base font-black text-amber-400 uppercase tracking-wider">Early Access</span>
               </div>
               <p className="font-body-md text-sm sm:text-base text-outline/70 font-semibold truncate">{manga?.title || ''}</p>
               <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface mt-0.5 line-clamp-2">{chapter.title}</h3>
             </div>
           </div>
           {chapter.unlockDate && (
-            <div className="mx-5 mb-5 bg-surface-container-high/40 rounded-xl py-4 px-4 border border-white/5 flex flex-col items-center gap-3">
-              <p className="font-label-sm text-xs sm:text-sm md:text-base text-outline/50 font-bold uppercase tracking-widest">Gratis untuk semua dalam</p>
-              <CountdownBox unlockDate={chapter.unlockDate} />
+            <div className="mx-5 mb-5 bg-surface-container-high/40 rounded-xl py-4 px-4 border border-white/5 flex flex-col items-center gap-2 text-center">
+              <p className="font-label-sm text-xs sm:text-sm md:text-base text-amber-400 font-black uppercase tracking-widest">Chapter Early Access</p>
+              <p className="font-body-md text-sm sm:text-base text-outline/80 font-semibold leading-relaxed">
+                Akan bisa diakses setelah masa early access selesai.
+              </p>
             </div>
           )}
           <div className="px-5 pb-5 flex flex-col gap-2">
@@ -420,7 +392,7 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
             )}
             <button onClick={onClose}
               className="w-full h-10 sm:h-12 rounded-xl border border-white/10 text-xs sm:text-sm md:text-base font-bold text-outline hover:text-on-surface hover:bg-white/5 transition-all cursor-pointer">
-              Tunggu sampai gratis
+              Tutup
             </button>
           </div>
         </motion.div>

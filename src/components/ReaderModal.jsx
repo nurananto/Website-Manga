@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUp, Lock, Clock, BookOpen } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUp, Lock, BookOpen } from 'lucide-react';
 import { discordCommentUrl } from '../lib/links';
-import CountdownTimer from './CountdownTimer';
 import { imgUrl } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
@@ -872,19 +871,18 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                           : 'text-on-surface-variant hover:bg-white/5 hover:text-on-surface'
                       }`}
                     >
-                      <div className="flex items-center gap-1.5 min-w-0">
-                        {isLocked && <Lock className="w-3 h-3 text-amber-400/80 shrink-0" />}
+                      <div className="flex items-center gap-1.5 min-w-0 flex-1">
                         <span className="truncate">{ch.title}</span>
                         {ch.isNew && (
                           <span className="shrink-0 font-label-sm bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase">New</span>
                         )}
+                        {isLocked && (
+                          <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
+                            <Lock className="w-2.5 h-2.5 shrink-0" />
+                            <span>Early Access</span>
+                          </span>
+                        )}
                       </div>
-                      {isLocked && (
-                        <div className="flex items-center gap-0.5 text-amber-400/80 text-[10px] font-semibold shrink-0 ml-2 whitespace-nowrap">
-                          <Clock className="w-3 h-3 shrink-0" />
-                          <CountdownTimer unlockDate={ch.unlockDate} />
-                        </div>
-                      )}
                     </button>
                   );
                 })}

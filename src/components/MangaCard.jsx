@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { imgUrl, timeAgoShort } from '../utils';
-import { Lock, Clock, ArrowUp } from 'lucide-react';
+import { Lock, ArrowUp } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
 export default function MangaCard({ manga, onReadChapter, onViewManga, isSupporter }) {
@@ -9,22 +9,8 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
   const isOneshot = manga.status === 'Oneshot';
   const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
 
-  const hasRecentUpdate = manga.chapters.some(ch => {
-    if (!ch.release_date) return false;
-    return (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
-  });
-  const hasNewChapter = hasRecentUpdate;
-
-  const borderClass = hasNewChapter
-    ? 'border-emerald-500/60 hover:border-emerald-400/80 shadow-[0_0_14px_rgba(52,211,153,0.25)] hover:shadow-[0_0_20px_rgba(52,211,153,0.4)]'
-    : manga.status === 'Tamat' || isOneshot
-    ? 'border-red-500/50 hover:border-red-500/80'
-    : manga.status === 'Hiatus'
-    ? 'border-zinc-500/40 hover:border-zinc-400/60'
-    : 'border-white/5 hover:border-primary/20';
-
   return (
-    <div className={`flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden group border shadow-md ${borderClass}`}>
+    <div className="flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden group border border-white/5 hover:border-primary/20 shadow-md transition-colors">
       {/* Cover — link crawlable ke detail (SPA: preventDefault + navigate) */}
       <a
         href={`/${manga.id}`}
@@ -120,23 +106,20 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
                   )}
                 </div>
 
-                {isLocked ? (
-                  <div className="flex items-center gap-0.5 text-amber-400/80 font-label-sm text-xs md:text-sm lg:text-base font-semibold shrink-0 whitespace-nowrap">
-                    <Clock className="w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 shrink-0" />
-                    <CountdownTimer
-                      unlockDate={ch.unlockDate}
-                      onUnlock={() => {
-                        setLocalUnlocked(prev => {
-                          const next = new Set(prev);
-                          next.add(ch.id);
-                          return next;
-                        });
-                      }}
-                    />
-                  </div>
-                ) : (
-                  <span className="font-label-sm text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0">{ch.date || timeAgoShort(ch.release_date)}</span>
+                {isLocked && (
+                  <CountdownTimer
+                    unlockDate={ch.unlockDate}
+                    silent
+                    onUnlock={() => {
+                      setLocalUnlocked(prev => {
+                        const next = new Set(prev);
+                        next.add(ch.id);
+                        return next;
+                      });
+                    }}
+                  />
                 )}
+                <span className="font-label-sm text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0">{ch.date || timeAgoShort(ch.release_date)}</span>
               </div>
             );
           })}
