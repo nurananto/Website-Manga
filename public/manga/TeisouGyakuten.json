@@ -35,9 +35,9 @@
     "6": 1,
     "6.5": 5,
     "7.1": 1,
-    "7.2": 1
+    "7.2": 2
   },
-  "total_views": 25,
+  "total_views": 28,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -61,7 +61,7 @@
     }
   ],
   "discord_channel_id": "1517524103777484831",
-  "detail_views": 10,
+  "detail_views": 12,
   "mangadex_id": "8556c131-23ed-42d6-98ba-5f2aa5037843",
   "rating": 7.4,
   "next_update": null,
@@ -82,7 +82,7 @@
       "title": "Ch. 7.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 7.1,
