@@ -89,7 +89,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
     if (N <= 1) return undefined;
     const timer = setInterval(() => {
       setActiveIdx((idx) => (idx + 1) % N);
-    }, 6500);
+    }, 5000);
     return () => clearInterval(timer);
   }, [N]);
 
@@ -127,9 +127,9 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
             fetchpriority="high"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/25" />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/65 via-surface/15 to-surface/65" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/72 via-transparent to-surface/72" />
+          <div className="absolute inset-0 bg-black/35" />
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/72 via-surface/24 to-surface/72" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface/78 via-transparent to-surface/78" />
       </div>
 
       {/* ── Cover row — centered flex, no scroll ── */}

@@ -564,8 +564,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                     <img src={imgUrl(activeManga.coverUrl)} alt="" aria-hidden
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                     />
-                    <div className="absolute inset-0 bg-black/25 pointer-events-none" />
-                    <div className="absolute inset-0 bg-surface-container/35 pointer-events-none" />
+                    <div className="absolute inset-0 bg-black/35 pointer-events-none" />
+                    <div className="absolute inset-0 bg-surface-container/45 pointer-events-none" />
                   </>
                 )}
                 <ArrowLeft className="relative w-5 h-5 text-primary shrink-0" />
@@ -640,8 +640,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                     <img src={imgUrl(activeManga.coverUrl)} alt="" aria-hidden
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                     />
-                    <div className="absolute inset-0 bg-black/25 pointer-events-none" />
-                    <div className="absolute inset-0 bg-surface-container/35 pointer-events-none" />
+                    <div className="absolute inset-0 bg-black/35 pointer-events-none" />
+                    <div className="absolute inset-0 bg-surface-container/45 pointer-events-none" />
                   </>
                 )}
                 <ArrowLeft className="relative w-5 h-5 text-primary shrink-0" />

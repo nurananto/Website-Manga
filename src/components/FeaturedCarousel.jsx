@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { imgUrl } from '../utils';
-import { Play, Info } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Info } from 'lucide-react';
 
 export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }) {
   const trending = mangaList.filter((m) => m.isTrending);
@@ -8,15 +8,16 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
   const [current, setCurrent] = useState(0);
   const touchStartX = useRef(null);
 
-  useEffect(() => {
-    if (slides.length <= 1) return undefined;
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, [slides.length]);
-
   const activeManga = slides[current] || mangaList[0];
+  const canNavigate = slides.length > 1;
+  const goPrev = () => {
+    if (!canNavigate) return;
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+  const goNext = () => {
+    if (!canNavigate) return;
+    setCurrent((prev) => (prev + 1) % slides.length);
+  };
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
@@ -34,7 +35,35 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-3">
+    <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center gap-3 min-w-0">
+        <span className="h-7 w-1 rounded-full bg-primary shrink-0" aria-hidden="true" />
+        <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface truncate">
+          Populer hari ini
+        </h2>
+      </div>
+      <div className="flex items-center gap-2 shrink-0">
+        <button
+          type="button"
+          onClick={goPrev}
+          disabled={!canNavigate}
+          aria-label="Sebelumnya"
+          className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-white/10 bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center active:scale-95 transition-all cursor-pointer"
+        >
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+        <button
+          type="button"
+          onClick={goNext}
+          disabled={!canNavigate}
+          aria-label="Berikutnya"
+          className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-white/10 bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center active:scale-95 transition-all cursor-pointer"
+        >
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
+      </div>
+    </div>
     <section
       className="relative w-full h-[220px] sm:h-[260px] md:h-[300px] lg:h-[340px] rounded-xl overflow-hidden group shadow-2xl border border-gold-pulse flex items-center justify-between"
       onTouchStart={handleTouchStart}
@@ -48,9 +77,9 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
             src={imgUrl(activeManga.coverUrls?.mobile || activeManga.coverUrl)}
           />
           {/* Vignette Overlay */}
-          <div className="absolute inset-0 bg-black/25" />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface/85 via-surface/35 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/78 via-surface/25 to-transparent" />
+          <div className="absolute inset-0 bg-black/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/45 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface/84 via-surface/34 to-transparent" />
       </div>
 
       {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}
@@ -61,9 +90,6 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
         <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5">
           {/* Badges */}
           <div className="flex gap-1.5 sm:gap-2 items-center flex-wrap">
-            <span className="bg-amber-500/20 text-amber-500 px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md border border-amber-500/30 font-semibold shadow-sm">
-              Trending
-            </span>
             {/* genre 1: selalu tampil (termasuk mobile) */}
             {activeManga.genres[0] && (
               <span className="bg-surface-variant/85 text-on-surface px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
@@ -88,7 +114,12 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
                 {activeManga.genres[3]}
               </span>
             )}
-            {/* overflow "+N" — mulai dari tablet (mobile tanpa "+N" agar tak wrap) */}
+            {/* overflow "+N" */}
+            {activeManga.genres.length > 2 && (
+              <span className="sm:hidden bg-black/40 text-white/80 px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
+                +{activeManga.genres.length - 2}
+              </span>
+            )}
             {activeManga.genres.length > 3 && (
               <span className="hidden sm:inline lg:hidden bg-black/40 text-white/80 px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
                 +{activeManga.genres.length - 3}
@@ -154,19 +185,6 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
 
     </section>
 
-    {/* Dots — di luar carousel, tengah bawah */}
-    <div className="flex justify-center gap-2">
-      {slides.map((_, idx) => (
-        <button
-          key={idx}
-          onClick={() => setCurrent(idx)}
-          aria-label={`Ke slide ${idx + 1}`}
-          className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-            idx === current ? 'w-6 bg-primary' : 'w-1.5 bg-white/30 hover:bg-white/50'
-          }`}
-        />
-      ))}
-    </div>
     </div>
   );
 }

@@ -180,8 +180,8 @@ const renderChapterRow = (ch) => {
               className="w-full h-full object-cover"
               src={imgUrl(manga.coverUrls?.mobile || manga.coverUrl)}
             />
-            <div className="absolute inset-0 bg-black/30" />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/45 to-surface/10" />
+            <div className="absolute inset-0 bg-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface/95 via-surface/55 to-surface/15" />
           </div>
 
           {/* Info Over Cover Container */}
@@ -540,7 +540,7 @@ const renderChapterRow = (ch) => {
         {/* Lightbox cover — zoom di halaman, tidak menutupi seluruh layar */}
         {lightboxCover && (
           <div
-            className="fixed inset-0 z-[400] bg-black/65 flex items-center justify-center p-4 sm:p-10"
+            className="fixed inset-0 z-[400] bg-black/70 flex items-center justify-center p-4 sm:p-10"
             onClick={() => setLightboxCover(null)}
           >
             <button
