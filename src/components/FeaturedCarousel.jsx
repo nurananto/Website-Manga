@@ -54,7 +54,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
           <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <div className="min-w-10 h-9 sm:h-10 px-2 rounded-xl border border-white/10 bg-surface-container text-on-surface flex items-center justify-center font-label-sm text-xs sm:text-sm font-black tabular-nums">
-          {current + 1}/{Math.max(slides.length, 1)}
+          {current + 1} | {Math.max(slides.length, 1)}
         </div>
         <button
           type="button"
