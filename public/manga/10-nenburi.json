@@ -96,10 +96,10 @@
       "chapter_number": 21.1,
       "lock_hours": 672,
       "pages": 10,
+      "release_date": "2026-07-03T11:30:39+07:00",
       "id": "10-nenburi-ch-21.1",
       "r2_prefix": "manga/10-nenburi/21.1/",
       "title": "Ch. 21.1",
-      "release_date": "2026-07-03T11:30:39+07:00",
       "unlockDate": "2026-07-31T04:30:39.000Z",
       "isLocked": true,
       "views": 0
@@ -125,7 +125,7 @@
       "r2_prefix": "manga/10-nenburi/20.1/",
       "title": "Ch. 20.1",
       "unlockDate": "2026-07-03T12:38:27.000Z",
-      "isLocked": true,
+      "isLocked": false,
       "views": 2
     },
     {

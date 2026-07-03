@@ -1,5 +1,70 @@
 [
   {
+    "id": "Mememe",
+    "title": "Mememe no Mememe",
+    "description": "Terlahir dari nafsu duniawi manusia, makhluk ini menimbulkan kejadian-kejadian cabul—mereka disebut 'Bonnō Kaii'. Suatu hari, Kai Eirumi, seorang siswa SMP, difitnah oleh siswi perempuan gara-gara insiden cabul yang sebenarnya disebabkan oleh Makhluk Nafsu. Karena tidak ada cara untuk membuktikan…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Comedy",
+      "Ghost",
+      "Mystery",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Supernatural"
+    ],
+    "rating": 8.53,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 4,
+        "lock_hours": 0,
+        "pages": 32,
+        "id": "Mememe-ch-4",
+        "r2_prefix": "manga/Mememe/4/",
+        "title": "Ch. 4",
+        "release_date": "2026-07-03T20:15:09+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 3,
+        "lock_hours": 0,
+        "pages": 36,
+        "id": "Mememe-ch-3",
+        "r2_prefix": "manga/Mememe/3/",
+        "title": "Ch. 3",
+        "release_date": "2026-07-03T20:15:09+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 2,
+        "lock_hours": 0,
+        "pages": 36,
+        "id": "Mememe-ch-2",
+        "r2_prefix": "manga/Mememe/2/",
+        "title": "Ch. 2",
+        "release_date": "2026-07-03T20:15:09+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "10-nenburi",
     "title": "10-Nen Buri ni Saikai shita Kusogaki wa Seijun Bishoujo JK ni Seichou shiteita",
     "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
@@ -30,10 +95,10 @@
         "chapter_number": 21.1,
         "lock_hours": 672,
         "pages": 10,
+        "release_date": "2026-07-03T11:30:39+07:00",
         "id": "10-nenburi-ch-21.1",
         "r2_prefix": "manga/10-nenburi/21.1/",
         "title": "Ch. 21.1",
-        "release_date": "2026-07-03T11:30:39+07:00",
         "unlockDate": "2026-07-31T04:30:39.000Z",
         "isLocked": true,
         "views": 0
@@ -59,7 +124,7 @@
         "r2_prefix": "manga/10-nenburi/20.1/",
         "title": "Ch. 20.1",
         "unlockDate": "2026-07-03T12:38:27.000Z",
-        "isLocked": true,
+        "isLocked": false,
         "views": 2
       }
     ]
