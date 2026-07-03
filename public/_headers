@@ -42,3 +42,9 @@
 # Service worker must update immediately.
 /sw.js
   Cache-Control: no-cache, no-store, must-revalidate
+
+/.well-known/security.txt
+  Cache-Control: public, max-age=3600
+
+/security.txt
+  Cache-Control: public, max-age=3600
