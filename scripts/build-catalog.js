@@ -166,6 +166,19 @@ async function resolveFirstPage(ch) {
   return { bytes, name };
 }
 
+// Ambil bytes gambar dari URL CDN publik — dipakai supaya Facebook TIDAK perlu
+// fetch sendiri (Graph API /photos kadang gagal unduh/decode WebP dari URL
+// pihak ketiga → "Missing or invalid image file", code 324/2069019, meski
+// file-nya valid & ada; FB sendiri menandainya is_transient). Dengan upload
+// byte langsung (multipart), gagal-fetch di sisi FB dihilangkan.
+async function fetchImageBytes(url) {
+  try {
+    const res = await fetchT(url, {}, 20000);
+    if (!res.ok) return null;
+    return Buffer.from(await res.arrayBuffer());
+  } catch { return null; }
+}
+
 // ── Kirim notifikasi Discord untuk chapter-chapter baru ─────────────────
 // Dikelompokkan per judul manga:
 //  - ≤3 chapter baru  → tiap chapter jadi PESAN terpisah (biar tidak numpuk
@@ -346,28 +359,35 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
     try {
       let ok = false;
       // Photo post → halaman 1 (Image01.webp) jadi gambar utama (caption clickable).
-      // Gratis: kirim URL CDN. Locked: kirim byte (source) dari R2 privat.
-      // Timeout 45s: FB mengunduh & memproses gambar server-side, kadang >15s.
+      // SELALU upload byte (multipart), baik gratis (fetch dari CDN) maupun locked
+      // (dari R2 privat) — TIDAK mengirim `url` mentah ke FB, karena Graph API kadang
+      // gagal fetch/decode WebP dari URL pihak ketiga meski file-nya valid (lihat
+      // fetchImageBytes). 1× retry karena FB sering menandai kegagalan ini transient.
+      // Timeout 45s: FB memproses gambar server-side, kadang >15s.
       // Dibungkus try sendiri agar timeout/error JATUH ke fallback teks, bukan ter-skip.
       const img = await resolveFirstPage(rep);
       if (img) {
         try {
-          let r;
-          if (img.url) {
-            r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/photos`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ url: img.url, caption: message, access_token: pageToken }),
-            }, 45000);
+          const bytes = img.bytes || (img.url ? await fetchImageBytes(img.url) : null);
+          const name  = img.name || `${rep.mangaId}-ch-${rep.chapterNumber}.webp`.replace(/[^a-zA-Z0-9._-]/g, '_');
+          if (bytes) {
+            const postPhoto = () => {
+              const form = new FormData();
+              form.append('caption', message);
+              form.append('access_token', pageToken);
+              form.append('source', new Blob([bytes], { type: 'image/webp' }), name);
+              return fetchT(`https://graph.facebook.com/v21.0/${pageId}/photos`, { method: 'POST', body: form }, 45000);
+            };
+            let r = await postPhoto();
+            if (!r.ok) {
+              await new Promise(res => setTimeout(res, 2000)); // jeda sebelum retry (FB: is_transient)
+              r = await postPhoto();
+            }
+            if (r.ok) ok = true;
+            else console.warn(`⚠️  FB photo gagal (${title}): ${r.status} ${await r.text()} — fallback teks`);
           } else {
-            const form = new FormData();
-            form.append('caption', message);
-            form.append('access_token', pageToken);
-            form.append('source', new Blob([img.bytes], { type: 'image/webp' }), img.name);
-            r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/photos`, { method: 'POST', body: form }, 45000);
+            console.warn(`⚠️  Gagal ambil bytes gambar (${title}) — fallback teks`);
           }
-          if (r.ok) ok = true;
-          else console.warn(`⚠️  FB photo gagal (${title}): ${r.status} ${await r.text()} — fallback teks`);
         } catch (e) {
           console.warn(`⚠️  FB photo timeout/error (${title}): ${e.message} — fallback teks`);
         }
