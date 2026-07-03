@@ -11,6 +11,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
+        // Keep the main entry URL stable and non-cacheable via _headers.
+        // This avoids stale HTML asking Cloudflare Pages for a deleted
+        // /assets/index-*.js file and receiving HTML fallback.
+        entryFileNames: 'entry/[name].js',
         // Pisahkan dependency besar jadi chunk vendor sendiri. Kode vendor jarang
         // berubah, jadi tetap ter-cache lintas deploy (yang sering: sync-covers/viewcounts)
         // — returning visitor hanya unduh ulang chunk app, bukan ~123KB vendor.

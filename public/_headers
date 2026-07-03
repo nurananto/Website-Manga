@@ -15,6 +15,11 @@
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Main app entry is intentionally not hashed. It points to the latest hashed
+# chunks after every deploy, so stale HTML will not request a deleted entry file.
+/entry/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
 # Root static media rarely changes and is safe to cache separately.
 /*.webp
   Cache-Control: public, max-age=31536000, immutable
