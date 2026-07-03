@@ -55,19 +55,33 @@
     </script>
     <!-- Fonts are self-hosted via @fontsource (bundled with app, no external dependency) -->
     <script>
+      function recoverFromMissingModule() {
+        var key = 'mf-module-reload-at';
+        var now = Date.now();
+        try {
+          var last = Number(sessionStorage.getItem(key) || '0');
+          if (now - last < 10000) return;
+          sessionStorage.setItem(key, String(now));
+        } catch (e) {}
+        var next = new URL(window.location.href);
+        next.searchParams.set('r', String(now));
+        window.location.replace(next.toString());
+      }
+
       window.addEventListener('error', function (event) {
         var target = event.target;
         if (!target || target.tagName !== 'SCRIPT' || target.type !== 'module') return;
         if (!target.src || target.src.indexOf('/assets/') === -1) return;
-        var key = 'mf-module-reload';
-        try {
-          if (sessionStorage.getItem(key)) return;
-          sessionStorage.setItem(key, '1');
-        } catch (e) {}
-        var next = new URL(window.location.href);
-        next.searchParams.set('r', Date.now().toString());
-        window.location.replace(next.toString());
+        recoverFromMissingModule();
       }, true);
+
+      window.addEventListener('unhandledrejection', function (event) {
+        var reason = event && event.reason;
+        var text = String((reason && (reason.message || reason.stack)) || reason || '');
+        if (text.indexOf('/assets/') !== -1 || text.indexOf('Failed to fetch dynamically imported module') !== -1) {
+          recoverFromMissingModule();
+        }
+      });
     </script>
   </head>
   <body class="bg-surface text-on-surface" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
