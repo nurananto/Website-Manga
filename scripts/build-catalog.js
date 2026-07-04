@@ -520,6 +520,17 @@ async function buildCatalog() {
       const chMetaPath = path.join(chapterPath, 'meta.json');
       if (!fs.existsSync(chMetaPath)) continue;
       const ch = fixEncoding(JSON.parse(fs.readFileSync(chMetaPath, 'utf-8')));
+      const forceNotify = ch.republish_notification === true;
+      if (forceNotify) {
+        delete ch.republish_notification;
+        Object.defineProperty(ch, '_forceNotify', { value: true, enumerable: false });
+        try {
+          const raw = JSON.parse(fs.readFileSync(chMetaPath, 'utf-8'));
+          delete raw.republish_notification;
+          fs.writeFileSync(chMetaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
+          console.log(`   🔁 ${slug} Ch.${ch.chapter_number} dijadwalkan publish ulang`);
+        } catch {}
+      }
 
       // pages wajib diisi
       if (!ch.pages || ch.pages < 1) {
@@ -685,7 +696,7 @@ async function buildCatalog() {
     // prevChapterNums sudah ditangkap di atas SEBELUM file ditimpa.
     if (CHANGED_SLUGS.length > 0 && CHANGED_SLUGS.includes(slug)) {
       for (const ch of chapters) {
-        if (!prevChapterNums.has(ch.chapter_number)) {
+        if (!prevChapterNums.has(ch.chapter_number) || ch._forceNotify) {
           newChaptersList.push({
             mangaId:          manga.id,
             mangaTitle:       manga.title,
@@ -696,7 +707,7 @@ async function buildCatalog() {
             releaseDate:      ch.release_date,
             discordChannelId: manga.discord_channel_id,
           });
-          console.log(`   🔔 Chapter baru terdeteksi: ${manga.title} — ${ch.title}`);
+          console.log(`   🔔 ${ch._forceNotify ? 'Publish ulang' : 'Chapter baru terdeteksi'}: ${manga.title} — ${ch.title}`);
         }
       }
     }
