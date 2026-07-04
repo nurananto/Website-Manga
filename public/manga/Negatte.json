@@ -76,6 +76,18 @@
   },
   "chapters": [
     {
+      "chapter_number": 15,
+      "lock_hours": 0,
+      "pages": 22,
+      "id": "Negatte-ch-15",
+      "r2_prefix": "manga/Negatte/15/",
+      "title": "Ch. 15",
+      "release_date": "2026-07-04T20:48:06+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 14,
       "lock_hours": 0,
       "pages": 32,
