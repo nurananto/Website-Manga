@@ -1,5 +1,70 @@
 [
   {
+    "id": "Negatte",
+    "title": "Negatte mo Nai Tsuihou Go kara no Slow Life? ~Intai Shita Hazu ga Nariyuki de Bishoujo Gyaru no Shishou ni Nattara Naze ka Mechakucha Natsukareta~",
+    "description": "Reito Harukaze, yang telah naik hingga ranking tertinggi adventurer, telah pensiun. Saat ia berniat untuk hidup santai dan pensiun, suatu hari seorang gadis gal cantik bernama Karen Hiiragi muncul di hadapannya. 'Hey, onii-san, traktir makan dong!' Mendengar bahwa Karen kesulitan uang, Reito…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Fantasy",
+      "Gyaru",
+      "Magic",
+      "Romance"
+    ],
+    "rating": 6.78,
+    "total_views": 14,
+    "isTrending": false,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "discord_channel_id": "1517524008457863168",
+    "chapters": [
+      {
+        "chapter_number": 14,
+        "lock_hours": 0,
+        "pages": 32,
+        "id": "Negatte-ch-14",
+        "r2_prefix": "manga/Negatte/14/",
+        "title": "Ch. 14",
+        "release_date": "2026-07-04T18:51:22+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 13,
+        "lock_hours": 0,
+        "pages": 30,
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "id": "Negatte-ch-13",
+        "r2_prefix": "manga/Negatte/13/",
+        "title": "Ch. 13",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 9
+      },
+      {
+        "chapter_number": 12,
+        "lock_hours": 0,
+        "pages": 30,
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "id": "Negatte-ch-12",
+        "r2_prefix": "manga/Negatte/12/",
+        "title": "Ch. 12",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 2
+      }
+    ]
+  },
+  {
     "id": "Mememe",
     "title": "Mememe no Mememe",
     "description": "Terlahir dari nafsu duniawi manusia, makhluk ini menimbulkan kejadian-kejadian cabul—mereka disebut 'Bonnō Kaii'. Suatu hari, Kai Eirumi, seorang siswa SMP, difitnah oleh siswi perempuan gara-gara insiden cabul yang sebenarnya disebabkan oleh Makhluk Nafsu. Karena tidak ada cara untuk membuktikan…",
@@ -1098,71 +1163,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 0
-      }
-    ]
-  },
-  {
-    "id": "Negatte",
-    "title": "Negatte mo Nai Tsuihou Go kara no Slow Life? ~Intai Shita Hazu ga Nariyuki de Bishoujo Gyaru no Shishou ni Nattara Naze ka Mechakucha Natsukareta~",
-    "description": "Reito Harukaze, yang telah naik hingga ranking tertinggi adventurer, telah pensiun. Saat ia berniat untuk hidup santai dan pensiun, suatu hari seorang gadis gal cantik bernama Karen Hiiragi muncul di hadapannya. 'Hey, onii-san, traktir makan dong!' Mendengar bahwa Karen kesulitan uang, Reito…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Fantasy",
-      "Gyaru",
-      "Magic",
-      "Romance"
-    ],
-    "rating": 6.79,
-    "total_views": 14,
-    "isTrending": false,
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "discord_channel_id": "1517524008457863168",
-    "chapters": [
-      {
-        "chapter_number": 13,
-        "lock_hours": 0,
-        "pages": 30,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "id": "Negatte-ch-13",
-        "r2_prefix": "manga/Negatte/13/",
-        "title": "Ch. 13",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 9
-      },
-      {
-        "chapter_number": 12,
-        "lock_hours": 0,
-        "pages": 30,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "id": "Negatte-ch-12",
-        "r2_prefix": "manga/Negatte/12/",
-        "title": "Ch. 12",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 2
-      },
-      {
-        "chapter_number": 11,
-        "lock_hours": 0,
-        "pages": 31,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "id": "Negatte-ch-11",
-        "r2_prefix": "manga/Negatte/11/",
-        "title": "Ch. 11",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 2
       }
     ]
   },

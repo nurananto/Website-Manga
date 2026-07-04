@@ -66,7 +66,7 @@
   "cover_version": 2,
   "detail_views": 0,
   "mangadex_id": "748d2aab-cea8-4ffb-89b3-e716872cb027",
-  "rating": 6.79,
+  "rating": 6.78,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=2",
   "coverUrls": {
@@ -75,6 +75,18 @@
     "mobile": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
+    {
+      "chapter_number": 14,
+      "lock_hours": 0,
+      "pages": 32,
+      "id": "Negatte-ch-14",
+      "r2_prefix": "manga/Negatte/14/",
+      "title": "Ch. 14",
+      "release_date": "2026-07-04T18:51:22+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
     {
       "chapter_number": 13,
       "lock_hours": 0,
