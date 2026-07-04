@@ -68,7 +68,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
       </div>
     </div>
     <section
-      className="relative w-full h-[220px] sm:h-[260px] md:h-[300px] lg:h-[340px] rounded-xl overflow-hidden group shadow-2xl border border-gold-pulse flex items-center justify-between"
+      className="relative w-full h-[220px] sm:h-[260px] md:h-[300px] lg:h-[340px] rounded-xl overflow-hidden group shadow-2xl border border-brand-pulse flex items-center justify-between"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >

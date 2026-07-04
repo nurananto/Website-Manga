@@ -1,10 +1,10 @@
 // Running text (marquee) ajakan donasi Trakteer — menggantikan tombol Trakteer.
-// Warna brand Trakteer (merah), logo Trakteer putih. Pause saat hover (lihat
+// Warna mengikuti brand Nurananto agar selaras dengan aksen situs. Pause saat hover (lihat
 // .animate-marquee di index.css). Discord/Facebook ada sebagai tombol di footer.
 const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
 
-export default function SupportButtons({ className = '' }) {
-  const Track = () => (
+function Track() {
+  return (
     <div className="flex items-center gap-8 pr-8">
       {Array.from({ length: 3 }).map((_, i) => (
         <div key={i} className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white">
@@ -21,14 +21,16 @@ export default function SupportButtons({ className = '' }) {
       ))}
     </div>
   );
+}
 
+export default function SupportButtons({ className = '' }) {
   return (
     <a
       href={TRAKTEER_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`relative w-full overflow-hidden py-3 flex items-center group shadow-md transition-all duration-300 rounded-xl border border-red-400/40 hover:border-red-300/60 cursor-pointer ${className}`}
-      style={{ background: 'linear-gradient(to right, rgba(220,38,38,0.9), rgba(239,68,68,0.75), rgba(220,38,38,0.9))' }}
+      className={`relative w-full overflow-hidden py-3 flex items-center group shadow-md transition-all duration-300 rounded-xl border border-[#1877F2]/45 hover:border-[#89ceff]/65 cursor-pointer ${className}`}
+      style={{ background: 'linear-gradient(to right, rgba(0,82,174,0.92), rgba(24,119,242,0.78), rgba(88,101,242,0.9))' }}
     >
       <div className="flex whitespace-nowrap animate-marquee">
         <Track />

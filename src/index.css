@@ -88,19 +88,19 @@ body {
   padding-bottom: max(5rem, env(safe-area-inset-bottom));
 }
 
-/* Slow gold pulse untuk carousel border */
-@keyframes gold-pulse {
+/* Slow brand-blue pulse untuk carousel border */
+@keyframes brand-blue-pulse {
   0%, 100% {
-    border-color: rgba(251, 191, 36, 0.5);
-    box-shadow: 0 0 10px rgba(251, 191, 36, 0.15);
+    border-color: rgba(24, 119, 242, 0.55);
+    box-shadow: 0 0 10px rgba(24, 119, 242, 0.16);
   }
   50% {
-    border-color: rgba(251, 191, 36, 0.9);
-    box-shadow: 0 0 22px rgba(251, 191, 36, 0.4), 0 0 6px rgba(251, 191, 36, 0.2) inset;
+    border-color: rgba(88, 101, 242, 0.95);
+    box-shadow: 0 0 22px rgba(24, 119, 242, 0.36), 0 0 6px rgba(88, 101, 242, 0.22) inset;
   }
 }
-.border-gold-pulse {
-  animation: gold-pulse 3s ease-in-out infinite;
+.border-brand-pulse {
+  animation: brand-blue-pulse 3s ease-in-out infinite;
 }
 
 @keyframes fadeIn {

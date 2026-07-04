@@ -33,8 +33,8 @@ export default function DonationBanner({ isLoggedIn, onDonateClick }) {
 
   return (
     <div
-      className="relative w-full rounded-xl border border-red-400/40 overflow-hidden px-3 sm:px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-3"
-      style={{ background: 'linear-gradient(to right, rgba(220,38,38,0.9), rgba(239,68,68,0.75), rgba(220,38,38,0.9))' }}
+      className="relative w-full rounded-xl border border-[#1877F2]/45 overflow-hidden px-3 sm:px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-3"
+      style={{ background: 'linear-gradient(to right, rgba(0,82,174,0.92), rgba(24,119,242,0.78), rgba(88,101,242,0.9))' }}
     >
       <div className="flex items-center gap-3 flex-1 min-w-0 pr-7 sm:pr-0">
         {/* Logo Trakteer — warna & border sama seperti tombol Donasi Sekarang */}
