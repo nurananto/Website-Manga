@@ -123,46 +123,54 @@ const CDN_BASE = (process.env.CDN_BASE || '').replace(/\/$/, '');
 const pageFileName = (n) => `Image${String(n).padStart(2, '0')}.webp`; // samakan ReaderModal/check-locked-leak
 const firstPageKey = (slug, chapterNumber) => `manga/${slug}/${chapterNumber}/${pageFileName(1)}`;
 
-// Klien R2 privat dibuat lazy (sekali) — hanya saat ada chapter locked.
-let _r2Locked = null;
-async function getLockedPageBytes(slug, chapterNumber) {
-  const { CF_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_LOCKED_BUCKET_NAME } = process.env;
-  if (!CF_ACCOUNT_ID || !R2_ACCESS_KEY_ID || !R2_SECRET_ACCESS_KEY || !R2_LOCKED_BUCKET_NAME) {
-    console.warn(`⚠️  R2 locked belum dikonfigurasi — lewati gambar locked ${slug} Ch.${chapterNumber}`);
+// Klien R2 dibuat lazy (sekali) — dipakai untuk bucket publik dan locked.
+let _r2 = null;
+async function getR2ObjectBytes(bucket, key, label) {
+  const { CF_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY } = process.env;
+  if (!CF_ACCOUNT_ID || !R2_ACCESS_KEY_ID || !R2_SECRET_ACCESS_KEY || !bucket) {
+    console.warn(`⚠️  R2 belum dikonfigurasi lengkap — lewati gambar ${label}`);
     return null;
   }
   try {
     const { S3Client, GetObjectCommand } = await import('@aws-sdk/client-s3');
-    if (!_r2Locked) {
-      _r2Locked = new S3Client({
+    if (!_r2) {
+      _r2 = new S3Client({
         region: 'auto',
         endpoint: `https://${CF_ACCOUNT_ID}.r2.cloudflarestorage.com`,
         credentials: { accessKeyId: R2_ACCESS_KEY_ID, secretAccessKey: R2_SECRET_ACCESS_KEY },
       });
     }
-    const res = await _r2Locked.send(new GetObjectCommand({
-      Bucket: R2_LOCKED_BUCKET_NAME,
-      Key: firstPageKey(slug, chapterNumber),
-    }));
+    const res = await _r2.send(new GetObjectCommand({ Bucket: bucket, Key: key }));
     const chunks = [];
     for await (const c of res.Body) chunks.push(c);
     return Buffer.concat(chunks);
   } catch (e) {
-    console.warn(`⚠️  Gagal ambil gambar locked ${slug} Ch.${chapterNumber}: ${e.message}`);
+    console.warn(`⚠️  Gagal ambil gambar ${label}: ${e.message}`);
     return null;
   }
 }
 
-// → { url } (gratis, embed langsung) | { bytes, name } (locked, upload file) | null
+async function getPublicPageBytes(slug, chapterNumber) {
+  const bucket = process.env.R2_PUBLIC_BUCKET_NAME || process.env.R2_BUCKET_NAME;
+  return getR2ObjectBytes(bucket, firstPageKey(slug, chapterNumber), `public ${slug} Ch.${chapterNumber}`);
+}
+
+async function getLockedPageBytes(slug, chapterNumber) {
+  return getR2ObjectBytes(process.env.R2_LOCKED_BUCKET_NAME, firstPageKey(slug, chapterNumber), `locked ${slug} Ch.${chapterNumber}`);
+}
+
+// → { bytes, name } | { url } fallback CDN | null
 async function resolveFirstPage(ch) {
   if (!ch.slug || ch.chapterNumber == null) return null;
+  const name = `${ch.mangaId}-ch-${ch.chapterNumber}.webp`.replace(/[^a-zA-Z0-9._-]/g, '_');
   if (!ch.isLocked) {
+    const bytes = await getPublicPageBytes(ch.slug, ch.chapterNumber);
+    if (bytes) return { bytes, name };
     if (!CDN_BASE) return null;
     return { url: `${CDN_BASE}/${firstPageKey(ch.slug, ch.chapterNumber)}` };
   }
   const bytes = await getLockedPageBytes(ch.slug, ch.chapterNumber);
   if (!bytes) return null;
-  const name = `${ch.mangaId}-ch-${ch.chapterNumber}.webp`.replace(/[^a-zA-Z0-9._-]/g, '_');
   return { bytes, name };
 }
 
