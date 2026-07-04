@@ -28,7 +28,7 @@
     "0": 1,
     "9": 2
   },
-  "total_views": 3,
+  "total_views": 4,
   "mangadex_cover": "b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -53,5 +53,6 @@
       "widths": "1280x960x640"
     }
   ],
-  "discord_channel_id": "1517523920943845386"
+  "discord_channel_id": "1517523920943845386",
+  "detail_views": 1
 }
