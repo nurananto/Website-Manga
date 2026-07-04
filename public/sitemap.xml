@@ -2,9 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nuranantoscans.my.id/</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://nuranantoscans.my.id/Mememe</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nuranantoscans.my.id/10-nenburi</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nuranantoscans.my.id/Yarikonda</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nuranantoscans.my.id/ZunouBattle</loc>
@@ -21,12 +39,6 @@
   <url>
     <loc>https://nuranantoscans.my.id/Madogiwa</loc>
     <lastmod>2026-06-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nuranantoscans.my.id/10-nenburi</loc>
-    <lastmod>2026-06-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -136,12 +148,6 @@
     <loc>https://nuranantoscans.my.id/Amari-chan</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nuranantoscans.my.id/Yarikonda</loc>
-    <lastmod>2026-05-31</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>

@@ -3,6 +3,7 @@ import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
 import DonationBanner from './components/DonationBanner';
+import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
 import { Sparkles, TrendingUp, Compass, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
@@ -727,6 +728,9 @@ export default function App() {
                         if (oldest) handleReadChapter(oldest, fullManga.title);
                       }}
                     />
+
+                    {/* Tombol dukungan: Donasi Trakteer + Gabung Discord */}
+                    <SupportButtons className="mt-2" />
 
                     </> ) : null}
                   </>
