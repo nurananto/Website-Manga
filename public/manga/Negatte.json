@@ -28,9 +28,11 @@
     "10": 1,
     "11": 2,
     "12": 2,
-    "13": 9
+    "13": 9,
+    "14": 3,
+    "15": 2
   },
-  "total_views": 14,
+  "total_views": 23,
   "mangadex_cover": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -64,7 +66,7 @@
   ],
   "discord_channel_id": "1517524008457863168",
   "cover_version": 2,
-  "detail_views": 0,
+  "detail_views": 4,
   "mangadex_id": "748d2aab-cea8-4ffb-89b3-e716872cb027",
   "rating": 6.78,
   "next_update": null,
@@ -79,10 +81,10 @@
       "chapter_number": 16,
       "lock_hours": 0,
       "pages": 24,
+      "release_date": "2026-07-04T23:37:08+07:00",
       "id": "Negatte-ch-16",
       "r2_prefix": "manga/Negatte/16/",
       "title": "Ch. 16",
-      "release_date": "2026-07-04T23:37:08+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
@@ -97,7 +99,7 @@
       "title": "Ch. 15",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 14,
@@ -109,7 +111,7 @@
       "title": "Ch. 14",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 3
     },
     {
       "chapter_number": 13,
