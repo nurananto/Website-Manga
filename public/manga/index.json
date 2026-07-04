@@ -27,13 +27,25 @@
     "discord_channel_id": "1517524008457863168",
     "chapters": [
       {
+        "chapter_number": 16,
+        "lock_hours": 0,
+        "pages": 24,
+        "id": "Negatte-ch-16",
+        "r2_prefix": "manga/Negatte/16/",
+        "title": "Ch. 16",
+        "release_date": "2026-07-04T23:37:08+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
         "chapter_number": 15,
         "lock_hours": 0,
         "pages": 22,
+        "release_date": "2026-07-04T20:48:06+07:00",
         "id": "Negatte-ch-15",
         "r2_prefix": "manga/Negatte/15/",
         "title": "Ch. 15",
-        "release_date": "2026-07-04T20:48:06+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -49,18 +61,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 0
-      },
-      {
-        "chapter_number": 13,
-        "lock_hours": 0,
-        "pages": 30,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "id": "Negatte-ch-13",
-        "r2_prefix": "manga/Negatte/13/",
-        "title": "Ch. 13",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 9
       }
     ]
   },
