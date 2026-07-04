@@ -173,10 +173,26 @@ async function resolveFirstPage(ch) {
 // byte langsung (multipart), gagal-fetch di sisi FB dihilangkan.
 async function fetchImageBytes(url) {
   try {
-    const res = await fetchT(url, {}, 20000);
-    if (!res.ok) return null;
+    const res = await fetchT(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; NuranantoBot/1.0; +https://nuranantoscans.my.id)',
+        'Referer': `${SITE_URL}/`,
+      },
+    }, 20000);
+    if (!res.ok) {
+      console.warn(`⚠️  CDN gambar menolak fetch: ${res.status} ${res.statusText} (${url})`);
+      return null;
+    }
+    const type = res.headers.get('content-type') || '';
+    if (type && !type.toLowerCase().startsWith('image/')) {
+      console.warn(`⚠️  CDN gambar bukan image: ${type} (${url})`);
+      return null;
+    }
     return Buffer.from(await res.arrayBuffer());
-  } catch { return null; }
+  } catch (e) {
+    console.warn(`⚠️  CDN gambar gagal di-fetch: ${e.message} (${url})`);
+    return null;
+  }
 }
 
 // ── Kirim notifikasi Discord untuk chapter-chapter baru ─────────────────
@@ -213,8 +229,17 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
     const img = await resolveFirstPage(ch);
     let image;
     const attByName = new Map();
-    if (img?.url) image = { url: img.url };
-    else if (img?.bytes) { attByName.set(img.name, img); image = { url: `attachment://${img.name}` }; }
+    if (img?.bytes) {
+      attByName.set(img.name, img);
+      image = { url: `attachment://${img.name}` };
+    } else if (img?.url) {
+      const bytes = await fetchImageBytes(img.url);
+      if (bytes) {
+        const name = `${ch.mangaId}-ch-${ch.chapterNumber}.webp`.replace(/[^a-zA-Z0-9._-]/g, '_');
+        attByName.set(name, { bytes, name });
+        image = { url: `attachment://${name}` };
+      }
+    }
     const embed = {
       title:     ch.mangaTitle,
       url:       `${base}/${ch.mangaId}`,
@@ -277,46 +302,67 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
   const base  = siteUrl.replace(/\/$/, '');
   const GUILD = '1517520079108182036';
 
-  const embeds = newManga.map(m => {
+  const messages = [];
+  for (const m of newManga) {
     const links = [`🌐 [Website](${base}/${m.id})`];
     if (m.discordChannelId) links.push(`💬 [Diskusi](https://discord.com/channels/${GUILD}/${m.discordChannelId})`);
     const desc = [];
     if (m.genres?.length) desc.push(`🏷️ ${m.genres.join(' · ')}`);
     if (m.synopsis)       desc.push('', (m.synopsis || '').trim());
     desc.push('', links.join('  •  '));
-    return {
+    let cover;
+    if (m.coverUrl) {
+      const bytes = await fetchImageBytes(m.coverUrl);
+      if (bytes) {
+        const name = `${m.id}-cover.webp`.replace(/[^a-zA-Z0-9._-]/g, '_');
+        cover = { bytes, name };
+      }
+    }
+    messages.push({
+      att: cover,
+      embed: {
       author:    { name: '📚 Judul Baru di Nurananto Scanlation', url: base },
       title:     m.title,
       url:       `${base}/${m.id}`,
       description: desc.join('\n').slice(0, 4000),
       color:     0x5865F2,
-      image:     m.coverUrl ? { url: m.coverUrl } : undefined,
+      image:     cover ? { url: `attachment://${cover.name}` } : undefined,
       footer:    { text: m.rating ? `Nurananto Scanlation • ⭐ ${m.rating}` : 'Nurananto Scanlation', icon_url: `${base}/logo-header.webp` },
-    };
-  });
+      },
+    });
+  }
 
   // Sinopsis panjang → kirim 1 embed per pesan (limit Discord ~6000 char/pesan
   // bila digabung; 10 sekaligus pasti ditolak). Jeda + retry 429.
-  const post = (embed) => fetchT(webhookUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username: 'Nurananto Scanlation', embeds: [embed] }),
-  });
+  const post = ({ embed, att }) => {
+    const payload = { username: 'Nurananto Scanlation', embeds: [embed] };
+    if (att) {
+      const form = new FormData();
+      form.append('payload_json', JSON.stringify(payload));
+      form.append('files[0]', new Blob([att.bytes], { type: 'image/webp' }), att.name);
+      return fetchT(webhookUrl, { method: 'POST', body: form }, 30000);
+    }
+    return fetchT(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+  };
   let sent = 0;
-  for (const embed of embeds) {
+  for (const msg of messages) {
     try {
-      let res = await post(embed);
+      let res = await post(msg);
       if (res.status === 429) {
         const wait = ((await res.json().catch(() => ({}))).retry_after || 2);
         await new Promise(r => setTimeout(r, (wait + 0.5) * 1000));
-        res = await post(embed); // retry sekali
+        res = await post(msg); // retry sekali
       }
       if (res.ok) sent++;
-      else console.warn(`⚠️  Manga-list notif gagal (${embed.title}): ${res.status} ${await res.text()}`);
-    } catch (e) { console.warn(`⚠️  Manga-list webhook error (${embed.title}): ${e.message}`); }
+      else console.warn(`⚠️  Manga-list notif gagal (${msg.embed.title}): ${res.status} ${await res.text()}`);
+    } catch (e) { console.warn(`⚠️  Manga-list webhook error (${msg.embed.title}): ${e.message}`); }
     await new Promise(r => setTimeout(r, 1200)); // anti rate-limit (5 req / 2 dtk)
   }
-  console.log(`📚 Intro manga-list terkirim: ${sent}/${embeds.length} judul`);
+  console.log(`📚 Intro manga-list terkirim: ${sent}/${messages.length} judul`);
 }
 
 // ── Post chapter baru ke Facebook Page (teks polos, link tanpa html) ──
