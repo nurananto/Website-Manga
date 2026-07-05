@@ -26,7 +26,7 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": "c95c3728-3229-41d7-9d11-e2a01ec94333.jpg",
+  "mangadex_cover": "6da6cf64-c44f-4153-801e-77cdf9a92d3b.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
     {
@@ -48,7 +48,18 @@
         "manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@mobile.webp"
       ],
       "widths": "1280x960x640"
+    },
+    {
+      "file": "6da6cf64-c44f-4153-801e-77cdf9a92d3b.jpg",
+      "volume": "3",
+      "keys": [
+        "manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b.webp",
+        "manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@tablet.webp",
+        "manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@mobile.webp"
+      ],
+      "widths": "1280x960x640"
     }
   ],
-  "discord_channel_id": "1517524146635145338"
+  "discord_channel_id": "1517524146635145338",
+  "cover_version": 2
 }

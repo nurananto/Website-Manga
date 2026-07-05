@@ -34,10 +34,10 @@
     "20": 10,
     "21.1": 12,
     "21.2": 10,
-    "22.1": 14,
-    "22.2": 3
+    "22.1": 15,
+    "22.2": 4
   },
-  "total_views": 75,
+  "total_views": 79,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -70,7 +70,7 @@
     }
   ],
   "discord_channel_id": "1517524250175737906",
-  "detail_views": 16,
+  "detail_views": 18,
   "cover_version": 3,
   "mangadex_id": "9aebe60e-777f-4a58-a3bf-143c3096b94f",
   "rating": 8.23,
@@ -92,7 +92,7 @@
       "title": "Ch. 22.2",
       "unlockDate": "2026-07-08T04:27:34.000Z",
       "isLocked": true,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 22.1,
@@ -104,7 +104,7 @@
       "title": "Ch. 22.1",
       "unlockDate": "2026-06-30T13:34:53.000Z",
       "isLocked": false,
-      "views": 14
+      "views": 15
     },
     {
       "chapter_number": 21.2,

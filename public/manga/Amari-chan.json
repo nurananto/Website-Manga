@@ -28,10 +28,10 @@
   "chapter_views": {
     "0": 1,
     "8": 2,
-    "9": 4,
+    "9": 5,
     "7.5": 1
   },
-  "total_views": 8,
+  "total_views": 10,
   "mangadex_cover": "6ffed041-aa59-49e2-b79f-dac40ac0ef53.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -46,8 +46,9 @@
     }
   ],
   "discord_channel_id": "1517523810801287222",
+  "detail_views": 1,
   "mangadex_id": "624d6ceb-768d-40a7-8412-84e083afbdb1",
-  "rating": 8.47,
+  "rating": 8.48,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=1",
   "coverUrls": {
@@ -66,7 +67,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 8,

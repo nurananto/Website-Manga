@@ -28,15 +28,17 @@
   "tamat_at_chapter": 9,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 7,
-    "2": 1,
-    "5": 2,
-    "6": 1,
-    "7": 3,
-    "8": 10,
-    "9": 4
+    "1": 8,
+    "2": 2,
+    "3": 1,
+    "4": 1,
+    "5": 3,
+    "6": 2,
+    "7": 4,
+    "8": 11,
+    "9": 6
   },
-  "total_views": 38,
+  "total_views": 51,
   "mangadex_cover": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -69,10 +71,10 @@
     }
   ],
   "discord_channel_id": "1517524210547818596",
-  "detail_views": 10,
+  "detail_views": 13,
   "cover_version": 2,
   "mangadex_id": "a605a5d0-21a6-481f-a055-74735ea4f2c2",
-  "rating": 7.4,
+  "rating": 7.39,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp?v=2",
   "coverUrls": {
@@ -91,7 +93,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 6
     },
     {
       "chapter_number": 8,
@@ -103,7 +105,7 @@
       "title": "Ch. 8",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 7,
@@ -115,7 +117,7 @@
       "title": "Ch. 7",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 6,
@@ -127,7 +129,7 @@
       "title": "Ch. 6",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 5,
@@ -139,7 +141,7 @@
       "title": "Ch. 5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 4,
@@ -151,7 +153,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 3,
@@ -163,7 +165,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 2,
@@ -175,7 +177,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 1,
@@ -187,7 +189,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     }
   ]
 }
