@@ -28,7 +28,7 @@
   "tamat_at_chapter": 9,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 8,
+    "1": 9,
     "2": 2,
     "3": 1,
     "4": 1,
@@ -36,9 +36,9 @@
     "6": 2,
     "7": 4,
     "8": 11,
-    "9": 6
+    "9": 9
   },
-  "total_views": 51,
+  "total_views": 61,
   "mangadex_cover": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -71,10 +71,10 @@
     }
   ],
   "discord_channel_id": "1517524210547818596",
-  "detail_views": 13,
+  "detail_views": 19,
   "cover_version": 2,
   "mangadex_id": "a605a5d0-21a6-481f-a055-74735ea4f2c2",
-  "rating": 7.39,
+  "rating": 7.4,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp?v=2",
   "coverUrls": {
@@ -93,7 +93,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 9
     },
     {
       "chapter_number": 8,
@@ -189,7 +189,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     }
   ]
 }

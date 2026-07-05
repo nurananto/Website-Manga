@@ -31,10 +31,10 @@
         "chapter_number": 10.3,
         "lock_hours": 0,
         "pages": 13,
+        "release_date": "2026-07-05T23:57:11+07:00",
         "id": "Amari-chan-ch-10.3",
         "r2_prefix": "manga/Amari-chan/10.3/",
         "title": "Ch. 10.3",
-        "release_date": "2026-07-05T23:57:11+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -43,10 +43,10 @@
         "chapter_number": 10.2,
         "lock_hours": 0,
         "pages": 11,
+        "release_date": "2026-07-05T23:57:11+07:00",
         "id": "Amari-chan-ch-10.2",
         "r2_prefix": "manga/Amari-chan/10.2/",
         "title": "Ch. 10.2",
-        "release_date": "2026-07-05T23:57:11+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -55,10 +55,10 @@
         "chapter_number": 10.1,
         "lock_hours": 0,
         "pages": 9,
+        "release_date": "2026-07-05T23:57:11+07:00",
         "id": "Amari-chan-ch-10.1",
         "r2_prefix": "manga/Amari-chan/10.1/",
         "title": "Ch. 10.1",
-        "release_date": "2026-07-05T23:57:11+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -85,7 +85,7 @@
       "Romance"
     ],
     "rating": 6.78,
-    "total_views": 23,
+    "total_views": 46,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -102,7 +102,7 @@
         "title": "Ch. 16",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 6
       },
       {
         "chapter_number": 15,
@@ -114,7 +114,7 @@
         "title": "Ch. 15",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 5
       },
       {
         "chapter_number": 14,
@@ -126,7 +126,7 @@
         "title": "Ch. 14",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 5
       }
     ]
   },
@@ -151,7 +151,7 @@
       "Supernatural"
     ],
     "rating": 8.53,
-    "total_views": 16,
+    "total_views": 17,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -215,7 +215,7 @@
       "Slice of Life"
     ],
     "rating": 7.5,
-    "total_views": 83,
+    "total_views": 99,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -256,7 +256,7 @@
         "title": "Ch. 20.1",
         "unlockDate": "2026-07-03T12:38:27.000Z",
         "isLocked": false,
-        "views": 3
+        "views": 4
       }
     ]
   },
@@ -282,8 +282,8 @@
       "Slice of Life",
       "Video Games"
     ],
-    "rating": 7.39,
-    "total_views": 51,
+    "rating": 7.4,
+    "total_views": 61,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": 9,
@@ -300,7 +300,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 9
       },
       {
         "chapter_number": 8,
@@ -349,7 +349,7 @@
       "Video Games"
     ],
     "rating": 8.21,
-    "total_views": 74,
+    "total_views": 88,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -390,7 +390,7 @@
         "title": "Ch. 6.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 10
       }
     ]
   },
@@ -418,7 +418,7 @@
       "Slice of Life"
     ],
     "rating": 7.4,
-    "total_views": 31,
+    "total_views": 39,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -435,7 +435,7 @@
         "title": "Ch. 7.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 5
       },
       {
         "chapter_number": 7.1,
@@ -447,7 +447,7 @@
         "title": "Ch. 7.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 6.5,
@@ -552,7 +552,7 @@
       "Tragedy"
     ],
     "rating": 8.62,
-    "total_views": 174,
+    "total_views": 189,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -569,7 +569,7 @@
         "title": "Ch. 7.1",
         "unlockDate": "2026-07-18T02:52:50.000Z",
         "isLocked": true,
-        "views": 3
+        "views": 4
       },
       {
         "chapter_number": 6.3,
@@ -581,7 +581,7 @@
         "title": "Ch. 6.3",
         "unlockDate": "2026-07-11T13:25:25.000Z",
         "isLocked": true,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 6.2,
@@ -593,7 +593,7 @@
         "title": "Ch. 6.2",
         "unlockDate": "2026-07-05T12:24:18.000Z",
         "isLocked": false,
-        "views": 2
+        "views": 4
       }
     ]
   },
@@ -618,7 +618,7 @@
       "Slice of Life"
     ],
     "rating": 8.23,
-    "total_views": 79,
+    "total_views": 84,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -647,7 +647,7 @@
         "title": "Ch. 22.1",
         "unlockDate": "2026-06-30T13:34:53.000Z",
         "isLocked": false,
-        "views": 15
+        "views": 16
       },
       {
         "chapter_number": 21.2,
@@ -1318,7 +1318,7 @@
       "Shounen"
     ],
     "rating": 8.37,
-    "total_views": 0,
+    "total_views": 1,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
