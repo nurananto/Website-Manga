@@ -37,12 +37,12 @@
     "5.3": 17,
     "5.2": 11,
     "5.1": 10,
-    "6.1": 17,
-    "6.2": 4,
+    "6.1": 19,
+    "6.2": 6,
     "6.3": 3,
     "7.1": 4
   },
-  "total_views": 189,
+  "total_views": 195,
   "mangadex_cover": "a1bd83b1-b73e-430f-8f3b-cd194cb2c029.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -58,5 +58,5 @@
     }
   ],
   "discord_channel_id": "1517524030142550058",
-  "detail_views": 49
+  "detail_views": 51
 }
