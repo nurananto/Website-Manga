@@ -26,12 +26,16 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "0": 1,
+    "0": 2,
+    "1": 1,
     "8": 2,
     "9": 5,
-    "7.5": 1
+    "7.5": 1,
+    "10.1": 1,
+    "10.2": 1,
+    "10.3": 2
   },
-  "total_views": 10,
+  "total_views": 21,
   "mangadex_cover": "6ffed041-aa59-49e2-b79f-dac40ac0ef53.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -46,7 +50,7 @@
     }
   ],
   "discord_channel_id": "1517523810801287222",
-  "detail_views": 1,
+  "detail_views": 6,
   "mangadex_id": "624d6ceb-768d-40a7-8412-84e083afbdb1",
   "rating": 8.48,
   "next_update": null,
@@ -67,7 +71,7 @@
       "title": "Ch. 10.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 10.2,
@@ -79,7 +83,7 @@
       "title": "Ch. 10.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 10.1,
@@ -91,7 +95,7 @@
       "title": "Ch. 10.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 9,
@@ -235,7 +239,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 0,
@@ -247,7 +251,7 @@
       "title": "Ch. 0",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     }
   ]
 }
