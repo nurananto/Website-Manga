@@ -34,10 +34,10 @@
     "20": 10,
     "21.1": 12,
     "21.2": 10,
-    "22.1": 16,
+    "22.1": 19,
     "22.2": 4
   },
-  "total_views": 84,
+  "total_views": 92,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -73,6 +73,6 @@
     }
   ],
   "discord_channel_id": "1517524250175737906",
-  "detail_views": 22,
+  "detail_views": 27,
   "cover_version": 3
 }
