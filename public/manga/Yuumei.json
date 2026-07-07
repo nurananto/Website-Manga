@@ -83,6 +83,18 @@
   },
   "chapters": [
     {
+      "chapter_number": 23.1,
+      "lock_hours": 672,
+      "pages": 12,
+      "id": "Yuumei-ch-23.1",
+      "r2_prefix": "manga/Yuumei/23.1/",
+      "title": "Ch. 23.1",
+      "release_date": "2026-07-07T22:48:58+07:00",
+      "unlockDate": "2026-08-04T15:48:58.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 22.2,
       "lock_hours": 312,
       "pages": 10,
