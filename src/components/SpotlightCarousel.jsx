@@ -136,11 +136,12 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
             src={imgUrl(active?.coverUrls?.mobile || active?.coverUrl)} alt=""
             loading="eager"
             fetchpriority="high"
-            className="absolute inset-0 w-full h-full object-cover object-top"
+            className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.42] saturate-[0.78]"
           />
-          <div className="absolute inset-0 bg-black/45" />
+          <div className="absolute inset-0 bg-black/55" />
           <div className="absolute inset-0 bg-gradient-to-t from-surface/95 via-surface/55 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/44 to-transparent" />
+          <div className="absolute inset-0 shadow-[inset_0_28px_90px_rgba(0,0,0,0.72),inset_0_-70px_110px_rgba(0,0,0,0.96),inset_80px_0_110px_rgba(0,0,0,0.82),inset_-80px_0_110px_rgba(0,0,0,0.82)]" />
       </div>
 
       {/* ── Cover row — centered flex, no scroll ── */}
@@ -180,7 +181,11 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
             >
               {/* Cover image with overlays */}
               <div
-                className="relative rounded-xl overflow-hidden shadow-2xl"
+                className={`relative rounded-xl overflow-hidden border ${
+                  isActive
+                    ? 'border-white/20 shadow-[0_18px_55px_rgba(0,0,0,0.72)]'
+                    : 'border-black/55 shadow-[0_20px_42px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.04)]'
+                }`}
                 style={{ width: coverW, height: coverH }}
               >
                 <img
@@ -188,7 +193,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
                   alt={manga.title}
                   loading="eager"
                   fetchpriority={isActive ? 'high' : 'low'}
-                  className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-105' : 'brightness-[0.65]'}`}
+                  className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-105 saturate-105' : 'brightness-[0.58] saturate-[0.82]'}`}
                   draggable={false}
                 />
 
