@@ -63,7 +63,8 @@
         "isLocked": false,
         "views": 2
       }
-    ]
+    ],
+    "chapter_count": 11
   },
   {
     "id": "Hanpirei",
@@ -127,7 +128,8 @@
         "isLocked": false,
         "views": 0
       }
-    ]
+    ],
+    "chapter_count": 5
   },
   {
     "id": "Yuumei",
@@ -193,7 +195,8 @@
         "isLocked": false,
         "views": 22
       }
-    ]
+    ],
+    "chapter_count": 27
   },
   {
     "id": "TeisouGyakuten",
@@ -262,7 +265,8 @@
         "isLocked": false,
         "views": 3
       }
-    ]
+    ],
+    "chapter_count": 10
   },
   {
     "id": "Amari-chan",
@@ -328,7 +332,8 @@
         "isLocked": false,
         "views": 1
       }
-    ]
+    ],
+    "chapter_count": 16
   },
   {
     "id": "Negatte",
@@ -393,7 +398,8 @@
         "isLocked": false,
         "views": 7
       }
-    ]
+    ],
+    "chapter_count": 16
   },
   {
     "id": "Mememe",
@@ -458,7 +464,8 @@
         "isLocked": false,
         "views": 2
       }
-    ]
+    ],
+    "chapter_count": 4
   },
   {
     "id": "10-nenburi",
@@ -523,7 +530,8 @@
         "isLocked": false,
         "views": 4
       }
-    ]
+    ],
+    "chapter_count": 23
   },
   {
     "id": "Yarikonda",
@@ -591,7 +599,8 @@
         "isLocked": false,
         "views": 4
       }
-    ]
+    ],
+    "chapter_count": 9
   },
   {
     "id": "Madogiwa",
@@ -658,7 +667,8 @@
         "isLocked": false,
         "views": 3
       }
-    ]
+    ],
+    "chapter_count": 16
   },
   {
     "id": "Osananajimi",
@@ -725,7 +735,8 @@
         "isLocked": false,
         "views": 8
       }
-    ]
+    ],
+    "chapter_count": 14
   },
   {
     "id": "Sankakukei",
@@ -790,7 +801,8 @@
         "isLocked": false,
         "views": 5
       }
-    ]
+    ],
+    "chapter_count": 12
   },
   {
     "id": "Midari",
@@ -853,7 +865,8 @@
         "isLocked": false,
         "views": 4
       }
-    ]
+    ],
+    "chapter_count": 18
   },
   {
     "id": "AiwoOshiete",
@@ -918,7 +931,8 @@
         "isLocked": false,
         "views": 1
       }
-    ]
+    ],
+    "chapter_count": 20
   },
   {
     "id": "WeAreNotDating",
@@ -982,7 +996,8 @@
         "isLocked": false,
         "views": 0
       }
-    ]
+    ],
+    "chapter_count": 142
   },
   {
     "id": "Suufungo",
@@ -1047,7 +1062,8 @@
         "isLocked": false,
         "views": 2
       }
-    ]
+    ],
+    "chapter_count": 18
   },
   {
     "id": "YoukyaniNatta",
@@ -1111,7 +1127,8 @@
         "isLocked": false,
         "views": 0
       }
-    ]
+    ],
+    "chapter_count": 6
   },
   {
     "id": "ClassdeIchiban",
@@ -1177,7 +1194,8 @@
         "isLocked": false,
         "views": 4
       }
-    ]
+    ],
+    "chapter_count": 13
   },
   {
     "id": "IkemenJoshi",
@@ -1229,7 +1247,8 @@
         "isLocked": false,
         "views": 0
       }
-    ]
+    ],
+    "chapter_count": 2
   },
   {
     "id": "KiminoNegai",
@@ -1294,7 +1313,8 @@
         "isLocked": false,
         "views": 0
       }
-    ]
+    ],
+    "chapter_count": 13
   },
   {
     "id": "TensaiBishoujo",
@@ -1360,7 +1380,8 @@
         "isLocked": false,
         "views": 0
       }
-    ]
+    ],
+    "chapter_count": 4
   },
   {
     "id": "UchinoSeiso-kei",
@@ -1425,7 +1446,8 @@
         "isLocked": false,
         "views": 0
       }
-    ]
+    ],
+    "chapter_count": 9
   },
   {
     "id": "Chikasugiru",
@@ -1488,7 +1510,8 @@
         "isLocked": false,
         "views": 0
       }
-    ]
+    ],
+    "chapter_count": 8
   },
   {
     "id": "MoshimoYuurei",
@@ -1553,7 +1576,8 @@
         "isLocked": false,
         "views": 1
       }
-    ]
+    ],
+    "chapter_count": 25
   },
   {
     "id": "Waka-chan",
@@ -1616,6 +1640,7 @@
         "isLocked": false,
         "views": 2
       }
-    ]
+    ],
+    "chapter_count": 216
   }
 ]

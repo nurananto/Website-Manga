@@ -689,6 +689,7 @@ async function buildCatalog() {
       coverUrls:    manga.coverUrls,
       genres:       manga.genres,
       rating:       manga.rating,
+      chapter_count: chapters.length,
       total_views:  manga.total_views,
       isTrending:   manga.isTrending,
       next_update:  manga.next_update,

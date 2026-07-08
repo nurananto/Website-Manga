@@ -157,6 +157,8 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
           const nm        = Math.round(-(coverW * (1 - scale)) / 2) + itemGap;
           const statusCfg = STATUS_CFG[manga.status] || ONGOING_CFG;
           const rating    = manga.rating != null ? Number(manga.rating).toFixed(1) : null;
+          const chapterCount = manga.chapter_count ?? manga.chapters?.length ?? 0;
+          const coverOffsetY = isActive ? 0 : Math.round(coverH * 0.055);
 
           return (
             <div
@@ -165,7 +167,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
               className={`flex-shrink-0 ${isActive ? 'cursor-default' : 'cursor-pointer'}`}
               style={{
                 width:            coverW,
-                transform:        `scale(${scale})`,
+                transform:        `translateY(${coverOffsetY}px) scale(${scale})`,
                 transformOrigin:  'top center',
                 opacity,
                 marginLeft:       nm,
@@ -214,26 +216,26 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
                       {rating && <span className="text-white/35">|</span>}
                       <span className={`min-w-0 truncate ${statusCfg.textCls}`}>{statusCfg.label}</span>
                       <span className="text-white/35">|</span>
-                      <span className="min-w-0 truncate text-white">{manga.chapters?.length || 0} Chapter</span>
+                      <span className="min-w-0 truncate text-white">{chapterCount} Chapter</span>
                     </div>
                   </div>
 
-                  <div className="mt-1 grid w-full grid-cols-2 gap-1.5 sm:gap-2">
+                  <div className="mt-1 flex w-full items-center justify-center gap-2 sm:gap-3">
                     <button
                       type="button"
                       onClick={(e) => handleReadNow(e, manga)}
-                      className="flex h-8 sm:h-9 md:h-10 items-center justify-center gap-1 sm:gap-1.5 rounded-lg md:rounded-xl bg-white hover:bg-white/90 px-2 sm:px-3 md:px-4 text-[10px] sm:text-xs md:text-sm font-bold leading-none text-black shadow-md active:scale-[0.98] transition-all cursor-pointer"
+                      className="flex items-center gap-1.5 sm:gap-2 bg-white hover:bg-white/90 text-black font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
                     >
-                      <Play className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 fill-current shrink-0" />
-                      <span className="truncate">Baca Sekarang</span>
+                      <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-current" />
+                      Read
                     </button>
                     <button
                       type="button"
                       onClick={(e) => handleViewDetail(e, manga)}
-                      className="flex h-8 sm:h-9 md:h-10 items-center justify-center gap-1 sm:gap-1.5 rounded-lg md:rounded-xl border border-white/10 bg-surface-container-high hover:bg-surface-container-highest px-2 sm:px-3 md:px-4 text-[10px] sm:text-xs md:text-sm font-bold leading-none text-white shadow-md active:scale-[0.98] transition-all cursor-pointer"
+                      className="flex items-center gap-1.5 sm:gap-2 bg-surface-container-high hover:bg-surface-container-highest border border-white/10 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
                     >
-                      <Info className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 shrink-0" />
-                      <span className="truncate">View Detail</span>
+                      <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
+                      View
                     </button>
                   </div>
                 </div>
