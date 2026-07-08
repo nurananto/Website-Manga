@@ -36,7 +36,7 @@
     "98": 1,
     "99": 2,
     "100": 5,
-    "193": 1,
+    "193": 2,
     "197": 1,
     "198": 1,
     "199": 1,
@@ -69,7 +69,7 @@
     "215.3": 1,
     "215.4": 1
   },
-  "total_views": 80,
+  "total_views": 83,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -183,9 +183,9 @@
     }
   ],
   "discord_channel_id": "1517524180294172712",
-  "detail_views": 10,
+  "detail_views": 12,
   "mangadex_id": "57fe3f00-8626-462b-8f75-fce0e6faa6be",
-  "rating": 8.7,
+  "rating": 8.69,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp?v=1",
   "coverUrls": {
@@ -624,7 +624,7 @@
       "title": "Ch. 193",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 192,
