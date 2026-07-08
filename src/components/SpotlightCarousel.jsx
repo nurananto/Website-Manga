@@ -12,14 +12,27 @@ const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-300' };
 // Hanya cover aktif yang membesar; cover lain tetap opaque dan digelapkan via overlay.
 const SCALES = [1, 0.88];
 
-const PAD_V = 12;
+function getPadV() {
+  const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
+  if (w < 640)  return 18;
+  if (w < 768)  return 16;
+  if (w < 1024) return 14;
+  return 12;
+}
+
+function getCoverMetaGap() {
+  const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
+  if (w < 768)  return 10;
+  if (w < 1024) return 9;
+  return 8;
+}
 
 function getMetaH() {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
-  if (w < 640)  return 104;
-  if (w < 768)  return 112;
-  if (w < 1024) return 120;
-  return 128;
+  if (w < 640)  return 86;
+  if (w < 768)  return 94;
+  if (w < 1024) return 102;
+  return 120;
 }
 
 // Jarak antar cover per breakpoint (makin kecil = makin rapat)
@@ -72,9 +85,11 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
   const [maxSide,   setMaxSide]   = useState(getMaxSide);
   const [itemGap,   setItemGap]   = useState(getItemGap);
   const [metaH,     setMetaH]     = useState(getMetaH);
+  const [padV,      setPadV]      = useState(getPadV);
+  const [metaGap,   setMetaGap]   = useState(getCoverMetaGap);
 
   const coverH     = Math.round(coverW * 1.5);
-  const containerH = PAD_V + coverH + metaH + PAD_V;
+  const containerH = padV + coverH + metaGap + metaH + padV;
 
   // How many items to show on each side: capped by breakpoint and available items
   const side = Math.min(maxSide, Math.floor((N - 1) / 2));
@@ -88,7 +103,14 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
   });
 
   useEffect(() => {
-    const onResize = () => { setCoverW(getCoverW()); setMaxSide(getMaxSide()); setItemGap(getItemGap()); setMetaH(getMetaH()); };
+    const onResize = () => {
+      setCoverW(getCoverW());
+      setMaxSide(getMaxSide());
+      setItemGap(getItemGap());
+      setMetaH(getMetaH());
+      setPadV(getPadV());
+      setMetaGap(getCoverMetaGap());
+    };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
@@ -156,7 +178,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
       {/* ── Cover row — centered flex, no scroll ── */}
       <div
         className="absolute inset-0 flex items-start justify-center z-10"
-        style={{ paddingTop: PAD_V, paddingBottom: PAD_V }}
+        style={{ paddingTop: padV, paddingBottom: padV }}
       >
         {items.map(({ logIdx, offset, dist }) => {
           const manga     = mangaList[logIdx];
@@ -220,7 +242,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
         <div
           key={`spotlight-meta-${active.id}`}
           className="absolute inset-x-2 sm:inset-x-4 z-20 flex flex-col items-center gap-1.5 px-1 animate-[spotlightMetaIn_0.38s_cubic-bezier(0.22,1,0.36,1)]"
-          style={{ top: PAD_V + coverH + 8 }}
+          style={{ top: padV + coverH + metaGap }}
         >
           <h3 className="w-full max-w-full truncate text-center font-headline-md text-base sm:text-lg md:text-xl font-black leading-tight text-on-surface">
             {active.title}
