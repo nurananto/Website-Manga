@@ -68,7 +68,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
 
   const coverH     = Math.round(coverW * 1.5);
   const containerH = PAD_V + coverH + META_H + PAD_V;
-  const metaW      = Math.max(coverW, coverW < 230 ? 224 : coverW);
+  const metaW      = 'min(calc(100vw - 2rem), 42rem)';
 
   // How many items to show on each side: capped by breakpoint and available items
   const side = Math.min(maxSide, Math.floor((N - 1) / 2));
@@ -158,7 +158,9 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
           const statusCfg = STATUS_CFG[manga.status] || ONGOING_CFG;
           const rating    = manga.rating != null ? Number(manga.rating).toFixed(1) : null;
           const chapterCount = manga.chapter_count ?? manga.chapters?.length ?? 0;
-          const coverOffsetY = isActive ? 0 : Math.round(coverH * 0.055);
+          const coverOffsetY = isActive
+            ? 0
+            : Math.round(Math.min(META_H - 24, Math.max(34, coverH * 0.12)));
 
           return (
             <div
@@ -202,7 +204,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
                   style={{ width: metaW }}
                 >
                   <div key={`spotlight-meta-${manga.id}`} className="flex w-full flex-col items-center gap-1.5 animate-[spotlightMetaIn_0.38s_cubic-bezier(0.22,1,0.36,1)]">
-                    <h3 className="w-full truncate text-center font-headline-md text-sm sm:text-base md:text-lg font-black leading-tight text-on-surface">
+                    <h3 className="w-full truncate text-center font-headline-md text-base sm:text-lg md:text-xl font-black leading-tight text-on-surface">
                       {manga.title}
                     </h3>
 
