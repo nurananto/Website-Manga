@@ -1,0 +1,115 @@
+{
+  "id": "Hanpirei",
+  "title": "Hanpirei no Kyori-kan",
+  "alt_title": "反比例の距離感",
+  "status": "Tamat",
+  "type": "WEBTOON",
+  "author": "Makita Airi",
+  "artist": "Makita Airi",
+  "genres": [
+    "Full Color",
+    "Long Strip",
+    "Romance",
+    "School Life",
+    "Shounen",
+    "Slice of Life"
+  ],
+  "description": "Akhir-akhir ini, perilaku Yuta, teman sekelas dan teman masa kecilnya Hina, terasa aneh. Itulah masalah terbesar Hina saat ini. Mata mereka tidak bertemu, dan mereka tidak bisa berbicara seperti dulu. Dulu, Yuta begitu kecil dan lucu seperti adik, tapi mengapa sekarang? Apakah aku melakukan sesuatu? Apa perasaan gelisah ini? Di sisi lain, Yuta memiliki rahasia yang tidak bisa dia katakan pada Hina? Dua pemula dalam cinta yang kikuk, menjauh dan mendekat!? Cinta muda yang penuh dengan kejutan dan kesedihan!",
+  "covers": [
+    "manga/Hanpirei/covers/cover.webp",
+    "manga/Hanpirei/covers/cover@tablet.webp",
+    "manga/Hanpirei/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/5d87115b-058d-4e36-a624-80c66f0115eb/hanpirei-no-kyori-kan",
+  "raw_url": "https://www.comico.jp/comic/10275",
+  "discord_channel_id": "",
+  "tamat_at_chapter": 5,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": "462b16a8-3a01-405f-b174-4db2846cef92.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_version": 2,
+  "cover_gallery": [
+    {
+      "volume": "1",
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@mobile.webp?v=2"
+      }
+    }
+  ],
+  "mangadex_id": "5d87115b-058d-4e36-a624-80c66f0115eb",
+  "rating": 8.56,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover.webp?v=2",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover@mobile.webp?v=2"
+  },
+  "chapters": [
+    {
+      "chapter_number": 5,
+      "lock_hours": 0,
+      "pages": 32,
+      "id": "Hanpirei-ch-5",
+      "r2_prefix": "manga/Hanpirei/5/",
+      "title": "Ch. 5",
+      "release_date": "2026-07-08T18:41:58+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 4,
+      "lock_hours": 0,
+      "pages": 32,
+      "id": "Hanpirei-ch-4",
+      "r2_prefix": "manga/Hanpirei/4/",
+      "title": "Ch. 4",
+      "release_date": "2026-07-08T18:41:58+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 3,
+      "lock_hours": 0,
+      "pages": 32,
+      "id": "Hanpirei-ch-3",
+      "r2_prefix": "manga/Hanpirei/3/",
+      "title": "Ch. 3",
+      "release_date": "2026-07-08T18:41:58+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 2,
+      "lock_hours": 0,
+      "pages": 32,
+      "id": "Hanpirei-ch-2",
+      "r2_prefix": "manga/Hanpirei/2/",
+      "title": "Ch. 2",
+      "release_date": "2026-07-08T18:41:58+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 32,
+      "id": "Hanpirei-ch-1",
+      "r2_prefix": "manga/Hanpirei/1/",
+      "title": "Ch. 1",
+      "release_date": "2026-07-08T18:41:58+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    }
+  ]
+}
