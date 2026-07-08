@@ -1,5 +1,71 @@
 [
   {
+    "id": "Yuumei",
+    "title": "Yuumei VTuber no Ani Dakedo, Nazeka Ore ga Yuumei ni Natteita",
+    "description": "Aku punya adik tiri bernama Isuzu. Dia adalah VTuber super populer dengan lebih dari 1 juta subscriber, 'Isuzu Wine'. Suatu hari, dia lupa mematikan siaran, dan percakapan aslinya denganku tanpa sengaja tersebar ke seluruh dunia! Potongan video insiden siaran itu dengan cepat menyebar, dan dalam…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=3"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.23,
+    "total_views": 92,
+    "isTrending": true,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "discord_channel_id": "1517524250175737906",
+    "chapters": [
+      {
+        "chapter_number": 23.1,
+        "lock_hours": 672,
+        "pages": 12,
+        "release_date": "2026-07-07T22:48:58+07:00",
+        "id": "Yuumei-ch-23.1",
+        "r2_prefix": "manga/Yuumei/23.1/",
+        "title": "Ch. 23.1",
+        "unlockDate": "2026-08-04T15:48:58.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 22.2,
+        "lock_hours": 312,
+        "pages": 10,
+        "release_date": "2026-06-25T11:27:34+07:00",
+        "id": "Yuumei-ch-22.2",
+        "r2_prefix": "manga/Yuumei/22.2/",
+        "title": "Ch. 22.2",
+        "unlockDate": "2026-07-08T04:27:34.000Z",
+        "isLocked": true,
+        "views": 4
+      },
+      {
+        "chapter_number": 22.1,
+        "lock_hours": 312,
+        "pages": 12,
+        "release_date": "2026-06-17T20:34:53+07:00",
+        "id": "Yuumei-ch-22.1",
+        "r2_prefix": "manga/Yuumei/22.1/",
+        "title": "Ch. 22.1",
+        "unlockDate": "2026-06-30T13:34:53.000Z",
+        "isLocked": false,
+        "views": 19
+      }
+    ]
+  },
+  {
     "id": "TeisouGyakuten",
     "title": "Teisou Gyakuten Sekai Nara Moteru to Omotte Itara",
     "description": "Dunia dengan moral nafsu yang terbalik —rasio gender 1:20, cewek-cewek memiliki hasrat nafsu yang kuat, sedangkan para cowok ingin menjalani hidup nyaman dan damai dilindungi bodyguard. Bodyguard Cowok yang ada di sekitarnya semuanya tampan, dan Ikuto mengeluh bahwa terutama sahabatnya, Toosaka…",
@@ -22,8 +88,8 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.4,
-    "total_views": 42,
+    "rating": 7.39,
+    "total_views": 47,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -34,13 +100,13 @@
         "chapter_number": 7.3,
         "lock_hours": 0,
         "pages": 13,
+        "release_date": "2026-07-07T20:55:27+07:00",
         "id": "TeisouGyakuten-ch-7.3",
         "r2_prefix": "manga/TeisouGyakuten/7.3/",
         "title": "Ch. 7.3",
-        "release_date": "2026-07-07T20:55:27+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 7.2,
@@ -52,7 +118,7 @@
         "title": "Ch. 7.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 7
       },
       {
         "chapter_number": 7.1,
@@ -64,7 +130,7 @@
         "title": "Ch. 7.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       }
     ]
   },
@@ -89,7 +155,7 @@
       "Slice of Life"
     ],
     "rating": 8.48,
-    "total_views": 21,
+    "total_views": 23,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -106,7 +172,7 @@
         "title": "Ch. 10.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 10.2,
@@ -154,7 +220,7 @@
       "Romance"
     ],
     "rating": 6.78,
-    "total_views": 53,
+    "total_views": 74,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -171,7 +237,7 @@
         "title": "Ch. 16",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 11
       },
       {
         "chapter_number": 15,
@@ -183,7 +249,7 @@
         "title": "Ch. 15",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 6
       },
       {
         "chapter_number": 14,
@@ -195,7 +261,7 @@
         "title": "Ch. 14",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 6
       }
     ]
   },
@@ -220,7 +286,7 @@
       "Supernatural"
     ],
     "rating": 8.53,
-    "total_views": 17,
+    "total_views": 19,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -236,7 +302,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 3,
@@ -284,7 +350,7 @@
       "Slice of Life"
     ],
     "rating": 7.5,
-    "total_views": 103,
+    "total_views": 104,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -352,7 +418,7 @@
       "Video Games"
     ],
     "rating": 7.4,
-    "total_views": 61,
+    "total_views": 65,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": 9,
@@ -369,7 +435,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 9
+        "views": 11
       },
       {
         "chapter_number": 8,
@@ -418,7 +484,7 @@
       "Video Games"
     ],
     "rating": 8.21,
-    "total_views": 90,
+    "total_views": 93,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -459,7 +525,7 @@
         "title": "Ch. 6.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 10
+        "views": 11
       }
     ]
   },
@@ -485,7 +551,7 @@
       "Slice of Life"
     ],
     "rating": 7.35,
-    "total_views": 71,
+    "total_views": 79,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -502,7 +568,7 @@
         "title": "Ch. 14.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 10
+        "views": 11
       },
       {
         "chapter_number": 13.2,
@@ -514,7 +580,7 @@
         "title": "Ch. 13.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 6
       },
       {
         "chapter_number": 13.1,
@@ -526,7 +592,7 @@
         "title": "Ch. 13.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       }
     ]
   },
@@ -551,8 +617,8 @@
       "Slice of Life",
       "Tragedy"
     ],
-    "rating": 8.65,
-    "total_views": 195,
+    "rating": 8.6,
+    "total_views": 202,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -593,73 +659,7 @@
         "title": "Ch. 6.2",
         "unlockDate": "2026-07-05T12:24:18.000Z",
         "isLocked": false,
-        "views": 6
-      }
-    ]
-  },
-  {
-    "id": "Yuumei",
-    "title": "Yuumei VTuber no Ani Dakedo, Nazeka Ore ga Yuumei ni Natteita",
-    "description": "Aku punya adik tiri bernama Isuzu. Dia adalah VTuber super populer dengan lebih dari 1 juta subscriber, 'Isuzu Wine'. Suatu hari, dia lupa mematikan siaran, dan percakapan aslinya denganku tanpa sengaja tersebar ke seluruh dunia! Potongan video insiden siaran itu dengan cepat menyebar, dan dalam…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=3",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=3"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Harem",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 8.23,
-    "total_views": 84,
-    "isTrending": true,
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "discord_channel_id": "1517524250175737906",
-    "chapters": [
-      {
-        "chapter_number": 22.2,
-        "lock_hours": 312,
-        "pages": 10,
-        "release_date": "2026-06-25T11:27:34+07:00",
-        "id": "Yuumei-ch-22.2",
-        "r2_prefix": "manga/Yuumei/22.2/",
-        "title": "Ch. 22.2",
-        "unlockDate": "2026-07-08T04:27:34.000Z",
-        "isLocked": true,
-        "views": 4
-      },
-      {
-        "chapter_number": 22.1,
-        "lock_hours": 312,
-        "pages": 12,
-        "release_date": "2026-06-17T20:34:53+07:00",
-        "id": "Yuumei-ch-22.1",
-        "r2_prefix": "manga/Yuumei/22.1/",
-        "title": "Ch. 22.1",
-        "unlockDate": "2026-06-30T13:34:53.000Z",
-        "isLocked": false,
-        "views": 16
-      },
-      {
-        "chapter_number": 21.2,
-        "lock_hours": 168,
-        "pages": 10,
-        "release_date": "2026-06-16T21:06:03+07:00",
-        "id": "Yuumei-ch-21.2",
-        "r2_prefix": "manga/Yuumei/21.2/",
-        "title": "Ch. 21.2",
-        "unlockDate": "2026-06-23T14:06:03.000Z",
-        "isLocked": false,
-        "views": 10
+        "views": 8
       }
     ]
   },
@@ -683,7 +683,7 @@
       "Time Travel"
     ],
     "rating": 8.42,
-    "total_views": 41,
+    "total_views": 43,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -700,7 +700,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 7
+        "views": 8
       },
       {
         "chapter_number": 11,
@@ -940,7 +940,7 @@
       "Shounen"
     ],
     "rating": 7.86,
-    "total_views": 43,
+    "total_views": 46,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -957,7 +957,7 @@
         "title": "Ch. 17.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 10
+        "views": 11
       },
       {
         "chapter_number": 17.1,
@@ -969,7 +969,7 @@
         "title": "Ch. 17.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 9
       },
       {
         "chapter_number": 16,
@@ -1252,8 +1252,8 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.73,
-    "total_views": 2,
+    "rating": 7.75,
+    "total_views": 5,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -1270,7 +1270,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 3,
@@ -1282,7 +1282,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 2,
@@ -1318,7 +1318,7 @@
       "Shounen"
     ],
     "rating": 8.37,
-    "total_views": 1,
+    "total_views": 2,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -1380,8 +1380,8 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.43,
-    "total_views": 3,
+    "rating": 8.42,
+    "total_views": 4,
     "isTrending": false,
     "next_update": null,
     "tamat_at_chapter": null,
@@ -1509,7 +1509,7 @@
       "Slice of Life"
     ],
     "rating": 8.7,
-    "total_views": 77,
+    "total_views": 80,
     "isTrending": true,
     "next_update": null,
     "tamat_at_chapter": 215.9,

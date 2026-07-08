@@ -23,8 +23,8 @@
   "tamat_at_chapter": 215.9,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "25": 5,
-    "26": 2,
+    "25": 6,
+    "26": 3,
     "27": 1,
     "29": 1,
     "30": 1,
@@ -69,7 +69,7 @@
     "215.3": 1,
     "215.4": 1
   },
-  "total_views": 77,
+  "total_views": 80,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -183,7 +183,7 @@
     }
   ],
   "discord_channel_id": "1517524180294172712",
-  "detail_views": 9,
+  "detail_views": 10,
   "mangadex_id": "57fe3f00-8626-462b-8f75-fce0e6faa6be",
   "rating": 8.7,
   "next_update": null,
@@ -2772,7 +2772,7 @@
       "title": "Ch. 26",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 25,
@@ -2784,7 +2784,7 @@
       "title": "Ch. 25",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 6
     }
   ]
 }
