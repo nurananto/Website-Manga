@@ -158,7 +158,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
 
   return (
     <div
-      className="relative w-full rounded-xl overflow-hidden border border-brand-pulse"
+      className="relative w-full rounded-xl overflow-hidden"
       style={{ height: containerH }}
     >
       {/* ── Darkened background from active cover ── */}
