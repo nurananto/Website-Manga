@@ -68,7 +68,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
 
   const coverH     = Math.round(coverW * 1.5);
   const containerH = PAD_V + coverH + META_H + PAD_V;
-  const metaW      = 'min(calc(100vw - 2rem), 42rem)';
+  const metaW      = 'min(calc(100vw - 1rem), 72rem)';
 
   // How many items to show on each side: capped by breakpoint and available items
   const side = Math.min(maxSide, Math.floor((N - 1) / 2));
@@ -136,12 +136,12 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
             src={imgUrl(active?.coverUrls?.mobile || active?.coverUrl)} alt=""
             loading="eager"
             fetchpriority="high"
-            className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.42] saturate-[0.78]"
+            className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.58] saturate-[0.9]"
           />
-          <div className="absolute inset-0 bg-black/55" />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface/95 via-surface/55 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/44 to-transparent" />
-          <div className="absolute inset-0 shadow-[inset_0_28px_90px_rgba(0,0,0,0.72),inset_0_-70px_110px_rgba(0,0,0,0.96),inset_80px_0_110px_rgba(0,0,0,0.82),inset_-80px_0_110px_rgba(0,0,0,0.82)]" />
+          <div className="absolute inset-0 bg-black/38" />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/42 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface/82 via-surface/28 to-transparent" />
+          <div className="absolute inset-0 shadow-[inset_0_24px_72px_rgba(0,0,0,0.55),inset_0_-64px_96px_rgba(0,0,0,0.9),inset_72px_0_96px_rgba(0,0,0,0.68),inset_-72px_0_96px_rgba(0,0,0,0.68)]" />
       </div>
 
       {/* ── Cover row — centered flex, no scroll ── */}
