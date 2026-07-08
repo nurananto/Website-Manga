@@ -9,9 +9,8 @@ const STATUS_CFG = {
 };
 const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-300' };
 
-// Scale & opacity: hanya yang aktif membesar; semua sisanya seragam
-const SCALES    = [1, 0.88];
-const OPACITIES = [1, 0.78, 0.78, 0.62, 0.5, 0.4];
+// Hanya cover aktif yang membesar; cover lain tetap opaque dan digelapkan via overlay.
+const SCALES = [1, 0.88];
 
 const PAD_V = 12;
 const META_H = 128;
@@ -154,7 +153,6 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
         {items.map(({ logIdx, offset, dist }) => {
           const manga     = mangaList[logIdx];
           const scale     = SCALES[Math.min(dist, SCALES.length - 1)];
-          const opacity   = OPACITIES[Math.min(dist, OPACITIES.length - 1)];
           const isActive  = dist === 0;
           // Negative margin collapses the visual gap created by scale shrink
           const nm        = Math.round(-(coverW * (1 - scale)) / 2) + itemGap;
@@ -171,11 +169,10 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
                 width:            coverW,
                 transform:        `translateY(${coverOffsetY}px) scale(${scale})`,
                 transformOrigin:  'top center',
-                opacity,
                 marginLeft:       nm,
                 marginRight:      nm,
-                willChange:       'transform, opacity, margin',
-                transition:       'transform 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.5s cubic-bezier(0.22,1,0.36,1), margin 0.5s cubic-bezier(0.22,1,0.36,1)',
+                willChange:       'transform, margin',
+                transition:       'transform 0.5s cubic-bezier(0.22,1,0.36,1), margin 0.5s cubic-bezier(0.22,1,0.36,1)',
               }}
             >
               {/* Cover image with overlays */}
@@ -192,9 +189,13 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
                   alt={manga.title}
                   loading="eager"
                   fetchpriority={isActive ? 'high' : 'low'}
-                  className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-100 saturate-100' : 'brightness-[0.58] saturate-[0.82]'}`}
+                  className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-100 saturate-100' : 'brightness-[0.72] saturate-[0.82]'}`}
                   draggable={false}
                 />
+
+                {!isActive && (
+                  <div className="absolute inset-0 bg-black/36 pointer-events-none" />
+                )}
 
                 {/* Active glow ring */}
                 {isActive && (
