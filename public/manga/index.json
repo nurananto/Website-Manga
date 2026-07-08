@@ -1,5 +1,71 @@
 [
   {
+    "id": "ZunouBattle",
+    "title": "Ore wa Gakuen Zunou Battle no Enshutsuka!: Jishou Mobu ga Kage kara Egaku Saikyou Shujinkou Musou Scenario",
+    "description": "Di SMA Teio, segalanya ditentukan lewat duel permainan. Yang harus kulakukan sebagai perwujudan karakter figuran, Tanaka Kanata, bukanlah meraih kejayaan untuk diriku sendiri! Satu-satunya tugasku adalah “menyutradarai” dari balik layar agar Kiriya, murid pindahan terkuat dari bawah, hingga…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=3",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@mobile.webp?v=3"
+    },
+    "genres": [
+      "Action",
+      "Adaptation",
+      "Comedy",
+      "Psychological",
+      "School Life",
+      "Shounen",
+      "Video Games"
+    ],
+    "rating": 8.21,
+    "total_views": 93,
+    "isTrending": true,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "discord_channel_id": "1517524270371311676",
+    "chapters": [
+      {
+        "chapter_number": 7.1,
+        "lock_hours": 672,
+        "pages": 12,
+        "id": "ZunouBattle-ch-7.1",
+        "r2_prefix": "manga/ZunouBattle/7.1/",
+        "title": "Ch. 7.1",
+        "release_date": "2026-07-08T19:49:50+07:00",
+        "unlockDate": "2026-08-05T12:49:50.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 6.3,
+        "lock_hours": 528,
+        "pages": 9,
+        "release_date": "2026-06-30T18:03:47+07:00",
+        "id": "ZunouBattle-ch-6.3",
+        "r2_prefix": "manga/ZunouBattle/6.3/",
+        "title": "Ch. 6.3",
+        "unlockDate": "2026-07-22T11:03:47.000Z",
+        "isLocked": true,
+        "views": 3
+      },
+      {
+        "chapter_number": 6.2,
+        "lock_hours": 192,
+        "pages": 11,
+        "release_date": "2026-06-30T18:03:47+07:00",
+        "id": "ZunouBattle-ch-6.2",
+        "r2_prefix": "manga/ZunouBattle/6.2/",
+        "title": "Ch. 6.2",
+        "unlockDate": "2026-07-08T11:03:47.000Z",
+        "isLocked": false,
+        "views": 1
+      }
+    ]
+  },
+  {
     "id": "Hanpirei",
     "title": "Hanpirei no Kyori-kan",
     "description": "Akhir-akhir ini, perilaku Yuta, teman sekelas dan teman masa kecilnya Hina, terasa aneh. Itulah masalah terbesar Hina saat ini. Mata mereka tidak bertemu, dan mereka tidak bisa berbicara seperti dulu. Dulu, Yuta begitu kecil dan lucu seperti adik, tapi mengapa sekarang? Apakah aku melakukan…",
@@ -29,10 +95,10 @@
         "chapter_number": 5,
         "lock_hours": 0,
         "pages": 32,
+        "release_date": "2026-07-08T18:41:58+07:00",
         "id": "Hanpirei-ch-5",
         "r2_prefix": "manga/Hanpirei/5/",
         "title": "Ch. 5",
-        "release_date": "2026-07-08T18:41:58+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -41,10 +107,10 @@
         "chapter_number": 4,
         "lock_hours": 0,
         "pages": 32,
+        "release_date": "2026-07-08T18:41:58+07:00",
         "id": "Hanpirei-ch-4",
         "r2_prefix": "manga/Hanpirei/4/",
         "title": "Ch. 4",
-        "release_date": "2026-07-08T18:41:58+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -53,10 +119,10 @@
         "chapter_number": 3,
         "lock_hours": 0,
         "pages": 32,
+        "release_date": "2026-07-08T18:41:58+07:00",
         "id": "Hanpirei-ch-3",
         "r2_prefix": "manga/Hanpirei/3/",
         "title": "Ch. 3",
-        "release_date": "2026-07-08T18:41:58+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -524,72 +590,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 4
-      }
-    ]
-  },
-  {
-    "id": "ZunouBattle",
-    "title": "Ore wa Gakuen Zunou Battle no Enshutsuka!: Jishou Mobu ga Kage kara Egaku Saikyou Shujinkou Musou Scenario",
-    "description": "Di SMA Teio, segalanya ditentukan lewat duel permainan. Yang harus kulakukan sebagai perwujudan karakter figuran, Tanaka Kanata, bukanlah meraih kejayaan untuk diriku sendiri! Satu-satunya tugasku adalah “menyutradarai” dari balik layar agar Kiriya, murid pindahan terkuat dari bawah, hingga…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=3",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=3",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@tablet.webp?v=3",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@mobile.webp?v=3"
-    },
-    "genres": [
-      "Action",
-      "Adaptation",
-      "Comedy",
-      "Psychological",
-      "School Life",
-      "Shounen",
-      "Video Games"
-    ],
-    "rating": 8.21,
-    "total_views": 93,
-    "isTrending": true,
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "discord_channel_id": "1517524270371311676",
-    "chapters": [
-      {
-        "chapter_number": 6.3,
-        "lock_hours": 528,
-        "pages": 9,
-        "release_date": "2026-06-30T18:03:47+07:00",
-        "id": "ZunouBattle-ch-6.3",
-        "r2_prefix": "manga/ZunouBattle/6.3/",
-        "title": "Ch. 6.3",
-        "unlockDate": "2026-07-22T11:03:47.000Z",
-        "isLocked": true,
-        "views": 3
-      },
-      {
-        "chapter_number": 6.2,
-        "lock_hours": 192,
-        "pages": 11,
-        "release_date": "2026-06-30T18:03:47+07:00",
-        "id": "ZunouBattle-ch-6.2",
-        "r2_prefix": "manga/ZunouBattle/6.2/",
-        "title": "Ch. 6.2",
-        "unlockDate": "2026-07-08T11:03:47.000Z",
-        "isLocked": false,
-        "views": 1
-      },
-      {
-        "chapter_number": 6.1,
-        "lock_hours": 0,
-        "pages": 12,
-        "release_date": "2026-06-29T20:44:02+07:00",
-        "id": "ZunouBattle-ch-6.1",
-        "r2_prefix": "manga/ZunouBattle/6.1/",
-        "title": "Ch. 6.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 11
       }
     ]
   },

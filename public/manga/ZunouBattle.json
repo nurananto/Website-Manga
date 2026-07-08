@@ -65,6 +65,18 @@
   },
   "chapters": [
     {
+      "chapter_number": 7.1,
+      "lock_hours": 672,
+      "pages": 12,
+      "id": "ZunouBattle-ch-7.1",
+      "r2_prefix": "manga/ZunouBattle/7.1/",
+      "title": "Ch. 7.1",
+      "release_date": "2026-07-08T19:49:50+07:00",
+      "unlockDate": "2026-08-05T12:49:50.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 6.3,
       "lock_hours": 528,
       "pages": 9,
