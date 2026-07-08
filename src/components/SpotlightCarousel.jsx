@@ -13,7 +13,14 @@ const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-300' };
 const SCALES = [1, 0.88];
 
 const PAD_V = 12;
-const META_H = 128;
+
+function getMetaH() {
+  const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
+  if (w < 640)  return 104;
+  if (w < 768)  return 112;
+  if (w < 1024) return 120;
+  return 128;
+}
 
 // Jarak antar cover per breakpoint (makin kecil = makin rapat)
 function getItemGap() {
@@ -64,9 +71,10 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
   const [coverW,    setCoverW]    = useState(getCoverW);
   const [maxSide,   setMaxSide]   = useState(getMaxSide);
   const [itemGap,   setItemGap]   = useState(getItemGap);
+  const [metaH,     setMetaH]     = useState(getMetaH);
 
   const coverH     = Math.round(coverW * 1.5);
-  const containerH = PAD_V + coverH + META_H + PAD_V;
+  const containerH = PAD_V + coverH + metaH + PAD_V;
 
   // How many items to show on each side: capped by breakpoint and available items
   const side = Math.min(maxSide, Math.floor((N - 1) / 2));
@@ -80,7 +88,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
   });
 
   useEffect(() => {
-    const onResize = () => { setCoverW(getCoverW()); setMaxSide(getMaxSide()); setItemGap(getItemGap()); };
+    const onResize = () => { setCoverW(getCoverW()); setMaxSide(getMaxSide()); setItemGap(getItemGap()); setMetaH(getMetaH()); };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
@@ -158,7 +166,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
           const nm        = Math.round(-(coverW * (1 - scale)) / 2) + itemGap;
           const coverOffsetY = isActive
             ? 0
-            : Math.round(Math.min(META_H - 24, Math.max(34, coverH * 0.12)));
+            : Math.round(Math.min(metaH - 24, Math.max(34, coverH * 0.12)));
 
           return (
             <div
