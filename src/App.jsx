@@ -700,10 +700,9 @@ export default function App() {
                   <>
                     {isLoading ? (
                       <div className="flex flex-col gap-2">
-                        {/* Tinggi disamakan persis dengan SpotlightCarousel asli
-                            (containerH = PAD_V*2 + coverW*1.5 per breakpoint getCoverW())
-                            agar tidak ada CLS saat carousel asli menggantikan skeleton ini. */}
-                        <div className="h-[249px] sm:h-[306px] md:h-[369px] lg:h-[414px] rounded-xl bg-surface-container animate-pulse border border-white/5" />
+                        {/* Tinggi disamakan persis dengan SpotlightCarousel asli:
+                            cover + metadata + padding agar tidak ada CLS. */}
+                        <div className="h-[361px] sm:h-[418px] md:h-[481px] lg:h-[526px] rounded-xl bg-surface-container animate-pulse border border-white/5" />
                         <div className="flex justify-center gap-2">
                           <div className="h-1.5 w-6 rounded-full bg-surface-container-high animate-pulse" />
                           <div className="h-1.5 w-1.5 rounded-full bg-surface-container-high animate-pulse" />
@@ -711,9 +710,25 @@ export default function App() {
                       </div>
                     ) : MANGA_LIST.length > 0 ? (
                     <>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <span className="h-7 w-1 rounded-full bg-primary shrink-0" aria-hidden="true" />
+                        <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface truncate">
+                          Semua Manga
+                        </h2>
+                      </div>
+                    </div>
+
                     <SpotlightCarousel
                       mangaList={MANGA_LIST}
                       onViewManga={(manga) => { navigate(`/${manga.id}`); }}
+                      onReadNow={async (manga) => {
+                        const r = await fetch(`/manga/${manga.id}.json`, { cache: 'no-cache' });
+                        if (!r.ok) return;
+                        const fullManga = await r.json();
+                        const oldest = [...(fullManga.chapters || [])].sort((a, b) => a.chapter_number - b.chapter_number)[0];
+                        if (oldest) handleReadChapter(oldest, fullManga.title, fullManga);
+                      }}
                     />
 
                     <FeaturedCarousel
@@ -741,7 +756,7 @@ export default function App() {
                   <div className="flex items-center justify-between border-b border-white/5 pb-4">
                     <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface flex items-center gap-3">
                       <TrendingUp className="w-6 h-6 text-primary" />
-                      {searchQuery ? `Search Results for "${searchQuery}"` : 'Latest Updates'}
+                      {searchQuery ? `Search Results for "${searchQuery}"` : 'Update Terbaru'}
                     </h2>
                     <button
                       onClick={() => setIsSearchOpen(!isSearchOpen)}
@@ -782,7 +797,11 @@ export default function App() {
                     <div className="flex flex-col gap-4">
                       {/* key per-posisi (i) → DOM kartu dipakai ulang antar halaman: cover
                           hanya ganti src (tak remount) sehingga transisi mulus, tak berkedip. */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6">
+                      <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 ${
+                        totalPages > 1
+                          ? 'min-h-[1040px] sm:min-h-[1220px] md:min-h-[647px] lg:min-h-[692px] xl:min-h-[464px]'
+                          : ''
+                      }`}>
                         {paginatedManga.map((manga, i) => (
                           <div key={i}>
                             <MangaCard

@@ -76,7 +76,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
           {/* Background Image with dark overlays */}
           <img
             alt=""
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-top"
             src={imgUrl(activeManga.coverUrls?.mobile || activeManga.coverUrl)}
           />
           {/* Vignette Overlay */}

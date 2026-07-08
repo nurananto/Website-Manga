@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { imgUrl } from '../utils';
-import { Star } from 'lucide-react';
+import { Info, Play, Star } from 'lucide-react';
 
 const STATUS_CFG = {
   'Tamat':   { label: 'END',     textCls: 'text-red-300' },
@@ -14,6 +14,7 @@ const SCALES    = [1, 0.88];
 const OPACITIES = [1, 0.78, 0.78, 0.62, 0.5, 0.4];
 
 const PAD_V = 12;
+const META_H = 112;
 
 // Jarak antar cover per breakpoint (makin kecil = makin rapat)
 function getItemGap() {
@@ -58,7 +59,7 @@ function getMostRecentIdx(list) {
   return best;
 }
 
-export default function SpotlightCarousel({ mangaList, onViewManga }) {
+export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow }) {
   const N = mangaList.length;
   const [activeIdx, setActiveIdx] = useState(() => getMostRecentIdx(mangaList));
   const [coverW,    setCoverW]    = useState(getCoverW);
@@ -66,7 +67,8 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
   const [itemGap,   setItemGap]   = useState(getItemGap);
 
   const coverH     = Math.round(coverW * 1.5);
-  const containerH = PAD_V + coverH + PAD_V;
+  const containerH = PAD_V + coverH + META_H + PAD_V;
+  const metaW      = Math.max(coverW, coverW < 230 ? 224 : coverW);
 
   // How many items to show on each side: capped by breakpoint and available items
   const side = Math.min(maxSide, Math.floor((N - 1) / 2));
@@ -108,8 +110,17 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
   }, [activeIdx]); // eslint-disable-line
 
   const handleClick = (logIdx, dist) => {
-    if (dist === 0) onViewManga(mangaList[logIdx]);
-    else setActiveIdx(logIdx);
+    if (dist > 0) setActiveIdx(logIdx);
+  };
+
+  const handleReadNow = (e, manga) => {
+    e.stopPropagation();
+    onReadNow?.(manga);
+  };
+
+  const handleViewDetail = (e, manga) => {
+    e.stopPropagation();
+    onViewManga?.(manga);
   };
 
   const active = mangaList[activeIdx];
@@ -125,16 +136,16 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
             src={imgUrl(active?.coverUrls?.mobile || active?.coverUrl)} alt=""
             loading="eager"
             fetchpriority="high"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-top"
           />
           <div className="absolute inset-0 bg-black/45" />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/78 via-surface/35 to-surface/78" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/84 via-transparent to-surface/84" />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface/95 via-surface/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/44 to-transparent" />
       </div>
 
       {/* ── Cover row — centered flex, no scroll ── */}
       <div
-        className="absolute inset-0 flex items-center justify-center z-10"
+        className="absolute inset-0 flex items-start justify-center z-10"
         style={{ paddingTop: PAD_V, paddingBottom: PAD_V }}
       >
         {items.map(({ logIdx, offset, dist }) => {
@@ -151,11 +162,11 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
             <div
               key={offset}   // stable slot key — content swaps, scale transitions smoothly
               onClick={() => handleClick(logIdx, dist)}
-              className="flex-shrink-0 cursor-pointer"
+              className={`flex-shrink-0 ${isActive ? 'cursor-default' : 'cursor-pointer'}`}
               style={{
                 width:            coverW,
                 transform:        `scale(${scale})`,
-                transformOrigin:  'center center',
+                transformOrigin:  'top center',
                 opacity,
                 marginLeft:       nm,
                 marginRight:      nm,
@@ -181,33 +192,52 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
                 {isActive && (
                   <div className="absolute inset-0 rounded-xl ring-[2px] ring-white/30 ring-inset pointer-events-none" />
                 )}
-
-                {/* Rating badge — top left */}
-                {isActive && rating && (
-                  <div className="absolute top-1.5 left-1.5 h-4 sm:h-5 flex items-center gap-[3px] bg-black/70 backdrop-blur-sm px-1 sm:px-1.5 rounded">
-                    <Star className="w-2 h-2 sm:w-[9px] sm:h-[9px] text-amber-400 fill-current shrink-0" />
-                    <span className="font-label-sm text-[8px] sm:text-[9px] font-black text-white leading-none">{rating}</span>
-                  </div>
-                )}
-
-                {/* Status badge — top right */}
-                {isActive && (
-                  <div className="absolute top-1.5 right-1.5 h-4 sm:h-5 flex items-center bg-black/70 backdrop-blur-sm px-1 sm:px-1.5 rounded">
-                    <span className={`font-label-sm text-[8px] sm:text-[9px] font-black uppercase leading-none ${statusCfg.textCls}`}>
-                      {statusCfg.label}
-                    </span>
-                  </div>
-                )}
-
-                {/* Title — gradient overlay at bottom of cover */}
-                {isActive && (
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent pt-8 pb-2 px-2">
-                    <p className="font-body-md text-xs font-bold text-white/95 text-center truncate leading-tight">
-                      {manga.title}
-                    </p>
-                  </div>
-                )}
               </div>
+
+              {isActive && (
+                <div
+                  className="relative left-1/2 mt-2 flex h-[104px] -translate-x-1/2 flex-col items-center gap-1.5 px-0.5"
+                  style={{ width: metaW }}
+                >
+                  <div key={`spotlight-meta-${manga.id}`} className="flex w-full flex-col items-center gap-1.5 animate-[spotlightMetaIn_0.38s_cubic-bezier(0.22,1,0.36,1)]">
+                    <h3 className="w-full truncate text-center font-headline-md text-sm sm:text-base md:text-lg font-black leading-tight text-on-surface">
+                      {manga.title}
+                    </h3>
+
+                    <div className="flex w-full items-center justify-center gap-1.5 overflow-hidden font-body-md text-[10px] sm:text-xs md:text-sm leading-none">
+                      {rating && (
+                        <span className="flex min-w-0 items-center gap-1 font-semibold text-amber-400">
+                          <Star className="h-3 w-3 sm:h-3.5 sm:w-3.5 fill-current shrink-0" />
+                          <span>{rating}</span>
+                        </span>
+                      )}
+                      {rating && <span className="text-white/35">|</span>}
+                      <span className={`min-w-0 truncate ${statusCfg.textCls}`}>{statusCfg.label}</span>
+                      <span className="text-white/35">|</span>
+                      <span className="min-w-0 truncate text-white">{manga.chapters?.length || 0} Chapter</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-1 grid w-full grid-cols-2 gap-1.5 sm:gap-2">
+                    <button
+                      type="button"
+                      onClick={(e) => handleReadNow(e, manga)}
+                      className="flex h-8 sm:h-9 md:h-10 items-center justify-center gap-1 sm:gap-1.5 rounded-lg md:rounded-xl bg-white hover:bg-white/90 px-2 sm:px-3 md:px-4 text-[10px] sm:text-xs md:text-sm font-bold leading-none text-black shadow-md active:scale-[0.98] transition-all cursor-pointer"
+                    >
+                      <Play className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 fill-current shrink-0" />
+                      <span className="truncate">Baca Sekarang</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => handleViewDetail(e, manga)}
+                      className="flex h-8 sm:h-9 md:h-10 items-center justify-center gap-1 sm:gap-1.5 rounded-lg md:rounded-xl border border-white/10 bg-surface-container-high hover:bg-surface-container-highest px-2 sm:px-3 md:px-4 text-[10px] sm:text-xs md:text-sm font-bold leading-none text-white shadow-md active:scale-[0.98] transition-all cursor-pointer"
+                    >
+                      <Info className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 shrink-0" />
+                      <span className="truncate">View Detail</span>
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })}

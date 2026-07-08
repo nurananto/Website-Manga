@@ -118,6 +118,11 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes spotlightMetaIn {
+  from { opacity: 0; transform: translateY(0.45rem) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 @keyframes featuredSlideIn {
   from { opacity: 0; transform: translateX(1.25rem); }
   to { opacity: 1; transform: translateX(0); }
