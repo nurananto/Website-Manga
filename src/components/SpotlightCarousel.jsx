@@ -68,7 +68,6 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
 
   const coverH     = Math.round(coverW * 1.5);
   const containerH = PAD_V + coverH + META_H + PAD_V;
-  const metaW      = 'min(calc(100vw - 1rem), 72rem)';
 
   // How many items to show on each side: capped by breakpoint and available items
   const side = Math.min(maxSide, Math.floor((N - 1) / 2));
@@ -124,10 +123,13 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
   };
 
   const active = mangaList[activeIdx];
+  const activeStatusCfg = STATUS_CFG[active?.status] || ONGOING_CFG;
+  const activeRating = active?.rating != null ? Number(active.rating).toFixed(1) : null;
+  const activeChapterCount = active?.chapter_count ?? active?.chapters?.length ?? 0;
 
   return (
     <div
-      className="relative w-full rounded-xl overflow-hidden"
+      className="relative w-full rounded-xl overflow-hidden border border-brand-pulse"
       style={{ height: containerH }}
     >
       {/* ── Darkened background from active cover ── */}
@@ -136,12 +138,12 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
             src={imgUrl(active?.coverUrls?.mobile || active?.coverUrl)} alt=""
             loading="eager"
             fetchpriority="high"
-            className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.58] saturate-[0.9]"
+            className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
           />
-          <div className="absolute inset-0 bg-black/38" />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/42 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/82 via-surface/28 to-transparent" />
-          <div className="absolute inset-0 shadow-[inset_0_24px_72px_rgba(0,0,0,0.55),inset_0_-64px_96px_rgba(0,0,0,0.9),inset_72px_0_96px_rgba(0,0,0,0.68),inset_-72px_0_96px_rgba(0,0,0,0.68)]" />
+          <div className="absolute inset-0 bg-black/28" />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface/86 via-surface/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface/72 via-surface/18 to-transparent" />
+          <div className="absolute inset-0 shadow-[inset_0_22px_64px_rgba(0,0,0,0.45),inset_0_-58px_90px_rgba(0,0,0,0.84),inset_64px_0_84px_rgba(0,0,0,0.58),inset_-64px_0_84px_rgba(0,0,0,0.58)]" />
       </div>
 
       {/* ── Cover row — centered flex, no scroll ── */}
@@ -156,9 +158,6 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
           const isActive  = dist === 0;
           // Negative margin collapses the visual gap created by scale shrink
           const nm        = Math.round(-(coverW * (1 - scale)) / 2) + itemGap;
-          const statusCfg = STATUS_CFG[manga.status] || ONGOING_CFG;
-          const rating    = manga.rating != null ? Number(manga.rating).toFixed(1) : null;
-          const chapterCount = manga.chapter_count ?? manga.chapters?.length ?? 0;
           const coverOffsetY = isActive
             ? 0
             : Math.round(Math.min(META_H - 24, Math.max(34, coverH * 0.12)));
@@ -193,7 +192,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
                   alt={manga.title}
                   loading="eager"
                   fetchpriority={isActive ? 'high' : 'low'}
-                  className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-105 saturate-105' : 'brightness-[0.58] saturate-[0.82]'}`}
+                  className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-100 saturate-100' : 'brightness-[0.58] saturate-[0.82]'}`}
                   draggable={false}
                 />
 
@@ -203,54 +202,54 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
                 )}
               </div>
 
-              {isActive && (
-                <div
-                  className="relative left-1/2 mt-2 flex h-[104px] -translate-x-1/2 flex-col items-center gap-1.5 px-0.5"
-                  style={{ width: metaW }}
-                >
-                  <div key={`spotlight-meta-${manga.id}`} className="flex w-full flex-col items-center gap-1.5 animate-[spotlightMetaIn_0.38s_cubic-bezier(0.22,1,0.36,1)]">
-                    <h3 className="w-full truncate text-center font-headline-md text-base sm:text-lg md:text-xl font-black leading-tight text-on-surface">
-                      {manga.title}
-                    </h3>
-
-                    <div className="inline-flex max-w-full items-center justify-center gap-1.5 overflow-hidden border-y border-white/18 px-2.5 py-1.5 font-body-md text-[10px] sm:text-xs md:text-sm leading-none">
-                      {rating && (
-                        <span className="flex min-w-0 items-center gap-1 font-semibold text-amber-400">
-                          <Star className="h-3 w-3 sm:h-3.5 sm:w-3.5 fill-current shrink-0" />
-                          <span>{rating}</span>
-                        </span>
-                      )}
-                      {rating && <span className="font-black text-white/50">|</span>}
-                      <span className={`min-w-0 truncate ${statusCfg.textCls}`}>{statusCfg.label}</span>
-                      <span className="font-black text-white/50">|</span>
-                      <span className="min-w-0 truncate text-white">{chapterCount} Chapter</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-1 flex w-full items-center justify-center gap-2 sm:gap-3">
-                    <button
-                      type="button"
-                      onClick={(e) => handleReadNow(e, manga)}
-                      className="flex items-center gap-1.5 sm:gap-2 bg-white hover:bg-white/90 text-black font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
-                    >
-                      <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-current" />
-                      Read
-                    </button>
-                    <button
-                      type="button"
-                      onClick={(e) => handleViewDetail(e, manga)}
-                      className="flex items-center gap-1.5 sm:gap-2 bg-surface-container-high hover:bg-surface-container-highest border border-white/10 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
-                    >
-                      <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
-                      View
-                    </button>
-                  </div>
-                </div>
-              )}
             </div>
           );
         })}
       </div>
+
+      {active && (
+        <div
+          key={`spotlight-meta-${active.id}`}
+          className="absolute inset-x-2 sm:inset-x-4 z-20 flex flex-col items-center gap-1.5 px-1 animate-[spotlightMetaIn_0.38s_cubic-bezier(0.22,1,0.36,1)]"
+          style={{ top: PAD_V + coverH + 8 }}
+        >
+          <h3 className="w-full max-w-full truncate text-center font-headline-md text-base sm:text-lg md:text-xl font-black leading-tight text-on-surface">
+            {active.title}
+          </h3>
+
+          <div className="inline-flex max-w-full items-center justify-center gap-1.5 overflow-hidden border-y border-white/18 px-2.5 py-1.5 font-body-md text-[10px] sm:text-xs md:text-sm leading-none">
+            {activeRating && (
+              <span className="flex min-w-0 items-center gap-1 font-semibold text-amber-400">
+                <Star className="h-3 w-3 sm:h-3.5 sm:w-3.5 fill-current shrink-0" />
+                <span>{activeRating}</span>
+              </span>
+            )}
+            {activeRating && <span className="font-black text-white/50">|</span>}
+            <span className={`min-w-0 truncate ${activeStatusCfg.textCls}`}>{activeStatusCfg.label}</span>
+            <span className="font-black text-white/50">|</span>
+            <span className="min-w-0 truncate text-white">{activeChapterCount} Chapter</span>
+          </div>
+
+          <div className="mt-1 flex w-full items-center justify-center gap-2 sm:gap-3">
+            <button
+              type="button"
+              onClick={(e) => handleReadNow(e, active)}
+              className="flex items-center gap-1.5 sm:gap-2 bg-white hover:bg-white/90 text-black font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
+            >
+              <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-current" />
+              Read
+            </button>
+            <button
+              type="button"
+              onClick={(e) => handleViewDetail(e, active)}
+              className="flex items-center gap-1.5 sm:gap-2 bg-surface-container-high hover:bg-surface-container-highest border border-white/10 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
+            >
+              <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
+              View
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
