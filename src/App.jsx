@@ -702,7 +702,7 @@ export default function App() {
                       <div className="flex flex-col gap-2">
                         {/* Tinggi disamakan persis dengan SpotlightCarousel asli:
                             cover + metadata + padding agar tidak ada CLS. */}
-                        <div className="h-[361px] sm:h-[418px] md:h-[481px] lg:h-[526px] rounded-xl bg-surface-container animate-pulse border border-white/5" />
+                        <div className="h-[377px] sm:h-[434px] md:h-[497px] lg:h-[542px] rounded-xl bg-surface-container animate-pulse border border-white/5" />
                         <div className="flex justify-center gap-2">
                           <div className="h-1.5 w-6 rounded-full bg-surface-container-high animate-pulse" />
                           <div className="h-1.5 w-1.5 rounded-full bg-surface-container-high animate-pulse" />

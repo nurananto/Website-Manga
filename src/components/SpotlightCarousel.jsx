@@ -14,7 +14,7 @@ const SCALES    = [1, 0.88];
 const OPACITIES = [1, 0.78, 0.78, 0.62, 0.5, 0.4];
 
 const PAD_V = 12;
-const META_H = 112;
+const META_H = 128;
 
 // Jarak antar cover per breakpoint (makin kecil = makin rapat)
 function getItemGap() {
@@ -230,7 +230,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
             <span className="min-w-0 truncate text-white">{activeChapterCount} Chapter</span>
           </div>
 
-          <div className="mt-1 flex w-full items-center justify-center gap-2 sm:gap-3">
+          <div className="mt-2 flex w-full items-center justify-center gap-2 sm:gap-3">
             <button
               type="button"
               onClick={(e) => handleReadNow(e, active)}
