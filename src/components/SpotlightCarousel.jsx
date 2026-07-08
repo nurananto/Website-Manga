@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { imgUrl } from '../utils';
-import { Info, Play, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 
 const STATUS_CFG = {
   'Tamat':   { label: 'END',     textCls: 'text-red-300' },
@@ -29,10 +29,10 @@ function getCoverMetaGap() {
 
 function getMetaH() {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
-  if (w < 640)  return 86;
-  if (w < 768)  return 94;
-  if (w < 1024) return 102;
-  return 120;
+  if (w < 640)  return 52;
+  if (w < 768)  return 58;
+  if (w < 1024) return 64;
+  return 72;
 }
 
 // Jarak antar cover per breakpoint (makin kecil = makin rapat)
@@ -78,9 +78,11 @@ function getMostRecentIdx(list) {
   return best;
 }
 
-export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow }) {
+export default function SpotlightCarousel({ mangaList, onViewManga }) {
   const N = mangaList.length;
   const [activeIdx, setActiveIdx] = useState(() => getMostRecentIdx(mangaList));
+  const [isPaused, setIsPaused] = useState(false);
+  const [pendingDetailIdx, setPendingDetailIdx] = useState(null);
   const [coverW,    setCoverW]    = useState(getCoverW);
   const [maxSide,   setMaxSide]   = useState(getMaxSide);
   const [itemGap,   setItemGap]   = useState(getItemGap);
@@ -116,12 +118,13 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
   }, []);
 
   useEffect(() => {
-    if (N <= 1) return undefined;
+    if (N <= 1 || isPaused) return undefined;
     const timer = setInterval(() => {
       setActiveIdx((idx) => (idx + 1) % N);
+      setPendingDetailIdx(null);
     }, 8000);
     return () => clearInterval(timer);
-  }, [N]);
+  }, [N, isPaused]);
 
   // Preload all covers in the current window + 1 step ahead on each side
   useEffect(() => {
@@ -137,18 +140,14 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
     toLoad.forEach(url => { const img = new Image(); img.fetchPriority = 'low'; img.src = url; });
   }, [activeIdx]); // eslint-disable-line
 
-  const handleClick = (logIdx, dist) => {
-    if (dist > 0) setActiveIdx(logIdx);
-  };
-
-  const handleReadNow = (e, manga) => {
-    e.stopPropagation();
-    onReadNow?.(manga);
-  };
-
-  const handleViewDetail = (e, manga) => {
-    e.stopPropagation();
-    onViewManga?.(manga);
+  const handleClick = (logIdx) => {
+    if (isPaused && pendingDetailIdx === logIdx) {
+      onViewManga?.(mangaList[logIdx]);
+      return;
+    }
+    setIsPaused(true);
+    setPendingDetailIdx(logIdx);
+    setActiveIdx(logIdx);
   };
 
   const active = mangaList[activeIdx];
@@ -193,8 +192,8 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
           return (
             <div
               key={offset}   // stable slot key — content swaps, scale transitions smoothly
-              onClick={() => handleClick(logIdx, dist)}
-              className={`flex-shrink-0 ${isActive ? 'cursor-default' : 'cursor-pointer'}`}
+              onClick={() => handleClick(logIdx)}
+              className="flex-shrink-0 cursor-pointer"
               style={{
                 width:            coverW,
                 transform:        `translateY(${coverOffsetY}px) scale(${scale})`,
@@ -261,24 +260,6 @@ export default function SpotlightCarousel({ mangaList, onViewManga, onReadNow })
             <span className="min-w-0 truncate text-white">{activeChapterCount} Chapter</span>
           </div>
 
-          <div className="mt-2 flex w-full items-center justify-center gap-2 sm:gap-3">
-            <button
-              type="button"
-              onClick={(e) => handleReadNow(e, active)}
-              className="flex items-center gap-1.5 sm:gap-2 bg-white hover:bg-white/90 text-black font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
-            >
-              <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-current" />
-              Read
-            </button>
-            <button
-              type="button"
-              onClick={(e) => handleViewDetail(e, active)}
-              className="flex items-center gap-1.5 sm:gap-2 bg-surface-container-high hover:bg-surface-container-highest border border-white/10 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
-            >
-              <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
-              View
-            </button>
-          </div>
         </div>
       )}
     </div>

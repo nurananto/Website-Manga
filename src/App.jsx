@@ -702,7 +702,7 @@ export default function App() {
                       <div className="flex flex-col gap-2">
                         {/* Tinggi disamakan persis dengan SpotlightCarousel asli:
                             cover + metadata + padding agar tidak ada CLS. */}
-                        <div className="h-[357px] sm:h-[418px] md:h-[484px] lg:h-[542px] rounded-xl bg-surface-container animate-pulse border border-white/5" />
+                        <div className="h-[323px] sm:h-[382px] md:h-[446px] lg:h-[494px] rounded-xl bg-surface-container animate-pulse border border-white/5" />
                         <div className="flex justify-center gap-2">
                           <div className="h-1.5 w-6 rounded-full bg-surface-container-high animate-pulse" />
                           <div className="h-1.5 w-1.5 rounded-full bg-surface-container-high animate-pulse" />
@@ -713,13 +713,6 @@ export default function App() {
                     <SpotlightCarousel
                       mangaList={MANGA_LIST}
                       onViewManga={(manga) => { navigate(`/${manga.id}`); }}
-                      onReadNow={async (manga) => {
-                        const r = await fetch(`/manga/${manga.id}.json`, { cache: 'no-cache' });
-                        if (!r.ok) return;
-                        const fullManga = await r.json();
-                        const oldest = [...(fullManga.chapters || [])].sort((a, b) => a.chapter_number - b.chapter_number)[0];
-                        if (oldest) handleReadChapter(oldest, fullManga.title, fullManga);
-                      }}
                     />
 
                     <FeaturedCarousel
