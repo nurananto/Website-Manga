@@ -15,7 +15,7 @@
     "School Life",
     "Slice of Life"
   ],
-  "description": "akura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik tiri dan pasangan kekasih yang tinggal serumah.Dan tidak ada satu pun teman sekelas mereka yang mengetahui fakta itu.Meski Sakura tampil bersinar dan ceria di sekolah, begitu sampai di rumah, ia langsung santai dan tergila-gila dengan masakan Houri.Dan Houri yang bertanggung jawab atas urusan makan pun sebenarnya sangat menikmati itu――.Sebuah kisah manis tentang memberi makan dan menikmati kehidupan ganda bersama gyaru imut di sekolah dan di rumah!",
+  "description": "Sakura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik tiri dan pasangan kekasih yang tinggal serumah.Dan tidak ada satu pun teman sekelas mereka yang mengetahui fakta itu.Meski Sakura tampil bersinar dan ceria di sekolah, begitu sampai di rumah, ia langsung santai dan tergila-gila dengan masakan Houri.Dan Houri yang bertanggung jawab atas urusan makan pun sebenarnya sangat menikmati itu――.Sebuah kisah manis tentang memberi makan dan menikmati kehidupan ganda bersama gyaru imut di sekolah dan di rumah!",
   "covers": [
     "manga/ClassdeIchiban/covers/cover.webp",
     "manga/ClassdeIchiban/covers/cover@tablet.webp",
@@ -67,13 +67,25 @@
   },
   "chapters": [
     {
+      "chapter_number": 13.2,
+      "lock_hours": 0,
+      "pages": 8,
+      "id": "ClassdeIchiban-ch-13.2",
+      "r2_prefix": "manga/ClassdeIchiban/13.2/",
+      "title": "Ch. 13.2",
+      "release_date": "2026-07-09T20:22:59+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 13.1,
       "lock_hours": 0,
       "pages": 11,
+      "release_date": "2026-07-09T19:38:22+07:00",
       "id": "ClassdeIchiban-ch-13.1",
       "r2_prefix": "manga/ClassdeIchiban/13.1/",
       "title": "Ch. 13.1",
-      "release_date": "2026-07-09T19:38:22+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0

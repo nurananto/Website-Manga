@@ -2,7 +2,7 @@
   {
     "id": "ClassdeIchiban",
     "title": "Class de Ichiban Kawaii Gal wo Ezuke shiteiru Hanashi",
-    "description": "akura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
+    "description": "Sakura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
     "status": "Ongoing",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=1",
     "coverUrls": {
@@ -20,7 +20,7 @@
       "Slice of Life"
     ],
     "rating": 7.69,
-    "chapter_count": 14,
+    "chapter_count": 15,
     "total_views": 15,
     "isTrending": false,
     "next_update": null,
@@ -29,13 +29,25 @@
     "discord_channel_id": "1517523866111447143",
     "chapters": [
       {
+        "chapter_number": 13.2,
+        "lock_hours": 0,
+        "pages": 8,
+        "id": "ClassdeIchiban-ch-13.2",
+        "r2_prefix": "manga/ClassdeIchiban/13.2/",
+        "title": "Ch. 13.2",
+        "release_date": "2026-07-09T20:22:59+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
         "chapter_number": 13.1,
         "lock_hours": 0,
         "pages": 11,
+        "release_date": "2026-07-09T19:38:22+07:00",
         "id": "ClassdeIchiban-ch-13.1",
         "r2_prefix": "manga/ClassdeIchiban/13.1/",
         "title": "Ch. 13.1",
-        "release_date": "2026-07-09T19:38:22+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -51,18 +63,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 5
-      },
-      {
-        "chapter_number": 11,
-        "lock_hours": 0,
-        "pages": 22,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "id": "ClassdeIchiban-ch-11",
-        "r2_prefix": "manga/ClassdeIchiban/11/",
-        "title": "Ch. 11",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 1
       }
     ]
   },
