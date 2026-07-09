@@ -1,5 +1,89 @@
 [
   {
+    "id": "AotoSakura",
+    "title": "Ao to Sakura",
+    "description": "Siswa SMA yang sulit berbaur dengan kelasnya, Fujieda Ao. Sepulang sekolah, ia selalu menyambangi perpustakaan lokal, tempat ia bertemu dengan seorang gadis. Gadis itu cerah, polos, dan penuh tawa — kebalikan dari dirinya. Namanya, Hidaka Sakura.Ao perlahan mulai tertarik pada Sakura. Pertemuan itu…",
+    "status": "Oneshot",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Award Winning",
+      "Comedy",
+      "Drama",
+      "Oneshot",
+      "Romance",
+      "School Life",
+      "Slice of Life"
+    ],
+    "rating": 8.35,
+    "chapter_count": 1,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": "oneshot",
+        "title": "Oneshot",
+        "lock_hours": 0,
+        "pages": 31,
+        "id": "AotoSakura-ch-oneshot",
+        "r2_prefix": "manga/AotoSakura/oneshot/",
+        "release_date": "2026-07-09T21:15:37+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
+    "id": "Yuuri-kun",
+    "title": "Yuuri-kun to Chihiro-chan",
+    "description": "Tokoh utama, Chihiro, akan segera masuk sekolah menengah atas dan berharap dapat bertemu kembali dengan teman masa kecilnya, Yuuri. Meskipun mereka berdua bersekolah di sekolah dasar yang berbeda, mereka telah bertukar surat selama bertahun-tahun dan akhirnya memutuskan untuk bersekolah di sekolah…",
+    "status": "Oneshot",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Comedy",
+      "Full Color",
+      "Long Strip",
+      "Oneshot",
+      "Romance",
+      "School Life",
+      "Slice of Life"
+    ],
+    "rating": 8.83,
+    "chapter_count": 1,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": "oneshot",
+        "title": "Oneshot",
+        "lock_hours": 0,
+        "pages": 32,
+        "id": "Yuuri-kun-ch-oneshot",
+        "r2_prefix": "manga/Yuuri-kun/oneshot/",
+        "release_date": "2026-07-09T21:15:37+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "Mutsuko",
     "title": "Mutsuko, Seiwo Tsukemasu!",
     "description": "Satu bunga yang mewarnai kantor—Yamamori Mutsuko. Diam-diam, ia memendam perasaan pada atasannya… tapi tunggu dulu, apa nggak terlalu ekstrem caranya!? Beda usia diatasi dengan makanan penambah stamina! Inilah pembuka komedi romantis kantor penuh halu, dipersembahkan untuk seluruh pegawai kantoran…",

@@ -6,7 +6,15 @@
   "type": "MANGA",
   "author": "Kasuka Io",
   "artist": "Matsumoto Komikan",
-  "genres": ["Oneshot", "Award Winning", "Romance", "Comedy", "Drama", "School Life", "Slice of Life"],
+  "genres": [
+    "Oneshot",
+    "Award Winning",
+    "Romance",
+    "Comedy",
+    "Drama",
+    "School Life",
+    "Slice of Life"
+  ],
   "description": "Siswa SMA yang sulit berbaur dengan kelasnya, Fujieda Ao. Sepulang sekolah, ia selalu menyambangi perpustakaan lokal, tempat ia bertemu dengan seorang gadis. Gadis itu cerah, polos, dan penuh tawa — kebalikan dari dirinya. Namanya, Hidaka Sakura.Ao perlahan mulai tertarik pada Sakura. Pertemuan itu pun lambat laun berubah menjadi sebuah 'cinta'.",
   "covers": [
     "manga/AotoSakura/covers/cover.webp",
@@ -20,5 +28,19 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_version": 2,
+  "cover_gallery": [
+    {
+      "file": "8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.webp",
+        "manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@tablet.webp",
+        "manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }

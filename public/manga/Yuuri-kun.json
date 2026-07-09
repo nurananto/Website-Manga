@@ -7,13 +7,13 @@
   "author": "Itsuki Sakusa",
   "artist": "Itsuki Sakusa",
   "genres": [
-    "Oneshot",
-    "Long Strip",
-    "Romance",
     "Comedy",
+    "Full Color",
+    "Long Strip",
+    "Oneshot",
+    "Romance",
     "School Life",
-    "Slice of Life",
-    "Full Color"
+    "Slice of Life"
   ],
   "description": "Tokoh utama, Chihiro, akan segera masuk sekolah menengah atas dan berharap dapat bertemu kembali dengan teman masa kecilnya, Yuuri. Meskipun mereka berdua bersekolah di sekolah dasar yang berbeda, mereka telah bertukar surat selama bertahun-tahun dan akhirnya memutuskan untuk bersekolah di sekolah menengah atas yang sama! Namun, ketika ia bertemu kembali dengan Yuuri setelah sekian lama, ia mendapati bahwa Yuuri adalah gadis yang sangat cantik, berbeda dengan laki-laki yang ia ingat! Terlebih lagi, tampaknya Yuuri juga menganggap Chihiro sebagai seorang gadis...! Apa yang akan terjadi pada kehidupan sekolah menengah mereka setelah reuni yang tak terduga ini?",
   "covers": [
@@ -33,14 +33,36 @@
   "cover_version": 2,
   "cover_gallery": [
     {
-      "file": "8235d341-4f78-4d32-a747-08ba7c4afa58.png",
       "volume": "0",
-      "keys": [
-        "manga/Yuuri-kun/covers/gallery/8235d341-4f78-4d32-a747-08ba7c4afa58.webp",
-        "manga/Yuuri-kun/covers/gallery/8235d341-4f78-4d32-a747-08ba7c4afa58@tablet.webp",
-        "manga/Yuuri-kun/covers/gallery/8235d341-4f78-4d32-a747-08ba7c4afa58@mobile.webp"
-      ],
-      "widths": "1280x960x640"
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/gallery/8235d341-4f78-4d32-a747-08ba7c4afa58.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/gallery/8235d341-4f78-4d32-a747-08ba7c4afa58@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/gallery/8235d341-4f78-4d32-a747-08ba7c4afa58@mobile.webp?v=2"
+      }
+    }
+  ],
+  "mangadex_id": "16e716dd-0774-4332-a5d4-8fad6e9e09a7",
+  "rating": 8.83,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover.webp?v=2",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover@mobile.webp?v=2"
+  },
+  "chapters": [
+    {
+      "chapter_number": "oneshot",
+      "title": "Oneshot",
+      "lock_hours": 0,
+      "pages": 32,
+      "id": "Yuuri-kun-ch-oneshot",
+      "r2_prefix": "manga/Yuuri-kun/oneshot/",
+      "release_date": "2026-07-09T21:15:37+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
     }
   ]
 }

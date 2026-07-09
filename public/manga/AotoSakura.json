@@ -1,0 +1,68 @@
+{
+  "id": "AotoSakura",
+  "title": "Ao to Sakura",
+  "alt_title": "あおとさくら",
+  "status": "Oneshot",
+  "type": "MANGA",
+  "author": "Kasuka Io",
+  "artist": "Matsumoto Komikan",
+  "genres": [
+    "Award Winning",
+    "Comedy",
+    "Drama",
+    "Oneshot",
+    "Romance",
+    "School Life",
+    "Slice of Life"
+  ],
+  "description": "Siswa SMA yang sulit berbaur dengan kelasnya, Fujieda Ao. Sepulang sekolah, ia selalu menyambangi perpustakaan lokal, tempat ia bertemu dengan seorang gadis. Gadis itu cerah, polos, dan penuh tawa — kebalikan dari dirinya. Namanya, Hidaka Sakura.Ao perlahan mulai tertarik pada Sakura. Pertemuan itu pun lambat laun berubah menjadi sebuah 'cinta'.",
+  "covers": [
+    "manga/AotoSakura/covers/cover.webp",
+    "manga/AotoSakura/covers/cover@tablet.webp",
+    "manga/AotoSakura/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/7cf10b89-2c28-4df5-9087-39f076e79e4a/ao-to-sakura",
+  "raw_url": "https://www.manga-up.com/titles/1208",
+  "discord_channel_id": "",
+  "tamat_at_chapter": null,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": "8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.jpg",
+  "cover_widths": "1280x960x640",
+  "cover_version": 2,
+  "cover_gallery": [
+    {
+      "volume": "1",
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@mobile.webp?v=2"
+      }
+    }
+  ],
+  "mangadex_id": "7cf10b89-2c28-4df5-9087-39f076e79e4a",
+  "rating": 8.35,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover.webp?v=2",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@mobile.webp?v=2"
+  },
+  "chapters": [
+    {
+      "chapter_number": "oneshot",
+      "title": "Oneshot",
+      "lock_hours": 0,
+      "pages": 31,
+      "id": "AotoSakura-ch-oneshot",
+      "r2_prefix": "manga/AotoSakura/oneshot/",
+      "release_date": "2026-07-09T21:15:37+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    }
+  ]
+}
