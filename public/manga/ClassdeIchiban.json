@@ -67,6 +67,18 @@
   },
   "chapters": [
     {
+      "chapter_number": 13.1,
+      "lock_hours": 0,
+      "pages": 11,
+      "id": "ClassdeIchiban-ch-13.1",
+      "r2_prefix": "manga/ClassdeIchiban/13.1/",
+      "title": "Ch. 13.1",
+      "release_date": "2026-07-09T19:38:22+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 12,
       "lock_hours": 0,
       "pages": 23,

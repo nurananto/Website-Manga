@@ -1,5 +1,72 @@
 [
   {
+    "id": "ClassdeIchiban",
+    "title": "Class de Ichiban Kawaii Gal wo Ezuke shiteiru Hanashi",
+    "description": "akura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=1",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=1",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@tablet.webp?v=1",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp?v=1"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Cooking",
+      "Gyaru",
+      "Romance",
+      "School Life",
+      "Slice of Life"
+    ],
+    "rating": 7.69,
+    "chapter_count": 14,
+    "total_views": 15,
+    "isTrending": false,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "discord_channel_id": "1517523866111447143",
+    "chapters": [
+      {
+        "chapter_number": 13.1,
+        "lock_hours": 0,
+        "pages": 11,
+        "id": "ClassdeIchiban-ch-13.1",
+        "r2_prefix": "manga/ClassdeIchiban/13.1/",
+        "title": "Ch. 13.1",
+        "release_date": "2026-07-09T19:38:22+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 12,
+        "lock_hours": 0,
+        "pages": 23,
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "id": "ClassdeIchiban-ch-12",
+        "r2_prefix": "manga/ClassdeIchiban/12/",
+        "title": "Ch. 12",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 5
+      },
+      {
+        "chapter_number": 11,
+        "lock_hours": 0,
+        "pages": 22,
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "id": "ClassdeIchiban-ch-11",
+        "r2_prefix": "manga/ClassdeIchiban/11/",
+        "title": "Ch. 11",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 1
+      }
+    ]
+  },
+  {
     "id": "ZunouBattle",
     "title": "Ore wa Gakuen Zunou Battle no Enshutsuka!: Jishou Mobu ga Kage kara Egaku Saikyou Shujinkou Musou Scenario",
     "description": "Di SMA Teio, segalanya ditentukan lewat duel permainan. Yang harus kulakukan sebagai perwujudan karakter figuran, Tanaka Kanata, bukanlah meraih kejayaan untuk diriku sendiri! Satu-satunya tugasku adalah “menyutradarai” dari balik layar agar Kiriya, murid pindahan terkuat dari bawah, hingga…",
@@ -20,6 +87,7 @@
       "Video Games"
     ],
     "rating": 8.21,
+    "chapter_count": 11,
     "total_views": 100,
     "isTrending": true,
     "next_update": null,
@@ -63,8 +131,7 @@
         "isLocked": false,
         "views": 2
       }
-    ],
-    "chapter_count": 11
+    ]
   },
   {
     "id": "Hanpirei",
@@ -86,6 +153,7 @@
       "Slice of Life"
     ],
     "rating": 8.56,
+    "chapter_count": 5,
     "total_views": 1,
     "isTrending": false,
     "next_update": null,
@@ -128,8 +196,7 @@
         "isLocked": false,
         "views": 0
       }
-    ],
-    "chapter_count": 5
+    ]
   },
   {
     "id": "Yuumei",
@@ -152,6 +219,7 @@
       "Slice of Life"
     ],
     "rating": 8.23,
+    "chapter_count": 27,
     "total_views": 117,
     "isTrending": true,
     "next_update": null,
@@ -195,8 +263,7 @@
         "isLocked": false,
         "views": 22
       }
-    ],
-    "chapter_count": 27
+    ]
   },
   {
     "id": "TeisouGyakuten",
@@ -222,6 +289,7 @@
       "Slice of Life"
     ],
     "rating": 7.4,
+    "chapter_count": 10,
     "total_views": 52,
     "isTrending": false,
     "next_update": null,
@@ -265,8 +333,7 @@
         "isLocked": false,
         "views": 3
       }
-    ],
-    "chapter_count": 10
+    ]
   },
   {
     "id": "Amari-chan",
@@ -289,6 +356,7 @@
       "Slice of Life"
     ],
     "rating": 8.48,
+    "chapter_count": 16,
     "total_views": 26,
     "isTrending": false,
     "next_update": null,
@@ -332,8 +400,7 @@
         "isLocked": false,
         "views": 1
       }
-    ],
-    "chapter_count": 16
+    ]
   },
   {
     "id": "Negatte",
@@ -355,6 +422,7 @@
       "Romance"
     ],
     "rating": 6.78,
+    "chapter_count": 16,
     "total_views": 81,
     "isTrending": false,
     "next_update": null,
@@ -398,8 +466,7 @@
         "isLocked": false,
         "views": 7
       }
-    ],
-    "chapter_count": 16
+    ]
   },
   {
     "id": "Mememe",
@@ -422,6 +489,7 @@
       "Supernatural"
     ],
     "rating": 8.52,
+    "chapter_count": 4,
     "total_views": 22,
     "isTrending": false,
     "next_update": null,
@@ -464,8 +532,7 @@
         "isLocked": false,
         "views": 2
       }
-    ],
-    "chapter_count": 4
+    ]
   },
   {
     "id": "10-nenburi",
@@ -487,6 +554,7 @@
       "Slice of Life"
     ],
     "rating": 7.5,
+    "chapter_count": 23,
     "total_views": 107,
     "isTrending": true,
     "next_update": null,
@@ -530,8 +598,7 @@
         "isLocked": false,
         "views": 4
       }
-    ],
-    "chapter_count": 23
+    ]
   },
   {
     "id": "Yarikonda",
@@ -556,6 +623,7 @@
       "Video Games"
     ],
     "rating": 7.4,
+    "chapter_count": 9,
     "total_views": 68,
     "isTrending": false,
     "next_update": null,
@@ -599,8 +667,7 @@
         "isLocked": false,
         "views": 4
       }
-    ],
-    "chapter_count": 9
+    ]
   },
   {
     "id": "Madogiwa",
@@ -624,6 +691,7 @@
       "Slice of Life"
     ],
     "rating": 7.35,
+    "chapter_count": 16,
     "total_views": 79,
     "isTrending": false,
     "next_update": null,
@@ -667,8 +735,7 @@
         "isLocked": false,
         "views": 3
       }
-    ],
-    "chapter_count": 16
+    ]
   },
   {
     "id": "Osananajimi",
@@ -692,6 +759,7 @@
       "Tragedy"
     ],
     "rating": 8.6,
+    "chapter_count": 14,
     "total_views": 203,
     "isTrending": true,
     "next_update": null,
@@ -735,8 +803,7 @@
         "isLocked": false,
         "views": 8
       }
-    ],
-    "chapter_count": 14
+    ]
   },
   {
     "id": "Sankakukei",
@@ -758,6 +825,7 @@
       "Time Travel"
     ],
     "rating": 8.42,
+    "chapter_count": 12,
     "total_views": 43,
     "isTrending": false,
     "next_update": null,
@@ -801,8 +869,7 @@
         "isLocked": false,
         "views": 5
       }
-    ],
-    "chapter_count": 12
+    ]
   },
   {
     "id": "Midari",
@@ -822,6 +889,7 @@
       "Supernatural"
     ],
     "rating": 8.6,
+    "chapter_count": 18,
     "total_views": 49,
     "isTrending": false,
     "next_update": null,
@@ -865,8 +933,7 @@
         "isLocked": false,
         "views": 4
       }
-    ],
-    "chapter_count": 18
+    ]
   },
   {
     "id": "AiwoOshiete",
@@ -889,6 +956,7 @@
       "Time Travel"
     ],
     "rating": 8.2,
+    "chapter_count": 20,
     "total_views": 11,
     "isTrending": false,
     "next_update": null,
@@ -931,8 +999,7 @@
         "isLocked": false,
         "views": 1
       }
-    ],
-    "chapter_count": 20
+    ]
   },
   {
     "id": "WeAreNotDating",
@@ -954,6 +1021,7 @@
       "Slice of Life"
     ],
     "rating": 8.59,
+    "chapter_count": 142,
     "total_views": 1,
     "isTrending": false,
     "next_update": null,
@@ -996,8 +1064,7 @@
         "isLocked": false,
         "views": 0
       }
-    ],
-    "chapter_count": 142
+    ]
   },
   {
     "id": "Suufungo",
@@ -1019,6 +1086,7 @@
       "Shounen"
     ],
     "rating": 7.86,
+    "chapter_count": 18,
     "total_views": 46,
     "isTrending": false,
     "next_update": null,
@@ -1062,8 +1130,7 @@
         "isLocked": false,
         "views": 2
       }
-    ],
-    "chapter_count": 18
+    ]
   },
   {
     "id": "YoukyaniNatta",
@@ -1084,6 +1151,7 @@
       "Shounen"
     ],
     "rating": 8.17,
+    "chapter_count": 6,
     "total_views": 5,
     "isTrending": false,
     "next_update": null,
@@ -1127,75 +1195,7 @@
         "isLocked": false,
         "views": 0
       }
-    ],
-    "chapter_count": 6
-  },
-  {
-    "id": "ClassdeIchiban",
-    "title": "Class de Ichiban Kawaii Gal wo Ezuke shiteiru Hanashi",
-    "description": "akura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=1",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp?v=1"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Cooking",
-      "Gyaru",
-      "Romance",
-      "School Life",
-      "Slice of Life"
-    ],
-    "rating": 7.69,
-    "total_views": 15,
-    "isTrending": false,
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "discord_channel_id": "1517523866111447143",
-    "chapters": [
-      {
-        "chapter_number": 12,
-        "lock_hours": 0,
-        "pages": 23,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "id": "ClassdeIchiban-ch-12",
-        "r2_prefix": "manga/ClassdeIchiban/12/",
-        "title": "Ch. 12",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 5
-      },
-      {
-        "chapter_number": 11,
-        "lock_hours": 0,
-        "pages": 22,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "id": "ClassdeIchiban-ch-11",
-        "r2_prefix": "manga/ClassdeIchiban/11/",
-        "title": "Ch. 11",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 1
-      },
-      {
-        "chapter_number": 10.5,
-        "lock_hours": 0,
-        "pages": 18,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "id": "ClassdeIchiban-ch-10.5",
-        "r2_prefix": "manga/ClassdeIchiban/10.5/",
-        "title": "Ch. 10.5",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 4
-      }
-    ],
-    "chapter_count": 13
+    ]
   },
   {
     "id": "IkemenJoshi",
@@ -1216,6 +1216,7 @@
       "Slice of Life"
     ],
     "rating": 8.67,
+    "chapter_count": 2,
     "total_views": 2,
     "isTrending": false,
     "next_update": null,
@@ -1247,8 +1248,7 @@
         "isLocked": false,
         "views": 0
       }
-    ],
-    "chapter_count": 2
+    ]
   },
   {
     "id": "KiminoNegai",
@@ -1270,6 +1270,7 @@
       "Supernatural"
     ],
     "rating": 8.89,
+    "chapter_count": 13,
     "total_views": 4,
     "isTrending": false,
     "next_update": null,
@@ -1313,8 +1314,7 @@
         "isLocked": false,
         "views": 0
       }
-    ],
-    "chapter_count": 13
+    ]
   },
   {
     "id": "TensaiBishoujo",
@@ -1337,6 +1337,7 @@
       "Slice of Life"
     ],
     "rating": 7.75,
+    "chapter_count": 4,
     "total_views": 7,
     "isTrending": false,
     "next_update": null,
@@ -1380,8 +1381,7 @@
         "isLocked": false,
         "views": 0
       }
-    ],
-    "chapter_count": 4
+    ]
   },
   {
     "id": "UchinoSeiso-kei",
@@ -1403,6 +1403,7 @@
       "Shounen"
     ],
     "rating": 8.37,
+    "chapter_count": 9,
     "total_views": 2,
     "isTrending": false,
     "next_update": null,
@@ -1446,8 +1447,7 @@
         "isLocked": false,
         "views": 0
       }
-    ],
-    "chapter_count": 9
+    ]
   },
   {
     "id": "Chikasugiru",
@@ -1467,6 +1467,7 @@
       "Slice of Life"
     ],
     "rating": 8.42,
+    "chapter_count": 8,
     "total_views": 5,
     "isTrending": false,
     "next_update": null,
@@ -1510,8 +1511,7 @@
         "isLocked": false,
         "views": 0
       }
-    ],
-    "chapter_count": 8
+    ]
   },
   {
     "id": "MoshimoYuurei",
@@ -1533,6 +1533,7 @@
       "Slice of Life"
     ],
     "rating": 8.64,
+    "chapter_count": 25,
     "total_views": 7,
     "isTrending": false,
     "next_update": null,
@@ -1576,8 +1577,7 @@
         "isLocked": false,
         "views": 1
       }
-    ],
-    "chapter_count": 25
+    ]
   },
   {
     "id": "Waka-chan",
@@ -1597,6 +1597,7 @@
       "Slice of Life"
     ],
     "rating": 8.69,
+    "chapter_count": 216,
     "total_views": 83,
     "isTrending": true,
     "next_update": null,
@@ -1640,7 +1641,6 @@
         "isLocked": false,
         "views": 2
       }
-    ],
-    "chapter_count": 216
+    ]
   }
 ]
