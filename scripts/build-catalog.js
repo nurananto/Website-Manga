@@ -177,6 +177,11 @@ async function getPublicPageBytes(slug, chapterFolder) {
   return getR2ObjectBytes(bucket, firstPageKey(slug, chapterFolder), `public ${slug} Ch.${chapterFolder}`);
 }
 
+async function getPublicAssetBytes(key, label) {
+  const bucket = process.env.R2_PUBLIC_BUCKET_NAME || process.env.R2_BUCKET_NAME;
+  return getR2ObjectBytes(bucket, key, label);
+}
+
 async function getLockedPageBytes(slug, chapterFolder) {
   return getR2ObjectBytes(process.env.R2_LOCKED_BUCKET_NAME, firstPageKey(slug, chapterFolder), `locked ${slug} Ch.${chapterFolder}`);
 }
@@ -195,6 +200,19 @@ async function resolveFirstPage(ch) {
   const bytes = await getLockedPageBytes(ch.slug, chapterFolder);
   if (!bytes) return null;
   return { bytes, name };
+}
+
+async function resolveCoverAttachment(m) {
+  const name = `${m.id}-cover.webp`.replace(/[^a-zA-Z0-9._-]/g, '_');
+  if (m.coverKey) {
+    const bytes = await getPublicAssetBytes(m.coverKey, `cover ${m.id}`);
+    if (bytes) return { bytes, name };
+  }
+  if (m.coverUrl) {
+    const bytes = await fetchImageBytes(m.coverUrl);
+    if (bytes) return { bytes, name };
+  }
+  return null;
 }
 
 // Ambil bytes gambar dari URL CDN publik — dipakai supaya Facebook TIDAK perlu
@@ -341,14 +359,7 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
     if (m.genres?.length) desc.push(`🏷️ ${m.genres.join(' · ')}`);
     if (m.synopsis)       desc.push('', (m.synopsis || '').trim());
     desc.push('', links.join('  •  '));
-    let cover;
-    if (m.coverUrl) {
-      const bytes = await fetchImageBytes(m.coverUrl);
-      if (bytes) {
-        const name = `${m.id}-cover.webp`.replace(/[^a-zA-Z0-9._-]/g, '_');
-        cover = { bytes, name };
-      }
-    }
+    const cover = await resolveCoverAttachment(m);
     messages.push({
       att: cover,
       embed: {
@@ -692,6 +703,7 @@ async function buildCatalog() {
       newMangaList.push({
         id:               manga.id,
         title:            manga.title,
+        coverKey:         manga.cover_dev ?? manga.covers?.[0],
         coverUrl:         manga.coverUrl,
         genres:           manga.genres,
         rating:           manga.rating,
