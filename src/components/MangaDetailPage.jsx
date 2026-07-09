@@ -89,6 +89,7 @@ const renderChapterRow = (ch) => {
     const showStatusBadge = !isNew && isFinished && (
       isOneshot || (targetChapter != null && ch.chapter_number === targetChapter)
     );
+    const chapterTitle = isOneshot ? 'Oneshot' : ch.title;
 
     const chapterViews = ch.views && ch.views > 0
       ? ch.views >= 1000 ? `${(ch.views / 1000).toFixed(1)}k` : String(ch.views)
@@ -115,7 +116,7 @@ const renderChapterRow = (ch) => {
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 min-w-0">
               <p className="font-body-md text-sm sm:text-sm md:text-base text-on-surface font-bold group-hover:text-primary transition-colors truncate">
-                {ch.title}
+                {chapterTitle}
               </p>
               {isNew && (
                 <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">

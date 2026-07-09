@@ -578,7 +578,7 @@ async function buildCatalog() {
       ch.id = `${slug}-ch-${chapterNumber}`;
       ch.r2_prefix = `manga/${slug}/${chapterNumber}/`;
       if (!ch.title) {
-        ch.title = isOneshot ? 'Chapter Oneshot' : `Ch. ${chapterNumber}`;
+        ch.title = isOneshot ? 'Oneshot' : `Ch. ${chapterNumber}`;
       }
 
       // release_date: kalau belum ada di meta.json, ambil dari waktu commit PERTAMA
