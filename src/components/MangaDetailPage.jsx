@@ -5,6 +5,16 @@ import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
 import SupportButtons from './SupportButtons';
 
+const chapterSortValue = (value) => {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : Number.NEGATIVE_INFINITY;
+};
+
+const fitCreatorStyle = (value) => ({
+  containerType: 'inline-size',
+  '--creator-chars': Math.max(String(value || '').length, 8),
+});
+
 export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, isSupporter }) {
   const [isLoading, setIsLoading] = useState(true);
   const [expandedSynopsis, setExpandedSynopsis] = useState(false);
@@ -119,7 +129,7 @@ const renderChapterRow = (ch) => {
                     ? 'bg-red-500/15 text-red-400 border border-red-500/30'
                     : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
                 }`}>
-                  {isOneshot ? 'Oneshot' : manga.status === 'Tamat' ? 'END' : manga.status}
+                  {manga.status === 'Tamat' || isOneshot ? 'END' : manga.status}
                 </span>
               )}
               {isLocked && (
@@ -214,7 +224,7 @@ const renderChapterRow = (ch) => {
 
               {/* Baca dari Awal + Lanjut Baca */}
               {(() => {
-                const chaptersAsc = [...(manga.chapters || [])].sort((a, b) => a.chapter_number - b.chapter_number);
+                const chaptersAsc = [...(manga.chapters || [])].sort((a, b) => chapterSortValue(a.chapter_number) - chapterSortValue(b.chapter_number));
                 const firstChapter = chaptersAsc[0];
                 const continueChapter = lastReadChapter
                   ? (manga.chapters || []).find(c =>
@@ -237,7 +247,7 @@ const renderChapterRow = (ch) => {
                         className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest border border-white/10 text-on-surface font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
                       >
                         <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
-                        Lanjut Baca Ch. {continueChapter.chapter_number}
+                        Lanjut Baca {manga.status === 'Oneshot' ? 'Oneshot' : `Ch. ${continueChapter.chapter_number}`}
                       </button>
                     )}
                   </div>
@@ -311,11 +321,11 @@ const renderChapterRow = (ch) => {
 
             {/* Author + Artist */}
             <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-white/5 overflow-hidden">
-              <div className="flex flex-col gap-1 p-3 sm:p-4 border-r border-white/5 min-w-0">
+              <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 border-r border-white/5 min-w-0" style={fitCreatorStyle(manga.author)}>
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Author</span>
                 <span className="font-body-md text-sm sm:text-sm md:text-base font-bold text-on-surface truncate">{manga.author || '—'}</span>
               </div>
-              <div className="flex flex-col gap-1 p-3 sm:p-4 min-w-0">
+              <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 min-w-0" style={fitCreatorStyle(manga.artist)}>
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Artist</span>
                 <span className="font-body-md text-sm font-bold text-on-surface truncate">{manga.artist || '—'}</span>
               </div>

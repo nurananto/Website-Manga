@@ -68,6 +68,9 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
               ? ch.chapter_number
               : manga.hiatus_at_chapter;
             const isUp = !!ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
+            const chapterTitle = isOneshot
+              ? 'Oneshot'
+              : (ch.title.includes(':') ? ch.title.split(':')[0] : ch.title);
             // Badge Tamat/Hiatus: HANYA muncul di chapter yang persis cocok dengan
             // tamat_at_chapter/hiatus_at_chapter. Tidak ada fallback ke chapter lain.
             const showStatusBadge = !isUp && isFinished && (
@@ -86,7 +89,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
                   <span className="font-body-md text-sm md:text-base lg:text-lg font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
-                    {ch.title.includes(':') ? ch.title.split(':')[0] : ch.title}
+                    {chapterTitle}
                   </span>
                   {isLocked && <Lock className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 text-amber-400 shrink-0" />}
                   {isUp && (
@@ -101,7 +104,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
                         ? 'bg-red-500/15 text-red-400 border border-red-500/30'
                         : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
                     }`}>
-                      {isOneshot ? 'Oneshot' : manga.status === 'Tamat' ? 'END' : manga.status}
+                      {manga.status === 'Tamat' || isOneshot ? 'END' : manga.status}
                     </span>
                   )}
                 </div>

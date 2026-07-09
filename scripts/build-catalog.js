@@ -123,6 +123,28 @@ const CDN_BASE = (process.env.CDN_BASE || '').replace(/\/$/, '');
 const pageFileName = (n) => `Image${String(n).padStart(2, '0')}.webp`; // samakan ReaderModal/check-locked-leak
 const firstPageKey = (slug, chapterNumber) => `manga/${slug}/${chapterNumber}/${pageFileName(1)}`;
 
+const STATUS_MAP = {
+  'ongoing':'Ongoing', 'berlanjut':'Ongoing', 'berjalan':'Ongoing',
+  'hiatus':'Hiatus',
+  'tamat':'Tamat', 'end':'Tamat', 'ended':'Tamat', 'completed':'Tamat', 'finished':'Tamat', 'selesai':'Tamat',
+  'oneshot':'Oneshot', 'oneshoot':'Oneshot', 'one shot':'Oneshot', 'one-shot':'Oneshot',
+};
+const TYPE_MAP = { 'manga':'MANGA', 'manhwa':'MANHWA', 'manhua':'MANHUA', 'novel':'NOVEL' };
+
+function normalizeStatus(status) {
+  return STATUS_MAP[String(status || '').trim().toLowerCase()] ?? 'Ongoing';
+}
+
+function normalizeType(type) {
+  const raw = type == null ? '' : String(type);
+  return TYPE_MAP[raw.trim().toLowerCase()] ?? type;
+}
+
+function chapterSortValue(value) {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : Number.NEGATIVE_INFINITY;
+}
+
 // Klien R2 dibuat lazy (sekali) — dipakai untuk bucket publik dan locked.
 let _r2 = null;
 async function getR2ObjectBytes(bucket, key, label) {
@@ -520,6 +542,9 @@ async function buildCatalog() {
       manga.rating = null;
     }
 
+    manga.status = normalizeStatus(manga.status);
+    manga.type   = normalizeType(manga.type);
+
     // Kumpulkan semua chapter
     const chapters = [];
     for (const entry of fs.readdirSync(mangaPath)) {
@@ -547,10 +572,13 @@ async function buildCatalog() {
       }
 
       // Auto-generate id, title, dan r2_prefix
-      ch.id = `${slug}-ch-${ch.chapter_number}`;
-      ch.r2_prefix = `manga/${slug}/${ch.chapter_number}/`;
+      const isOneshot = manga.status === 'Oneshot';
+      const chapterNumber = isOneshot ? 'oneshot' : ch.chapter_number;
+      ch.chapter_number = chapterNumber;
+      ch.id = `${slug}-ch-${chapterNumber}`;
+      ch.r2_prefix = `manga/${slug}/${chapterNumber}/`;
       if (!ch.title) {
-        ch.title = manga.status?.toLowerCase() === 'oneshot' ? 'Oneshot' : `Ch. ${ch.chapter_number}`;
+        ch.title = isOneshot ? 'Chapter Oneshot' : `Ch. ${chapterNumber}`;
       }
 
       // release_date: kalau belum ada di meta.json, ambil dari waktu commit PERTAMA
@@ -587,7 +615,7 @@ async function buildCatalog() {
     }
 
     // Urutkan chapter: terbaru di atas (descending)
-    chapters.sort((a, b) => b.chapter_number - a.chapter_number);
+    chapters.sort((a, b) => chapterSortValue(b.chapter_number) - chapterSortValue(a.chapter_number));
 
     // Total views manga = jumlah view semua chapter + view halaman detail
     // (detail_views diakumulasi cron dari /api/view/<slug> tanpa "-ch-").

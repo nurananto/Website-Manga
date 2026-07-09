@@ -515,8 +515,9 @@ export default function App() {
 
   const openChapterReader = (chapter, mangaTitle) => {
     setActiveMangaTitle(mangaTitle || "");
-    // Ambil mangaId dari chapter.id terlebih dahulu (paling akurat)
-    const mangaId = chapter.id?.replace(/-ch-[\d.]+$/, '')
+    // Ambil mangaId dari chapter.id terlebih dahulu (paling akurat).
+    // Suffix chapter bisa angka atau "oneshot".
+    const mangaId = chapter.id?.replace(/-ch-[^/]+$/, '')
       || MANGA_LIST.find(m => m.chapters?.some(c => c.id === chapter.id))?.id
       || selectedMangaRef.current?.id
       || '';
@@ -723,7 +724,11 @@ export default function App() {
                         const r = await fetch(`/manga/${mangaId}.json`, { cache: 'no-cache' });
                         if (!r.ok) return;
                         const fullManga = await r.json();
-                        const oldest = [...(fullManga.chapters || [])].sort((a, b) => a.chapter_number - b.chapter_number)[0];
+                        const oldest = [...(fullManga.chapters || [])].sort((a, b) => {
+                          const an = Number(a.chapter_number);
+                          const bn = Number(b.chapter_number);
+                          return (Number.isFinite(an) ? an : Number.NEGATIVE_INFINITY) - (Number.isFinite(bn) ? bn : Number.NEGATIVE_INFINITY);
+                        })[0];
                         if (oldest) handleReadChapter(oldest, fullManga.title);
                       }}
                     />

@@ -5,7 +5,7 @@ import { Star } from 'lucide-react';
 const STATUS_CFG = {
   'Tamat':   { label: 'END',     textCls: 'text-red-300' },
   'Hiatus':  { label: 'HIATUS',  textCls: 'text-zinc-300' },
-  'Oneshot': { label: 'ONESHOT', textCls: 'text-purple-300' },
+  'Oneshot': { label: 'ONESHOT', textCls: 'text-red-300' },
 };
 const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-300' };
 
