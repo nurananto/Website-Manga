@@ -786,11 +786,7 @@ export default function App() {
                     <div className="flex flex-col gap-4">
                       {/* key per-posisi (i) → DOM kartu dipakai ulang antar halaman: cover
                           hanya ganti src (tak remount) sehingga transisi mulus, tak berkedip. */}
-                      <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6 ${
-                        totalPages > 1
-                          ? 'min-h-[1040px] sm:min-h-[1220px] md:min-h-[647px] lg:min-h-[692px] xl:min-h-[464px]'
-                          : ''
-                      }`}>
+                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6">
                         {paginatedManga.map((manga, i) => (
                           <div key={i}>
                             <MangaCard
