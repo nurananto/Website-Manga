@@ -396,7 +396,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     }
     // Baru lepas kunci → lewat worker (migrasi-on-access). Selain itu → CDN langsung.
     const base = freshlyFreed && imageBase ? imageBase : (cdnBase || imageBase);
-    return `${base}/manga/${manga?.id}/${chapter?.chapter_number}/Image${num}.webp`;
+    const chapterFolder = chapter?.r2_folder ?? chapter?.chapter_number;
+    return `${base}/manga/${manga?.id}/${chapterFolder}/Image${num}.webp`;
   };
 
   // Generate semua URL sekaligus.

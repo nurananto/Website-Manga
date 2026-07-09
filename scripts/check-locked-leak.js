@@ -74,7 +74,8 @@ async function main() {
     const pages = ALL_PAGES ? Array.from({ length: ch.pages || 1 }, (_, i) => i + 1) : [1];
     let chapterLeak = false;
     for (const p of pages) {
-      const url = `${cdn}/manga/${mangaId}/${ch.chapter_number}/${pageFile(p)}`;
+      const chapterFolder = ch.r2_folder ?? ch.chapter_number;
+      const url = `${cdn}/manga/${mangaId}/${chapterFolder}/${pageFile(p)}`;
       const status = await head(url);
       if (status === 200) {
         chapterLeak = true; leaks++;

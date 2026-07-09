@@ -121,7 +121,7 @@ async function fetchMangaDexRating(mangadexId) {
 // R2_SECRET_ACCESS_KEY + R2_LOCKED_BUCKET_NAME di env (lihat build-catalog.yml).
 const CDN_BASE = (process.env.CDN_BASE || '').replace(/\/$/, '');
 const pageFileName = (n) => `Image${String(n).padStart(2, '0')}.webp`; // samakan ReaderModal/check-locked-leak
-const firstPageKey = (slug, chapterNumber) => `manga/${slug}/${chapterNumber}/${pageFileName(1)}`;
+const firstPageKey = (slug, chapterFolder) => `manga/${slug}/${chapterFolder}/${pageFileName(1)}`;
 
 const STATUS_MAP = {
   'ongoing':'Ongoing', 'berlanjut':'Ongoing', 'berjalan':'Ongoing',
@@ -172,26 +172,27 @@ async function getR2ObjectBytes(bucket, key, label) {
   }
 }
 
-async function getPublicPageBytes(slug, chapterNumber) {
+async function getPublicPageBytes(slug, chapterFolder) {
   const bucket = process.env.R2_PUBLIC_BUCKET_NAME || process.env.R2_BUCKET_NAME;
-  return getR2ObjectBytes(bucket, firstPageKey(slug, chapterNumber), `public ${slug} Ch.${chapterNumber}`);
+  return getR2ObjectBytes(bucket, firstPageKey(slug, chapterFolder), `public ${slug} Ch.${chapterFolder}`);
 }
 
-async function getLockedPageBytes(slug, chapterNumber) {
-  return getR2ObjectBytes(process.env.R2_LOCKED_BUCKET_NAME, firstPageKey(slug, chapterNumber), `locked ${slug} Ch.${chapterNumber}`);
+async function getLockedPageBytes(slug, chapterFolder) {
+  return getR2ObjectBytes(process.env.R2_LOCKED_BUCKET_NAME, firstPageKey(slug, chapterFolder), `locked ${slug} Ch.${chapterFolder}`);
 }
 
 // → { bytes, name } | { url } fallback CDN | null
 async function resolveFirstPage(ch) {
   if (!ch.slug || ch.chapterNumber == null) return null;
+  const chapterFolder = ch.r2Folder ?? ch.chapterNumber;
   const name = `${ch.mangaId}-ch-${ch.chapterNumber}.webp`.replace(/[^a-zA-Z0-9._-]/g, '_');
   if (!ch.isLocked) {
-    const bytes = await getPublicPageBytes(ch.slug, ch.chapterNumber);
+    const bytes = await getPublicPageBytes(ch.slug, chapterFolder);
     if (bytes) return { bytes, name };
     if (!CDN_BASE) return null;
-    return { url: `${CDN_BASE}/${firstPageKey(ch.slug, ch.chapterNumber)}` };
+    return { url: `${CDN_BASE}/${firstPageKey(ch.slug, chapterFolder)}` };
   }
-  const bytes = await getLockedPageBytes(ch.slug, ch.chapterNumber);
+  const bytes = await getLockedPageBytes(ch.slug, chapterFolder);
   if (!bytes) return null;
   return { bytes, name };
 }
@@ -574,9 +575,11 @@ async function buildCatalog() {
       // Auto-generate id, title, dan r2_prefix
       const isOneshot = manga.status === 'Oneshot';
       const chapterNumber = isOneshot ? 'oneshot' : ch.chapter_number;
+      const r2Folder = isOneshot ? entry : chapterNumber;
       ch.chapter_number = chapterNumber;
+      ch.r2_folder = r2Folder;
       ch.id = `${slug}-ch-${chapterNumber}`;
-      ch.r2_prefix = `manga/${slug}/${chapterNumber}/`;
+      ch.r2_prefix = `manga/${slug}/${r2Folder}/`;
       if (!ch.title) {
         ch.title = isOneshot ? 'Oneshot' : `Ch. ${chapterNumber}`;
       }
@@ -739,6 +742,7 @@ async function buildCatalog() {
             mangaTitle:       manga.title,
             slug,                         // path R2: manga/<slug>/<chapter>/Image01.webp
             chapterNumber:    ch.chapter_number,
+            r2Folder:         ch.r2_folder,
             chapterTitle:     ch.title,
             isLocked:         ch.isLocked,
             releaseDate:      ch.release_date,

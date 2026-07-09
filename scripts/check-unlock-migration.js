@@ -81,7 +81,8 @@ async function main() {
   let issues = 0;
 
   for (const { mangaId, ch } of targets) {
-    const rel = `/manga/${mangaId}/${ch.chapter_number}/${pageFile(1)}`;
+    const chapterFolder = ch.r2_folder ?? ch.chapter_number;
+    const rel = `/manga/${mangaId}/${chapterFolder}/${pageFile(1)}`;
     const unlockMs = new Date(ch.unlockDate).getTime();
 
     if (unlockMs > now) {
