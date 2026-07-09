@@ -57,10 +57,10 @@
       "title": "Oneshot",
       "lock_hours": 0,
       "pages": 31,
-      "id": "AotoSakura-ch-oneshot",
-      "r2_folder": "Oneshot",
-      "r2_prefix": "manga/AotoSakura/Oneshot/",
       "release_date": "2026-07-09T21:15:37+07:00",
+      "r2_folder": "Oneshot",
+      "id": "AotoSakura-ch-oneshot",
+      "r2_prefix": "manga/AotoSakura/Oneshot/",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
