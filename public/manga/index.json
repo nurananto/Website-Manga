@@ -1,5 +1,69 @@
 [
   {
+    "id": "Mutsuko",
+    "title": "Mutsuko, Seiwo Tsukemasu!",
+    "description": "Satu bunga yang mewarnai kantor—Yamamori Mutsuko. Diam-diam, ia memendam perasaan pada atasannya… tapi tunggu dulu, apa nggak terlalu ekstrem caranya!? Beda usia diatasi dengan makanan penambah stamina! Inilah pembuka komedi romantis kantor penuh halu, dipersembahkan untuk seluruh pegawai kantoran…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Comedy",
+      "Cooking",
+      "Office Workers",
+      "Romance",
+      "Slice of Life"
+    ],
+    "rating": 7.93,
+    "chapter_count": 3,
+    "total_views": 0,
+    "isTrending": false,
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 3,
+        "lock_hours": 0,
+        "pages": 32,
+        "id": "Mutsuko-ch-3",
+        "r2_prefix": "manga/Mutsuko/3/",
+        "title": "Ch. 3",
+        "release_date": "2026-07-09T20:33:22+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 2,
+        "lock_hours": 0,
+        "pages": 30,
+        "id": "Mutsuko-ch-2",
+        "r2_prefix": "manga/Mutsuko/2/",
+        "title": "Ch. 2",
+        "release_date": "2026-07-09T20:33:22+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 1,
+        "lock_hours": 0,
+        "pages": 41,
+        "id": "Mutsuko-ch-1",
+        "r2_prefix": "manga/Mutsuko/1/",
+        "title": "Ch. 1",
+        "release_date": "2026-07-09T20:33:22+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "ClassdeIchiban",
     "title": "Class de Ichiban Kawaii Gal wo Ezuke shiteiru Hanashi",
     "description": "Sakura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
@@ -32,10 +96,10 @@
         "chapter_number": 13.2,
         "lock_hours": 0,
         "pages": 8,
+        "release_date": "2026-07-09T20:22:59+07:00",
         "id": "ClassdeIchiban-ch-13.2",
         "r2_prefix": "manga/ClassdeIchiban/13.2/",
         "title": "Ch. 13.2",
-        "release_date": "2026-07-09T20:22:59+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
