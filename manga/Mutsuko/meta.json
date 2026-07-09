@@ -1,0 +1,24 @@
+{
+  "id": "Mutsuko",
+  "title": "Mutsuko, Seiwo Tsukemasu!",
+  "alt_title": "むつ子、精をつけます!",
+  "status": "ONGOING",
+  "type": "MANGA",
+  "author": "Suuanko",
+  "artist": "Suuanko",
+  "genres": ["Romance", "Comedy", "Office Workers", "Slice of Life", "Cooking"],
+  "description": "Satu bunga yang mewarnai kantor—Yamamori Mutsuko. Diam-diam, ia memendam perasaan pada atasannya… tapi tunggu dulu, apa nggak terlalu ekstrem caranya!? Beda usia diatasi dengan makanan penambah stamina! Inilah pembuka komedi romantis kantor penuh halu, dipersembahkan untuk seluruh pegawai kantoran yang kelelahan!",
+  "covers": [
+    "manga/Mutsuko/covers/cover.webp",
+    "manga/Mutsuko/covers/cover@tablet.webp",
+    "manga/Mutsuko/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/12db645e-8482-4f58-8ba3-44e15d07f614/mutsuko-seiwo-tsukemasu",
+  "raw_url": "https://comic-walker.com/detail/KC_007406_S/episodes/KC_0074060000200011_E?episodeType=first",
+  "discord_channel_id": "",
+  "tamat_at_chapter": null,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": ""
+}
