@@ -42,9 +42,9 @@
     "15": 1,
     "16": 2,
     "17.1": 9,
-    "17.2": 11
+    "17.2": 12
   },
-  "total_views": 46,
+  "total_views": 48,
   "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -68,7 +68,7 @@
     }
   ],
   "discord_channel_id": "1517524076028104795",
-  "detail_views": 8,
+  "detail_views": 9,
   "mangadex_id": "16c34950-954c-4f0d-808e-d8278a546339",
   "rating": 7.86,
   "next_update": null,
@@ -90,7 +90,7 @@
       "title": "Ch. 17.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 17.1,
