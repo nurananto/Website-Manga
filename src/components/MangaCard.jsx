@@ -62,7 +62,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
             const ch = manga.chapters[idx];
             if (!ch) return (
               <div key={`ph-${idx}`} aria-hidden
-                className="invisible flex items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border border-transparent">
+                className="invisible flex min-h-[34px] sm:min-h-[40px] lg:min-h-[46px] items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border border-transparent">
                 <span className="font-body-md text-sm md:text-base lg:text-lg font-bold">.</span>
               </div>
             );
@@ -91,7 +91,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
                   e.stopPropagation();
                   onReadChapter(ch, manga.title);
                 }}
-                className="flex justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border transition-all group/ch border-white/5 hover:bg-surface-container-highest hover:border-white/10"
+                className="flex min-h-[34px] sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border transition-all group/ch border-white/5 hover:bg-surface-container-highest hover:border-white/10"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
                   <span className="font-body-md text-sm md:text-base lg:text-lg font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">

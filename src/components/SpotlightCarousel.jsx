@@ -247,17 +247,17 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
             {active.title}
           </h3>
 
-          <div className="inline-flex max-w-full items-center justify-center gap-1.5 overflow-hidden border-y border-white/18 px-2.5 py-1.5 font-body-md text-[10px] sm:text-xs md:text-sm leading-none">
+          <div className="inline-flex max-w-full items-center justify-center gap-1.5 overflow-hidden border-y border-white/18 px-2.5 py-1.5 font-body-md text-[10px] sm:text-xs md:text-sm font-bold leading-none">
             {activeRating && (
-              <span className="flex min-w-0 items-center gap-1 font-semibold text-amber-400">
+              <span className="flex min-w-0 items-center gap-1 font-extrabold text-amber-400">
                 <Star className="h-3 w-3 sm:h-3.5 sm:w-3.5 fill-current shrink-0" />
                 <span>{activeRating}</span>
               </span>
             )}
             {activeRating && <span className="font-black text-white/50">|</span>}
-            <span className={`min-w-0 truncate ${activeStatusCfg.textCls}`}>{activeStatusCfg.label}</span>
+            <span className={`min-w-0 truncate font-black ${activeStatusCfg.textCls}`}>{activeStatusCfg.label}</span>
             <span className="font-black text-white/50">|</span>
-            <span className="min-w-0 truncate text-white">{activeChapterCount} Chapter</span>
+            <span className="min-w-0 truncate font-extrabold text-white">{activeChapterCount} Chapter</span>
           </div>
 
         </div>
