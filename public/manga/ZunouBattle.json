@@ -30,15 +30,15 @@
     "2": 1,
     "3": 4,
     "4": 8,
-    "5.2": 8,
-    "5.3": 11,
-    "5.1": 7,
-    "6.1": 15,
-    "6.3": 3,
-    "6.2": 6,
-    "7.1": 3
+    "5.2": 9,
+    "5.3": 12,
+    "5.1": 8,
+    "6.1": 16,
+    "6.3": 4,
+    "6.2": 8,
+    "7.1": 4
   },
-  "total_views": 120,
+  "total_views": 132,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -54,7 +54,7 @@
   ],
   "discord_channel_id": "1517524270371311676",
   "cover_version": 3,
-  "detail_views": 50,
+  "detail_views": 54,
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
   "rating": 8.21,
   "next_update": null,
@@ -76,7 +76,7 @@
       "title": "Ch. 7.1",
       "unlockDate": "2026-08-05T12:49:50.000Z",
       "isLocked": true,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 6.3,
@@ -89,7 +89,7 @@
       "title": "Ch. 6.3",
       "unlockDate": "2026-07-22T11:03:47.000Z",
       "isLocked": true,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 6.2,
@@ -102,7 +102,7 @@
       "title": "Ch. 6.2",
       "unlockDate": "2026-07-08T11:03:47.000Z",
       "isLocked": false,
-      "views": 6
+      "views": 8
     },
     {
       "chapter_number": 6.1,
@@ -115,7 +115,7 @@
       "title": "Ch. 6.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 15
+      "views": 16
     },
     {
       "chapter_number": 5.3,
@@ -128,7 +128,7 @@
       "title": "Ch. 5.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 5.2,
@@ -141,7 +141,7 @@
       "title": "Ch. 5.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 5.1,
@@ -154,7 +154,7 @@
       "title": "Ch. 5.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     },
     {
       "chapter_number": 4,

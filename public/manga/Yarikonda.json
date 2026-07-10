@@ -36,9 +36,9 @@
     "6": 3,
     "7": 4,
     "8": 12,
-    "9": 12
+    "9": 13
   },
-  "total_views": 73,
+  "total_views": 75,
   "mangadex_cover": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -71,7 +71,7 @@
     }
   ],
   "discord_channel_id": "1517524210547818596",
-  "detail_views": 24,
+  "detail_views": 25,
   "cover_version": 2,
   "mangadex_id": "a605a5d0-21a6-481f-a055-74735ea4f2c2",
   "rating": 7.41,
@@ -94,7 +94,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 12
+      "views": 13
     },
     {
       "chapter_number": 8,
