@@ -6,7 +6,13 @@
   "type": "MANGA",
   "author": "Mikipon",
   "artist": "Mikipon",
-  "genres": ["Shounen", "School Life", "Slice of Life", "Romance", "Comedy"],
+  "genres": [
+    "Shounen",
+    "School Life",
+    "Slice of Life",
+    "Romance",
+    "Comedy"
+  ],
   "description": "Kuharap dia menyadari perasaan cinta ini! Gotou-san, gadis tercantik di sekolah, selalu saja mencari cara untuk menjahili Maeda-kun yang duduk di depannya. Di balik itu terdapat perasaan cinta Gotou-san yang terpendam, tapi maksud sebenarnya sama sekali tidak tersampaikan kepada Maeda-kun yang kurang percaya diri. Bagaimana nasib dari kelanjutan cinta tulus Gotou-san?",
   "covers": [
     "manga/Gotou-san/covers/cover.webp",
@@ -20,5 +26,49 @@
   "hiatus_at_chapter": 27.5,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "c396db84-6cc5-41c0-bf66-f54d0cfa2b44.png",
+  "cover_widths": "1280x960x640",
+  "cover_version": 2,
+  "cover_gallery": [
+    {
+      "file": "33a7d5f7-0621-43a9-95ca-65e9748b0e26.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26.webp",
+        "manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26@tablet.webp",
+        "manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "a742f20f-05ee-4e73-8c4e-8af74436716c.jpg",
+      "volume": "2",
+      "keys": [
+        "manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c.webp",
+        "manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c@tablet.webp",
+        "manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "8656415c-556e-48d6-aa6a-b682919cb625.jpg",
+      "volume": "3",
+      "keys": [
+        "manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625.webp",
+        "manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625@tablet.webp",
+        "manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    },
+    {
+      "file": "c396db84-6cc5-41c0-bf66-f54d0cfa2b44.png",
+      "volume": "4",
+      "keys": [
+        "manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44.webp",
+        "manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44@tablet.webp",
+        "manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44@mobile.webp"
+      ],
+      "widths": "1280x960x640"
+    }
+  ]
 }

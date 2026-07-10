@@ -1,0 +1,263 @@
+{
+  "id": "Gotou-san",
+  "title": "Gotou-san wa Furimukasetai!",
+  "alt_title": "後藤さんは振り向かせたい",
+  "status": "Hiatus",
+  "type": "MANGA",
+  "author": "Mikipon",
+  "artist": "Mikipon",
+  "genres": [
+    "Comedy",
+    "Romance",
+    "School Life",
+    "Shounen",
+    "Slice of Life"
+  ],
+  "description": "Kuharap dia menyadari perasaan cinta ini! Gotou-san, gadis tercantik di sekolah, selalu saja mencari cara untuk menjahili Maeda-kun yang duduk di depannya. Di balik itu terdapat perasaan cinta Gotou-san yang terpendam, tapi maksud sebenarnya sama sekali tidak tersampaikan kepada Maeda-kun yang kurang percaya diri. Bagaimana nasib dari kelanjutan cinta tulus Gotou-san?",
+  "covers": [
+    "manga/Gotou-san/covers/cover.webp",
+    "manga/Gotou-san/covers/cover@tablet.webp",
+    "manga/Gotou-san/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/caa197bb-990e-4f59-bc6f-f20e42015d01/gotou-san-wa-furimukasetai?tab=comments",
+  "raw_url": "https://bookwalker.jp/series/310103/list/",
+  "discord_channel_id": "",
+  "tamat_at_chapter": null,
+  "hiatus_at_chapter": 27.5,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": "c396db84-6cc5-41c0-bf66-f54d0cfa2b44.png",
+  "cover_widths": "1280x960x640",
+  "cover_version": 2,
+  "cover_gallery": [
+    {
+      "volume": "4",
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44@mobile.webp?v=2"
+      }
+    },
+    {
+      "volume": "3",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625@mobile.webp?v=2"
+      }
+    },
+    {
+      "volume": "2",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c@mobile.webp?v=2"
+      }
+    },
+    {
+      "volume": "1",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26@mobile.webp?v=2"
+      }
+    }
+  ],
+  "mangadex_id": "caa197bb-990e-4f59-bc6f-f20e42015d01",
+  "rating": 8.03,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/cover.webp?v=2",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/cover@mobile.webp?v=2"
+  },
+  "chapters": [
+    {
+      "chapter_number": 27.5,
+      "lock_hours": 0,
+      "pages": 4,
+      "r2_folder": 27.5,
+      "id": "Gotou-san-ch-27.5",
+      "r2_prefix": "manga/Gotou-san/27.5/",
+      "title": "Ch. 27.5",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 27,
+      "lock_hours": 0,
+      "pages": 19,
+      "r2_folder": 27,
+      "id": "Gotou-san-ch-27",
+      "r2_prefix": "manga/Gotou-san/27/",
+      "title": "Ch. 27",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 26,
+      "lock_hours": 0,
+      "pages": 17,
+      "r2_folder": 26,
+      "id": "Gotou-san-ch-26",
+      "r2_prefix": "manga/Gotou-san/26/",
+      "title": "Ch. 26",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 25,
+      "lock_hours": 0,
+      "pages": 18,
+      "r2_folder": 25,
+      "id": "Gotou-san-ch-25",
+      "r2_prefix": "manga/Gotou-san/25/",
+      "title": "Ch. 25",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 24,
+      "lock_hours": 0,
+      "pages": 18,
+      "r2_folder": 24,
+      "id": "Gotou-san-ch-24",
+      "r2_prefix": "manga/Gotou-san/24/",
+      "title": "Ch. 24",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 23,
+      "lock_hours": 0,
+      "pages": 15,
+      "r2_folder": 23,
+      "id": "Gotou-san-ch-23",
+      "r2_prefix": "manga/Gotou-san/23/",
+      "title": "Ch. 23",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 22,
+      "lock_hours": 0,
+      "pages": 29,
+      "r2_folder": 22,
+      "id": "Gotou-san-ch-22",
+      "r2_prefix": "manga/Gotou-san/22/",
+      "title": "Ch. 22",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 21,
+      "lock_hours": 0,
+      "pages": 18,
+      "r2_folder": 21,
+      "id": "Gotou-san-ch-21",
+      "r2_prefix": "manga/Gotou-san/21/",
+      "title": "Ch. 21",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 20.5,
+      "lock_hours": 0,
+      "pages": 3,
+      "r2_folder": 20.5,
+      "id": "Gotou-san-ch-20.5",
+      "r2_prefix": "manga/Gotou-san/20.5/",
+      "title": "Ch. 20.5",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 20,
+      "lock_hours": 0,
+      "pages": 22,
+      "r2_folder": 20,
+      "id": "Gotou-san-ch-20",
+      "r2_prefix": "manga/Gotou-san/20/",
+      "title": "Ch. 20",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 19,
+      "lock_hours": 0,
+      "pages": 19,
+      "r2_folder": 19,
+      "id": "Gotou-san-ch-19",
+      "r2_prefix": "manga/Gotou-san/19/",
+      "title": "Ch. 19",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 18,
+      "lock_hours": 0,
+      "pages": 15,
+      "r2_folder": 18,
+      "id": "Gotou-san-ch-18",
+      "r2_prefix": "manga/Gotou-san/18/",
+      "title": "Ch. 18",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 17,
+      "lock_hours": 0,
+      "pages": 23,
+      "r2_folder": 17,
+      "id": "Gotou-san-ch-17",
+      "r2_prefix": "manga/Gotou-san/17/",
+      "title": "Ch. 17",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 16,
+      "lock_hours": 0,
+      "pages": 19,
+      "r2_folder": 16,
+      "id": "Gotou-san-ch-16",
+      "r2_prefix": "manga/Gotou-san/16/",
+      "title": "Ch. 16",
+      "release_date": "2026-07-10T23:02:36+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    }
+  ]
+}
