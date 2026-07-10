@@ -24,8 +24,13 @@
   "discord_channel_id": "",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": 27.5,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "16": 1,
+    "22": 1,
+    "23": 1,
+    "27.5": 1
+  },
+  "total_views": 5,
   "mangadex_cover": "c396db84-6cc5-41c0-bf66-f54d0cfa2b44.png",
   "cover_widths": "1280x960x640",
   "cover_version": 2,
@@ -70,5 +75,6 @@
       ],
       "widths": "1280x960x640"
     }
-  ]
+  ],
+  "detail_views": 1
 }
