@@ -145,6 +145,17 @@ function chapterSortValue(value) {
   return Number.isFinite(n) ? n : Number.NEGATIVE_INFINITY;
 }
 
+function releaseSortValue(value) {
+  const t = Date.parse(value || '');
+  return Number.isFinite(t) ? t : 0;
+}
+
+function compareRecentChapters(a, b) {
+  const byDate = releaseSortValue(b.release_date) - releaseSortValue(a.release_date);
+  if (byDate !== 0) return byDate;
+  return chapterSortValue(b.chapter_number) - chapterSortValue(a.chapter_number);
+}
+
 // Klien R2 dibuat lazy (sekali) — dipakai untuk bucket publik dan locked.
 let _r2 = null;
 async function getR2ObjectBytes(bucket, key, label) {
@@ -630,6 +641,8 @@ async function buildCatalog() {
 
     // Urutkan chapter: terbaru di atas (descending)
     chapters.sort((a, b) => chapterSortValue(b.chapter_number) - chapterSortValue(a.chapter_number));
+    const recentChapters = [...chapters].sort(compareRecentChapters);
+    const latestReleaseDate = recentChapters[0]?.release_date ?? null;
 
     // Total views manga = jumlah view semua chapter + view halaman detail
     // (detail_views diakumulasi cron dari /api/view/<slug> tanpa "-ch-").
@@ -735,6 +748,7 @@ async function buildCatalog() {
       chapter_count: chapters.length,
       total_views:  manga.total_views,
       isTrending:   manga.isTrending,
+      latest_release_date: latestReleaseDate,
       next_update:  manga.next_update,
       tamat_at_chapter:  manga.tamat_at_chapter ?? null,
       hiatus_at_chapter: manga.hiatus_at_chapter ?? null,
@@ -776,9 +790,9 @@ async function buildCatalog() {
 
   // Urutkan homepage: manga yang paling baru diupdate tampil paling atas
   catalog.sort((a, b) => {
-    const dateA = a.chapters[0]?.release_date ?? '0';
-    const dateB = b.chapters[0]?.release_date ?? '0';
-    return dateB.localeCompare(dateA);
+    const byDate = releaseSortValue(b.latest_release_date) - releaseSortValue(a.latest_release_date);
+    if (byDate !== 0) return byDate;
+    return String(a.title || '').localeCompare(String(b.title || ''));
   });
 
   fs.mkdirSync(outDir, { recursive: true });

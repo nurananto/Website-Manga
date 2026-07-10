@@ -8,6 +8,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
 
   const isOneshot = manga.status === 'Oneshot';
   const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
+  const isMangaNew = !!manga.latest_release_date && (Date.now() - new Date(manga.latest_release_date).getTime()) < 24 * 60 * 60 * 1000;
 
   return (
     <div className="flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden group border border-white/5 hover:border-primary/20 shadow-md transition-colors">
@@ -27,6 +28,11 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
             src={imgUrl(manga.coverUrls?.desktop ?? manga.coverUrl)}
           />
         </picture>
+        {isMangaNew && (
+          <span className="pointer-events-none absolute top-3 right-3 sm:top-3.5 sm:right-3.5 rounded-md bg-emerald-500 text-white px-1.5 py-0.5 font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider shadow-lg shadow-emerald-950/40 ring-1 ring-white/25">
+            NEW
+          </span>
+        )}
 
       </a>
 
