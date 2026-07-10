@@ -59,7 +59,7 @@
   "discord_channel_id": "1517524030142550058",
   "detail_views": 59,
   "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
-  "rating": 8.6,
+  "rating": 8.59,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=1",
   "coverUrls": {
@@ -80,6 +80,19 @@
       "unlockDate": "2026-07-18T02:52:50.000Z",
       "isLocked": true,
       "views": 4
+    },
+    {
+      "chapter_number": 6.5,
+      "lock_hours": 0,
+      "pages": 1,
+      "r2_folder": 6.5,
+      "id": "Osananajimi-ch-6.5",
+      "r2_prefix": "manga/Osananajimi/6.5/",
+      "title": "Ch. 6.5",
+      "release_date": "2026-07-10T22:23:15+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
     },
     {
       "chapter_number": 6.3,

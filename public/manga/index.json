@@ -944,8 +944,8 @@
       "Slice of Life",
       "Tragedy"
     ],
-    "rating": 8.6,
-    "chapter_count": 14,
+    "rating": 8.59,
+    "chapter_count": 15,
     "total_views": 221,
     "isTrending": true,
     "next_update": null,
@@ -967,6 +967,19 @@
         "views": 4
       },
       {
+        "chapter_number": 6.5,
+        "lock_hours": 0,
+        "pages": 1,
+        "r2_folder": 6.5,
+        "id": "Osananajimi-ch-6.5",
+        "r2_prefix": "manga/Osananajimi/6.5/",
+        "title": "Ch. 6.5",
+        "release_date": "2026-07-10T22:23:15+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
         "chapter_number": 6.3,
         "lock_hours": 384,
         "pages": 10,
@@ -978,19 +991,6 @@
         "unlockDate": "2026-07-11T13:25:25.000Z",
         "isLocked": true,
         "views": 3
-      },
-      {
-        "chapter_number": 6.2,
-        "lock_hours": 240,
-        "pages": 12,
-        "release_date": "2026-06-25T19:24:18+07:00",
-        "r2_folder": 6.2,
-        "id": "Osananajimi-ch-6.2",
-        "r2_prefix": "manga/Osananajimi/6.2/",
-        "title": "Ch. 6.2",
-        "unlockDate": "2026-07-05T12:24:18.000Z",
-        "isLocked": false,
-        "views": 11
       }
     ]
   },
