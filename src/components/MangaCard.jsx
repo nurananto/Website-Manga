@@ -28,12 +28,6 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
             src={imgUrl(manga.coverUrls?.desktop ?? manga.coverUrl)}
           />
         </picture>
-        {isMangaNew && (
-          <span className="pointer-events-none absolute top-3 right-3 sm:top-3.5 sm:right-3.5 rounded-md bg-emerald-500 text-white px-1.5 py-0.5 font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider shadow-lg shadow-emerald-950/40 ring-1 ring-white/25">
-            NEW
-          </span>
-        )}
-
       </a>
 
       {/* Details Section */}
@@ -41,6 +35,11 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
         {/* Title row */}
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
+            {isMangaNew && (
+              <span className="shrink-0 rounded-md bg-emerald-500 px-1.5 py-0.5 font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider text-white ring-1 ring-white/25">
+                NEW
+              </span>
+            )}
             <a
               href={`/${manga.id}`}
               onClick={(e) => { e.preventDefault(); onViewManga(); }}
