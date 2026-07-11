@@ -28,14 +28,16 @@
   "chapter_views": {
     "0": 2,
     "1": 1,
-    "8": 2,
-    "9": 5,
-    "7.5": 1,
-    "10.1": 1,
-    "10.2": 1,
-    "10.3": 4
+    "6": 1,
+    "7": 1,
+    "8": 3,
+    "9": 6,
+    "7.5": 2,
+    "10.1": 2,
+    "10.2": 2,
+    "10.3": 5
   },
-  "total_views": 27,
+  "total_views": 36,
   "mangadex_cover": "6ffed041-aa59-49e2-b79f-dac40ac0ef53.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -50,7 +52,7 @@
     }
   ],
   "discord_channel_id": "1517523810801287222",
-  "detail_views": 10,
+  "detail_views": 11,
   "mangadex_id": "624d6ceb-768d-40a7-8412-84e083afbdb1",
   "rating": 8.48,
   "next_update": null,
@@ -72,7 +74,7 @@
       "title": "Ch. 10.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 10.2,
@@ -85,7 +87,7 @@
       "title": "Ch. 10.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 10.1,
@@ -98,7 +100,7 @@
       "title": "Ch. 10.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 9,
@@ -111,7 +113,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 6
     },
     {
       "chapter_number": 8,
@@ -124,7 +126,7 @@
       "title": "Ch. 8",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 7.5,
@@ -137,7 +139,7 @@
       "title": "Ch. 7.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 7,
@@ -150,7 +152,7 @@
       "title": "Ch. 7",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 6,
@@ -163,7 +165,7 @@
       "title": "Ch. 6",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 5,
