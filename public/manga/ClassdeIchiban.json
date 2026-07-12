@@ -70,14 +70,27 @@
   },
   "chapters": [
     {
+      "chapter_number": 14.2,
+      "lock_hours": 192,
+      "pages": 12,
+      "r2_folder": 14.2,
+      "id": "ClassdeIchiban-ch-14.2",
+      "r2_prefix": "manga/ClassdeIchiban/14.2/",
+      "title": "Ch. 14.2",
+      "release_date": "2026-07-12T18:20:01+07:00",
+      "unlockDate": "2026-07-20T11:20:01.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 14.1,
       "lock_hours": 0,
       "pages": 11,
+      "release_date": "2026-07-12T16:50:10+07:00",
       "r2_folder": 14.1,
       "id": "ClassdeIchiban-ch-14.1",
       "r2_prefix": "manga/ClassdeIchiban/14.1/",
       "title": "Ch. 14.1",
-      "release_date": "2026-07-12T16:50:10+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
