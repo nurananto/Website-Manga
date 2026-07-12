@@ -138,7 +138,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
           {/* Title */}
           <h1
             key={`title-${activeManga.id}`}
-            className="font-display-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight line-clamp-1 animate-[slideUpFade_0.3s_ease-out]"
+            className="min-w-0 font-display-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight truncate animate-[slideUpFade_0.3s_ease-out]"
           >
             {activeManga.title}
           </h1>
