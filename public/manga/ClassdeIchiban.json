@@ -32,9 +32,12 @@
     "12": 7,
     "10.5": 4,
     "13.1": 3,
-    "13.2": 4
+    "13.2": 4,
+    "13.3": 2,
+    "14.1": 2,
+    "14.2": 1
   },
-  "total_views": 33,
+  "total_views": 40,
   "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -58,7 +61,7 @@
     }
   ],
   "discord_channel_id": "1517523866111447143",
-  "detail_views": 10,
+  "detail_views": 12,
   "mangadex_id": "acfd6902-b39c-4b7d-91a8-9825dda4ede8",
   "rating": 7.69,
   "next_update": null,
@@ -73,14 +76,14 @@
       "chapter_number": 14.2,
       "lock_hours": 192,
       "pages": 12,
+      "release_date": "2026-07-12T18:20:01+07:00",
       "r2_folder": 14.2,
       "id": "ClassdeIchiban-ch-14.2",
       "r2_prefix": "manga/ClassdeIchiban/14.2/",
       "title": "Ch. 14.2",
-      "release_date": "2026-07-12T18:20:01+07:00",
       "unlockDate": "2026-07-20T11:20:01.000Z",
       "isLocked": true,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 14.1,
@@ -93,7 +96,7 @@
       "title": "Ch. 14.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 13.3,
@@ -106,7 +109,7 @@
       "title": "Ch. 13.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 13.2,

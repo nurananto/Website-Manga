@@ -57,20 +57,20 @@
     "213": 1,
     "214": 1,
     "201.5": 2,
-    "215.5": 3,
-    "215.6": 3,
-    "215.7": 3,
-    "215.8": 3,
-    "215.9": 6,
+    "215.5": 4,
+    "215.6": 4,
+    "215.7": 4,
+    "215.8": 4,
+    "215.9": 7,
     "215.1": 2,
     "204.5": 1,
     "208.5": 1,
     "210.5": 1,
     "215.2": 1,
     "215.3": 1,
-    "215.4": 2
+    "215.4": 3
   },
-  "total_views": 96,
+  "total_views": 104,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -184,7 +184,7 @@
     }
   ],
   "discord_channel_id": "1517524180294172712",
-  "detail_views": 18,
+  "detail_views": 20,
   "mangadex_id": "57fe3f00-8626-462b-8f75-fce0e6faa6be",
   "rating": 8.68,
   "next_update": null,
@@ -206,7 +206,7 @@
       "title": "Ch. 215.9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 215.8,
@@ -219,7 +219,7 @@
       "title": "Ch. 215.8",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 215.7,
@@ -232,7 +232,7 @@
       "title": "Ch. 215.7",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 215.6,
@@ -245,7 +245,7 @@
       "title": "Ch. 215.6",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 215.5,
@@ -258,7 +258,7 @@
       "title": "Ch. 215.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 215.4,
@@ -271,7 +271,7 @@
       "title": "Ch. 215.4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 215.3,
