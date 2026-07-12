@@ -192,6 +192,7 @@ function PageImage({ src, fallbackSrc, idx, pageRefs, ready, onAccessError }) {
 }
 
 export default function ReaderModal({ chapter, manga, onClose, onReadChapter, isSupporter, isLoggedIn, currentUser, onLoginClick }) {
+  const chapterNeedsToken = !!chapter?.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now();
   // Freeze last known values saat exit animation agar konten tidak hilang
   const frozenChapter = useRef(chapter);
   const frozenManga = useRef(manga);
@@ -243,7 +244,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   // Kirim view ke Worker. Dedup PER HARI (WIB), bukan permanen — biar pembaca yang
   // balik lagi besok tetap terhitung (server tetap dedup ip+chapter+hari = anti-inflasi).
   useEffect(() => {
-    if (!chapter?.id) return;
+    if (!chapter?.id || chapterNeedsToken) return;
     const workerUrl = import.meta.env.VITE_WORKER_URL;
     if (!workerUrl) return;
     const day = new Date(Date.now() + 7 * 3600 * 1000).toISOString().slice(0, 10); // WIB
@@ -258,7 +259,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
       localStorage.setItem(key, '1');
     } catch {}
     fetch(`${workerUrl}/api/r/${chapter.id}`, { method: 'POST' }).catch(() => {});
-  }, [chapter?.id]);
+  }, [chapter?.id, chapterNeedsToken]);
 
   const chapters = manga?.chapters || [];
   const currentIdx = chapters.findIndex(ch => ch.id === chapter?.id);
@@ -311,8 +312,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const userId = currentUser?.id || null;
 
   // Chapter masih dalam masa lock (sudah dibeli, tapi image worker butuh access token)
-  const chapterNeedsToken = !!chapter?.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now();
-
   // Saat ganti chapter: kalau ada token cache yang masih berlaku (chapter sudah
   // dibeli & dibuka < 30 menit lalu) → pakai langsung, lewati Turnstile.
   // Kalau tidak → reset, gate Turnstile akan tampil.
@@ -345,7 +344,12 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
         const res = await fetch(`${workerUrl}/api/user/chapter-token`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${tok}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chapter_id: chapter.id, turnstile_token: tsToken }),
+          body: JSON.stringify({
+            chapter_id: chapter.id,
+            chapter_number: chapter.chapter_number,
+            chapter_title: chapter.title,
+            turnstile_token: tsToken,
+          }),
         });
         const d = await res.json();
         if (!cancelled && d.token) {
