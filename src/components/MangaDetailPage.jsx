@@ -240,7 +240,7 @@ const renderChapterRow = (ch) => {
                       className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-white hover:bg-white/90 text-black font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
                     >
                       <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                      Baca dari Awal
+                      Read Ch. 1
                     </button>
                     {continueChapter && (
                       <button
@@ -248,7 +248,7 @@ const renderChapterRow = (ch) => {
                         className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest border border-white/10 text-on-surface font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
                       >
                         <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
-                        Lanjut Baca {manga.status === 'Oneshot' ? 'Oneshot' : `Ch. ${continueChapter.chapter_number}`}
+                        Continue {manga.status === 'Oneshot' ? 'Oneshot' : `Ch. ${continueChapter.chapter_number}`}
                       </button>
                     )}
                   </div>
