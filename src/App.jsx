@@ -739,6 +739,11 @@ export default function App() {
                       onViewManga={(manga) => { navigate(`/${manga.id}`); }}
                     />
 
+                    <div
+                      aria-hidden="true"
+                      className="w-full border-t border-white/60"
+                    />
+
                     <FeaturedCarousel
                       mangaList={MANGA_LIST}
                       onReadChapter={(ch, title) => handleReadChapter(ch, title)}
