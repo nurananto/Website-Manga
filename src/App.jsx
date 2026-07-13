@@ -800,21 +800,29 @@ export default function App() {
                     <div className="flex flex-col gap-4">
                       {/* key per-posisi (i) → DOM kartu dipakai ulang antar halaman: cover
                           hanya ganti src (tak remount) sehingga transisi mulus, tak berkedip. */}
-                      <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start items-start gap-4 xl:gap-6 ${
-                        totalPages > 1
-                          ? 'min-h-[1040px] sm:min-h-[1220px] md:min-h-[1294px] lg:min-h-[1384px] xl:min-h-[928px]'
-                          : ''
-                      }`}>
-                        {paginatedManga.map((manga, i) => (
-                          <div key={i}>
-                            <MangaCard
-                              manga={manga}
-                              isSupporter={isSupporter}
-                              onViewManga={() => { navigate(`/${manga.id}`); }}
-                              onReadChapter={(ch, title) => handleReadChapter(ch, title || manga.title, manga)}
-                            />
-                          </div>
-                        ))}
+                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start items-start gap-4">
+                        {Array.from({ length: totalPages > 1 ? itemsPerPage : paginatedManga.length }).map((_, i) => {
+                          const manga = paginatedManga[i];
+                          if (!manga) {
+                            return (
+                              <div
+                                key={`empty-${i}`}
+                                aria-hidden="true"
+                                className="invisible h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px]"
+                              />
+                            );
+                          }
+                          return (
+                            <div key={i}>
+                              <MangaCard
+                                manga={manga}
+                                isSupporter={isSupporter}
+                                onViewManga={() => { navigate(`/${manga.id}`); }}
+                                onReadChapter={(ch, title) => handleReadChapter(ch, title || manga.title, manga)}
+                              />
+                            </div>
+                          );
+                        })}
                       </div>
 
                       {/* Pagination Controls */}
