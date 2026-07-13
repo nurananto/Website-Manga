@@ -6,7 +6,7 @@ import DonationBanner from './components/DonationBanner';
 import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
-import { Sparkles, TrendingUp, Compass, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
+import { Sparkles, Compass, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
 import { imgUrl, timeAgo } from './utils';
 import { MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
@@ -730,6 +730,11 @@ export default function App() {
                       onViewManga={(manga) => { navigate(`/${manga.id}`); }}
                     />
 
+                    <div
+                      aria-hidden="true"
+                      className="w-full border-t border-white/60"
+                    />
+
                     <FeaturedCarousel
                       mangaList={MANGA_LIST}
                       onReadChapter={(ch, title) => handleReadChapter(ch, title)}
@@ -756,11 +761,13 @@ export default function App() {
 
                  {/* Catalog Listing */}
                 <section className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between border-b border-white/5 pb-4">
-                    <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface flex items-center gap-3">
-                      <TrendingUp className="w-6 h-6 text-primary" />
-                      {searchQuery ? `Search Results for "${searchQuery}"` : 'Update Terbaru'}
-                    </h2>
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className="h-7 w-1 rounded-full bg-primary shrink-0" aria-hidden="true" />
+                      <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface truncate">
+                        {searchQuery ? `Search Results for "${searchQuery}"` : 'List manga'}
+                      </h2>
+                    </div>
                     <button
                       onClick={() => setIsSearchOpen(!isSearchOpen)}
                       className={`p-2 rounded-full hover:bg-white/5 text-outline hover:text-primary transition-all active:scale-95 cursor-pointer ${
@@ -787,7 +794,7 @@ export default function App() {
                   )}
 
                   {isLoading ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                       {Array.from({ length: itemsPerPage }).map((_, i) => <MangaCardSkeleton key={i} />)}
                     </div>
                   ) : filteredManga.length === 0 ? (

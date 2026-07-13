@@ -3,9 +3,9 @@ import { imgUrl } from '../utils';
 import { Star } from 'lucide-react';
 
 const STATUS_CFG = {
-  'Tamat':   { label: 'END',     textCls: 'text-red-300' },
-  'Hiatus':  { label: 'HIATUS',  textCls: 'text-zinc-300' },
-  'Oneshot': { label: 'ONESHOT', textCls: 'text-red-300' },
+  'Tamat':   { label: 'END',     textCls: 'text-red-500' },
+  'Hiatus':  { label: 'HIATUS',  textCls: 'text-zinc-400' },
+  'Oneshot': { label: 'ONESHOT', textCls: 'text-red-500' },
 };
 const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-300' };
 
