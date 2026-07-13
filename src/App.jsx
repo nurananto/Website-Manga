@@ -1031,9 +1031,7 @@ export default function App() {
             onClose={() => { navigate(`/${selectedManga?.id || ''}`); }}
             onReadChapter={handleReadChapter}
             isSupporter={isSupporter}
-            isLoggedIn={isLoggedIn}
             currentUser={currentUser}
-            onLoginClick={() => openAuth('reader')}
           />
         </Suspense>
       )}

@@ -29,7 +29,7 @@ function TurnstileGate({ onToken }) {
       cancelled = true;
       try { if (widgetId != null && window.turnstile) window.turnstile.remove(widgetId); } catch {}
     };
-  }, []);
+  }, [onToken]);
   return <div ref={ref} className="min-h-[65px] flex items-center justify-center" />;
 }
 
@@ -83,7 +83,7 @@ function NextUpdateInfo({ value }) {
   );
 }
 
-function PageImage({ src, fallbackSrc, idx, pageRefs, ready, onAccessError }) {
+function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError }) {
   const [loaded,     setLoaded]     = useState(false);
   const [failed,     setFailed]     = useState(false);
   const [retryCount, setRetryCount] = useState(0);
@@ -105,14 +105,6 @@ function PageImage({ src, fallbackSrc, idx, pageRefs, ready, onAccessError }) {
     obs.observe(el);
     return () => obs.disconnect();
   }, [inView]);
-
-  // Reset saat src ganti (chapter/token baru)
-  useEffect(() => {
-    setLoaded(false);
-    setFailed(false);
-    setUseFallback(false);
-    setBlobUrl(null);
-  }, [src]);
 
   // Ambil gambar via fetch → blob, supaya <img src> tampil "blob:" bukan path asli
   // (path tetap terlihat di Network tab — ini cuma obscure DOM/klik-kanan/hotlink).
@@ -148,7 +140,7 @@ function PageImage({ src, fallbackSrc, idx, pageRefs, ready, onAccessError }) {
 
   return (
     <div
-      ref={el => { wrapRef.current = el; if (pageRefs) pageRefs.current[idx] = el; }}
+      ref={el => { wrapRef.current = el; registerPage?.(idx, el); }}
       className="w-full relative"
       // Placeholder pakai aspect-ratio (bukan minHeight:85vh) — tingginya turunan dari
       // LEBAR kontainer, sama seperti gambar asli nanti (w-full h-auto). Rasio 2/3 adalah
@@ -191,55 +183,77 @@ function PageImage({ src, fallbackSrc, idx, pageRefs, ready, onAccessError }) {
   );
 }
 
-export default function ReaderModal({ chapter, manga, onClose, onReadChapter, isSupporter, isLoggedIn, currentUser, onLoginClick }) {
+function useChapterDropdown() {
+  const [openChapterList, setOpenChapterList] = useState(null);
+  const [dropdownAnchor, setDropdownAnchor] = useState(null);
+  const chapterBtnRefs = useRef({});
+
+  const measureAnchor = (position) => {
+    const button = chapterBtnRefs.current[position];
+    if (!button) return;
+    const rect = button.getBoundingClientRect();
+    const base = { left: rect.left, width: rect.width };
+    setDropdownAnchor(position === 'top'
+      ? { ...base, top: rect.bottom + 6 }
+      : {
+          ...base,
+          bottom: window.innerHeight - rect.top + 6,
+          maxHeight: Math.min(205, rect.top - 16),
+        });
+  };
+
+  const toggleChapterList = (position) => {
+    if (openChapterList === position) {
+      setOpenChapterList(null);
+      return;
+    }
+    measureAnchor(position);
+    setOpenChapterList(position);
+  };
+
+  useEffect(() => {
+    if (!openChapterList) return;
+    let frameId;
+    const handleResize = () => {
+      cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(() => measureAnchor(openChapterList));
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      cancelAnimationFrame(frameId);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [openChapterList]);
+
+  return { chapterBtnRefs, dropdownAnchor, openChapterList, setOpenChapterList, toggleChapterList };
+}
+
+export default function ReaderModal({ chapter, manga, onClose, onReadChapter, isSupporter, currentUser }) {
   const chapterNeedsToken = !!chapter?.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now();
-  // Freeze last known values saat exit animation agar konten tidak hilang
-  const frozenChapter = useRef(chapter);
-  const frozenManga = useRef(manga);
-  useEffect(() => { if (chapter) frozenChapter.current = chapter; }, [chapter]);
-  useEffect(() => { if (manga) frozenManga.current = manga; }, [manga]);
-  const activeChapter = chapter || frozenChapter.current;
-  const activeManga = manga || frozenManga.current;
+  const activeChapter = chapter;
+  const activeManga = manga;
   const discordLink = discordCommentUrl(activeManga?.discord_channel_id); // channel per judul (meta.json)
 
   // null = tutup, 'top' = dibuka dari navbar atas, 'bottom' = dari navbar bawah
-  const [openChapterList, setOpenChapterList] = useState(null);
-  const [dropdownAnchor, setDropdownAnchor] = useState(null); // pixel position dari getBoundingClientRect
+  const {
+    chapterBtnRefs,
+    dropdownAnchor,
+    openChapterList,
+    setOpenChapterList,
+    toggleChapterList,
+  } = useChapterDropdown();
   const [showLastChapterModal, setShowLastChapterModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [barExpanded, setBarExpanded] = useState(false);
   const scrollRef = useRef(null);
   const pageRefs = useRef([]);
-  const activeChapterIdRef = useRef(null); // guard agar onSuccess tidak fire untuk chapter lama
-  const chapterBtnRefs = useRef({}); // ref tombol chapter selector per posisi (top/bottom)
-
-  // Ukur posisi & LEBAR dropdown dari tombol chapter selector → dropdown selalu
-  // selebar tombolnya, dan bisa diperbarui saat resize (responsif).
-  const measureAnchor = (position) => {
-    const el = chapterBtnRefs.current[position];
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const base = { left: rect.left, width: rect.width };
-    if (position === 'top') {
-      setDropdownAnchor({ ...base, top: rect.bottom + 6 });
-    } else {
-      const spaceAbove = rect.top - 16;
-      setDropdownAnchor({ ...base, bottom: window.innerHeight - rect.top + 6, maxHeight: Math.min(205, spaceAbove) + 'px' });
-    }
+  const registerPage = (index, element) => {
+    pageRefs.current[index] = element;
   };
-
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = ''; };
   }, []);
-
-  // Jaga lebar/posisi dropdown tetap pas tombol saat layar di-resize.
-  useEffect(() => {
-    if (!openChapterList) return;
-    const onResize = () => measureAnchor(openChapterList);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, [openChapterList]);
 
   // Kirim view ke Worker. Dedup PER HARI (WIB), bukan permanen — biar pembaca yang
   // balik lagi besok tetap terhitung (server tetap dedup ip+chapter+hari = anti-inflasi).
@@ -407,7 +421,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   // Generate semua URL sekaligus.
   useEffect(() => {
     if (!chapter?.id || !manga?.id || !chapter.pages) return;
-    activeChapterIdRef.current = chapter.id;
     pageRefs.current = [];
     const all = Array.from({ length: chapter.pages }, (_, i) => makeUrl(i + 1));
     nextPageRef.current = chapter.pages + 1;
@@ -462,7 +475,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     };
     el.addEventListener('scroll', handleScroll, { passive: true });
     return () => el.removeEventListener('scroll', handleScroll);
-  }, [pageCount]);
+  }, [pageCount, activeChapter?.id, setOpenChapterList]);
 
   useEffect(() => {
     const handleClose = (e) => {
@@ -477,7 +490,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
       document.removeEventListener('mousedown', handleClose);
       document.removeEventListener('touchstart', handleClose);
     };
-  }, []);
+  }, [setOpenChapterList]);
 
   const handleNext = () => {
     if (nextDisabled) return;
@@ -520,11 +533,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
       <div data-chapter-selector className="relative flex-[2]">
         <button
           ref={(el) => { chapterBtnRefs.current[position] = el; }}
-          onClick={() => {
-            const willOpen = openChapterList !== position;
-            if (willOpen) measureAnchor(position);
-            setOpenChapterList(willOpen ? position : null);
-          }}
+          onClick={() => toggleChapterList(position)}
           className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-sm md:text-base font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
         >
           <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary shrink-0" />
@@ -601,11 +610,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             >
               {pages.map((p, idx) => (
                 <PageImage
-                  key={idx}
+                  key={p}
                   src={p}
                   fallbackSrc={!chapterNeedsToken && cdnBase && imageBase ? p.replace(cdnBase, imageBase) : null}
                   idx={idx}
-                  pageRefs={pageRefs}
+                  registerPage={registerPage}
                   ready={imageReady}
                   onAccessError={chapterNeedsToken ? handleLockedImageError : undefined}
                 />
@@ -845,16 +854,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             >
               <div
                 className="overflow-y-auto hide-scrollbar"
+                style={{ maxHeight: dropdownAnchor.maxHeight ?? 205 }}
                 ref={el => {
                   if (!el) return;
-                  // Ukur tinggi row pertama → maxHeight = 5 baris tepat
-                  const firstRow = el.firstElementChild;
-                  if (firstRow) {
-                    const rowH = firstRow.offsetHeight;
-                    el.style.maxHeight = (dropdownAnchor?.maxHeight
-                      ? Math.min(rowH * 5, parseInt(dropdownAnchor.maxHeight))
-                      : rowH * 5) + 'px';
-                  }
                   const active = el.querySelector('[data-active="true"]');
                   if (active) active.scrollIntoView({ block: 'nearest' });
                 }}
