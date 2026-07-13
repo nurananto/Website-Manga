@@ -5,7 +5,6 @@ import SpotlightCarousel from './components/SpotlightCarousel';
 import DonationBanner from './components/DonationBanner';
 import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
-import VisitorCount from './components/VisitorCount';
 import { Sparkles, TrendingUp, Compass, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
 import { imgUrl, timeAgo } from './utils';
 import { MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
@@ -201,7 +200,7 @@ export default function App() {
       if (d) setDesc(d.length > 160 ? d.slice(0, 160).replace(/\s+\S*$/, '') + '…' : d);
     } else {
       document.title = site;
-      setDesc('');
+      setDesc('nurananto scanslation');
     }
   }, [activeChapter, activeMangaTitle, selectedManga]);
 
@@ -383,22 +382,6 @@ export default function App() {
       .then(data => {
         if (!data) { setIsLoading(false); return; }
         setMangaList(data); mangaListRef.current = data; setIsLoading(false);
-        // Override trending pakai views terkini (24 jam) dari worker.
-        // Kalau kosong/gagal → tetap pakai isTrending build-time (fallback).
-        const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-        if (!workerUrl) return;
-        fetch(`${workerUrl}/api/trending`)
-          .then(r => r.ok ? r.json() : null)
-          .then(t => {
-            if (!t?.trending?.length) return;
-            const ids = [...t.trending];
-            // lengkapi sampai 5 dari trending build-time agar carousel tidak terlalu sedikit
-            for (const m of data) { if (ids.length >= 5) break; if (m.isTrending && !ids.includes(m.id)) ids.push(m.id); }
-            const set = new Set(ids.slice(0, 5));
-            const updated = data.map(m => ({ ...m, isTrending: set.has(m.id) }));
-            setMangaList(updated); mangaListRef.current = updated;
-          })
-          .catch(() => {});
       })
       .catch(() => setIsLoading(false));
   }, []);
@@ -956,7 +939,6 @@ export default function App() {
         <footer className="w-full pt-4 md:pt-6 xl:pt-8 pb-4 md:pb-6 xl:pb-8 bg-surface border-t border-white/60 mt-auto">
           <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-3">
             <img src="/logo-footer.webp" alt="Nurananto Scanlation" width="1843" height="552" className="h-11 md:h-14 xl:h-16 w-auto" />
-            <VisitorCount />
             <div className="w-full border border-white/8 rounded-xl px-5 sm:px-6 py-4 bg-white/[0.02]">
               <p className="font-body-sm text-xs text-outline/70 leading-relaxed text-center">
                 Ini adalah situs fan terjemahan <em>unofficial</em> yang dibuat semata-mata karena kecintaan terhadap manga.
