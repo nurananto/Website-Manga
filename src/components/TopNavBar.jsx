@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Key, RotateCcw, LogOut, Crown, Bell } from 'lucide-react';
 import { DISCORD_INVITE_URL } from '../lib/links';
+import { nowTimestamp } from '../utils';
 
 const FACEBOOK_URL = 'https://web.facebook.com/profile.php?id=61590960336418';
 
@@ -51,14 +52,14 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
     || 'Pengguna';
 
   // Countdown masa aktif Supporter (dihitung dari supporter_until backend).
-  const supRemainMs = (isSupporter && supporterUntil) ? new Date(supporterUntil).getTime() - Date.now() : 0;
+  const supRemainMs = (isSupporter && supporterUntil) ? new Date(supporterUntil).getTime() - nowTimestamp() : 0;
   const supActive = supRemainMs > 0;
   const supLabel = !supActive
     ? null
     : (supRemainMs < 86400000 ? 'hari ini berakhir' : `${Math.floor(supRemainMs / 86400000)} hari tersisa`);
 
   return (
-    <nav className="w-full bg-black border-b border-white/60">
+    <nav className="w-full bg-black">
       <div className="flex items-center h-12 md:h-14 xl:h-16 px-2 sm:px-3 md:px-4 gap-2 w-full">
         <a
           href="/"

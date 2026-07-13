@@ -5,7 +5,8 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  // dist dan public/assets berisi bundle hasil build; lint source aslinya di src/.
+  globalIgnores(['dist', 'public/assets']),
   {
     files: ['**/*.{js,jsx}'],
     extends: [

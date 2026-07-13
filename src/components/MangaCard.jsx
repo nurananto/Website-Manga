@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import { imgUrl, timeAgoShort } from '../utils';
+import { imgUrl, nowTimestamp, timeAgoShort } from '../utils';
 import { Lock, ArrowUp } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
 export default function MangaCard({ manga, onReadChapter, onViewManga, isSupporter }) {
   const [localUnlocked, setLocalUnlocked] = useState(new Set());
+  const now = nowTimestamp();
 
   const isOneshot = manga.status === 'Oneshot';
   const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
-  const isMangaNew = !!manga.latest_release_date && (Date.now() - new Date(manga.latest_release_date).getTime()) < 24 * 60 * 60 * 1000;
+  const isMangaNew = !!manga.latest_release_date && (now - new Date(manga.latest_release_date).getTime()) < 24 * 60 * 60 * 1000;
 
   return (
     <div className="flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden group border border-white/5 hover:border-primary/20 shadow-md transition-colors">
@@ -65,14 +66,14 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
                 <span className="font-body-md text-sm md:text-base lg:text-lg font-bold">.</span>
               </div>
             );
-            const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()
+            const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > now
               && !localUnlocked.has(ch.id) && !isSupporter;
             const targetChapter = manga.status === 'Tamat'
               ? manga.tamat_at_chapter
               : isOneshot
               ? ch.chapter_number
               : manga.hiatus_at_chapter;
-            const isUp = !!ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
+            const isUp = !!ch.release_date && (now - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
             const chapterTitle = isOneshot
               ? 'Oneshot'
               : (ch.title.includes(':') ? ch.title.split(':')[0] : ch.title);

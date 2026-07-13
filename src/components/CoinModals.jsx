@@ -59,7 +59,14 @@ const AUTH_BENEFITS = [
 export function AuthModal({ isOpen, onClose, reason }) {
   const [verifying, setVerifying] = useState(false);
   const [redirecting, setRedirecting] = useState(false);
-  useEffect(() => { if (!isOpen) { setVerifying(false); setRedirecting(false); } }, [isOpen]);
+  useEffect(() => {
+    if (isOpen) return;
+    const timer = setTimeout(() => {
+      setVerifying(false);
+      setRedirecting(false);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [isOpen]);
   if (!isOpen) return null;
   const copy = AUTH_COPY[reason] || AUTH_COPY.default;
   const handleToken = (token) => {

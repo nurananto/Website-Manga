@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import { useState, useEffect, useRef, useCallback, useEffectEvent, lazy, Suspense } from 'react';
 import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
@@ -78,7 +78,7 @@ export default function App() {
   const [updateLabel, setUpdateLabel] = useState('');
   const [isResettingApp, setIsResettingApp] = useState(false);
 
-  const softResetApp = async () => {
+  const softResetApp = useCallback(async () => {
     if (isResettingApp) return;
     setIsResettingApp(true);
     try {
@@ -99,15 +99,20 @@ export default function App() {
     const next = new URL(window.location.href);
     next.searchParams.set('r', Date.now().toString());
     window.location.replace(next.toString());
-  };
+  }, [isResettingApp]);
 
-  const triggerUpdate = (label) => {
+  const triggerUpdate = useCallback((label) => {
     setUpdateLabel(label || '');
     setShowUpdateBanner(true);
     setTimeout(() => {
       softResetApp();
     }, 1200);
-  };
+  }, [softResetApp]);
+
+  const [selectedManga, setSelectedManga] = useState(null);
+  const [loadingManga, setLoadingManga] = useState(false);
+  const selectedMangaRef = useRef(null);
+  const mangaListRef = useRef([]);
 
 
   useEffect(() => {
@@ -166,15 +171,11 @@ export default function App() {
       clearInterval(interval);
       document.removeEventListener('visibilitychange', handleVisibility);
     };
-  }, []);
+  }, [triggerUpdate]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeChapter, setActiveChapter] = useState(null);
   const [activeMangaTitle, setActiveMangaTitle] = useState('');
-  const [selectedManga, setSelectedManga] = useState(null);
-  const [loadingManga, setLoadingManga] = useState(false);
-  const selectedMangaRef = useRef(null);
-  const mangaListRef = useRef([]);
   const [activeTab, setActiveTab] = useState('library'); // 'library', 'discover', 'updates', 'profile'
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [historyChapters, setHistoryChapters] = useState({});
@@ -185,7 +186,9 @@ export default function App() {
   const [isSupporter, setIsSupporter] = useState(false);
   const [supporterUntil, setSupporterUntil] = useState(null);
   const isSupporterRef = useRef(false);
-  isSupporterRef.current = isSupporter;
+  useEffect(() => {
+    isSupporterRef.current = isSupporter;
+  }, [isSupporter]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [nameChangedAt, setNameChangedAt] = useState(null);
@@ -247,6 +250,32 @@ export default function App() {
     setIsAuthModalOpen(true);
   };
 
+  const openChapterReader = (chapter, mangaTitle) => {
+    setActiveMangaTitle(mangaTitle || "");
+    // Ambil mangaId dari chapter.id terlebih dahulu (paling akurat).
+    // Suffix chapter bisa angka atau "oneshot".
+    const mangaId = chapter.id?.replace(/-ch-[^/]+$/, '')
+      || MANGA_LIST.find(m => m.chapters?.some(c => c.id === chapter.id))?.id
+      || selectedMangaRef.current?.id
+      || '';
+    if (!mangaId) return; // tidak bisa navigasi tanpa mangaId
+    navigate(`/${mangaId}/${chapter.chapter_number}`);
+    // Simpan history pakai mangaId langsung. (Sebelumnya cari manga via chapter id di
+    // MANGA_LIST yang cuma simpan 3 chapter terbaru → baca chapter lama = tak tersimpan.)
+    setHistoryChapters(prev => ({ ...prev, [mangaId]: { ...chapter, last_read_at: new Date().toISOString() } }));
+    if (isLoggedIn && currentUser) {
+      const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+      getAccessToken().then(token => {
+        if (!token) return;
+        fetch(`${workerUrl}/api/user/history`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify({ manga_id: mangaId, chapter_id: chapter.id, chapter_number: chapter.chapter_number, chapter_title: chapter.title }),
+        }).catch(() => {});
+      });
+    }
+  };
+
   // Lanjutkan niat tertunda setelah login berhasil (buka kembali modal beli chapter).
   const resumeLoginIntent = async () => {
     let raw = null;
@@ -291,6 +320,41 @@ export default function App() {
     } catch {}
   };
 
+  async function loadUserData() {
+    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+    if (!workerUrl) return;
+    const token = await getAccessToken();
+    if (!token) return;
+    const headers = { 'Authorization': `Bearer ${token}` };
+
+    fetch(`${workerUrl}/api/user/me`, { headers })
+      .then(r => r.json()).then(d => {
+        setIsSupporter(!!d.is_supporter);
+        setSupporterUntil(d.supporter_until ?? null);
+        if (d.name_changed_at) setNameChangedAt(d.name_changed_at);
+        setCurrentUser(prev => prev ? { ...prev, ...(d.name ? { name: d.name } : {}), is_supporter: !!d.is_supporter, supporter_until: d.supporter_until ?? null } : prev);
+      })
+      .catch(() => {});
+
+    fetch(`${workerUrl}/api/user/history`, { headers })
+      .then(r => r.json()).then(rows => {
+        if (!Array.isArray(rows)) return;
+        const hist = {};
+        rows.forEach(row => {
+          hist[row.manga_id] = {
+            id: row.chapter_id,
+            chapter_number: row.chapter_number,
+            title: row.chapter_title || `Ch. ${row.chapter_number}`,
+            last_read_at: row.last_read_at,
+          };
+        });
+        setHistoryChapters(hist);
+      }).catch(() => {});
+  }
+
+  const loadUserDataEvent = useEffectEvent(loadUserData);
+  const resumeLoginIntentEvent = useEffectEvent(resumeLoginIntent);
+
   // Custom auth init
   useEffect(() => {
     const initAuth = async () => {
@@ -309,8 +373,8 @@ export default function App() {
             setIsLoggedIn(true);
             setCurrentUser(user);
             setIsAuthModalOpen(false);
-            await loadUserData();
-            await resumeLoginIntent();
+            await loadUserDataEvent();
+            await resumeLoginIntentEvent();
           } else if (parsePath().page === 'auth') {
             navigate('/', true); // legacy /auth tanpa hasil → balik ke home
           }
@@ -328,46 +392,11 @@ export default function App() {
       setCurrentUser(user);
 
       // Fetch balance + history + unlocked dari Worker
-      await loadUserData();
+      await loadUserDataEvent();
     };
 
     initAuth();
   }, []);
-
-  const loadUserData = async () => {
-    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-    if (!workerUrl) return;
-    const token = await getAccessToken();
-    if (!token) return;
-    const headers = { 'Authorization': `Bearer ${token}` };
-
-    const doFetchBalance = () => fetch(`${workerUrl}/api/user/me`, { headers })
-      .then(r => r.json()).then(d => {
-        setIsSupporter(!!d.is_supporter);
-        setSupporterUntil(d.supporter_until ?? null);
-        if (d.name_changed_at) setNameChangedAt(d.name_changed_at);
-        setCurrentUser(prev => prev ? { ...prev, ...(d.name ? { name: d.name } : {}), is_supporter: !!d.is_supporter, supporter_until: d.supporter_until ?? null } : prev);
-      })
-      .catch(() => {});
-
-    doFetchBalance();
-
-    fetch(`${workerUrl}/api/user/history`, { headers })
-      .then(r => r.json()).then(rows => {
-        if (!Array.isArray(rows)) return;
-        const hist = {};
-        rows.forEach(row => {
-          hist[row.manga_id] = {
-            id: row.chapter_id,
-            chapter_number: row.chapter_number,
-            title: row.chapter_title || `Ch. ${row.chapter_number}`,
-            last_read_at: row.last_read_at,
-          };
-        });
-        setHistoryChapters(hist);
-      }).catch(() => {});
-
-  };
 
   // Satu pintu refresh status Supporter dari server — dipakai saat modal donasi
   // ditutup & polling, agar transisi non↔supporter selalu sinkron.
@@ -390,9 +419,8 @@ export default function App() {
   useEffect(() => {
     if (!isSupporter || !supporterUntil) return;
     const ms = new Date(supporterUntil).getTime() - Date.now();
-    if (ms <= 0) { setIsSupporter(false); return; }      // sudah lewat → cabut sekarang
     if (ms > 2_000_000_000) return;                       // terlalu jauh → biar refetch nanti
-    const t = setTimeout(() => setIsSupporter(false), ms);
+    const t = setTimeout(() => setIsSupporter(false), Math.max(0, ms));
     return () => clearTimeout(t);
   }, [isSupporter, supporterUntil]);
 
@@ -527,44 +555,20 @@ export default function App() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedManga = filteredManga.slice(startIndex, startIndex + itemsPerPage);
 
-  const openChapterReader = (chapter, mangaTitle) => {
-    setActiveMangaTitle(mangaTitle || "");
-    // Ambil mangaId dari chapter.id terlebih dahulu (paling akurat).
-    // Suffix chapter bisa angka atau "oneshot".
-    const mangaId = chapter.id?.replace(/-ch-[^/]+$/, '')
-      || MANGA_LIST.find(m => m.chapters?.some(c => c.id === chapter.id))?.id
-      || selectedMangaRef.current?.id
-      || '';
-    if (!mangaId) return; // tidak bisa navigasi tanpa mangaId
-    navigate(`/${mangaId}/${chapter.chapter_number}`);
-    // Simpan history pakai mangaId langsung. (Sebelumnya cari manga via chapter id di
-    // MANGA_LIST yang cuma simpan 3 chapter terbaru → baca chapter lama = tak tersimpan.)
-    setHistoryChapters(prev => ({ ...prev, [mangaId]: { ...chapter, last_read_at: new Date().toISOString() } }));
-    if (isLoggedIn && currentUser) {
-      const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-      getAccessToken().then(token => {
-        if (!token) return;
-        fetch(`${workerUrl}/api/user/history`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-          body: JSON.stringify({ manga_id: mangaId, chapter_id: chapter.id, chapter_number: chapter.chapter_number, chapter_title: chapter.title }),
-        }).catch(() => {});
-      });
-    }
-  };
-
   // Auto-recovery race pasca-login: begitu status Supporter terkonfirmasi (me-fetch
   // selesai), kalau modal locked masih nyangkut untuk chapter tertunda → tutup &
   // langsung buka chapternya. Menambal kasus di mana isSupporterRef sempat basi saat
   // route/resume jalan sehingga sempat ke-bounce ke halaman detail + modal supporter.
   useEffect(() => {
-    if (isSupporter && isLockedModalOpen && pendingUnlockChapter) {
+    if (!isSupporter || !isLockedModalOpen || !pendingUnlockChapter) return;
+    const timer = setTimeout(() => {
       const ch = pendingUnlockChapter;
       const title = pendingMangaTitle;
       setIsLockedModalOpen(false);
       setPendingUnlockChapter(null);
       openChapterReader(ch, title);
-    }
+    }, 0);
+    return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSupporter]);
 
@@ -713,6 +717,11 @@ export default function App() {
                 {/* Featured Carousel — skeleton saat loading agar tidak CLS */}
                 {!searchQuery && (
                   <>
+                    <div
+                      aria-hidden="true"
+                      className="w-full border-t border-white/60"
+                    />
+
                     {isLoading ? (
                       <div className="flex flex-col gap-2">
                         {/* Tinggi disamakan persis dengan SpotlightCarousel asli:
@@ -728,11 +737,6 @@ export default function App() {
                     <SpotlightCarousel
                       mangaList={MANGA_LIST}
                       onViewManga={(manga) => { navigate(`/${manga.id}`); }}
-                    />
-
-                    <div
-                      aria-hidden="true"
-                      className="w-full border-t border-white/60"
                     />
 
                     <FeaturedCarousel
@@ -765,7 +769,7 @@ export default function App() {
                     <div className="flex items-center gap-3 min-w-0">
                       <span className="h-7 w-1 rounded-full bg-primary shrink-0" aria-hidden="true" />
                       <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface truncate">
-                        {searchQuery ? `Search Results for "${searchQuery}"` : 'List manga'}
+                        {searchQuery ? `Search Results for "${searchQuery}"` : 'List Manga'}
                       </h2>
                     </div>
                     <button

@@ -1,5 +1,11 @@
 const IMAGE_BASE = (import.meta.env.VITE_IMAGE_URL || import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
 
+// Ambil satu snapshot waktu per render/callback. Dibungkus agar komponen tidak
+// memanggil API impure berkali-kali di tengah perhitungan render.
+export function nowTimestamp() {
+  return Date.now();
+}
+
 // Convert R2 path ke full URL via image worker
 export function imgUrl(path) {
   if (!path) return null;

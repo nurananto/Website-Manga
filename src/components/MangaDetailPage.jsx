@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { imgUrl, timeAgo } from '../utils';
+import { imgUrl, nowTimestamp, timeAgo } from '../utils';
 import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Lock, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
@@ -20,9 +20,12 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   const [expandedSynopsis, setExpandedSynopsis] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    const t = setTimeout(() => setIsLoading(false), 400);
-    return () => clearTimeout(t);
+    const startTimer = setTimeout(() => setIsLoading(true), 0);
+    const endTimer = setTimeout(() => setIsLoading(false), 400);
+    return () => {
+      clearTimeout(startTimer);
+      clearTimeout(endTimer);
+    };
   }, [manga?.id]);
 
   // Rekam view halaman detail (manga dibuka tapi belum tentu dibaca).
@@ -54,7 +57,10 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   const GALLERY_PER_PAGE = 6;
   const galleryPages = Math.ceil((manga?.cover_gallery?.length ?? 0) / GALLERY_PER_PAGE);
 
-  useEffect(() => { setGalleryPage(0); }, [manga?.id]);
+  useEffect(() => {
+    const timer = setTimeout(() => setGalleryPage(0), 0);
+    return () => clearTimeout(timer);
+  }, [manga?.id]);
 
   const downloadCover = async (g) => {
     const url = g.urls.desktop;
@@ -78,9 +84,10 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   }, [manga.chapters, sortNewest]);
 
 const renderChapterRow = (ch) => {
-    const isNew = !!ch.release_date && (Date.now() - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
+    const now = nowTimestamp();
+    const isNew = !!ch.release_date && (now - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
     const isUnread = !readChapters.has(ch.id);
-    const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now() && !isSupporter && !localUnlockedChapters.has(ch.id);
+    const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > now && !isSupporter && !localUnlockedChapters.has(ch.id);
     const isOneshot = manga.status === 'Oneshot';
     const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
     const targetChapter = manga.status === 'Tamat' ? manga.tamat_at_chapter : isOneshot ? ch.chapter_number : manga.hiatus_at_chapter;

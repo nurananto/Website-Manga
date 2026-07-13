@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUp, Lock, BookOpen } from 'lucide-react';
 import { discordCommentUrl } from '../lib/links';
-import { imgUrl } from '../utils';
+import { imgUrl, nowTimestamp } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
@@ -36,7 +36,7 @@ function TurnstileGate({ onToken }) {
 // Info jadwal rilis chapter berikutnya: countdown kalau tanggal, teks kalau bukan,
 // pesan hijau "segera rilis" kalau tidak ada jadwal atau waktunya sudah lewat.
 function NextUpdateInfo({ value }) {
-  const [now, setNow] = useState(Date.now());
+  const [now, setNow] = useState(nowTimestamp);
   const hasValue = value != null && String(value).trim() !== '';
   const t = hasValue ? new Date(value).getTime() : NaN;
   const isDate = hasValue && !isNaN(t);
@@ -229,7 +229,8 @@ function useChapterDropdown() {
 }
 
 export default function ReaderModal({ chapter, manga, onClose, onReadChapter, isSupporter, currentUser }) {
-  const chapterNeedsToken = !!chapter?.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now();
+  const now = nowTimestamp();
+  const chapterNeedsToken = !!chapter?.unlockDate && new Date(chapter.unlockDate).getTime() > now;
   const activeChapter = chapter;
   const activeManga = manga;
   const discordLink = discordCommentUrl(activeManga?.discord_channel_id); // channel per judul (meta.json)
@@ -283,7 +284,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   // Helper: cek apakah chapter benar-benar locked (belum free & user bukan Supporter)
   const isChapterLocked = (ch) => {
     if (!ch?.unlockDate) return false;
-    if (new Date(ch.unlockDate).getTime() <= Date.now()) return false;
+    if (new Date(ch.unlockDate).getTime() <= now) return false;
     if (isSupporter) return false;
     return true;
   };
@@ -330,19 +331,22 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   // dibeli & dibuka < 30 menit lalu) → pakai langsung, lewati Turnstile.
   // Kalau tidak → reset, gate Turnstile akan tampil.
   useEffect(() => {
-    setTsToken(null);
     tokenFromCacheRef.current = false;
     reauthAttemptRef.current = 0;
     const cached = (chapterNeedsToken && userId && chapter?.id)
       ? getCachedChapterToken(userId, chapter.id) : null;
-    if (cached) {
-      tokenFromCacheRef.current = true;
-      setImgAccess(cached.token);
-      setImgHash(cached.h);
-    } else {
-      setImgAccess(null);
-      setImgHash(null);
-    }
+    const timer = setTimeout(() => {
+      setTsToken(null);
+      if (cached) {
+        tokenFromCacheRef.current = true;
+        setImgAccess(cached.token);
+        setImgHash(cached.h);
+      } else {
+        setImgAccess(null);
+        setImgHash(null);
+      }
+    }, 0);
+    return () => clearTimeout(timer);
   }, [chapter?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Setelah Turnstile dicentang (tsToken ada) → ambil access token + hash, lalu cache.
@@ -403,10 +407,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   // (2× interval) agar tetap aman walau satu run cron terlewat.
   const FRESHLY_FREED_MS = 6 * 60 * 60 * 1000;
   const freshlyFreed = !!chapter?.unlockDate &&
-    Date.now() - new Date(chapter.unlockDate).getTime() >= 0 &&
-    Date.now() - new Date(chapter.unlockDate).getTime() < FRESHLY_FREED_MS;
+    now - new Date(chapter.unlockDate).getTime() >= 0 &&
+    now - new Date(chapter.unlockDate).getTime() < FRESHLY_FREED_MS;
 
-  const makeUrl = (idx) => {
+  const makeUrl = useCallback((idx) => {
     const num = String(idx).padStart(2, '0');
     if (chapterNeedsToken) {
       // Path di-hash agar judul/chapter tidak terbaca di URL: /c/<hash>/<NN>.webp
@@ -416,7 +420,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     const base = freshlyFreed && imageBase ? imageBase : (cdnBase || imageBase);
     const chapterFolder = chapter?.r2_folder ?? chapter?.chapter_number;
     return `${base}/manga/${manga?.id}/${chapterFolder}/Image${num}.webp`;
-  };
+  }, [chapter?.r2_folder, chapter?.chapter_number, chapterNeedsToken, freshlyFreed, imageBase, imgAccess, imgHash, manga?.id]);
 
   // Generate semua URL sekaligus.
   useEffect(() => {
@@ -424,20 +428,26 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     pageRefs.current = [];
     const all = Array.from({ length: chapter.pages }, (_, i) => makeUrl(i + 1));
     nextPageRef.current = chapter.pages + 1;
-    setPages(all);
-    setPageCount(chapter.pages);
-  }, [chapter?.id, imgAccess, imgHash]);
+    const timer = setTimeout(() => {
+      setPages(all);
+      setPageCount(chapter.pages);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [chapter?.id, chapter?.pages, makeUrl, manga?.id]);
 
   // Reset currentPage saat chapter berganti. Hanya scroll ke atas kalau TIDAK ada
   // posisi tersimpan — supaya "Lanjut Baca" tidak berkedip atas dulu.
   useEffect(() => {
     if (!chapter?.id) return;
-    setCurrentPage(0);
     pageRefs.current = [];
     const saved = parseInt(localStorage.getItem(`reader_page_${chapter.id}`) || '');
     const hasResume = !isNaN(saved) && saved > 0 && saved < (chapter.pages ?? 0) - 1;
-    if (!hasResume) scrollRef.current?.scrollTo({ top: 0, behavior: 'instant' });
-  }, [chapter?.id]);
+    const timer = setTimeout(() => {
+      setCurrentPage(0);
+      if (!hasResume) scrollRef.current?.scrollTo({ top: 0, behavior: 'instant' });
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [chapter?.id, chapter?.pages]);
 
   // Restore posisi baca terakhir secepat mungkin setelah halaman dirender
   useEffect(() => {
@@ -456,7 +466,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     };
     requestAnimationFrame(() => tryScroll());
     return () => { cancelled = true; };
-  }, [pages]);
+  }, [chapter?.id, pages]);
 
   // Scroll event: update currentPage + simpan page index
   useEffect(() => {
