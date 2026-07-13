@@ -30,9 +30,9 @@
     "1": 6,
     "2": 3,
     "3": 1,
-    "4": 5
+    "4": 6
   },
-  "total_views": 30,
+  "total_views": 32,
   "mangadex_cover": "4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c.jpg",
   "cover_widths": "1280x960x640",
   "cover_version": 2,
@@ -48,5 +48,5 @@
       "widths": "1280x960x640"
     }
   ],
-  "detail_views": 15
+  "detail_views": 16
 }

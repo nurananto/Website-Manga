@@ -26,12 +26,24 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 1,
-    "22": 1,
-    "23": 1,
-    "24": 1,
-    "25": 4
+    "10": 1,
+    "11": 1,
+    "12": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1,
+    "18": 1,
+    "19": 1,
+    "20": 1,
+    "21": 1,
+    "22": 2,
+    "23": 2,
+    "24": 2,
+    "25": 5
   },
-  "total_views": 9,
+  "total_views": 26,
   "mangadex_cover": "1f5fe857-3e84-451f-8a1c-d25e3960c1b4.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -47,5 +59,5 @@
     }
   ],
   "discord_channel_id": "1517523987830280323",
-  "detail_views": 1
+  "detail_views": 2
 }
