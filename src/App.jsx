@@ -5,6 +5,7 @@ import SpotlightCarousel from './components/SpotlightCarousel';
 import DonationBanner from './components/DonationBanner';
 import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
+import VisitorCount from './components/VisitorCount';
 import { Sparkles, TrendingUp, Compass, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
 import { imgUrl, timeAgo } from './utils';
 import { MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
@@ -111,10 +112,15 @@ export default function App() {
 
   useEffect(() => {
     let currentVersion = null;
+    let lastCheckedAt = 0;
+    let isChecking = false;
+    const checkInterval = 10 * 60 * 1000;
 
     const checkVersion = async () => {
+      if (document.visibilityState !== 'visible' || isChecking) return;
+      isChecking = true;
       try {
-        const res = await fetch('/version.json?t=' + Date.now(), { cache: 'no-store' });
+        const res = await fetch('/version.json', { cache: 'no-store' });
         const data = await res.json();
         const { v, label, type } = data;
         if (currentVersion === null) {
@@ -141,12 +147,25 @@ export default function App() {
             triggerUpdate(label || '');
           }
         }
-      } catch {}
+      } catch {
+      } finally {
+        lastCheckedAt = Date.now();
+        isChecking = false;
+      }
     };
 
     checkVersion();
-    const interval = setInterval(checkVersion, 60 * 1000);
-    return () => clearInterval(interval);
+    const interval = setInterval(checkVersion, checkInterval);
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible' && Date.now() - lastCheckedAt >= checkInterval) {
+        checkVersion();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
   }, []);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -939,6 +958,7 @@ export default function App() {
         <footer className="w-full pt-4 md:pt-6 xl:pt-8 pb-4 md:pb-6 xl:pb-8 bg-surface border-t border-white/60 mt-auto">
           <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-3">
             <img src="/logo-footer.webp" alt="Nurananto Scanlation" width="1843" height="552" className="h-11 md:h-14 xl:h-16 w-auto" />
+            <VisitorCount />
             <div className="w-full border border-white/8 rounded-xl px-5 sm:px-6 py-4 bg-white/[0.02]">
               <p className="font-body-sm text-xs text-outline/70 leading-relaxed text-center">
                 Ini adalah situs fan terjemahan <em>unofficial</em> yang dibuat semata-mata karena kecintaan terhadap manga.
