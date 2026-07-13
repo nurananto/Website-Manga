@@ -179,6 +179,9 @@ export default function App() {
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [historyChapters, setHistoryChapters] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(() =>
+    window.matchMedia('(min-width: 768px)').matches ? 12 : 6
+  );
   const [isSupporter, setIsSupporter] = useState(false);
   const [supporterUntil, setSupporterUntil] = useState(null);
   const isSupporterRef = useRef(false);
@@ -202,7 +205,16 @@ export default function App() {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [showDmca, setShowDmca] = useState(false);
-  const ITEMS_PER_PAGE = 6;
+
+  useEffect(() => {
+    const tabletUp = window.matchMedia('(min-width: 768px)');
+    const handleBreakpointChange = (event) => {
+      setItemsPerPage(event.matches ? 12 : 6);
+      setCurrentPage(1);
+    };
+    tabletUp.addEventListener('change', handleBreakpointChange);
+    return () => tabletUp.removeEventListener('change', handleBreakpointChange);
+  }, []);
 
   // Dynamic document title + meta description (snippet Google per halaman)
   useEffect(() => {
@@ -511,9 +523,9 @@ export default function App() {
     m.genres.some((g) => g.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
-  const totalPages = Math.ceil(filteredManga.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedManga = filteredManga.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredManga.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedManga = filteredManga.slice(startIndex, startIndex + itemsPerPage);
 
   const openChapterReader = (chapter, mangaTitle) => {
     setActiveMangaTitle(mangaTitle || "");
@@ -776,7 +788,7 @@ export default function App() {
 
                   {isLoading ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6">
-                      {Array.from({ length: 6 }).map((_, i) => <MangaCardSkeleton key={i} />)}
+                      {Array.from({ length: itemsPerPage }).map((_, i) => <MangaCardSkeleton key={i} />)}
                     </div>
                   ) : filteredManga.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-20 text-outline">
@@ -790,7 +802,7 @@ export default function App() {
                           hanya ganti src (tak remount) sehingga transisi mulus, tak berkedip. */}
                       <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start items-start gap-4 xl:gap-6 ${
                         totalPages > 1
-                          ? 'min-h-[1040px] sm:min-h-[1220px] md:min-h-[647px] lg:min-h-[692px] xl:min-h-[464px]'
+                          ? 'min-h-[1040px] sm:min-h-[1220px] md:min-h-[1294px] lg:min-h-[1384px] xl:min-h-[928px]'
                           : ''
                       }`}>
                         {paginatedManga.map((manga, i) => (
