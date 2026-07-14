@@ -195,11 +195,12 @@ const renderChapterRow = (ch) => {
               alt=""
               loading="eager"
               fetchpriority="high"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
             />
-            <div className="absolute inset-0 bg-black/58" />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/75 to-surface/25" />
-            <div className="absolute inset-0 bg-gradient-to-r from-surface/70 via-transparent to-surface/55" />
+            <div className="absolute inset-0 bg-black/28" />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface/56 via-surface/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-surface/72 via-surface/18 to-transparent" />
+            <div className="absolute inset-0 shadow-[inset_0_22px_64px_rgba(0,0,0,0.45),inset_0_-58px_90px_rgba(0,0,0,0.5),inset_64px_0_84px_rgba(0,0,0,0.58),inset_-64px_0_84px_rgba(0,0,0,0.58)]" />
           </div>
 
           {/* Info Over Cover Container */}
