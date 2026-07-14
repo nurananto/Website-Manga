@@ -102,7 +102,7 @@ export function AuthModal({ isOpen, onClose, reason }) {
               </div>
               <div className="text-center">
                 <h3 className="text-xl font-black text-on-surface">{copy.title}</h3>
-                <p className="text-xs text-outline/70 mt-1 leading-relaxed max-w-[16rem] mx-auto">{copy.subtitle}</p>
+                <p className="max-w-full mx-auto mt-1 text-xs leading-relaxed text-outline/70">{copy.subtitle}</p>
               </div>
             </div>
 
