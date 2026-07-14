@@ -25,9 +25,10 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "9": 1
+    "9": 2,
+    "10.1": 2
   },
-  "total_views": 6,
+  "total_views": 13,
   "mangadex_cover": "6da6cf64-c44f-4153-801e-77cdf9a92d3b.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -61,7 +62,7 @@
   ],
   "discord_channel_id": "1517524146635145338",
   "cover_version": 2,
-  "detail_views": 5,
+  "detail_views": 9,
   "mangadex_id": "5993c10b-c49e-4771-9a3a-8b8436b12d80",
   "rating": 8.37,
   "next_update": null,
@@ -76,14 +77,14 @@
       "chapter_number": 10.1,
       "lock_hours": 0,
       "pages": 16,
+      "release_date": "2026-07-14T00:31:52+07:00",
       "r2_folder": 10.1,
       "id": "UchinoSeiso-kei-ch-10.1",
       "r2_prefix": "manga/UchinoSeiso-kei/10.1/",
       "title": "Ch. 10.1",
-      "release_date": "2026-07-14T00:31:52+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 9,
@@ -96,7 +97,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 8,
