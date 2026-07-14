@@ -107,9 +107,9 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
               <button
                 type="button"
                 onClick={onLoginClick}
-                className="h-10 md:h-11 xl:h-12 rounded-lg bg-primary-container hover:bg-inverse-primary px-3 md:px-4 text-white text-xs md:text-sm font-black flex items-center justify-center gap-1.5 md:gap-2 border border-primary/25 shadow-md active:scale-95 transition-all cursor-pointer"
+                className="h-8 md:h-10 xl:h-12 rounded-lg bg-[#075bad] hover:bg-[#096bc5] px-2.5 md:px-3.5 xl:px-4 text-white text-[11px] md:text-xs xl:text-sm font-black flex items-center justify-center gap-1.5 md:gap-2 border border-[#89ceff]/40 shadow-md active:scale-95 transition-all cursor-pointer"
               >
-                <LogIn className="w-4 h-4 md:w-[18px] md:h-[18px]" />
+                <LogIn className="w-3.5 h-3.5 md:w-4 md:h-4 xl:w-[18px] xl:h-[18px]" />
                 <span>Log In</span>
               </button>
             )}
