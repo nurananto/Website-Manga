@@ -114,7 +114,8 @@ function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError }
     if (!ready || !inView || !activeSrc) return;
     let cancelled = false;
     let objUrl = null;
-    fetch(activeSrc)
+    const controller = new AbortController();
+    fetch(activeSrc, { signal: controller.signal })
       .then(r => { if (!r.ok) { const e = new Error(`HTTP ${r.status}`); e.status = r.status; throw e; } return r.blob(); })
       .then(blob => {
         if (cancelled) return;
@@ -122,14 +123,18 @@ function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError }
         setBlobUrl(objUrl);
       })
       .catch((err) => {
-        if (cancelled) return;
+        if (cancelled || err?.name === 'AbortError') return;
         if (fallbackSrc && !useFallback) setUseFallback(true); // coba worker sekali
         // Hanya laporkan error AKSES (401/403 = token ditolak server). Error lain
         // (404/429/jaringan) cukup gagalkan halaman ini saja — JANGAN reset token
         // (mencegah loop Turnstile di gambar ke-2, ke-3, dst).
         else { setFailed(true); onAccessError?.(err?.status); }
       });
-    return () => { cancelled = true; if (objUrl) URL.revokeObjectURL(objUrl); };
+    return () => {
+      cancelled = true;
+      controller.abort();
+      if (objUrl) URL.revokeObjectURL(objUrl);
+    };
   }, [ready, inView, activeSrc, retryCount]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleRetry = (e) => {
@@ -542,11 +547,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
       </button>
 
       {/* Chapter Selector */}
-      <div data-chapter-selector className="relative flex-[2]">
+      <div data-chapter-selector className="relative min-w-0 flex-[2]">
         <button
           ref={(el) => { chapterBtnRefs.current[position] = el; }}
           onClick={() => toggleChapterList(position)}
-          className="w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-sm md:text-base font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
+          className="box-border w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-sm md:text-base font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
         >
           <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary shrink-0" />
           <span className="truncate">{activeChapter.title.split(':')[0]}</span>
@@ -718,7 +723,17 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                   </div>
                   {/* Pill */}
                   <button
-                    onClick={() => pageRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      const target = pageRefs.current[i];
+                      if (!target) return;
+                      setCurrentPage(i);
+                      if (activeChapter?.id) {
+                        localStorage.setItem(`reader_page_${activeChapter.id}`, i);
+                      }
+                      target.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    }}
+                    aria-label={`Buka halaman ${i + 1}`}
                     className={`w-full h-[6px] rounded-full transition-colors duration-150 cursor-pointer ${
                       i <= currentPage ? 'bg-primary' : 'bg-white/25 hover:bg-white/50'
                     }`}
@@ -850,14 +865,17 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             <motion.div
               key="chapter-dropdown"
               data-chapter-selector
-              initial={{ opacity: 0, y: openChapterList === 'top' ? -8 : 8, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: openChapterList === 'top' ? -8 : 8, scale: 0.97 }}
+              initial={{ opacity: 0, y: openChapterList === 'top' ? -8 : 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: openChapterList === 'top' ? -8 : 8 }}
               transition={{ duration: 0.15 }}
               style={{
                 position: 'fixed',
                 left: dropdownAnchor?.left ?? 8,
                 width: dropdownAnchor?.width ?? 'auto',
+                minWidth: dropdownAnchor?.width ?? 'auto',
+                maxWidth: dropdownAnchor?.width ?? 'none',
+                boxSizing: 'border-box',
                 zIndex: 9999,
                 top: dropdownAnchor?.top,
                 bottom: dropdownAnchor?.bottom,
@@ -876,6 +894,15 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 {chapters.map((ch) => {
                   const isActive = ch.id === activeChapter.id;
                   const isLocked = isChapterLocked(ch);
+                  const isNew = Boolean(ch.isNew) || (
+                    Boolean(ch.release_date)
+                    && now - new Date(ch.release_date).getTime() < 24 * 60 * 60 * 1000
+                  );
+                  const isStatusChapter = isOneshot || (
+                    configuredEndChapter != null
+                    && Number(ch.chapter_number) === Number(configuredEndChapter)
+                  );
+                  const showStatusBadge = !isNew && isFinishedSeries && isStatusChapter;
                   return (
                     <button
                       key={ch.id}
@@ -892,8 +919,17 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                     >
                       <div className="flex items-center gap-1.5 min-w-0 flex-1">
                         <span className="truncate">{ch.title}</span>
-                        {ch.isNew && (
+                        {isNew && (
                           <span className="badge-new-glow shrink-0 font-label-sm bg-emerald-500 text-white border border-emerald-300/70 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase">New</span>
+                        )}
+                        {showStatusBadge && (
+                          <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-black uppercase tracking-wider ${
+                            normalizedStatus === 'tamat' || isOneshot
+                              ? 'bg-red-500/15 text-red-400 border border-red-500/30'
+                              : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
+                          }`}>
+                            {normalizedStatus === 'tamat' || isOneshot ? 'END' : activeManga?.status}
+                          </span>
                         )}
                         {isLocked && (
                           <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
