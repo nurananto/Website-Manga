@@ -361,12 +361,17 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
             className="absolute top-4 right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-outline cursor-pointer z-10 transition-colors">
             <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
-          <div className="flex items-start gap-3 p-5 pb-4 pr-14 sm:pr-16">
+          <div className="flex w-full items-start gap-3 px-5 pb-4 pt-5 pr-14 sm:pr-16">
             {manga?.coverUrl && (
-              <ResponsiveCover manga={manga} alt=""
-                className="w-[52px] sm:w-[60px] aspect-[2/3] object-cover rounded-lg border border-white/15 shrink-0 shadow-lg" />
+              <div className="aspect-[2/3] w-[52px] shrink-0 overflow-hidden rounded-lg border border-white/15 shadow-lg sm:w-[60px]">
+                <ResponsiveCover
+                  manga={manga}
+                  alt=""
+                  className="block h-full w-full object-cover"
+                />
+              </div>
             )}
-            <div className="min-w-0 pt-0.5">
+            <div className="min-w-0 flex-1 pt-0.5">
               <div className="flex items-center gap-1.5 mb-1">
                 <Lock className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
                 <span className="font-label-sm text-xs sm:text-sm md:text-base font-black text-amber-400 uppercase tracking-wider">Early Access</span>
