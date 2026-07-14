@@ -88,21 +88,6 @@ body {
   padding-bottom: max(5rem, env(safe-area-inset-bottom));
 }
 
-/* Slow brand-blue pulse untuk carousel border */
-@keyframes brand-blue-pulse {
-  0%, 100% {
-    border-color: rgba(24, 119, 242, 0.55);
-    box-shadow: 0 0 10px rgba(24, 119, 242, 0.16);
-  }
-  50% {
-    border-color: rgba(88, 101, 242, 0.95);
-    box-shadow: 0 0 22px rgba(24, 119, 242, 0.36), 0 0 6px rgba(88, 101, 242, 0.22) inset;
-  }
-}
-.border-brand-pulse {
-  animation: brand-blue-pulse 3s ease-in-out infinite;
-}
-
 /* Glow lembut untuk badge NEW; ukuran badge tetap stabil agar layout tidak bergetar. */
 @keyframes new-badge-glow {
   0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }

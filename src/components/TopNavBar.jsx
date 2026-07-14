@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Key, RotateCcw, LogOut, Crown, Bell } from 'lucide-react';
+import { Key, RotateCcw, LogOut, LogIn, Crown, Bell } from 'lucide-react';
 import { DISCORD_INVITE_URL } from '../lib/links';
 import { nowTimestamp } from '../utils';
 
@@ -78,33 +78,44 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
         <div ref={dropdownRef} className="relative">
           <div className="relative">
-            <div
-              role="button"
-              tabIndex={0}
-              aria-label="Menu akun"
-              aria-expanded={isDropdownOpen}
-              onClick={() => { setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); }}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); } }}
-              className={`h-10 md:h-11 xl:h-12 rounded-xl border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md flex items-center gap-2 bg-surface-container-high p-1.5 pr-3 ${
-                activeTab === 'profile' || isDropdownOpen ? 'border-primary' : 'border-white/10'
-              }`}
-            >
-              <span className="w-7 h-7 md:w-8 md:h-8 xl:w-9 xl:h-9 rounded-full overflow-hidden border border-white/10 bg-surface-container-highest flex items-center justify-center shrink-0">
-                {avatarUrl ? (
-                  <img alt="avatar" className="w-full h-full object-cover" src={avatarUrl} referrerPolicy="no-referrer" />
-                ) : (
-                  <span className="text-[10px] md:text-xs font-black text-primary select-none">
-                    {displayName.slice(0, 2).toUpperCase()}
-                  </span>
-                )}
-              </span>
-              <span className="max-w-24 truncate text-xs md:text-sm font-black text-on-surface">
-                {isLoggedIn ? displayName : 'Login'}
-              </span>
-            </div>
+            {isLoggedIn ? (
+              <div
+                role="button"
+                tabIndex={0}
+                aria-label="Menu akun"
+                aria-expanded={isDropdownOpen}
+                onClick={() => { setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); }}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); } }}
+                className={`h-10 md:h-11 xl:h-12 rounded-xl border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md flex items-center gap-2 bg-surface-container-high p-1.5 pr-3 ${
+                  activeTab === 'profile' || isDropdownOpen ? 'border-primary' : 'border-white/10'
+                }`}
+              >
+                <span className="w-7 h-7 md:w-8 md:h-8 xl:w-9 xl:h-9 rounded-full overflow-hidden border border-white/10 bg-surface-container-highest flex items-center justify-center shrink-0">
+                  {avatarUrl ? (
+                    <img alt="avatar" className="w-full h-full object-cover" src={avatarUrl} referrerPolicy="no-referrer" />
+                  ) : (
+                    <span className="text-[10px] md:text-xs font-black text-primary select-none">
+                      {displayName.slice(0, 2).toUpperCase()}
+                    </span>
+                  )}
+                </span>
+                <span className="max-w-24 truncate text-xs md:text-sm font-black text-on-surface">
+                  {displayName}
+                </span>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={onLoginClick}
+                className="h-10 md:h-11 xl:h-12 rounded-lg bg-primary-container hover:bg-inverse-primary px-3 md:px-4 text-white text-xs md:text-sm font-black flex items-center justify-center gap-1.5 md:gap-2 border border-primary/25 shadow-md active:scale-95 transition-all cursor-pointer"
+              >
+                <LogIn className="w-4 h-4 md:w-[18px] md:h-[18px]" />
+                <span>Log In</span>
+              </button>
+            )}
           </div>
 
-          {isDropdownOpen && (
+          {isLoggedIn && isDropdownOpen && (
             <div className="absolute right-0 top-12 w-56 sm:w-60 md:w-64 bg-surface-container border border-white/5 rounded-xl shadow-2xl py-1.5 z-50 animate-[fadeIn_0.15s_ease-out]">
               {isLoggedIn ? (
                 <>

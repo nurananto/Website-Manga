@@ -68,7 +68,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
       </div>
     </div>
     <section
-      className="relative w-full h-[220px] sm:h-[260px] md:h-[300px] lg:h-[340px] rounded-xl overflow-hidden group shadow-2xl border border-brand-pulse flex items-center justify-between"
+      className="relative w-full h-[190px] sm:h-[220px] md:h-[255px] lg:h-[285px] rounded-xl overflow-hidden group shadow-2xl border border-primary/45 flex items-center justify-between"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -111,26 +111,14 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
                 {activeManga.genres[2]}
               </span>
             )}
-            {/* genre ke-4: desktop */}
-            {activeManga.genres[3] && (
-              <span className="hidden lg:inline bg-surface-variant/85 text-on-surface px-2.5 py-0.5 rounded-md font-label-sm text-xs uppercase tracking-wider backdrop-blur-md">
-                {activeManga.genres[3]}
-              </span>
-            )}
-            {/* overflow "+N" */}
             {activeManga.genres.length > 2 && (
               <span className="sm:hidden bg-black/40 text-white/80 px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
                 +{activeManga.genres.length - 2}
               </span>
             )}
             {activeManga.genres.length > 3 && (
-              <span className="hidden sm:inline lg:hidden bg-black/40 text-white/80 px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
+              <span className="hidden sm:inline bg-black/40 text-white/80 px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
                 +{activeManga.genres.length - 3}
-              </span>
-            )}
-            {activeManga.genres.length > 4 && (
-              <span className="hidden lg:inline bg-black/40 text-white/80 px-2.5 py-0.5 rounded-md font-label-sm text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
-                +{activeManga.genres.length - 4}
               </span>
             )}
           </div>
@@ -146,7 +134,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
           {/* Description */}
           <p
             key={`desc-${activeManga.id}`}
-            className="line-clamp-3 sm:line-clamp-3 md:line-clamp-4 lg:line-clamp-4 font-body-lg text-xs sm:text-sm md:text-base lg:text-lg text-on-surface-variant leading-relaxed text-justify animate-[slideUpFade_0.34s_ease-out]"
+            className="line-clamp-3 font-body-lg text-xs sm:text-sm md:text-base lg:text-lg text-on-surface-variant leading-relaxed text-justify animate-[slideUpFade_0.34s_ease-out]"
           >
             {activeManga.description}
           </p>

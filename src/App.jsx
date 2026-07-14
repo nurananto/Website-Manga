@@ -760,7 +760,7 @@ export default function App() {
                     <div className="flex items-center gap-3 min-w-0">
                       <span className="h-7 w-1 rounded-full bg-primary shrink-0" aria-hidden="true" />
                       <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface truncate">
-                        {searchQuery ? `Search Results for "${searchQuery}"` : 'List Manga'}
+                        {searchQuery ? `Search Results for "${searchQuery}"` : 'List Bacaan'}
                       </h2>
                     </div>
                     <button
