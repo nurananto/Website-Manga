@@ -13,6 +13,13 @@ export function imgUrl(path) {
   return `${IMAGE_BASE}/${path}`;
 }
 
+export function coverUrlForWidth(manga, width) {
+  const covers = manga?.coverUrls;
+  if (width < 640) return imgUrl(covers?.mobile || manga?.coverUrl);
+  if (width < 1024) return imgUrl(covers?.tablet || covers?.desktop || manga?.coverUrl);
+  return imgUrl(covers?.desktop || manga?.coverUrl);
+}
+
 // Format tanggal relatif: "2 jam lalu", "3 hari lalu", "1 bln lalu"
 export function timeAgo(dateStr) {
   if (!dateStr) return '';

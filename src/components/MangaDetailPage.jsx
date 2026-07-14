@@ -1,9 +1,10 @@
 import { useState, useMemo, useEffect } from 'react';
-import { imgUrl, nowTimestamp, timeAgo } from '../utils';
+import { nowTimestamp, timeAgo } from '../utils';
 import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Lock, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
 import SupportButtons from './SupportButtons';
+import ResponsiveCover from './ResponsiveCover';
 
 const chapterSortValue = (value) => {
   const n = Number(value);
@@ -126,7 +127,7 @@ const renderChapterRow = (ch) => {
                 {chapterTitle}
               </p>
               {isNew && (
-                <span className="bg-sky-400/90 backdrop-blur-sm text-slate-950 ring-1 ring-sky-200/50 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
+                <span className="bg-primary text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.65)] ring-1 ring-primary-fixed/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
                   <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 stroke-[3] shrink-0" />
                   <span>UP</span>
                 </span>
@@ -189,12 +190,12 @@ const renderChapterRow = (ch) => {
         <section className="relative mx-3 sm:mx-4 md:mx-5 rounded-2xl overflow-hidden border border-white/15 flex items-end pt-3 pb-2">
           {/* Darkened dynamic background */}
           <div className="absolute inset-0 z-0 overflow-hidden">
-            <img
+            <ResponsiveCover
+              manga={manga}
               alt=""
               loading="eager"
               fetchpriority="high"
               className="w-full h-full object-cover"
-              src={imgUrl(manga.coverUrls?.mobile || manga.coverUrl)}
             />
             <div className="absolute inset-0 bg-black/58" />
             <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/75 to-surface/25" />
@@ -205,17 +206,13 @@ const renderChapterRow = (ch) => {
           <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-6 pb-4">
             {/* Cover Image */}
             <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[2/3] flex-shrink-0">
-              <picture>
-                {manga.coverUrls?.mobile  && <source media="(max-width: 640px)"  srcSet={imgUrl(manga.coverUrls.mobile)} />}
-                {manga.coverUrls?.tablet  && <source media="(max-width: 1024px)" srcSet={imgUrl(manga.coverUrls.tablet)} />}
-                <img
+              <ResponsiveCover
+                  manga={manga}
                   alt={`${manga.title} Cover`}
                   loading="eager"
                   fetchpriority="high"
                   className="w-full h-full object-cover rounded-xl shadow-2xl border-2 border-white/25"
-                  src={imgUrl(manga.coverUrls?.desktop ?? manga.coverUrl)}
                 />
-              </picture>
             </div>
 
             {/* Metadata info */}

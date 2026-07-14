@@ -105,8 +105,8 @@ body {
 
 /* Glow lembut untuk badge NEW; ukuran badge tetap stabil agar layout tidak bergetar. */
 @keyframes new-badge-glow {
-  0%, 100% { box-shadow: 0 0 0 rgba(56, 189, 248, 0); }
-  50% { box-shadow: 0 0 10px rgba(56, 189, 248, 0.55); }
+  0%, 100% { box-shadow: 0 0 0 rgba(137, 206, 255, 0); }
+  50% { box-shadow: 0 0 10px rgba(137, 206, 255, 0.58); }
 }
 .badge-new-glow {
   animation: new-badge-glow 2.4s ease-in-out infinite;

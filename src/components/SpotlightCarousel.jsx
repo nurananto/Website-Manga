@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { imgUrl } from '../utils';
 import { Star } from 'lucide-react';
+import { coverUrlForWidth } from '../utils';
+import ResponsiveCover from './ResponsiveCover';
 
 const STATUS_CFG = {
   'Tamat':   { label: 'END',     textCls: 'text-red-500' },
@@ -132,7 +133,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
     for (let d = -side - 1; d <= side + 1; d++) {
       const idx = ((activeIdx + d) % N + N) % N;
       const m = mangaList[idx];
-      const url = imgUrl(m?.coverUrls?.mobile || m?.coverUrl);
+      const url = coverUrlForWidth(m, window.innerWidth);
       if (url) toLoad.add(url);
     }
     // fetchPriority 'low' agar preload tetangga tidak berebut bandwidth dengan
@@ -157,13 +158,13 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
 
   return (
     <div
-      className="relative w-full rounded-xl overflow-hidden"
+      className="relative w-auto -mx-3 sm:-mx-4 md:-mx-5 overflow-hidden"
       style={{ height: containerH }}
     >
       {/* ── Darkened background from active cover ── */}
       <div key={active?.id} className="absolute inset-0 pointer-events-none z-0 animate-[fadeIn_0.4s_ease-out]">
-          <img
-            src={imgUrl(active?.coverUrls?.mobile || active?.coverUrl)} alt=""
+          <ResponsiveCover
+            manga={active} alt=""
             loading="eager"
             fetchpriority="high"
             className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
@@ -213,8 +214,8 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
                 }`}
                 style={{ width: coverW, height: coverH }}
               >
-                <img
-                  src={imgUrl(manga.coverUrls?.mobile || manga.coverUrl)}
+                <ResponsiveCover
+                  manga={manga}
                   alt={manga.title}
                   loading="eager"
                   fetchpriority={isActive ? 'high' : 'low'}

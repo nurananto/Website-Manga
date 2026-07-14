@@ -6,8 +6,9 @@ import DonationBanner from './components/DonationBanner';
 import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
+import ResponsiveCover from './components/ResponsiveCover';
 import { Sparkles, Compass, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
-import { imgUrl, timeAgo } from './utils';
+import { timeAgo } from './utils';
 import { MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
@@ -50,7 +51,7 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
           {historyEntries.map(({ manga, chapter }) => (
             <div key={manga.id} onClick={() => handleReadChapter(chapter, manga.title, manga)}
               className="flex items-stretch gap-3 sm:gap-4 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 sm:p-3 md:p-4 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
-              <img alt={manga.title} src={imgUrl(manga.coverUrl)}
+              <ResponsiveCover manga={manga} alt={manga.title}
                 className="object-cover rounded-lg border border-white/10 shrink-0 shadow-md"
                 style={{ aspectRatio: '2/3', width: 'auto', maxHeight: 'calc(1.25rem + 2.5rem + 1.25rem + 0.5rem)' }} />
               <div className="min-w-0 flex-1 flex flex-col justify-center gap-0.5 sm:gap-1">
@@ -719,14 +720,14 @@ export default function App() {
                   <>
                     <div
                       aria-hidden="true"
-                      className="w-full border-t border-white/60 -mb-2 md:-mb-3 xl:-mb-4"
+                      className="w-auto -mx-3 sm:-mx-4 md:-mx-5 border-t border-white/60 -mb-2 md:-mb-3 xl:-mb-4"
                     />
 
                     {isLoading ? (
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-2 -mx-3 sm:-mx-4 md:-mx-5">
                         {/* Tinggi disamakan persis dengan SpotlightCarousel asli:
                             cover + metadata + padding agar tidak ada CLS. */}
-                        <div className="h-[323px] sm:h-[382px] md:h-[446px] lg:h-[494px] rounded-xl bg-surface-container animate-pulse border border-white/5" />
+                        <div className="h-[323px] sm:h-[382px] md:h-[446px] lg:h-[494px] bg-surface-container animate-pulse border-y border-white/5" />
                         <div className="flex justify-center gap-2">
                           <div className="h-1.5 w-6 rounded-full bg-surface-container-high animate-pulse" />
                           <div className="h-1.5 w-1.5 rounded-full bg-surface-container-high animate-pulse" />
@@ -741,7 +742,7 @@ export default function App() {
 
                     <div
                       aria-hidden="true"
-                      className="w-full border-t border-white/60 -mt-2 md:-mt-3 xl:-mt-4"
+                      className="w-auto -mx-3 sm:-mx-4 md:-mx-5 border-t border-white/60 -mt-2 md:-mt-3 xl:-mt-4"
                     />
 
                     <FeaturedCarousel
@@ -940,10 +941,10 @@ export default function App() {
                         onClick={() => { navigate(`/${manga.id}`); }}
                         className="py-5 px-5 flex items-center gap-5 hover:bg-white/5 cursor-pointer transition-colors"
                       >
-                        <img 
+                        <ResponsiveCover
+                          manga={manga}
                           alt={manga.title} 
                           className="w-14 aspect-[2/3] object-cover rounded-xl border border-white/10 shrink-0 shadow-md" 
-                          src={manga.coverUrl} 
                         />
                         <div className="min-w-0 flex-1 flex flex-col justify-center">
                           <h3 className="font-extrabold text-sm md:text-base text-on-surface truncate">{manga.title}</h3>

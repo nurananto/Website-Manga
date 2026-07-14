@@ -3,10 +3,11 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUp, Lock, BookOpen } from 'lucide-react';
 import { discordCommentUrl } from '../lib/links';
-import { imgUrl, nowTimestamp } from '../utils';
+import { nowTimestamp } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
+import ResponsiveCover from './ResponsiveCover';
 
 // Widget Turnstile interaktif (wajib centang) untuk membuka locked chapter.
 function TurnstileGate({ onToken }) {
@@ -584,7 +585,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 {/* Darkened cover background */}
                 {activeManga?.coverUrl && (
                   <>
-                    <img src={imgUrl(activeManga.coverUrl)} alt="" aria-hidden
+                    <ResponsiveCover manga={activeManga} alt="" aria-hidden
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                     />
                     <div className="absolute inset-0 bg-black/35 pointer-events-none" />
@@ -598,8 +599,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 </div>
                 {activeManga?.coverUrl && (
                   <div className="relative h-full py-1.5 flex items-center shrink-0">
-                    <img
-                      src={imgUrl(activeManga.coverUrl)}
+                    <ResponsiveCover
+                      manga={activeManga}
                       alt=""
                       className="h-full aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10"
                     />
@@ -660,7 +661,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 {/* Darkened cover background */}
                 {activeManga?.coverUrl && (
                   <>
-                    <img src={imgUrl(activeManga.coverUrl)} alt="" aria-hidden
+                    <ResponsiveCover manga={activeManga} alt="" aria-hidden
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                     />
                     <div className="absolute inset-0 bg-black/35 pointer-events-none" />
@@ -674,8 +675,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 </div>
                 {activeManga?.coverUrl && (
                   <div className="relative h-full py-1.5 flex items-center shrink-0">
-                    <img
-                      src={imgUrl(activeManga.coverUrl)}
+                    <ResponsiveCover
+                      manga={activeManga}
                       alt=""
                       className="h-full aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10"
                     />
@@ -817,8 +818,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
               >
                 {/* Cover manga menggantikan ikon buku */}
                 {activeManga?.coverUrl && (
-                  <img
-                    src={imgUrl(activeManga.coverUrl)}
+                  <ResponsiveCover
+                    manga={activeManga}
                     alt={activeManga.title}
                     className="w-24 aspect-[2/3] object-cover rounded-xl mx-auto shadow-lg border border-white/15"
                   />
@@ -891,7 +892,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                       <div className="flex items-center gap-1.5 min-w-0 flex-1">
                         <span className="truncate">{ch.title}</span>
                         {ch.isNew && (
-                          <span className="badge-new-glow shrink-0 font-label-sm bg-sky-400 text-slate-950 border border-sky-200/60 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase">New</span>
+                          <span className="badge-new-glow shrink-0 font-label-sm bg-primary text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.65)] border border-primary-fixed/70 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase">New</span>
                         )}
                         {isLocked && (
                           <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">

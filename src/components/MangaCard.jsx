@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { imgUrl, nowTimestamp, timeAgoShort } from '../utils';
+import { nowTimestamp, timeAgoShort } from '../utils';
 import { Lock, ArrowUp } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
+import ResponsiveCover from './ResponsiveCover';
 
 export default function MangaCard({ manga, onReadChapter, onViewManga, isSupporter }) {
   const [localUnlocked, setLocalUnlocked] = useState(new Set());
@@ -20,15 +21,11 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
         aria-label={manga.title}
         className="relative w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full flex-shrink-0 flex items-center justify-center py-2 sm:py-2.5 md:py-3 px-2 cursor-pointer"
       >
-        <picture>
-          {manga.coverUrls?.mobile  && <source media="(max-width: 640px)"  srcSet={imgUrl(manga.coverUrls.mobile)} />}
-          {manga.coverUrls?.tablet  && <source media="(max-width: 1024px)" srcSet={imgUrl(manga.coverUrls.tablet)} />}
-          <img
+        <ResponsiveCover
+            manga={manga}
             alt={manga.title}
             className="h-full w-full object-cover rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-white/10 hover:scale-105 transition-transform duration-500"
-            src={imgUrl(manga.coverUrls?.desktop ?? manga.coverUrl)}
           />
-        </picture>
       </a>
 
       {/* Details Section */}
@@ -37,7 +34,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
             {isMangaNew && (
-              <span className="badge-new-glow shrink-0 rounded-md bg-sky-400 px-1.5 py-0.5 font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider text-slate-950 ring-1 ring-sky-200/60">
+              <span className="badge-new-glow shrink-0 rounded-md bg-primary px-1.5 py-0.5 font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.65)] ring-1 ring-primary-fixed/70">
                 NEW
               </span>
             )}
@@ -99,7 +96,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
                   </span>
                   {isLocked && <Lock className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 text-amber-400 shrink-0" />}
                   {isUp && (
-                    <span className="bg-sky-400/90 backdrop-blur-sm text-slate-950 ring-1 ring-sky-200/50 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
+                    <span className="bg-primary text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.65)] ring-1 ring-primary-fixed/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
                       <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 stroke-[3] shrink-0" />
                       <span>UP</span>
                     </span>

@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-import { imgUrl } from '../utils';
 import { ChevronLeft, ChevronRight, Play, Info } from 'lucide-react';
+import ResponsiveCover from './ResponsiveCover';
 
 export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }) {
   const trending = mangaList.filter((m) => m.isTrending);
@@ -74,10 +74,10 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
     >
       <div key={activeManga.id} className="absolute inset-0 w-full h-full animate-[featuredSlideIn_0.45s_cubic-bezier(0.22,1,0.36,1)]">
           {/* Background Image with dark overlays */}
-          <img
+          <ResponsiveCover
+            manga={activeManga}
             alt=""
             className="w-full h-full object-cover object-top"
-            src={imgUrl(activeManga.coverUrls?.mobile || activeManga.coverUrl)}
           />
           {/* Vignette Overlay */}
           <div className="absolute inset-0 bg-black/45" />
@@ -177,10 +177,10 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
       {/* Right Side: Cover Image */}
       {/* Mobile: lebih besar (h-[85%]), tablet: h-[90%], desktop: h-[93%] */}
       <div className="absolute inset-y-0 right-2 sm:right-3 md:right-4 flex items-center justify-center h-full z-10 py-2 sm:py-3">
-        <img
+        <ResponsiveCover
+          manga={activeManga}
           alt={activeManga.title}
           className="h-[85%] sm:h-[90%] md:h-[93%] aspect-[2/3] object-cover rounded-lg sm:rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500 animate-[featuredCoverIn_0.45s_cubic-bezier(0.22,1,0.36,1)]"
-          src={imgUrl(activeManga.coverUrl)}
           loading="eager"
           fetchpriority="high"
         />

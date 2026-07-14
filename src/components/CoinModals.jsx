@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Lock, Check, Crown } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
-import { imgUrl } from '../utils';
+import ResponsiveCover from './ResponsiveCover';
 
 const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
 const SUPPORTER_MIN = 'Rp 5.000';
@@ -363,7 +363,7 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
           </button>
           <div className="flex items-start gap-3 p-5 pb-4 pr-14 sm:pr-16">
             {manga?.coverUrl && (
-              <img src={imgUrl(manga.coverUrl)} alt=""
+              <ResponsiveCover manga={manga} alt=""
                 className="w-[52px] sm:w-[60px] aspect-[2/3] object-cover rounded-lg border border-white/15 shrink-0 shadow-lg" />
             )}
             <div className="min-w-0 pt-0.5">
