@@ -389,17 +389,20 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
             </div>
           )}
           <div className="px-5 pb-5 flex flex-col gap-2">
+            <p className="mb-1 text-center font-body-md text-xs font-semibold text-outline/75 sm:text-sm">
+              Early Access hanya dapat dibaca oleh Supporter aktif.
+            </p>
             {!isLoggedIn ? (
               <button onClick={onLogin}
                 className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
                 <Crown className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-                Login untuk membaca Early Access
+                Login untuk Lanjut
               </button>
             ) : (
               <button onClick={onBecomeSupporter}
                 className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
                 <Crown className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-                {isSupporter ? 'Perpanjang Supporter' : 'Jadi Supporter untuk membaca Early Access'}
+                {isSupporter ? 'Perpanjang Supporter' : 'Jadi Supporter untuk Membaca'}
               </button>
             )}
             <button onClick={onClose}
