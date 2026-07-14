@@ -59,7 +59,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
     : (supRemainMs < 86400000 ? 'hari ini berakhir' : `${Math.floor(supRemainMs / 86400000)} hari tersisa`);
 
   return (
-    <nav className="w-full bg-black">
+    <nav className="w-full bg-[#07111f]">
       <div className="flex items-center h-12 md:h-14 xl:h-16 px-2 sm:px-3 md:px-4 gap-2 w-full">
         <a
           href="/"

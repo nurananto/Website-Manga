@@ -719,7 +719,7 @@ export default function App() {
                   <>
                     <div
                       aria-hidden="true"
-                      className="w-full border-t border-white/60"
+                      className="w-full border-t border-white/60 -mb-2 md:-mb-3 xl:-mb-4"
                     />
 
                     {isLoading ? (
@@ -741,7 +741,7 @@ export default function App() {
 
                     <div
                       aria-hidden="true"
-                      className="w-full border-t border-white/60"
+                      className="w-full border-t border-white/60 -mt-2 md:-mt-3 xl:-mt-4"
                     />
 
                     <FeaturedCarousel
