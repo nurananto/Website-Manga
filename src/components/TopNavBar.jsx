@@ -60,7 +60,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
   return (
     <nav className="w-full bg-[#07111f]">
-      <div className="flex items-center h-12 md:h-14 xl:h-16 px-2 sm:px-3 md:px-4 gap-2 w-full">
+      <div className="flex items-center h-14 md:h-16 xl:h-[72px] px-3 sm:px-4 md:px-5 xl:px-6 gap-3 md:gap-4 w-full">
         <a
           href="/"
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}

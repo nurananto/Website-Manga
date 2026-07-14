@@ -169,9 +169,9 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
             className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
           />
           <div className="absolute inset-0 bg-black/28" />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface/72 via-surface/26 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface/56 via-surface/20 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-surface/72 via-surface/18 to-transparent" />
-          <div className="absolute inset-0 shadow-[inset_0_22px_64px_rgba(0,0,0,0.45),inset_0_-58px_90px_rgba(0,0,0,0.68),inset_64px_0_84px_rgba(0,0,0,0.58),inset_-64px_0_84px_rgba(0,0,0,0.58)]" />
+          <div className="absolute inset-0 shadow-[inset_0_22px_64px_rgba(0,0,0,0.45),inset_0_-58px_90px_rgba(0,0,0,0.5),inset_64px_0_84px_rgba(0,0,0,0.58),inset_-64px_0_84px_rgba(0,0,0,0.58)]" />
       </div>
 
       {/* ── Cover row — centered flex, no scroll ── */}

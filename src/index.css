@@ -103,6 +103,19 @@ body {
   animation: brand-blue-pulse 3s ease-in-out infinite;
 }
 
+/* Glow lembut untuk badge NEW; ukuran badge tetap stabil agar layout tidak bergetar. */
+@keyframes new-badge-glow {
+  0%, 100% { box-shadow: 0 0 0 rgba(56, 189, 248, 0); }
+  50% { box-shadow: 0 0 10px rgba(56, 189, 248, 0.55); }
+}
+.badge-new-glow {
+  animation: new-badge-glow 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-new-glow { animation: none; }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

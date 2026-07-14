@@ -891,7 +891,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                       <div className="flex items-center gap-1.5 min-w-0 flex-1">
                         <span className="truncate">{ch.title}</span>
                         {ch.isNew && (
-                          <span className="shrink-0 font-label-sm bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase">New</span>
+                          <span className="badge-new-glow shrink-0 font-label-sm bg-sky-400 text-slate-950 border border-sky-200/60 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase">New</span>
                         )}
                         {isLocked && (
                           <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">

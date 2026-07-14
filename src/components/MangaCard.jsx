@@ -37,7 +37,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
             {isMangaNew && (
-              <span className="shrink-0 rounded-md bg-emerald-500 px-1.5 py-0.5 font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider text-white ring-1 ring-white/25">
+              <span className="badge-new-glow shrink-0 rounded-md bg-sky-400 px-1.5 py-0.5 font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider text-slate-950 ring-1 ring-sky-200/60">
                 NEW
               </span>
             )}
@@ -99,7 +99,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
                   </span>
                   {isLocked && <Lock className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 text-amber-400 shrink-0" />}
                   {isUp && (
-                    <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
+                    <span className="bg-sky-400/90 backdrop-blur-sm text-slate-950 ring-1 ring-sky-200/50 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
                       <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 stroke-[3] shrink-0" />
                       <span>UP</span>
                     </span>

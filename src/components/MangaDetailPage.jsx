@@ -126,7 +126,7 @@ const renderChapterRow = (ch) => {
                 {chapterTitle}
               </p>
               {isNew && (
-                <span className="bg-emerald-500/90 backdrop-blur-sm text-white px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
+                <span className="bg-sky-400/90 backdrop-blur-sm text-slate-950 ring-1 ring-sky-200/50 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
                   <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 stroke-[3] shrink-0" />
                   <span>UP</span>
                 </span>
