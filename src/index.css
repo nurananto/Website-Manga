@@ -204,19 +204,3 @@ p, h1, h2, h3, h4, h5, h6, span.selectable {
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }
-
-/* Infinite Marquee Animation */
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 25s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}

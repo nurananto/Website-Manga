@@ -85,17 +85,22 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
               aria-expanded={isDropdownOpen}
               onClick={() => { setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); }}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); } }}
-              className={`w-9 h-9 md:w-10 md:h-10 xl:w-12 xl:h-12 rounded-full overflow-hidden border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md flex items-center justify-center bg-surface-container-high ${
+              className={`h-10 md:h-11 xl:h-12 rounded-xl border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md flex items-center gap-2 bg-surface-container-high p-1.5 pr-3 ${
                 activeTab === 'profile' || isDropdownOpen ? 'border-primary' : 'border-white/10'
               }`}
             >
-              {avatarUrl ? (
-                <img alt="avatar" className="w-full h-full object-cover" src={avatarUrl} referrerPolicy="no-referrer" />
-              ) : (
-                <span className="text-xs font-black text-primary select-none">
-                  {displayName.slice(0, 2).toUpperCase()}
-                </span>
-              )}
+              <span className="w-7 h-7 md:w-8 md:h-8 xl:w-9 xl:h-9 rounded-full overflow-hidden border border-white/10 bg-surface-container-highest flex items-center justify-center shrink-0">
+                {avatarUrl ? (
+                  <img alt="avatar" className="w-full h-full object-cover" src={avatarUrl} referrerPolicy="no-referrer" />
+                ) : (
+                  <span className="text-[10px] md:text-xs font-black text-primary select-none">
+                    {displayName.slice(0, 2).toUpperCase()}
+                  </span>
+                )}
+              </span>
+              <span className="max-w-24 truncate text-xs md:text-sm font-black text-on-surface">
+                {isLoggedIn ? displayName : 'Login'}
+              </span>
             </div>
           </div>
 

@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useCallback, useEffectEvent, lazy, Suspens
 import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
-import DonationBanner from './components/DonationBanner';
 import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
@@ -671,20 +670,6 @@ export default function App() {
               .catch(() => {});
           }}
         />
-      )}
-
-      {/* Banner ajakan donasi Trakteer — di bawah header, tampil di semua halaman
-          kecuali reader & auth (sinkron dengan tampilnya TopNavBar) */}
-      {!activeChapter && routePage !== 'auth' && (
-        <div className="px-3 sm:px-4 md:px-5 pt-3 md:pt-4">
-          <DonationBanner
-            isLoggedIn={isLoggedIn}
-            onDonateClick={() => {
-              if (isLoggedIn) setIsCoinModalOpen(true);
-              else openAuth();
-            }}
-          />
-        </div>
       )}
 
       {/* Main Content Area */}

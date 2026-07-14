@@ -63,9 +63,7 @@ function getMaxSide() {
   if (w < 640)  return 2;
   if (w < 768)  return 3;
   if (w < 1024) return 4;
-  if (w < 1280) return 5;
-  if (w < 1600) return 6;
-  return 7;
+  return 5;
 }
 
 function getMostRecentIdx(list) {
@@ -127,18 +125,18 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
     return () => clearInterval(timer);
   }, [N, isPaused]);
 
-  // Preload all covers in the current window + 1 step ahead on each side
+  // Hanya preload cover aktif dan satu berikutnya. Cover lain mengandalkan
+  // loading/fetch priority masing-masing agar tidak memenuhi antrean network.
   useEffect(() => {
-    const toLoad = new Set();
-    for (let d = -side - 1; d <= side + 1; d++) {
+    for (let d = 0; d <= 1; d++) {
       const idx = ((activeIdx + d) % N + N) % N;
       const m = mangaList[idx];
       const url = coverUrlForWidth(m, window.innerWidth);
-      if (url) toLoad.add(url);
+      if (!url) continue;
+      const img = new Image();
+      img.fetchPriority = d === 0 ? 'high' : 'low';
+      img.src = url;
     }
-    // fetchPriority 'low' agar preload tetangga tidak berebut bandwidth dengan
-    // gambar LCP (background blur + cover aktif) yang sedang dimuat.
-    toLoad.forEach(url => { const img = new Image(); img.fetchPriority = 'low'; img.src = url; });
   }, [activeIdx]); // eslint-disable-line
 
   const handleClick = (logIdx) => {
@@ -217,7 +215,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
                 <ResponsiveCover
                   manga={manga}
                   alt={manga.title}
-                  loading="eager"
+                  loading={dist <= 1 ? 'eager' : 'lazy'}
                   fetchpriority={isActive ? 'high' : 'low'}
                   className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-100 saturate-100' : 'brightness-[0.72] saturate-[0.82]'}`}
                   draggable={false}
