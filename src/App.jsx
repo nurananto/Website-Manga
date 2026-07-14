@@ -20,6 +20,7 @@ const ReaderModal         = lazy(() => import('./components/ReaderModal'));
 const PrivacyPolicyModal  = lazy(() => import('./components/PrivacyPolicyModal'));
 const TermsOfServiceModal = lazy(() => import('./components/TermsOfServiceModal'));
 const DmcaModal           = lazy(() => import('./components/DmcaModal'));
+const DisclaimerModal     = lazy(() => import('./components/DisclaimerModal'));
 const AuthModal           = lazy(() => import('./components/CoinModals').then(m => ({ default: m.AuthModal })));
 const SupporterModal      = lazy(() => import('./components/CoinModals').then(m => ({ default: m.SupporterModal })));
 const LockedChapterModal  = lazy(() => import('./components/CoinModals').then(m => ({ default: m.LockedChapterModal })));
@@ -206,6 +207,7 @@ export default function App() {
   const [isCheckingAccess] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
   const [showPrivacy, setShowPrivacy] = useState(false);
+  const [showDisclaimer, setShowDisclaimer] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [showDmca, setShowDmca] = useState(false);
 
@@ -981,14 +983,14 @@ export default function App() {
           <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-3">
             <img src="/logo-footer.webp" alt="Nurananto Scanlation" width="1843" height="552" className="h-11 md:h-14 xl:h-16 w-auto" />
             <VisitorCount />
-            <div className="w-full border border-white/8 rounded-xl px-5 sm:px-6 py-4 bg-white/[0.02]">
-              <p className="font-body-sm text-xs text-outline/70 leading-relaxed text-center">
-                Ini adalah situs fan terjemahan <em>unofficial</em> yang dibuat semata-mata karena kecintaan terhadap manga.
-                Seluruh karya yang ditampilkan di sini merupakan milik penerbit dan pengarang aslinya.
-                Jika sudah tersedia versi resmi/official dalam bahasa Indonesia, kami sangat mendukung kamu untuk membeli dan mendukung karya aslinya.
-              </p>
-            </div>
             <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+              <button
+                onClick={() => setShowDisclaimer(true)}
+                className="font-body-sm text-[10px] text-outline hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
+              >
+                Disclaimer
+              </button>
+              <span className="text-outline/70 text-[10px]">·</span>
               <button
                 onClick={() => setShowPrivacy(true)}
                 className="font-body-sm text-[10px] text-outline hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
@@ -1027,6 +1029,7 @@ export default function App() {
       {/* Legal Modals */}
       <Suspense fallback={null}>
         {showPrivacy && <PrivacyPolicyModal onClose={() => setShowPrivacy(false)} />}
+        {showDisclaimer && <DisclaimerModal onClose={() => setShowDisclaimer(false)} />}
         {showTerms && <TermsOfServiceModal onClose={() => setShowTerms(false)} />}
         {showDmca && <DmcaModal onClose={() => setShowDmca(false)} />}
       </Suspense>

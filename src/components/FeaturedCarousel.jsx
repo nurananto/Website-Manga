@@ -134,7 +134,7 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
           {/* Description */}
           <p
             key={`desc-${activeManga.id}`}
-            className="line-clamp-3 font-body-lg text-xs sm:text-sm md:text-base lg:text-lg text-on-surface-variant leading-relaxed text-justify animate-[slideUpFade_0.34s_ease-out]"
+            className="line-clamp-2 sm:line-clamp-3 font-body-lg text-xs sm:text-sm md:text-base lg:text-lg text-on-surface-variant leading-relaxed text-justify animate-[slideUpFade_0.34s_ease-out]"
           >
             {activeManga.description}
           </p>

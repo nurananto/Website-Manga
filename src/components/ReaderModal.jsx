@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUp, Lock, BookOpen } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUp, Lock, BookOpen, MessageCircle } from 'lucide-react';
 import { discordCommentUrl } from '../lib/links';
 import { nowTimestamp } from '../utils';
 import { getAccessToken } from '../lib/auth';
@@ -245,6 +245,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     toggleChapterList,
   } = useChapterDropdown();
   const [showLastChapterModal, setShowLastChapterModal] = useState(false);
+  const [showDiscordRedirect, setShowDiscordRedirect] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [barExpanded, setBarExpanded] = useState(false);
   const scrollRef = useRef(null);
@@ -564,6 +565,51 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     </div>
   );
 
+  const renderDetailBackBar = () => (
+    <div className="flex gap-2 px-2 py-2">
+      <button
+        onClick={onClose}
+        className="relative h-12 min-w-0 flex-1 cursor-pointer overflow-hidden rounded-2xl border border-white/15 px-3 active:scale-[0.99] sm:h-14 sm:px-4 md:h-16"
+      >
+        {activeManga?.coverUrl && (
+          <>
+            <ResponsiveCover manga={activeManga} alt="" aria-hidden
+              className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+            />
+            <div className="absolute inset-0 bg-black/35 pointer-events-none" />
+            <div className="absolute inset-0 bg-surface-container/45 pointer-events-none" />
+          </>
+        )}
+        <div className="relative flex h-full items-center gap-3">
+          <ArrowLeft className="h-5 w-5 shrink-0 text-primary" />
+          <div className="min-w-0 flex-1 text-left">
+            <p className="truncate font-label-sm text-xs font-bold uppercase tracking-wider text-primary md:text-sm">{activeManga?.title}</p>
+            <h2 className="truncate font-body-md text-sm font-extrabold text-on-surface md:text-base">{activeChapter.title}</h2>
+          </div>
+          {activeManga?.coverUrl && (
+            <div className="relative flex h-full shrink-0 items-center py-1.5">
+              <ResponsiveCover
+                manga={activeManga}
+                alt=""
+                className="h-full aspect-[2/3] rounded-lg border border-white/10 object-cover shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
+              />
+            </div>
+          )}
+        </div>
+      </button>
+
+      <button
+        type="button"
+        onClick={() => setShowDiscordRedirect(true)}
+        disabled={!discordLink}
+        aria-label="Buka komentar di Discord"
+        className="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-2xl border border-[#5865F2]/45 bg-[#5865F2]/20 text-white transition-colors hover:bg-[#5865F2]/35 active:scale-95 disabled:cursor-not-allowed disabled:opacity-35 sm:h-14 sm:w-14 md:h-16 md:w-16"
+      >
+        <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
+      </button>
+    </div>
+  );
+
   return (
     <AnimatePresence>
       <motion.div
@@ -576,38 +622,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
         <div ref={scrollRef} className="flex-1 overflow-y-auto bg-[#090b0d] flex flex-col items-center hide-scrollbar">
           <div className="w-full">
 
-            {/* Tombol kembali — atas, squircle */}
-            <div className="px-2 py-2">
-              <button
-                onClick={onClose}
-                className="relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-white/15 flex items-center gap-3 active:scale-[0.99] cursor-pointer overflow-hidden"
-              >
-                {/* Darkened cover background */}
-                {activeManga?.coverUrl && (
-                  <>
-                    <ResponsiveCover manga={activeManga} alt="" aria-hidden
-                      className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-                    />
-                    <div className="absolute inset-0 bg-black/35 pointer-events-none" />
-                    <div className="absolute inset-0 bg-surface-container/45 pointer-events-none" />
-                  </>
-                )}
-                <ArrowLeft className="relative w-5 h-5 text-primary shrink-0" />
-                <div className="relative min-w-0 flex-1 text-left">
-                  <p className="font-label-sm text-xs sm:text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{activeManga?.title}</p>
-                  <h2 className="font-body-md text-sm sm:text-sm md:text-base font-extrabold text-on-surface truncate">{activeChapter.title}</h2>
-                </div>
-                {activeManga?.coverUrl && (
-                  <div className="relative h-full py-1.5 flex items-center shrink-0">
-                    <ResponsiveCover
-                      manga={activeManga}
-                      alt=""
-                      className="h-full aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10"
-                    />
-                  </div>
-                )}
-              </button>
-            </div>
+            {/* Kembali ke detail + komentar Discord — atas */}
+            {renderDetailBackBar()}
 
             {/* Navigasi atas */}
             {renderNavBar('top')}
@@ -635,55 +651,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             {/* Navigasi bawah */}
             {renderNavBar('bottom')}
 
-            {/* Tombol komentar — arahkan ke channel Discord judul ini (link kosong dulu) */}
-            <div className="px-2 py-2">
-              <a
-                href={discordLink || undefined}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-disabled={!discordLink}
-                onClick={(e) => { if (!discordLink) e.preventDefault(); }}
-                className={`relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-[#5865F2]/40 flex items-center justify-center gap-2.5 active:scale-[0.99] overflow-hidden ${discordLink ? 'cursor-pointer' : 'cursor-default'}`}
-                style={{ background: 'linear-gradient(to right, rgba(88,101,242,0.30), rgba(88,101,242,0.18), rgba(88,101,242,0.30))' }}
-              >
-                <img src="/discord-mark-white.svg" alt="Discord" className="w-5 h-5 object-contain shrink-0" />
-                <span className="font-body-md text-sm sm:text-base font-extrabold text-white">Komentar</span>
-                <img src="/discord-mark-white.svg" alt="Discord" className="w-5 h-5 object-contain shrink-0" />
-              </a>
-            </div>
-
-            {/* Tombol kembali — bawah, squircle */}
-            <div className="px-2 py-2">
-              <button
-                onClick={onClose}
-                className="relative w-full h-12 sm:h-14 md:h-16 px-3 sm:px-4 rounded-2xl border border-white/15 flex items-center gap-3 active:scale-[0.99] cursor-pointer overflow-hidden"
-              >
-                {/* Darkened cover background */}
-                {activeManga?.coverUrl && (
-                  <>
-                    <ResponsiveCover manga={activeManga} alt="" aria-hidden
-                      className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-                    />
-                    <div className="absolute inset-0 bg-black/35 pointer-events-none" />
-                    <div className="absolute inset-0 bg-surface-container/45 pointer-events-none" />
-                  </>
-                )}
-                <ArrowLeft className="relative w-5 h-5 text-primary shrink-0" />
-                <div className="relative min-w-0 flex-1 text-left">
-                  <p className="font-label-sm text-xs sm:text-xs md:text-sm font-bold text-primary uppercase tracking-wider truncate">{activeManga?.title}</p>
-                  <h2 className="font-body-md text-sm sm:text-sm md:text-base font-extrabold text-on-surface truncate">{activeChapter.title}</h2>
-                </div>
-                {activeManga?.coverUrl && (
-                  <div className="relative h-full py-1.5 flex items-center shrink-0">
-                    <ResponsiveCover
-                      manga={activeManga}
-                      alt=""
-                      className="h-full aspect-[2/3] object-cover rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.6)] border border-white/10"
-                    />
-                  </div>
-                )}
-              </button>
-            </div>
+            {/* Kembali ke detail + komentar Discord — bawah */}
+            {renderDetailBackBar()}
 
             <div className="pb-4 md:pb-6 xl:pb-8" />
           </div>
@@ -838,6 +807,56 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 >
                   Kembali ke Detail Manga
                 </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Konfirmasi sebelum membuka channel komentar Discord */}
+        <AnimatePresence>
+          {showDiscordRedirect && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[65] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+              onClick={() => setShowDiscordRedirect(false)}
+            >
+              <motion.div
+                initial={{ scale: 0.92, opacity: 0, y: 18 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.92, opacity: 0, y: 18 }}
+                onClick={(event) => event.stopPropagation()}
+                className="flex w-full max-w-sm flex-col gap-4 rounded-2xl border border-[#5865F2]/35 bg-surface-container p-5 text-center shadow-2xl"
+              >
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[#5865F2]/20 text-[#8b95ff]">
+                  <MessageCircle className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-headline-md text-base font-black text-on-surface sm:text-lg">Buka komentar di Discord?</h3>
+                  <p className="mt-1.5 font-body-md text-xs leading-relaxed text-outline/75 sm:text-sm">
+                    Kamu akan diarahkan ke channel Discord untuk membaca atau menulis komentar chapter ini.
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowDiscordRedirect(false)}
+                    className="h-10 cursor-pointer rounded-xl border border-white/10 bg-white/5 text-xs font-bold text-on-surface transition-colors hover:bg-white/10 sm:text-sm"
+                  >
+                    Batal
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      window.open(discordLink, '_blank', 'noopener,noreferrer');
+                      setShowDiscordRedirect(false);
+                    }}
+                    className="h-10 cursor-pointer rounded-xl bg-[#5865F2] text-xs font-black text-white transition-colors hover:bg-[#4b57d1] sm:text-sm"
+                  >
+                    Buka Discord
+                  </button>
+                </div>
               </motion.div>
             </motion.div>
           )}
