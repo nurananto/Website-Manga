@@ -569,32 +569,14 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     <div className="flex gap-2 px-2 py-2">
       <button
         onClick={onClose}
-        className="relative h-12 min-w-0 flex-1 cursor-pointer overflow-hidden rounded-2xl border border-white/15 px-3 active:scale-[0.99] sm:h-14 sm:px-4 md:h-16"
+        className="h-11 min-w-0 flex-1 cursor-pointer rounded-xl border border-white/10 bg-surface-container px-3 transition-colors hover:bg-surface-container-high active:scale-[0.99] sm:h-12 sm:px-4 md:h-14"
       >
-        {activeManga?.coverUrl && (
-          <>
-            <ResponsiveCover manga={activeManga} alt="" aria-hidden
-              className="absolute inset-0 h-full w-full object-cover pointer-events-none"
-            />
-            <div className="absolute inset-0 bg-black/35 pointer-events-none" />
-            <div className="absolute inset-0 bg-surface-container/45 pointer-events-none" />
-          </>
-        )}
-        <div className="relative flex h-full items-center gap-3">
-          <ArrowLeft className="h-5 w-5 shrink-0 text-primary" />
+        <div className="flex h-full items-center gap-2.5 sm:gap-3">
+          <ArrowLeft className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" />
           <div className="min-w-0 flex-1 text-left">
-            <p className="truncate font-label-sm text-xs font-bold uppercase tracking-wider text-primary md:text-sm">{activeManga?.title}</p>
-            <h2 className="truncate font-body-md text-sm font-extrabold text-on-surface md:text-base">{activeChapter.title}</h2>
+            <p className="font-label-sm text-[10px] font-black uppercase tracking-wider text-on-surface sm:text-xs">Kembali ke Detail</p>
+            <p className="truncate font-body-md text-xs font-bold text-primary/85 sm:text-sm">{activeManga?.title}</p>
           </div>
-          {activeManga?.coverUrl && (
-            <div className="relative flex h-full shrink-0 items-center py-1.5">
-              <ResponsiveCover
-                manga={activeManga}
-                alt=""
-                className="h-full aspect-[2/3] rounded-lg border border-white/10 object-cover shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
-              />
-            </div>
-          )}
         </div>
       </button>
 
@@ -603,9 +585,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
         onClick={() => setShowDiscordRedirect(true)}
         disabled={!discordLink}
         aria-label="Buka komentar di Discord"
-        className="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-2xl border border-[#5865F2]/45 bg-[#5865F2]/20 text-white transition-colors hover:bg-[#5865F2]/35 active:scale-95 disabled:cursor-not-allowed disabled:opacity-35 sm:h-14 sm:w-14 md:h-16 md:w-16"
+        className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-primary/30 bg-primary/15 text-primary transition-colors hover:bg-primary/25 active:scale-95 disabled:cursor-not-allowed disabled:opacity-35 sm:h-12 sm:w-12 md:h-14 md:w-14"
       >
-        <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
+        <MessageCircle className="h-5 w-5" />
       </button>
     </div>
   );
@@ -830,7 +812,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 className="flex w-full max-w-sm flex-col gap-4 rounded-2xl border border-[#5865F2]/35 bg-surface-container p-5 text-center shadow-2xl"
               >
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[#5865F2]/20 text-[#8b95ff]">
-                  <MessageCircle className="h-6 w-6" />
+                  <img src="/discord-mark-white.svg" alt="Discord" className="h-6 w-6 object-contain" />
                 </div>
                 <div>
                   <h3 className="font-headline-md text-base font-black text-on-surface sm:text-lg">Buka komentar di Discord?</h3>
