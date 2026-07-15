@@ -26,9 +26,9 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 2,
-    "3": 2
+    "3": 3
   },
-  "total_views": 9,
+  "total_views": 11,
   "mangadex_cover": "80b2f022-46fc-4506-919a-60c0382e797e.jpg",
   "cover_widths": "1280x960x640",
   "cover_version": 2,
@@ -52,9 +52,9 @@
       }
     }
   ],
-  "detail_views": 5,
+  "detail_views": 6,
   "mangadex_id": "12db645e-8482-4f58-8ba3-44e15d07f614",
-  "rating": 7.74,
+  "rating": 7.94,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=2",
   "coverUrls": {
@@ -74,7 +74,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 2,
