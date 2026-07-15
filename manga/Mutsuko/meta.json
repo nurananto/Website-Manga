@@ -26,9 +26,9 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 2,
-    "3": 2
+    "3": 3
   },
-  "total_views": 9,
+  "total_views": 11,
   "mangadex_cover": "80b2f022-46fc-4506-919a-60c0382e797e.jpg",
   "cover_widths": "1280x960x640",
   "cover_version": 2,
@@ -54,5 +54,5 @@
       "widths": "1280x960x640"
     }
   ],
-  "detail_views": 5
+  "detail_views": 6
 }

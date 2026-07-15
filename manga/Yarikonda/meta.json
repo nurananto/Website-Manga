@@ -36,9 +36,9 @@
     "6": 3,
     "7": 4,
     "8": 12,
-    "9": 13
+    "9": 14
   },
-  "total_views": 75,
+  "total_views": 78,
   "mangadex_cover": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -74,6 +74,6 @@
     }
   ],
   "discord_channel_id": "1517524210547818596",
-  "detail_views": 25,
+  "detail_views": 27,
   "cover_version": 2
 }
