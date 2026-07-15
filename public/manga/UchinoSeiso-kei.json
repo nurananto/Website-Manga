@@ -74,6 +74,19 @@
   },
   "chapters": [
     {
+      "chapter_number": 10.2,
+      "lock_hours": 0,
+      "pages": 19,
+      "r2_folder": 10.2,
+      "id": "UchinoSeiso-kei-ch-10.2",
+      "r2_prefix": "manga/UchinoSeiso-kei/10.2/",
+      "title": "Ch. 10.2",
+      "release_date": "2026-07-15T22:11:46+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 10.1,
       "lock_hours": 0,
       "pages": 16,
