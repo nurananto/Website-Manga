@@ -5,27 +5,33 @@ import { nowTimestamp } from '../utils';
 
 const FACEBOOK_URL = 'https://web.facebook.com/profile.php?id=61590960336418';
 
-// Menu "Ikuti Update" — Discord + Facebook (info update manga, bukan sekadar sosmed).
-function FollowUpdate() {
+function AccountSocialLinks() {
   return (
-    <div className="px-3 py-2 md:py-2.5 border-t border-white/5">
-      <p className="px-1 pb-1.5 text-[9px] md:text-[10px] uppercase font-black text-outline tracking-wider flex items-center gap-1">
-        <Bell className="w-3 h-3 md:w-3.5 md:h-3.5" /> Ikuti Update
+    <div className="animate-[fadeIn_0.2s_ease-out] border-t border-white/5 px-3 py-2 md:py-2.5">
+      <p className="flex items-center gap-1 px-1 pb-1.5 text-[9px] font-black uppercase tracking-wider text-outline md:text-[10px]">
+        <Bell className="h-3 w-3 md:h-3.5 md:w-3.5" />
+        Ikuti Update
       </p>
       <div className="flex flex-col gap-2">
-        <a href={DISCORD_INVITE_URL || undefined} target="_blank" rel="noopener noreferrer"
-          className="flex items-center gap-2 md:gap-2.5 px-2.5 py-2 md:py-2.5 rounded-lg shadow-sm hover:brightness-110 transition-all"
-          style={{ background: '#5865F2' }}>
-          <img src="/discord-mark-white.svg" alt="" className="w-3.5 h-3.5 md:w-4 md:h-4" />
-          <span className="text-[11px] md:text-xs font-bold text-white">Discord</span>
+        <a
+          href={DISCORD_INVITE_URL || undefined}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex h-9 items-center gap-2 rounded-xl border border-white/15 bg-[#5865F2] px-3 text-white shadow-sm transition-[transform,filter,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 hover:shadow-md active:translate-y-0 active:scale-[0.98] md:h-10 md:gap-2.5"
+        >
+          <img src="/discord-mark-white.svg" alt="" className="h-4 w-4 md:h-[18px] md:w-[18px]" />
+          <span className="text-[11px] font-bold md:text-xs">Discord</span>
         </a>
-        <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer"
-          className="flex items-center gap-2 md:gap-2.5 px-2.5 py-2 md:py-2.5 rounded-lg shadow-sm hover:brightness-110 transition-all"
-          style={{ background: '#1877F2' }}>
-          <svg viewBox="0 0 24 24" fill="white" aria-hidden="true" className="w-3.5 h-3.5 md:w-4 md:h-4">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        <a
+          href={FACEBOOK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex h-9 items-center gap-2 rounded-xl border border-white/15 bg-[#1877F2] px-3 text-white shadow-sm transition-[transform,filter,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 hover:shadow-md active:translate-y-0 active:scale-[0.98] md:h-10 md:gap-2.5"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4 md:h-[18px] md:w-[18px]">
+            <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.7V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.3v3h2.8v8h3.4Z" />
           </svg>
-          <span className="text-[11px] md:text-xs font-bold text-white">Facebook</span>
+          <span className="text-[11px] font-bold md:text-xs">Facebook</span>
         </a>
       </div>
     </div>
@@ -76,8 +82,40 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
         <div className="flex-1" />
 
-        <div ref={dropdownRef} className="relative">
-          <div className="relative">
+        <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
+          {!isLoggedIn && (
+            <>
+              <a
+                href={DISCORD_INVITE_URL || undefined}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Gabung Discord Nurananto Scanlation"
+                title="Discord"
+                className="flex h-8 w-8 items-center justify-center rounded-[30%] border border-white/15 bg-[#5865F2] shadow-md transition-[transform,filter,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 hover:shadow-lg active:translate-y-0 active:scale-95 md:h-10 md:w-10 xl:h-12 xl:w-12"
+              >
+                <img
+                  src="/discord-mark-white.svg"
+                  alt=""
+                  className="h-4 w-4 md:h-5 md:w-5 xl:h-6 xl:w-6"
+                />
+              </a>
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Ikuti Facebook Nurananto Scanlation"
+                title="Facebook"
+                className="flex h-8 w-8 items-center justify-center rounded-[30%] border border-white/15 bg-[#1877F2] text-white shadow-md transition-[transform,filter,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 hover:shadow-lg active:translate-y-0 active:scale-95 md:h-10 md:w-10 xl:h-12 xl:w-12"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4 md:h-5 md:w-5 xl:h-6 xl:w-6">
+                  <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.7V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.3v3h2.8v8h3.4Z" />
+                </svg>
+              </a>
+            </>
+          )}
+
+          <div ref={dropdownRef} className="relative">
+            <div className="relative">
             {isLoggedIn ? (
               <div
                 role="button"
@@ -113,12 +151,11 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                 <span>Log In</span>
               </button>
             )}
-          </div>
+            </div>
 
-          {isLoggedIn && isDropdownOpen && (
-            <div className="absolute right-0 top-12 w-56 sm:w-60 md:w-64 bg-surface-container border border-white/5 rounded-xl shadow-2xl py-1.5 z-50 animate-[fadeIn_0.15s_ease-out]">
-              {isLoggedIn ? (
-                <>
+            {isLoggedIn && isDropdownOpen && (
+              <div className="absolute right-0 top-12 w-56 sm:w-60 md:w-64 bg-surface-container border border-white/5 rounded-xl shadow-2xl py-1.5 z-50 animate-[fadeIn_0.15s_ease-out]">
+              <>
                   {/* Nama + badge + countdown Supporter (tepat di bawah nama) */}
                   <div className="px-4 py-2.5 border-b border-white/5">
                     <span className={`flex w-full items-center justify-center gap-1 px-1.5 py-1 rounded-lg font-label-sm text-[9px] md:text-[10px] font-black uppercase tracking-wider mb-1.5 ${
@@ -163,7 +200,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                     <span>Pengaturan Akun</span>
                   </button>
 
-                  <FollowUpdate />
+                  <AccountSocialLinks />
 
                   <button
                     onClick={() => { setIsDropdownOpen(false); onLogout(); }}
@@ -172,26 +209,10 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                     <LogOut className="w-4 h-4 md:w-5 md:h-5" />
                     <span>Log out</span>
                   </button>
-                </>
-              ) : (
-                <>
-                  <div className="px-4 py-2.5 border-b border-white/5">
-                    <p className="text-[10px] uppercase font-bold text-outline">Anda belum login</p>
-                  </div>
-                  <div className="px-3 py-2 md:py-2.5">
-                    <button
-                      onClick={() => { onLoginClick(); setIsDropdownOpen(false); }}
-                      className="w-full h-10 md:h-11 rounded-lg bg-gradient-to-r from-sky-400 to-indigo-600 hover:from-sky-500 hover:to-indigo-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer"
-                    >
-                      <span>Masuk / Login</span>
-                    </button>
-                  </div>
-
-                  <FollowUpdate />
-                </>
-              )}
-            </div>
-          )}
+              </>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </nav>

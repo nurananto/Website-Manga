@@ -70,6 +70,7 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
 
 export default function App() {
   const [MANGA_LIST, setMangaList] = useState([]);
+  const [trendingIds, setTrendingIds] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [routePage, setRoutePage] = useState(() => parsePath().page);
 
@@ -447,6 +448,75 @@ export default function App() {
       .catch(() => setIsLoading(false));
   }, []);
 
+  // Ranking Populer hari ini berasal dari views 24 jam Worker. Request pertama
+  // ditunda sampai browser idle agar tidak masuk critical request chain homepage,
+  // lalu diperbarui berkala dan saat tab kembali aktif setelah cukup lama.
+  useEffect(() => {
+    const workerUrl = import.meta.env.VITE_WORKER_URL || '';
+    if (isLoading || !workerUrl || mangaListRef.current.length === 0) return;
+
+    const refreshInterval = 5 * 60 * 1000;
+    const controller = new AbortController();
+    let idleId;
+    let initialTimerId;
+    let intervalId;
+    let lastFetchedAt = 0;
+    let isFetching = false;
+
+    const loadTrending = async () => {
+      if (document.visibilityState !== 'visible' || isFetching) return;
+      isFetching = true;
+      try {
+        const response = await fetch(`${workerUrl}/api/trending`, {
+          cache: 'no-store',
+          signal: controller.signal,
+        });
+        if (!response.ok) return;
+        const data = await response.json();
+        if (!Array.isArray(data?.trending)) return;
+
+        const catalogIds = new Set(mangaListRef.current.map((manga) => manga.id));
+        const rankedIds = [...new Set(data.trending)]
+          .filter((id) => catalogIds.has(id))
+          .slice(0, 5);
+        setTrendingIds(rankedIds);
+      } catch (error) {
+        if (error?.name !== 'AbortError') {
+          // Pertahankan ranking terakhir; build-time isTrending tetap menjadi
+          // fallback jika belum pernah ada respons API yang valid.
+        }
+      } finally {
+        lastFetchedAt = Date.now();
+        isFetching = false;
+      }
+    };
+
+    const handleVisibility = () => {
+      if (
+        document.visibilityState === 'visible'
+        && Date.now() - lastFetchedAt >= refreshInterval
+      ) {
+        loadTrending();
+      }
+    };
+
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(loadTrending, { timeout: 2500 });
+    } else {
+      initialTimerId = window.setTimeout(loadTrending, 1500);
+    }
+    intervalId = window.setInterval(loadTrending, refreshInterval);
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    return () => {
+      controller.abort();
+      if (idleId !== undefined) window.cancelIdleCallback(idleId);
+      if (initialTimerId !== undefined) window.clearTimeout(initialTimerId);
+      window.clearInterval(intervalId);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, [isLoading]);
+
   // Path-based routing
   useEffect(() => {
     const handleRoute = () => {
@@ -734,6 +804,7 @@ export default function App() {
 
                     <FeaturedCarousel
                       mangaList={MANGA_LIST}
+                      trendingIds={trendingIds}
                       onReadChapter={(ch, title) => handleReadChapter(ch, title)}
                       onViewManga={(manga) => { navigate(`/${manga.id}`); }}
                       onReadFirst={async (mangaId) => {

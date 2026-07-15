@@ -1,22 +1,30 @@
-import { useState, useRef } from 'react';
+import { useMemo, useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Play, Info } from 'lucide-react';
 import ResponsiveCover from './ResponsiveCover';
 
-export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }) {
-  const trending = mangaList.filter((m) => m.isTrending);
-  const slides = trending.length ? trending : mangaList.slice(0, 5);
-  const [current, setCurrent] = useState(0);
+export default function FeaturedCarousel({ mangaList, trendingIds = [], onViewManga, onReadFirst }) {
+  const slides = useMemo(() => {
+    const byId = new Map(mangaList.map((manga) => [manga.id, manga]));
+    const ranked = trendingIds.map((id) => byId.get(id)).filter(Boolean);
+    const rankedIds = new Set(ranked.map((manga) => manga.id));
+    const fallback = mangaList.filter((manga) => manga.isTrending && !rankedIds.has(manga.id));
+    const combined = [...ranked, ...fallback].slice(0, 5);
+    return combined.length ? combined : mangaList.slice(0, 5);
+  }, [mangaList, trendingIds]);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef(null);
 
+  const current = slides.length ? currentIndex % slides.length : 0;
   const activeManga = slides[current] || mangaList[0];
   const canNavigate = slides.length > 1;
+
   const goPrev = () => {
     if (!canNavigate) return;
-    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+    setCurrentIndex((previous) => (previous - 1 + slides.length) % slides.length);
   };
   const goNext = () => {
     if (!canNavigate) return;
-    setCurrent((prev) => (prev + 1) % slides.length);
+    setCurrentIndex((previous) => (previous + 1) % slides.length);
   };
 
   const handleTouchStart = (e) => {
@@ -27,9 +35,10 @@ export default function FeaturedCarousel({ mangaList, onViewManga, onReadFirst }
     if (touchStartX.current === null || slides.length <= 1) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) {
-      diff > 0
-        ? setCurrent((prev) => (prev + 1) % slides.length)
-        : setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+      const next = diff > 0
+        ? (current + 1) % slides.length
+        : (current - 1 + slides.length) % slides.length;
+      setCurrentIndex(next);
     }
     touchStartX.current = null;
   };
