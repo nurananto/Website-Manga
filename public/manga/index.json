@@ -20,7 +20,7 @@
     ],
     "rating": 8.37,
     "chapter_count": 10,
-    "total_views": 6,
+    "total_views": 13,
     "isTrending": false,
     "latest_release_date": "2026-07-14T00:31:52+07:00",
     "next_update": null,
@@ -32,14 +32,14 @@
         "chapter_number": 10.1,
         "lock_hours": 0,
         "pages": 16,
+        "release_date": "2026-07-14T00:31:52+07:00",
         "r2_folder": 10.1,
         "id": "UchinoSeiso-kei-ch-10.1",
         "r2_prefix": "manga/UchinoSeiso-kei/10.1/",
         "title": "Ch. 10.1",
-        "release_date": "2026-07-14T00:31:52+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 9,
@@ -52,7 +52,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 8,
@@ -91,7 +91,7 @@
     ],
     "rating": 7.69,
     "chapter_count": 18,
-    "total_views": 57,
+    "total_views": 67,
     "isTrending": false,
     "latest_release_date": "2026-07-12T18:20:01+07:00",
     "next_update": null,
@@ -110,7 +110,7 @@
         "title": "Ch. 14.2",
         "unlockDate": "2026-07-20T11:20:01.000Z",
         "isLocked": true,
-        "views": 5
+        "views": 6
       },
       {
         "chapter_number": 14.1,
@@ -123,7 +123,7 @@
         "title": "Ch. 14.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 8
       },
       {
         "chapter_number": 13.3,
@@ -163,7 +163,7 @@
     ],
     "rating": 7.36,
     "chapter_count": 17,
-    "total_views": 126,
+    "total_views": 129,
     "isTrending": false,
     "latest_release_date": "2026-07-12T11:31:18+07:00",
     "next_update": null,
@@ -182,7 +182,7 @@
         "title": "Ch. 14.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 9
+        "views": 10
       },
       {
         "chapter_number": 14.1,
@@ -195,7 +195,7 @@
         "title": "Ch. 14.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 16
+        "views": 17
       },
       {
         "chapter_number": 13.2,
@@ -232,7 +232,7 @@
     ],
     "rating": 8.03,
     "chapter_count": 14,
-    "total_views": 23,
+    "total_views": 27,
     "isTrending": false,
     "latest_release_date": "2026-07-10T23:02:36+07:00",
     "next_update": null,
@@ -250,7 +250,7 @@
         "title": "Ch. 27.5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 5
       },
       {
         "chapter_number": 27,
@@ -263,7 +263,7 @@
         "title": "Ch. 27",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 4
       },
       {
         "chapter_number": 26,
@@ -303,7 +303,7 @@
     ],
     "rating": 8.58,
     "chapter_count": 15,
-    "total_views": 284,
+    "total_views": 307,
     "isTrending": true,
     "latest_release_date": "2026-07-10T22:23:15+07:00",
     "next_update": null,
@@ -335,7 +335,7 @@
         "title": "Ch. 6.5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 12
       },
       {
         "chapter_number": 6.3,
@@ -348,7 +348,7 @@
         "title": "Ch. 6.3",
         "unlockDate": "2026-07-11T13:25:25.000Z",
         "isLocked": false,
-        "views": 10
+        "views": 14
       }
     ]
   },
@@ -373,7 +373,7 @@
     ],
     "rating": 8.35,
     "chapter_count": 1,
-    "total_views": 13,
+    "total_views": 15,
     "isTrending": false,
     "latest_release_date": "2026-07-09T21:15:37+07:00",
     "next_update": null,
@@ -391,7 +391,7 @@
         "r2_prefix": "manga/AotoSakura/Oneshot/",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 7
       }
     ]
   },
@@ -527,9 +527,9 @@
       "Shounen",
       "Video Games"
     ],
-    "rating": 8.21,
+    "rating": 8.23,
     "chapter_count": 11,
-    "total_views": 154,
+    "total_views": 159,
     "isTrending": true,
     "latest_release_date": "2026-07-08T19:49:50+07:00",
     "next_update": null,
@@ -814,7 +814,7 @@
     ],
     "rating": 8.48,
     "chapter_count": 16,
-    "total_views": 36,
+    "total_views": 37,
     "isTrending": false,
     "latest_release_date": "2026-07-05T23:57:11+07:00",
     "next_update": null,
@@ -1024,7 +1024,7 @@
     ],
     "rating": 7.5,
     "chapter_count": 23,
-    "total_views": 148,
+    "total_views": 149,
     "isTrending": true,
     "latest_release_date": "2026-07-03T11:30:39+07:00",
     "next_update": null,
@@ -1306,7 +1306,7 @@
     ],
     "rating": 8.2,
     "chapter_count": 20,
-    "total_views": 13,
+    "total_views": 15,
     "isTrending": false,
     "latest_release_date": "2026-06-20T14:53:29+07:00",
     "next_update": null,
@@ -1324,7 +1324,7 @@
         "title": "Ch. 19",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 5
       },
       {
         "chapter_number": 18,
@@ -1444,7 +1444,7 @@
     ],
     "rating": 7.86,
     "chapter_count": 18,
-    "total_views": 73,
+    "total_views": 74,
     "isTrending": false,
     "latest_release_date": "2026-06-20T04:40:50+07:00",
     "next_update": null,
@@ -1778,7 +1778,7 @@
     ],
     "rating": 8.42,
     "chapter_count": 8,
-    "total_views": 5,
+    "total_views": 6,
     "isTrending": false,
     "latest_release_date": "2026-06-14T12:26:53+07:00",
     "next_update": null,
@@ -1914,9 +1914,9 @@
       "Romance",
       "Slice of Life"
     ],
-    "rating": 8.68,
+    "rating": 8.67,
     "chapter_count": 216,
-    "total_views": 161,
+    "total_views": 163,
     "isTrending": true,
     "latest_release_date": "2026-06-13T19:03:42+07:00",
     "next_update": null,

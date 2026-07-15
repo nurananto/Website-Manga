@@ -26,8 +26,8 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 5,
-    "2": 1,
+    "1": 6,
+    "2": 2,
     "3": 4,
     "4": 8,
     "5.2": 9,
@@ -38,7 +38,7 @@
     "6.2": 13,
     "7.1": 9
   },
-  "total_views": 154,
+  "total_views": 159,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -54,9 +54,9 @@
   ],
   "discord_channel_id": "1517524270371311676",
   "cover_version": 3,
-  "detail_views": 62,
+  "detail_views": 65,
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
-  "rating": 8.21,
+  "rating": 8.23,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=3",
   "coverUrls": {
@@ -193,7 +193,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 1,
@@ -206,7 +206,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 6
     }
   ]
 }
