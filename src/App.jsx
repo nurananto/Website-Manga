@@ -26,6 +26,13 @@ const SupporterModal      = lazy(() => import('./components/CoinModals').then(m 
 const LockedChapterModal  = lazy(() => import('./components/CoinModals').then(m => ({ default: m.LockedChapterModal })));
 const AccountSettingsModal = lazy(() => import('./components/CoinModals').then(m => ({ default: m.AccountSettingsModal })));
 
+// Pada build produksi katalog sudah disisipkan sebelum bundle React dijalankan.
+// Gunakan langsung pada render pertama agar skeleton tidak sempat berkedip satu frame.
+const BOOTSTRAP_MANGA_LIST = Array.isArray(window.__INLINE_MANGA_INDEX__)
+  ? window.__INLINE_MANGA_INDEX__
+  : null;
+const INITIAL_ROUTE = parsePath();
+
 // Ambil hasil prefetch yang di-kickoff dari index.html (kalau ada & cocok) supaya
 // tidak fetch ulang — menghindari waterfall mount→fetch yang bikin LCP molor.
 // Prefetch hanya tersedia sekali di initial load; navigasi client-side berikutnya
@@ -70,10 +77,10 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
 }
 
 export default function App() {
-  const [MANGA_LIST, setMangaList] = useState([]);
+  const [MANGA_LIST, setMangaList] = useState(() => BOOTSTRAP_MANGA_LIST || []);
   const [trendingIds, setTrendingIds] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [routePage, setRoutePage] = useState(() => parsePath().page);
+  const [isLoading, setIsLoading] = useState(() => !BOOTSTRAP_MANGA_LIST);
+  const [routePage, setRoutePage] = useState(INITIAL_ROUTE.page);
 
   // Paksa refresh saat ada versi baru di server
   const [showUpdateBanner, setShowUpdateBanner] = useState(false);
@@ -113,9 +120,9 @@ export default function App() {
   }, [softResetApp]);
 
   const [selectedManga, setSelectedManga] = useState(null);
-  const [loadingManga, setLoadingManga] = useState(false);
+  const [loadingManga, setLoadingManga] = useState(INITIAL_ROUTE.page === 'manga');
   const selectedMangaRef = useRef(null);
-  const mangaListRef = useRef([]);
+  const mangaListRef = useRef(BOOTSTRAP_MANGA_LIST || []);
 
 
   useEffect(() => {
@@ -179,7 +186,7 @@ export default function App() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeChapter, setActiveChapter] = useState(null);
   const [activeMangaTitle, setActiveMangaTitle] = useState('');
-  const [activeTab, setActiveTab] = useState('library'); // 'library', 'discover', 'updates', 'profile'
+  const [activeTab, setActiveTab] = useState(INITIAL_ROUTE.page === 'history' ? 'profile' : 'library'); // 'library', 'discover', 'updates', 'profile'
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [historyChapters, setHistoryChapters] = useState({});
   const [currentPage, setCurrentPage] = useState(1);

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Star } from 'lucide-react';
 import { coverUrlForWidth } from '../utils';
 import ResponsiveCover from './ResponsiveCover';
@@ -77,6 +77,26 @@ function getMostRecentIdx(list) {
   return best;
 }
 
+function SpotlightBackground({ manga, animate = false, priority = 'low' }) {
+  if (!manga) return null;
+  return (
+    <div className={`absolute inset-0 pointer-events-none ${animate ? 'animate-[fadeIn_0.45s_ease-out]' : ''}`}>
+      <ResponsiveCover
+        manga={manga}
+        alt=""
+        loading="eager"
+        fetchPriority={priority}
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
+      />
+      <div className="absolute inset-0 bg-black/28" />
+      <div className="absolute inset-0 bg-gradient-to-t from-surface/56 via-surface/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-surface/72 via-surface/18 to-transparent" />
+      <div className="absolute inset-0 shadow-[inset_0_22px_64px_rgba(0,0,0,0.45),inset_0_-58px_90px_rgba(0,0,0,0.5),inset_64px_0_84px_rgba(0,0,0,0.58),inset_-64px_0_84px_rgba(0,0,0,0.58)]" />
+    </div>
+  );
+}
+
 export default function SpotlightCarousel({ mangaList, onViewManga }) {
   const N = mangaList.length;
   const [activeIdx, setActiveIdx] = useState(() => getMostRecentIdx(mangaList));
@@ -89,6 +109,8 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
   const [padV,      setPadV]      = useState(getPadV);
   const [metaGap,   setMetaGap]   = useState(getCoverMetaGap);
   const [hasMoved, setHasMoved] = useState(false);
+  const [previousIdx, setPreviousIdx] = useState(null);
+  const activeIdxRef = useRef(activeIdx);
 
   const coverH     = Math.round(coverW * 1.5);
   const containerH = padV + coverH + metaGap + metaH + padV;
@@ -103,6 +125,16 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
     const dist    = Math.abs(offset);
     return { logIdx, offset, dist };
   });
+
+  const moveTo = useCallback((nextIdx) => {
+    const normalized = ((nextIdx % N) + N) % N;
+    const current = activeIdxRef.current;
+    if (normalized === current) return;
+    setPreviousIdx(current);
+    activeIdxRef.current = normalized;
+    setHasMoved(true);
+    setActiveIdx(normalized);
+  }, [N]);
 
   useEffect(() => {
     const onResize = () => {
@@ -120,12 +152,17 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
   useEffect(() => {
     if (N <= 1 || isPaused) return undefined;
     const timer = setInterval(() => {
-      setHasMoved(true);
-      setActiveIdx((idx) => (idx + 1) % N);
+      moveTo(activeIdxRef.current + 1);
       setPendingDetailIdx(null);
     }, 8000);
     return () => clearInterval(timer);
-  }, [N, isPaused]);
+  }, [N, isPaused, moveTo]);
+
+  useEffect(() => {
+    if (previousIdx === null) return undefined;
+    const timer = setTimeout(() => setPreviousIdx(null), 500);
+    return () => clearTimeout(timer);
+  }, [activeIdx, previousIdx]);
 
   // Cover aktif sudah ditemukan lewat preload HTML + elemen LCP. Hangatkan hanya
   // satu cover berikutnya agar perpindahan otomatis mulus tanpa memenuhi antrean.
@@ -144,13 +181,13 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
       onViewManga?.(mangaList[logIdx]);
       return;
     }
-    setHasMoved(true);
     setIsPaused(true);
     setPendingDetailIdx(logIdx);
-    setActiveIdx(logIdx);
+    moveTo(logIdx);
   };
 
   const active = mangaList[activeIdx];
+  const previous = previousIdx === null ? null : mangaList[previousIdx];
   const activeStatusCfg = STATUS_CFG[active?.status] || ONGOING_CFG;
   const activeRating = active?.rating != null ? Number(active.rating).toFixed(1) : null;
   const activeChapterCount = active?.chapter_count ?? active?.chapters?.length ?? 0;
@@ -161,56 +198,49 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
       style={{ height: containerH }}
     >
       {/* ── Darkened background from active cover ── */}
-      <div
-        key={active?.id}
-        className={`absolute inset-0 pointer-events-none z-0 ${hasMoved ? 'animate-[fadeIn_0.4s_ease-out]' : ''}`}
-      >
-          <ResponsiveCover
-            manga={active} alt=""
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-            className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
-          />
-          <div className="absolute inset-0 bg-black/28" />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface/56 via-surface/20 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/72 via-surface/18 to-transparent" />
-          <div className="absolute inset-0 shadow-[inset_0_22px_64px_rgba(0,0,0,0.45),inset_0_-58px_90px_rgba(0,0,0,0.5),inset_64px_0_84px_rgba(0,0,0,0.58),inset_-64px_0_84px_rgba(0,0,0,0.58)]" />
+      {previous && (
+        <div className="absolute inset-0 z-0">
+          <SpotlightBackground manga={previous} />
+        </div>
+      )}
+      <div key={active?.id} className="absolute inset-0 z-[1]">
+        <SpotlightBackground manga={active} animate={hasMoved} priority="high" />
       </div>
 
       {/* ── Cover row — centered flex, no scroll ── */}
-      <div
-        className="absolute inset-0 flex items-start justify-center z-10"
-        style={{ paddingTop: padV, paddingBottom: padV }}
-      >
+      <div className="absolute inset-0 z-10">
         {items.map(({ logIdx, offset, dist }) => {
           const manga     = mangaList[logIdx];
           const scale     = SCALES[Math.min(dist, SCALES.length - 1)];
           const isActive  = dist === 0;
-          // Negative margin collapses the visual gap created by scale shrink
-          const nm        = Math.round(-(coverW * (1 - scale)) / 2) + itemGap;
+          const sideStep   = coverW * 0.88 + itemGap * 2;
+          const activeStep = coverW * 0.94 + itemGap * 2;
+          const x = offset === 0
+            ? 0
+            : Math.sign(offset) * (activeStep + (dist - 1) * sideStep);
           const coverOffsetY = isActive
             ? 0
             : Math.round(Math.min(metaH - 24, Math.max(34, coverH * 0.12)));
 
           return (
             <div
-              key={offset}   // stable slot key — content swaps, scale transitions smoothly
+              key={manga.id}
               onClick={() => handleClick(logIdx)}
-              className="flex-shrink-0 cursor-pointer"
+              className="absolute cursor-pointer"
               style={{
+                left:             '50%',
+                top:              padV,
                 width:            coverW,
-                transform:        `translateY(${coverOffsetY}px) scale(${scale})`,
+                transform:        `translateX(calc(-50% + ${x}px)) translateY(${coverOffsetY}px) scale(${scale})`,
                 transformOrigin:  'top center',
-                marginLeft:       nm,
-                marginRight:      nm,
-                willChange:       'transform, margin',
-                transition:       'transform 0.5s cubic-bezier(0.22,1,0.36,1), margin 0.5s cubic-bezier(0.22,1,0.36,1)',
+                zIndex:            side - dist + 1,
+                willChange:       'transform',
+                transition:       'transform 0.55s cubic-bezier(0.22,1,0.36,1)',
               }}
             >
               {/* Cover image with overlays */}
               <div
-                className={`relative rounded-xl overflow-hidden border ${
+                className={`relative rounded-xl overflow-hidden border transition-[border-color,box-shadow] duration-500 ${
                   isActive
                     ? 'border-white/20 shadow-[0_18px_55px_rgba(0,0,0,0.72)]'
                     : 'border-black/55 shadow-[0_20px_42px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.04)]'
@@ -227,14 +257,10 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
                   draggable={false}
                 />
 
-                {!isActive && (
-                  <div className="absolute inset-0 bg-black/36 pointer-events-none" />
-                )}
+                <div className={`absolute inset-0 bg-black/36 pointer-events-none transition-opacity duration-500 ${isActive ? 'opacity-0' : 'opacity-100'}`} />
 
                 {/* Active glow ring */}
-                {isActive && (
-                  <div className="absolute inset-0 rounded-xl ring-[2px] ring-white/30 ring-inset pointer-events-none" />
-                )}
+                <div className={`absolute inset-0 rounded-xl ring-[2px] ring-white/30 ring-inset pointer-events-none transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
               </div>
 
             </div>
