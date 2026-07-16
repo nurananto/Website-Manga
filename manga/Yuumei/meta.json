@@ -33,15 +33,15 @@
     "17": 2,
     "18": 2,
     "19": 3,
-    "20": 11,
-    "21.1": 13,
-    "21.2": 13,
-    "22.1": 24,
-    "22.2": 19,
+    "20": 12,
+    "21.1": 14,
+    "21.2": 14,
+    "22.1": 25,
+    "22.2": 21,
     "23.1": 5,
     "1.5": 1
   },
-  "total_views": 150,
+  "total_views": 158,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -77,6 +77,6 @@
     }
   ],
   "discord_channel_id": "1517524250175737906",
-  "detail_views": 51,
+  "detail_views": 53,
   "cover_version": 3
 }
