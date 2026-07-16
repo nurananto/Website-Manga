@@ -29,16 +29,16 @@
     "1": 6,
     "2": 2,
     "3": 4,
-    "4": 8,
-    "5.2": 9,
-    "5.3": 12,
-    "5.1": 8,
-    "6.1": 17,
+    "4": 9,
+    "5.2": 10,
+    "5.3": 13,
+    "5.1": 9,
+    "6.1": 18,
     "6.3": 7,
-    "6.2": 14,
+    "6.2": 15,
     "7.1": 9
   },
-  "total_views": 163,
+  "total_views": 172,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -54,9 +54,9 @@
   ],
   "discord_channel_id": "1517524270371311676",
   "cover_version": 3,
-  "detail_views": 67,
+  "detail_views": 70,
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
-  "rating": 8.23,
+  "rating": 8.24,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=3",
   "coverUrls": {
@@ -102,7 +102,7 @@
       "title": "Ch. 6.2",
       "unlockDate": "2026-07-08T11:03:47.000Z",
       "isLocked": false,
-      "views": 14
+      "views": 15
     },
     {
       "chapter_number": 6.1,
@@ -115,7 +115,7 @@
       "title": "Ch. 6.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 17
+      "views": 18
     },
     {
       "chapter_number": 5.3,
@@ -128,7 +128,7 @@
       "title": "Ch. 5.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 12
+      "views": 13
     },
     {
       "chapter_number": 5.2,
@@ -141,7 +141,7 @@
       "title": "Ch. 5.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 5.1,
@@ -154,7 +154,7 @@
       "title": "Ch. 5.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 4,
@@ -167,7 +167,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 3,

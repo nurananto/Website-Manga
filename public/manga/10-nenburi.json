@@ -42,14 +42,14 @@
     "15": 5,
     "16": 5,
     "17": 8,
-    "19": 6,
+    "19": 7,
     "18.1": 14,
     "18.2": 9,
-    "20.1": 6,
+    "20.1": 7,
     "20.2": 5,
     "21.1": 5
   },
-  "total_views": 151,
+  "total_views": 154,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -82,7 +82,7 @@
     }
   ],
   "discord_channel_id": "1517523784821768212",
-  "detail_views": 39,
+  "detail_views": 40,
   "mangadex_id": "26854d1a-dfd0-4e5c-b6d1-ab291035b8cc",
   "rating": 7.5,
   "next_update": null,
@@ -130,7 +130,7 @@
       "title": "Ch. 20.1",
       "unlockDate": "2026-07-03T12:38:27.000Z",
       "isLocked": false,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 19,
@@ -143,7 +143,7 @@
       "title": "Ch. 19",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 18.2,

@@ -33,15 +33,15 @@
     "17": 2,
     "18": 2,
     "19": 3,
-    "20": 11,
-    "21.1": 13,
-    "21.2": 13,
-    "22.1": 24,
-    "22.2": 19,
+    "20": 12,
+    "21.1": 14,
+    "21.2": 14,
+    "22.1": 25,
+    "22.2": 21,
     "23.1": 5,
     "1.5": 1
   },
-  "total_views": 150,
+  "total_views": 158,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -74,10 +74,10 @@
     }
   ],
   "discord_channel_id": "1517524250175737906",
-  "detail_views": 51,
+  "detail_views": 53,
   "cover_version": 3,
   "mangadex_id": "9aebe60e-777f-4a58-a3bf-143c3096b94f",
-  "rating": 8.23,
+  "rating": 8.21,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
   "coverUrls": {
@@ -110,7 +110,7 @@
       "title": "Ch. 22.2",
       "unlockDate": "2026-07-08T04:27:34.000Z",
       "isLocked": false,
-      "views": 19
+      "views": 21
     },
     {
       "chapter_number": 22.1,
@@ -123,7 +123,7 @@
       "title": "Ch. 22.1",
       "unlockDate": "2026-06-30T13:34:53.000Z",
       "isLocked": false,
-      "views": 24
+      "views": 25
     },
     {
       "chapter_number": 21.2,
@@ -136,7 +136,7 @@
       "title": "Ch. 21.2",
       "unlockDate": "2026-06-23T14:06:03.000Z",
       "isLocked": false,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 21.1,
@@ -149,7 +149,7 @@
       "title": "Ch. 21.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 20,
@@ -162,7 +162,7 @@
       "title": "Ch. 20",
       "unlockDate": "2026-06-11T18:25:40.000Z",
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 19,
