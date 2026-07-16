@@ -335,7 +335,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
 
   // Chapter masih dalam masa lock (sudah dibeli, tapi image worker butuh access token)
   // Saat ganti chapter: kalau ada token cache yang masih berlaku (chapter sudah
-  // dibeli & dibuka < 30 menit lalu) → pakai langsung, lewati Turnstile.
+  // dibeli & dibuka < 5 menit lalu) → pakai langsung, lewati Turnstile.
   // Kalau tidak → reset, gate Turnstile akan tampil.
   useEffect(() => {
     tokenFromCacheRef.current = false;
