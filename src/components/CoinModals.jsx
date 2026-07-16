@@ -4,6 +4,8 @@ import { X, Lock, Check, Crown } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import ResponsiveCover from './ResponsiveCover';
+import CountdownTimer from './CountdownTimer';
+import { chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
 
 const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
 const SUPPORTER_MIN = 'Rp 5.000';
@@ -39,6 +41,10 @@ const AUTH_COPY = {
   unlock: {
     title: 'Masuk untuk lanjut',
     subtitle: 'Login sebentar — Supporter bisa langsung baca chapter Early Access.',
+  },
+  member: {
+    title: 'Login untuk membaca',
+    subtitle: 'Chapter Member Access bisa dibaca gratis oleh semua akun yang sudah login.',
   },
   reader: {
     title: 'Masuk untuk lanjut',
@@ -342,7 +348,13 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChanged
 
 // ── Locked Chapter Modal — gate Supporter ─────────────────────
 export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn, isSupporter, onLogin, onBecomeSupporter }) {
-  if (!isOpen || !chapter || isSupporter) return null;
+  const [, setAccessVersion] = useState(0);
+  const accessLevel = chapterAccessLevel(chapter);
+  const isMember = accessLevel === 'member';
+  const transitionAt = chapterNextAccessDate(chapter);
+  if (!isOpen || !chapter || accessLevel === 'public') return null;
+  if (accessLevel === 'supporter' && isSupporter) return null;
+  if (isMember && isLoggedIn) return null;
 
   return (
     <AnimatePresence>
@@ -356,7 +368,7 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
           transition={{ type: 'spring', damping: 22, stiffness: 320 }}
           className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-surface-container border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10"
         >
-          <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className={`absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-48 rounded-full blur-3xl pointer-events-none ${isMember ? 'bg-blue-500/10' : 'bg-amber-500/10'}`} />
           <button onClick={onClose}
             className="absolute top-4 right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-outline cursor-pointer z-10 transition-colors">
             <X className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -373,8 +385,10 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
             )}
             <div className="min-w-0 flex-1 pt-0.5">
               <div className="flex items-center gap-1.5 mb-1">
-                <Lock className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
-                <span className="font-label-sm text-xs sm:text-sm md:text-base font-black text-amber-400 uppercase tracking-wider">Early Access</span>
+                <Lock className={`w-4 h-4 sm:w-5 sm:h-5 shrink-0 ${isMember ? 'text-blue-400' : 'text-amber-400'}`} />
+                <span className={`font-label-sm text-xs sm:text-sm md:text-base font-black uppercase tracking-wider ${isMember ? 'text-blue-300' : 'text-amber-400'}`}>
+                  {isMember ? 'Member Access' : 'Early Access'}
+                </span>
               </div>
               <p className="font-body-md text-sm sm:text-base text-outline/70 font-semibold truncate">{manga?.title || ''}</p>
               <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface mt-0.5 line-clamp-2">{chapter.title}</h3>
@@ -382,21 +396,29 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
           </div>
           {chapter.unlockDate && (
             <div className="mx-5 mb-5 bg-surface-container-high/40 rounded-xl py-4 px-4 border border-white/5 flex flex-col items-center gap-2 text-center">
-              <p className="font-label-sm text-xs sm:text-sm md:text-base text-amber-400 font-black uppercase tracking-widest">Chapter Early Access</p>
-              <p className="font-body-md text-sm sm:text-base text-outline/80 font-semibold leading-relaxed">
-                Akan bisa diakses setelah masa early access selesai.
+              <p className={`font-label-sm text-xs sm:text-sm md:text-base font-black uppercase tracking-widest ${isMember ? 'text-blue-300' : 'text-amber-400'}`}>
+                Chapter {isMember ? 'Member Access' : 'Early Access'}
               </p>
+              <p className="font-body-md text-sm sm:text-base text-outline/80 font-semibold leading-relaxed">
+                {isMember ? 'Login gratis untuk membaca chapter ini.' : 'Tersedia lebih awal untuk Supporter aktif.'}
+              </p>
+              {transitionAt && (
+                <p className="font-label-sm text-xs text-outline/65">
+                  {isMember ? 'Public dalam ' : 'Member Access dalam '}
+                  <CountdownTimer unlockDate={transitionAt} onUnlock={() => setAccessVersion(value => value + 1)} />
+                </p>
+              )}
             </div>
           )}
           <div className="px-5 pb-5 flex flex-col gap-2">
             <p className="mb-1 text-center font-body-md text-xs font-semibold text-outline/75 sm:text-sm">
-              Early Access hanya dapat dibaca oleh Supporter aktif.
+              {isMember ? 'Member Access dapat dibaca oleh semua akun yang sudah login.' : 'Early Access hanya dapat dibaca oleh Supporter aktif.'}
             </p>
-            {!isLoggedIn ? (
+            {isMember || !isLoggedIn ? (
               <button onClick={onLogin}
-                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
-                <Crown className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-                Login untuk Lanjut
+                className={`w-full h-12 sm:h-14 rounded-xl text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer ${isMember ? 'bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 shadow-lg shadow-blue-950/30' : 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 shadow-lg shadow-amber-900/30'}`}>
+                {isMember ? <Lock className="w-4 h-4 sm:w-5 sm:h-5" /> : <Crown className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />}
+                {isMember ? 'Login Gratis untuk Membaca' : 'Login untuk Lanjut'}
               </button>
             ) : (
               <button onClick={onBecomeSupporter}

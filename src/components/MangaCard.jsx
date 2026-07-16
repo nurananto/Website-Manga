@@ -3,9 +3,10 @@ import { nowTimestamp, timeAgoShort } from '../utils';
 import { Lock, ArrowUp } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import ResponsiveCover from './ResponsiveCover';
+import { chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
 
-export default function MangaCard({ manga, onReadChapter, onViewManga, isSupporter }) {
-  const [localUnlocked, setLocalUnlocked] = useState(new Set());
+export default function MangaCard({ manga, onReadChapter, onViewManga }) {
+  const [, setAccessVersion] = useState(0);
   const now = nowTimestamp();
 
   const isOneshot = manga.status === 'Oneshot';
@@ -24,8 +25,8 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
         <ResponsiveCover
             manga={manga}
             alt={manga.title}
-            loading="lazy"
-            fetchPriority="low"
+            loading="eager"
+            fetchPriority="auto"
             decoding="async"
             className="h-full w-full object-cover rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-white/10 hover:scale-105 transition-transform duration-500"
           />
@@ -66,8 +67,9 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
                 <span className="font-body-md text-sm md:text-base lg:text-lg font-bold">.</span>
               </div>
             );
-            const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > now
-              && !localUnlocked.has(ch.id) && !isSupporter;
+            const accessLevel = chapterAccessLevel(ch, now);
+            const isProtected = accessLevel !== 'public';
+            const transitionAt = chapterNextAccessDate(ch, now);
             const targetChapter = manga.status === 'Tamat'
               ? manga.tamat_at_chapter
               : isOneshot
@@ -97,7 +99,16 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
                   <span className="font-body-md text-sm md:text-base lg:text-lg font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {chapterTitle}
                   </span>
-                  {isLocked && <Lock className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 text-amber-400 shrink-0" />}
+                  {isProtected && <Lock className={`w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 shrink-0 ${accessLevel === 'member' ? 'text-blue-400' : 'text-amber-400'}`} />}
+                  {isProtected && (
+                    <span className={`shrink-0 rounded border px-1 py-0.5 font-label-sm text-[8px] font-black uppercase tracking-wider md:text-[10px] ${
+                      accessLevel === 'member'
+                        ? 'border-blue-400/30 bg-blue-500/15 text-blue-300'
+                        : 'border-amber-500/30 bg-amber-500/15 text-amber-400'
+                    }`}>
+                      {accessLevel === 'member' ? 'Member Access' : 'Early Access'}
+                    </span>
+                  )}
                   {isUp && (
                     <span className="bg-emerald-500 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
                       <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 stroke-[3] shrink-0" />
@@ -115,16 +126,12 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
                   )}
                 </div>
 
-                {isLocked && (
+                {isProtected && transitionAt && (
                   <CountdownTimer
-                    unlockDate={ch.unlockDate}
+                    unlockDate={transitionAt}
                     silent
                     onUnlock={() => {
-                      setLocalUnlocked(prev => {
-                        const next = new Set(prev);
-                        next.add(ch.id);
-                        return next;
-                      });
+                      setAccessVersion(value => value + 1);
                     }}
                   />
                 )}

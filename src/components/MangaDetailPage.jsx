@@ -5,6 +5,7 @@ import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
 import SupportButtons from './SupportButtons';
 import ResponsiveCover from './ResponsiveCover';
+import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
 
 const chapterSortValue = (value) => {
   const n = Number(value);
@@ -16,7 +17,7 @@ const fitCreatorStyle = (value) => ({
   '--creator-chars': Math.max(String(value || '').length, 8),
 });
 
-export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, isSupporter }) {
+export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, isSupporter, isLoggedIn }) {
   const [isLoading, setIsLoading] = useState(true);
   const [expandedSynopsis, setExpandedSynopsis] = useState(false);
 
@@ -50,7 +51,7 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   const [showAllChapters, setShowAllChapters] = useState(false);
   const [activeDetailTab, setActiveDetailTab] = useState('info');
   // Chapter yang baru lepas kunci sesi ini (countdown habis) → tampil free langsung.
-  const [localUnlockedChapters, setLocalUnlockedChapters] = useState(new Set());
+  const [, setAccessVersion] = useState(0);
   const [readChapters, setReadChapters] = useState(new Set());
   const [lightboxCover, setLightboxCover] = useState(null);
   const [galleryPage, setGalleryPage] = useState(0);
@@ -88,7 +89,10 @@ const renderChapterRow = (ch) => {
     const now = nowTimestamp();
     const isNew = !!ch.release_date && (now - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
     const isUnread = !readChapters.has(ch.id);
-    const isLocked = !!ch.unlockDate && new Date(ch.unlockDate).getTime() > now && !isSupporter && !localUnlockedChapters.has(ch.id);
+    const accessLevel = chapterAccessLevel(ch, now);
+    const isProtected = accessLevel !== 'public';
+    const isBlocked = !canReadChapter(ch, { isLoggedIn, isSupporter }, now);
+    const transitionAt = chapterNextAccessDate(ch, now);
     const isOneshot = manga.status === 'Oneshot';
     const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
     const targetChapter = manga.status === 'Tamat' ? manga.tamat_at_chapter : isOneshot ? ch.chapter_number : manga.hiatus_at_chapter;
@@ -109,16 +113,16 @@ const renderChapterRow = (ch) => {
         onClick={() => {
           // Chapter terkunci hanya membuka modal beli — belum benar-benar dibaca,
           // jadi jangan tandai "sudah dibaca" (cegah row meredup setelah modal ditutup).
-          if (!isLocked) setReadChapters(prev => new Set([...prev, ch.id]));
+          if (!isBlocked) setReadChapters(prev => new Set([...prev, ch.id]));
           onReadChapter(ch, manga.title);
         }}
         className="group flex items-center justify-between py-3 px-2 sm:px-3 transition-all cursor-pointer rounded-xl border bg-surface-container/30 border-white/8 hover:bg-white/5 hover:border-white/15"
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
         <div className={`flex items-center gap-2.5 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
-          {isLocked && (
-            <span className="w-9 h-9 rounded-lg bg-amber-500/15 border border-amber-500/25 flex items-center justify-center shrink-0">
-              <Lock className="w-4 h-4 text-amber-400" />
+          {isProtected && (
+            <span className={`w-9 h-9 rounded-lg border flex items-center justify-center shrink-0 ${accessLevel === 'member' ? 'bg-blue-500/15 border-blue-500/25' : 'bg-amber-500/15 border-amber-500/25'}`}>
+              <Lock className={`w-4 h-4 ${accessLevel === 'member' ? 'text-blue-400' : 'text-amber-400'}`} />
             </span>
           )}
           <div className="min-w-0">
@@ -141,25 +145,23 @@ const renderChapterRow = (ch) => {
                   {manga.status === 'Tamat' || isOneshot ? 'END' : manga.status}
                 </span>
               )}
-              {isLocked && (
-                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
+              {isProtected && (
+                <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider border flex items-center gap-0.5 ${accessLevel === 'member' ? 'bg-blue-500/15 text-blue-300 border-blue-400/30' : 'bg-amber-500/15 text-amber-400 border-amber-500/30'}`}>
                   <Lock className="w-2.5 h-2.5 md:w-3 md:h-3 shrink-0" />
-                  <span>Early Access</span>
+                  <span>{accessLevel === 'member' ? 'Member Access' : 'Early Access'}</span>
                 </span>
               )}
             </div>
-            {isLocked ? (
+            {isProtected && transitionAt ? (
               <div className="flex items-center gap-1.5 font-label-sm text-xs md:text-sm mt-0.5">
                 <span className="text-outline/60">{ch.date || timeAgo(ch.release_date)}</span>
+                <span className={accessLevel === 'member' ? 'text-blue-300/80' : 'text-amber-400/80'}>
+                  {accessLevel === 'member' ? 'Public dalam' : 'Member dalam'}
+                </span>
                 <CountdownTimer
-                  unlockDate={ch.unlockDate}
-                  silent
+                  unlockDate={transitionAt}
                   onUnlock={() => {
-                    setLocalUnlockedChapters(prev => {
-                      const next = new Set(prev);
-                      next.add(ch.id);
-                      return next;
-                    });
+                    setAccessVersion(value => value + 1);
                   }}
                 />
               </div>

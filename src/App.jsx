@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, useEffectEvent, lazy, Suspense } from 'react';
+import { useState, useEffect, useRef, useCallback, useEffectEvent, useMemo, lazy, Suspense } from 'react';
 import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
@@ -7,12 +7,13 @@ import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
 import ResponsiveCover from './components/ResponsiveCover';
 import { Sparkles, Compass, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
-import { timeAgo } from './utils';
+import { coverUrlForWidth, timeAgo } from './utils';
 import { HomepageHeroSkeleton, MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
 import { clearCachedSession } from './lib/session';
 import { clearChapterTokens } from './lib/chapterToken';
+import { chapterAccessLevel } from './lib/chapterAccess';
 
 // Lazy-load komponen besar/jarang dipakai → kurangi JS bundle awal (homepage)
 const MangaDetailPage     = lazy(() => import('./components/MangaDetailPage'));
@@ -32,6 +33,18 @@ const BOOTSTRAP_MANGA_LIST = Array.isArray(window.__INLINE_MANGA_INDEX__)
   ? window.__INLINE_MANGA_INDEX__
   : null;
 const INITIAL_ROUTE = parsePath();
+const TRENDING_CACHE_KEY = 'nurananto_trending_24h';
+const TRENDING_CACHE_MAX_AGE = 30 * 60 * 60 * 1000;
+
+function readCachedTrending() {
+  try {
+    const cached = JSON.parse(localStorage.getItem(TRENDING_CACHE_KEY) || 'null');
+    if (!cached || !Array.isArray(cached.ids) || Date.now() - cached.savedAt > TRENDING_CACHE_MAX_AGE) return [];
+    return cached.ids.slice(0, 5);
+  } catch {
+    return [];
+  }
+}
 
 // Ambil hasil prefetch yang di-kickoff dari index.html (kalau ada & cocok) supaya
 // tidak fetch ulang — menghindari waterfall mount→fetch yang bikin LCP molor.
@@ -78,7 +91,7 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
 
 export default function App() {
   const [MANGA_LIST, setMangaList] = useState(() => BOOTSTRAP_MANGA_LIST || []);
-  const [trendingIds, setTrendingIds] = useState([]);
+  const [trendingIds, setTrendingIds] = useState(readCachedTrending);
   const [isLoading, setIsLoading] = useState(() => !BOOTSTRAP_MANGA_LIST);
   const [routePage, setRoutePage] = useState(INITIAL_ROUTE.page);
 
@@ -320,7 +333,8 @@ export default function App() {
       }
 
       // Supporter → langsung buka chapter. Bukan supporter → modal "Jadi Supporter".
-      if (supporter) {
+      const accessLevel = chapterAccessLevel(ch);
+      if (accessLevel === 'member' || accessLevel === 'public' || supporter) {
         openChapterReader(ch, manga.title);
       } else {
         setPendingUnlockChapter(ch);
@@ -487,7 +501,16 @@ export default function App() {
         const rankedIds = [...new Set(data.trending)]
           .filter((id) => catalogIds.has(id))
           .slice(0, 5);
-        setTrendingIds(rankedIds);
+        // Respons kosong dapat terjadi sesaat saat cron/sinkronisasi. Jangan
+        // mengganti ranking valid dengan fallback total view sepanjang waktu.
+        if (rankedIds.length) {
+          setTrendingIds(rankedIds);
+          try {
+            localStorage.setItem(TRENDING_CACHE_KEY, JSON.stringify({ ids: rankedIds, savedAt: Date.now() }));
+          } catch {
+            // Storage dapat ditolak pada private mode; state sesi tetap cukup.
+          }
+        }
       } catch (error) {
         if (error?.name !== 'AbortError') {
           // Pertahankan ranking terakhir; build-time isTrending tetap menjadi
@@ -569,8 +592,13 @@ export default function App() {
           );
           if (!ch) { navigate(`/${mangaId}`, true); return; }
 
-          const stillLocked = ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now();
-          if (stillLocked && !isSupporterRef.current) {
+          const accessLevel = chapterAccessLevel(ch);
+          if (accessLevel === 'member' && !isLoggedIn) {
+            navigate(`/${mangaId}`, true);
+            openAuth('member', { type: 'unlock', mangaId, chapterNum: ch.chapter_number });
+            return;
+          }
+          if (accessLevel === 'supporter' && !isSupporterRef.current) {
             // Cek status Supporter terkini dulu sebelum bounce — supporter yang BARU
             // login bisa punya isSupporterRef basi (render me-fetch belum jalan).
             let supporter = false;
@@ -626,14 +654,32 @@ export default function App() {
 
   // Klaim koin harian (1 koin / 24 jam) — dipakai di modal Isi Koin & reader.
   // Filter manga based on search query
-  const filteredManga = MANGA_LIST.filter((m) =>
+  const filteredManga = useMemo(() => MANGA_LIST.filter((m) =>
     m.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     m.genres.some((g) => g.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  ), [MANGA_LIST, searchQuery]);
 
   const totalPages = Math.ceil(filteredManga.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedManga = filteredManga.slice(startIndex, startIndex + itemsPerPage);
+
+  // Hangatkan cover halaman sebelum/sesudah halaman aktif agar teks dan cover
+  // berganti bersamaan ketika pagination ditekan.
+  useEffect(() => {
+    if (typeof window === 'undefined' || totalPages <= 1) return;
+    const adjacentPages = [currentPage - 1, currentPage + 1]
+      .filter((page) => page >= 1 && page <= totalPages);
+    for (const page of adjacentPages) {
+      const offset = (page - 1) * itemsPerPage;
+      for (const manga of filteredManga.slice(offset, offset + itemsPerPage)) {
+        const url = coverUrlForWidth(manga, window.innerWidth);
+        if (!url) continue;
+        const image = new Image();
+        image.fetchPriority = 'low';
+        image.src = url;
+      }
+    }
+  }, [currentPage, filteredManga, itemsPerPage, totalPages]);
 
   // Auto-recovery race pasca-login: begitu status Supporter terkonfirmasi (me-fetch
   // selesai), kalau modal locked masih nyangkut untuk chapter tertunda → tutup &
@@ -653,8 +699,10 @@ export default function App() {
   }, [isSupporter]);
 
   const handleReadChapter = (chapter, mangaTitle, mangaObj) => {
-    const isLocked = !!chapter.unlockDate && new Date(chapter.unlockDate).getTime() > Date.now() && !isSupporter;
-    if (isLocked) {
+    const accessLevel = chapterAccessLevel(chapter);
+    const needsGate = (accessLevel === 'supporter' && !isSupporter)
+      || (accessLevel === 'member' && !isLoggedIn);
+    if (needsGate) {
       setPendingUnlockChapter(chapter);
       setPendingMangaTitle(mangaTitle);
       setPendingManga(mangaObj || selectedManga);
@@ -772,6 +820,7 @@ export default function App() {
               onReadChapter={handleReadChapter}
               lastReadChapter={historyChapters[selectedManga.id]}
               isSupporter={isSupporter}
+              isLoggedIn={isLoggedIn}
             />
           </Suspense>
         ) : (
@@ -873,8 +922,8 @@ export default function App() {
                     </div>
                   ) : (
                     <div className="flex flex-col gap-4">
-                      {/* key per-posisi (i) → DOM kartu dipakai ulang antar halaman: cover
-                          hanya ganti src (tak remount) sehingga transisi mulus, tak berkedip. */}
+                      {/* Key per manga mencegah cover lama tertahan ketika teks kartu sudah
+                          berubah. Cover halaman sebelum/sesudahnya sudah dipreload. */}
                       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start items-start gap-4">
                         {Array.from({ length: totalPages > 1 ? itemsPerPage : paginatedManga.length }).map((_, i) => {
                           const manga = paginatedManga[i];
@@ -888,10 +937,9 @@ export default function App() {
                             );
                           }
                           return (
-                            <div key={i}>
+                            <div key={manga.id}>
                               <MangaCard
                                 manga={manga}
-                                isSupporter={isSupporter}
                                 onViewManga={() => { navigate(`/${manga.id}`); }}
                                 onReadChapter={(ch, title) => handleReadChapter(ch, title || manga.title, manga)}
                               />
@@ -1136,7 +1184,6 @@ export default function App() {
             manga={selectedManga}
             onClose={() => { navigate(`/${selectedManga?.id || ''}`); }}
             onReadChapter={handleReadChapter}
-            isSupporter={isSupporter}
             currentUser={currentUser}
           />
         </Suspense>
@@ -1218,7 +1265,11 @@ export default function App() {
             manga={pendingManga}
             isLoggedIn={isLoggedIn}
             isSupporter={isSupporter}
-            onLogin={() => { setIsLockedModalOpen(false); openAuth('unlock', { type: 'unlock', mangaId: pendingManga?.id, chapterNum: pendingUnlockChapter?.chapter_number }); }}
+            onLogin={() => {
+              const reason = chapterAccessLevel(pendingUnlockChapter) === 'member' ? 'member' : 'unlock';
+              setIsLockedModalOpen(false);
+              openAuth(reason, { type: 'unlock', mangaId: pendingManga?.id, chapterNum: pendingUnlockChapter?.chapter_number });
+            }}
             onBecomeSupporter={() => { setIsLockedModalOpen(false); setIsCoinModalOpen(true); }}
           />
         </Suspense>
