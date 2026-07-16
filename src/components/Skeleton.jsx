@@ -1,6 +1,6 @@
-export function Skeleton({ className = '', style }) {
+export function Skeleton({ className = '', style, ...props }) {
   return (
-    <div style={style} className={`animate-pulse bg-surface-container-high rounded-lg ${className}`} />
+    <div {...props} style={style} className={`animate-pulse bg-surface-container-high rounded-lg ${className}`} />
   );
 }
 
@@ -21,6 +21,42 @@ export function MangaCardSkeleton() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Placeholder halaman utama harus mengikuti empat sibling yang muncul setelah
+// katalog selesai dimuat. Jika semuanya digabung menjadi satu blok pendek,
+// Featured + banner akan mendorong List Bacaan dan menghasilkan CLS besar.
+export function HomepageHeroSkeleton() {
+  return (
+    <>
+      <div
+        aria-hidden="true"
+        className="h-[323px] w-auto -mx-3 animate-pulse border-y border-white/5 bg-surface-container sm:-mx-4 sm:h-[382px] md:-mx-5 md:h-[446px] lg:h-[494px]"
+      />
+
+      <div
+        aria-hidden="true"
+        className="w-auto -mx-3 border-t border-white/60 -mt-2 sm:-mx-4 md:-mx-5 md:-mt-3 xl:-mt-4"
+      />
+
+      <div aria-hidden="true" className="flex flex-col gap-3">
+        <div className="flex h-9 items-center justify-between gap-3 sm:h-10">
+          <Skeleton className="h-7 w-44 sm:w-52" />
+          <div className="flex gap-2">
+            <Skeleton className="h-9 w-9 rounded-xl sm:h-10 sm:w-10" />
+            <Skeleton className="h-9 w-10 rounded-xl sm:h-10" />
+            <Skeleton className="h-9 w-9 rounded-xl sm:h-10 sm:w-10" />
+          </div>
+        </div>
+        <Skeleton className="h-[190px] w-full rounded-xl sm:h-[220px] md:h-[255px] lg:h-[285px]" />
+      </div>
+
+      <Skeleton
+        aria-hidden="true"
+        className="mt-2 h-10 w-full rounded-xl sm:h-12"
+      />
+    </>
   );
 }
 

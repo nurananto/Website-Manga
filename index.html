@@ -20,17 +20,17 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Nurananto Scanlation" />
     <meta name="twitter:description" content="nurananto scanslation" />
-    <!-- Preconnect ke origin gambar & API agar koneksi siap lebih awal (hemat LCP) -->
-    <link rel="preconnect" href="https://cdn.nuranantoscans.my.id" crossorigin />
-    <link rel="preconnect" href="https://images.nuranantoscans.my.id" crossorigin />
-    <link rel="preconnect" href="https://api.nuranantoscans.my.id" />
-    <!-- Turnstile (verifikasi sebelum ambil token chapter terkunci) -->
-    <link rel="preconnect" href="https://challenges.cloudflare.com" />
+    <!-- Hanya origin LCP yang dibuka penuh. API cukup DNS; Turnstile dimuat saat dibutuhkan. -->
+    <link rel="preconnect" href="https://cdn.nuranantoscans.my.id" />
+    <link rel="dns-prefetch" href="https://api.nuranantoscans.my.id" />
     <!-- Prefetch data JSON halaman ini SEDINI mungkin — sebelum bundle JS di-download,
          di-parse, dieksekusi, dan React mount+useEffect jalan. Tanpa ini, URL gambar
          LCP (hero cover) baru diketahui browser setelah seluruh rangkaian itu selesai,
          menyebabkan LCP molor beberapa detik terutama di koneksi lambat. App.jsx
          memakai window.__PREFETCH__ ini (kalau ada & cocok) ketimbang fetch ulang. -->
+    <!-- Build produksi menyisipkan katalog homepage di sini untuk memutus waterfall
+         HTML -> index.json -> cover LCP. Saat dev, placeholder ini dibiarkan kosong. -->
+    <!-- HOMEPAGE_CATALOG -->
     <script>
       (function () {
         try {
@@ -44,12 +44,17 @@
             url = '/manga/' + slug + '.json';
           }
           if (url) {
+            var inlineIndex = !slug && Array.isArray(window.__INLINE_MANGA_INDEX__)
+              ? window.__INLINE_MANGA_INDEX__
+              : null;
             window.__PREFETCH__ = {
               type: slug ? 'manga' : 'index',
               slug: slug,
-              promise: fetch(url, { cache: 'no-cache' })
-                .then(function (r) { return r.ok ? r.json() : null; })
-                .catch(function () { return null; }),
+              promise: inlineIndex
+                ? Promise.resolve(inlineIndex)
+                : fetch(url, { cache: 'no-cache' })
+                  .then(function (r) { return r.ok ? r.json() : null; })
+                  .catch(function () { return null; }),
             };
           }
         } catch (e) {}

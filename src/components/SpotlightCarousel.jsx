@@ -88,6 +88,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
   const [metaH,     setMetaH]     = useState(getMetaH);
   const [padV,      setPadV]      = useState(getPadV);
   const [metaGap,   setMetaGap]   = useState(getCoverMetaGap);
+  const [hasMoved, setHasMoved] = useState(false);
 
   const coverH     = Math.round(coverW * 1.5);
   const containerH = padV + coverH + metaGap + metaH + padV;
@@ -119,31 +120,31 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
   useEffect(() => {
     if (N <= 1 || isPaused) return undefined;
     const timer = setInterval(() => {
+      setHasMoved(true);
       setActiveIdx((idx) => (idx + 1) % N);
       setPendingDetailIdx(null);
     }, 8000);
     return () => clearInterval(timer);
   }, [N, isPaused]);
 
-  // Hanya preload cover aktif dan satu berikutnya. Cover lain mengandalkan
-  // loading/fetch priority masing-masing agar tidak memenuhi antrean network.
+  // Cover aktif sudah ditemukan lewat preload HTML + elemen LCP. Hangatkan hanya
+  // satu cover berikutnya agar perpindahan otomatis mulus tanpa memenuhi antrean.
   useEffect(() => {
-    for (let d = 0; d <= 1; d++) {
-      const idx = ((activeIdx + d) % N + N) % N;
-      const m = mangaList[idx];
-      const url = coverUrlForWidth(m, window.innerWidth);
-      if (!url) continue;
-      const img = new Image();
-      img.fetchPriority = d === 0 ? 'high' : 'low';
-      img.src = url;
-    }
-  }, [activeIdx]); // eslint-disable-line
+    if (N <= 1) return;
+    const next = mangaList[(activeIdx + 1) % N];
+    const url = coverUrlForWidth(next, window.innerWidth);
+    if (!url) return;
+    const img = new Image();
+    img.fetchPriority = 'low';
+    img.src = url;
+  }, [activeIdx, mangaList, N]);
 
   const handleClick = (logIdx) => {
     if (isPaused && pendingDetailIdx === logIdx) {
       onViewManga?.(mangaList[logIdx]);
       return;
     }
+    setHasMoved(true);
     setIsPaused(true);
     setPendingDetailIdx(logIdx);
     setActiveIdx(logIdx);
@@ -160,11 +161,15 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
       style={{ height: containerH }}
     >
       {/* ── Darkened background from active cover ── */}
-      <div key={active?.id} className="absolute inset-0 pointer-events-none z-0 animate-[fadeIn_0.4s_ease-out]">
+      <div
+        key={active?.id}
+        className={`absolute inset-0 pointer-events-none z-0 ${hasMoved ? 'animate-[fadeIn_0.4s_ease-out]' : ''}`}
+      >
           <ResponsiveCover
             manga={active} alt=""
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
           />
           <div className="absolute inset-0 bg-black/28" />
@@ -215,8 +220,9 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
                 <ResponsiveCover
                   manga={manga}
                   alt={manga.title}
-                  loading={dist <= 1 ? 'eager' : 'lazy'}
-                  fetchpriority={isActive ? 'high' : 'low'}
+                  loading={isActive || offset === 1 ? 'eager' : 'lazy'}
+                  fetchPriority={isActive ? 'high' : 'low'}
+                  decoding="async"
                   className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-100 saturate-100' : 'brightness-[0.72] saturate-[0.82]'}`}
                   draggable={false}
                 />

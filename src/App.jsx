@@ -8,7 +8,7 @@ import VisitorCount from './components/VisitorCount';
 import ResponsiveCover from './components/ResponsiveCover';
 import { Sparkles, Compass, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
 import { timeAgo } from './utils';
-import { MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
+import { HomepageHeroSkeleton, MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
 import { clearCachedSession } from './lib/session';
@@ -34,6 +34,7 @@ function takePrefetch(type, slug) {
   const pf = window.__PREFETCH__;
   if (!pf || pf.type !== type || (type === 'manga' && pf.slug !== slug)) return null;
   delete window.__PREFETCH__;
+  if (type === 'index') delete window.__INLINE_MANGA_INDEX__;
   return pf.promise;
 }
 
@@ -781,15 +782,7 @@ export default function App() {
                     />
 
                     {isLoading ? (
-                      <div className="flex flex-col gap-2 -mx-3 sm:-mx-4 md:-mx-5">
-                        {/* Tinggi disamakan persis dengan SpotlightCarousel asli:
-                            cover + metadata + padding agar tidak ada CLS. */}
-                        <div className="h-[323px] sm:h-[382px] md:h-[446px] lg:h-[494px] bg-surface-container animate-pulse border-y border-white/5" />
-                        <div className="flex justify-center gap-2">
-                          <div className="h-1.5 w-6 rounded-full bg-surface-container-high animate-pulse" />
-                          <div className="h-1.5 w-1.5 rounded-full bg-surface-container-high animate-pulse" />
-                        </div>
-                      </div>
+                      <HomepageHeroSkeleton />
                     ) : MANGA_LIST.length > 0 ? (
                     <>
                     <SpotlightCarousel
@@ -1052,7 +1045,17 @@ export default function App() {
       {!loadingManga && (activeTab === 'library' || !!selectedManga) && (
         <footer className="w-full pt-4 md:pt-6 xl:pt-8 pb-4 md:pb-6 xl:pb-8 bg-surface border-t border-white/60 mt-auto">
           <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-3">
-            <img src="/logo-footer.webp" alt="Nurananto Scanlation" width="1843" height="552" className="h-11 md:h-14 xl:h-16 w-auto" />
+            <div className="h-11 aspect-[1843/552] md:h-14 xl:h-16">
+              <img
+                src="/logo-footer.webp"
+                alt="Nurananto Scanlation"
+                width="1843"
+                height="552"
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-contain"
+              />
+            </div>
             <VisitorCount />
             <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
               <button

@@ -26,7 +26,6 @@ export default defineConfig({
             /node_modules\/(?:\.vite\/deps\/)?react-dom(?:\/|\.js|$)/.test(normalizedId) ||
             /node_modules\/(?:\.vite\/deps\/)?scheduler(?:\/|\.js|$)/.test(normalizedId)
           ) return 'react'
-          if (normalizedId.includes('@heroui')) return 'heroui'
         },
       },
     },

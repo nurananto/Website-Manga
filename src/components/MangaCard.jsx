@@ -24,6 +24,9 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isSupport
         <ResponsiveCover
             manga={manga}
             alt={manga.title}
+            loading="lazy"
+            fetchPriority="low"
+            decoding="async"
             className="h-full w-full object-cover rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-white/10 hover:scale-105 transition-transform duration-500"
           />
       </a>

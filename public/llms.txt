@@ -1,0 +1,9 @@
+# Nurananto Scanlation
+
+Nurananto Scanlation adalah situs fan translation manga berbahasa Indonesia.
+
+## Tautan utama
+
+- [Beranda dan daftar bacaan](https://nuranantoscans.my.id/)
+- [Sitemap](https://nuranantoscans.my.id/sitemap.xml)
+- [Aturan crawler](https://nuranantoscans.my.id/robots.txt)
