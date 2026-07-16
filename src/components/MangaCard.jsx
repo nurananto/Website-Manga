@@ -100,15 +100,6 @@ export default function MangaCard({ manga, onReadChapter, onViewManga }) {
                     {chapterTitle}
                   </span>
                   {isProtected && <Lock className={`w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 shrink-0 ${accessLevel === 'member' ? 'text-blue-400' : 'text-amber-400'}`} />}
-                  {isProtected && (
-                    <span className={`shrink-0 rounded border px-1 py-0.5 font-label-sm text-[8px] font-black uppercase tracking-wider md:text-[10px] ${
-                      accessLevel === 'member'
-                        ? 'border-blue-400/30 bg-blue-500/15 text-blue-300'
-                        : 'border-amber-500/30 bg-amber-500/15 text-amber-400'
-                    }`}>
-                      {accessLevel === 'member' ? 'Member Access' : 'Early Access'}
-                    </span>
-                  )}
                   {isUp && (
                     <span className="bg-emerald-500 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
                       <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 stroke-[3] shrink-0" />

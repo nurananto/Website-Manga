@@ -4,8 +4,7 @@ import { X, Lock, Check, Crown } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import ResponsiveCover from './ResponsiveCover';
-import CountdownTimer from './CountdownTimer';
-import { chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
+import { chapterAccessLevel } from '../lib/chapterAccess';
 
 const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
 const SUPPORTER_MIN = 'Rp 5.000';
@@ -348,10 +347,8 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChanged
 
 // ── Locked Chapter Modal — gate Supporter ─────────────────────
 export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn, isSupporter, onLogin, onBecomeSupporter }) {
-  const [, setAccessVersion] = useState(0);
   const accessLevel = chapterAccessLevel(chapter);
   const isMember = accessLevel === 'member';
-  const transitionAt = chapterNextAccessDate(chapter);
   if (!isOpen || !chapter || accessLevel === 'public') return null;
   if (accessLevel === 'supporter' && isSupporter) return null;
   if (isMember && isLoggedIn) return null;
@@ -402,12 +399,6 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
               <p className="font-body-md text-sm sm:text-base text-outline/80 font-semibold leading-relaxed">
                 {isMember ? 'Login gratis untuk membaca chapter ini.' : 'Tersedia lebih awal untuk Supporter aktif.'}
               </p>
-              {transitionAt && (
-                <p className="font-label-sm text-xs text-outline/65">
-                  {isMember ? 'Public dalam ' : 'Member Access dalam '}
-                  <CountdownTimer unlockDate={transitionAt} onUnlock={() => setAccessVersion(value => value + 1)} />
-                </p>
-              )}
             </div>
           )}
           <div className="px-5 pb-5 flex flex-col gap-2">

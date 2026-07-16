@@ -1,11 +1,10 @@
 import { useState, useMemo, useEffect } from 'react';
 import { nowTimestamp, timeAgo } from '../utils';
 import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Lock, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play } from 'lucide-react';
-import CountdownTimer from './CountdownTimer';
 import { MangaDetailSkeleton } from './Skeleton';
 import SupportButtons from './SupportButtons';
 import ResponsiveCover from './ResponsiveCover';
-import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
+import { canReadChapter, chapterAccessLevel } from '../lib/chapterAccess';
 
 const chapterSortValue = (value) => {
   const n = Number(value);
@@ -51,7 +50,6 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   const [showAllChapters, setShowAllChapters] = useState(false);
   const [activeDetailTab, setActiveDetailTab] = useState('info');
   // Chapter yang baru lepas kunci sesi ini (countdown habis) → tampil free langsung.
-  const [, setAccessVersion] = useState(0);
   const [readChapters, setReadChapters] = useState(new Set());
   const [lightboxCover, setLightboxCover] = useState(null);
   const [galleryPage, setGalleryPage] = useState(0);
@@ -92,7 +90,6 @@ const renderChapterRow = (ch) => {
     const accessLevel = chapterAccessLevel(ch, now);
     const isProtected = accessLevel !== 'public';
     const isBlocked = !canReadChapter(ch, { isLoggedIn, isSupporter }, now);
-    const transitionAt = chapterNextAccessDate(ch, now);
     const isOneshot = manga.status === 'Oneshot';
     const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
     const targetChapter = manga.status === 'Tamat' ? manga.tamat_at_chapter : isOneshot ? ch.chapter_number : manga.hiatus_at_chapter;
@@ -146,28 +143,12 @@ const renderChapterRow = (ch) => {
                 </span>
               )}
               {isProtected && (
-                <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider border flex items-center gap-0.5 ${accessLevel === 'member' ? 'bg-blue-500/15 text-blue-300 border-blue-400/30' : 'bg-amber-500/15 text-amber-400 border-amber-500/30'}`}>
-                  <Lock className="w-2.5 h-2.5 md:w-3 md:h-3 shrink-0" />
+                <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider border ${accessLevel === 'member' ? 'bg-blue-500/15 text-blue-300 border-blue-400/30' : 'bg-amber-500/15 text-amber-400 border-amber-500/30'}`}>
                   <span>{accessLevel === 'member' ? 'Member Access' : 'Early Access'}</span>
                 </span>
               )}
             </div>
-            {isProtected && transitionAt ? (
-              <div className="flex items-center gap-1.5 font-label-sm text-xs md:text-sm mt-0.5">
-                <span className="text-outline/60">{ch.date || timeAgo(ch.release_date)}</span>
-                <span className={accessLevel === 'member' ? 'text-blue-300/80' : 'text-amber-400/80'}>
-                  {accessLevel === 'member' ? 'Public dalam' : 'Member dalam'}
-                </span>
-                <CountdownTimer
-                  unlockDate={transitionAt}
-                  onUnlock={() => {
-                    setAccessVersion(value => value + 1);
-                  }}
-                />
-              </div>
-            ) : (
-              <p className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/60 mt-0.5">{ch.date || timeAgo(ch.release_date)}</p>
-            )}
+            <p className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/60 mt-0.5">{ch.date || timeAgo(ch.release_date)}</p>
           </div>
         </div>
 
