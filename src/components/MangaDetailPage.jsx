@@ -157,7 +157,7 @@ const renderChapterRow = (ch) => {
               )}
               {isBlocked && (
                 <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider border ${accessLevel === 'member' ? 'bg-blue-500/15 text-blue-300 border-blue-400/30' : 'bg-amber-500/15 text-amber-400 border-amber-500/30'}`}>
-                  <span>{accessLevel === 'member' ? 'Member Access' : 'Early Access'}</span>
+                  <span>{accessLevel === 'member' ? 'Member' : 'Early'}</span>
                 </span>
               )}
             </div>

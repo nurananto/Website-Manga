@@ -923,7 +923,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                         <span className="truncate">{ch.title}</span>
                         {itemAccessLevel !== 'public' && itemBlocked && (
                           <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-wider border ${itemAccessLevel === 'member' ? 'bg-blue-500/15 text-blue-300 border-blue-400/30' : 'bg-amber-500/15 text-amber-400 border-amber-500/30'}`}>
-                            {itemAccessLevel === 'member' ? 'Member Access' : 'Early Access'}
+                            {itemAccessLevel === 'member' ? 'Member' : 'Early'}
                           </span>
                         )}
                         {isNew && (
