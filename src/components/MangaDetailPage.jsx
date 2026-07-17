@@ -127,11 +127,16 @@ const renderChapterRow = (ch) => {
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
         <div className={`flex items-center gap-2.5 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
-          {showEarlyAccess && (
-            <span className="w-9 h-9 rounded-lg bg-amber-500/20 border border-amber-400/60 flex items-center justify-center shrink-0">
+          <span
+            aria-hidden="true"
+            className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${
+              showEarlyAccess ? 'bg-amber-500/20 border border-amber-400/60' : ''
+            }`}
+          >
+            {showEarlyAccess && (
               <Lock className="w-5 h-5 md:w-[22px] md:h-[22px] lg:w-6 lg:h-6 text-amber-300 stroke-[2.5]" />
-            </span>
-          )}
+            )}
+          </span>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 min-w-0">
               <p className="font-body-md text-sm md:text-base lg:text-lg text-on-surface font-bold group-hover:text-primary transition-colors truncate">
