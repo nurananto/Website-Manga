@@ -98,10 +98,19 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
                 className="flex min-h-[34px] sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border transition-all group/ch border-white/5 hover:bg-surface-container-highest hover:border-white/10"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
+                  <span
+                    aria-hidden="true"
+                    className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-[6px] md:h-7 md:w-7 md:rounded-lg lg:h-8 lg:w-8 ${
+                      showEarlyAccessGate ? 'border border-amber-400/60 bg-amber-500/20' : ''
+                    }`}
+                  >
+                    {showEarlyAccessGate && (
+                      <Lock className="h-3.5 w-3.5 text-amber-300 stroke-[2.5] md:h-4 md:w-4 lg:h-5 lg:w-5" />
+                    )}
+                  </span>
                   <span className="font-body-md text-sm md:text-base lg:text-lg font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {chapterTitle}
                   </span>
-                  {showEarlyAccessGate && <Lock className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 text-amber-400 shrink-0" />}
                   {isUp && (
                     <span className="bg-emerald-500 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
                       <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 stroke-[3] shrink-0" />

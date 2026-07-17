@@ -908,7 +908,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                         setOpenChapterList(null);
                         if (!isActive) onReadChapter(ch, manga.title);
                       }}
-                      className={`w-full flex items-center justify-between px-4 py-3 text-left text-xs sm:text-sm md:text-base font-semibold transition-colors cursor-pointer border-b border-white/5 last:border-0 ${
+                      className={`w-full flex items-center justify-between px-4 py-3 text-left text-sm md:text-base lg:text-lg font-semibold transition-colors cursor-pointer border-b border-white/5 last:border-0 ${
                         isActive
                           ? 'bg-primary/10 text-primary font-black'
                           : 'text-on-surface-variant hover:bg-white/5 hover:text-on-surface'
@@ -916,21 +916,21 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                     >
                       <div className="flex items-center gap-1.5 min-w-0 flex-1">
                         <span className="truncate">{ch.title}</span>
+                        {showEarlyAccess && (
+                          <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                            Early Access
+                          </span>
+                        )}
                         {isNew && (
-                          <span className="badge-new-glow shrink-0 font-label-sm bg-emerald-500 text-white border border-emerald-300/70 px-1 py-0.5 rounded text-[9px] sm:text-[10px] md:text-xs font-extrabold uppercase">New</span>
+                          <span className="badge-new-glow shrink-0 font-label-sm bg-emerald-500 text-white border border-emerald-300/70 px-1 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-extrabold uppercase">New</span>
                         )}
                         {showStatusBadge && (
-                          <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-wider ${
+                          <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider ${
                             normalizedStatus === 'tamat' || isOneshot
                               ? 'bg-red-500/15 text-red-400 border border-red-500/30'
                               : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
                           }`}>
                             {normalizedStatus === 'tamat' || isOneshot ? 'END' : activeManga?.status}
-                          </span>
-                        )}
-                        {showEarlyAccess && (
-                          <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30">
-                            Early Access
                           </span>
                         )}
                       </div>
