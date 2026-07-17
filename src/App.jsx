@@ -92,6 +92,7 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
 export default function App() {
   const [MANGA_LIST, setMangaList] = useState(() => BOOTSTRAP_MANGA_LIST || []);
   const [trendingIds, setTrendingIds] = useState(readCachedTrending);
+  const trendingIdsRef = useRef(trendingIds);
   const [isLoading, setIsLoading] = useState(() => !BOOTSTRAP_MANGA_LIST);
   const [routePage, setRoutePage] = useState(INITIAL_ROUTE.page);
 
@@ -504,9 +505,14 @@ export default function App() {
         // Respons kosong dapat terjadi sesaat saat cron/sinkronisasi. Jangan
         // mengganti ranking valid dengan fallback total view sepanjang waktu.
         if (rankedIds.length) {
-          setTrendingIds(rankedIds);
+          // API normalnya sudah mengembalikan lima slot (aktif + snapshot D1).
+          // Merge dengan cache membuat transisi deployment tetap stabil bila
+          // Worker lama sesaat hanya mengembalikan 1–4 judul.
+          const mergedIds = [...new Set([...rankedIds, ...trendingIdsRef.current])].slice(0, 5);
+          trendingIdsRef.current = mergedIds;
+          setTrendingIds(mergedIds);
           try {
-            localStorage.setItem(TRENDING_CACHE_KEY, JSON.stringify({ ids: rankedIds, savedAt: Date.now() }));
+            localStorage.setItem(TRENDING_CACHE_KEY, JSON.stringify({ ids: mergedIds, savedAt: Date.now() }));
           } catch {
             // Storage dapat ditolak pada private mode; state sesi tetap cukup.
           }

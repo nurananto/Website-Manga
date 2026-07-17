@@ -7,10 +7,10 @@ export default function FeaturedCarousel({ mangaList, trendingIds = [], onViewMa
     const byId = new Map(mangaList.map((manga) => [manga.id, manga]));
     const ranked = trendingIds.map((id) => byId.get(id)).filter(Boolean);
     // Jangan campur ranking rolling 24 jam dengan total view sepanjang waktu.
-    // Build-time isTrending hanya menjadi fallback saat API/cache belum tersedia.
     if (ranked.length) return ranked.slice(0, 5);
-    const fallback = mangaList.filter((manga) => manga.isTrending).slice(0, 5);
-    return fallback.length ? fallback : mangaList.slice(0, 5);
+    // Sebelum API/cache siap, gunakan urutan katalog tanpa membaca isTrending
+    // lifetime. Begitu respons datang, lima slot diganti ranking 24 jam.
+    return mangaList.slice(0, 5);
   }, [mangaList, trendingIds]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef(null);

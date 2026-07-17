@@ -122,10 +122,12 @@ def proses_chapter(ch_dir, lock_hours, next_update=None):
     # build-catalog.js dari waktu commit pertama meta.json ini (WIB).
     meta_path = ch_dir / "meta.json"
     existing_release = None
+    existing_unlock = None
     if meta_path.exists():
         try:
             existing = json.loads(meta_path.read_text(encoding="utf-8"))
             existing_release = existing.get("release_date")
+            existing_unlock = existing.get("unlock_date")
         except Exception:
             pass
 
@@ -138,6 +140,8 @@ def proses_chapter(ch_dir, lock_hours, next_update=None):
     }
     if existing_release:
         meta["release_date"] = existing_release
+    if existing_unlock and lock_hours > 0:
+        meta["unlock_date"] = existing_unlock
     # next_update hanya untuk chapter terakhir/terbaru (jadwal rilis berikutnya)
     if next_update:
         meta["next_update"] = next_update

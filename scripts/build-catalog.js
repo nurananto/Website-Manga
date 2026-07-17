@@ -545,9 +545,11 @@ async function buildCatalog() {
     // kalau dibaca setelah ditimpa, semua chapter dianggap "lama" (notif tak pernah jalan).
     const isNewManga = !fs.existsSync(prevJsonPath); // manga belum pernah ada → intro 1×
     let prevChapterNums = new Set();
+    let previousCatalog = null;
     if (fs.existsSync(prevJsonPath)) {
       try {
-        prevChapterNums = new Set((JSON.parse(fs.readFileSync(prevJsonPath, 'utf-8')).chapters || []).map(c => c.chapter_number));
+        previousCatalog = JSON.parse(fs.readFileSync(prevJsonPath, 'utf-8'));
+        prevChapterNums = new Set((previousCatalog.chapters || []).map(c => c.chapter_number));
       } catch {}
     }
     if (manga.mangadex_id && isChanged) {
@@ -556,12 +558,13 @@ async function buildCatalog() {
       if (manga.rating) {
         manga.rating = Math.round(manga.rating * 100) / 100; // 2 desimal (x.xx)
         console.log(`   ⭐ ${manga.rating}`);
+      } else if (previousCatalog?.rating != null) {
+        manga.rating = previousCatalog.rating;
+        console.log(`   ♻️  Rating gagal diambil; pakai rating lama (${manga.rating})`);
       }
-    } else if (manga.mangadex_id && fs.existsSync(prevJsonPath)) {
-      try {
-        manga.rating = JSON.parse(fs.readFileSync(prevJsonPath, 'utf-8')).rating ?? null;
-        console.log(`♻️  ${manga.title} — rating lama dipakai (${manga.rating ?? '—'})`);
-      } catch { manga.rating = null; }
+    } else if (manga.mangadex_id && previousCatalog) {
+      manga.rating = previousCatalog.rating ?? null;
+      console.log(`♻️  ${manga.title} — rating lama dipakai (${manga.rating ?? '—'})`);
     } else {
       manga.rating = null;
     }
@@ -620,8 +623,17 @@ async function buildCatalog() {
         } catch {}
       }
 
-      // Hitung unlockDate (camelCase agar sesuai frontend)
-      if (ch.lock_hours > 0) {
+      // Override eksplisit dipakai untuk penjadwalan hingga detik tanpa mengubah
+      // release_date asli. Jika tidak ada, tetap gunakan release + lock_hours.
+      const explicitUnlockDate = ch.unlock_date;
+      delete ch.unlock_date;
+      if (explicitUnlockDate) {
+        const unlockMs = new Date(explicitUnlockDate).getTime();
+        if (!Number.isFinite(unlockMs)) {
+          throw new Error(`${slug} Ch.${ch.chapter_number}: unlock_date tidak valid`);
+        }
+        ch.unlockDate = new Date(unlockMs).toISOString();
+      } else if (ch.lock_hours > 0) {
         const unlockDate = new Date(ch.release_date);
         unlockDate.setHours(unlockDate.getHours() + ch.lock_hours);
         ch.unlockDate = unlockDate.toISOString();
