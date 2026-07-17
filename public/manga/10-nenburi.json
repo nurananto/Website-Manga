@@ -94,6 +94,21 @@
   },
   "chapters": [
     {
+      "chapter_number": 21.2,
+      "lock_hours": 672,
+      "pages": 10,
+      "r2_folder": 21.2,
+      "id": "10-nenburi-ch-21.2",
+      "r2_prefix": "manga/10-nenburi/21.2/",
+      "title": "Ch. 21.2",
+      "release_date": "2026-07-17T11:36:23+07:00",
+      "unlockDate": "2026-08-14T04:36:23.000Z",
+      "isLocked": true,
+      "memberAccess": true,
+      "publicDate": "2026-08-21T04:36:23.000Z",
+      "views": 0
+    },
+    {
       "chapter_number": 21.1,
       "lock_hours": 672,
       "pages": 10,

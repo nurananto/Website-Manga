@@ -1,5 +1,81 @@
 [
   {
+    "id": "10-nenburi",
+    "title": "10-Nen Buri ni Saikai shita Kusogaki wa Seijun Bishoujo JK ni Seichou shiteita",
+    "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp?v=1",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp?v=1"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 7.5,
+    "chapter_count": 24,
+    "total_views": 154,
+    "isTrending": true,
+    "latest_release_date": "2026-07-17T11:36:23+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "discord_channel_id": "1517523784821768212",
+    "chapters": [
+      {
+        "chapter_number": 21.2,
+        "lock_hours": 672,
+        "pages": 10,
+        "r2_folder": 21.2,
+        "id": "10-nenburi-ch-21.2",
+        "r2_prefix": "manga/10-nenburi/21.2/",
+        "title": "Ch. 21.2",
+        "release_date": "2026-07-17T11:36:23+07:00",
+        "unlockDate": "2026-08-14T04:36:23.000Z",
+        "isLocked": true,
+        "memberAccess": true,
+        "publicDate": "2026-08-21T04:36:23.000Z",
+        "views": 0
+      },
+      {
+        "chapter_number": 21.1,
+        "lock_hours": 672,
+        "pages": 10,
+        "release_date": "2026-07-03T11:30:39+07:00",
+        "r2_folder": 21.1,
+        "id": "10-nenburi-ch-21.1",
+        "r2_prefix": "manga/10-nenburi/21.1/",
+        "title": "Ch. 21.1",
+        "unlockDate": "2026-07-31T04:30:39.000Z",
+        "isLocked": true,
+        "memberAccess": true,
+        "publicDate": "2026-08-07T04:30:39.000Z",
+        "views": 5
+      },
+      {
+        "chapter_number": 20.2,
+        "lock_hours": 480,
+        "pages": 10,
+        "release_date": "2026-06-27T20:24:29+07:00",
+        "r2_folder": 20.2,
+        "id": "10-nenburi-ch-20.2",
+        "r2_prefix": "manga/10-nenburi/20.2/",
+        "title": "Ch. 20.2",
+        "unlockDate": "2026-07-17T13:24:29.000Z",
+        "isLocked": true,
+        "memberAccess": true,
+        "publicDate": "2026-07-24T13:24:29.000Z",
+        "views": 5
+      }
+    ]
+  },
+  {
     "id": "UchinoSeiso-kei",
     "title": "Uchi no Seiso-kei Iinchou ga Katsute Chuunibyou Idol datta Koto wo Ore Dake ga Shitteiru",
     "description": "Dulu ada idol chuunibyou yang sempat ngetop banget, namanya 'Nightmare Disaster', atau biasa dipanggil Mea. Reo yang dulu sering nemenin kegiatannya, foto bareng, sampai upload ke medsos biar viral, akhirnya ketemu lagi sama dia di SMA tempat mereka lanjut sekolah.",
@@ -1010,80 +1086,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 3
-      }
-    ]
-  },
-  {
-    "id": "10-nenburi",
-    "title": "10-Nen Buri ni Saikai shita Kusogaki wa Seijun Bishoujo JK ni Seichou shiteita",
-    "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp?v=1"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Harem",
-      "Romance",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 7.5,
-    "chapter_count": 23,
-    "total_views": 154,
-    "isTrending": true,
-    "latest_release_date": "2026-07-03T11:30:39+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "discord_channel_id": "1517523784821768212",
-    "chapters": [
-      {
-        "chapter_number": 21.1,
-        "lock_hours": 672,
-        "pages": 10,
-        "release_date": "2026-07-03T11:30:39+07:00",
-        "r2_folder": 21.1,
-        "id": "10-nenburi-ch-21.1",
-        "r2_prefix": "manga/10-nenburi/21.1/",
-        "title": "Ch. 21.1",
-        "unlockDate": "2026-07-31T04:30:39.000Z",
-        "isLocked": true,
-        "memberAccess": true,
-        "publicDate": "2026-08-07T04:30:39.000Z",
-        "views": 5
-      },
-      {
-        "chapter_number": 20.2,
-        "lock_hours": 480,
-        "pages": 10,
-        "release_date": "2026-06-27T20:24:29+07:00",
-        "r2_folder": 20.2,
-        "id": "10-nenburi-ch-20.2",
-        "r2_prefix": "manga/10-nenburi/20.2/",
-        "title": "Ch. 20.2",
-        "unlockDate": "2026-07-17T13:24:29.000Z",
-        "isLocked": true,
-        "memberAccess": true,
-        "publicDate": "2026-07-24T13:24:29.000Z",
-        "views": 5
-      },
-      {
-        "chapter_number": 20.1,
-        "lock_hours": 144,
-        "pages": 10,
-        "release_date": "2026-06-27T19:38:27+07:00",
-        "r2_folder": 20.1,
-        "id": "10-nenburi-ch-20.1",
-        "r2_prefix": "manga/10-nenburi/20.1/",
-        "title": "Ch. 20.1",
-        "unlockDate": "2026-07-03T12:38:27.000Z",
-        "isLocked": false,
-        "views": 7
       }
     ]
   },
