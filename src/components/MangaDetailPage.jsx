@@ -130,16 +130,24 @@ const renderChapterRow = (ch) => {
           <span
             aria-hidden="true"
             className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${
-              showEarlyAccess ? 'bg-amber-500/20 border border-amber-400/60' : ''
+              showEarlyAccess
+                ? 'bg-amber-500/20 border border-amber-400/60'
+                : 'bg-white/5 border border-white/20'
             }`}
           >
-            {showEarlyAccess && (
+            {showEarlyAccess ? (
               <Lock className="w-6 h-6 md:w-[26px] md:h-[26px] lg:w-7 lg:h-7 text-amber-300 stroke-[2.5]" />
+            ) : (
+              <BookOpen className="w-6 h-6 md:w-[26px] md:h-[26px] lg:w-7 lg:h-7 text-white stroke-[2.25]" />
             )}
           </span>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 min-w-0">
-              <p className="font-body-md text-sm md:text-base lg:text-lg text-on-surface font-bold group-hover:text-primary transition-colors truncate">
+              <p className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-colors truncate ${
+                showEarlyAccess
+                  ? 'text-amber-300 group-hover:text-amber-200'
+                  : 'text-on-surface group-hover:text-primary'
+              }`}>
                 {chapterTitle}
               </p>
               {showEarlyAccess && (
