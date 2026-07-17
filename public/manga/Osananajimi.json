@@ -60,7 +60,7 @@
   "discord_channel_id": "1517524030142550058",
   "detail_views": 97,
   "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
-  "rating": 7.86,
+  "rating": 7.79,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=1",
   "coverUrls": {
@@ -69,6 +69,21 @@
     "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=1"
   },
   "chapters": [
+    {
+      "chapter_number": 7.2,
+      "lock_hours": 672,
+      "pages": 9,
+      "r2_folder": 7.2,
+      "id": "Osananajimi-ch-7.2",
+      "r2_prefix": "manga/Osananajimi/7.2/",
+      "title": "Ch. 7.2",
+      "release_date": "2026-07-17T22:42:07+07:00",
+      "unlockDate": "2026-08-14T15:42:07.000Z",
+      "isLocked": true,
+      "memberAccess": true,
+      "publicDate": "2026-08-21T15:42:07.000Z",
+      "views": 0
+    },
     {
       "chapter_number": 7.1,
       "lock_hours": 504,
