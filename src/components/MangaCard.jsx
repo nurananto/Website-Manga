@@ -98,21 +98,21 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
                 className="flex min-h-[34px] sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border transition-all group/ch border-white/5 hover:bg-surface-container-highest hover:border-white/10"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
+                  <span className="font-body-md text-sm md:text-base lg:text-lg font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
+                    {chapterTitle}
+                  </span>
                   {showAccessGate && (
-                    <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border sm:h-8 sm:w-8 lg:h-9 lg:w-9 ${
+                    <span className={`flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-[4px] border md:h-4 md:w-4 lg:h-[18px] lg:w-[18px] ${
                       accessLevel === 'member'
                         ? 'border-blue-500/25 bg-blue-500/15'
                         : 'border-amber-500/25 bg-amber-500/15'
                     }`}>
                       <ChapterAccessIcon
                         accessLevel={accessLevel}
-                        className={`h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-[18px] lg:w-[18px] ${accessLevel === 'member' ? 'text-blue-400' : 'text-amber-400'}`}
+                        className={`h-2.5 w-2.5 md:h-3 md:w-3 lg:h-3.5 lg:w-3.5 ${accessLevel === 'member' ? 'text-blue-400' : 'text-amber-400'}`}
                       />
                     </span>
                   )}
-                  <span className="font-body-md text-sm md:text-base lg:text-lg font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
-                    {chapterTitle}
-                  </span>
                   {isUp && (
                     <span className="bg-emerald-500 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
                       <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 stroke-[3] shrink-0" />
