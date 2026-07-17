@@ -134,7 +134,7 @@ const renderChapterRow = (ch) => {
             }`}
           >
             {showEarlyAccess && (
-              <Lock className="w-5 h-5 md:w-[22px] md:h-[22px] lg:w-6 lg:h-6 text-amber-300 stroke-[2.5]" />
+              <Lock className="w-6 h-6 md:w-[26px] md:h-[26px] lg:w-7 lg:h-7 text-amber-300 stroke-[2.5]" />
             )}
           </span>
           <div className="min-w-0">

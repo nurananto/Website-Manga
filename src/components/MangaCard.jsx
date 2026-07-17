@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { nowTimestamp, timeAgoShort } from '../utils';
-import { Lock, ArrowUp } from 'lucide-react';
+import { Lock, ArrowUp, BookOpen } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import ResponsiveCover from './ResponsiveCover';
 import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
@@ -100,15 +100,23 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
                 <div className="flex items-center gap-1 min-w-0 mr-1">
                   <span
                     aria-hidden="true"
-                    className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-[6px] md:h-7 md:w-7 md:rounded-lg lg:h-8 lg:w-8 ${
-                      showEarlyAccessGate ? 'border border-amber-400/60 bg-amber-500/20' : ''
+                    className={`mr-1 flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[6px] md:mr-1.5 md:h-6 md:w-6 lg:h-[26px] lg:w-[26px] ${
+                      showEarlyAccessGate
+                        ? 'border border-amber-400/60 bg-amber-500/20'
+                        : 'border border-white/20 bg-white/5'
                     }`}
                   >
-                    {showEarlyAccessGate && (
-                      <Lock className="h-3.5 w-3.5 text-amber-300 stroke-[2.5] md:h-4 md:w-4 lg:h-5 lg:w-5" />
+                    {showEarlyAccessGate ? (
+                      <Lock className="h-3.5 w-3.5 text-amber-300 stroke-[2.5] md:h-4 md:w-4 lg:h-[18px] lg:w-[18px]" />
+                    ) : (
+                      <BookOpen className="h-3.5 w-3.5 text-white stroke-[2.25] md:h-4 md:w-4 lg:h-[18px] lg:w-[18px]" />
                     )}
                   </span>
-                  <span className="font-body-md text-sm md:text-base lg:text-lg font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
+                  <span className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-colors whitespace-nowrap ${
+                    showEarlyAccessGate
+                      ? 'text-amber-300 group-hover/ch:text-amber-200'
+                      : 'text-on-surface-variant group-hover/ch:text-primary'
+                  }`}>
                     {chapterTitle}
                   </span>
                   {isUp && (
