@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Lock, Check, Crown } from 'lucide-react';
+import { X, Check, Crown } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import ResponsiveCover from './ResponsiveCover';
 import CountdownTimer from './CountdownTimer';
 import { chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
+import ChapterAccessIcon from './ChapterAccessIcon';
 
 const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
 const SUPPORTER_MIN = 'Rp 5.000';
@@ -392,7 +393,10 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
             )}
             <div className="min-w-0 flex-1 pt-0.5">
               <div className="flex items-center gap-1.5 mb-1">
-                <Lock className={`w-4 h-4 sm:w-5 sm:h-5 shrink-0 ${isMember ? 'text-blue-400' : 'text-amber-400'}`} />
+                <ChapterAccessIcon
+                  accessLevel={accessLevel}
+                  className={`h-4 w-4 sm:h-5 sm:w-5 ${isMember ? 'text-blue-400' : 'text-amber-400'}`}
+                />
                 <span className={`font-label-sm text-xs sm:text-sm md:text-base font-black uppercase tracking-wider ${isMember ? 'text-blue-300' : 'text-amber-400'}`}>
                   {isMember ? 'Member Access' : 'Early Access'}
                 </span>
@@ -418,7 +422,7 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
             {isMember || !isLoggedIn ? (
               <button onClick={onLogin}
                 className={`w-full h-12 sm:h-14 rounded-xl text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer ${isMember ? 'bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 shadow-lg shadow-blue-950/30' : 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 shadow-lg shadow-amber-900/30'}`}>
-                {isMember ? <Lock className="w-4 h-4 sm:w-5 sm:h-5" /> : <Crown className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />}
+                {isMember ? <ChapterAccessIcon accessLevel="member" className="h-4 w-4 text-white sm:h-5 sm:w-5" /> : <Crown className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />}
                 {isMember ? 'Login Gratis untuk Membaca' : 'Login untuk Lanjut'}
               </button>
             ) : (

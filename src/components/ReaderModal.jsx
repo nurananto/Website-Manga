@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUp, Lock, BookOpen, MessageCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUp, BookOpen, MessageCircle } from 'lucide-react';
 import { discordCommentUrl } from '../lib/links';
 import { nowTimestamp } from '../utils';
 import { getAccessToken } from '../lib/auth';
@@ -9,6 +9,7 @@ import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
 import { chapterAccessLevel, chapterPublicDate } from '../lib/chapterAccess';
 import ResponsiveCover from './ResponsiveCover';
+import ChapterAccessIcon from './ChapterAccessIcon';
 
 // Widget Turnstile interaktif (wajib centang) untuk membuka locked chapter.
 function TurnstileGate({ onToken }) {
@@ -644,7 +645,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, cu
         {chapterNeedsToken && !imgAccess && (
           <div className="absolute inset-0 z-[205] bg-[#090b0d]/95 backdrop-blur-sm flex flex-col items-center justify-center gap-5 px-6">
             <div className="flex flex-col items-center gap-2 text-center">
-              <Lock className={`w-8 h-8 ${accessLevel === 'member' ? 'text-blue-400' : 'text-amber-400'}`} />
+              <ChapterAccessIcon
+                accessLevel={accessLevel}
+                className={`h-8 w-8 ${accessLevel === 'member' ? 'text-blue-400' : 'text-amber-400'}`}
+              />
               <h3 className="font-headline-md text-base sm:text-lg font-black text-on-surface">Verifikasi untuk membuka chapter</h3>
               <p className="font-body-md text-xs sm:text-sm text-outline/70 max-w-xs">
                 {accessLevel === 'member'
@@ -930,7 +934,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, cu
                         )}
                         {itemAccessLevel !== 'public' && (
                           <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-black uppercase tracking-wider border flex items-center gap-0.5 ${itemAccessLevel === 'member' ? 'bg-blue-500/15 text-blue-300 border-blue-400/30' : 'bg-amber-500/15 text-amber-400 border-amber-500/30'}`}>
-                            <Lock className="w-2.5 h-2.5 shrink-0" />
+                            <ChapterAccessIcon accessLevel={itemAccessLevel} className="h-2.5 w-2.5" />
                             <span>{itemAccessLevel === 'member' ? 'Member Access' : 'Early Access'}</span>
                           </span>
                         )}

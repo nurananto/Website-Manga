@@ -1,10 +1,11 @@
 import { useState, useMemo, useEffect } from 'react';
 import { nowTimestamp, timeAgo } from '../utils';
-import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Lock, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play } from 'lucide-react';
+import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play } from 'lucide-react';
 import { MangaDetailSkeleton } from './Skeleton';
 import SupportButtons from './SupportButtons';
 import ResponsiveCover from './ResponsiveCover';
 import CountdownTimer from './CountdownTimer';
+import ChapterAccessIcon from './ChapterAccessIcon';
 import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
 
 const chapterSortValue = (value) => {
@@ -129,7 +130,10 @@ const renderChapterRow = (ch) => {
         <div className={`flex items-center gap-2.5 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
           {isProtected && (
             <span className={`w-9 h-9 rounded-lg border flex items-center justify-center shrink-0 ${accessLevel === 'member' ? 'bg-blue-500/15 border-blue-500/25' : 'bg-amber-500/15 border-amber-500/25'}`}>
-              <Lock className={`w-4 h-4 ${accessLevel === 'member' ? 'text-blue-400' : 'text-amber-400'}`} />
+              <ChapterAccessIcon
+                accessLevel={accessLevel}
+                className={`h-4 w-4 ${accessLevel === 'member' ? 'text-blue-400' : 'text-amber-400'}`}
+              />
             </span>
           )}
           <div className="min-w-0">
