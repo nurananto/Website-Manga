@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUp, BookOpen, MessageCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUp, BookOpen, Lock, MessageCircle } from 'lucide-react';
 import { discordCommentUrl } from '../lib/links';
 import { nowTimestamp } from '../utils';
 import { getAccessToken } from '../lib/auth';
@@ -9,7 +9,6 @@ import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
 import { canReadChapter, chapterAccessLevel, chapterPublicDate } from '../lib/chapterAccess';
 import ResponsiveCover from './ResponsiveCover';
-import ChapterAccessIcon from './ChapterAccessIcon';
 
 // Widget Turnstile interaktif (wajib centang) untuk membuka locked chapter.
 function TurnstileGate({ onToken }) {
@@ -645,15 +644,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
         {chapterNeedsToken && !imgAccess && (
           <div className="absolute inset-0 z-[205] bg-[#090b0d]/95 backdrop-blur-sm flex flex-col items-center justify-center gap-5 px-6">
             <div className="flex flex-col items-center gap-2 text-center">
-              <ChapterAccessIcon
-                accessLevel={accessLevel}
-                className={`h-8 w-8 ${accessLevel === 'member' ? 'text-blue-400' : 'text-amber-400'}`}
-              />
+              <Lock className="w-8 h-8 text-primary" />
               <h3 className="font-headline-md text-base sm:text-lg font-black text-on-surface">Verifikasi untuk membuka chapter</h3>
               <p className="font-body-md text-xs sm:text-sm text-outline/70 max-w-xs">
-                {accessLevel === 'member'
-                  ? 'Member Access — verifikasi untuk memuat gambar privat.'
-                  : 'Early Access — verifikasi Supporter untuk memuat gambar privat.'}
+                Chapter berbayar — centang kotak di bawah untuk memuat gambar.
               </p>
             </div>
             {!tsToken ? (
@@ -894,8 +888,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
               >
                 {chapters.map((ch) => {
                   const isActive = ch.id === activeChapter.id;
-                  const itemAccessLevel = chapterAccessLevel(ch, now);
-                  const itemBlocked = !canReadChapter(ch, { isLoggedIn: !!currentUser, isSupporter }, now);
+                  const isLocked = !canReadChapter(ch, { isLoggedIn: !!currentUser, isSupporter }, now);
                   const isNew = Boolean(ch.isNew) || (
                     Boolean(ch.release_date)
                     && now - new Date(ch.release_date).getTime() < 24 * 60 * 60 * 1000
@@ -921,21 +914,22 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                     >
                       <div className="flex items-center gap-1.5 min-w-0 flex-1">
                         <span className="truncate">{ch.title}</span>
-                        {itemAccessLevel !== 'public' && itemBlocked && (
-                          <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-wider border ${itemAccessLevel === 'member' ? 'bg-blue-500/15 text-blue-300 border-blue-400/30' : 'bg-amber-500/15 text-amber-400 border-amber-500/30'}`}>
-                            {itemAccessLevel === 'member' ? 'Member' : 'Early'}
-                          </span>
-                        )}
                         {isNew && (
-                          <span className="badge-new-glow shrink-0 font-label-sm bg-emerald-500 text-white border border-emerald-300/70 px-1 py-0.5 rounded text-[9px] sm:text-[10px] md:text-xs font-extrabold uppercase">New</span>
+                          <span className="badge-new-glow shrink-0 font-label-sm bg-emerald-500 text-white border border-emerald-300/70 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase">New</span>
                         )}
                         {showStatusBadge && (
-                          <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-wider ${
+                          <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-black uppercase tracking-wider ${
                             normalizedStatus === 'tamat' || isOneshot
                               ? 'bg-red-500/15 text-red-400 border border-red-500/30'
                               : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
                           }`}>
                             {normalizedStatus === 'tamat' || isOneshot ? 'END' : activeManga?.status}
+                          </span>
+                        )}
+                        {isLocked && (
+                          <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
+                            <Lock className="w-2.5 h-2.5 shrink-0" />
+                            <span>Early Access</span>
                           </span>
                         )}
                       </div>

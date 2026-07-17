@@ -1,12 +1,11 @@
 import { useState, useMemo, useEffect } from 'react';
 import { nowTimestamp, timeAgo } from '../utils';
-import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play } from 'lucide-react';
+import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play, Lock } from 'lucide-react';
 import { MangaDetailSkeleton } from './Skeleton';
 import SupportButtons from './SupportButtons';
 import ResponsiveCover from './ResponsiveCover';
 import CountdownTimer from './CountdownTimer';
-import ChapterAccessIcon from './ChapterAccessIcon';
-import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
+import { canReadChapter, chapterNextAccessDate } from '../lib/chapterAccess';
 
 const chapterSortValue = (value) => {
   const n = Number(value);
@@ -98,7 +97,6 @@ const renderChapterRow = (ch) => {
     const now = nowTimestamp();
     const isNew = !!ch.release_date && (now - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
     const isUnread = !readChapters.has(ch.id);
-    const accessLevel = chapterAccessLevel(ch, now);
     const isBlocked = !canReadChapter(ch, { isLoggedIn, isSupporter }, now);
     const isOneshot = manga.status === 'Oneshot';
     const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
@@ -128,11 +126,8 @@ const renderChapterRow = (ch) => {
         {/* Left: title + date — redup kalau sudah dibaca */}
         <div className={`flex items-center gap-2.5 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
           {isBlocked && (
-            <span className={`w-9 h-9 rounded-lg border flex items-center justify-center shrink-0 ${accessLevel === 'member' ? 'bg-blue-500/15 border-blue-500/25' : 'bg-amber-500/15 border-amber-500/25'}`}>
-              <ChapterAccessIcon
-                accessLevel={accessLevel}
-                className={`h-4 w-4 ${accessLevel === 'member' ? 'text-blue-400' : 'text-amber-400'}`}
-              />
+            <span className="w-9 h-9 rounded-lg bg-amber-500/15 border border-amber-500/25 flex items-center justify-center shrink-0">
+              <Lock className="w-4 h-4 text-amber-400" />
             </span>
           )}
           <div className="min-w-0">
@@ -156,8 +151,9 @@ const renderChapterRow = (ch) => {
                 </span>
               )}
               {isBlocked && (
-                <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider border ${accessLevel === 'member' ? 'bg-blue-500/15 text-blue-300 border-blue-400/30' : 'bg-amber-500/15 text-amber-400 border-amber-500/30'}`}>
-                  <span>{accessLevel === 'member' ? 'Member' : 'Early'}</span>
+                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
+                  <Lock className="w-2.5 h-2.5 md:w-3 md:h-3 shrink-0" />
+                  <span>Early Access</span>
                 </span>
               )}
             </div>

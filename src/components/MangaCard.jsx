@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { nowTimestamp, timeAgoShort } from '../utils';
-import { ArrowUp } from 'lucide-react';
+import { Lock, ArrowUp } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import ResponsiveCover from './ResponsiveCover';
-import ChapterAccessIcon from './ChapterAccessIcon';
 import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
 
 export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter }) {
@@ -101,18 +100,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
                   <span className="font-body-md text-sm md:text-base lg:text-lg font-bold text-on-surface-variant group-hover/ch:text-primary transition-colors whitespace-nowrap">
                     {chapterTitle}
                   </span>
-                  {showAccessGate && (
-                    <span className={`flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-[4px] border md:h-4 md:w-4 lg:h-[18px] lg:w-[18px] ${
-                      accessLevel === 'member'
-                        ? 'border-blue-400/70 bg-blue-500/20'
-                        : 'border-amber-400/70 bg-amber-500/20'
-                    }`}>
-                      <ChapterAccessIcon
-                        accessLevel={accessLevel}
-                        className={`h-2.5 w-2.5 md:h-3 md:w-3 lg:h-3.5 lg:w-3.5 ${accessLevel === 'member' ? 'text-blue-300' : 'text-amber-300'}`}
-                      />
-                    </span>
-                  )}
+                  {showAccessGate && <Lock className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 text-amber-400 shrink-0" />}
                   {isUp && (
                     <span className="bg-emerald-500 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
                       <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 stroke-[3] shrink-0" />
@@ -130,7 +118,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
                   )}
                 </div>
 
-                {isProtected && transitionAt && (
+                {showAccessGate && transitionAt && (
                   <CountdownTimer
                     unlockDate={transitionAt}
                     silent
