@@ -104,12 +104,12 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
                   {showAccessGate && (
                     <span className={`flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-[4px] border md:h-4 md:w-4 lg:h-[18px] lg:w-[18px] ${
                       accessLevel === 'member'
-                        ? 'border-blue-500/25 bg-blue-500/15'
-                        : 'border-amber-500/25 bg-amber-500/15'
+                        ? 'border-blue-400/70 bg-blue-500/20'
+                        : 'border-amber-400/70 bg-amber-500/20'
                     }`}>
                       <ChapterAccessIcon
                         accessLevel={accessLevel}
-                        className={`h-2.5 w-2.5 md:h-3 md:w-3 lg:h-3.5 lg:w-3.5 ${accessLevel === 'member' ? 'text-blue-400' : 'text-amber-400'}`}
+                        className={`h-2.5 w-2.5 md:h-3 md:w-3 lg:h-3.5 lg:w-3.5 ${accessLevel === 'member' ? 'text-blue-300' : 'text-amber-300'}`}
                       />
                     </span>
                   )}
