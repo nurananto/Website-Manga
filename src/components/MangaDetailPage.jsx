@@ -5,7 +5,7 @@ import { MangaDetailSkeleton } from './Skeleton';
 import SupportButtons from './SupportButtons';
 import ResponsiveCover from './ResponsiveCover';
 import CountdownTimer from './CountdownTimer';
-import { canReadChapter, chapterNextAccessDate } from '../lib/chapterAccess';
+import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
 
 const chapterSortValue = (value) => {
   const n = Number(value);
@@ -97,7 +97,9 @@ const renderChapterRow = (ch) => {
     const now = nowTimestamp();
     const isNew = !!ch.release_date && (now - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
     const isUnread = !readChapters.has(ch.id);
+    const accessLevel = chapterAccessLevel(ch, now);
     const isBlocked = !canReadChapter(ch, { isLoggedIn, isSupporter }, now);
+    const showEarlyAccess = accessLevel === 'supporter' && isBlocked;
     const isOneshot = manga.status === 'Oneshot';
     const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
     const targetChapter = manga.status === 'Tamat' ? manga.tamat_at_chapter : isOneshot ? ch.chapter_number : manga.hiatus_at_chapter;
@@ -125,7 +127,7 @@ const renderChapterRow = (ch) => {
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
         <div className={`flex items-center gap-2.5 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
-          {isBlocked && (
+          {showEarlyAccess && (
             <span className="w-9 h-9 rounded-lg bg-amber-500/15 border border-amber-500/25 flex items-center justify-center shrink-0">
               <Lock className="w-4 h-4 text-amber-400" />
             </span>
@@ -150,10 +152,9 @@ const renderChapterRow = (ch) => {
                   {manga.status === 'Tamat' || isOneshot ? 'END' : manga.status}
                 </span>
               )}
-              {isBlocked && (
-                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
-                  <Lock className="w-2.5 h-2.5 md:w-3 md:h-3 shrink-0" />
-                  <span>Early Access</span>
+              {showEarlyAccess && (
+                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                  Early Access
                 </span>
               )}
             </div>

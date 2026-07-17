@@ -888,7 +888,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
               >
                 {chapters.map((ch) => {
                   const isActive = ch.id === activeChapter.id;
-                  const isLocked = !canReadChapter(ch, { isLoggedIn: !!currentUser, isSupporter }, now);
+                  const itemAccessLevel = chapterAccessLevel(ch, now);
+                  const showEarlyAccess = itemAccessLevel === 'supporter'
+                    && !canReadChapter(ch, { isLoggedIn: !!currentUser, isSupporter }, now);
                   const isNew = Boolean(ch.isNew) || (
                     Boolean(ch.release_date)
                     && now - new Date(ch.release_date).getTime() < 24 * 60 * 60 * 1000
@@ -915,10 +917,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                       <div className="flex items-center gap-1.5 min-w-0 flex-1">
                         <span className="truncate">{ch.title}</span>
                         {isNew && (
-                          <span className="badge-new-glow shrink-0 font-label-sm bg-emerald-500 text-white border border-emerald-300/70 px-1 py-0.5 rounded text-[8px] font-extrabold uppercase">New</span>
+                          <span className="badge-new-glow shrink-0 font-label-sm bg-emerald-500 text-white border border-emerald-300/70 px-1 py-0.5 rounded text-[9px] sm:text-[10px] md:text-xs font-extrabold uppercase">New</span>
                         )}
                         {showStatusBadge && (
-                          <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-black uppercase tracking-wider ${
+                          <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-wider ${
                             normalizedStatus === 'tamat' || isOneshot
                               ? 'bg-red-500/15 text-red-400 border border-red-500/30'
                               : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
@@ -926,10 +928,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                             {normalizedStatus === 'tamat' || isOneshot ? 'END' : activeManga?.status}
                           </span>
                         )}
-                        {isLocked && (
-                          <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
-                            <Lock className="w-2.5 h-2.5 shrink-0" />
-                            <span>Early Access</span>
+                        {showEarlyAccess && (
+                          <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                            Early Access
                           </span>
                         )}
                       </div>
