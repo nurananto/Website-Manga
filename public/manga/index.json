@@ -20,9 +20,9 @@
       "Slice of Life",
       "Tragedy"
     ],
-    "rating": 7.79,
+    "rating": 7.8,
     "chapter_count": 16,
-    "total_views": 357,
+    "total_views": 406,
     "isTrending": true,
     "latest_release_date": "2026-07-17T22:42:07+07:00",
     "next_update": null,
@@ -34,11 +34,11 @@
         "chapter_number": 7.2,
         "lock_hours": 672,
         "pages": 9,
+        "release_date": "2026-07-17T22:42:07+07:00",
         "r2_folder": 7.2,
         "id": "Osananajimi-ch-7.2",
         "r2_prefix": "manga/Osananajimi/7.2/",
         "title": "Ch. 7.2",
-        "release_date": "2026-07-17T22:42:07+07:00",
         "unlockDate": "2026-08-14T15:42:07.000Z",
         "isLocked": true,
         "memberAccess": true,
@@ -71,7 +71,7 @@
         "title": "Ch. 6.5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 17
+        "views": 23
       }
     ]
   },
@@ -166,7 +166,7 @@
     ],
     "rating": 7.5,
     "chapter_count": 24,
-    "total_views": 154,
+    "total_views": 162,
     "isTrending": true,
     "latest_release_date": "2026-07-17T11:36:23+07:00",
     "next_update": null,
@@ -241,9 +241,9 @@
       "School Life",
       "Slice of Life"
     ],
-    "rating": 7.69,
+    "rating": 7.68,
     "chapter_count": 18,
-    "total_views": 77,
+    "total_views": 81,
     "isTrending": false,
     "latest_release_date": "2026-07-12T18:20:01+07:00",
     "next_update": null,
@@ -611,7 +611,7 @@
     ],
     "rating": 8.24,
     "chapter_count": 11,
-    "total_views": 172,
+    "total_views": 174,
     "isTrending": true,
     "latest_release_date": "2026-07-08T19:49:50+07:00",
     "next_update": null,
@@ -753,9 +753,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.21,
+    "rating": 8.2,
     "chapter_count": 27,
-    "total_views": 158,
+    "total_views": 166,
     "isTrending": true,
     "latest_release_date": "2026-07-07T22:48:58+07:00",
     "next_update": null,
@@ -789,7 +789,7 @@
         "title": "Ch. 22.2",
         "unlockDate": "2026-07-08T04:27:34.000Z",
         "isLocked": false,
-        "views": 21
+        "views": 23
       },
       {
         "chapter_number": 22.1,
@@ -802,7 +802,7 @@
         "title": "Ch. 22.1",
         "unlockDate": "2026-06-30T13:34:53.000Z",
         "isLocked": false,
-        "views": 25
+        "views": 26
       }
     ]
   },
@@ -831,7 +831,7 @@
     ],
     "rating": 7.41,
     "chapter_count": 10,
-    "total_views": 70,
+    "total_views": 73,
     "isTrending": false,
     "latest_release_date": "2026-07-07T20:55:27+07:00",
     "next_update": null,
@@ -850,7 +850,7 @@
         "title": "Ch. 7.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 7
       },
       {
         "chapter_number": 7.2,
@@ -902,7 +902,7 @@
     ],
     "rating": 8.48,
     "chapter_count": 16,
-    "total_views": 42,
+    "total_views": 43,
     "isTrending": false,
     "latest_release_date": "2026-07-05T23:57:11+07:00",
     "next_update": null,
@@ -1253,7 +1253,7 @@
     ],
     "rating": 8.6,
     "chapter_count": 18,
-    "total_views": 62,
+    "total_views": 63,
     "isTrending": false,
     "latest_release_date": "2026-06-20T18:38:40+07:00",
     "next_update": null,
@@ -1460,9 +1460,9 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 7.84,
+    "rating": 7.83,
     "chapter_count": 18,
-    "total_views": 75,
+    "total_views": 76,
     "isTrending": false,
     "latest_release_date": "2026-06-20T04:40:50+07:00",
     "next_update": null,
@@ -1934,7 +1934,7 @@
     ],
     "rating": 8.67,
     "chapter_count": 216,
-    "total_views": 164,
+    "total_views": 165,
     "isTrending": true,
     "latest_release_date": "2026-06-13T19:03:42+07:00",
     "next_update": null,
