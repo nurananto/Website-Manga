@@ -22,6 +22,14 @@ import path from 'path';
 
 const MANGA_DIR  = './public/manga';
 const ALL_PAGES  = process.argv.includes('--all-pages');
+const SITE = 'https://nuranantoscans.my.id';
+const BROWSER_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138.0.0.0 Safari/537.36',
+  'Referer': `${SITE}/`,
+  'Sec-Fetch-Dest': 'image',
+  'Sec-Fetch-Mode': 'no-cors',
+  'Sec-Fetch-Site': 'same-site',
+};
 
 // Tentukan CDN base: env → host dari coverUrl pertama → fallback hardcoded.
 function resolveCdnBase(catalog) {
@@ -37,14 +45,28 @@ function resolveCdnBase(catalog) {
 
 // num halaman → "Image01.webp" (2 digit, samakan dengan ReaderModal.makeUrl)
 const pageFile = (n) => `Image${String(n).padStart(2, '0')}.webp`;
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+let lastRequestAt = 0;
 
 async function head(url) {
   try {
-    const res = await fetch(url, { method: 'HEAD', redirect: 'manual' });
-    return res.status;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const wait = Math.max(0, 500 - (Date.now() - lastRequestAt));
+      if (wait) await sleep(wait);
+      lastRequestAt = Date.now();
+      const res = await fetch(url, {
+        method: 'HEAD',
+        redirect: 'manual',
+        headers: BROWSER_HEADERS,
+      });
+      if (res.status !== 429 || attempt === 1) return res.status;
+      const retryAfter = Number(res.headers.get('retry-after'));
+      await sleep(Number.isFinite(retryAfter) ? retryAfter * 1000 : 10_500);
+    }
   } catch (e) {
     return `ERR:${e.message}`;
   }
+  return 'ERR:unknown';
 }
 
 async function main() {
@@ -71,6 +93,7 @@ async function main() {
   }
 
   let leaks = 0;
+  let unknowns = 0;
   for (const { mangaId, ch } of locked) {
     const pages = ALL_PAGES ? Array.from({ length: ch.pages || 1 }, (_, i) => i + 1) : [1];
     let chapterLeak = false;
@@ -82,6 +105,7 @@ async function main() {
         chapterLeak = true; leaks++;
         console.log(`❌ BOCOR  ${mangaId} ${ch.title} (hal ${p}) → 200  ${url}`);
       } else if (status !== 404) {
+        unknowns++;
         console.log(`⚠️  ?     ${mangaId} ${ch.title} (hal ${p}) → ${status}  ${url}`);
       }
     }
@@ -91,11 +115,14 @@ async function main() {
   }
 
   console.log('');
+  if (leaks > 0 || unknowns > 0) {
+    if (unknowns > 0) console.error(`❌ ${unknowns} request tidak dapat diverifikasi (bukan 200/404).`);
+  }
   if (leaks > 0) {
     console.error(`❌ ${leaks} kebocoran terdeteksi! Gambar locked ada di bucket PUBLIK.`);
     console.error('   Hapus dari manga-media (CDN) — chapter terkunci hanya boleh di manga-locked.');
-    process.exit(1);
   }
+  if (leaks > 0 || unknowns > 0) process.exit(1);
   console.log('✅ Semua chapter terkunci AMAN (tidak ada di bucket publik).');
 }
 

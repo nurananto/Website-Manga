@@ -22,6 +22,13 @@ import path from 'path';
 const MANGA_DIR = './public/manga';
 const SITE = 'https://nuranantoscans.my.id';
 const [argManga, argCh] = process.argv.slice(2);
+const BROWSER_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138.0.0.0 Safari/537.36',
+  'Referer': `${SITE}/`,
+  'Sec-Fetch-Dest': 'image',
+  'Sec-Fetch-Mode': 'no-cors',
+  'Sec-Fetch-Site': 'same-site',
+};
 
 // cdn (R2 publik langsung) dari host coverUrl; images. = ganti subdomain cdn → images
 function resolveBases(catalog) {
@@ -38,14 +45,27 @@ function resolveBases(catalog) {
 }
 
 const pageFile = (n) => `Image${String(n).padStart(2, '0')}.webp`;
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+let lastRequestAt = 0;
 
 async function status(url, opts) {
   try {
-    const res = await fetch(url, opts);
-    return res.status;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const wait = Math.max(0, 500 - (Date.now() - lastRequestAt));
+      if (wait) await sleep(wait);
+      lastRequestAt = Date.now();
+      const res = await fetch(url, {
+        ...opts,
+        headers: { ...BROWSER_HEADERS, ...(opts?.headers || {}) },
+      });
+      if (res.status !== 429 || attempt === 1) return res.status;
+      const retryAfter = Number(res.headers.get('retry-after'));
+      await sleep(Number.isFinite(retryAfter) ? retryAfter * 1000 : 10_500);
+    }
   } catch (e) {
     return `ERR:${e.message}`;
   }
+  return 'ERR:unknown';
 }
 
 function fmtDuration(ms) {
@@ -102,7 +122,7 @@ async function main() {
     } else {
       // Sudah lewat unlock → harus terbaca (cdn migrasi, atau images on-access)
       const c = await status(`${cdn}${rel}`, { method: 'HEAD' });
-      const i = await status(`${images}${rel}`, { method: 'GET', headers: { Referer: `${SITE}/` } });
+      const i = await status(`${images}${rel}`, { method: 'GET' });
       if (c === 200 || i === 200) {
         const via = c === 200 ? 'cdn (sudah dimigrasi)' : `images (migrasi on-access), cdn=${c}`;
         console.log(`✅ free   ${mangaId} Ch.${ch.chapter_number} — public ${fmtDuration(now - publicMs)} lalu; terbaca via ${via}`);

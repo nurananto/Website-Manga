@@ -4,7 +4,8 @@ import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Lock, Images, Download, X, C
 import { MangaDetailSkeleton } from './Skeleton';
 import SupportButtons from './SupportButtons';
 import ResponsiveCover from './ResponsiveCover';
-import { canReadChapter, chapterAccessLevel } from '../lib/chapterAccess';
+import CountdownTimer from './CountdownTimer';
+import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
 
 const chapterSortValue = (value) => {
   const n = Number(value);
@@ -49,7 +50,7 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   const [sortNewest, setSortNewest] = useState(true);
   const [showAllChapters, setShowAllChapters] = useState(false);
   const [activeDetailTab, setActiveDetailTab] = useState('info');
-  // Chapter yang baru lepas kunci sesi ini (countdown habis) → tampil free langsung.
+  const [accessNow, setAccessNow] = useState(() => Date.now());
   const [readChapters, setReadChapters] = useState(new Set());
   const [lightboxCover, setLightboxCover] = useState(null);
   const [galleryPage, setGalleryPage] = useState(0);
@@ -82,6 +83,15 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
     const list = [...manga.chapters];
     return sortNewest ? list : list.reverse();
   }, [manga.chapters, sortNewest]);
+
+  // Satu timer tersembunyi untuk transisi terdekat. Badge/gembok berubah tepat
+  // waktu tanpa menampilkan countdown dan tanpa membuat timer untuk tiap baris.
+  const nextAccessTransition = useMemo(() => {
+    const transitions = manga.chapters
+      .map((chapter) => chapterNextAccessDate(chapter, accessNow))
+      .filter((timestamp) => Number.isFinite(timestamp) && timestamp > accessNow);
+    return transitions.length ? Math.min(...transitions) : null;
+  }, [accessNow, manga.chapters]);
 
 const renderChapterRow = (ch) => {
     const now = nowTimestamp();
@@ -167,6 +177,13 @@ const renderChapterRow = (ch) => {
 
   return (
     <div role="main" className="w-full min-h-screen bg-surface text-on-surface font-body-md relative pb-4 md:pb-6 xl:pb-8">
+      {nextAccessTransition && (
+        <CountdownTimer
+          unlockDate={nextAccessTransition}
+          silent
+          onUnlock={() => setAccessNow(Date.now())}
+        />
+      )}
       {/* Main Section — pt mengikuti TopNavBar (72px) */}
       <div className="pt-4 md:pt-6 xl:pt-8 w-full">
         {/* Hero Banner Section */}

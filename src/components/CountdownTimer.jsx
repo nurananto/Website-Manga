@@ -1,14 +1,39 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useEffectEvent } from 'react';
 
 export default function CountdownTimer({ unlockDate, onUnlock, silent = false }) {
   const [timeLeft, setTimeLeft] = useState('');
+  const handleUnlock = useEffectEvent(() => onUnlock?.());
 
   useEffect(() => {
+    const target = new Date(unlockDate).getTime();
+    if (!Number.isFinite(target)) return undefined;
+    let fired = false;
+    let timer;
+
+    const finish = () => {
+      if (fired) return;
+      fired = true;
+      if (!silent) setTimeLeft('Gratis');
+      handleUnlock();
+    };
+
+    // Mode silent hanya membutuhkan satu timeout menuju waktu transisi. Ini
+    // menghindari interval per detik dan rerender yang tidak terlihat.
+    if (silent) {
+      const schedule = () => {
+        const diff = target - Date.now();
+        if (diff <= 0) { finish(); return; }
+        timer = setTimeout(schedule, Math.min(diff, 2_147_000_000));
+      };
+      schedule();
+      return () => clearTimeout(timer);
+    }
+
     const updateTimer = () => {
-      const diff = new Date(unlockDate).getTime() - new Date().getTime();
+      const diff = target - Date.now();
       if (diff <= 0) {
-        setTimeLeft('Gratis');
-        if (onUnlock) onUnlock();
+        finish();
+        clearInterval(timer);
         return;
       }
 
@@ -35,9 +60,9 @@ export default function CountdownTimer({ unlockDate, onUnlock, silent = false })
     };
 
     updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    return () => clearInterval(interval);
-  }, [unlockDate, onUnlock]);
+    timer = setInterval(updateTimer, 1000);
+    return () => clearInterval(timer);
+  }, [silent, unlockDate]);
 
   if (silent) return null;
   return <span className="font-mono">{timeLeft}</span>;

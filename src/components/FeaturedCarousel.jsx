@@ -6,10 +6,11 @@ export default function FeaturedCarousel({ mangaList, trendingIds = [], onViewMa
   const slides = useMemo(() => {
     const byId = new Map(mangaList.map((manga) => [manga.id, manga]));
     const ranked = trendingIds.map((id) => byId.get(id)).filter(Boolean);
-    const rankedIds = new Set(ranked.map((manga) => manga.id));
-    const fallback = mangaList.filter((manga) => manga.isTrending && !rankedIds.has(manga.id));
-    const combined = [...ranked, ...fallback].slice(0, 5);
-    return combined.length ? combined : mangaList.slice(0, 5);
+    // Jangan campur ranking rolling 24 jam dengan total view sepanjang waktu.
+    // Build-time isTrending hanya menjadi fallback saat API/cache belum tersedia.
+    if (ranked.length) return ranked.slice(0, 5);
+    const fallback = mangaList.filter((manga) => manga.isTrending).slice(0, 5);
+    return fallback.length ? fallback : mangaList.slice(0, 5);
   }, [mangaList, trendingIds]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef(null);

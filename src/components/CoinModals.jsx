@@ -4,7 +4,8 @@ import { X, Lock, Check, Crown } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import ResponsiveCover from './ResponsiveCover';
-import { chapterAccessLevel } from '../lib/chapterAccess';
+import CountdownTimer from './CountdownTimer';
+import { chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
 
 const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
 const SUPPORTER_MIN = 'Rp 5.000';
@@ -347,8 +348,10 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChanged
 
 // ── Locked Chapter Modal — gate Supporter ─────────────────────
 export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn, isSupporter, onLogin, onBecomeSupporter }) {
+  const [, setAccessVersion] = useState(0);
   const accessLevel = chapterAccessLevel(chapter);
   const isMember = accessLevel === 'member';
+  const transitionAt = chapterNextAccessDate(chapter);
   if (!isOpen || !chapter || accessLevel === 'public') return null;
   if (accessLevel === 'supporter' && isSupporter) return null;
   if (isMember && isLoggedIn) return null;
@@ -356,6 +359,13 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/80 backdrop-blur-md px-4">
+        {transitionAt && (
+          <CountdownTimer
+            unlockDate={transitionAt}
+            silent
+            onUnlock={() => setAccessVersion((version) => version + 1)}
+          />
+        )}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           onClick={onClose} className="absolute inset-0" />
         <motion.div
