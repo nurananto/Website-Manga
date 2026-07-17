@@ -946,6 +946,8 @@ export default function App() {
                             <div key={manga.id}>
                               <MangaCard
                                 manga={manga}
+                                isLoggedIn={isLoggedIn}
+                                isSupporter={isSupporter}
                                 onViewManga={() => { navigate(`/${manga.id}`); }}
                                 onReadChapter={(ch, title) => handleReadChapter(ch, title || manga.title, manga)}
                               />
@@ -1190,6 +1192,7 @@ export default function App() {
             manga={selectedManga}
             onClose={() => { navigate(`/${selectedManga?.id || ''}`); }}
             onReadChapter={handleReadChapter}
+            isSupporter={isSupporter}
             currentUser={currentUser}
           />
         </Suspense>

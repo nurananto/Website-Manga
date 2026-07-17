@@ -99,7 +99,6 @@ const renderChapterRow = (ch) => {
     const isNew = !!ch.release_date && (now - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
     const isUnread = !readChapters.has(ch.id);
     const accessLevel = chapterAccessLevel(ch, now);
-    const isProtected = accessLevel !== 'public';
     const isBlocked = !canReadChapter(ch, { isLoggedIn, isSupporter }, now);
     const isOneshot = manga.status === 'Oneshot';
     const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
@@ -128,7 +127,7 @@ const renderChapterRow = (ch) => {
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
         <div className={`flex items-center gap-2.5 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
-          {isProtected && (
+          {isBlocked && (
             <span className={`w-9 h-9 rounded-lg border flex items-center justify-center shrink-0 ${accessLevel === 'member' ? 'bg-blue-500/15 border-blue-500/25' : 'bg-amber-500/15 border-amber-500/25'}`}>
               <ChapterAccessIcon
                 accessLevel={accessLevel}
@@ -156,7 +155,7 @@ const renderChapterRow = (ch) => {
                   {manga.status === 'Tamat' || isOneshot ? 'END' : manga.status}
                 </span>
               )}
-              {isProtected && (
+              {isBlocked && (
                 <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs font-black uppercase tracking-wider border ${accessLevel === 'member' ? 'bg-blue-500/15 text-blue-300 border-blue-400/30' : 'bg-amber-500/15 text-amber-400 border-amber-500/30'}`}>
                   <span>{accessLevel === 'member' ? 'Member Access' : 'Early Access'}</span>
                 </span>

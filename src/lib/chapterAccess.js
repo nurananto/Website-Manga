@@ -28,6 +28,6 @@ export function chapterNextAccessDate(chapter, now = Date.now()) {
 export function canReadChapter(chapter, { isLoggedIn, isSupporter }, now = Date.now()) {
   const level = chapterAccessLevel(chapter, now);
   if (level === 'supporter') return !!isSupporter;
-  if (level === 'member') return !!isLoggedIn;
+  if (level === 'member') return !!isLoggedIn || !!isSupporter;
   return true;
 }

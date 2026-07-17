@@ -7,7 +7,7 @@ import { nowTimestamp } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
-import { chapterAccessLevel, chapterPublicDate } from '../lib/chapterAccess';
+import { canReadChapter, chapterAccessLevel, chapterPublicDate } from '../lib/chapterAccess';
 import ResponsiveCover from './ResponsiveCover';
 import ChapterAccessIcon from './ChapterAccessIcon';
 
@@ -236,7 +236,7 @@ function useChapterDropdown() {
   return { chapterBtnRefs, dropdownAnchor, openChapterList, setOpenChapterList, toggleChapterList };
 }
 
-export default function ReaderModal({ chapter, manga, onClose, onReadChapter, currentUser }) {
+export default function ReaderModal({ chapter, manga, onClose, onReadChapter, isSupporter, currentUser }) {
   const now = nowTimestamp();
   const accessLevel = chapterAccessLevel(chapter, now);
   const chapterNeedsToken = accessLevel !== 'public';
@@ -895,6 +895,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, cu
                 {chapters.map((ch) => {
                   const isActive = ch.id === activeChapter.id;
                   const itemAccessLevel = chapterAccessLevel(ch, now);
+                  const itemBlocked = !canReadChapter(ch, { isLoggedIn: !!currentUser, isSupporter }, now);
                   const isNew = Boolean(ch.isNew) || (
                     Boolean(ch.release_date)
                     && now - new Date(ch.release_date).getTime() < 24 * 60 * 60 * 1000
@@ -932,7 +933,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, cu
                             {normalizedStatus === 'tamat' || isOneshot ? 'END' : activeManga?.status}
                           </span>
                         )}
-                        {itemAccessLevel !== 'public' && (
+                        {itemAccessLevel !== 'public' && itemBlocked && (
                           <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-black uppercase tracking-wider border flex items-center gap-0.5 ${itemAccessLevel === 'member' ? 'bg-blue-500/15 text-blue-300 border-blue-400/30' : 'bg-amber-500/15 text-amber-400 border-amber-500/30'}`}>
                             <ChapterAccessIcon accessLevel={itemAccessLevel} className="h-2.5 w-2.5" />
                             <span>{itemAccessLevel === 'member' ? 'Member Access' : 'Early Access'}</span>
