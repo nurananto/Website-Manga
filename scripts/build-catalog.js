@@ -738,9 +738,13 @@ async function buildCatalog() {
     // Frontend fetch ini saat user buka halaman detail manga
     const mangaPublicDir = './public/manga';
     fs.mkdirSync(mangaPublicDir, { recursive: true });
+    const publicManga = { ...manga, chapters };
+    // Watermark internal cron hanya diperlukan di meta sumber GitHub. Jangan
+    // ikut mempublikasikan detail sinkronisasi Worker ke katalog frontend.
+    delete publicManga.view_sync_cutoff;
     fs.writeFileSync(
       path.join(mangaPublicDir, `${slug}.json`),
-      JSON.stringify({ ...manga, chapters }, null, 2),
+      JSON.stringify(publicManga, null, 2),
       'utf-8'
     );
 
@@ -816,18 +820,17 @@ async function buildCatalog() {
     console.log(`✅ ${manga.title} — ${chapters.length} chapters`);
   }
 
-  // Trending: top 5 manga by total_views (otomatis)
-  const byViews = [...catalog].sort((a, b) => (b.total_views ?? 0) - (a.total_views ?? 0));
-  const trendingIds = new Set(byViews.slice(0, 5).map(m => m.id));
-  // isTrending build-time = fallback (dipakai kalau /api/trending kosong/gagal).
-  catalog.forEach(m => { m.isTrending = trendingIds.has(m.id); });
-
   // Urutkan homepage: manga yang paling baru diupdate tampil paling atas
   catalog.sort((a, b) => {
     const byDate = releaseSortValue(b.latest_release_date) - releaseSortValue(a.latest_release_date);
     if (byDate !== 0) return byDate;
     return String(a.title || '').localeCompare(String(b.title || ''));
   });
+
+  // Fallback build-time memakai lima update terbaru, bukan total view lifetime.
+  // Ranking utama tetap berasal dari /api/trending rolling 24 jam.
+  const trendingIds = new Set(catalog.slice(0, 5).map(m => m.id));
+  catalog.forEach(m => { m.isTrending = trendingIds.has(m.id); });
 
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(

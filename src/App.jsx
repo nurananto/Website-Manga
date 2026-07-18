@@ -505,14 +505,14 @@ export default function App() {
         // Respons kosong dapat terjadi sesaat saat cron/sinkronisasi. Jangan
         // mengganti ranking valid dengan fallback total view sepanjang waktu.
         if (rankedIds.length) {
-          // API normalnya sudah mengembalikan lima slot (aktif + snapshot D1).
-          // Merge dengan cache membuat transisi deployment tetap stabil bila
-          // Worker lama sesaat hanya mengembalikan 1–4 judul.
-          const mergedIds = [...new Set([...rankedIds, ...trendingIdsRef.current])].slice(0, 5);
-          trendingIdsRef.current = mergedIds;
-          setTrendingIds(mergedIds);
+          // Worker sudah menggabungkan ranking aktif dengan snapshot D1 yang
+          // masih valid. Percaya urutan server agar ID cache lama tidak terus
+          // terbawa dan membuat featured carousel terlihat macet.
+          const nextIds = rankedIds.slice(0, 5);
+          trendingIdsRef.current = nextIds;
+          setTrendingIds(nextIds);
           try {
-            localStorage.setItem(TRENDING_CACHE_KEY, JSON.stringify({ ids: mergedIds, savedAt: Date.now() }));
+            localStorage.setItem(TRENDING_CACHE_KEY, JSON.stringify({ ids: nextIds, savedAt: Date.now() }));
           } catch {
             // Storage dapat ditolak pada private mode; state sesi tetap cukup.
           }
