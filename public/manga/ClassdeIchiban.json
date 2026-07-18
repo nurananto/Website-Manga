@@ -35,9 +35,9 @@
     "13.2": 5,
     "13.3": 4,
     "14.1": 9,
-    "14.2": 6
+    "14.2": 7
   },
-  "total_views": 81,
+  "total_views": 86,
   "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -61,7 +61,7 @@
     }
   ],
   "discord_channel_id": "1517523866111447143",
-  "detail_views": 32,
+  "detail_views": 36,
   "mangadex_id": "acfd6902-b39c-4b7d-91a8-9825dda4ede8",
   "rating": 7.68,
   "next_update": null,
@@ -85,7 +85,7 @@
       "isLocked": true,
       "memberAccess": true,
       "publicDate": "2026-07-27T11:20:01.000Z",
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 14.1,

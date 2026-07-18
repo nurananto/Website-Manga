@@ -42,10 +42,10 @@
     "12.2": 7,
     "13.1": 5,
     "13.2": 10,
-    "14.1": 18,
-    "14.2": 14
+    "14.1": 19,
+    "14.2": 16
   },
-  "total_views": 147,
+  "total_views": 154,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -69,7 +69,7 @@
     }
   ],
   "discord_channel_id": "1517523939935649985",
-  "detail_views": 51,
+  "detail_views": 55,
   "mangadex_id": "a0ecce48-aa4c-48e6-8d9b-90f322a5687a",
   "rating": 7.36,
   "next_update": null,
@@ -91,7 +91,7 @@
       "title": "Ch. 14.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 14
+      "views": 16
     },
     {
       "chapter_number": 14.1,
@@ -104,7 +104,7 @@
       "title": "Ch. 14.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 18
+      "views": 19
     },
     {
       "chapter_number": 13.2,
