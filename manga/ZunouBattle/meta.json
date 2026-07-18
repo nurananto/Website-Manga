@@ -38,7 +38,7 @@
     "6.2": 15,
     "7.1": 9
   },
-  "total_views": 174,
+  "total_views": 176,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -55,5 +55,6 @@
   ],
   "discord_channel_id": "1517524270371311676",
   "cover_version": 3,
-  "detail_views": 72
+  "detail_views": 74,
+  "view_sync_cutoff": "2026-07-18 17:00:03"
 }
