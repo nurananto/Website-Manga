@@ -12,6 +12,7 @@ const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-300' };
 
 // Hanya cover aktif yang membesar; cover lain tetap opaque dan digelapkan via overlay.
 const SCALES = [1, 0.88];
+const AUTO_ADVANCE_MS = 5000;
 
 function getPadV() {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
@@ -167,7 +168,7 @@ export default function SpotlightCarousel({
       // Browser dapat mengeksekusi timer yang sudah jatuh tempo tepat ketika
       // tab dibuka lagi. Geser tenggat lebih dulu agar frame lama tidak
       // langsung meloncat ke cover berikutnya.
-      nextAdvanceAtRef.current = visible ? Date.now() + 8000 : Number.POSITIVE_INFINITY;
+      nextAdvanceAtRef.current = visible ? Date.now() + AUTO_ADVANCE_MS : Number.POSITIVE_INFINITY;
       setIsPageVisible(visible);
     };
 
@@ -178,7 +179,7 @@ export default function SpotlightCarousel({
   useEffect(() => {
     if (N <= 1 || isPaused || !isPageVisible) return undefined;
 
-    nextAdvanceAtRef.current = Date.now() + 8000;
+    nextAdvanceAtRef.current = Date.now() + AUTO_ADVANCE_MS;
     const timer = window.setTimeout(() => {
       if (
         document.visibilityState !== 'visible'
@@ -186,7 +187,7 @@ export default function SpotlightCarousel({
       ) return;
       moveTo(activeIdxRef.current + 1);
       setPendingDetailIdx(null);
-    }, 8000);
+    }, AUTO_ADVANCE_MS);
     return () => window.clearTimeout(timer);
   }, [activeIdx, N, isPaused, isPageVisible, moveTo]);
 
