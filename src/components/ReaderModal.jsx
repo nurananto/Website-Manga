@@ -513,12 +513,14 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     const num = String(idx).padStart(2, '0');
     if (chapterNeedsToken) {
       // Path di-hash agar judul/chapter tidak terbaca di URL: /c/<hash>/<NN>.webp
+      const pageSignature = imgSigning?.pageSignatures?.[idx - 1];
+      if (!imageBase || !imgAccess || !imgHash || !imgSigning || !pageSignature) return null;
       const params = new URLSearchParams({
         access: imgAccess,
         iat: String(imgSigning.iat),
         nbf: String(imgSigning.nbf),
         exp: String(imgSigning.exp),
-        sig: imgSigning.pageSignatures[idx - 1],
+        sig: pageSignature,
       });
       return `${imageBase}/c/${imgHash}/${num}.webp?${params}`;
     }
@@ -768,7 +770,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             >
               {pages.map((p, idx) => (
                 <PageImage
-                  key={p}
+                  key={p || `${activeChapter.id}-pending-${idx}`}
                   src={p}
                   fallbackSrc={makeFallbackUrl(idx + 1, p)}
                   idx={idx}
