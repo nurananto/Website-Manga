@@ -1,5 +1,76 @@
 [
   {
+    "id": "ClassdeIchiban",
+    "title": "Class de Ichiban Kawaii Gal wo Ezuke shiteiru Hanashi",
+    "description": "Sakura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=1",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=1",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@tablet.webp?v=1",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp?v=1"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Cooking",
+      "Gyaru",
+      "Romance",
+      "School Life",
+      "Slice of Life"
+    ],
+    "rating": 7.68,
+    "chapter_count": 19,
+    "total_views": 86,
+    "isTrending": true,
+    "latest_release_date": "2026-07-19T23:08:03+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "discord_channel_id": "1517523866111447143",
+    "chapters": [
+      {
+        "chapter_number": 15.1,
+        "lock_hours": 360,
+        "pages": 10,
+        "r2_folder": 15.1,
+        "id": "ClassdeIchiban-ch-15.1",
+        "r2_prefix": "manga/ClassdeIchiban/15.1/",
+        "title": "Ch. 15.1",
+        "release_date": "2026-07-19T23:08:03+07:00",
+        "unlockDate": "2026-08-03T16:08:03.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 14.2,
+        "lock_hours": 192,
+        "pages": 12,
+        "release_date": "2026-07-12T18:20:01+07:00",
+        "r2_folder": 14.2,
+        "id": "ClassdeIchiban-ch-14.2",
+        "r2_prefix": "manga/ClassdeIchiban/14.2/",
+        "title": "Ch. 14.2",
+        "unlockDate": "2026-07-20T11:20:01.000Z",
+        "isLocked": true,
+        "views": 7
+      },
+      {
+        "chapter_number": 14.1,
+        "lock_hours": 0,
+        "pages": 11,
+        "release_date": "2026-07-12T16:50:10+07:00",
+        "r2_folder": 14.1,
+        "id": "ClassdeIchiban-ch-14.1",
+        "r2_prefix": "manga/ClassdeIchiban/14.1/",
+        "title": "Ch. 14.1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 9
+      }
+    ]
+  },
+  {
     "id": "UchinoSeiso-kei",
     "title": "Uchi no Seiso-kei Iinchou ga Katsute Chuunibyou Idol datta Koto wo Ore Dake ga Shitteiru",
     "description": "Dulu ada idol chuunibyou yang sempat ngetop banget, namanya 'Nightmare Disaster', atau biasa dipanggil Mea. Reo yang dulu sering nemenin kegiatannya, foto bareng, sampai upload ke medsos biar viral, akhirnya ketemu lagi sama dia di SMA tempat mereka lanjut sekolah.",
@@ -32,11 +103,11 @@
         "chapter_number": 12.1,
         "lock_hours": 0,
         "pages": 23,
+        "release_date": "2026-07-19T20:42:18+07:00",
         "r2_folder": 12.1,
         "id": "UchinoSeiso-kei-ch-12.1",
         "r2_prefix": "manga/UchinoSeiso-kei/12.1/",
         "title": "Ch. 12.1",
-        "release_date": "2026-07-19T20:42:18+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -208,77 +279,6 @@
         "unlockDate": "2026-07-17T05:00:00.000Z",
         "isLocked": false,
         "views": 6
-      }
-    ]
-  },
-  {
-    "id": "ClassdeIchiban",
-    "title": "Class de Ichiban Kawaii Gal wo Ezuke shiteiru Hanashi",
-    "description": "Sakura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=1",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp?v=1"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Cooking",
-      "Gyaru",
-      "Romance",
-      "School Life",
-      "Slice of Life"
-    ],
-    "rating": 7.68,
-    "chapter_count": 18,
-    "total_views": 86,
-    "isTrending": true,
-    "latest_release_date": "2026-07-12T18:20:01+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "discord_channel_id": "1517523866111447143",
-    "chapters": [
-      {
-        "chapter_number": 14.2,
-        "lock_hours": 192,
-        "pages": 12,
-        "release_date": "2026-07-12T18:20:01+07:00",
-        "r2_folder": 14.2,
-        "id": "ClassdeIchiban-ch-14.2",
-        "r2_prefix": "manga/ClassdeIchiban/14.2/",
-        "title": "Ch. 14.2",
-        "unlockDate": "2026-07-20T11:20:01.000Z",
-        "isLocked": true,
-        "views": 7
-      },
-      {
-        "chapter_number": 14.1,
-        "lock_hours": 0,
-        "pages": 11,
-        "release_date": "2026-07-12T16:50:10+07:00",
-        "r2_folder": 14.1,
-        "id": "ClassdeIchiban-ch-14.1",
-        "r2_prefix": "manga/ClassdeIchiban/14.1/",
-        "title": "Ch. 14.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 9
-      },
-      {
-        "chapter_number": 13.3,
-        "lock_hours": 0,
-        "pages": 11,
-        "release_date": "2026-07-12T15:11:39+07:00",
-        "r2_folder": 13.3,
-        "id": "ClassdeIchiban-ch-13.3",
-        "r2_prefix": "manga/ClassdeIchiban/13.3/",
-        "title": "Ch. 13.3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 4
       }
     ]
   },

@@ -73,6 +73,19 @@
   },
   "chapters": [
     {
+      "chapter_number": 15.1,
+      "lock_hours": 360,
+      "pages": 10,
+      "r2_folder": 15.1,
+      "id": "ClassdeIchiban-ch-15.1",
+      "r2_prefix": "manga/ClassdeIchiban/15.1/",
+      "title": "Ch. 15.1",
+      "release_date": "2026-07-19T23:08:03+07:00",
+      "unlockDate": "2026-08-03T16:08:03.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 14.2,
       "lock_hours": 192,
       "pages": 12,
