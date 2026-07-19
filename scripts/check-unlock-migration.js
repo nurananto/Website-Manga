@@ -104,20 +104,15 @@ async function main() {
     const chapterFolder = ch.r2_folder ?? ch.chapter_number;
     const rel = `/manga/${mangaId}/${chapterFolder}/${pageFile(1)}`;
     const unlockMs = new Date(ch.unlockDate).getTime();
-    const publicMs = ch.memberAccess && ch.publicDate
-      ? new Date(ch.publicDate).getTime()
-      : unlockMs;
 
-    if (publicMs > now) {
+    if (unlockMs > now) {
       // Masih terkunci → cdn publik HARUS 404 (tidak bocor)
       const c = await status(`${cdn}${rel}`, { method: 'HEAD', redirect: 'manual' });
       if (c === 200) {
         issues++;
         console.log(`❌ BOCOR  ${mangaId} Ch.${ch.chapter_number} — fase privat tetapi 200 di cdn!`);
       } else {
-        const phase = unlockMs > now ? 'Early Access' : 'Member Access';
-        const until = unlockMs > now ? unlockMs : publicMs;
-        console.log(`🔒 aman   ${mangaId} Ch.${ch.chapter_number} — ${phase} (${fmtDuration(until - now)} lagi), cdn=${c}`);
+        console.log(`🔒 aman   ${mangaId} Ch.${ch.chapter_number} — Early Access (${fmtDuration(unlockMs - now)} lagi), cdn=${c}`);
       }
     } else {
       // Sudah lewat unlock → harus terbaca (cdn migrasi, atau images on-access)
@@ -125,7 +120,7 @@ async function main() {
       const i = await status(`${images}${rel}`, { method: 'GET' });
       if (c === 200 || i === 200) {
         const via = c === 200 ? 'cdn (sudah dimigrasi)' : `images (migrasi on-access), cdn=${c}`;
-        console.log(`✅ free   ${mangaId} Ch.${ch.chapter_number} — public ${fmtDuration(now - publicMs)} lalu; terbaca via ${via}`);
+        console.log(`✅ free   ${mangaId} Ch.${ch.chapter_number} — public ${fmtDuration(now - unlockMs)} lalu; terbaca via ${via}`);
       } else {
         issues++;
         console.log(`❌ GAGAL  ${mangaId} Ch.${ch.chapter_number} — sudah unlock tapi cdn=${c} & images=${i} (TAK TERBACA)`);

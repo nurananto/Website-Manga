@@ -78,8 +78,7 @@ async function main() {
   const locked = [];
   for (const m of catalog) {
     for (const ch of (m.chapters || [])) {
-      const protectedUntil = ch.memberAccess && ch.publicDate ? ch.publicDate : ch.unlockDate;
-      const isProtected = protectedUntil && new Date(protectedUntil).getTime() > now;
+      const isProtected = ch.unlockDate && new Date(ch.unlockDate).getTime() > now;
       if (isProtected) locked.push({ mangaId: m.id, ch });
     }
   }

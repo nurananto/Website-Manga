@@ -643,25 +643,11 @@ async function buildCatalog() {
 
       // isLocked: terkunci kalau unlockDate masih di masa depan
       ch.isLocked = ch.unlockDate ? new Date(ch.unlockDate) > new Date() : false;
-      // Grandfather: hanya chapter yang eksplisit member_access=true yang mendapat
-      // fase Member 7 hari. Chapter lama yang sudah public tidak dikunci kembali.
-      const hasMemberAccess = ch.member_access === true;
-      delete ch.member_access;
-      if (hasMemberAccess && ch.unlockDate) {
-        ch.memberAccess = true;
-        ch.publicDate = new Date(
-          new Date(ch.unlockDate).getTime() + 7 * 24 * 60 * 60 * 1000
-        ).toISOString();
-      } else {
-        delete ch.memberAccess;
-        delete ch.publicDate;
-      }
-      const protectedUntil = ch.publicDate || ch.unlockDate;
-      if (protectedUntil && new Date(protectedUntil).getTime() > Date.now()) {
+      // Hanya ada dua fase: Early Access hingga unlockDate, lalu langsung publik.
+      if (ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()) {
         protectedChapters.push({
           chapter_id: ch.id,
           unlock_at: ch.unlockDate,
-          public_at: protectedUntil,
         });
       }
 

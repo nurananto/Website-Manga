@@ -335,7 +335,7 @@ export default function App() {
 
       // Supporter → langsung buka chapter. Bukan supporter → modal "Jadi Supporter".
       const accessLevel = chapterAccessLevel(ch);
-      if (accessLevel === 'member' || accessLevel === 'public' || supporter) {
+      if (accessLevel === 'public' || supporter) {
         openChapterReader(ch, manga.title);
       } else {
         setPendingUnlockChapter(ch);
@@ -599,11 +599,6 @@ export default function App() {
           if (!ch) { navigate(`/${mangaId}`, true); return; }
 
           const accessLevel = chapterAccessLevel(ch);
-          if (accessLevel === 'member' && !isLoggedIn) {
-            navigate(`/${mangaId}`, true);
-            openAuth('member', { type: 'unlock', mangaId, chapterNum: ch.chapter_number });
-            return;
-          }
           if (accessLevel === 'supporter' && !isSupporterRef.current) {
             // Cek status Supporter terkini dulu sebelum bounce — supporter yang BARU
             // login bisa punya isSupporterRef basi (render me-fetch belum jalan).
@@ -706,8 +701,7 @@ export default function App() {
 
   const handleReadChapter = (chapter, mangaTitle, mangaObj) => {
     const accessLevel = chapterAccessLevel(chapter);
-    const needsGate = (accessLevel === 'supporter' && !isSupporter)
-      || (accessLevel === 'member' && !isLoggedIn);
+    const needsGate = accessLevel === 'supporter' && !isSupporter;
     if (needsGate) {
       setPendingUnlockChapter(chapter);
       setPendingMangaTitle(mangaTitle);
@@ -1275,9 +1269,8 @@ export default function App() {
             isLoggedIn={isLoggedIn}
             isSupporter={isSupporter}
             onLogin={() => {
-              const reason = chapterAccessLevel(pendingUnlockChapter) === 'member' ? 'member' : 'unlock';
               setIsLockedModalOpen(false);
-              openAuth(reason, { type: 'unlock', mangaId: pendingManga?.id, chapterNum: pendingUnlockChapter?.chapter_number });
+              openAuth('unlock', { type: 'unlock', mangaId: pendingManga?.id, chapterNum: pendingUnlockChapter?.chapter_number });
             }}
             onBecomeSupporter={() => { setIsLockedModalOpen(false); setIsCoinModalOpen(true); }}
           />

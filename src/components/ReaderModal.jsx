@@ -7,7 +7,7 @@ import { nowTimestamp } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
-import { canReadChapter, chapterAccessLevel, chapterPublicDate } from '../lib/chapterAccess';
+import { canReadChapter, chapterAccessLevel } from '../lib/chapterAccess';
 import ResponsiveCover from './ResponsiveCover';
 
 // Widget Turnstile interaktif (wajib centang) untuk membuka locked chapter.
@@ -408,9 +408,8 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   // PENTING: jendela ini HARUS > interval cron migrasi. Cron = tiap 3 jam → pakai 6 jam
   // (2× interval) agar tetap aman walau satu run cron terlewat.
   const FRESHLY_FREED_MS = 6 * 60 * 60 * 1000;
-  const publicAt = chapterPublicDate(chapter)
-    || (chapter?.unlockDate ? new Date(chapter.unlockDate).getTime() : null);
-  const freshlyFreed = !!publicAt && now - publicAt >= 0 && now - publicAt < FRESHLY_FREED_MS;
+  const unlockAt = chapter?.unlockDate ? new Date(chapter.unlockDate).getTime() : null;
+  const freshlyFreed = !!unlockAt && now - unlockAt >= 0 && now - unlockAt < FRESHLY_FREED_MS;
 
   const makeUrl = useCallback((idx) => {
     const num = String(idx).padStart(2, '0');

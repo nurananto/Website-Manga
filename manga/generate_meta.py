@@ -135,7 +135,6 @@ def proses_chapter(ch_dir, lock_hours, next_update=None):
         "chapter_number": to_chapter_number(ch_dir.name),
         **({"title": "Oneshot"} if chapter_number == "oneshot" else {}),
         "lock_hours": lock_hours,
-        **({"member_access": True} if lock_hours > 0 else {}),
         "pages": pages,
     }
     if existing_release:

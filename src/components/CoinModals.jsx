@@ -43,10 +43,6 @@ const AUTH_COPY = {
     title: 'Masuk untuk lanjut',
     subtitle: 'Login sebentar — Supporter bisa langsung baca chapter Early Access.',
   },
-  member: {
-    title: 'Login untuk membaca',
-    subtitle: 'Chapter Member Access bisa dibaca gratis oleh semua akun yang sudah login.',
-  },
   reader: {
     title: 'Masuk untuk lanjut',
     subtitle: 'Kamu akan kembali ke halaman yang sama setelah masuk.',
@@ -351,11 +347,9 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChanged
 export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn, isSupporter, onLogin, onBecomeSupporter }) {
   const [, setAccessVersion] = useState(0);
   const accessLevel = chapterAccessLevel(chapter);
-  const isMember = accessLevel === 'member';
   const transitionAt = chapterNextAccessDate(chapter);
   if (!isOpen || !chapter || accessLevel === 'public') return null;
-  if (accessLevel === 'supporter' && isSupporter) return null;
-  if (isMember && isLoggedIn) return null;
+  if (isSupporter) return null;
 
   return (
     <AnimatePresence>
@@ -376,7 +370,7 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
           transition={{ type: 'spring', damping: 22, stiffness: 320 }}
           className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-surface-container border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10"
         >
-          <div className={`absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-48 rounded-full blur-3xl pointer-events-none ${isMember ? 'bg-blue-500/10' : 'bg-amber-500/10'}`} />
+          <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-48 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
           <button onClick={onClose}
             className="absolute top-4 right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-outline cursor-pointer z-10 transition-colors">
             <X className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -394,11 +388,10 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
             <div className="min-w-0 flex-1 pt-0.5">
               <div className="flex items-center gap-1.5 mb-1">
                 <ChapterAccessIcon
-                  accessLevel={accessLevel}
-                  className={`h-4 w-4 sm:h-5 sm:w-5 ${isMember ? 'text-blue-400' : 'text-amber-400'}`}
+                  className="h-4 w-4 text-amber-400 sm:h-5 sm:w-5"
                 />
-                <span className={`font-label-sm text-xs sm:text-sm md:text-base font-black uppercase tracking-wider ${isMember ? 'text-blue-300' : 'text-amber-400'}`}>
-                  {isMember ? 'Member Access' : 'Early Access'}
+                <span className="font-label-sm text-xs sm:text-sm md:text-base font-black uppercase tracking-wider text-amber-400">
+                  Early Access
                 </span>
               </div>
               <p className="font-body-md text-sm sm:text-base text-outline/70 font-semibold truncate">{manga?.title || ''}</p>
@@ -407,23 +400,24 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
           </div>
           {chapter.unlockDate && (
             <div className="mx-5 mb-5 bg-surface-container-high/40 rounded-xl py-4 px-4 border border-white/5 flex flex-col items-center gap-2 text-center">
-              <p className={`font-label-sm text-xs sm:text-sm md:text-base font-black uppercase tracking-widest ${isMember ? 'text-blue-300' : 'text-amber-400'}`}>
-                Chapter {isMember ? 'Member Access' : 'Early Access'}
+              <p className="font-label-sm text-xs sm:text-sm md:text-base font-black uppercase tracking-widest text-amber-400">
+                Chapter Early Access
               </p>
               <p className="font-body-md text-sm sm:text-base text-outline/80 font-semibold leading-relaxed">
-                {isMember ? 'Login gratis untuk membaca chapter ini.' : 'Tersedia lebih awal untuk Supporter aktif.'}
+                Donasi minimal <strong className="text-on-surface">{SUPPORTER_MIN}</strong> mengaktifkan
+                Supporter selama <strong className="text-amber-300">30 hari</strong> sejak donasi dikonfirmasi.
               </p>
             </div>
           )}
           <div className="px-5 pb-5 flex flex-col gap-2">
             <p className="mb-1 text-center font-body-md text-xs font-semibold text-outline/75 sm:text-sm">
-              {isMember ? 'Member Access dapat dibaca oleh semua akun yang sudah login.' : 'Early Access hanya dapat dibaca oleh Supporter aktif.'}
+              Selama aktif, kamu dapat membaca semua chapter Early Access—termasuk chapter baru yang dirilis dalam periode tersebut, bukan hanya chapter ini.
             </p>
-            {isMember || !isLoggedIn ? (
+            {!isLoggedIn ? (
               <button onClick={onLogin}
-                className={`w-full h-12 sm:h-14 rounded-xl text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer ${isMember ? 'bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 shadow-lg shadow-blue-950/30' : 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 shadow-lg shadow-amber-900/30'}`}>
-                {isMember ? <ChapterAccessIcon accessLevel="member" className="h-4 w-4 text-white sm:h-5 sm:w-5" /> : <Crown className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />}
-                {isMember ? 'Login Gratis untuk Membaca' : 'Login untuk Lanjut'}
+                className="w-full h-12 sm:h-14 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 active:scale-[0.97] transition-all cursor-pointer shadow-lg shadow-amber-900/30">
+                <Crown className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
+                Login untuk Lanjut
               </button>
             ) : (
               <button onClick={onBecomeSupporter}
