@@ -22,10 +22,25 @@ const PrivacyPolicyModal  = lazy(() => import('./components/PrivacyPolicyModal')
 const TermsOfServiceModal = lazy(() => import('./components/TermsOfServiceModal'));
 const DmcaModal           = lazy(() => import('./components/DmcaModal'));
 const DisclaimerModal     = lazy(() => import('./components/DisclaimerModal'));
-const AuthModal           = lazy(() => import('./components/CoinModals').then(m => ({ default: m.AuthModal })));
-const SupporterModal      = lazy(() => import('./components/CoinModals').then(m => ({ default: m.SupporterModal })));
-const LockedChapterModal  = lazy(() => import('./components/CoinModals').then(m => ({ default: m.LockedChapterModal })));
-const AccountSettingsModal = lazy(() => import('./components/CoinModals').then(m => ({ default: m.AccountSettingsModal })));
+let coinModalsPromise;
+const loadCoinModals = () => {
+  coinModalsPromise ||= import('./components/CoinModals');
+  return coinModalsPromise;
+};
+const AuthModal           = lazy(() => loadCoinModals().then(m => ({ default: m.AuthModal })));
+const SupporterModal      = lazy(() => loadCoinModals().then(m => ({ default: m.SupporterModal })));
+const LockedChapterModal  = lazy(() => loadCoinModals().then(m => ({ default: m.LockedChapterModal })));
+const AccountSettingsModal = lazy(() => loadCoinModals().then(m => ({ default: m.AccountSettingsModal })));
+
+function LockedModalFallback() {
+  return (
+    <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/80 px-4 backdrop-blur-md" role="status" aria-label="Membuka chapter Early Access">
+      <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-400/25 bg-surface-container shadow-2xl">
+        <div className="h-7 w-7 animate-spin rounded-full border-[3px] border-amber-400/25 border-t-amber-400" />
+      </div>
+    </div>
+  );
+}
 
 // Pada build produksi katalog sudah disisipkan sebelum bundle React dijalankan.
 // Gunakan langsung pada render pertama agar skeleton tidak sempat berkedip satu frame.
@@ -90,6 +105,12 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
 }
 
 export default function App() {
+  // Modal login/Supporter tetap menjadi chunk terpisah, tetapi mulai diunduh tepat
+  // setelah render pertama agar klik chapter locked berikutnya bisa langsung tampil.
+  useEffect(() => {
+    void loadCoinModals();
+  }, []);
+
   const [MANGA_LIST, setMangaList] = useState(() => BOOTSTRAP_MANGA_LIST || []);
   const [trendingIds, setTrendingIds] = useState(readCachedTrending);
   const trendingIdsRef = useRef(trendingIds);
@@ -201,6 +222,7 @@ export default function App() {
   const [activeChapter, setActiveChapter] = useState(null);
   const [activeMangaTitle, setActiveMangaTitle] = useState('');
   const [activeTab, setActiveTab] = useState(INITIAL_ROUTE.page === 'history' ? 'profile' : 'library'); // 'library', 'discover', 'updates', 'profile'
+  const [spotlightMangaId, setSpotlightMangaId] = useState(null);
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [historyChapters, setHistoryChapters] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
@@ -843,6 +865,8 @@ export default function App() {
                     <>
                     <SpotlightCarousel
                       mangaList={MANGA_LIST}
+                      initialMangaId={spotlightMangaId}
+                      onActiveMangaChange={setSpotlightMangaId}
                       onViewManga={(manga) => { navigate(`/${manga.id}`); }}
                     />
 
@@ -1260,7 +1284,7 @@ export default function App() {
 
       {/* Locked Chapter Modal */}
       {isLockedModalOpen && (
-        <Suspense fallback={null}>
+        <Suspense fallback={<LockedModalFallback />}>
           <LockedChapterModal
             isOpen={isLockedModalOpen}
             onClose={() => setIsLockedModalOpen(false)}

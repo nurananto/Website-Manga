@@ -97,10 +97,21 @@ function SpotlightBackground({ manga, animate = false, priority = 'low' }) {
   );
 }
 
-export default function SpotlightCarousel({ mangaList, onViewManga }) {
+export default function SpotlightCarousel({
+  mangaList,
+  onViewManga,
+  initialMangaId = null,
+  onActiveMangaChange,
+}) {
   const N = mangaList.length;
-  const [activeIdx, setActiveIdx] = useState(() => getMostRecentIdx(mangaList));
+  const [activeIdx, setActiveIdx] = useState(() => {
+    const savedIdx = initialMangaId
+      ? mangaList.findIndex((manga) => manga.id === initialMangaId)
+      : -1;
+    return savedIdx >= 0 ? savedIdx : getMostRecentIdx(mangaList);
+  });
   const [isPaused, setIsPaused] = useState(false);
+  const [isPageVisible, setIsPageVisible] = useState(() => document.visibilityState === 'visible');
   const [pendingDetailIdx, setPendingDetailIdx] = useState(null);
   const [coverW,    setCoverW]    = useState(getCoverW);
   const [maxSide,   setMaxSide]   = useState(getMaxSide);
@@ -111,6 +122,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
   const [hasMoved, setHasMoved] = useState(false);
   const [previousIdx, setPreviousIdx] = useState(null);
   const activeIdxRef = useRef(activeIdx);
+  const nextAdvanceAtRef = useRef(0);
 
   const coverH     = Math.round(coverW * 1.5);
   const containerH = padV + coverH + metaGap + metaH + padV;
@@ -150,13 +162,38 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
   }, []);
 
   useEffect(() => {
-    if (N <= 1 || isPaused) return undefined;
-    const timer = setInterval(() => {
+    const handleVisibility = () => {
+      const visible = document.visibilityState === 'visible';
+      // Browser dapat mengeksekusi timer yang sudah jatuh tempo tepat ketika
+      // tab dibuka lagi. Geser tenggat lebih dulu agar frame lama tidak
+      // langsung meloncat ke cover berikutnya.
+      nextAdvanceAtRef.current = visible ? Date.now() + 8000 : Number.POSITIVE_INFINITY;
+      setIsPageVisible(visible);
+    };
+
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => document.removeEventListener('visibilitychange', handleVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (N <= 1 || isPaused || !isPageVisible) return undefined;
+
+    nextAdvanceAtRef.current = Date.now() + 8000;
+    const timer = window.setTimeout(() => {
+      if (
+        document.visibilityState !== 'visible'
+        || Date.now() + 50 < nextAdvanceAtRef.current
+      ) return;
       moveTo(activeIdxRef.current + 1);
       setPendingDetailIdx(null);
     }, 8000);
-    return () => clearInterval(timer);
-  }, [N, isPaused, moveTo]);
+    return () => window.clearTimeout(timer);
+  }, [activeIdx, N, isPaused, isPageVisible, moveTo]);
+
+  useEffect(() => {
+    const activeId = mangaList[activeIdx]?.id;
+    if (activeId) onActiveMangaChange?.(activeId);
+  }, [activeIdx, mangaList, onActiveMangaChange]);
 
   useEffect(() => {
     if (previousIdx === null) return undefined;
@@ -271,7 +308,7 @@ export default function SpotlightCarousel({ mangaList, onViewManga }) {
       {active && (
         <div
           key={`spotlight-meta-${active.id}`}
-          className="absolute inset-x-2 sm:inset-x-4 z-20 flex flex-col items-center gap-1.5 px-1 animate-[spotlightMetaIn_0.38s_cubic-bezier(0.22,1,0.36,1)]"
+          className={`absolute inset-x-2 sm:inset-x-4 z-20 flex flex-col items-center gap-1.5 px-1 ${hasMoved ? 'animate-[spotlightMetaIn_0.38s_cubic-bezier(0.22,1,0.36,1)]' : ''}`}
           style={{ top: padV + coverH + metaGap }}
         >
           <h3 className="w-full max-w-full truncate text-center font-headline-md text-base sm:text-lg md:text-xl font-black leading-tight text-on-surface">
