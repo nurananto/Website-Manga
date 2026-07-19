@@ -26,7 +26,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 6,
+    "1": 7,
     "10": 3,
     "11": 1,
     "12": 7,
@@ -34,10 +34,11 @@
     "13.1": 4,
     "13.2": 5,
     "13.3": 4,
-    "14.1": 9,
-    "14.2": 7
+    "14.1": 10,
+    "14.2": 7,
+    "15.1": 1
   },
-  "total_views": 86,
+  "total_views": 91,
   "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -61,7 +62,7 @@
     }
   ],
   "discord_channel_id": "1517523866111447143",
-  "detail_views": 36,
+  "detail_views": 38,
   "mangadex_id": "acfd6902-b39c-4b7d-91a8-9825dda4ede8",
   "rating": 7.68,
   "next_update": null,
@@ -76,14 +77,14 @@
       "chapter_number": 15.1,
       "lock_hours": 360,
       "pages": 10,
+      "release_date": "2026-07-19T23:08:03+07:00",
       "r2_folder": 15.1,
       "id": "ClassdeIchiban-ch-15.1",
       "r2_prefix": "manga/ClassdeIchiban/15.1/",
       "title": "Ch. 15.1",
-      "release_date": "2026-07-19T23:08:03+07:00",
       "unlockDate": "2026-08-03T16:08:03.000Z",
       "isLocked": true,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 14.2,
@@ -109,7 +110,7 @@
       "title": "Ch. 14.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 13.3,
@@ -317,7 +318,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     }
   ]
 }

@@ -35,9 +35,9 @@
     "7.5": 2,
     "10.1": 3,
     "10.2": 3,
-    "10.3": 6
+    "10.3": 7
   },
-  "total_views": 43,
+  "total_views": 45,
   "mangadex_cover": "6ffed041-aa59-49e2-b79f-dac40ac0ef53.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -52,7 +52,7 @@
     }
   ],
   "discord_channel_id": "1517523810801287222",
-  "detail_views": 15,
+  "detail_views": 16,
   "mangadex_id": "624d6ceb-768d-40a7-8412-84e083afbdb1",
   "rating": 8.48,
   "next_update": null,
@@ -74,7 +74,7 @@
       "title": "Ch. 10.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 10.2,

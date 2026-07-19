@@ -43,9 +43,9 @@
     "13.1": 5,
     "13.2": 10,
     "14.1": 19,
-    "14.2": 16
+    "14.2": 18
   },
-  "total_views": 154,
+  "total_views": 156,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -91,7 +91,7 @@
       "title": "Ch. 14.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 16
+      "views": 18
     },
     {
       "chapter_number": 14.1,

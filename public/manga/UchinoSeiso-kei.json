@@ -32,9 +32,10 @@
     "10.1": 2,
     "11.1": 5,
     "10.2": 1,
-    "11.2": 1
+    "11.2": 1,
+    "12.1": 1
   },
-  "total_views": 38,
+  "total_views": 41,
   "mangadex_cover": "6da6cf64-c44f-4153-801e-77cdf9a92d3b.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -68,7 +69,7 @@
   ],
   "discord_channel_id": "1517524146635145338",
   "cover_version": 2,
-  "detail_views": 23,
+  "detail_views": 25,
   "mangadex_id": "5993c10b-c49e-4771-9a3a-8b8436b12d80",
   "rating": 8.37,
   "next_update": null,
@@ -90,7 +91,7 @@
       "title": "Ch. 12.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 11.2,
