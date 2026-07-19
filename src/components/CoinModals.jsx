@@ -7,27 +7,29 @@ import ResponsiveCover from './ResponsiveCover';
 import CountdownTimer from './CountdownTimer';
 import { chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
 import ChapterAccessIcon from './ChapterAccessIcon';
+import { useDialogFocus } from '../lib/useDialogFocus';
 
 const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
 const SUPPORTER_MIN = 'Rp 5.000';
 
 // Widget Turnstile terlihat (centang) untuk gate login.
-function LoginTurnstile({ onToken }) {
+function LoginTurnstile({ onToken, onError }) {
   const ref = useRef(null);
   useEffect(() => {
     if (!TURNSTILE_SITEKEY) { onToken(''); return; }
     let widgetId;
     let cancelled = false;
     loadTurnstile().then((ts) => {
-      if (cancelled || !ts || !ref.current) return;
+      if (cancelled) return;
+      if (!ts || !ref.current) { onError?.('Verifikasi gagal dimuat.'); return; }
       try {
         widgetId = ts.render(ref.current, {
           sitekey: TURNSTILE_SITEKEY,
           callback: (t) => onToken(t),
-          'error-callback': () => {},
-          'timeout-callback': () => {},
+          'error-callback': () => onError?.('Verifikasi gagal. Silakan ulangi.'),
+          'timeout-callback': () => onError?.('Verifikasi kehabisan waktu. Silakan ulangi.'),
         });
-      } catch {}
+      } catch { onError?.('Verifikasi gagal dimuat.'); }
     });
     return () => {
       cancelled = true;
@@ -60,13 +62,18 @@ const AUTH_BENEFITS = [
 ];
 
 export function AuthModal({ isOpen, onClose, reason }) {
+  const dialogRef = useRef(null);
   const [verifying, setVerifying] = useState(false);
   const [redirecting, setRedirecting] = useState(false);
+  const [verifyError, setVerifyError] = useState('');
+  const [gateVersion, setGateVersion] = useState(0);
+  useDialogFocus(dialogRef, onClose, isOpen);
   useEffect(() => {
     if (isOpen) return;
     const timer = setTimeout(() => {
       setVerifying(false);
       setRedirecting(false);
+      setVerifyError('');
     }, 0);
     return () => clearTimeout(timer);
   }, [isOpen]);
@@ -84,6 +91,11 @@ export function AuthModal({ isOpen, onClose, reason }) {
           onClick={onClose} className="absolute inset-0" />
 
         <motion.div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="auth-modal-title"
+          tabIndex={-1}
           initial={{ opacity: 0, scale: 0.92, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.92, y: 24 }}
@@ -93,7 +105,7 @@ export function AuthModal({ isOpen, onClose, reason }) {
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
           <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
-          <button onClick={onClose}
+          <button type="button" aria-label="Tutup dialog login" onClick={onClose}
             className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline cursor-pointer z-10 transition-colors">
             <X className="w-4 h-4" />
           </button>
@@ -104,7 +116,7 @@ export function AuthModal({ isOpen, onClose, reason }) {
                 <img src="/icon.webp" alt="Logo" className="w-full h-full object-contain" />
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-black text-on-surface">{copy.title}</h3>
+                <h3 id="auth-modal-title" className="text-xl font-black text-on-surface">{copy.title}</h3>
                 <p className="max-w-full mx-auto mt-1 text-xs leading-relaxed text-outline/70">{copy.subtitle}</p>
               </div>
             </div>
@@ -137,7 +149,16 @@ export function AuthModal({ isOpen, onClose, reason }) {
             ) : (
               <div className="w-full flex flex-col items-center gap-2.5">
                 <p className="text-xs text-outline/80">Selesaikan verifikasi untuk lanjut</p>
-                <LoginTurnstile onToken={handleToken} />
+                {verifyError ? (
+                  <div className="flex flex-col items-center gap-2 text-center">
+                    <p className="text-xs font-semibold text-red-300">{verifyError}</p>
+                    <button type="button" onClick={() => { setVerifyError(''); setGateVersion((value) => value + 1); }} className="rounded-xl bg-primary px-4 py-2 text-xs font-black text-on-primary">
+                      Coba Lagi
+                    </button>
+                  </div>
+                ) : (
+                  <LoginTurnstile key={gateVersion} onToken={handleToken} onError={setVerifyError} />
+                )}
               </div>
             )}
 
@@ -154,6 +175,8 @@ export function AuthModal({ isOpen, onClose, reason }) {
 // ── Supporter Modal — ajakan jadi Supporter via Trakteer ──────
 // Donasi >= Rp 5.000 → akses semua chapter terkunci selama 30 hari.
 export function SupporterModal({ isOpen, onClose, userEmail }) {
+  const dialogRef = useRef(null);
+  useDialogFocus(dialogRef, onClose, isOpen);
   if (!isOpen) return null;
   return (
     <AnimatePresence>
@@ -161,7 +184,7 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           onClick={onClose} className="absolute inset-0" />
 
-        <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+        <motion.div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="supporter-modal-title" tabIndex={-1} initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-2xl shadow-2xl z-10 overflow-hidden"
         >
@@ -170,13 +193,13 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
           <div className="overflow-y-auto hide-scrollbar max-h-[90vh] p-6 flex flex-col gap-5">
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="text-base font-black text-on-surface flex items-center gap-2">
+                <h3 id="supporter-modal-title" className="text-base font-black text-on-surface flex items-center gap-2">
                   <Crown className="w-5 h-5 text-amber-400 fill-current" />
                   Jadi Supporter
                 </h3>
                 <p className="text-xs text-outline mt-0.5">Buka chapter Early Access</p>
               </div>
-              <button onClick={onClose}
+              <button type="button" aria-label="Tutup dialog Supporter" onClick={onClose}
                 className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline cursor-pointer">
                 <X className="w-4 h-4" />
               </button>
@@ -250,10 +273,12 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
 
 // ── Account Settings Modal — username + email ─────────────────
 export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChangedAt, onSave }) {
+  const dialogRef = useRef(null);
   const [username, setUsername] = useState(currentUser?.name || '');
   const [trakteerEmail, setTrakteerEmail] = useState(currentUser?.email || '');
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
+  useDialogFocus(dialogRef, onClose, isOpen);
 
   const nameLockedUntil = (() => {
     if (!nameChangedAt) return null;
@@ -276,13 +301,13 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChanged
       <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           onClick={onClose} className="absolute inset-0" />
-        <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+        <motion.div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="account-settings-title" tabIndex={-1} initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           className="relative w-full max-w-sm bg-surface-container border border-white/10 rounded-2xl shadow-2xl p-6 z-10"
         >
           <div className="flex justify-between items-center mb-5">
-            <h3 className="text-base font-black text-on-surface">Pengaturan Akun</h3>
-            <button onClick={onClose}
+            <h3 id="account-settings-title" className="text-base font-black text-on-surface">Pengaturan Akun</h3>
+            <button type="button" aria-label="Tutup pengaturan akun" onClick={onClose}
               className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline cursor-pointer">
               <X className="w-4 h-4" />
             </button>
@@ -345,9 +370,11 @@ export function AccountSettingsModal({ isOpen, onClose, currentUser, nameChanged
 
 // ── Locked Chapter Modal — gate Supporter ─────────────────────
 export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn, isSupporter, onLogin, onBecomeSupporter }) {
+  const dialogRef = useRef(null);
   const [, setAccessVersion] = useState(0);
   const accessLevel = chapterAccessLevel(chapter);
   const transitionAt = chapterNextAccessDate(chapter);
+  useDialogFocus(dialogRef, onClose, isOpen && Boolean(chapter) && accessLevel !== 'public' && !isSupporter);
   if (!isOpen || !chapter || accessLevel === 'public') return null;
   if (isSupporter) return null;
 
@@ -364,6 +391,11 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           onClick={onClose} className="absolute inset-0" />
         <motion.div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="locked-chapter-title"
+          tabIndex={-1}
           initial={{ opacity: 0, scale: 0.93, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.93, y: 20 }}
@@ -371,7 +403,7 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
           className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-surface-container border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-10"
         >
           <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-48 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
-          <button onClick={onClose}
+          <button type="button" aria-label="Tutup informasi chapter" onClick={onClose}
             className="absolute top-4 right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-outline cursor-pointer z-10 transition-colors">
             <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
@@ -395,7 +427,7 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
                 </span>
               </div>
               <p className="font-body-md text-sm sm:text-base text-outline/70 font-semibold truncate">{manga?.title || ''}</p>
-              <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface mt-0.5 line-clamp-2">{chapter.title}</h3>
+              <h3 id="locked-chapter-title" className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface mt-0.5 line-clamp-2">{chapter.title}</h3>
             </div>
           </div>
           {chapter.unlockDate && (

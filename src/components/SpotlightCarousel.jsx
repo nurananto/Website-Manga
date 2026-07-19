@@ -111,9 +111,9 @@ export default function SpotlightCarousel({
       : -1;
     return savedIdx >= 0 ? savedIdx : getMostRecentIdx(mangaList);
   });
-  const [isPaused, setIsPaused] = useState(false);
   const [isPageVisible, setIsPageVisible] = useState(() => document.visibilityState === 'visible');
   const [pendingDetailIdx, setPendingDetailIdx] = useState(null);
+  const [autoResetKey, setAutoResetKey] = useState(0);
   const [coverW,    setCoverW]    = useState(getCoverW);
   const [maxSide,   setMaxSide]   = useState(getMaxSide);
   const [itemGap,   setItemGap]   = useState(getItemGap);
@@ -177,7 +177,7 @@ export default function SpotlightCarousel({
   }, []);
 
   useEffect(() => {
-    if (N <= 1 || isPaused || !isPageVisible) return undefined;
+    if (N <= 1 || !isPageVisible) return undefined;
 
     nextAdvanceAtRef.current = Date.now() + AUTO_ADVANCE_MS;
     const timer = window.setTimeout(() => {
@@ -189,7 +189,7 @@ export default function SpotlightCarousel({
       setPendingDetailIdx(null);
     }, AUTO_ADVANCE_MS);
     return () => window.clearTimeout(timer);
-  }, [activeIdx, N, isPaused, isPageVisible, moveTo]);
+  }, [activeIdx, autoResetKey, N, isPageVisible, moveTo]);
 
   useEffect(() => {
     const activeId = mangaList[activeIdx]?.id;
@@ -215,12 +215,12 @@ export default function SpotlightCarousel({
   }, [activeIdx, mangaList, N]);
 
   const handleClick = (logIdx) => {
-    if (isPaused && pendingDetailIdx === logIdx) {
+    if (pendingDetailIdx === logIdx) {
       onViewManga?.(mangaList[logIdx]);
       return;
     }
-    setIsPaused(true);
     setPendingDetailIdx(logIdx);
+    setAutoResetKey((value) => value + 1);
     moveTo(logIdx);
   };
 
@@ -261,10 +261,12 @@ export default function SpotlightCarousel({
             : Math.round(Math.min(metaH - 24, Math.max(34, coverH * 0.12)));
 
           return (
-            <div
+            <button
+              type="button"
               key={manga.id}
               onClick={() => handleClick(logIdx)}
-              className="absolute cursor-pointer"
+              aria-label={isActive ? `Buka detail ${manga.title}` : `Tampilkan ${manga.title}`}
+              className="absolute cursor-pointer border-0 bg-transparent p-0 text-left"
               style={{
                 left:             '50%',
                 top:              padV,
@@ -301,7 +303,7 @@ export default function SpotlightCarousel({
                 <div className={`absolute inset-0 rounded-xl ring-[2px] ring-white/30 ring-inset pointer-events-none transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
               </div>
 
-            </div>
+            </button>
           );
         })}
       </div>

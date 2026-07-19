@@ -18,7 +18,7 @@ import fs from 'fs';
 import path from 'path';
 
 const MANGA_DIR = './public/manga';
-const SITE = 'https://nuranantoscans.my.id';
+const SITE = process.env.SITE_URL || 'https://nuranantoscans.pages.dev';
 const rawArgs = process.argv.slice(2);
 const ALL_PAGES = rawArgs.includes('--all-pages');
 const [argManga, argChapter] = rawArgs.filter((arg) => !arg.startsWith('--'));

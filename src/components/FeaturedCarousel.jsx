@@ -1,8 +1,16 @@
-import { useMemo, useState, useRef } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Play, Info } from 'lucide-react';
 import ResponsiveCover from './ResponsiveCover';
+import { coverUrlForWidth } from '../utils';
 
-export default function FeaturedCarousel({ mangaList, trendingIds = [], onViewManga, onReadFirst }) {
+export default function FeaturedCarousel({
+  mangaList,
+  trendingIds = [],
+  onViewManga,
+  onReadFirst,
+  initialMangaId = null,
+  onActiveMangaChange,
+}) {
   const slides = useMemo(() => {
     const byId = new Map(mangaList.map((manga) => [manga.id, manga]));
     const ranked = trendingIds.map((id) => byId.get(id)).filter(Boolean);
@@ -12,20 +20,47 @@ export default function FeaturedCarousel({ mangaList, trendingIds = [], onViewMa
     // lifetime. Begitu respons datang, lima slot diganti ranking 24 jam.
     return mangaList.slice(0, 5);
   }, [mangaList, trendingIds]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeMangaId, setActiveMangaId] = useState(() => initialMangaId || slides[0]?.id || null);
   const touchStartX = useRef(null);
 
-  const current = slides.length ? currentIndex % slides.length : 0;
+  const matchedIndex = slides.findIndex((manga) => manga.id === activeMangaId);
+  const current = matchedIndex >= 0 ? matchedIndex : 0;
   const activeManga = slides[current] || mangaList[0];
   const canNavigate = slides.length > 1;
 
+  const selectIndex = (index) => {
+    const manga = slides[index];
+    if (manga) setActiveMangaId(manga.id);
+  };
+
+  useEffect(() => {
+    if (!activeManga?.id) return;
+    onActiveMangaChange?.(activeManga.id);
+  }, [activeManga?.id, onActiveMangaChange]);
+
+  // Hangatkan cover di kedua arah agar judul dan gambar berganti pada frame yang sama.
+  useEffect(() => {
+    if (!canNavigate || typeof window === 'undefined') return;
+    const adjacent = [
+      slides[(current - 1 + slides.length) % slides.length],
+      slides[(current + 1) % slides.length],
+    ];
+    adjacent.forEach((manga) => {
+      const url = coverUrlForWidth(manga, window.innerWidth);
+      if (!url) return;
+      const image = new Image();
+      image.fetchPriority = 'low';
+      image.src = url;
+    });
+  }, [canNavigate, current, slides]);
+
   const goPrev = () => {
     if (!canNavigate) return;
-    setCurrentIndex((previous) => (previous - 1 + slides.length) % slides.length);
+    selectIndex((current - 1 + slides.length) % slides.length);
   };
   const goNext = () => {
     if (!canNavigate) return;
-    setCurrentIndex((previous) => (previous + 1) % slides.length);
+    selectIndex((current + 1) % slides.length);
   };
 
   const handleTouchStart = (e) => {
@@ -39,7 +74,7 @@ export default function FeaturedCarousel({ mangaList, trendingIds = [], onViewMa
       const next = diff > 0
         ? (current + 1) % slides.length
         : (current - 1 + slides.length) % slides.length;
-      setCurrentIndex(next);
+      selectIndex(next);
     }
     touchStartX.current = null;
   };
@@ -87,8 +122,8 @@ export default function FeaturedCarousel({ mangaList, trendingIds = [], onViewMa
           <ResponsiveCover
             manga={activeManga}
             alt=""
-            loading="lazy"
-            fetchPriority="low"
+            loading="eager"
+            fetchPriority="auto"
             decoding="async"
             className="w-full h-full object-cover object-top"
           />
@@ -162,14 +197,14 @@ export default function FeaturedCarousel({ mangaList, trendingIds = [], onViewMa
               className="flex items-center gap-1.5 sm:gap-2 bg-white hover:bg-white/90 text-black font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
             >
               <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-current" />
-              Read Ch. 1
+              Baca dari Awal
             </button>
             <button
               onClick={() => onViewManga && onViewManga(activeManga)}
               className="flex items-center gap-1.5 sm:gap-2 bg-surface-container-high hover:bg-surface-container-highest border border-white/10 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
             >
               <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
-              View Detail
+              Lihat Detail
             </button>
           </div>
         </div>
@@ -177,13 +212,13 @@ export default function FeaturedCarousel({ mangaList, trendingIds = [], onViewMa
 
       {/* Right Side: Cover Image */}
       {/* Mobile: lebih besar (h-[85%]), tablet: h-[90%], desktop: h-[93%] */}
-      <div className="absolute inset-y-0 right-2 sm:right-3 md:right-4 flex items-center justify-center h-full z-10 py-2 sm:py-3">
+      <div key={`featured-cover-${activeManga.id}`} className="absolute inset-y-0 right-2 sm:right-3 md:right-4 flex items-center justify-center h-full z-10 py-2 sm:py-3">
         <ResponsiveCover
           manga={activeManga}
           alt={activeManga.title}
           className="h-[85%] sm:h-[90%] md:h-[93%] aspect-[2/3] object-cover rounded-lg sm:rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-500 animate-[featuredCoverIn_0.45s_cubic-bezier(0.22,1,0.36,1)]"
-          loading="lazy"
-          fetchPriority="low"
+          loading="eager"
+          fetchPriority="auto"
           decoding="async"
         />
       </div>

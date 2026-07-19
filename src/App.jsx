@@ -6,7 +6,7 @@ import SupportButtons from './components/SupportButtons';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
 import ResponsiveCover from './components/ResponsiveCover';
-import { Sparkles, Compass, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
+import { Sparkles, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
 import { coverUrlForWidth, timeAgo } from './utils';
 import { HomepageHeroSkeleton, MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
@@ -85,8 +85,8 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
       ) : (
         <div className="flex flex-col gap-2">
           {historyEntries.map(({ manga, chapter }) => (
-            <div key={manga.id} onClick={() => handleReadChapter(chapter, manga.title, manga)}
-              className="flex items-stretch gap-3 sm:gap-4 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 sm:p-3 md:p-4 cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
+            <button type="button" key={manga.id} onClick={() => handleReadChapter(chapter, manga.title, manga)}
+              className="flex w-full items-stretch gap-3 sm:gap-4 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 sm:p-3 md:p-4 text-left cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
               <ResponsiveCover manga={manga} alt={manga.title}
                 className="object-cover rounded-lg border border-white/10 shrink-0 shadow-md"
                 style={{ aspectRatio: '2/3', width: 'auto', maxHeight: 'calc(1.25rem + 2.5rem + 1.25rem + 0.5rem)' }} />
@@ -96,7 +96,7 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
                 <p className="text-[10px] sm:text-xs md:text-sm text-outline">{chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}</p>
               </div>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-outline/80 group-hover:text-primary shrink-0 self-center transition-colors" />
-            </div>
+            </button>
           ))}
         </div>
       )}
@@ -105,10 +105,20 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
 }
 
 export default function App() {
-  // Modal login/Supporter tetap menjadi chunk terpisah, tetapi mulai diunduh tepat
-  // setelah render pertama agar klik chapter locked berikutnya bisa langsung tampil.
+  // Modal login/Supporter tetap menjadi chunk terpisah. Unduh saat browser idle
+  // agar tidak bersaing dengan cover LCP, tetapi tetap siap sebelum interaksi umum.
   useEffect(() => {
-    void loadCoinModals();
+    let idleId;
+    let timerId;
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(() => { void loadCoinModals(); }, { timeout: 1800 });
+    } else {
+      timerId = window.setTimeout(() => { void loadCoinModals(); }, 900);
+    }
+    return () => {
+      if (idleId !== undefined) window.cancelIdleCallback(idleId);
+      if (timerId !== undefined) window.clearTimeout(timerId);
+    };
   }, []);
 
   const [MANGA_LIST, setMangaList] = useState(() => BOOTSTRAP_MANGA_LIST || []);
@@ -221,8 +231,9 @@ export default function App() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeChapter, setActiveChapter] = useState(null);
   const [activeMangaTitle, setActiveMangaTitle] = useState('');
-  const [activeTab, setActiveTab] = useState(INITIAL_ROUTE.page === 'history' ? 'profile' : 'library'); // 'library', 'discover', 'updates', 'profile'
+  const [activeTab, setActiveTab] = useState(INITIAL_ROUTE.page === 'history' ? 'profile' : 'library'); // 'library' | 'profile'
   const [spotlightMangaId, setSpotlightMangaId] = useState(null);
+  const [featuredMangaId, setFeaturedMangaId] = useState(null);
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [historyChapters, setHistoryChapters] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
@@ -266,23 +277,54 @@ export default function App() {
     return () => tabletUp.removeEventListener('change', handleBreakpointChange);
   }, []);
 
-  // Dynamic document title + meta description (snippet Google per halaman)
+  // Sinkronkan metadata saat navigasi SPA. Build juga menghasilkan HTML statis
+  // per manga agar crawler yang tidak menjalankan JavaScript mendapat metadata sama.
   useEffect(() => {
     const site = 'Nurananto Scanlation';
-    const setDesc = (txt) => {
-      const el = document.querySelector('meta[name="description"]');
-      if (el) el.setAttribute('content', txt || '');
+    // Canonical tetap custom domain meskipun build ini dibuka dari Pages untuk testing.
+    const origin = (import.meta.env.VITE_SITE_URL || 'https://nuranantoscans.my.id').replace(/\/$/, '');
+    const ensureMeta = (selector, attributes) => {
+      let element = document.head.querySelector(selector);
+      if (!element) {
+        element = document.createElement('meta');
+        document.head.appendChild(element);
+      }
+      Object.entries(attributes).forEach(([name, value]) => element.setAttribute(name, value || ''));
     };
+    const description = (selectedManga?.description || 'Baca manga terjemahan Indonesia di Nurananto Scanlation.').trim();
+    const shortDescription = description.length > 160
+      ? `${description.slice(0, 160).replace(/\s+\S*$/, '')}…`
+      : description;
+    const mangaPath = selectedManga?.id ? `/${encodeURIComponent(selectedManga.id)}` : '/';
+    const canonicalUrl = `${origin}${mangaPath}`;
+    const rawImageUrl = selectedManga?.coverUrls?.desktop || selectedManga?.coverUrl || '/logo-header.webp';
+    const imageUrl = new URL(rawImageUrl, `${origin}/`).href;
+    let title = site;
     if (activeChapter && activeMangaTitle) {
-      document.title = `${activeChapter.title} - ${activeMangaTitle} | ${site}`;
+      title = `${activeChapter.title} - ${activeMangaTitle} | ${site}`;
     } else if (selectedManga) {
-      document.title = `${selectedManga.title} | ${site}`;
-      const d = (selectedManga.description || '').trim();
-      if (d) setDesc(d.length > 160 ? d.slice(0, 160).replace(/\s+\S*$/, '') + '…' : d);
-    } else {
-      document.title = site;
-      setDesc('nurananto scanslation');
+      title = `${selectedManga.title} | ${site}`;
     }
+
+    document.title = title;
+    ensureMeta('meta[name="description"]', { name: 'description', content: shortDescription });
+    ensureMeta('meta[name="robots"]', { name: 'robots', content: activeChapter ? 'noindex, follow' : 'index, follow' });
+    ensureMeta('meta[property="og:type"]', { property: 'og:type', content: selectedManga ? 'article' : 'website' });
+    ensureMeta('meta[property="og:title"]', { property: 'og:title', content: title });
+    ensureMeta('meta[property="og:description"]', { property: 'og:description', content: shortDescription });
+    ensureMeta('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl });
+    ensureMeta('meta[property="og:image"]', { property: 'og:image', content: imageUrl });
+    ensureMeta('meta[name="twitter:title"]', { name: 'twitter:title', content: title });
+    ensureMeta('meta[name="twitter:description"]', { name: 'twitter:description', content: shortDescription });
+    ensureMeta('meta[name="twitter:image"]', { name: 'twitter:image', content: imageUrl });
+    ensureMeta('meta[name="twitter:card"]', { name: 'twitter:card', content: selectedManga ? 'summary_large_image' : 'summary' });
+    let canonical = document.head.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
   }, [activeChapter, activeMangaTitle, selectedManga]);
 
   // Buka modal login dengan konteks (reason) + simpan "intent" yang dilanjutkan
@@ -578,8 +620,11 @@ export default function App() {
 
   // Path-based routing
   useEffect(() => {
-    const handleRoute = () => {
+    let lastHandledPage = parsePath().page;
+    let scrollFrame;
+    const handleRoute = (event) => {
       const { page, mangaId, chapterNum } = parsePath();
+      const previousPage = lastHandledPage;
       setRoutePage(page);
 
       if (page === 'home') {
@@ -660,12 +705,25 @@ export default function App() {
             .catch(() => navigate('/', true));
         }
       }
+
+      if (event && page !== 'reader') {
+        const restoredY = Math.max(0, Number(event.state?.scrollY) || 0);
+        const targetY = page === 'manga' && previousPage !== 'reader' ? 0 : restoredY;
+        cancelAnimationFrame(scrollFrame);
+        scrollFrame = requestAnimationFrame(() => {
+          scrollFrame = requestAnimationFrame(() => window.scrollTo({ top: targetY, behavior: 'instant' }));
+        });
+      }
+      lastHandledPage = page;
     };
 
     window.addEventListener('popstate', handleRoute);
     handleRoute(); // run on mount
 
-    return () => window.removeEventListener('popstate', handleRoute);
+    return () => {
+      cancelAnimationFrame(scrollFrame);
+      window.removeEventListener('popstate', handleRoute);
+    };
   }, [isLoggedIn]);
 
   const showToast = (message) => {
@@ -834,6 +892,8 @@ export default function App() {
           <ReaderLoadingSkeleton />
         ) : loadingManga ? (
           <MangaDetailSkeleton />
+        ) : routePage === 'reader' ? (
+          null
         ) : selectedManga ? (
           /* Manga Detail View */
           <Suspense fallback={<MangaDetailSkeleton />}>
@@ -878,18 +938,25 @@ export default function App() {
                     <FeaturedCarousel
                       mangaList={MANGA_LIST}
                       trendingIds={trendingIds}
+                      initialMangaId={featuredMangaId}
+                      onActiveMangaChange={setFeaturedMangaId}
                       onReadChapter={(ch, title) => handleReadChapter(ch, title)}
                       onViewManga={(manga) => { navigate(`/${manga.id}`); }}
                       onReadFirst={async (mangaId) => {
-                        const r = await fetch(`/manga/${mangaId}.json`, { cache: 'no-cache' });
-                        if (!r.ok) return;
-                        const fullManga = await r.json();
-                        const oldest = [...(fullManga.chapters || [])].sort((a, b) => {
-                          const an = Number(a.chapter_number);
-                          const bn = Number(b.chapter_number);
-                          return (Number.isFinite(an) ? an : Number.NEGATIVE_INFINITY) - (Number.isFinite(bn) ? bn : Number.NEGATIVE_INFINITY);
-                        })[0];
-                        if (oldest) handleReadChapter(oldest, fullManga.title);
+                        try {
+                          const r = await fetch(`/manga/${mangaId}.json`, { cache: 'no-cache' });
+                          if (!r.ok) throw new Error();
+                          const fullManga = await r.json();
+                          const oldest = [...(fullManga.chapters || [])].sort((a, b) => {
+                            const an = Number(a.chapter_number);
+                            const bn = Number(b.chapter_number);
+                            return (Number.isFinite(an) ? an : Number.NEGATIVE_INFINITY) - (Number.isFinite(bn) ? bn : Number.NEGATIVE_INFINITY);
+                          })[0];
+                          if (!oldest) throw new Error();
+                          handleReadChapter(oldest, fullManga.title);
+                        } catch {
+                          showToast('Chapter awal gagal dimuat. Silakan coba lagi.');
+                        }
                       }}
                     />
 
@@ -1017,81 +1084,6 @@ export default function App() {
               </>
             )}
 
-            {activeTab === 'discover' && (
-              <section className="flex flex-col gap-6">
-                <div className="border-b border-white/5 pb-4">
-                  <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface flex items-center gap-3">
-                    <Compass className="w-6 h-6 text-primary" />
-                    Discover Genres
-                  </h2>
-                  <p className="text-outline text-sm mt-1">Explore titles grouped by your favorite themes.</p>
-                </div>
-
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {['Action', 'Sci-Fi', 'Fantasy', 'Adventure', 'Dark Fantasy', 'System', 'Historical', 'Martial Arts'].map((genre) => {
-                    const count = MANGA_LIST.filter(m => m.genres.includes(genre)).length;
-                    return (
-                      <button
-                        key={genre}
-                        onClick={() => {
-                          setSearchQuery(genre);
-                          navigate('/');
-                        }}
-                        className="p-6 bg-surface-container rounded-2xl border border-white/5 hover:border-primary/20 hover:bg-surface-container-high text-left transition-all active:scale-95 cursor-pointer shadow-md group"
-                      >
-                        <h3 className="font-bold text-lg text-on-surface group-hover:text-primary transition-colors">{genre}</h3>
-                        <p className="text-xs text-outline mt-2">{count} titles available</p>
-                      </button>
-                    );
-                  })}
-                </div>
-              </section>
-            )}
-
-            {activeTab === 'updates' && (
-              <section className="flex flex-col gap-6">
-                <div className="border-b border-white/5 pb-4">
-                  <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface flex items-center gap-3">
-                    <RotateCcw className="w-6 h-6 text-primary" />
-                    Recent Activity
-                  </h2>
-                  <p className="text-outline text-sm mt-1">Stay up to date with your reading history.</p>
-                </div>
-
-                <div className="flex flex-col bg-surface-container rounded-[32px] border border-white/5 overflow-hidden divide-y divide-white/5">
-                  {MANGA_LIST.slice(0, 4).map((manga, idx) => {
-                    const latestChapter = manga.chapters[0];
-                    const readTimes = [
-                      'Read 2 hours ago',
-                      'Read 1 day ago',
-                      'Read 3 days ago',
-                      'Read 1 week ago'
-                    ];
-                    return (
-                      <div 
-                        key={manga.id} 
-                        onClick={() => { navigate(`/${manga.id}`); }}
-                        className="py-5 px-5 flex items-center gap-5 hover:bg-white/5 cursor-pointer transition-colors"
-                      >
-                        <ResponsiveCover
-                          manga={manga}
-                          alt={manga.title} 
-                          className="w-14 aspect-[2/3] object-cover rounded-xl border border-white/10 shrink-0 shadow-md" 
-                        />
-                        <div className="min-w-0 flex-1 flex flex-col justify-center">
-                          <h3 className="font-extrabold text-sm md:text-base text-on-surface truncate">{manga.title}</h3>
-                          <p className="text-xs text-outline mt-0.5 truncate">Read: {latestChapter.title}</p>
-                          <span className="text-[10px] text-outline mt-1 font-semibold">
-                            {readTimes[idx % readTimes.length]}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </section>
-            )}
-
             {activeTab === 'profile' && (() => {
               const historyEntries = Object.entries(historyChapters)
                 .map(([mangaId, chapter]) => ({ manga: MANGA_LIST.find(m => m.id === mangaId), chapter }))
@@ -1123,7 +1115,7 @@ export default function App() {
       </div>
 
       {/* Global Footer (Only on Homepage catalog) */}
-      {!loadingManga && (activeTab === 'library' || !!selectedManga) && (
+      {!loadingManga && routePage !== 'reader' && (activeTab === 'library' || !!selectedManga) && (
         <footer className="w-full pt-4 md:pt-6 xl:pt-8 pb-4 md:pb-6 xl:pb-8 bg-surface border-t border-white/60 mt-auto">
           <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-3">
             <div className="h-11 aspect-[1843/552] md:h-14 xl:h-16">
@@ -1208,7 +1200,14 @@ export default function App() {
           <ReaderModal
             chapter={activeChapter}
             manga={selectedManga}
-            onClose={() => { navigate(`/${selectedManga?.id || ''}`); }}
+            onClose={() => {
+              const detailPath = `/${selectedManga?.id || ''}`;
+              if (window.history.state?.from === detailPath) {
+                window.history.back();
+              } else {
+                navigate(detailPath, true);
+              }
+            }}
             onReadChapter={handleReadChapter}
             isSupporter={isSupporter}
             currentUser={currentUser}

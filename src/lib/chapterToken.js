@@ -24,24 +24,61 @@ function key(userId, chapterId) {
 export function getCachedChapterToken(userId, chapterId) {
   if (!userId || !chapterId) return null;
   try {
-    const raw = localStorage.getItem(key(userId, chapterId));
+    const storageKey = key(userId, chapterId);
+    const raw = localStorage.getItem(storageKey);
     if (!raw) return null;
     const v = JSON.parse(raw);
-    if (!v?.token || !v?.h || !v?.exp) return null;
-    if (v.exp <= Date.now() + BUFFER_MS) {            // sudah/hampir kedaluwarsa
-      localStorage.removeItem(key(userId, chapterId));
+    const invalid = !v?.token || !v?.h || !v?.exp || !Array.isArray(v.pageSignatures)
+      || v.pageSignatures.length < 1
+      || !v.pageSignatures.every((signature) => /^[A-Za-z0-9_-]{43}$/.test(signature))
+      || !Number.isSafeInteger(v.iat) || !Number.isSafeInteger(v.nbf)
+      || !Number.isSafeInteger(v.signatureExp);
+    if (invalid) {
+      localStorage.removeItem(storageKey);
       return null;
     }
-    return { token: v.token, h: v.h };
+    if (v.exp <= Date.now() + BUFFER_MS) {            // sudah/hampir kedaluwarsa
+      localStorage.removeItem(storageKey);
+      return null;
+    }
+    return {
+      token: v.token,
+      h: v.h,
+      pageSignatures: v.pageSignatures,
+      iat: v.iat,
+      nbf: v.nbf,
+      signatureExp: v.signatureExp,
+    };
   } catch { return null; }
 }
 
-export function setCachedChapterToken(userId, chapterId, token, h, expiresInSec) {
-  if (!userId || !chapterId || !token || !h) return;
+export function setCachedChapterToken(
+  userId,
+  chapterId,
+  token,
+  h,
+  pageSignatures,
+  iat,
+  nbf,
+  signatureExp,
+  expiresInSec,
+) {
+  if (!userId || !chapterId || !token || !h || !Array.isArray(pageSignatures)) return;
   try {
     const secs = Number(expiresInSec) > 0 ? Number(expiresInSec) : 300;
-    const exp = Date.now() + secs * 1000;
-    localStorage.setItem(key(userId, chapterId), JSON.stringify({ token, h, exp }));
+    const serverExpiry = Number(signatureExp) * 1000;
+    const exp = Number.isFinite(serverExpiry) && serverExpiry > 0
+      ? serverExpiry
+      : Date.now() + secs * 1000;
+    localStorage.setItem(key(userId, chapterId), JSON.stringify({
+      token,
+      h,
+      pageSignatures,
+      iat,
+      nbf,
+      signatureExp,
+      exp,
+    }));
   } catch {}
 }
 

@@ -11,7 +11,8 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
 
   const isOneshot = manga.status === 'Oneshot';
   const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
-  const isMangaNew = !!manga.latest_release_date && (now - new Date(manga.latest_release_date).getTime()) < 24 * 60 * 60 * 1000;
+  const latestReleaseAge = manga.latest_release_date ? now - new Date(manga.latest_release_date).getTime() : NaN;
+  const isMangaNew = Number.isFinite(latestReleaseAge) && latestReleaseAge >= 0 && latestReleaseAge < 24 * 60 * 60 * 1000;
 
   return (
     <div className="flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden group border border-white/5 hover:border-primary/20 shadow-md transition-colors">
@@ -25,8 +26,8 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
         <ResponsiveCover
             manga={manga}
             alt={manga.title}
-            loading="eager"
-            fetchPriority="auto"
+            loading="lazy"
+            fetchPriority="low"
             decoding="async"
             className="h-full w-full object-cover rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-white/10 hover:scale-105 transition-transform duration-500"
           />
@@ -77,7 +78,8 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
               : isOneshot
               ? ch.chapter_number
               : manga.hiatus_at_chapter;
-            const isUp = !!ch.release_date && (now - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
+            const releaseAge = ch.release_date ? now - new Date(ch.release_date).getTime() : NaN;
+            const isUp = Number.isFinite(releaseAge) && releaseAge >= 0 && releaseAge < 24 * 60 * 60 * 1000;
             const chapterTitle = isOneshot
               ? 'Oneshot'
               : (ch.title.includes(':') ? ch.title.split(':')[0] : ch.title);
@@ -85,17 +87,18 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
             // tamat_at_chapter/hiatus_at_chapter. Tidak ada fallback ke chapter lain.
             const showStatusBadge = !isUp && isFinished && (
               isOneshot ||
-              (targetChapter != null && ch.chapter_number === targetChapter)
+              (targetChapter != null && String(ch.chapter_number) === String(targetChapter))
             );
 
             return (
-              <div
+              <button
+                type="button"
                 key={ch.id}
                 onClick={(e) => {
                   e.stopPropagation();
                   onReadChapter(ch, manga.title);
                 }}
-                className="flex min-h-[34px] sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border transition-all group/ch border-white/5 hover:bg-surface-container-highest hover:border-white/10"
+                className="flex min-h-[34px] w-full sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border text-left transition-all group/ch border-white/5 hover:bg-surface-container-highest hover:border-white/10 cursor-pointer"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
                   <span
@@ -146,7 +149,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
                   />
                 )}
                 <span className="font-label-sm text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0">{ch.date || timeAgoShort(ch.release_date)}</span>
-              </div>
+              </button>
             );
           })}
         </div>

@@ -48,8 +48,15 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
         setIsDropdownOpen(false);
       }
     };
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') setIsDropdownOpen(false);
+    };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
   }, []);
 
   const avatarUrl = currentUser?.avatar || null;
@@ -117,13 +124,11 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
           <div ref={dropdownRef} className="relative">
             <div className="relative">
             {isLoggedIn ? (
-              <div
-                role="button"
-                tabIndex={0}
+              <button
+                type="button"
                 aria-label="Menu akun"
                 aria-expanded={isDropdownOpen}
                 onClick={() => { setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); }}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); } }}
                 className={`h-10 md:h-11 xl:h-12 rounded-xl border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md flex items-center gap-2 bg-surface-container-high p-1.5 pr-3 ${
                   activeTab === 'profile' || isDropdownOpen ? 'border-primary' : 'border-white/10'
                 }`}
@@ -140,7 +145,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                 <span className="max-w-24 truncate text-xs md:text-sm font-black text-on-surface">
                   {displayName}
                 </span>
-              </div>
+              </button>
             ) : (
               <button
                 type="button"

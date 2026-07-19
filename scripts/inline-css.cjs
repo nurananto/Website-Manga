@@ -19,6 +19,72 @@ function escapeAttribute(value) {
   return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
+function escapeText(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function replaceMeta(documentHtml, attribute, key, content) {
+  const pattern = new RegExp(`<meta\\s+${attribute}=["']${key}["'][^>]*>`, 'i');
+  const tag = `<meta ${attribute}="${escapeAttribute(key)}" content="${escapeAttribute(content)}" />`;
+  return pattern.test(documentHtml)
+    ? documentHtml.replace(pattern, tag)
+    : documentHtml.replace('</head>', `  ${tag}\n  </head>`);
+}
+
+function writeMangaRouteHtml(rootHtml) {
+  const catalogPath = path.join('public', 'manga', 'index.json');
+  if (!fs.existsSync(catalogPath)) return 0;
+  const siteUrl = (process.env.SITE_URL || 'https://nuranantoscans.my.id').replace(/\/$/, '');
+  const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+  let written = 0;
+
+  for (const manga of catalog) {
+    if (!manga?.id || !/^[A-Za-z0-9._-]+$/.test(manga.id)) continue;
+    const title = `${manga.title} | Nurananto Scanlation`;
+    const rawDescription = String(manga.description || 'Baca manga terjemahan Indonesia di Nurananto Scanlation.').trim();
+    const description = rawDescription.length > 160
+      ? `${rawDescription.slice(0, 160).replace(/\s+\S*$/, '')}…`
+      : rawDescription;
+    const canonical = `${siteUrl}/${encodeURIComponent(manga.id)}`;
+    const covers = manga.coverUrls || {};
+    const desktopCover = covers.desktop || manga.coverUrl || `${siteUrl}/logo-header.webp`;
+    const routeDir = path.join(dist, manga.id);
+    let routeHtml = rootHtml
+      .replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeText(title)}</title>`)
+      .replace(/<link\s+rel=["']canonical["'][^>]*>/i, `<link rel="canonical" href="${escapeAttribute(canonical)}" />`)
+      .replace(/<link\s+rel=["']preload["']\s+as=["']image["'][^>]*>\s*/gi, '')
+      .replace(/<script>window\.__INLINE_MANGA_INDEX__=[\s\S]*?<\/script>/i, '');
+
+    routeHtml = replaceMeta(routeHtml, 'name', 'description', description);
+    routeHtml = replaceMeta(routeHtml, 'name', 'robots', 'index, follow');
+    routeHtml = replaceMeta(routeHtml, 'property', 'og:type', 'article');
+    routeHtml = replaceMeta(routeHtml, 'property', 'og:title', title);
+    routeHtml = replaceMeta(routeHtml, 'property', 'og:description', description);
+    routeHtml = replaceMeta(routeHtml, 'property', 'og:url', canonical);
+    routeHtml = replaceMeta(routeHtml, 'property', 'og:image', desktopCover);
+    routeHtml = replaceMeta(routeHtml, 'name', 'twitter:card', 'summary_large_image');
+    routeHtml = replaceMeta(routeHtml, 'name', 'twitter:title', title);
+    routeHtml = replaceMeta(routeHtml, 'name', 'twitter:description', description);
+    routeHtml = replaceMeta(routeHtml, 'name', 'twitter:image', desktopCover);
+
+    const coverHints = [
+      { href: covers.mobile || desktopCover, media: '(max-width: 639px)' },
+      { href: covers.tablet || desktopCover, media: '(min-width: 640px) and (max-width: 1023px)' },
+      { href: desktopCover, media: '(min-width: 1024px)' },
+    ].map(({ href, media }) => (
+      `<link rel="preload" as="image" href="${escapeAttribute(href)}" media="${escapeAttribute(media)}" fetchpriority="high">`
+    ));
+    routeHtml = routeHtml.replace('</head>', `  ${coverHints.join('\n  ')}\n  </head>`);
+    fs.mkdirSync(routeDir, { recursive: true });
+    fs.writeFileSync(path.join(routeDir, 'index.html'), routeHtml);
+    written += 1;
+  }
+  return written;
+}
+
 function collectCriticalFonts(css) {
   const rules = css.match(/@font-face\s*\{[^}]*\}/g) || [];
   const wanted = [
@@ -138,4 +204,5 @@ if (resourceHints.length) {
 }
 
 fs.writeFileSync(htmlPath, html);
-console.log(`inline-css: ${inlined} stylesheet di-inline (${(bytes / 1024).toFixed(1)} KB), ${resourceHints.length} preload ditambahkan`);
+const mangaRoutes = writeMangaRouteHtml(html);
+console.log(`inline-css: ${inlined} stylesheet di-inline (${(bytes / 1024).toFixed(1)} KB), ${resourceHints.length} preload ditambahkan, ${mangaRoutes} route manga dibuat`);

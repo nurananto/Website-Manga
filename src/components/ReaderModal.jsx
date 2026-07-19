@@ -8,30 +8,37 @@ import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
 import { canReadChapter, chapterAccessLevel } from '../lib/chapterAccess';
+import { useDialogFocus } from '../lib/useDialogFocus';
 import ResponsiveCover from './ResponsiveCover';
 
 // Widget Turnstile interaktif (wajib centang) untuk membuka locked chapter.
-function TurnstileGate({ onToken }) {
+function TurnstileGate({ onToken, onError }) {
   const ref = useRef(null);
   useEffect(() => {
     let widgetId;
     let cancelled = false;
     loadTurnstile().then((ts) => {
-      if (cancelled || !ts || !ref.current || !TURNSTILE_SITEKEY) return;
+      if (cancelled) return;
+      if (!ts || !ref.current || !TURNSTILE_SITEKEY) {
+        onError?.('Verifikasi gagal dimuat. Periksa koneksi lalu coba lagi.');
+        return;
+      }
       try {
         widgetId = ts.render(ref.current, {
           sitekey: TURNSTILE_SITEKEY,
           callback: (t) => onToken(t),
-          'error-callback': () => {},
-          'expired-callback': () => {},
+          'error-callback': () => onError?.('Verifikasi gagal. Silakan coba lagi.'),
+          'expired-callback': () => onError?.('Verifikasi kedaluwarsa. Silakan ulangi.'),
         });
-      } catch {}
+      } catch {
+        onError?.('Verifikasi gagal dimuat. Silakan coba lagi.');
+      }
     });
     return () => {
       cancelled = true;
       try { if (widgetId != null && window.turnstile) window.turnstile.remove(widgetId); } catch {}
     };
-  }, [onToken]);
+  }, [onError, onToken]);
   return <div ref={ref} className="min-h-[65px] flex items-center justify-center" />;
 }
 
@@ -148,6 +155,7 @@ function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError }
   return (
     <div
       ref={el => { wrapRef.current = el; registerPage?.(idx, el); }}
+      data-reader-page={idx}
       className="w-full relative"
       // Placeholder pakai aspect-ratio (bukan minHeight:85vh) — tingginya turunan dari
       // LEBAR kontainer, sama seperti gambar asli nanti (w-full h-auto). Rasio 2/3 adalah
@@ -241,6 +249,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const chapterNeedsToken = accessLevel !== 'public';
   const activeChapter = chapter;
   const activeManga = manga;
+  const mangaId = manga?.id || '';
   const discordLink = discordCommentUrl(activeManga?.discord_channel_id); // channel per judul (meta.json)
 
   // null = tutup, 'top' = dibuka dari navbar atas, 'bottom' = dari navbar bawah
@@ -255,14 +264,21 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const [showDiscordRedirect, setShowDiscordRedirect] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [barExpanded, setBarExpanded] = useState(false);
+  const [accessError, setAccessError] = useState('');
+  const [gateVersion, setGateVersion] = useState(0);
   const scrollRef = useRef(null);
+  const readerDialogRef = useRef(null);
+  const accessDialogRef = useRef(null);
+  const lastChapterDialogRef = useRef(null);
+  const discordDialogRef = useRef(null);
   const pageRefs = useRef([]);
   const registerPage = (index, element) => {
     pageRefs.current[index] = element;
   };
   useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = ''; };
+    return () => { document.body.style.overflow = previousOverflow; };
   }, []);
 
   // Kirim view ke Worker. Dedup PER HARI (WIB), bukan permanen — biar pembaca yang
@@ -322,6 +338,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const [pageCount, setPageCount] = useState(0);
   const [imgAccess, setImgAccess] = useState(null);
   const [imgHash, setImgHash] = useState(null);
+  const [imgSigning, setImgSigning] = useState(null);
   const [tsToken, setTsToken] = useState(null); // token Turnstile (wajib centang)
   const tokenFromCacheRef = useRef(false);      // token aktif berasal dari cache?
   const reauthAttemptRef  = useRef(0);          // maks 1× re-Turnstile per buka chapter (anti-loop)
@@ -335,17 +352,29 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   useEffect(() => {
     tokenFromCacheRef.current = false;
     reauthAttemptRef.current = 0;
-    const cached = (chapterNeedsToken && userId && chapter?.id)
+    const cachedValue = (chapterNeedsToken && userId && chapter?.id)
       ? getCachedChapterToken(userId, chapter.id) : null;
+    const cached = cachedValue
+      && cachedValue.pageSignatures.length === Number(chapter?.pages)
+      ? cachedValue
+      : null;
     const timer = setTimeout(() => {
       setTsToken(null);
+      setAccessError('');
       if (cached) {
         tokenFromCacheRef.current = true;
         setImgAccess(cached.token);
         setImgHash(cached.h);
+        setImgSigning({
+          pageSignatures: cached.pageSignatures,
+          iat: cached.iat,
+          nbf: cached.nbf,
+          exp: cached.signatureExp,
+        });
       } else {
         setImgAccess(null);
         setImgHash(null);
+        setImgSigning(null);
       }
     }, 0);
     return () => clearTimeout(timer);
@@ -355,12 +384,18 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   useEffect(() => {
     if (!chapter?.id || !chapterNeedsToken || !tsToken) return;
     const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-    if (!workerUrl) return;
+    if (!workerUrl) {
+      const timer = setTimeout(() => {
+        setAccessError('Server akses chapter belum dikonfigurasi. Silakan coba lagi nanti.');
+      }, 0);
+      return () => clearTimeout(timer);
+    }
     let cancelled = false;
     (async () => {
       try {
         const tok = await getAccessToken();
-        if (!tok || cancelled) return;
+        if (!tok) throw new Error('Sesi login sudah berakhir. Silakan masuk kembali.');
+        if (cancelled) return;
         const res = await fetch(`${workerUrl}/api/user/chapter-token`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${tok}`, 'Content-Type': 'application/json' },
@@ -368,17 +403,44 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             chapter_id: chapter.id,
             chapter_number: chapter.chapter_number,
             chapter_title: chapter.title,
+            pages: chapter.pages,
             turnstile_token: tsToken,
           }),
         });
-        const d = await res.json();
-        if (!cancelled && d.token) {
+        const d = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(d.error || 'Akses chapter gagal dibuat.');
+        if (!d.token || !d.h || !Array.isArray(d.page_signatures)
+          || d.page_signatures.length !== Number(chapter.pages)
+          || !Number.isSafeInteger(d.iat) || !Number.isSafeInteger(d.nbf)
+          || !Number.isSafeInteger(d.exp)) {
+          throw new Error('Respons signature halaman tidak lengkap.');
+        }
+        if (!cancelled) {
           tokenFromCacheRef.current = false; // token segar (bukan dari cache)
           setImgAccess(d.token);
-          setImgHash(d.h || null);
-          if (userId && d.h) setCachedChapterToken(userId, chapter.id, d.token, d.h, d.expires_in);
+          setImgHash(d.h);
+          setImgSigning({ pageSignatures: d.page_signatures, iat: d.iat, nbf: d.nbf, exp: d.exp });
+          setAccessError('');
+          if (userId) setCachedChapterToken(
+            userId,
+            chapter.id,
+            d.token,
+            d.h,
+            d.page_signatures,
+            d.iat,
+            d.nbf,
+            d.exp,
+            d.expires_in,
+          );
         }
-      } catch {}
+      } catch (error) {
+        if (!cancelled) {
+          setImgAccess(null);
+          setImgHash(null);
+          setImgSigning(null);
+          setAccessError(error?.message || 'Akses chapter gagal dimuat.');
+        }
+      }
     })();
     return () => { cancelled = true; };
   }, [chapter?.id, tsToken]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -389,18 +451,54 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const handleLockedImageError = (status) => {
     // Hanya re-Turnstile kalau server menolak token (401/403) — bukan 404/429/jaringan.
     if (status !== 401 && status !== 403) return;
-    if (!tokenFromCacheRef.current) return;      // token segar valid saat dicetak; jangan reset
-    if (reauthAttemptRef.current >= 1) return;   // sudah 1× re-auth → stop (anti-loop)
-    reauthAttemptRef.current += 1;
+    const cachedTokenRejected = tokenFromCacheRef.current && reauthAttemptRef.current < 1;
+    if (cachedTokenRejected) reauthAttemptRef.current += 1;
     tokenFromCacheRef.current = false;
     if (userId && chapter?.id) invalidateChapterToken(userId, chapter.id);
     setImgAccess(null);
     setImgHash(null);
+    setImgSigning(null);
     setTsToken(null);
+    if (!cachedTokenRejected) {
+      setAccessError('Akses gambar ditolak atau sudah kedaluwarsa. Silakan verifikasi ulang.');
+    }
+  };
+
+  const handleTurnstileError = useCallback((message) => {
+    setTsToken(null);
+    setAccessError(message || 'Verifikasi gagal. Silakan coba lagi.');
+  }, []);
+
+  const retryChapterAccess = () => {
+    if (userId && chapter?.id) invalidateChapterToken(userId, chapter.id);
+    tokenFromCacheRef.current = false;
+    setImgAccess(null);
+    setImgHash(null);
+    setImgSigning(null);
+    setTsToken(null);
+    setAccessError('');
+    setGateVersion((value) => value + 1);
   };
 
   // Gratis: CDN langsung siap. Terkunci: tunggu access token + hash path.
-  const imageReady = chapterNeedsToken ? (!!imgAccess && !!imgHash) : true;
+  const imageReady = chapterNeedsToken
+    ? Boolean(
+        imgAccess
+        && imgHash
+        && imgSigning
+        && imgSigning.pageSignatures.length === Number(chapter?.pages)
+      )
+    : true;
+  const accessGateOpen = chapterNeedsToken && !imageReady;
+
+  useDialogFocus(
+    readerDialogRef,
+    onClose,
+    !accessGateOpen && !showLastChapterModal && !showDiscordRedirect,
+  );
+  useDialogFocus(accessDialogRef, onClose, accessGateOpen);
+  useDialogFocus(lastChapterDialogRef, () => setShowLastChapterModal(false), showLastChapterModal);
+  useDialogFocus(discordDialogRef, () => setShowDiscordRedirect(false), showDiscordRedirect);
 
   // Chapter yang BARU lepas kunci mungkin belum selesai dimigrasi dari manga-locked ke
   // manga-media. CDN (R2 langsung) akan balas 404 yang ter-cache lama → arahkan ke worker
@@ -415,13 +513,31 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     const num = String(idx).padStart(2, '0');
     if (chapterNeedsToken) {
       // Path di-hash agar judul/chapter tidak terbaca di URL: /c/<hash>/<NN>.webp
-      return `${imageBase}/c/${imgHash}/${num}.webp?access=${encodeURIComponent(imgAccess)}`;
+      const params = new URLSearchParams({
+        access: imgAccess,
+        iat: String(imgSigning.iat),
+        nbf: String(imgSigning.nbf),
+        exp: String(imgSigning.exp),
+        sig: imgSigning.pageSignatures[idx - 1],
+      });
+      return `${imageBase}/c/${imgHash}/${num}.webp?${params}`;
     }
     // Baru lepas kunci → lewat worker (migrasi-on-access). Selain itu → CDN langsung.
     const base = freshlyFreed && imageBase ? imageBase : (cdnBase || imageBase);
     const chapterFolder = chapter?.r2_folder ?? chapter?.chapter_number;
     return `${base}/manga/${manga?.id}/${chapterFolder}/Image${num}.webp`;
-  }, [chapter?.r2_folder, chapter?.chapter_number, chapterNeedsToken, freshlyFreed, imageBase, imgAccess, imgHash, manga?.id]);
+  }, [chapter?.r2_folder, chapter?.chapter_number, chapterNeedsToken, freshlyFreed, imageBase, imgAccess, imgHash, imgSigning, manga?.id]);
+
+  const makeFallbackUrl = useCallback((idx, primaryUrl) => {
+    if (chapterNeedsToken || !mangaId) return null;
+    const num = String(idx).padStart(2, '0');
+    const chapterFolder = chapter?.r2_folder ?? chapter?.chapter_number;
+    const path = `/manga/${mangaId}/${chapterFolder}/Image${num}.webp`;
+    const cdnUrl = `${cdnBase}${path}`;
+    const workerUrl = imageBase ? `${imageBase}${path}` : null;
+    const fallback = primaryUrl === cdnUrl ? workerUrl : cdnUrl;
+    return fallback && fallback !== primaryUrl ? fallback : null;
+  }, [chapter?.chapter_number, chapter?.r2_folder, chapterNeedsToken, imageBase, mangaId]);
 
   // Generate semua URL sekaligus.
   useEffect(() => {
@@ -444,7 +560,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     const saved = parseInt(localStorage.getItem(`reader_page_${chapter.id}`) || '');
     const hasResume = !isNaN(saved) && saved > 0 && saved < (chapter.pages ?? 0) - 1;
     const timer = setTimeout(() => {
-      setCurrentPage(0);
+      setCurrentPage(hasResume ? saved : 0);
       if (!hasResume) scrollRef.current?.scrollTo({ top: 0, behavior: 'instant' });
     }, 0);
     return () => clearTimeout(timer);
@@ -469,24 +585,53 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     return () => { cancelled = true; };
   }, [chapter?.id, pages]);
 
-  // Scroll event: update currentPage + simpan page index
+  // Tentukan halaman aktif dari gambar yang benar-benar terlihat. Perhitungan
+  // berbasis rasio seluruh dokumen tidak akurat bila tinggi halaman berbeda.
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const handleScroll = () => {
-      const max = el.scrollHeight - el.clientHeight;
-      if (max <= 0) return;
-      const ratio = el.scrollTop / max;
-      const page = Math.min(pageCount - 1, Math.floor(ratio * pageCount));
-      setCurrentPage(page);
-      setOpenChapterList(null);
-      if (activeChapter?.id) {
-        localStorage.setItem(`reader_page_${activeChapter.id}`, page);
+    const root = scrollRef.current;
+    if (!root || pages.length === 0) return undefined;
+    const ratios = new Map();
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        const index = Number(entry.target.dataset.readerPage);
+        if (entry.isIntersecting) ratios.set(index, entry.intersectionRatio);
+        else ratios.delete(index);
       }
-    };
-    el.addEventListener('scroll', handleScroll, { passive: true });
-    return () => el.removeEventListener('scroll', handleScroll);
-  }, [pageCount, activeChapter?.id, setOpenChapterList]);
+      if (ratios.size === 0) return;
+      let bestIndex = 0;
+      let bestRatio = -1;
+      for (const [index, ratio] of ratios) {
+        if (ratio > bestRatio) {
+          bestIndex = index;
+          bestRatio = ratio;
+        }
+      }
+      setCurrentPage((previous) => previous === bestIndex ? previous : bestIndex);
+    }, {
+      root,
+      rootMargin: '-12% 0px -48% 0px',
+      threshold: [0, 0.05, 0.15, 0.3, 0.5, 0.75],
+    });
+    pageRefs.current.forEach((element) => { if (element) observer.observe(element); });
+    return () => observer.disconnect();
+  }, [pages]);
+
+  // Tulis progres setelah halaman aktif stabil, bukan pada setiap event scroll.
+  useEffect(() => {
+    if (!activeChapter?.id || pageCount <= 0) return undefined;
+    const timer = window.setTimeout(() => {
+      try { localStorage.setItem(`reader_page_${activeChapter.id}`, currentPage); } catch {}
+    }, 250);
+    return () => window.clearTimeout(timer);
+  }, [activeChapter?.id, currentPage, pageCount]);
+
+  useEffect(() => {
+    const root = scrollRef.current;
+    if (!root) return undefined;
+    const closeDropdown = () => setOpenChapterList(null);
+    root.addEventListener('scroll', closeDropdown, { passive: true });
+    return () => root.removeEventListener('scroll', closeDropdown);
+  }, [setOpenChapterList]);
 
   useEffect(() => {
     const handleClose = (e) => {
@@ -594,6 +739,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   return (
     <AnimatePresence>
       <motion.div
+        ref={readerDialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Reader ${activeManga?.title || ''} ${activeChapter?.title || ''}`}
+        tabIndex={-1}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -620,7 +770,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 <PageImage
                   key={p}
                   src={p}
-                  fallbackSrc={!chapterNeedsToken && cdnBase && imageBase ? p.replace(cdnBase, imageBase) : null}
+                  fallbackSrc={makeFallbackUrl(idx + 1, p)}
                   idx={idx}
                   registerPage={registerPage}
                   ready={imageReady}
@@ -640,17 +790,35 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
         </div>
 
         {/* Gate Turnstile — locked chapter wajib centang sebelum gambar dimuat */}
-        {chapterNeedsToken && !imgAccess && (
-          <div className="absolute inset-0 z-[205] bg-[#090b0d]/95 backdrop-blur-sm flex flex-col items-center justify-center gap-5 px-6">
+        {accessGateOpen && (
+          <div
+            ref={accessDialogRef}
+            className="absolute inset-0 z-[205] bg-[#090b0d]/95 backdrop-blur-sm flex flex-col items-center justify-center gap-5 px-6"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="chapter-access-title"
+            tabIndex={-1}
+          >
             <div className="flex flex-col items-center gap-2 text-center">
               <Lock className="w-8 h-8 text-primary" />
-              <h3 className="font-headline-md text-base sm:text-lg font-black text-on-surface">Verifikasi untuk membuka chapter</h3>
+              <h3 id="chapter-access-title" className="font-headline-md text-base sm:text-lg font-black text-on-surface">Verifikasi untuk membuka chapter</h3>
               <p className="font-body-md text-xs sm:text-sm text-outline/70 max-w-xs">
                 Chapter berbayar — centang kotak di bawah untuk memuat gambar.
               </p>
             </div>
-            {!tsToken ? (
-              <TurnstileGate onToken={setTsToken} />
+            {accessError ? (
+              <div className="flex max-w-sm flex-col items-center gap-3 text-center">
+                <p className="font-body-md text-sm font-semibold text-red-300">{accessError}</p>
+                <button
+                  type="button"
+                  onClick={retryChapterAccess}
+                  className="h-10 rounded-xl bg-primary px-5 font-label-sm text-xs font-black text-on-primary transition-colors hover:bg-primary/90"
+                >
+                  Coba Verifikasi Lagi
+                </button>
+              </div>
+            ) : !tsToken ? (
+              <TurnstileGate key={gateVersion} onToken={setTsToken} onError={handleTurnstileError} />
             ) : (
               <div className="flex items-center gap-2 text-outline/70">
                 <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
@@ -728,10 +896,12 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                       target.scrollIntoView({ behavior: 'instant', block: 'start' });
                     }}
                     aria-label={`Buka halaman ${i + 1}`}
-                    className={`w-full h-[6px] rounded-full transition-colors duration-150 cursor-pointer ${
-                      i <= currentPage ? 'bg-primary' : 'bg-white/25 hover:bg-white/50'
-                    }`}
-                  />
+                    className="flex h-6 w-full cursor-pointer items-center"
+                  >
+                    <span className={`h-[6px] w-full rounded-full transition-colors duration-150 ${
+                      i <= currentPage ? 'bg-primary' : 'bg-white/25 group-hover/seg:bg-white/50'
+                    }`} />
+                  </button>
                 </div>
               ))}
             </div>
@@ -770,6 +940,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
               onClick={() => setShowLastChapterModal(false)}
             >
               <motion.div
+                ref={lastChapterDialogRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="latest-chapter-title"
+                tabIndex={-1}
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -785,7 +960,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                   />
                 )}
                 <div>
-                  <h3 className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface">Kamu sudah sampai chapter terbaru!</h3>
+                  <h3 id="latest-chapter-title" className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface">Kamu sudah sampai chapter terbaru!</h3>
                   <p className="font-headline-md text-sm sm:text-base font-black text-on-surface/90 mt-2 line-clamp-2">{activeManga?.title}</p>
                   <p className="font-label-sm text-[10px] sm:text-xs text-outline/60 font-bold uppercase tracking-wider mt-1">Chapter saat ini</p>
                   <p className="font-body-md text-sm sm:text-base text-primary font-bold">{activeChapter?.title}</p>
@@ -814,6 +989,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
               onClick={() => setShowDiscordRedirect(false)}
             >
               <motion.div
+                ref={discordDialogRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="discord-redirect-title"
+                tabIndex={-1}
                 initial={{ scale: 0.92, opacity: 0, y: 18 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.92, opacity: 0, y: 18 }}
@@ -824,7 +1004,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                   <img src="/discord-mark-white.svg" alt="Discord" className="h-6 w-6 object-contain" />
                 </div>
                 <div>
-                  <h3 className="font-headline-md text-base font-black text-on-surface sm:text-lg">Buka komentar di Discord?</h3>
+                  <h3 id="discord-redirect-title" className="font-headline-md text-base font-black text-on-surface sm:text-lg">Buka komentar di Discord?</h3>
                   <p className="mt-1.5 font-body-md text-xs leading-relaxed text-outline/75 sm:text-sm">
                     Kamu akan diarahkan ke channel Discord untuk membaca atau menulis komentar chapter ini.
                   </p>
@@ -890,9 +1070,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                   const itemAccessLevel = chapterAccessLevel(ch, now);
                   const showEarlyAccess = itemAccessLevel === 'supporter'
                     && !canReadChapter(ch, { isLoggedIn: !!currentUser, isSupporter }, now);
+                  const releaseAge = ch.release_date ? now - new Date(ch.release_date).getTime() : NaN;
                   const isNew = Boolean(ch.isNew) || (
-                    Boolean(ch.release_date)
-                    && now - new Date(ch.release_date).getTime() < 24 * 60 * 60 * 1000
+                    Number.isFinite(releaseAge)
+                    && releaseAge >= 0
+                    && releaseAge < 24 * 60 * 60 * 1000
                   );
                   const isStatusChapter = isOneshot || (
                     configuredEndChapter != null

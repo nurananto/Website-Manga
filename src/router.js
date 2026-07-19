@@ -16,10 +16,15 @@ export function parsePath(pathname = window.location.pathname) {
 }
 
 export function navigate(path, replace = false) {
+  const currentState = window.history.state && typeof window.history.state === 'object'
+    ? window.history.state
+    : {};
+  window.history.replaceState({ ...currentState, scrollY: window.scrollY }, '', window.location.href);
+  const nextState = { scrollY: 0, from: window.location.pathname };
   if (replace) {
-    window.history.replaceState(null, '', path);
+    window.history.replaceState(nextState, '', path);
   } else {
-    window.history.pushState(null, '', path);
+    window.history.pushState(nextState, '', path);
   }
-  window.dispatchEvent(new PopStateEvent('popstate'));
+  window.dispatchEvent(new PopStateEvent('popstate', { state: nextState }));
 }

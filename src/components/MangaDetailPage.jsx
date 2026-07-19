@@ -1,11 +1,11 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { nowTimestamp, timeAgo } from '../utils';
 import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play, Lock } from 'lucide-react';
-import { MangaDetailSkeleton } from './Skeleton';
 import SupportButtons from './SupportButtons';
 import ResponsiveCover from './ResponsiveCover';
 import CountdownTimer from './CountdownTimer';
 import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
+import { useDialogFocus } from '../lib/useDialogFocus';
 
 const chapterSortValue = (value) => {
   const n = Number(value);
@@ -18,17 +18,7 @@ const fitCreatorStyle = (value) => ({
 });
 
 export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, isSupporter, isLoggedIn }) {
-  const [isLoading, setIsLoading] = useState(true);
   const [expandedSynopsis, setExpandedSynopsis] = useState(false);
-
-  useEffect(() => {
-    const startTimer = setTimeout(() => setIsLoading(true), 0);
-    const endTimer = setTimeout(() => setIsLoading(false), 400);
-    return () => {
-      clearTimeout(startTimer);
-      clearTimeout(endTimer);
-    };
-  }, [manga?.id]);
 
   // Rekam view halaman detail (manga dibuka tapi belum tentu dibaca).
   // Dedup ringan per sesi; server juga dedup per IP/hari. chapter_id = slug manga
@@ -53,10 +43,12 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   const [accessNow, setAccessNow] = useState(() => Date.now());
   const [readChapters, setReadChapters] = useState(new Set());
   const [lightboxCover, setLightboxCover] = useState(null);
+  const lightboxRef = useRef(null);
   const [galleryPage, setGalleryPage] = useState(0);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const GALLERY_PER_PAGE = 6;
   const galleryPages = Math.ceil((manga?.cover_gallery?.length ?? 0) / GALLERY_PER_PAGE);
+  useDialogFocus(lightboxRef, () => setLightboxCover(null), Boolean(lightboxCover));
 
   useEffect(() => {
     const timer = setTimeout(() => setGalleryPage(0), 0);
@@ -95,7 +87,8 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
 
 const renderChapterRow = (ch) => {
     const now = nowTimestamp();
-    const isNew = !!ch.release_date && (now - new Date(ch.release_date).getTime()) < 24 * 60 * 60 * 1000;
+    const releaseAge = ch.release_date ? now - new Date(ch.release_date).getTime() : NaN;
+    const isNew = Number.isFinite(releaseAge) && releaseAge >= 0 && releaseAge < 24 * 60 * 60 * 1000;
     const isUnread = !readChapters.has(ch.id);
     const accessLevel = chapterAccessLevel(ch, now);
     const isBlocked = !canReadChapter(ch, { isLoggedIn, isSupporter }, now);
@@ -106,7 +99,7 @@ const renderChapterRow = (ch) => {
     // Badge status disembunyikan selama badge UP (isNew) masih tampil.
     // Hanya muncul di chapter yang persis = tamat_at_chapter/hiatus_at_chapter.
     const showStatusBadge = !isNew && isFinished && (
-      isOneshot || (targetChapter != null && ch.chapter_number === targetChapter)
+      isOneshot || (targetChapter != null && String(ch.chapter_number) === String(targetChapter))
     );
     const chapterTitle = isOneshot ? 'Oneshot' : ch.title;
 
@@ -115,7 +108,8 @@ const renderChapterRow = (ch) => {
       : '—';
 
     return (
-      <div
+      <button
+        type="button"
         key={ch.id}
         onClick={() => {
           // Chapter terkunci hanya membuka modal beli — belum benar-benar dibaca,
@@ -123,7 +117,7 @@ const renderChapterRow = (ch) => {
           if (!isBlocked) setReadChapters(prev => new Set([...prev, ch.id]));
           onReadChapter(ch, manga.title);
         }}
-        className="group flex items-center justify-between py-3 px-2 sm:px-3 transition-all cursor-pointer rounded-xl border bg-surface-container/30 border-white/8 hover:bg-white/5 hover:border-white/15"
+        className="group flex w-full items-center justify-between py-3 px-2 sm:px-3 text-left transition-all cursor-pointer rounded-xl border bg-surface-container/30 border-white/8 hover:bg-white/5 hover:border-white/15"
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
         <div className={`flex items-center gap-2.5 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
@@ -182,11 +176,9 @@ const renderChapterRow = (ch) => {
             <span>{chapterViews}</span>
           </div>
         </div>
-      </div>
+      </button>
     );
   };
-
-  if (isLoading) return <MangaDetailSkeleton />;
 
   return (
     <div role="main" className="w-full min-h-screen bg-surface text-on-surface font-body-md relative pb-4 md:pb-6 xl:pb-8">
@@ -207,7 +199,7 @@ const renderChapterRow = (ch) => {
               manga={manga}
               alt=""
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="low"
               className="w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
             />
             <div className="absolute inset-0 bg-black/28" />
@@ -224,7 +216,7 @@ const renderChapterRow = (ch) => {
                   manga={manga}
                   alt={`${manga.title} Cover`}
                   loading="eager"
-                  fetchpriority="high"
+                  fetchPriority="high"
                   className="w-full h-full object-cover rounded-xl shadow-2xl border-2 border-white/25"
                 />
             </div>
@@ -258,7 +250,7 @@ const renderChapterRow = (ch) => {
                       className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-white hover:bg-white/90 text-black font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
                     >
                       <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                      Read Ch. 1
+                      {manga.status === 'Oneshot' ? 'Baca Oneshot' : `Baca Ch. ${firstChapter.chapter_number}`}
                     </button>
                     {continueChapter && (
                       <button
@@ -418,12 +410,14 @@ const renderChapterRow = (ch) => {
               <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">Sinopsis</h3>
               <p className="font-body-md text-sm sm:text-sm md:text-base text-on-surface-variant leading-relaxed opacity-90 text-justify">
                 {expandedSynopsis ? (manga.description || '') : `${(manga.description || '').substring(0, 160)}${(manga.description || '').length > 160 ? '...' : ''}`}
-                <button
-                  onClick={() => setExpandedSynopsis(v => !v)}
-                  className="font-label-sm text-primary font-bold ml-1.5 text-xs hover:underline cursor-pointer"
-                >
-                  {expandedSynopsis ? 'Show less' : 'Read more'}
-                </button>
+                {(manga.description || '').length > 160 && (
+                  <button
+                    onClick={() => setExpandedSynopsis(v => !v)}
+                    className="font-label-sm text-primary font-bold ml-1.5 text-xs hover:underline cursor-pointer"
+                  >
+                    {expandedSynopsis ? 'Tampilkan lebih sedikit' : 'Baca selengkapnya'}
+                  </button>
+                )}
               </p>
             </div>
 
@@ -456,6 +450,7 @@ const renderChapterRow = (ch) => {
                       <button
                         onClick={() => setGalleryPage(p => Math.max(0, p - 1))}
                         disabled={galleryPage === 0}
+                        aria-label="Halaman cover sebelumnya"
                         className="absolute -left-1.5 top-1/2 -translate-y-1/2 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/60 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white disabled:opacity-25 disabled:cursor-not-allowed hover:bg-black/80 active:scale-95 transition-all cursor-pointer"
                       >
                         <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -502,6 +497,7 @@ const renderChapterRow = (ch) => {
                       <button
                         onClick={() => setGalleryPage(p => Math.min(galleryPages - 1, p + 1))}
                         disabled={galleryPage >= galleryPages - 1}
+                        aria-label="Halaman cover berikutnya"
                         className="absolute -right-1.5 top-1/2 -translate-y-1/2 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/60 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white disabled:opacity-25 disabled:cursor-not-allowed hover:bg-black/80 active:scale-95 transition-all cursor-pointer"
                       >
                         <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -577,13 +573,23 @@ const renderChapterRow = (ch) => {
             onClick={() => setLightboxCover(null)}
           >
             <button
+              type="button"
+              aria-label="Tutup tampilan cover"
               onClick={() => setLightboxCover(null)}
               className="absolute top-4 right-4 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white cursor-pointer transition-colors z-10"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="relative" onClick={e => e.stopPropagation()}>
+            <div
+              ref={lightboxRef}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Pratinjau cover manga"
+              tabIndex={-1}
+              className="relative"
+              onClick={e => e.stopPropagation()}
+            >
               <img
                 src={lightboxCover.urls.desktop}
                 alt={lightboxCover.volume ? `Cover Vol. ${lightboxCover.volume}` : 'Cover'}

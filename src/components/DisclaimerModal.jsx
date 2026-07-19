@@ -1,7 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
+import { useRef } from 'react';
+import { useDialogFocus } from '../lib/useDialogFocus';
 
 export default function DisclaimerModal({ onClose }) {
+  const dialogRef = useRef(null);
+  useDialogFocus(dialogRef, onClose);
   return (
     <AnimatePresence>
       <motion.div
@@ -12,6 +16,11 @@ export default function DisclaimerModal({ onClose }) {
         onClick={onClose}
       >
         <motion.div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="disclaimer-title"
+          tabIndex={-1}
           initial={{ y: 32, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 32, opacity: 0 }}
@@ -21,7 +30,7 @@ export default function DisclaimerModal({ onClose }) {
         >
           <div className="flex items-center justify-between border-b border-white/8 px-5 pb-4 pt-5">
             <div>
-              <h2 className="font-headline-md text-base font-black text-on-surface">Disclaimer</h2>
+              <h2 id="disclaimer-title" className="font-headline-md text-base font-black text-on-surface">Disclaimer</h2>
               <p className="mt-0.5 font-label-sm text-[10px] text-outline/50">Fan Translation Unofficial</p>
             </div>
             <button

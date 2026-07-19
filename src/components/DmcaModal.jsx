@@ -1,7 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
+import { useRef } from 'react';
+import { useDialogFocus } from '../lib/useDialogFocus';
 
 export default function DmcaModal({ onClose }) {
+  const dialogRef = useRef(null);
+  useDialogFocus(dialogRef, onClose);
   return (
     <AnimatePresence>
       <motion.div
@@ -12,6 +16,11 @@ export default function DmcaModal({ onClose }) {
         onClick={onClose}
       >
         <motion.div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="dmca-title"
+          tabIndex={-1}
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 40, opacity: 0 }}
@@ -21,10 +30,12 @@ export default function DmcaModal({ onClose }) {
         >
           <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-white/8 shrink-0">
             <div>
-              <h2 className="font-headline-md text-base font-black text-on-surface">Kebijakan DMCA</h2>
+              <h2 id="dmca-title" className="font-headline-md text-base font-black text-on-surface">Kebijakan DMCA</h2>
               <p className="font-label-sm text-[10px] text-outline/50 mt-0.5">Perlindungan Hak Cipta</p>
             </div>
             <button
+              type="button"
+              aria-label="Tutup kebijakan DMCA"
               onClick={onClose}
               className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline/60 hover:text-on-surface transition-colors cursor-pointer"
             >

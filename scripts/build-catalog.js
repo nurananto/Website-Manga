@@ -425,7 +425,7 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
 // saat upload chapter massal / backfill).
 async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl) {
   if (!pageId || !pageToken || newChapters.length === 0) return;
-  const host = siteUrl.replace(/^https?:\/\//, '').replace(/\/$/, ''); // nuranantoscans.my.id
+  const host = siteUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
   // newChapters urut terbaru→lama per judul (chapters sudah desc dari build-catalog).
   const byManga = new Map();
