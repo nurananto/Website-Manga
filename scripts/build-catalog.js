@@ -117,10 +117,10 @@ async function fetchMangaDexRating(mangadexId) {
 // Menggantikan cover di Discord & Facebook. Chapter GRATIS: URL publik via CDN
 // (langsung embed). Chapter LOCKED: byte diambil dari bucket privat manga-locked
 // (R2), karena halaman locked TIDAK boleh ada di bucket publik (lihat
-// scripts/check-locked-leak.js). Butuh CF_ACCOUNT_ID + R2_ACCESS_KEY_ID +
+// scripts/check-chapters.js). Butuh CF_ACCOUNT_ID + R2_ACCESS_KEY_ID +
 // R2_SECRET_ACCESS_KEY + R2_LOCKED_BUCKET_NAME di env (lihat build-catalog.yml).
 const CDN_BASE = (process.env.CDN_BASE || '').replace(/\/$/, '');
-const pageFileName = (n) => `Image${String(n).padStart(2, '0')}.webp`; // samakan ReaderModal/check-locked-leak
+const pageFileName = (n) => `Image${String(n).padStart(2, '0')}.webp`; // samakan ReaderModal/check-chapters
 const firstPageKey = (slug, chapterFolder) => `manga/${slug}/${chapterFolder}/${pageFileName(1)}`;
 
 const STATUS_MAP = {

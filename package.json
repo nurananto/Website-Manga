@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "sitemap": "node scripts/generate-sitemap.js",
-    "check:locked": "node scripts/check-locked-leak.js",
-    "check:unlock": "node scripts/check-unlock-migration.js"
+    "check:chapters": "node scripts/check-chapters.js"
   },
   "dependencies": {
     "@fontsource/geist": "^5.2.9",
