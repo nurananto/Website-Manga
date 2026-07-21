@@ -1,5 +1,76 @@
 [
   {
+    "id": "Yuumei",
+    "title": "Yuumei VTuber no Ani Dakedo, Nazeka Ore ga Yuumei ni Natteita",
+    "description": "Aku punya adik tiri bernama Isuzu. Dia adalah VTuber super populer dengan lebih dari 1 juta subscriber, 'Isuzu Wine'. Suatu hari, dia lupa mematikan siaran, dan percakapan aslinya denganku tanpa sengaja tersebar ke seluruh dunia! Potongan video insiden siaran itu dengan cepat menyebar, dan dalam…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=3"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.2,
+    "chapter_count": 28,
+    "total_views": 180,
+    "isTrending": true,
+    "latest_release_date": "2026-07-21T23:28:24+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "discord_channel_id": "1517524250175737906",
+    "chapters": [
+      {
+        "chapter_number": 23.2,
+        "lock_hours": 504,
+        "pages": 15,
+        "r2_folder": 23.2,
+        "id": "Yuumei-ch-23.2",
+        "r2_prefix": "manga/Yuumei/23.2/",
+        "title": "Ch. 23.2",
+        "release_date": "2026-07-21T23:28:24+07:00",
+        "unlockDate": "2026-08-11T16:28:24.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 23.1,
+        "lock_hours": 672,
+        "pages": 12,
+        "release_date": "2026-07-07T22:48:58+07:00",
+        "r2_folder": 23.1,
+        "id": "Yuumei-ch-23.1",
+        "r2_prefix": "manga/Yuumei/23.1/",
+        "title": "Ch. 23.1",
+        "unlockDate": "2026-08-04T15:48:58.000Z",
+        "isLocked": true,
+        "views": 6
+      },
+      {
+        "chapter_number": 22.2,
+        "lock_hours": 312,
+        "pages": 10,
+        "release_date": "2026-06-25T11:27:34+07:00",
+        "r2_folder": 22.2,
+        "id": "Yuumei-ch-22.2",
+        "r2_prefix": "manga/Yuumei/22.2/",
+        "title": "Ch. 22.2",
+        "unlockDate": "2026-07-08T04:27:34.000Z",
+        "isLocked": false,
+        "views": 27
+      }
+    ]
+  },
+  {
     "id": "ClassdeIchiban",
     "title": "Class de Ichiban Kawaii Gal wo Ezuke shiteiru Hanashi",
     "description": "Sakura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
@@ -306,7 +377,7 @@
     "rating": 7.36,
     "chapter_count": 17,
     "total_views": 157,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-07-12T11:31:18+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -714,77 +785,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 1
-      }
-    ]
-  },
-  {
-    "id": "Yuumei",
-    "title": "Yuumei VTuber no Ani Dakedo, Nazeka Ore ga Yuumei ni Natteita",
-    "description": "Aku punya adik tiri bernama Isuzu. Dia adalah VTuber super populer dengan lebih dari 1 juta subscriber, 'Isuzu Wine'. Suatu hari, dia lupa mematikan siaran, dan percakapan aslinya denganku tanpa sengaja tersebar ke seluruh dunia! Potongan video insiden siaran itu dengan cepat menyebar, dan dalam…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=3",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=3",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=3"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Harem",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 8.2,
-    "chapter_count": 27,
-    "total_views": 180,
-    "isTrending": false,
-    "latest_release_date": "2026-07-07T22:48:58+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "discord_channel_id": "1517524250175737906",
-    "chapters": [
-      {
-        "chapter_number": 23.1,
-        "lock_hours": 672,
-        "pages": 12,
-        "release_date": "2026-07-07T22:48:58+07:00",
-        "r2_folder": 23.1,
-        "id": "Yuumei-ch-23.1",
-        "r2_prefix": "manga/Yuumei/23.1/",
-        "title": "Ch. 23.1",
-        "unlockDate": "2026-08-04T15:48:58.000Z",
-        "isLocked": true,
-        "views": 6
-      },
-      {
-        "chapter_number": 22.2,
-        "lock_hours": 312,
-        "pages": 10,
-        "release_date": "2026-06-25T11:27:34+07:00",
-        "r2_folder": 22.2,
-        "id": "Yuumei-ch-22.2",
-        "r2_prefix": "manga/Yuumei/22.2/",
-        "title": "Ch. 22.2",
-        "unlockDate": "2026-07-08T04:27:34.000Z",
-        "isLocked": false,
-        "views": 27
-      },
-      {
-        "chapter_number": 22.1,
-        "lock_hours": 312,
-        "pages": 12,
-        "release_date": "2026-06-17T20:34:53+07:00",
-        "r2_folder": 22.1,
-        "id": "Yuumei-ch-22.1",
-        "r2_prefix": "manga/Yuumei/22.1/",
-        "title": "Ch. 22.1",
-        "unlockDate": "2026-06-30T13:34:53.000Z",
-        "isLocked": false,
-        "views": 29
       }
     ]
   },
