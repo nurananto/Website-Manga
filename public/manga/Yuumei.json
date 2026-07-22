@@ -37,11 +37,12 @@
     "21.1": 14,
     "21.2": 15,
     "22.1": 29,
-    "22.2": 27,
+    "22.2": 28,
     "23.1": 6,
-    "1.5": 1
+    "1.5": 1,
+    "23.2": 1
   },
-  "total_views": 180,
+  "total_views": 186,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -74,7 +75,7 @@
     }
   ],
   "discord_channel_id": "1517524250175737906",
-  "detail_views": 63,
+  "detail_views": 67,
   "cover_version": 3,
   "mangadex_id": "9aebe60e-777f-4a58-a3bf-143c3096b94f",
   "rating": 8.2,
@@ -86,6 +87,19 @@
     "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
+    {
+      "chapter_number": 23.2,
+      "lock_hours": 504,
+      "pages": 15,
+      "release_date": "2026-07-21T23:28:24+07:00",
+      "r2_folder": 23.2,
+      "id": "Yuumei-ch-23.2",
+      "r2_prefix": "manga/Yuumei/23.2/",
+      "title": "Ch. 23.2",
+      "unlockDate": "2026-08-11T16:28:24.000Z",
+      "isLocked": true,
+      "views": 1
+    },
     {
       "chapter_number": 23.1,
       "lock_hours": 672,
@@ -110,7 +124,7 @@
       "title": "Ch. 22.2",
       "unlockDate": "2026-07-08T04:27:34.000Z",
       "isLocked": false,
-      "views": 27
+      "views": 28
     },
     {
       "chapter_number": 22.1,
