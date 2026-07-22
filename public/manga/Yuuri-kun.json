@@ -27,9 +27,9 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "oneshot": 9
+    "oneshot": 10
   },
-  "total_views": 19,
+  "total_views": 20,
   "mangadex_cover": "8235d341-4f78-4d32-a747-08ba7c4afa58.png",
   "cover_widths": "1280x960x640",
   "cover_version": 2,
@@ -66,7 +66,7 @@
       "r2_prefix": "manga/Yuuri-kun/Oneshot/",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     }
   ]
 }
