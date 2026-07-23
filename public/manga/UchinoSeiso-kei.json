@@ -32,10 +32,10 @@
     "10.1": 2,
     "11.1": 5,
     "10.2": 1,
-    "11.2": 1,
-    "12.1": 1
+    "11.2": 2,
+    "12.1": 2
   },
-  "total_views": 50,
+  "total_views": 52,
   "mangadex_cover": "6da6cf64-c44f-4153-801e-77cdf9a92d3b.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -91,7 +91,7 @@
       "title": "Ch. 12.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 11.2,
@@ -104,7 +104,7 @@
       "title": "Ch. 11.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 11.1,

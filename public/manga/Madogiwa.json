@@ -27,8 +27,8 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 6,
-    "2": 2,
+    "1": 7,
+    "2": 3,
     "3": 2,
     "4": 2,
     "5": 2,
@@ -43,9 +43,9 @@
     "13.1": 5,
     "13.2": 11,
     "14.1": 21,
-    "14.2": 21
+    "14.2": 24
   },
-  "total_views": 166,
+  "total_views": 172,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -69,7 +69,7 @@
     }
   ],
   "discord_channel_id": "1517523939935649985",
-  "detail_views": 59,
+  "detail_views": 60,
   "mangadex_id": "a0ecce48-aa4c-48e6-8d9b-90f322a5687a",
   "rating": 7.36,
   "next_update": null,
@@ -91,7 +91,7 @@
       "title": "Ch. 14.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 21
+      "views": 24
     },
     {
       "chapter_number": 14.1,
@@ -286,7 +286,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 1,
@@ -299,7 +299,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     }
   ]
 }
