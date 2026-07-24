@@ -25,7 +25,7 @@
   "tamat_at_chapter": 25,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 2,
+    "1": 3,
     "2": 1,
     "3": 1,
     "4": 1,
@@ -44,9 +44,9 @@
     "22": 2,
     "23": 2,
     "24": 2,
-    "25": 7
+    "25": 8
   },
-  "total_views": 33,
+  "total_views": 36,
   "mangadex_cover": "1f5fe857-3e84-451f-8a1c-d25e3960c1b4.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -61,7 +61,7 @@
     }
   ],
   "discord_channel_id": "1517523987830280323",
-  "detail_views": 3,
+  "detail_views": 4,
   "mangadex_id": "832a0bcb-f58a-4118-9130-43c03d289a8d",
   "rating": 8.64,
   "next_update": null,
@@ -83,7 +83,7 @@
       "title": "Ch. 25",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     },
     {
       "chapter_number": 24,
@@ -395,7 +395,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     }
   ]
 }
