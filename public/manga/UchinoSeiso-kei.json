@@ -81,6 +81,19 @@
   },
   "chapters": [
     {
+      "chapter_number": 12.2,
+      "lock_hours": 0,
+      "pages": 21,
+      "r2_folder": 12.2,
+      "id": "UchinoSeiso-kei-ch-12.2",
+      "r2_prefix": "manga/UchinoSeiso-kei/12.2/",
+      "title": "Ch. 12.2",
+      "release_date": "2026-07-24T20:35:24+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 12.1,
       "lock_hours": 0,
       "pages": 23,
