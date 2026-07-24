@@ -1,5 +1,76 @@
 [
   {
+    "id": "TensaiBishoujo",
+    "title": "Tensai Bishoujo Sanshimai wa Isourou ni Dake Choro Kawaii",
+    "description": "Seorang pemuda biasa dan para jenius tinggal bersama di bawah satu atap — romcom harem penuh kekacauan dengan tingkat keimutannya MAX! '…Mau datang ke rumahku?' Setelah rumahnya tiba-tiba hangus terbakar, Riku akhirnya tinggal menumpang di rumah keluarga Tennousu — tiga kakak beradik cantik jelita…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=1",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=1",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp?v=1",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=1"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 7.78,
+    "chapter_count": 5,
+    "total_views": 15,
+    "isTrending": true,
+    "latest_release_date": "2026-07-24T13:49:29+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "discord_channel_id": "1517524124526837912",
+    "chapters": [
+      {
+        "chapter_number": 5,
+        "lock_hours": 0,
+        "pages": 29,
+        "r2_folder": 5,
+        "id": "TensaiBishoujo-ch-5",
+        "r2_prefix": "manga/TensaiBishoujo/5/",
+        "title": "Ch. 5",
+        "release_date": "2026-07-24T13:49:29+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 4,
+        "lock_hours": 0,
+        "pages": 21,
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "r2_folder": 4,
+        "id": "TensaiBishoujo-ch-4",
+        "r2_prefix": "manga/TensaiBishoujo/4/",
+        "title": "Ch. 4",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 3
+      },
+      {
+        "chapter_number": 3,
+        "lock_hours": 0,
+        "pages": 28,
+        "release_date": "2026-06-14T15:10:34+07:00",
+        "r2_folder": 3,
+        "id": "TensaiBishoujo-ch-3",
+        "r2_prefix": "manga/TensaiBishoujo/3/",
+        "title": "Ch. 3",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 1
+      }
+    ]
+  },
+  {
     "id": "ZunouBattle",
     "title": "Ore wa Gakuen Zunou Battle no Enshutsuka!: Jishou Mobu ga Kage kara Egaku Saikyou Shujinkou Musou Scenario",
     "description": "Di SMA Teio, segalanya ditentukan lewat duel permainan. Yang harus kulakukan sebagai perwujudan karakter figuran, Tanaka Kanata, bukanlah meraih kejayaan untuk diriku sendiri! Satu-satunya tugasku adalah “menyutradarai” dari balik layar agar Kiriya, murid pindahan terkuat dari bawah, hingga…",
@@ -306,7 +377,7 @@
     "rating": 7.71,
     "chapter_count": 16,
     "total_views": 482,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-07-17T22:42:07+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -1682,77 +1753,6 @@
         "id": "KiminoNegai-ch-7",
         "r2_prefix": "manga/KiminoNegai/7/",
         "title": "Ch. 7",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 0
-      }
-    ]
-  },
-  {
-    "id": "TensaiBishoujo",
-    "title": "Tensai Bishoujo Sanshimai wa Isourou ni Dake Choro Kawaii",
-    "description": "Seorang pemuda biasa dan para jenius tinggal bersama di bawah satu atap — romcom harem penuh kekacauan dengan tingkat keimutannya MAX! '…Mau datang ke rumahku?' Setelah rumahnya tiba-tiba hangus terbakar, Riku akhirnya tinggal menumpang di rumah keluarga Tennousu — tiga kakak beradik cantik jelita…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=1",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=1"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Harem",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 7.78,
-    "chapter_count": 4,
-    "total_views": 15,
-    "isTrending": false,
-    "latest_release_date": "2026-06-14T15:10:34+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "discord_channel_id": "1517524124526837912",
-    "chapters": [
-      {
-        "chapter_number": 4,
-        "lock_hours": 0,
-        "pages": 21,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "r2_folder": 4,
-        "id": "TensaiBishoujo-ch-4",
-        "r2_prefix": "manga/TensaiBishoujo/4/",
-        "title": "Ch. 4",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 3
-      },
-      {
-        "chapter_number": 3,
-        "lock_hours": 0,
-        "pages": 28,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "r2_folder": 3,
-        "id": "TensaiBishoujo-ch-3",
-        "r2_prefix": "manga/TensaiBishoujo/3/",
-        "title": "Ch. 3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 1
-      },
-      {
-        "chapter_number": 2,
-        "lock_hours": 0,
-        "pages": 34,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "r2_folder": 2,
-        "id": "TensaiBishoujo-ch-2",
-        "r2_prefix": "manga/TensaiBishoujo/2/",
-        "title": "Ch. 2",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
