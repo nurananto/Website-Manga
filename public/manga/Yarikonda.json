@@ -28,17 +28,17 @@
   "tamat_at_chapter": 9,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 11,
-    "2": 2,
+    "1": 13,
+    "2": 4,
     "3": 1,
     "4": 2,
     "5": 4,
     "6": 3,
     "7": 4,
     "8": 18,
-    "9": 22
+    "9": 23
   },
-  "total_views": 105,
+  "total_views": 112,
   "mangadex_cover": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -71,7 +71,7 @@
     }
   ],
   "discord_channel_id": "1517524210547818596",
-  "detail_views": 38,
+  "detail_views": 40,
   "cover_version": 2,
   "mangadex_id": "a605a5d0-21a6-481f-a055-74735ea4f2c2",
   "rating": 7.35,
@@ -94,7 +94,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 22
+      "views": 23
     },
     {
       "chapter_number": 8,
@@ -185,7 +185,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 4
     },
     {
       "chapter_number": 1,
@@ -198,7 +198,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 13
     }
   ]
 }

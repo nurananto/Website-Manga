@@ -20,7 +20,7 @@
     ],
     "rating": 8.37,
     "chapter_count": 15,
-    "total_views": 52,
+    "total_views": 54,
     "isTrending": true,
     "latest_release_date": "2026-07-24T20:35:24+07:00",
     "next_update": null,
@@ -32,14 +32,14 @@
         "chapter_number": 12.2,
         "lock_hours": 0,
         "pages": 21,
+        "release_date": "2026-07-24T20:35:24+07:00",
         "r2_folder": 12.2,
         "id": "UchinoSeiso-kei-ch-12.2",
         "r2_prefix": "manga/UchinoSeiso-kei/12.2/",
         "title": "Ch. 12.2",
-        "release_date": "2026-07-24T20:35:24+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 12.1,
@@ -91,7 +91,7 @@
     ],
     "rating": 7.78,
     "chapter_count": 5,
-    "total_views": 15,
+    "total_views": 26,
     "isTrending": true,
     "latest_release_date": "2026-07-24T13:49:29+07:00",
     "next_update": null,
@@ -110,7 +110,7 @@
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 4
       },
       {
         "chapter_number": 4,
@@ -123,7 +123,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 4
       },
       {
         "chapter_number": 3,
@@ -136,7 +136,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       }
     ]
   },
@@ -162,7 +162,7 @@
     ],
     "rating": 8.24,
     "chapter_count": 12,
-    "total_views": 217,
+    "total_views": 219,
     "isTrending": true,
     "latest_release_date": "2026-07-22T15:25:23+07:00",
     "next_update": null,
@@ -207,7 +207,7 @@
         "title": "Ch. 6.3",
         "unlockDate": "2026-07-22T11:03:47.000Z",
         "isLocked": false,
-        "views": 12
+        "views": 13
       }
     ]
   },
@@ -233,7 +233,7 @@
     ],
     "rating": 8.2,
     "chapter_count": 28,
-    "total_views": 221,
+    "total_views": 246,
     "isTrending": true,
     "latest_release_date": "2026-07-21T23:28:24+07:00",
     "next_update": null,
@@ -278,7 +278,7 @@
         "title": "Ch. 22.2",
         "unlockDate": "2026-07-08T04:27:34.000Z",
         "isLocked": false,
-        "views": 34
+        "views": 35
       }
     ]
   },
@@ -374,9 +374,9 @@
       "Slice of Life",
       "Tragedy"
     ],
-    "rating": 7.71,
+    "rating": 7.73,
     "chapter_count": 16,
-    "total_views": 482,
+    "total_views": 522,
     "isTrending": false,
     "latest_release_date": "2026-07-17T22:42:07+07:00",
     "next_update": null,
@@ -408,7 +408,7 @@
         "title": "Ch. 7.1",
         "unlockDate": "2026-07-18T02:52:50.000Z",
         "isLocked": false,
-        "views": 26
+        "views": 31
       },
       {
         "chapter_number": 6.5,
@@ -421,7 +421,7 @@
         "title": "Ch. 6.5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 33
+        "views": 37
       }
     ]
   },
@@ -446,7 +446,7 @@
     ],
     "rating": 7.5,
     "chapter_count": 24,
-    "total_views": 212,
+    "total_views": 215,
     "isTrending": false,
     "latest_release_date": "2026-07-17T11:36:23+07:00",
     "next_update": null,
@@ -518,7 +518,7 @@
     ],
     "rating": 7.36,
     "chapter_count": 17,
-    "total_views": 172,
+    "total_views": 176,
     "isTrending": false,
     "latest_release_date": "2026-07-12T11:31:18+07:00",
     "next_update": null,
@@ -537,7 +537,7 @@
         "title": "Ch. 14.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 24
+        "views": 25
       },
       {
         "chapter_number": 14.1,
@@ -742,7 +742,7 @@
     ],
     "rating": 7.94,
     "chapter_count": 3,
-    "total_views": 14,
+    "total_views": 15,
     "isTrending": false,
     "latest_release_date": "2026-07-09T20:33:22+07:00",
     "next_update": null,
@@ -786,7 +786,7 @@
         "title": "Ch. 1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 5
       }
     ]
   },
@@ -884,7 +884,7 @@
     ],
     "rating": 7.42,
     "chapter_count": 10,
-    "total_views": 117,
+    "total_views": 128,
     "isTrending": false,
     "latest_release_date": "2026-07-07T20:55:27+07:00",
     "next_update": null,
@@ -903,7 +903,7 @@
         "title": "Ch. 7.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 13
+        "views": 14
       },
       {
         "chapter_number": 7.2,
@@ -916,7 +916,7 @@
         "title": "Ch. 7.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 11
+        "views": 12
       },
       {
         "chapter_number": 7.1,
@@ -929,7 +929,7 @@
         "title": "Ch. 7.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 7
+        "views": 8
       }
     ]
   },
@@ -938,11 +938,11 @@
     "title": "Kanojo ni Shitai Joshi Ichii, no Tonari de Mitsuketa Amari-chan",
     "description": "'Kisah Romantis Komedi Dimulai dari Persahabatan dengan Heroine Tersembunyi yang Hanya Aku Tahu.'Dia anak baik, tapi terlalu biasa saja… Itulah Fukusuke Mogi, yang diam-diam mengagumi Kureha Yua, gadis tercantik di kelas.Namun, orang yang digosipkan bersama Yui adalah sahabatnya, Fujisaki Yuusei,…",
     "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=1",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=2",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp?v=1"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp?v=2"
     },
     "genres": [
       "Adaptation",
@@ -955,7 +955,7 @@
     ],
     "rating": 8.48,
     "chapter_count": 16,
-    "total_views": 45,
+    "total_views": 50,
     "isTrending": false,
     "latest_release_date": "2026-07-05T23:57:11+07:00",
     "next_update": null,
@@ -1000,7 +1000,7 @@
         "title": "Ch. 10.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 4
       }
     ]
   },
@@ -1025,7 +1025,7 @@
     ],
     "rating": 6.79,
     "chapter_count": 16,
-    "total_views": 114,
+    "total_views": 118,
     "isTrending": false,
     "latest_release_date": "2026-07-04T23:37:08+07:00",
     "next_update": null,
@@ -1094,9 +1094,9 @@
       "Shounen",
       "Supernatural"
     ],
-    "rating": 8.52,
+    "rating": 8.28,
     "chapter_count": 4,
-    "total_views": 33,
+    "total_views": 35,
     "isTrending": false,
     "latest_release_date": "2026-07-03T20:15:09+07:00",
     "next_update": null,
@@ -1168,7 +1168,7 @@
     ],
     "rating": 7.35,
     "chapter_count": 9,
-    "total_views": 105,
+    "total_views": 112,
     "isTrending": false,
     "latest_release_date": "2026-07-02T18:06:40+07:00",
     "next_update": null,
@@ -1187,7 +1187,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 22
+        "views": 23
       },
       {
         "chapter_number": 8,
@@ -1238,7 +1238,7 @@
     ],
     "rating": 8.42,
     "chapter_count": 12,
-    "total_views": 67,
+    "total_views": 81,
     "isTrending": false,
     "latest_release_date": "2026-06-21T17:41:08+07:00",
     "next_update": null,
@@ -1257,7 +1257,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 12
+        "views": 13
       },
       {
         "chapter_number": 11,
@@ -1270,7 +1270,7 @@
         "title": "Ch. 11",
         "unlockDate": null,
         "isLocked": false,
-        "views": 12
+        "views": 13
       },
       {
         "chapter_number": 10,
@@ -1283,7 +1283,7 @@
         "title": "Ch. 10",
         "unlockDate": null,
         "isLocked": false,
-        "views": 7
+        "views": 8
       }
     ]
   },
@@ -1306,7 +1306,7 @@
     ],
     "rating": 8.61,
     "chapter_count": 18,
-    "total_views": 64,
+    "total_views": 65,
     "isTrending": false,
     "latest_release_date": "2026-06-20T18:38:40+07:00",
     "next_update": null,
@@ -1377,7 +1377,7 @@
     ],
     "rating": 8.2,
     "chapter_count": 20,
-    "total_views": 21,
+    "total_views": 23,
     "isTrending": false,
     "latest_release_date": "2026-06-20T14:53:29+07:00",
     "next_update": null,
@@ -1446,7 +1446,7 @@
     ],
     "rating": 8.6,
     "chapter_count": 142,
-    "total_views": 1,
+    "total_views": 12,
     "isTrending": false,
     "latest_release_date": "2026-06-20T14:53:29+07:00",
     "next_update": null,
@@ -1513,9 +1513,9 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 7.83,
+    "rating": 7.81,
     "chapter_count": 18,
-    "total_views": 92,
+    "total_views": 94,
     "isTrending": false,
     "latest_release_date": "2026-06-20T04:40:50+07:00",
     "next_update": null,
@@ -1534,7 +1534,7 @@
         "title": "Ch. 17.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 19
+        "views": 20
       },
       {
         "chapter_number": 17.1,
@@ -1547,7 +1547,7 @@
         "title": "Ch. 17.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 13
+        "views": 14
       },
       {
         "chapter_number": 16,
@@ -1848,7 +1848,7 @@
     ],
     "rating": 8.64,
     "chapter_count": 25,
-    "total_views": 36,
+    "total_views": 38,
     "isTrending": false,
     "latest_release_date": "2026-06-13T20:30:05+07:00",
     "next_update": null,
@@ -1916,7 +1916,7 @@
     ],
     "rating": 8.66,
     "chapter_count": 216,
-    "total_views": 186,
+    "total_views": 188,
     "isTrending": false,
     "latest_release_date": "2026-06-13T19:03:42+07:00",
     "next_update": null,

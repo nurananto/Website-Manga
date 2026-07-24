@@ -41,10 +41,10 @@
     "14": 3,
     "15": 3,
     "16": 5,
-    "17.1": 13,
-    "17.2": 19
+    "17.1": 14,
+    "17.2": 20
   },
-  "total_views": 92,
+  "total_views": 94,
   "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -70,7 +70,7 @@
   "discord_channel_id": "1517524076028104795",
   "detail_views": 21,
   "mangadex_id": "16c34950-954c-4f0d-808e-d8278a546339",
-  "rating": 7.83,
+  "rating": 7.81,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp?v=1",
   "coverUrls": {
@@ -90,7 +90,7 @@
       "title": "Ch. 17.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 19
+      "views": 20
     },
     {
       "chapter_number": 17.1,
@@ -103,7 +103,7 @@
       "title": "Ch. 17.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 16,

@@ -27,12 +27,12 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 6,
+    "1": 7,
     "2": 3,
     "3": 1,
     "4": 7
   },
-  "total_views": 33,
+  "total_views": 35,
   "mangadex_cover": "4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c.jpg",
   "cover_widths": "1280x960x640",
   "cover_version": 2,
@@ -47,9 +47,9 @@
       }
     }
   ],
-  "detail_views": 16,
+  "detail_views": 17,
   "mangadex_id": "bb64b3e5-64d1-4d7d-bbd5-e6cd754dd5fa",
-  "rating": 8.52,
+  "rating": 8.28,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover.webp?v=2",
   "coverUrls": {
@@ -108,7 +108,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     }
   ]
 }
