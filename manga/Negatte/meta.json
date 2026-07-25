@@ -27,22 +27,22 @@
   "chapter_views": {
     "1": 5,
     "2": 1,
-    "3": 1,
+    "3": 2,
     "4": 1,
-    "5": 1,
+    "5": 2,
     "6": 1,
     "7": 2,
     "8": 2,
     "9": 3,
-    "10": 4,
+    "10": 5,
     "11": 5,
     "12": 5,
     "13": 15,
     "14": 8,
     "15": 10,
-    "16": 21
+    "16": 22
   },
-  "total_views": 118,
+  "total_views": 123,
   "mangadex_cover": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -79,6 +79,6 @@
   ],
   "discord_channel_id": "1517524008457863168",
   "cover_version": 2,
-  "detail_views": 33,
-  "view_sync_cutoff": "2026-07-24 17:00:56"
+  "detail_views": 34,
+  "view_sync_cutoff": "2026-07-25 17:00:15"
 }
