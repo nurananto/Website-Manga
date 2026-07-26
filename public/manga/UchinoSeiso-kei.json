@@ -82,14 +82,27 @@
   },
   "chapters": [
     {
+      "chapter_number": 13.2,
+      "lock_hours": 0,
+      "pages": 17,
+      "r2_folder": 13.2,
+      "id": "UchinoSeiso-kei-ch-13.2",
+      "r2_prefix": "manga/UchinoSeiso-kei/13.2/",
+      "title": "Ch. 13.2",
+      "release_date": "2026-07-26T19:28:52+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 13.1,
       "lock_hours": 0,
       "pages": 20,
+      "release_date": "2026-07-26T17:44:05+07:00",
       "r2_folder": 13.1,
       "id": "UchinoSeiso-kei-ch-13.1",
       "r2_prefix": "manga/UchinoSeiso-kei/13.1/",
       "title": "Ch. 13.1",
-      "release_date": "2026-07-26T17:44:05+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
