@@ -27,7 +27,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 7,
+    "1": 8,
     "2": 3,
     "3": 2,
     "4": 2,
@@ -43,9 +43,9 @@
     "13.1": 5,
     "13.2": 11,
     "14.1": 21,
-    "14.2": 24
+    "14.2": 26
   },
-  "total_views": 172,
+  "total_views": 177,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -69,9 +69,9 @@
     }
   ],
   "discord_channel_id": "1517523939935649985",
-  "detail_views": 60,
+  "detail_views": 62,
   "mangadex_id": "a0ecce48-aa4c-48e6-8d9b-90f322a5687a",
-  "rating": 7.36,
+  "rating": 7.37,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=1",
   "coverUrls": {
@@ -91,7 +91,7 @@
       "title": "Ch. 14.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 24
+      "views": 26
     },
     {
       "chapter_number": 14.1,
@@ -299,7 +299,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     }
   ]
 }
