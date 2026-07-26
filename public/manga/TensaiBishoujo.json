@@ -30,9 +30,9 @@
     "2": 1,
     "3": 2,
     "4": 4,
-    "5": 5
+    "5": 6
   },
-  "total_views": 33,
+  "total_views": 37,
   "mangadex_cover": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -47,7 +47,7 @@
     }
   ],
   "discord_channel_id": "1517524124526837912",
-  "detail_views": 13,
+  "detail_views": 16,
   "mangadex_id": "ee1eb629-79c9-410f-927c-dd7a4cd1d87b",
   "rating": 7.78,
   "next_update": null,
@@ -69,7 +69,7 @@
       "title": "Ch. 5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 6
     },
     {
       "chapter_number": 4,
