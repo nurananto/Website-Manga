@@ -88,6 +88,19 @@
   },
   "chapters": [
     {
+      "chapter_number": 17,
+      "lock_hours": 0,
+      "pages": 30,
+      "r2_folder": 17,
+      "id": "Negatte-ch-17",
+      "r2_prefix": "manga/Negatte/17/",
+      "title": "Ch. 17",
+      "release_date": "2026-07-27T22:52:51+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 16,
       "lock_hours": 0,
       "pages": 24,
