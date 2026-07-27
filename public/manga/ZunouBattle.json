@@ -26,20 +26,20 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 8,
-    "2": 3,
-    "3": 5,
-    "4": 10,
-    "5.2": 12,
-    "5.3": 15,
-    "5.1": 11,
-    "6.1": 19,
-    "6.3": 13,
-    "6.2": 19,
+    "1": 9,
+    "2": 4,
+    "3": 6,
+    "4": 11,
+    "5.2": 13,
+    "5.3": 16,
+    "5.1": 12,
+    "6.1": 20,
+    "6.3": 14,
+    "6.2": 20,
     "7.1": 12,
     "7.2": 4
   },
-  "total_views": 226,
+  "total_views": 239,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -55,9 +55,9 @@
   ],
   "discord_channel_id": "1517524270371311676",
   "cover_version": 3,
-  "detail_views": 95,
+  "detail_views": 98,
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
-  "rating": 8.24,
+  "rating": 8.23,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=3",
   "coverUrls": {
@@ -103,7 +103,7 @@
       "title": "Ch. 6.3",
       "unlockDate": "2026-07-22T11:03:47.000Z",
       "isLocked": false,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 6.2,
@@ -116,7 +116,7 @@
       "title": "Ch. 6.2",
       "unlockDate": "2026-07-08T11:03:47.000Z",
       "isLocked": false,
-      "views": 19
+      "views": 20
     },
     {
       "chapter_number": 6.1,
@@ -129,7 +129,7 @@
       "title": "Ch. 6.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 19
+      "views": 20
     },
     {
       "chapter_number": 5.3,
@@ -142,7 +142,7 @@
       "title": "Ch. 5.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 15
+      "views": 16
     },
     {
       "chapter_number": 5.2,
@@ -155,7 +155,7 @@
       "title": "Ch. 5.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 12
+      "views": 13
     },
     {
       "chapter_number": 5.1,
@@ -168,7 +168,7 @@
       "title": "Ch. 5.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 4,
@@ -181,7 +181,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 3,
@@ -194,7 +194,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 6
     },
     {
       "chapter_number": 2,
@@ -207,7 +207,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 1,
@@ -220,7 +220,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     }
   ]
 }
