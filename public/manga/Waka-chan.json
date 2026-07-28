@@ -77,7 +77,7 @@
     "215.6": 6,
     "215.7": 6,
     "215.8": 7,
-    "215.9": 11,
+    "215.9": 12,
     "215.1": 4,
     "204.5": 2,
     "208.5": 2,
@@ -90,7 +90,7 @@
     "190.5": 1,
     "195.5": 1
   },
-  "total_views": 188,
+  "total_views": 190,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -204,7 +204,7 @@
     }
   ],
   "discord_channel_id": "1517524180294172712",
-  "detail_views": 34,
+  "detail_views": 35,
   "mangadex_id": "57fe3f00-8626-462b-8f75-fce0e6faa6be",
   "rating": 8.66,
   "next_update": null,
@@ -226,7 +226,7 @@
       "title": "Ch. 215.9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 215.8,

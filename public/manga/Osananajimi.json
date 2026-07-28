@@ -40,11 +40,11 @@
     "6.1": 40,
     "6.2": 38,
     "6.3": 33,
-    "7.1": 33,
+    "7.1": 34,
     "6.5": 37,
     "7.2": 5
   },
-  "total_views": 532,
+  "total_views": 535,
   "mangadex_cover": "a1bd83b1-b73e-430f-8f3b-cd194cb2c029.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -59,7 +59,7 @@
     }
   ],
   "discord_channel_id": "1517524030142550058",
-  "detail_views": 144,
+  "detail_views": 146,
   "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
   "rating": 7.72,
   "next_update": null,
@@ -94,7 +94,7 @@
       "title": "Ch. 7.1",
       "unlockDate": "2026-07-18T02:52:50.000Z",
       "isLocked": false,
-      "views": 33
+      "views": 34
     },
     {
       "chapter_number": 6.5,

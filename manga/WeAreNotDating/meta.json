@@ -35,9 +35,10 @@
     "7": 1,
     "8": 1,
     "9": 1,
-    "10": 1
+    "10": 1,
+    "142": 1
   },
-  "total_views": 12,
+  "total_views": 14,
   "mangadex_cover": "98be450d-fef5-4324-a277-94856f13b8bf.png",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -74,6 +75,6 @@
   ],
   "fb_cover": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf.webp",
   "cover_version": 2,
-  "detail_views": 2,
-  "view_sync_cutoff": "2026-07-24 17:00:56"
+  "detail_views": 3,
+  "view_sync_cutoff": "2026-07-27 17:00:45"
 }
