@@ -36,9 +36,11 @@
     "98": 1,
     "99": 2,
     "100": 5,
+    "161": 1,
+    "171": 1,
     "178": 1,
-    "180": 1,
-    "181": 1,
+    "180": 2,
+    "181": 2,
     "182": 1,
     "183": 1,
     "184": 1,
@@ -47,17 +49,17 @@
     "187": 1,
     "188": 1,
     "189": 1,
-    "190": 1,
-    "191": 1,
-    "192": 2,
-    "193": 3,
-    "194": 1,
+    "190": 2,
+    "191": 2,
+    "192": 3,
+    "193": 4,
+    "194": 2,
     "195": 1,
-    "196": 1,
-    "197": 2,
-    "198": 2,
-    "199": 2,
-    "200": 2,
+    "196": 2,
+    "197": 3,
+    "198": 3,
+    "199": 3,
+    "200": 3,
     "201": 2,
     "202": 2,
     "203": 2,
@@ -65,32 +67,33 @@
     "205": 3,
     "206": 2,
     "207": 2,
-    "208": 2,
-    "209": 2,
+    "208": 3,
+    "209": 3,
     "210": 2,
     "211": 2,
     "212": 2,
     "213": 2,
     "214": 3,
     "201.5": 3,
-    "215.5": 6,
+    "215.5": 7,
     "215.6": 6,
     "215.7": 6,
     "215.8": 7,
-    "215.9": 12,
+    "215.9": 13,
     "215.1": 4,
     "204.5": 2,
-    "208.5": 2,
+    "208.5": 3,
     "210.5": 2,
     "215.2": 3,
-    "215.3": 3,
-    "215.4": 5,
+    "215.3": 4,
+    "215.4": 6,
     "183.5": 1,
     "186.5": 1,
-    "190.5": 1,
-    "195.5": 1
+    "190.5": 2,
+    "195.5": 1,
+    "161.5": 1
   },
-  "total_views": 190,
+  "total_views": 214,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -204,7 +207,7 @@
     }
   ],
   "discord_channel_id": "1517524180294172712",
-  "detail_views": 35,
+  "detail_views": 36,
   "mangadex_id": "57fe3f00-8626-462b-8f75-fce0e6faa6be",
   "rating": 8.66,
   "next_update": null,
@@ -226,7 +229,7 @@
       "title": "Ch. 215.9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 12
+      "views": 13
     },
     {
       "chapter_number": 215.8,
@@ -278,7 +281,7 @@
       "title": "Ch. 215.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 215.4,
@@ -291,7 +294,7 @@
       "title": "Ch. 215.4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 6
     },
     {
       "chapter_number": 215.3,
@@ -304,7 +307,7 @@
       "title": "Ch. 215.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 215.2,
@@ -421,7 +424,7 @@
       "title": "Ch. 209",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 208.5,
@@ -434,7 +437,7 @@
       "title": "Ch. 208.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 208,
@@ -447,7 +450,7 @@
       "title": "Ch. 208",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 207,
@@ -577,7 +580,7 @@
       "title": "Ch. 200",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 199,
@@ -590,7 +593,7 @@
       "title": "Ch. 199",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 198,
@@ -603,7 +606,7 @@
       "title": "Ch. 198",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 197,
@@ -616,7 +619,7 @@
       "title": "Ch. 197",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 196,
@@ -629,7 +632,7 @@
       "title": "Ch. 196",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 195.5,
@@ -668,7 +671,7 @@
       "title": "Ch. 194",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 193,
@@ -681,7 +684,7 @@
       "title": "Ch. 193",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 192,
@@ -694,7 +697,7 @@
       "title": "Ch. 192",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 191,
@@ -707,7 +710,7 @@
       "title": "Ch. 191",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 190.5,
@@ -720,7 +723,7 @@
       "title": "Ch. 190.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 190,
@@ -733,7 +736,7 @@
       "title": "Ch. 190",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 189,
@@ -876,7 +879,7 @@
       "title": "Ch. 181",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 180,
@@ -889,7 +892,7 @@
       "title": "Ch. 180",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 179,
@@ -1032,7 +1035,7 @@
       "title": "Ch. 171",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 170,
@@ -1162,7 +1165,7 @@
       "title": "Ch. 161.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 161,
@@ -1175,7 +1178,7 @@
       "title": "Ch. 161",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 160,
