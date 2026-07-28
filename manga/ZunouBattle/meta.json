@@ -31,15 +31,15 @@
     "3": 6,
     "4": 11,
     "5.2": 13,
-    "5.3": 16,
+    "5.3": 17,
     "5.1": 12,
-    "6.1": 20,
-    "6.3": 14,
-    "6.2": 20,
+    "6.1": 21,
+    "6.3": 15,
+    "6.2": 21,
     "7.1": 12,
     "7.2": 4
   },
-  "total_views": 239,
+  "total_views": 245,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -56,6 +56,6 @@
   ],
   "discord_channel_id": "1517524270371311676",
   "cover_version": 3,
-  "detail_views": 98,
-  "view_sync_cutoff": "2026-07-27 17:00:45"
+  "detail_views": 100,
+  "view_sync_cutoff": "2026-07-28 17:00:44"
 }
