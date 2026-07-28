@@ -1,5 +1,75 @@
 [
   {
+    "id": "Suufungo",
+    "title": "Suufungo no Mirai ga Wakaru You ni Natta kedo, Onnagokoro wa Wakaranai.",
+    "description": "Arase Itou bisa melihat beberapa menit ke depan. Namun, masa depan yang ia lihat selalu berhubungan dengan masalah. Arase yang baik hati berusaha menghindari masa depan yang tidak menyenangkan ini, namun pada akhirnya masalah tersebut tetap membuatnya membantu berbagai gadis dengan masalah mereka.…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp?v=1",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp?v=1",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@tablet.webp?v=1",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@mobile.webp?v=1"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "School Life",
+      "Shounen"
+    ],
+    "rating": 7.81,
+    "chapter_count": 19,
+    "total_views": 97,
+    "isTrending": true,
+    "latest_release_date": "2026-07-28T16:05:03+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "discord_channel_id": "1517524076028104795",
+    "chapters": [
+      {
+        "chapter_number": 18.1,
+        "lock_hours": 0,
+        "pages": 14,
+        "r2_folder": 18.1,
+        "id": "Suufungo-ch-18.1",
+        "r2_prefix": "manga/Suufungo/18.1/",
+        "title": "Ch. 18.1",
+        "release_date": "2026-07-28T16:05:03+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 17.2,
+        "lock_hours": 0,
+        "pages": 22,
+        "release_date": "2026-06-20T04:40:50+07:00",
+        "r2_folder": 17.2,
+        "id": "Suufungo-ch-17.2",
+        "r2_prefix": "manga/Suufungo/17.2/",
+        "title": "Ch. 17.2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 21
+      },
+      {
+        "chapter_number": 17.1,
+        "lock_hours": 0,
+        "pages": 21,
+        "release_date": "2026-06-19T23:09:16+07:00",
+        "r2_folder": 17.1,
+        "id": "Suufungo-ch-17.1",
+        "r2_prefix": "manga/Suufungo/17.1/",
+        "title": "Ch. 17.1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 14
+      }
+    ]
+  },
+  {
     "id": "Negatte",
     "title": "Negatte mo Nai Tsuihou Go kara no Slow Life? ~Intai Shita Hazu ga Nariyuki de Bishoujo Gyaru no Shishou ni Nattara Naze ka Mechakucha Natsukareta~",
     "description": "Reito Harukaze, yang telah naik hingga ranking tertinggi adventurer, telah pensiun. Saat ia berniat untuk hidup santai dan pensiun, suatu hari seorang gadis gal cantik bernama Karen Hiiragi muncul di hadapannya. 'Hey, onii-san, traktir makan dong!' Mendengar bahwa Karen kesulitan uang, Reito…",
@@ -305,7 +375,7 @@
     "rating": 8.23,
     "chapter_count": 12,
     "total_views": 239,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-07-22T15:25:23+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -1491,76 +1561,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 0
-      }
-    ]
-  },
-  {
-    "id": "Suufungo",
-    "title": "Suufungo no Mirai ga Wakaru You ni Natta kedo, Onnagokoro wa Wakaranai.",
-    "description": "Arase Itou bisa melihat beberapa menit ke depan. Namun, masa depan yang ia lihat selalu berhubungan dengan masalah. Arase yang baik hati berusaha menghindari masa depan yang tidak menyenangkan ini, namun pada akhirnya masalah tersebut tetap membuatnya membantu berbagai gadis dengan masalah mereka.…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp?v=1",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@mobile.webp?v=1"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Harem",
-      "Romance",
-      "School Life",
-      "Shounen"
-    ],
-    "rating": 7.81,
-    "chapter_count": 18,
-    "total_views": 97,
-    "isTrending": false,
-    "latest_release_date": "2026-06-20T04:40:50+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "discord_channel_id": "1517524076028104795",
-    "chapters": [
-      {
-        "chapter_number": 17.2,
-        "lock_hours": 0,
-        "pages": 22,
-        "release_date": "2026-06-20T04:40:50+07:00",
-        "r2_folder": 17.2,
-        "id": "Suufungo-ch-17.2",
-        "r2_prefix": "manga/Suufungo/17.2/",
-        "title": "Ch. 17.2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 21
-      },
-      {
-        "chapter_number": 17.1,
-        "lock_hours": 0,
-        "pages": 21,
-        "release_date": "2026-06-19T23:09:16+07:00",
-        "r2_folder": 17.1,
-        "id": "Suufungo-ch-17.1",
-        "r2_prefix": "manga/Suufungo/17.1/",
-        "title": "Ch. 17.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 14
-      },
-      {
-        "chapter_number": 16,
-        "lock_hours": 0,
-        "pages": 29,
-        "release_date": "2026-06-14T15:10:34+07:00",
-        "r2_folder": 16,
-        "id": "Suufungo-ch-16",
-        "r2_prefix": "manga/Suufungo/16/",
-        "title": "Ch. 16",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 5
       }
     ]
   },

@@ -80,6 +80,19 @@
   },
   "chapters": [
     {
+      "chapter_number": 18.1,
+      "lock_hours": 0,
+      "pages": 14,
+      "r2_folder": 18.1,
+      "id": "Suufungo-ch-18.1",
+      "r2_prefix": "manga/Suufungo/18.1/",
+      "title": "Ch. 18.1",
+      "release_date": "2026-07-28T16:05:03+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 17.2,
       "lock_hours": 0,
       "pages": 22,
