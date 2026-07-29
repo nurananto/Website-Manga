@@ -247,7 +247,7 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
               <p className="text-[10px] font-black text-outline uppercase tracking-wider">Cara jadi Supporter</p>
               {[
                 { n: 1, text: 'Klik tombol di bawah → buka halaman Trakteer' },
-                { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan email akunmu: <span className="text-amber-300 font-bold break-all">{userEmail || '—'}</span></> },
+                { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan email akunmu: <span className="text-amber-300 font-bold break-all">{userEmail || 'email yang kamu pakai untuk masuk'}</span></> },
                 { n: 3, text: <><strong className="text-red-400">Jangan</strong> centang "Jadikan pesan private"</> },
                 { n: 4, text: <>Donasi minimal <strong className="text-on-surface">{SUPPORTER_MIN}</strong>, lalu bayar</> },
                 { n: 5, text: 'Status Supporter aktif otomatis setelah donasi dikonfirmasi (30 hari)' },

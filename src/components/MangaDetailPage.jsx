@@ -6,6 +6,7 @@ import ResponsiveCover from './ResponsiveCover';
 import CountdownTimer from './CountdownTimer';
 import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
 import { useDialogFocus } from '../lib/useDialogFocus';
+import { recordView } from '../lib/viewGate';
 
 const chapterSortValue = (value) => {
   const n = Number(value);
@@ -17,7 +18,7 @@ const fitCreatorStyle = (value) => ({
   '--creator-chars': Math.max(String(value || '').length, 8),
 });
 
-export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, isSupporter, isLoggedIn }) {
+export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, isSupporter, isLoggedIn, onDonate }) {
   const [expandedSynopsis, setExpandedSynopsis] = useState(false);
 
   // Rekam view halaman detail (manga dibuka tapi belum tentu dibaca).
@@ -33,9 +34,12 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
     const key = `dvw_${manga.id}_${day}`;
     try {
       if (localStorage.getItem(key)) return;
-      localStorage.setItem(key, '1');
     } catch {}
-    fetch(`${workerUrl}/api/r/${encodeURIComponent(manga.id)}`, { method: 'POST' }).catch(() => {});
+    // Tandai dedup-harian HANYA jika server benar-benar mencatat (lolos view-gate),
+    // supaya percobaan yang gagal (Turnstile ditutup/keblok) bisa dicoba lagi.
+    recordView(manga.id).then((ok) => {
+      if (ok) { try { localStorage.setItem(key, '1'); } catch {} }
+    });
   }, [manga?.id]);
   const [sortNewest, setSortNewest] = useState(true);
   const [showAllChapters, setShowAllChapters] = useState(false);
@@ -209,7 +213,7 @@ const renderChapterRow = (ch) => {
           </div>
 
           {/* Info Over Cover Container */}
-          <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-6 pb-4">
+          <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-3 sm:gap-6 pb-4">
             {/* Cover Image */}
             <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[2/3] flex-shrink-0">
               <ResponsiveCover
@@ -222,7 +226,7 @@ const renderChapterRow = (ch) => {
             </div>
 
             {/* Metadata info */}
-            <div className="flex-grow min-w-0 w-full flex flex-col items-center sm:items-start mt-3 sm:mt-0 pb-1">
+            <div className="flex-grow min-w-0 w-full flex flex-col items-center sm:items-start pb-1">
               {/* Title — max 2 baris */}
               <h2 className="font-headline-md text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-on-surface font-black tracking-tight mb-1.5 text-center sm:text-left line-clamp-2">
                 {manga.title}
@@ -268,9 +272,9 @@ const renderChapterRow = (ch) => {
           </div>
         </section>
 
-        {/* Tombol dukungan: Donasi Trakteer + Gabung Discord */}
+        {/* Tombol dukungan: buka modal pengingat email dulu, bukan lompat langsung ke Trakteer */}
         <div className="w-full mt-4 md:mt-6 xl:mt-8 px-3 sm:px-4 md:px-5">
-          <SupportButtons />
+          <SupportButtons onDonate={onDonate} />
         </div>
 
         {/* Wrapper: border di mobile/tablet, tidak di desktop */}

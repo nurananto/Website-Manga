@@ -7,6 +7,8 @@ import { nowTimestamp } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
+import { recordView } from '../lib/viewGate';
+import { getDeviceId } from '../lib/device';
 import { canReadChapter, chapterAccessLevel } from '../lib/chapterAccess';
 import { useDialogFocus } from '../lib/useDialogFocus';
 import ResponsiveCover from './ResponsiveCover';
@@ -296,9 +298,12 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
         const k = localStorage.key(i);
         if (k && (k.startsWith('vw_') || k.startsWith('dvw_') || k.startsWith('viewed_')) && !k.endsWith(day)) localStorage.removeItem(k);
       }
-      localStorage.setItem(key, '1');
     } catch {}
-    fetch(`${workerUrl}/api/r/${chapter.id}`, { method: 'POST' }).catch(() => {});
+    // Tandai dedup-harian HANYA jika server benar-benar mencatat (lolos view-gate),
+    // supaya percobaan yang gagal (Turnstile ditutup/keblok) bisa dicoba lagi.
+    recordView(chapter.id).then((ok) => {
+      if (ok) { try { localStorage.setItem(key, '1'); } catch {} }
+    });
   }, [chapter?.id, chapterNeedsToken]);
 
   const chapters = manga?.chapters || [];
@@ -398,7 +403,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
         if (cancelled) return;
         const res = await fetch(`${workerUrl}/api/user/chapter-token`, {
           method: 'POST',
-          headers: { 'Authorization': `Bearer ${tok}`, 'Content-Type': 'application/json' },
+          headers: { 'Authorization': `Bearer ${tok}`, 'Content-Type': 'application/json', 'X-Device-Id': getDeviceId() },
           body: JSON.stringify({
             chapter_id: chapter.id,
             chapter_number: chapter.chapter_number,

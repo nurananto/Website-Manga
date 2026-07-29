@@ -474,6 +474,28 @@ export default function App() {
         return;
       }
 
+      // OAuth gagal di sisi Worker → mendarat dengan ?auth_error=... (tanpa ?code).
+      // Tampilkan pesan ramah lalu bersihkan param dari URL, bukan bounce senyap.
+      const authError = params.get('auth_error');
+      if (authError) {
+        const MSG = {
+          verify:         'Verifikasi keamanan gagal. Silakan coba masuk lagi.',
+          server_busy:    'Server sedang sibuk. Coba masuk lagi sebentar lagi.',
+          invalid_state:  'Sesi masuk kedaluwarsa. Silakan coba lagi.',
+          missing_params: 'Sesi masuk kedaluwarsa. Silakan coba lagi.',
+          token_exchange: 'Masuk dengan Google gagal. Silakan coba lagi.',
+          profile:        'Masuk dengan Google gagal. Silakan coba lagi.',
+          profile_data:   'Masuk dengan Google gagal. Silakan coba lagi.',
+        };
+        // Pakai setToastMessage langsung (bukan showToast) karena showToast
+        // dideklarasi setelah efek ini — hindari akses sebelum deklarasi.
+        setToastMessage(MSG[authError] || 'Gagal masuk. Silakan coba lagi.');
+        setTimeout(() => setToastMessage(null), 3000);
+        params.delete('auth_error');
+        const clean = window.location.pathname + (params.toString() ? `?${params}` : '') + window.location.hash;
+        window.history.replaceState(null, '', clean);
+      }
+
       // Cek session yang sudah ada
       const user = getCurrentUser();
       if (!user) return;
@@ -903,6 +925,7 @@ export default function App() {
               lastReadChapter={historyChapters[selectedManga.id]}
               isSupporter={isSupporter}
               isLoggedIn={isLoggedIn}
+              onDonate={() => setIsCoinModalOpen(true)}
             />
           </Suspense>
         ) : (
@@ -960,8 +983,8 @@ export default function App() {
                       }}
                     />
 
-                    {/* Tombol dukungan: Donasi Trakteer + Gabung Discord */}
-                    <SupportButtons className="mt-2" />
+                    {/* Tombol dukungan: buka modal pengingat email dulu, bukan lompat langsung ke Trakteer */}
+                    <SupportButtons className="mt-2" onDonate={() => setIsCoinModalOpen(true)} />
 
                     </> ) : null}
                   </>
