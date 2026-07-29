@@ -216,10 +216,9 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
                   <Check className="w-4 h-4 shrink-0" /> Status Supporter aktif selama 30 hari
                 </div>
               </div>
-              {/* Info pendukung — rata kiri, lebih kecil & redup, line-height ~1.5.
-                  text-balance meratakan panjang baris → celah kanan lebih kecil
-                  tanpa justify (sesuai preferensi). */}
-              <p className="text-[11px] text-outline/70 leading-normal mt-3 text-balance">
+              {/* Info pendukung — justify agar sisi kanan rata (baris terakhir tetap
+                  rata kiri, wajar), lebih kecil & redup, line-height ~1.5. */}
+              <p className="text-[11px] text-outline/70 leading-normal mt-3 text-justify">
                 Donasi minimal <strong className="text-on-surface">{SUPPORTER_MIN}</strong> melalui Trakteer. Status Supporter akan aktif otomatis setelah donasi dikonfirmasi.
               </p>
             </div>
