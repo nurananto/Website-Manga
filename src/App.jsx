@@ -189,7 +189,8 @@ export default function App() {
     let currentCatalog = null;
     let lastCheckedAt = 0;
     let isChecking = false;
-    const checkInterval = 10 * 60 * 1000;
+    const checkInterval = 5 * 60 * 1000;   // poll berkala tiap 5 menit
+    const focusThrottle = 30 * 1000;       // saat balik ke tab, cek bila >30 dtk
 
     const checkVersion = async () => {
       if (document.visibilityState !== 'visible' || isChecking) return;
@@ -233,7 +234,9 @@ export default function App() {
     checkVersion();
     const interval = setInterval(checkVersion, checkInterval);
     const handleVisibility = () => {
-      if (document.visibilityState === 'visible' && Date.now() - lastCheckedAt >= checkInterval) {
+      // Balik ke tab → cek update segera (throttle 30 dtk) supaya reload terasa
+      // hampir instan saat pengguna kembali, tak perlu menunggu poll berkala.
+      if (document.visibilityState === 'visible' && Date.now() - lastCheckedAt >= focusThrottle) {
         checkVersion();
       }
     };
