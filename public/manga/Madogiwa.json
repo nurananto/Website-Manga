@@ -40,13 +40,13 @@
     "11": 10,
     "12.1": 6,
     "12.2": 7,
-    "13.1": 5,
-    "13.2": 11,
-    "14.1": 21,
-    "14.2": 27,
-    "15.1": 10
+    "13.1": 6,
+    "13.2": 12,
+    "14.1": 22,
+    "14.2": 28,
+    "15.1": 12
   },
-  "total_views": 195,
+  "total_views": 203,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -70,7 +70,7 @@
     }
   ],
   "discord_channel_id": "1517523939935649985",
-  "detail_views": 69,
+  "detail_views": 71,
   "mangadex_id": "a0ecce48-aa4c-48e6-8d9b-90f322a5687a",
   "rating": 7.37,
   "next_update": null,
@@ -92,7 +92,7 @@
       "title": "Ch. 15.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 12
     },
     {
       "chapter_number": 14.2,
@@ -105,7 +105,7 @@
       "title": "Ch. 14.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 27
+      "views": 28
     },
     {
       "chapter_number": 14.1,
@@ -118,7 +118,7 @@
       "title": "Ch. 14.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 21
+      "views": 22
     },
     {
       "chapter_number": 13.2,
@@ -131,7 +131,7 @@
       "title": "Ch. 13.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 13.1,
@@ -144,7 +144,7 @@
       "title": "Ch. 13.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 6
     },
     {
       "chapter_number": 12.2,

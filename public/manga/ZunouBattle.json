@@ -34,12 +34,12 @@
     "5.3": 17,
     "5.1": 12,
     "6.1": 21,
-    "6.3": 15,
+    "6.3": 16,
     "6.2": 21,
     "7.1": 12,
     "7.2": 4
   },
-  "total_views": 245,
+  "total_views": 248,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -55,7 +55,7 @@
   ],
   "discord_channel_id": "1517524270371311676",
   "cover_version": 3,
-  "detail_views": 100,
+  "detail_views": 102,
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
   "rating": 8.2,
   "next_update": null,
@@ -103,7 +103,7 @@
       "title": "Ch. 6.3",
       "unlockDate": "2026-07-22T11:03:47.000Z",
       "isLocked": false,
-      "views": 15
+      "views": 16
     },
     {
       "chapter_number": 6.2,

@@ -25,7 +25,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 13,
+    "1": 14,
     "2": 5,
     "3": 4,
     "4": 4,
@@ -46,11 +46,11 @@
     "18.1": 15,
     "18.2": 10,
     "20.1": 10,
-    "20.2": 10,
+    "20.2": 12,
     "21.1": 6,
     "21.2": 5
   },
-  "total_views": 221,
+  "total_views": 225,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
   "cover_widths": "1280x960x640",
   "cover_gallery": [
@@ -83,7 +83,7 @@
     }
   ],
   "discord_channel_id": "1517523784821768212",
-  "detail_views": 66,
+  "detail_views": 67,
   "mangadex_id": "26854d1a-dfd0-4e5c-b6d1-ab291035b8cc",
   "rating": 7.5,
   "next_update": null,
@@ -131,7 +131,7 @@
       "title": "Ch. 20.2",
       "unlockDate": "2026-07-17T05:00:00.000Z",
       "isLocked": false,
-      "views": 10
+      "views": 12
     },
     {
       "chapter_number": 20.1,
@@ -404,7 +404,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 14
     }
   ]
 }
