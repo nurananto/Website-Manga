@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Check, Crown } from 'lucide-react';
+import { X, Check, Crown, Info } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import ResponsiveCover from './ResponsiveCover';
@@ -176,6 +176,9 @@ export function AuthModal({ isOpen, onClose, reason }) {
 // Donasi >= Rp 5.000 → akses semua chapter terkunci selama 30 hari.
 export function SupporterModal({ isOpen, onClose, userEmail }) {
   const dialogRef = useRef(null);
+  // Selalu mulai ringkas. Modal ini di-unmount saat ditutup (dirender via
+  // `isCoinModalOpen && …`), jadi state kembali false sendiri tiap kali dibuka.
+  const [showGuide, setShowGuide] = useState(false);
   useDialogFocus(dialogRef, onClose, isOpen);
   if (!isOpen) return null;
   return (
@@ -191,15 +194,16 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
           <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="overflow-y-auto hide-scrollbar max-h-[90vh] p-6 flex flex-col gap-5">
+            {/* Header — framing pengingat, bukan ajakan "Jadi Supporter" */}
             <div className="flex justify-between items-start">
               <div>
                 <h3 id="supporter-modal-title" className="text-base font-black text-on-surface flex items-center gap-2">
                   <Crown className="w-5 h-5 text-amber-400 fill-current" />
-                  Jadi Supporter
+                  Jangan Lupa!
                 </h3>
-                <p className="text-xs text-outline mt-0.5">Buka chapter Early Access</p>
+                <p className="text-xs text-outline mt-0.5">Dengan berdonasi, kamu bisa akses chapter Early Access</p>
               </div>
-              <button type="button" aria-label="Tutup dialog Supporter" onClick={onClose}
+              <button type="button" aria-label="Tutup dialog" onClick={onClose}
                 className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline cursor-pointer">
                 <X className="w-4 h-4" />
               </button>
@@ -218,52 +222,70 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
               </p>
             </div>
 
-            {/* Mockup Trakteer — tunjukkan email di kolom Pesan & jangan dijadikan private */}
-            <div className="border border-white/10 rounded-xl overflow-hidden bg-[#1a1a2e]">
-              <div className="px-3 py-2 border-b border-white/5 flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full bg-sky-500/30 flex items-center justify-center text-[8px] font-black text-sky-300">N</div>
-                <div>
-                  <p className="text-[10px] font-black text-white/80">Nurananto Scanlation</p>
-                  <p className="text-[9px] text-white/40">@NuranantoScanlation</p>
-                </div>
-              </div>
-              <div className="p-3 flex flex-col gap-2">
-                <div className="bg-white/5 rounded-lg p-2.5">
-                  <p className="text-[9px] text-white/40 mb-1">Pesan</p>
-                  <p className="text-[10px] font-bold text-amber-300 break-all">{userEmail || 'email@kamu.com'}</p>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-3 h-3 rounded border border-white/20 flex items-center justify-center bg-white/5">
-                    <div className="w-1.5 h-1.5 rounded-[1px] bg-red-400" />
+            {/* Pengingat email singkat — selalu tampil biar tidak lupa */}
+            <p className="text-[11px] text-outline/80 leading-relaxed text-center">
+              Penting: tulis <strong className="text-amber-300">email akunmu</strong> di kolom <strong className="text-on-surface">Pesan</strong> Trakteer (jangan di-private). Lihat <strong className="text-on-surface">Tata Cara</strong> untuk panduan.
+            </p>
+
+            {/* Panduan lengkap (mockup + langkah) — muncul saat "Tata Cara" ditekan */}
+            {showGuide && (
+              <div className="flex flex-col gap-4 animate-[slideUpFade_0.25s_ease-out]">
+                {/* Mockup Trakteer — tunjukkan email di kolom Pesan & jangan dijadikan private */}
+                <div className="border border-white/10 rounded-xl overflow-hidden bg-[#1a1a2e]">
+                  <div className="px-3 py-2 border-b border-white/5 flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full bg-sky-500/30 flex items-center justify-center text-[8px] font-black text-sky-300">N</div>
+                    <div>
+                      <p className="text-[10px] font-black text-white/80">Nurananto Scanlation</p>
+                      <p className="text-[9px] text-white/40">@NuranantoScanlation</p>
+                    </div>
                   </div>
-                  <p className="text-[9px] text-red-400 line-through">Jadikan pesan private</p>
-                  <span className="text-[9px] text-white/40">← jangan!</span>
+                  <div className="p-3 flex flex-col gap-2">
+                    <div className="bg-white/5 rounded-lg p-2.5">
+                      <p className="text-[9px] text-white/40 mb-1">Pesan</p>
+                      <p className="text-[10px] font-bold text-amber-300 break-all">{userEmail || 'email@kamu.com'}</p>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-3 h-3 rounded border border-white/20 flex items-center justify-center bg-white/5">
+                        <div className="w-1.5 h-1.5 rounded-[1px] bg-red-400" />
+                      </div>
+                      <p className="text-[9px] text-red-400 line-through">Jadikan pesan private</p>
+                      <span className="text-[9px] text-white/40">← jangan!</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Cara donasi */}
+                <div className="flex flex-col gap-2">
+                  <p className="text-[10px] font-black text-outline uppercase tracking-wider">Cara jadi Supporter</p>
+                  {[
+                    { n: 1, text: 'Klik "Lanjut Trakteer" → buka halaman Trakteer' },
+                    { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan email akunmu: <span className="text-amber-300 font-bold break-all">{userEmail || 'email yang kamu pakai untuk masuk'}</span></> },
+                    { n: 3, text: <><strong className="text-red-400">Jangan</strong> centang "Jadikan pesan private"</> },
+                    { n: 4, text: <>Donasi minimal <strong className="text-on-surface">{SUPPORTER_MIN}</strong>, lalu bayar</> },
+                    { n: 5, text: 'Status Supporter aktif otomatis setelah donasi dikonfirmasi (30 hari)' },
+                  ].map(({ n, text }) => (
+                    <div key={n} className="flex gap-2.5 items-start">
+                      <span className="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-[9px] font-black flex items-center justify-center shrink-0 mt-0.5">{n}</span>
+                      <p className="text-[11px] text-outline/80 leading-relaxed">{text}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
+            )}
 
-            {/* Cara donasi */}
-            <div className="flex flex-col gap-2">
-              <p className="text-[10px] font-black text-outline uppercase tracking-wider">Cara jadi Supporter</p>
-              {[
-                { n: 1, text: 'Klik tombol di bawah → buka halaman Trakteer' },
-                { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan email akunmu: <span className="text-amber-300 font-bold break-all">{userEmail || 'email yang kamu pakai untuk masuk'}</span></> },
-                { n: 3, text: <><strong className="text-red-400">Jangan</strong> centang "Jadikan pesan private"</> },
-                { n: 4, text: <>Donasi minimal <strong className="text-on-surface">{SUPPORTER_MIN}</strong>, lalu bayar</> },
-                { n: 5, text: 'Status Supporter aktif otomatis setelah donasi dikonfirmasi (30 hari)' },
-              ].map(({ n, text }) => (
-                <div key={n} className="flex gap-2.5 items-start">
-                  <span className="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-[9px] font-black flex items-center justify-center shrink-0 mt-0.5">{n}</span>
-                  <p className="text-[11px] text-outline/80 leading-relaxed">{text}</p>
-                </div>
-              ))}
+            {/* Dua tombol: Tata Cara (buka mockup) + Lanjut Trakteer */}
+            <div className="flex gap-2">
+              <button type="button" onClick={() => setShowGuide((v) => !v)} aria-expanded={showGuide}
+                className="flex-1 h-12 rounded-xl border border-amber-400/45 text-amber-300 hover:bg-amber-400/10 font-black text-sm flex items-center justify-center gap-2 transition-colors active:scale-[0.98] cursor-pointer">
+                <Info className="w-4 h-4" />
+                {showGuide ? 'Sembunyikan' : 'Tata Cara'}
+              </button>
+              <a href={TRAKTEER_URL} target="_blank" rel="noopener noreferrer"
+                className="flex-1 h-12 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
+                <Crown className="w-4 h-4 fill-current" />
+                Lanjut Trakteer
+              </a>
             </div>
-
-            <a href={TRAKTEER_URL} target="_blank" rel="noopener noreferrer"
-              className="w-full h-12 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
-              <Crown className="w-4 h-4 fill-current" />
-              Dukung via Trakteer
-            </a>
           </div>
         </motion.div>
       </div>

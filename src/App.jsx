@@ -3,6 +3,7 @@ import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
 import SupportButtons from './components/SupportButtons';
+import LazyBoundary from './components/LazyBoundary';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
 import ResponsiveCover from './components/ResponsiveCover';
@@ -24,7 +25,15 @@ const DmcaModal           = lazy(() => import('./components/DmcaModal'));
 const DisclaimerModal     = lazy(() => import('./components/DisclaimerModal'));
 let coinModalsPromise;
 const loadCoinModals = () => {
-  coinModalsPromise ||= import('./components/CoinModals');
+  // Jangan cache promise yang GAGAL: kalau import chunk sempat error (mis. jaringan
+  // atau chunk lama hilang setelah deploy), buang cache agar percobaan berikutnya
+  // retry — bukan menyimpan rejeksi selamanya sehingga modal tak pernah muncul.
+  if (!coinModalsPromise) {
+    coinModalsPromise = import('./components/CoinModals').catch((err) => {
+      coinModalsPromise = undefined;
+      throw err;
+    });
+  }
   return coinModalsPromise;
 };
 const AuthModal           = lazy(() => loadCoinModals().then(m => ({ default: m.AuthModal })));
@@ -838,6 +847,7 @@ export default function App() {
   };
 
   return (
+   <LazyBoundary>
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
 
       {/* Splash saat balik dari OAuth — sebelum reader/halaman tampil kembali */}
@@ -1333,5 +1343,6 @@ export default function App() {
         </div>
       )}
     </div>
+   </LazyBoundary>
   );
 }
