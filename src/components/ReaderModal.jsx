@@ -819,10 +819,13 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             {/* Navigasi bawah */}
             {renderNavBar('bottom')}
 
-            {/* Kembali ke detail + komentar Discord — bawah */}
+            {/* Kembali ke detail — bawah */}
             {renderDetailBackBar()}
 
-            <div className="pb-4 md:pb-6 xl:pb-8" />
+            {/* Ruang bawah. Saat progress bar EXPAND (menetap di mobile setelah tap),
+                pakai clearance ~80px agar bar "Kembali ke Detail" terdorong naik
+                melewati progress bar dan tidak bertumpuk. Collapsed → padding normal. */}
+            <div className={barExpanded ? 'pb-safe-20' : 'pb-4 md:pb-6 xl:pb-8'} />
           </div>
         </div>
 

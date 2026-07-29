@@ -202,7 +202,7 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
             </div>
 
             {/* Benefit */}
-            <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-3">
+            <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl px-3 py-3">
               {/* Headline — pesan utama, rata tengah, sedikit lebih besar dari info pendukung */}
               <p className="text-center text-sm font-semibold text-amber-100 leading-snug mb-4">
                 Nikmati akses ke semua chapter Early Access selama 30 hari dengan menjadi Supporter.
@@ -222,9 +222,9 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
               </p>
             </div>
 
-            {/* Pengingat email singkat — selalu tampil biar tidak terlewat */}
+            {/* Pointer ke panduan lengkap */}
             <p className="text-[11px] text-outline/80 leading-relaxed text-center">
-              Tips: cantumkan <strong className="text-amber-300">email akunmu</strong> di kolom <strong className="text-on-surface">Pesan</strong> Trakteer (biarkan publik) agar donasimu otomatis terhubung ke akun. Panduan lengkap ada di <strong className="text-on-surface">Tata Cara</strong>.
+              Panduan lengkap, baca <strong className="text-on-surface">Tata Cara</strong> di bawah ini.
             </p>
 
             {/* Panduan lengkap (mockup + langkah) — muncul saat "Tata Cara" ditekan */}
