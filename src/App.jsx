@@ -182,7 +182,11 @@ export default function App() {
 
 
   useEffect(() => {
-    let currentVersion = null;
+    // v = hash KODE (reload penuh saat berubah); catalog = stempel KATALOG
+    // (refresh halus). Dipisah supaya sinkron katalog yang sering tidak lagi
+    // menelan sinyal update kode (lihat scripts/write-version.cjs).
+    let currentCode = null;
+    let currentCatalog = null;
     let lastCheckedAt = 0;
     let isChecking = false;
     const checkInterval = 10 * 60 * 1000;
@@ -193,29 +197,30 @@ export default function App() {
       try {
         const res = await fetch('/version.json', { cache: 'no-store' });
         const data = await res.json();
-        const { v, label, type } = data;
-        if (currentVersion === null) {
+        const { v, catalog, label } = data;
+        if (currentCode === null) {
           setBuildId(v);
-          currentVersion = v;
-        } else if (v !== currentVersion) {
-          currentVersion = v;
-          if (type === 'catalog') {
-            // Chapter baru — cukup refresh catalog tanpa reload halaman
-            fetch('/manga/index.json', { cache: 'no-cache' })
-              .then(r => r.json())
-              .then(d => { setMangaList(d); mangaListRef.current = d; })
+          currentCode = v;
+          currentCatalog = catalog ?? null;
+        } else if (v !== currentCode) {
+          // KODE berubah (hash bundle beda) → reload penuh, apa pun deploy terakhirnya.
+          currentCode = v;
+          currentCatalog = catalog ?? currentCatalog;
+          triggerUpdate(label || '');
+        } else if (catalog && catalog !== currentCatalog) {
+          // Hanya KATALOG berubah (kode sama) → refresh halus tanpa reload halaman.
+          currentCatalog = catalog;
+          fetch('/manga/index.json', { cache: 'no-cache' })
+            .then(r => r.json())
+            .then(d => { setMangaList(d); mangaListRef.current = d; })
+            .catch(() => {});
+          // Re-fetch manga yang sedang dibuka juga
+          const cur = selectedMangaRef.current;
+          if (cur?.id) {
+            fetch(`/manga/${cur.id}.json`, { cache: 'no-cache' })
+              .then(r => r.ok ? r.json() : null)
+              .then(d => { if (d) { setSelectedManga(d); selectedMangaRef.current = d; } })
               .catch(() => {});
-            // Re-fetch manga yang sedang dibuka juga
-            const cur = selectedMangaRef.current;
-            if (cur?.id) {
-              fetch(`/manga/${cur.id}.json`, { cache: 'no-cache' })
-                .then(r => r.ok ? r.json() : null)
-                .then(d => { if (d) { setSelectedManga(d); selectedMangaRef.current = d; } })
-                .catch(() => {});
-            }
-          } else {
-            // Kode baru — perlu reload penuh
-            triggerUpdate(label || '');
           }
         }
       } catch {

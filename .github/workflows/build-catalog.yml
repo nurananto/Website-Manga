@@ -29,14 +29,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0    # perlu full history untuk git log (release_date)
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install cover sync dependencies
         run: npm install --no-save @aws-sdk/client-s3 sharp
@@ -112,8 +112,9 @@ jobs:
           VITE_TURNSTILE_SITEKEY: ${{ secrets.VITE_TURNSTILE_SITEKEY }}
 
       - name: Set version.json type catalog (refresh halus tanpa reload)
-        run: |
-          echo "{\"v\":\"$(date +%s)\",\"label\":\"$(date +'%-d %b %Y')\",\"type\":\"catalog\"}" > dist/version.json
+        # v = hash KODE (dipertahankan write-version.cjs) supaya deploy katalog TIDAK
+        # menimpa sinyal update kode; hanya stempel `catalog` yang di-bump.
+        run: VERSION_TYPE=catalog node scripts/write-version.cjs
 
       - name: Pastikan project Pages ada (idempotent)
         run: npx wrangler pages project create nuranantoscans --production-branch=main || true
