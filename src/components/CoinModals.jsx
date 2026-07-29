@@ -196,22 +196,29 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
           <div className="overflow-y-auto hide-scrollbar max-h-[90vh] p-6 flex flex-col gap-5">
             {/* Header — sapaan sopan; tutup modal cukup klik area di luar (tanpa tombol X) */}
             <div>
-              <h3 id="supporter-modal-title" className="text-base font-black text-on-surface">
-                Terima kasih sudah membaca
+              <h3 id="supporter-modal-title" className="text-base font-black text-on-surface text-center">
+                Terima kasih telah mendukung Nurananto Scanlation.
               </h3>
-              <p className="text-xs text-outline mt-0.5">Dukunganmu lewat Trakteer membuka semua chapter Early Access</p>
             </div>
 
             {/* Benefit */}
-            <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-3 flex flex-col gap-2">
-              <div className="flex items-center gap-2 text-sm font-black text-amber-300">
-                <Check className="w-4 h-4 shrink-0" /> Akses SEMUA chapter Early Access
+            <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-3">
+              {/* Headline — pesan utama, rata tengah, sedikit lebih besar dari info pendukung */}
+              <p className="text-center text-sm font-semibold text-amber-100 leading-snug mb-4">
+                Nikmati akses ke semua chapter Early Access selama 30 hari dengan menjadi Supporter.
+              </p>
+              {/* Checklist — rata kiri */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-sm font-black text-amber-300">
+                  <Check className="w-4 h-4 shrink-0" /> Akses ke semua chapter Early Access
+                </div>
+                <div className="flex items-center gap-2 text-sm font-black text-amber-300">
+                  <Check className="w-4 h-4 shrink-0" /> Status Supporter aktif selama 30 hari
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-sm font-black text-amber-300">
-                <Check className="w-4 h-4 shrink-0" /> Aktif 30 hari sejak donasi
-              </div>
-              <p className="text-[11px] text-outline/70 leading-relaxed">
-                Cukup donasi minimal <strong className="text-on-surface">{SUPPORTER_MIN}</strong> di Trakteer. Status Supporter otomatis aktif setelah donasi dikonfirmasi.
+              {/* Info pendukung — rata kiri, lebih kecil & redup, line-height ~1.5 */}
+              <p className="text-[11px] text-outline/70 leading-normal mt-3">
+                Donasi minimal <strong className="text-on-surface">{SUPPORTER_MIN}</strong> melalui Trakteer. Status Supporter akan aktif otomatis setelah donasi dikonfirmasi.
               </p>
             </div>
 
