@@ -194,19 +194,12 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
           <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="overflow-y-auto hide-scrollbar max-h-[90vh] p-6 flex flex-col gap-5">
-            {/* Header — framing pengingat, bukan ajakan "Jadi Supporter" */}
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 id="supporter-modal-title" className="text-base font-black text-on-surface flex items-center gap-2">
-                  <Crown className="w-5 h-5 text-amber-400 fill-current" />
-                  Jangan Lupa!
-                </h3>
-                <p className="text-xs text-outline mt-0.5">Dengan berdonasi, kamu bisa akses chapter Early Access</p>
-              </div>
-              <button type="button" aria-label="Tutup dialog" onClick={onClose}
-                className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline cursor-pointer">
-                <X className="w-4 h-4" />
-              </button>
+            {/* Header — sapaan sopan; tutup modal cukup klik area di luar (tanpa tombol X) */}
+            <div>
+              <h3 id="supporter-modal-title" className="text-base font-black text-on-surface">
+                Terima kasih sudah membaca
+              </h3>
+              <p className="text-xs text-outline mt-0.5">Dukunganmu lewat Trakteer membuka semua chapter Early Access</p>
             </div>
 
             {/* Benefit */}
@@ -222,9 +215,9 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
               </p>
             </div>
 
-            {/* Pengingat email singkat — selalu tampil biar tidak lupa */}
+            {/* Pengingat email singkat — selalu tampil biar tidak terlewat */}
             <p className="text-[11px] text-outline/80 leading-relaxed text-center">
-              Penting: tulis <strong className="text-amber-300">email akunmu</strong> di kolom <strong className="text-on-surface">Pesan</strong> Trakteer (jangan di-private). Lihat <strong className="text-on-surface">Tata Cara</strong> untuk panduan.
+              Tips: cantumkan <strong className="text-amber-300">email akunmu</strong> di kolom <strong className="text-on-surface">Pesan</strong> Trakteer (biarkan publik) agar donasimu otomatis terhubung ke akun. Panduan lengkap ada di <strong className="text-on-surface">Tata Cara</strong>.
             </p>
 
             {/* Panduan lengkap (mockup + langkah) — muncul saat "Tata Cara" ditekan */}
@@ -273,15 +266,15 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
               </div>
             )}
 
-            {/* Dua tombol: Tata Cara (buka mockup) + Lanjut Trakteer */}
-            <div className="flex gap-2">
+            {/* Dua tombol atas–bawah: Tata Cara (buka mockup) lalu Lanjut Trakteer */}
+            <div className="flex flex-col gap-2">
               <button type="button" onClick={() => setShowGuide((v) => !v)} aria-expanded={showGuide}
-                className="flex-1 h-12 rounded-xl border border-amber-400/45 text-amber-300 hover:bg-amber-400/10 font-black text-sm flex items-center justify-center gap-2 transition-colors active:scale-[0.98] cursor-pointer">
+                className="w-full h-12 rounded-xl border border-amber-400/45 text-amber-300 hover:bg-amber-400/10 font-black text-sm flex items-center justify-center gap-2 transition-colors active:scale-[0.98] cursor-pointer">
                 <Info className="w-4 h-4" />
                 {showGuide ? 'Sembunyikan' : 'Tata Cara'}
               </button>
               <a href={TRAKTEER_URL} target="_blank" rel="noopener noreferrer"
-                className="flex-1 h-12 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
+                className="w-full h-12 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer">
                 <Crown className="w-4 h-4 fill-current" />
                 Lanjut Trakteer
               </a>
