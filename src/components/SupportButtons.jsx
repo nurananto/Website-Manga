@@ -1,4 +1,5 @@
 import { HandHeart } from 'lucide-react';
+import { loadCoinModals } from '../lib/coinModalsLoader';
 
 // CTA Trakteer statis dan ringkas. Discord/Facebook tetap tersedia di footer.
 const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
@@ -26,8 +27,10 @@ export default function SupportButtons({ className = '', onDonate }) {
   );
 
   if (onDonate) {
+    // Prefetch chunk modal saat hover/sentuh → modal muncul instan, tanpa delay.
+    const warm = () => { void loadCoinModals(); };
     return (
-      <button type="button" onClick={onDonate} className={cls} style={style}>
+      <button type="button" onClick={onDonate} onMouseEnter={warm} onFocus={warm} onTouchStart={warm} className={cls} style={style}>
         {inner}
       </button>
     );

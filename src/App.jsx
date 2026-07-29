@@ -4,6 +4,7 @@ import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
 import SupportButtons from './components/SupportButtons';
 import LazyBoundary from './components/LazyBoundary';
+import { loadCoinModals } from './lib/coinModalsLoader';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
 import ResponsiveCover from './components/ResponsiveCover';
@@ -23,19 +24,7 @@ const PrivacyPolicyModal  = lazy(() => import('./components/PrivacyPolicyModal')
 const TermsOfServiceModal = lazy(() => import('./components/TermsOfServiceModal'));
 const DmcaModal           = lazy(() => import('./components/DmcaModal'));
 const DisclaimerModal     = lazy(() => import('./components/DisclaimerModal'));
-let coinModalsPromise;
-const loadCoinModals = () => {
-  // Jangan cache promise yang GAGAL: kalau import chunk sempat error (mis. jaringan
-  // atau chunk lama hilang setelah deploy), buang cache agar percobaan berikutnya
-  // retry — bukan menyimpan rejeksi selamanya sehingga modal tak pernah muncul.
-  if (!coinModalsPromise) {
-    coinModalsPromise = import('./components/CoinModals').catch((err) => {
-      coinModalsPromise = undefined;
-      throw err;
-    });
-  }
-  return coinModalsPromise;
-};
+// Loader chunk CoinModals (dibagi dengan tombol pemicu utk prefetch saat hover).
 // Ambil satu named-export dari chunk CoinModals sebagai `default` untuk React.lazy.
 // Kalau modul/ekspornya tak ter-resolve (khas chunk basi saat deploy belum tuntas:
 // index.js baru menunjuk hash chunk yang belum tersedia), lempar error bergaya

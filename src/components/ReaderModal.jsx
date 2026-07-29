@@ -7,7 +7,7 @@ import { nowTimestamp } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
-import { recordView } from '../lib/viewGate';
+import { recordView, getCachedViewGate, submitViewGate } from '../lib/viewGate';
 import { getDeviceId } from '../lib/device';
 import { canReadChapter, chapterAccessLevel } from '../lib/chapterAccess';
 import { useDialogFocus } from '../lib/useDialogFocus';
@@ -268,9 +268,17 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const [barExpanded, setBarExpanded] = useState(false);
   const [accessError, setAccessError] = useState('');
   const [gateVersion, setGateVersion] = useState(0);
+  // View-gate chapter GRATIS (gate-first, seperti locked): Turnstile dulu → token
+  // 24 jam → konten muncul & view tercatat. Token dibagi lintas chapter (24 jam).
+  const [viewGateToken, setViewGateToken] = useState(() => getCachedViewGate());
+  const [viewTsToken, setViewTsToken] = useState(null);
+  const [viewGateError, setViewGateError] = useState('');
+  const [viewGateVersion, setViewGateVersion] = useState(0);
+  const [viewGateBypassed, setViewGateBypassed] = useState(false); // fallback: baca tanpa hitung view
   const scrollRef = useRef(null);
   const readerDialogRef = useRef(null);
   const accessDialogRef = useRef(null);
+  const viewGateDialogRef = useRef(null);
   const lastChapterDialogRef = useRef(null);
   const discordDialogRef = useRef(null);
   const pageRefs = useRef([]);
@@ -283,12 +291,22 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     return () => { document.body.style.overflow = previousOverflow; };
   }, []);
 
-  // Kirim view ke Worker. Dedup PER HARI (WIB), bukan permanen — biar pembaca yang
-  // balik lagi besok tetap terhitung (server tetap dedup ip+chapter+hari = anti-inflasi).
+  // Tukar Turnstile (dari gate free) → view_gate_token 24 jam.
   useEffect(() => {
-    if (!chapter?.id || chapterNeedsToken) return;
-    const workerUrl = import.meta.env.VITE_WORKER_URL;
-    if (!workerUrl) return;
+    if (chapterNeedsToken || viewGateToken || !viewTsToken) return;
+    let cancelled = false;
+    submitViewGate(viewTsToken).then((token) => {
+      if (cancelled) return;
+      if (token) { setViewGateToken(token); setViewGateError(''); }
+      else { setViewGateError('Verifikasi gagal. Silakan coba lagi.'); setViewTsToken(null); }
+    });
+    return () => { cancelled = true; };
+  }, [chapterNeedsToken, viewGateToken, viewTsToken]);
+
+  // Kirim view ke Worker SETELAH gate terlewati (token ada). Dedup PER HARI (WIB),
+  // bukan permanen — pembaca yang balik besok tetap terhitung (server dedup device+chapter+hari).
+  useEffect(() => {
+    if (!chapter?.id || chapterNeedsToken || !viewGateToken) return;
     const day = new Date(Date.now() + 7 * 3600 * 1000).toISOString().slice(0, 10); // WIB
     const key = `vw_${chapter.id}_${day}`;
     try {
@@ -299,12 +317,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
         if (k && (k.startsWith('vw_') || k.startsWith('dvw_') || k.startsWith('viewed_')) && !k.endsWith(day)) localStorage.removeItem(k);
       }
     } catch {}
-    // Tandai dedup-harian HANYA jika server benar-benar mencatat (lolos view-gate),
-    // supaya percobaan yang gagal (Turnstile ditutup/keblok) bisa dicoba lagi.
+    // Tandai dedup-harian HANYA jika server benar-benar mencatat.
     recordView(chapter.id).then((ok) => {
       if (ok) { try { localStorage.setItem(key, '1'); } catch {} }
     });
-  }, [chapter?.id, chapterNeedsToken]);
+  }, [chapter?.id, chapterNeedsToken, viewGateToken]);
 
   const chapters = manga?.chapters || [];
   const currentIdx = chapters.findIndex(ch => ch.id === chapter?.id);
@@ -495,13 +512,23 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
       )
     : true;
   const accessGateOpen = chapterNeedsToken && !imageReady;
+  // Chapter GRATIS: gate Turnstile dulu (sekali/24 jam) sebelum konten & pencatatan
+  // view — kecuali user memilih "Lewati" saat verifikasi bermasalah (fallback).
+  const freeGateOpen = !!chapter?.id && !chapterNeedsToken && !viewGateToken && !viewGateBypassed;
+
+  const retryViewGate = () => {
+    setViewGateError('');
+    setViewTsToken(null);
+    setViewGateVersion((v) => v + 1);
+  };
 
   useDialogFocus(
     readerDialogRef,
     onClose,
-    !accessGateOpen && !showLastChapterModal && !showDiscordRedirect,
+    !accessGateOpen && !freeGateOpen && !showLastChapterModal && !showDiscordRedirect,
   );
   useDialogFocus(accessDialogRef, onClose, accessGateOpen);
+  useDialogFocus(viewGateDialogRef, onClose, freeGateOpen);
   useDialogFocus(lastChapterDialogRef, () => setShowLastChapterModal(false), showLastChapterModal);
   useDialogFocus(discordDialogRef, () => setShowDiscordRedirect(false), showDiscordRedirect);
 
@@ -830,6 +857,60 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
               <div className="flex items-center gap-2 text-outline/70">
                 <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
                 <span className="font-body-md text-sm">Memuat akses chapter...</span>
+              </div>
+            )}
+            <button
+              onClick={onClose}
+              className="mt-2 font-label-sm text-xs font-bold px-5 py-2 rounded-xl border border-white/10 text-outline hover:text-on-surface hover:bg-white/5 transition-colors cursor-pointer"
+            >
+              ← Kembali
+            </button>
+          </div>
+        )}
+
+        {/* Gate Turnstile — chapter GRATIS: verifikasi sekali/24 jam sebelum konten */}
+        {freeGateOpen && (
+          <div
+            ref={viewGateDialogRef}
+            className="absolute inset-0 z-[205] bg-[#090b0d]/95 backdrop-blur-sm flex flex-col items-center justify-center gap-5 px-6"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="view-gate-title"
+            tabIndex={-1}
+          >
+            <div className="flex flex-col items-center gap-2 text-center">
+              <BookOpen className="w-8 h-8 text-primary" />
+              <h3 id="view-gate-title" className="font-headline-md text-base sm:text-lg font-black text-on-surface">Verifikasi singkat</h3>
+              <p className="font-body-md text-xs sm:text-sm text-outline/70 max-w-xs">
+                Sekali sehari untuk memastikan kamu bukan bot. Setelah lolos, semua chapter langsung terbuka.
+              </p>
+            </div>
+            {viewGateError ? (
+              <div className="flex max-w-sm flex-col items-center gap-3 text-center">
+                <p className="font-body-md text-sm font-semibold text-red-300">{viewGateError}</p>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={retryViewGate}
+                    className="h-10 rounded-xl bg-primary px-5 font-label-sm text-xs font-black text-on-primary transition-colors hover:bg-primary/90"
+                  >
+                    Coba Lagi
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setViewGateBypassed(true)}
+                    className="h-10 rounded-xl border border-white/10 px-5 font-label-sm text-xs font-bold text-outline hover:text-on-surface hover:bg-white/5 transition-colors"
+                  >
+                    Lewati
+                  </button>
+                </div>
+              </div>
+            ) : !viewTsToken ? (
+              <TurnstileGate key={viewGateVersion} onToken={setViewTsToken} onError={(m) => setViewGateError(m || 'Verifikasi gagal dimuat.')} />
+            ) : (
+              <div className="flex items-center gap-2 text-outline/70">
+                <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                <span className="font-body-md text-sm">Memuat chapter...</span>
               </div>
             )}
             <button
