@@ -36,10 +36,23 @@ const loadCoinModals = () => {
   }
   return coinModalsPromise;
 };
-const AuthModal           = lazy(() => loadCoinModals().then(m => ({ default: m.AuthModal })));
-const SupporterModal      = lazy(() => loadCoinModals().then(m => ({ default: m.SupporterModal })));
-const LockedChapterModal  = lazy(() => loadCoinModals().then(m => ({ default: m.LockedChapterModal })));
-const AccountSettingsModal = lazy(() => loadCoinModals().then(m => ({ default: m.AccountSettingsModal })));
+// Ambil satu named-export dari chunk CoinModals sebagai `default` untuk React.lazy.
+// Kalau modul/ekspornya tak ter-resolve (khas chunk basi saat deploy belum tuntas:
+// index.js baru menunjuk hash chunk yang belum tersedia), lempar error bergaya
+// "Loading chunk" agar ditangkap LazyBoundary → muat ulang sekali. Ini mencegah
+// crash mentah "Cannot read properties of undefined (reading 'SupporterModal')".
+const coinModal = (name) => () =>
+  loadCoinModals().then((m) => {
+    if (!m || typeof m[name] !== 'function') {
+      throw new Error(`Loading chunk CoinModals failed (${name} tidak tersedia)`);
+    }
+    return { default: m[name] };
+  });
+
+const AuthModal            = lazy(coinModal('AuthModal'));
+const SupporterModal       = lazy(coinModal('SupporterModal'));
+const LockedChapterModal   = lazy(coinModal('LockedChapterModal'));
+const AccountSettingsModal = lazy(coinModal('AccountSettingsModal'));
 
 function LockedModalFallback() {
   return (
