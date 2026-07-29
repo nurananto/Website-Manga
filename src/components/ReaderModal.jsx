@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUp, BookOpen, Lock, MessageCircle } from 'lucide-react';
-import { discordCommentUrl } from '../lib/links';
+import { ArrowLeft, ArrowRight, ArrowUp, BookOpen, Lock } from 'lucide-react';
 import { nowTimestamp } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
@@ -252,7 +251,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const activeChapter = chapter;
   const activeManga = manga;
   const mangaId = manga?.id || '';
-  const discordLink = discordCommentUrl(activeManga?.discord_channel_id); // channel per judul (meta.json)
 
   // null = tutup, 'top' = dibuka dari navbar atas, 'bottom' = dari navbar bawah
   const {
@@ -263,7 +261,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     toggleChapterList,
   } = useChapterDropdown();
   const [showLastChapterModal, setShowLastChapterModal] = useState(false);
-  const [showDiscordRedirect, setShowDiscordRedirect] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [barExpanded, setBarExpanded] = useState(false);
   const [accessError, setAccessError] = useState('');
@@ -280,7 +277,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const accessDialogRef = useRef(null);
   const viewGateDialogRef = useRef(null);
   const lastChapterDialogRef = useRef(null);
-  const discordDialogRef = useRef(null);
   const pageRefs = useRef([]);
   const registerPage = (index, element) => {
     pageRefs.current[index] = element;
@@ -525,12 +521,11 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   useDialogFocus(
     readerDialogRef,
     onClose,
-    !accessGateOpen && !freeGateOpen && !showLastChapterModal && !showDiscordRedirect,
+    !accessGateOpen && !freeGateOpen && !showLastChapterModal,
   );
   useDialogFocus(accessDialogRef, onClose, accessGateOpen);
   useDialogFocus(viewGateDialogRef, onClose, freeGateOpen);
   useDialogFocus(lastChapterDialogRef, () => setShowLastChapterModal(false), showLastChapterModal);
-  useDialogFocus(discordDialogRef, () => setShowDiscordRedirect(false), showDiscordRedirect);
 
   // Chapter yang BARU lepas kunci mungkin belum selesai dimigrasi dari manga-locked ke
   // manga-media. CDN (R2 langsung) akan balas 404 yang ter-cache lama → arahkan ke worker
@@ -650,6 +645,24 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     return () => observer.disconnect();
   }, [pages]);
 
+  // Saat scroll mentok di bawah, paksa halaman TERAKHIR aktif. Zona deteksi
+  // IntersectionObserver (paruh atas viewport) tak pernah "memenangkan" halaman
+  // terakhir karena ia berada di paruh bawah layar saat sudah mentok — bikin
+  // indikator berhenti di halaman ke-(N-1) padahal sudah di halaman N.
+  useEffect(() => {
+    const root = scrollRef.current;
+    if (!root || pages.length === 0) return undefined;
+    const onScroll = () => {
+      if (root.scrollTop + root.clientHeight >= root.scrollHeight - 4) {
+        const last = pages.length - 1;
+        setCurrentPage((previous) => (previous === last ? previous : last));
+      }
+    };
+    root.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => root.removeEventListener('scroll', onScroll);
+  }, [pages]);
+
   // Tulis progres setelah halaman aktif stabil, bukan pada setiap event scroll.
   useEffect(() => {
     if (!activeChapter?.id || pageCount <= 0) return undefined;
@@ -744,10 +757,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   );
 
   const renderDetailBackBar = () => (
-    <div className="flex gap-2 px-2 py-2">
+    <div className="px-2 py-2">
       <button
         onClick={onClose}
-        className="h-11 min-w-0 flex-1 cursor-pointer rounded-xl border border-white/10 bg-surface-container px-3 transition-colors hover:bg-surface-container-high active:scale-[0.99] sm:h-12 sm:px-4 md:h-14"
+        className="h-11 w-full min-w-0 cursor-pointer rounded-xl border border-white/10 bg-surface-container px-3 transition-colors hover:bg-surface-container-high active:scale-[0.99] sm:h-12 sm:px-4 md:h-14"
       >
         <div className="flex h-full items-center gap-2.5 sm:gap-3">
           <ArrowLeft className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" />
@@ -756,16 +769,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             <p className="truncate font-body-md text-xs font-bold text-primary/85 sm:text-sm">{activeManga?.title}</p>
           </div>
         </div>
-      </button>
-
-      <button
-        type="button"
-        onClick={() => setShowDiscordRedirect(true)}
-        disabled={!discordLink}
-        aria-label="Buka komentar di Discord"
-        className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-primary/30 bg-primary/15 text-primary transition-colors hover:bg-primary/25 active:scale-95 disabled:cursor-not-allowed disabled:opacity-35 sm:h-12 sm:w-12 md:h-14 md:w-14"
-      >
-        <MessageCircle className="h-5 w-5" />
       </button>
     </div>
   );
@@ -1061,61 +1064,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 >
                   Kembali ke Detail Manga
                 </button>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Konfirmasi sebelum membuka channel komentar Discord */}
-        <AnimatePresence>
-          {showDiscordRedirect && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[65] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
-              onClick={() => setShowDiscordRedirect(false)}
-            >
-              <motion.div
-                ref={discordDialogRef}
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="discord-redirect-title"
-                tabIndex={-1}
-                initial={{ scale: 0.92, opacity: 0, y: 18 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.92, opacity: 0, y: 18 }}
-                onClick={(event) => event.stopPropagation()}
-                className="flex w-full max-w-sm flex-col gap-4 rounded-2xl border border-[#5865F2]/35 bg-surface-container p-5 text-center shadow-2xl"
-              >
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[#5865F2]/20 text-[#8b95ff]">
-                  <img src="/discord-mark-white.svg" alt="Discord" className="h-6 w-6 object-contain" />
-                </div>
-                <div>
-                  <h3 id="discord-redirect-title" className="font-headline-md text-base font-black text-on-surface sm:text-lg">Buka komentar di Discord?</h3>
-                  <p className="mt-1.5 font-body-md text-xs leading-relaxed text-outline/75 sm:text-sm">
-                    Kamu akan diarahkan ke channel Discord untuk membaca atau menulis komentar chapter ini.
-                  </p>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setShowDiscordRedirect(false)}
-                    className="h-10 cursor-pointer rounded-xl border border-white/10 bg-white/5 text-xs font-bold text-on-surface transition-colors hover:bg-white/10 sm:text-sm"
-                  >
-                    Batal
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      window.open(discordLink, '_blank', 'noopener,noreferrer');
-                      setShowDiscordRedirect(false);
-                    }}
-                    className="h-10 cursor-pointer rounded-xl bg-[#5865F2] text-xs font-black text-white transition-colors hover:bg-[#4b57d1] sm:text-sm"
-                  >
-                    Buka Discord
-                  </button>
-                </div>
               </motion.div>
             </motion.div>
           )}
