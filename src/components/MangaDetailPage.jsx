@@ -35,8 +35,8 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
     try {
       if (localStorage.getItem(key)) return;
     } catch {}
-    // Tandai dedup-harian HANYA jika server benar-benar mencatat (lolos view-gate),
-    // supaya percobaan yang gagal (Turnstile ditutup/keblok) bisa dicoba lagi.
+    // Tandai dedup-harian HANYA jika server benar-benar mencatat, supaya
+    // percobaan yang gagal (jaringan/rate limit) bisa dicoba lagi.
     recordView(manga.id).then((ok) => {
       if (ok) { try { localStorage.setItem(key, '1'); } catch {} }
     });

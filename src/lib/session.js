@@ -1,6 +1,6 @@
 // Turnstile: loader script yang dipakai bersama oleh widget CoinModals & ReaderModal.
-// Token sesi gambar chapter kini ditangani viewGate.js; modul ini hanya menyisakan
-// pembersihan cache sesi lama (mf_sess2) saat logout.
+// Modul ini menyisakan loader Turnstile (untuk gate locked chapter & CoinModals)
+// dan pembersihan cache sesi lama (mf_sess2) saat logout.
 const SITEKEY = import.meta.env.VITE_TURNSTILE_SITEKEY || '';
 const KEY     = 'mf_sess2';
 

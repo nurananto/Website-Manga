@@ -6,14 +6,14 @@ import { nowTimestamp } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
-import { recordView, getCachedViewGate, submitViewGate } from '../lib/viewGate';
+import { recordView } from '../lib/viewGate';
 import { getDeviceId } from '../lib/device';
 import { canReadChapter, chapterAccessLevel } from '../lib/chapterAccess';
 import { useDialogFocus } from '../lib/useDialogFocus';
 import ResponsiveCover from './ResponsiveCover';
 import SocialFollowLinks from './SocialFollowLinks';
 
-// Widget Turnstile interaktif untuk gate locked chapter maupun view-gate gratis.
+// Widget Turnstile interaktif untuk gate locked chapter.
 // PENTING: onToken & onError harus referensi stabil (useCallback / setter state) —
 // fungsi inline membuat effect ini teardown + render ulang widget tiap parent
 // re-render, dan challenge yang sedang jalan ikut hilang.
@@ -280,18 +280,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const [barExpanded, setBarExpanded] = useState(false);
   const [accessError, setAccessError] = useState('');
   const [gateVersion, setGateVersion] = useState(0);
-  // View-gate chapter GRATIS (gate-first, seperti locked): Turnstile dulu → token
-  // 24 jam → konten muncul & view tercatat. Token dibagi lintas chapter (24 jam).
-  const [viewGateToken, setViewGateToken] = useState(() => getCachedViewGate());
-  const [viewTsToken, setViewTsToken] = useState(null);
-  const [viewGateError, setViewGateError] = useState('');
-  const [viewGateVersion, setViewGateVersion] = useState(0);
-  const [viewGateConfirmed, setViewGateConfirmed] = useState(0); // naik saat pembaca menekan tombol lanjut
-  const [viewGateBypassed, setViewGateBypassed] = useState(false); // fallback: baca tanpa hitung view
   const scrollRef = useRef(null);
   const readerDialogRef = useRef(null);
   const accessDialogRef = useRef(null);
-  const viewGateDialogRef = useRef(null);
   const lastChapterDialogRef = useRef(null);
   const pageRefs = useRef([]);
   const registerPage = (index, element) => {
@@ -303,29 +294,12 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     return () => { document.body.style.overflow = previousOverflow; };
   }, []);
 
-  // Tukar Turnstile (dari gate free) → view_gate_token 24 jam.
-  // Menunggu viewGateConfirmed: Turnstile mode Managed sering lolos sendiri tanpa
-  // interaksi, jadi persetujuan eksplisit datang dari tombol pembaca — bukan dari
-  // callback widget.
+  // Kirim view ke Worker begitu chapter gratis dibuka (gate Turnstile sudah
+  // dihapus — tidak menyaring bot, malah menahan view pembaca asli). Dedup PER
+  // HARI (WIB), bukan permanen — pembaca yang balik besok tetap terhitung
+  // (server dedup device+chapter+hari).
   useEffect(() => {
-    if (chapterNeedsToken || viewGateToken || !viewTsToken || !viewGateConfirmed) return;
-    let cancelled = false;
-    submitViewGate(viewTsToken).then((token) => {
-      if (cancelled) return;
-      if (token) { setViewGateToken(token); setViewGateError(''); }
-      else {
-        setViewGateError('Verifikasi gagal. Silakan coba lagi.');
-        setViewTsToken(null);
-        setViewGateConfirmed(0);
-      }
-    });
-    return () => { cancelled = true; };
-  }, [chapterNeedsToken, viewGateToken, viewTsToken, viewGateConfirmed]);
-
-  // Kirim view ke Worker SETELAH gate terlewati (token ada). Dedup PER HARI (WIB),
-  // bukan permanen — pembaca yang balik besok tetap terhitung (server dedup device+chapter+hari).
-  useEffect(() => {
-    if (!chapter?.id || chapterNeedsToken || !viewGateToken) return;
+    if (!chapter?.id || chapterNeedsToken) return;
     const day = new Date(Date.now() + 7 * 3600 * 1000).toISOString().slice(0, 10); // WIB
     const key = `vw_${chapter.id}_${day}`;
     try {
@@ -340,7 +314,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     recordView(chapter.id).then((ok) => {
       if (ok) { try { localStorage.setItem(key, '1'); } catch {} }
     });
-  }, [chapter?.id, chapterNeedsToken, viewGateToken]);
+  }, [chapter?.id, chapterNeedsToken]);
 
   const chapters = manga?.chapters || [];
   const currentIdx = chapters.findIndex(ch => ch.id === chapter?.id);
@@ -531,35 +505,15 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
       )
     : true;
   const accessGateOpen = chapterNeedsToken && !imageReady;
-  // Chapter GRATIS: gate Turnstile dulu (sekali/24 jam) sebelum konten & pencatatan
-  // view — kecuali user memilih "Lewati" saat verifikasi bermasalah (fallback).
-  // Tanpa VITE_TURNSTILE_SITEKEY gate mustahil dilewati, jadi jangan pasang sama
-  // sekali: chapter gratis tetap terbaca, view-nya saja yang tidak tercatat.
-  const freeGateOpen = !!chapter?.id
-    && !chapterNeedsToken
-    && !viewGateToken
-    && !viewGateBypassed
-    && !!TURNSTILE_SITEKEY;
-
-  const retryViewGate = useCallback(() => {
-    setViewGateError('');
-    setViewTsToken(null);
-    setViewGateConfirmed(0);
-    setViewGateVersion((v) => v + 1);
-  }, []);
-
-  // Referensi stabil — lihat catatan di TurnstileGate.
-  const handleViewGateError = useCallback((message) => {
-    setViewGateError(message || 'Verifikasi gagal dimuat.');
-  }, []);
+  // Gate Turnstile chapter GRATIS dihapus — konten langsung tampil, view dicatat
+  // di effect atas. Gate Turnstile untuk chapter TERKUNCI tetap ada (accessGate).
 
   useDialogFocus(
     readerDialogRef,
     onClose,
-    !accessGateOpen && !freeGateOpen && !showLastChapterModal,
+    !accessGateOpen && !showLastChapterModal,
   );
   useDialogFocus(accessDialogRef, onClose, accessGateOpen);
-  useDialogFocus(viewGateDialogRef, onClose, freeGateOpen);
   useDialogFocus(lastChapterDialogRef, () => setShowLastChapterModal(false), showLastChapterModal);
 
   // Chapter yang BARU lepas kunci mungkin belum selesai dimigrasi dari manga-locked ke
@@ -906,74 +860,6 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
               <div className="flex items-center gap-2 text-outline/70">
                 <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
                 <span className="font-body-md text-sm">Memuat akses chapter...</span>
-              </div>
-            )}
-            <button
-              onClick={onClose}
-              className="mt-2 font-label-sm text-xs font-bold px-5 py-2 rounded-xl border border-white/10 text-outline hover:text-on-surface hover:bg-white/5 transition-colors cursor-pointer"
-            >
-              ← Kembali
-            </button>
-          </div>
-        )}
-
-        {/* Gate Turnstile — chapter GRATIS: verifikasi sekali/24 jam sebelum konten */}
-        {freeGateOpen && (
-          <div
-            ref={viewGateDialogRef}
-            className="absolute inset-0 z-[205] bg-[#090b0d]/95 backdrop-blur-sm flex flex-col items-center justify-center gap-5 px-6"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="view-gate-title"
-            tabIndex={-1}
-          >
-            <div className="flex flex-col items-center gap-2 text-center">
-              <BookOpen className="w-8 h-8 text-primary" />
-              <h3 id="view-gate-title" className="font-headline-md text-base sm:text-lg font-black text-on-surface">Verifikasi singkat</h3>
-              <p className="font-body-md text-xs sm:text-sm text-outline/70 max-w-xs">
-                Sekali sehari untuk memastikan kamu bukan bot. Setelah lolos, semua chapter langsung terbuka.
-              </p>
-            </div>
-            {viewGateError ? (
-              <div className="flex max-w-sm flex-col items-center gap-3 text-center">
-                <p className="font-body-md text-sm font-semibold text-red-300">{viewGateError}</p>
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={retryViewGate}
-                    className="h-10 rounded-xl bg-primary px-5 font-label-sm text-xs font-black text-on-primary transition-colors hover:bg-primary/90"
-                  >
-                    Coba Lagi
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setViewGateBypassed(true)}
-                    className="h-10 rounded-xl border border-white/10 px-5 font-label-sm text-xs font-bold text-outline hover:text-on-surface hover:bg-white/5 transition-colors"
-                  >
-                    Lewati
-                  </button>
-                </div>
-              </div>
-            ) : !viewTsToken ? (
-              <TurnstileGate key={viewGateVersion} onToken={setViewTsToken} onError={handleViewGateError} />
-            ) : !viewGateConfirmed ? (
-              // Persetujuan manual. Turnstile Managed kerap lolos otomatis, jadi
-              // langkah ini yang memastikan chapter tidak terbuka tanpa satu pun
-              // tindakan pembaca.
-              <div className="flex flex-col items-center gap-3">
-                <p className="font-body-md text-xs sm:text-sm text-emerald-400 font-semibold">✓ Verifikasi berhasil</p>
-                <button
-                  type="button"
-                  onClick={() => setViewGateConfirmed((v) => v + 1)}
-                  className="h-11 rounded-xl bg-primary px-6 font-label-sm text-sm font-black text-on-primary transition-colors hover:bg-primary/90 cursor-pointer"
-                >
-                  Lanjut Baca
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 text-outline/70">
-                <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-                <span className="font-body-md text-sm">Memuat chapter...</span>
               </div>
             )}
             <button
