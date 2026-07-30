@@ -40,7 +40,7 @@
   },
   "total_views": 135,
   "mangadex_cover": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "eaecd9b5-0510-46aa-b65c-a09611fa912b.jpg",
@@ -50,7 +50,7 @@
         "manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@tablet.webp",
         "manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "8668678c-bc32-4ada-8374-53d6962ae431.jpg",
@@ -60,7 +60,7 @@
         "manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@tablet.webp",
         "manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
@@ -70,10 +70,10 @@
         "manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@tablet.webp",
         "manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 45,
-  "cover_version": 2,
+  "cover_version": 3,
   "view_sync_cutoff": "2026-07-30 17:00:34"
 }

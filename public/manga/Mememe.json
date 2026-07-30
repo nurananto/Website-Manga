@@ -29,32 +29,32 @@
     "1": 7,
     "2": 3,
     "3": 1,
-    "4": 7
+    "4": 8
   },
-  "total_views": 36,
+  "total_views": 42,
   "mangadex_cover": "4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c.jpg",
-  "cover_widths": "1280x960x640",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c@mobile.webp?v=3"
       }
     }
   ],
-  "detail_views": 18,
+  "detail_views": 23,
   "mangadex_id": "bb64b3e5-64d1-4d7d-bbd5-e6cd754dd5fa",
   "rating": 8.28,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {
@@ -68,7 +68,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     },
     {
       "chapter_number": 3,

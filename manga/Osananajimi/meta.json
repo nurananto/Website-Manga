@@ -46,7 +46,7 @@
   },
   "total_views": 580,
   "mangadex_cover": "a1bd83b1-b73e-430f-8f3b-cd194cb2c029.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "a1bd83b1-b73e-430f-8f3b-cd194cb2c029.jpg",
@@ -56,9 +56,10 @@
         "manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029@tablet.webp",
         "manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 152,
-  "view_sync_cutoff": "2026-07-30 17:00:34"
+  "view_sync_cutoff": "2026-07-30 17:00:34",
+  "cover_version": 2
 }

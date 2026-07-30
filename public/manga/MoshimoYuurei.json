@@ -44,31 +44,32 @@
     "22": 2,
     "23": 2,
     "24": 2,
-    "25": 9
+    "25": 10
   },
-  "total_views": 39,
+  "total_views": 41,
   "mangadex_cover": "1f5fe857-3e84-451f-8a1c-d25e3960c1b4.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4@mobile.webp?v=2"
       }
     }
   ],
-  "detail_views": 5,
+  "detail_views": 6,
+  "cover_version": 2,
   "mangadex_id": "832a0bcb-f58a-4118-9130-43c03d289a8d",
   "rating": 8.64,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/MoshimoYuurei/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
@@ -82,7 +83,7 @@
       "title": "Ch. 25",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 24,

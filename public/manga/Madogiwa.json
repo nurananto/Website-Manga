@@ -46,38 +46,39 @@
     "14.2": 28,
     "15.1": 12
   },
-  "total_views": 203,
+  "total_views": 204,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@mobile.webp?v=2"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@mobile.webp?v=2"
       }
     }
   ],
-  "detail_views": 71,
+  "detail_views": 72,
+  "cover_version": 2,
   "mangadex_id": "a0ecce48-aa4c-48e6-8d9b-90f322a5687a",
   "rating": 7.37,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {

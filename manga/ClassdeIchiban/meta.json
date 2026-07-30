@@ -40,7 +40,7 @@
   },
   "total_views": 116,
   "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
@@ -50,7 +50,7 @@
         "manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@tablet.webp",
         "manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "ab35247f-dc63-4aa6-a01a-7ebe1353ab41.jpg",
@@ -60,9 +60,10 @@
         "manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@tablet.webp",
         "manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 54,
-  "view_sync_cutoff": "2026-07-30 17:00:34"
+  "view_sync_cutoff": "2026-07-30 17:00:34",
+  "cover_version": 2
 }

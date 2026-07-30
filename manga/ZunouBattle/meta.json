@@ -41,7 +41,7 @@
   },
   "total_views": 257,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
@@ -51,10 +51,10 @@
         "manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@tablet.webp",
         "manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
-  "cover_version": 3,
+  "cover_version": 4,
   "detail_views": 106,
   "view_sync_cutoff": "2026-07-30 17:00:34"
 }

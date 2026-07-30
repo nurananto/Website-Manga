@@ -48,7 +48,7 @@
   },
   "total_views": 204,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "ce74d132-81f0-491a-bb19-83de73746c8e.jpg",
@@ -58,7 +58,7 @@
         "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@tablet.webp",
         "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
@@ -68,9 +68,10 @@
         "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@tablet.webp",
         "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 72,
-  "view_sync_cutoff": "2026-07-30 17:00:34"
+  "view_sync_cutoff": "2026-07-30 17:00:34",
+  "cover_version": 2
 }

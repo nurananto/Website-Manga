@@ -48,7 +48,7 @@
   },
   "total_views": 41,
   "mangadex_cover": "1f5fe857-3e84-451f-8a1c-d25e3960c1b4.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "1f5fe857-3e84-451f-8a1c-d25e3960c1b4.jpg",
@@ -58,9 +58,10 @@
         "manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4@tablet.webp",
         "manga/MoshimoYuurei/covers/gallery/1f5fe857-3e84-451f-8a1c-d25e3960c1b4@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 6,
-  "view_sync_cutoff": "2026-07-30 17:00:34"
+  "view_sync_cutoff": "2026-07-30 17:00:34",
+  "cover_version": 2
 }

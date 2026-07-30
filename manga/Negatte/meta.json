@@ -45,7 +45,7 @@
   },
   "total_views": 140,
   "mangadex_cover": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "dee7c542-0efd-4e72-8df1-5d71a2b08c6d.jpg",
@@ -55,7 +55,7 @@
         "manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@tablet.webp",
         "manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "ba037f6a-4e4c-4bc3-a8b9-4b200602d268.jpg",
@@ -65,7 +65,7 @@
         "manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@tablet.webp",
         "manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
@@ -75,10 +75,10 @@
         "manga/Negatte/covers/gallery/0c426de6-aa3a-4957-a5b8-6ba7ca87022e@tablet.webp",
         "manga/Negatte/covers/gallery/0c426de6-aa3a-4957-a5b8-6ba7ca87022e@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
-  "cover_version": 2,
+  "cover_version": 3,
   "detail_views": 43,
   "view_sync_cutoff": "2026-07-30 17:00:34"
 }

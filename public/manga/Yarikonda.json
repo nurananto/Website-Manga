@@ -36,50 +36,50 @@
     "6": 4,
     "7": 6,
     "8": 20,
-    "9": 26
+    "9": 27
   },
-  "total_views": 133,
+  "total_views": 135,
   "mangadex_cover": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "3",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@mobile.webp?v=3"
       }
     },
     {
       "volume": "2",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@mobile.webp?v=3"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@mobile.webp?v=3"
       }
     }
   ],
-  "detail_views": 44,
-  "cover_version": 2,
+  "detail_views": 45,
+  "cover_version": 3,
   "mangadex_id": "a605a5d0-21a6-481f-a055-74735ea4f2c2",
   "rating": 7.35,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Yarikonda/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {
@@ -93,7 +93,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 26
+      "views": 27
     },
     {
       "chapter_number": 8,

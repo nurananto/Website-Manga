@@ -29,8 +29,8 @@
   },
   "total_views": 25,
   "mangadex_cover": "8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.jpg",
-  "cover_widths": "1280x960x640",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "file": "8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.jpg",
@@ -40,7 +40,7 @@
         "manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@tablet.webp",
         "manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 12,

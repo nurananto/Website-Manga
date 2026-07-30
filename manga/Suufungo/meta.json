@@ -47,7 +47,7 @@
   },
   "total_views": 117,
   "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "7d301e1e-642b-4b7d-b65b-9777b36e80bf.jpg",
@@ -57,7 +57,7 @@
         "manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@tablet.webp",
         "manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
@@ -67,9 +67,10 @@
         "manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@tablet.webp",
         "manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 33,
-  "view_sync_cutoff": "2026-07-30 17:00:34"
+  "view_sync_cutoff": "2026-07-30 17:00:34",
+  "cover_version": 2
 }

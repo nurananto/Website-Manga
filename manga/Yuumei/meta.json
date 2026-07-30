@@ -57,7 +57,7 @@
   },
   "total_views": 287,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "23eafd3d-5847-42f6-9909-74c4b3dee9a8.jpg",
@@ -67,7 +67,7 @@
         "manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@tablet.webp",
         "manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg",
@@ -77,7 +77,7 @@
         "manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@tablet.webp",
         "manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
@@ -87,10 +87,10 @@
         "manga/Yuumei/covers/gallery/cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991@tablet.webp",
         "manga/Yuumei/covers/gallery/cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 90,
-  "cover_version": 3,
+  "cover_version": 4,
   "view_sync_cutoff": "2026-07-30 17:00:34"
 }

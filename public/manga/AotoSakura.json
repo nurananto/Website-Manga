@@ -25,20 +25,20 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "oneshot": 12
+    "oneshot": 13
   },
-  "total_views": 24,
+  "total_views": 25,
   "mangadex_cover": "8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.jpg",
-  "cover_widths": "1280x960x640",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@mobile.webp?v=3"
       }
     }
   ],
@@ -46,11 +46,11 @@
   "mangadex_id": "7cf10b89-2c28-4df5-9087-39f076e79e4a",
   "rating": 8.32,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {
@@ -64,7 +64,7 @@
       "r2_prefix": "manga/AotoSakura/Oneshot/",
       "unlockDate": null,
       "isLocked": false,
-      "views": 12
+      "views": 13
     }
   ]
 }
