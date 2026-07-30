@@ -220,7 +220,6 @@ def _write_manga_meta(title_dir):
         ],
         "mangadex_url": "",
         "raw_url": "",
-        "discord_channel_id": "",
         "tamat_at_chapter": None,
         "hiatus_at_chapter": None,
         "chapter_views": {},

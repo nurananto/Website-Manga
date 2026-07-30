@@ -265,16 +265,13 @@ async function fetchImageBytes(url) {
 async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   if (!webhookUrl || newChapters.length === 0) return;
   const base  = siteUrl.replace(/\/$/, '');
-  const GUILD = '1517520079108182036'; // server Discord (untuk link diskusi per judul)
 
   const logoIcon = `${base}/logo-header.webp`;
   const footer   = { text: 'Nurananto Scanlation • Update Terbaru', icon_url: logoIcon };
-  // "Tombol" link teks (webhook tidak bisa button asli)
-  const linksOf = (ch) => {
-    const links = [`🌐 [Baca](${base}/${ch.mangaId})`];
-    if (ch.discordChannelId)             links.push(`💬 [Diskusi](https://discord.com/channels/${GUILD}/${ch.discordChannelId})`);
-    return links.join('  •  ');
-  };
+  // "Tombol" link teks (webhook tidak bisa button asli). Link "Diskusi" per judul
+  // sudah dilepas — channel komentar per manga dihapus, diskusi dipusatkan di satu
+  // server Discord.
+  const linksOf = (ch) => `🌐 [Baca](${base}/${ch.mangaId})`;
 
   const byManga = new Map();
   for (const ch of newChapters) {
@@ -360,12 +357,10 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
 async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
   if (!webhookUrl || newManga.length === 0) return;
   const base  = siteUrl.replace(/\/$/, '');
-  const GUILD = '1517520079108182036';
 
   const messages = [];
   for (const m of newManga) {
     const links = [`🌐 [Website](${base}/${m.id})`];
-    if (m.discordChannelId) links.push(`💬 [Diskusi](https://discord.com/channels/${GUILD}/${m.discordChannelId})`);
     const desc = [];
     if (m.genres?.length) desc.push(`🏷️ ${m.genres.join(' · ')}`);
     if (m.synopsis)       desc.push('', (m.synopsis || '').trim());
@@ -745,7 +740,6 @@ async function buildCatalog() {
         genres:           manga.genres,
         rating:           manga.rating,
         synopsis:         manga.description,
-        discordChannelId: manga.discord_channel_id,
       });
     }
 
@@ -776,9 +770,6 @@ async function buildCatalog() {
       next_update:  manga.next_update,
       tamat_at_chapter:  manga.tamat_at_chapter ?? null,
       hiatus_at_chapter: manga.hiatus_at_chapter ?? null,
-      // channel komentar Discord (untuk reader yang dibuka dari kartu homepage).
-      // Hanya disertakan kalau diisi di meta.json, agar index tetap ramping.
-      ...(manga.discord_channel_id ? { discord_channel_id: manga.discord_channel_id } : {}),
       chapters:     chapters.slice(0, 3),
     });
 
@@ -796,7 +787,6 @@ async function buildCatalog() {
             chapterTitle:     ch.title,
             isLocked:         ch.isLocked,
             releaseDate:      ch.release_date,
-            discordChannelId: manga.discord_channel_id,
           });
           console.log(`   🔔 ${ch._forceNotify ? 'Publish ulang' : 'Chapter baru terdeteksi'}: ${manga.title} — ${ch.title}`);
         }
