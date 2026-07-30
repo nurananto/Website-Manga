@@ -55,7 +55,11 @@ for (const manga of catalog) {
   const chapters = manga.chapters || [];
   const mangaLastmod = latestDate(chapters.map(chapter => chapter.release_date));
 
-  urls.push(urlEntry(`${SITE_URL}/${segment(manga.id)}`, {
+  // Trailing slash wajib: Cloudflare Pages menyajikan route ini dari
+  // dist/<id>/index.html dan me-308-kan "/<id>" ke "/<id>/". Tanpa slash,
+  // setiap URL sitemap membuang satu hop redirect dan canonical-nya tidak
+  // sama dengan URL yang benar-benar disajikan.
+  urls.push(urlEntry(`${SITE_URL}/${segment(manga.id)}/`, {
     lastmod: mangaLastmod,
     changefreq: manga.status === 'Ongoing' ? 'daily' : 'weekly',
     priority: '0.8',

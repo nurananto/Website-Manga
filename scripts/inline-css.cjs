@@ -26,6 +26,154 @@ function escapeText(value) {
     .replace(/>/g, '&gt;');
 }
 
+// ── Konten statis untuk crawler ───────────────────────────────
+// Body hasil build hanya berisi <div id="root"></div>, jadi crawler yang tidak
+// menjalankan JS (sebagian Bing, crawler AI, dsb.) tidak melihat apa pun. Blok di
+// bawah menaruh isi yang bisa dibaca langsung dari HTML. createRoot() menghapus
+// seluruh anak #root saat mount, jadi React tetap jadi sumber kebenaran di browser
+// dan tidak ada duplikasi konten.
+//
+// Semua gaya ditulis inline: script ini bukan sumber yang dipindai Tailwind, jadi
+// class utility belum tentu ada di CSS hasil build.
+const ROOT_PLACEHOLDER = '<div id="root"></div>';
+
+const S = {
+  main:  'margin:0 auto;max-width:64rem;padding:2rem 1rem;font-family:Inter,system-ui,sans-serif',
+  crumb: 'font-size:.875rem;opacity:.7;margin-bottom:1rem',
+  h1:    'font-size:1.75rem;line-height:1.25;font-weight:700;margin:0 0 .25rem',
+  alt:   'font-size:1rem;opacity:.7;margin:0 0 1rem',
+  h2:    'font-size:1.25rem;font-weight:700;margin:2rem 0 .5rem',
+  cover: 'width:100%;max-width:20rem;height:auto;border-radius:.75rem',
+  dl:    'display:grid;grid-template-columns:auto 1fr;gap:.25rem 1rem;font-size:.9375rem;margin:0',
+  dt:    'opacity:.7',
+  list:  'list-style:none;padding:0;margin:0;font-size:.9375rem',
+  li:    'padding:.375rem 0;border-bottom:1px solid rgba(127,127,127,.25)',
+  link:  'color:inherit',
+};
+
+function jsonLd(data) {
+  // </script> dan karakter HTML di-escape supaya payload tidak bisa menutup tag.
+  const payload = JSON.stringify(data)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026');
+  return `<script type="application/ld+json">${payload}</script>`;
+}
+
+function definitionRow(term, value) {
+  if (!value) return '';
+  return `<dt style="${S.dt}">${escapeText(term)}</dt><dd style="margin:0">${escapeText(value)}</dd>`;
+}
+
+// Detail satu manga — HANYA informasi umum (judul, sinopsis, kredit, genre).
+// Daftar chapter, nomor chapter terakhir, dan jumlah chapter sengaja TIDAK
+// dimasukkan: crawler cukup sampai halaman detail, dan angka chapter cepat basi
+// sehingga snippet hasil pencarian gampang salah. Info itu tetap tampil normal
+// di browser karena React yang merendernya.
+function mangaSeoBody(manga, detail, canonical, siteUrl) {
+  const covers = manga.coverUrls || {};
+  const desktopCover = covers.desktop || manga.coverUrl || '';
+  const genres = (manga.genres || []).filter(Boolean);
+
+  const sources = [
+    covers.mobile && `<source media="(max-width: 639px)" srcset="${escapeAttribute(covers.mobile)}">`,
+    covers.tablet && `<source media="(max-width: 1023px)" srcset="${escapeAttribute(covers.tablet)}">`,
+  ].filter(Boolean).join('');
+  // URL persis sama dengan <link rel=preload> di head, jadi tidak ada request
+  // tambahan — cover justru tampil sebelum React mount (LCP lebih cepat).
+  const cover = desktopCover
+    ? `<picture>${sources}<img src="${escapeAttribute(desktopCover)}" alt="Sampul ${escapeAttribute(manga.title)}" style="${S.cover}" fetchpriority="high"></picture>`
+    : '';
+
+  const facts = [
+    definitionRow('Penulis', detail?.author),
+    definitionRow('Artis', detail?.artist),
+    definitionRow('Status', manga.status),
+    definitionRow('Tipe', detail?.type),
+    definitionRow('Genre', genres.join(', ')),
+  ].join('');
+
+  const structured = [
+    jsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Beranda', item: `${siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: manga.title, item: canonical },
+      ],
+    }),
+    jsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWorkSeries',
+      name: manga.title,
+      ...(detail?.alt_title ? { alternateName: detail.alt_title } : {}),
+      url: canonical,
+      ...(desktopCover ? { image: desktopCover } : {}),
+      ...(manga.description ? { description: String(manga.description).trim() } : {}),
+      ...(genres.length ? { genre: genres } : {}),
+      ...(detail?.author ? { author: { '@type': 'Person', name: detail.author } } : {}),
+      ...(detail?.artist ? { creator: { '@type': 'Person', name: detail.artist } } : {}),
+      inLanguage: 'id',
+    }),
+  ].join('');
+
+  return `<div id="root"><main style="${S.main}">`
+    + `<nav aria-label="Breadcrumb" style="${S.crumb}"><a href="/" style="${S.link}">Beranda</a> / ${escapeText(manga.title)}</nav>`
+    + '<article>'
+    + cover
+    + `<h1 style="${S.h1}">${escapeText(manga.title)}</h1>`
+    + (detail?.alt_title ? `<p style="${S.alt}">${escapeText(detail.alt_title)}</p>` : '')
+    + (facts ? `<dl style="${S.dl}">${facts}</dl>` : '')
+    + `<h2 style="${S.h2}">Sinopsis</h2><p>${escapeText(String(manga.description || '').trim())}</p>`
+    + '</article></main>'
+    + structured
+    + '</div>';
+}
+
+// Beranda: daftar tautan ke tiap halaman detail supaya crawler punya jalur
+// penemuan selain sitemap. Sengaja tanpa <img> — cover homepage sudah di-preload
+// untuk carousel, menambah <img> di sini hanya menggandakan unduhan.
+function homeSeoBody(catalog, siteUrl) {
+  const items = catalog
+    .filter((manga) => manga?.id && manga?.title)
+    .map((manga) => (
+      `<li style="${S.li}"><a href="/${encodeURIComponent(manga.id)}/" style="${S.link}">${escapeText(manga.title)}</a>`
+      + (manga.status ? ` <span style="${S.dt}">— ${escapeText(manga.status)}</span>` : '')
+      + '</li>'
+    ))
+    .join('');
+
+  const structured = [
+    jsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Nurananto Scanlation',
+      url: `${siteUrl}/`,
+      inLanguage: 'id',
+    }),
+    jsonLd({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      itemListElement: catalog
+        .filter((manga) => manga?.id && manga?.title)
+        .map((manga, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: manga.title,
+          url: `${siteUrl}/${encodeURIComponent(manga.id)}/`,
+        })),
+    }),
+  ].join('');
+
+  return `<div id="root"><main style="${S.main}">`
+    + '<h1 style="' + S.h1 + '">Nurananto Scanlation</h1>'
+    + '<p style="' + S.alt + '">Manga terjemahan Indonesia.</p>'
+    + `<h2 style="${S.h2}">Daftar Manga</h2><ul style="${S.list}">${items}</ul>`
+    + '</main>'
+    + structured
+    + '</div>';
+}
+
 function replaceMeta(documentHtml, attribute, key, content) {
   const pattern = new RegExp(`<meta\\s+${attribute}=["']${key}["'][^>]*>`, 'i');
   const tag = `<meta ${attribute}="${escapeAttribute(key)}" content="${escapeAttribute(content)}" />`;
@@ -48,7 +196,9 @@ function writeMangaRouteHtml(rootHtml) {
     const description = rawDescription.length > 160
       ? `${rawDescription.slice(0, 160).replace(/\s+\S*$/, '')}…`
       : rawDescription;
-    const canonical = `${siteUrl}/${encodeURIComponent(manga.id)}`;
+    // Trailing slash mengikuti URL yang benar-benar disajikan Pages
+    // (dist/<id>/index.html); "/<id>" hanya 308 ke "/<id>/".
+    const canonical = `${siteUrl}/${encodeURIComponent(manga.id)}/`;
     const covers = manga.coverUrls || {};
     const desktopCover = covers.desktop || manga.coverUrl || `${siteUrl}/logo-header.webp`;
     const routeDir = path.join(dist, manga.id);
@@ -78,6 +228,18 @@ function writeMangaRouteHtml(rootHtml) {
       `<link rel="preload" as="image" href="${escapeAttribute(href)}" media="${escapeAttribute(media)}" fetchpriority="high">`
     ));
     routeHtml = routeHtml.replace('</head>', `  ${coverHints.join('\n  ')}\n  </head>`);
+
+    const detailPath = path.join('public', 'manga', `${manga.id}.json`);
+    let detail = null;
+    if (fs.existsSync(detailPath)) {
+      try {
+        detail = JSON.parse(fs.readFileSync(detailPath, 'utf8'));
+      } catch (error) {
+        console.warn(`inline-css: ${manga.id}.json tidak terbaca (${error.message})`);
+      }
+    }
+    routeHtml = routeHtml.replace(ROOT_PLACEHOLDER, mangaSeoBody(manga, detail, canonical, siteUrl));
+
     fs.mkdirSync(routeDir, { recursive: true });
     fs.writeFileSync(path.join(routeDir, 'index.html'), routeHtml);
     written += 1;
@@ -203,6 +365,23 @@ if (resourceHints.length) {
   html = html.replace('<head>', `<head>\n    ${resourceHints.join('\n    ')}`);
 }
 
-fs.writeFileSync(htmlPath, html);
+// Route manga diturunkan dari `html` yang #root-nya MASIH kosong, supaya tiap
+// route bisa menyisipkan blok statis miliknya sendiri.
 const mangaRoutes = writeMangaRouteHtml(html);
+
+const catalogPath = path.join('public', 'manga', 'index.json');
+let homeCatalog = [];
+if (fs.existsSync(catalogPath)) {
+  try {
+    homeCatalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+  } catch (error) {
+    console.warn(`inline-css: katalog beranda tidak terbaca (${error.message})`);
+  }
+}
+if (Array.isArray(homeCatalog) && homeCatalog.length) {
+  const siteUrl = (process.env.SITE_URL || 'https://nuranantoscans.my.id').replace(/\/$/, '');
+  html = html.replace(ROOT_PLACEHOLDER, homeSeoBody(homeCatalog, siteUrl));
+}
+
+fs.writeFileSync(htmlPath, html);
 console.log(`inline-css: ${inlined} stylesheet di-inline (${(bytes / 1024).toFixed(1)} KB), ${resourceHints.length} preload ditambahkan, ${mangaRoutes} route manga dibuat`);
