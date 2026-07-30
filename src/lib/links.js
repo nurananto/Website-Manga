@@ -6,6 +6,9 @@
 // Channel komentar per judul sudah dihapus — diskusi dipusatkan di satu server,
 // jadi hanya ada satu invite umum di bawah.
 
-export const DISCORD_INVITE_URL = 'https://discord.gg/qwTSEYdB4';
+// PENTING: harus invite "Never expire". Invite lama (qwTSEYdB4) mati dengan
+// error "Invite is expired" dan tombol Discord rusak tanpa ketahuan sama sekali.
+// Yang ini sudah diverifikasi permanen (expires_at = null).
+export const DISCORD_INVITE_URL = 'https://discord.gg/d7KbJzSRXS';
 
 export const FACEBOOK_URL = 'https://web.facebook.com/profile.php?id=61590960336418';
