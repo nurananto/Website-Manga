@@ -10,8 +10,16 @@ const SIZES = [
   { suffix: '@tablet', width: 960 },  // tablet
   { suffix: '@mobile', width: 640 },  // mobile
 ];
-// Penanda versi ukuran — kalau berubah, semua cover di-generate ulang otomatis
-const SIZE_SIGNATURE = SIZES.map(s => s.width).join('x');
+// q85 menghasilkan cover mobile ~80 KB — berat untuk elemen LCP. Diukur pada
+// cover asli: q75 memangkas ~33% (80 KB -> 54 KB di 640px) dan di bawah q75
+// penghematannya mendatar (q70 hanya 51 KB), jadi 75 adalah titik beloknya.
+// effort 6 menekan ukuran lebih jauh pada kualitas sama; ongkosnya hanya waktu CI.
+const WEBP_QUALITY = 75;
+const WEBP_EFFORT  = 6;
+// Penanda versi ukuran — kalau berubah, semua cover di-generate ulang otomatis.
+// Kualitas ikut disertakan: tanpa itu, perubahan angka di atas tidak akan pernah
+// menyentuh cover yang terlanjur ada karena penjaga di bawah hanya cek lebar.
+const SIZE_SIGNATURE = `${SIZES.map(s => s.width).join('x')}q${WEBP_QUALITY}`;
 
 const r2 = new S3Client({
   region: 'auto',
@@ -118,7 +126,7 @@ async function resizeAndUpload(buffer, keyBase) {
     const key = `${keyBase}${suffix}.webp`;
     const out = await sharp(buffer)
       .resize(width, null, { withoutEnlargement: true })
-      .webp({ quality: 85 })
+      .webp({ quality: WEBP_QUALITY, effort: WEBP_EFFORT })
       .toBuffer();
     await uploadToR2(key, out);
     keys.push(key);

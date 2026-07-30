@@ -1,6 +1,17 @@
 # Security headers for all pages and SPA fallback responses.
-# Keep HTML/fallback responses fresh so stale index.html does not point to
-# deleted hashed module files after a deploy.
+#
+# PENTING: Cloudflare Pages MENGGABUNG header dari semua aturan yang cocok, tidak
+# menimpanya. Karena itu blok /* ini TIDAK BOLEH memuat Cache-Control — dulu ada
+# "no-cache, no-store" di sini dan hasilnya tergabung jadi
+#   "no-cache, no-store, must-revalidate, public, max-age=31536000, immutable"
+# pada setiap aset. no-store yang di depan menang, jadi chunk JS, font, dan gambar
+# ber-hash tidak pernah ter-cache di browser MAUPUN di edge (cf-cache-status:
+# BYPASS) dan diunduh ulang tiap kunjungan.
+#
+# Path yang benar-benar perlu selalu segar diatur eksplisit di bawah. HTML tanpa
+# aturan (mis. /Suufungo/) memakai default Pages, yaitu selalu revalidasi — aman,
+# apalagi entry sengaja tidak ber-hash sehingga HTML basi tidak pernah menunjuk
+# file yang sudah dihapus.
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
@@ -9,7 +20,6 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Cross-Origin-Opener-Policy: same-origin
-  Cache-Control: no-cache, no-store, must-revalidate
 
 # Hashed assets include content hashes, so they can stay cached for a year.
 /assets/*
@@ -17,18 +27,24 @@
 
 # Main app entry is intentionally not hashed. It points to the latest hashed
 # chunks after every deploy, so stale HTML will not request a deleted entry file.
+# no-cache (bukan no-store): browser tetap menyimpan salinan dan boleh menerima
+# 304, jadi kunjungan berulang hemat satu transfer penuh tanpa risiko basi.
 /entry/*
-  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: no-cache
 
-# Root static media rarely changes and is safe to cache separately.
+# Media di root (icon.webp, logo-header.webp, header-*.webp, favicon, svg).
+# JANGAN pakai immutable setahun seperti /assets/*: nama file ini TIDAK ber-hash,
+# jadi mengganti isinya tidak mengubah URL-nya. Dengan immutable, pengunjung lama
+# bisa menahan logo/ikon usang sampai setahun. Satu hari sudah memangkas hampir
+# semua request berulang, sekaligus membuat penggantian aset menyebar cepat.
 /*.webp
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=86400
 
 /*.ico
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=86400
 
 /*.svg
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=86400
 
 # Catalog JSON must stay fresh after catalog deploys.
 /manga/index.json
@@ -37,16 +53,21 @@
 /manga/*.json
   Cache-Control: no-cache
 
-# HTML entry points should never be stored.
+# HTML selalu divalidasi ulang sebelum dipakai, tapi tetap boleh disimpan supaya
+# respons 304 menghemat transfer bodi 27,5 KB pada kunjungan berulang.
 /
-  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: no-cache
 
 /index.html
-  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: no-cache
 
 # Service worker must update immediately.
 /sw.js
-  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: no-cache
+
+# Dipoll App.jsx untuk mendeteksi deploy baru — harus selalu segar.
+/version.json
+  Cache-Control: no-cache
 
 /.well-known/security.txt
   Cache-Control: public, max-age=3600
