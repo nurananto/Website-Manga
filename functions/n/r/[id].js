@@ -64,6 +64,15 @@ export async function onRequestPost(context) {
   // bukan pengunjung asli — dedup & rate-limit per-IP jadi rusak untuk SEMUA
   // pengunjung (tercampur jadi satu "IP" yang sama). Worker hanya mempercayai
   // header ini kalau X-Proxy-Secret cocok (lihat worker/api-worker.js).
+  //
+  // PENTING: User-Agent WAJIB diisi, tidak boleh dikosongkan. Zona ini punya
+  // WAF Custom Rule "Challenge bot user-agents" dengan kondisi
+  // `http.user_agent eq ""` -> Block, path-agnostic dan berlaku ke SELURUH
+  // hostname di zona (termasuk api.nuranantoscans.my.id tujuan hop ini). Tanpa
+  // header ini, fetch() dari Pages Function berjalan dengan UA kosong dan
+  // diblokir WAF SEBELUM sampai ke worker — persis penyebab 403 yang sempat
+  // terlihat seolah dari path/geo-gate, padahal terjadi di hop internal ini,
+  // tak terlihat dari DevTools browser sama sekali.
   const upstream = await fetch(upstreamUrl, {
     method: 'POST',
     headers: {
@@ -72,6 +81,7 @@ export async function onRequestPost(context) {
       'X-Real-IP':      request.headers.get('CF-Connecting-IP') || '',
       'X-Real-Country': request.headers.get('CF-IPCountry') || '',
       'X-Real-UA':      request.headers.get('User-Agent') || '',
+      'User-Agent':     'NurantoScans-ViewProxy/1.0 (+https://nuranantoscans.my.id)',
     },
   });
 
