@@ -52,45 +52,46 @@
   },
   "total_views": 225,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "3",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@mobile.webp?v=2"
       }
     },
     {
       "volume": "2",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@mobile.webp?v=2"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@mobile.webp?v=2"
       }
     }
   ],
   "detail_views": 67,
+  "cover_version": 2,
   "mangadex_id": "26854d1a-dfd0-4e5c-b6d1-ab291035b8cc",
   "rating": 7.5,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
@@ -108,14 +109,14 @@
     },
     {
       "chapter_number": 21.1,
-      "lock_hours": 672,
+      "lock_hours": 661,
       "pages": 10,
       "release_date": "2026-07-03T11:30:39+07:00",
       "r2_folder": 21.1,
       "id": "10-nenburi-ch-21.1",
       "r2_prefix": "manga/10-nenburi/21.1/",
       "title": "Ch. 21.1",
-      "unlockDate": "2026-07-31T04:30:39.000Z",
+      "unlockDate": "2026-07-30T17:30:39.000Z",
       "isLocked": true,
       "views": 6
     },

@@ -52,7 +52,7 @@
   },
   "total_views": 225,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "6d676869-6140-44ed-8210-58264ae612df.jpg",
@@ -62,7 +62,7 @@
         "manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@tablet.webp",
         "manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "254730e0-71bd-4008-9c08-e9d9d1d0989e.jpg",
@@ -72,7 +72,7 @@
         "manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@tablet.webp",
         "manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
@@ -82,9 +82,10 @@
         "manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@tablet.webp",
         "manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 67,
-  "view_sync_cutoff": "2026-07-29 17:00:45"
+  "view_sync_cutoff": "2026-07-29 17:00:45",
+  "cover_version": 2
 }

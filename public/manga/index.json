@@ -633,11 +633,11 @@
     "title": "10-Nen Buri ni Saikai shita Kusogaki wa Seijun Bishoujo JK ni Seichou shiteita",
     "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
     "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=2",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp?v=1"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp?v=2"
     },
     "genres": [
       "Adaptation",
@@ -671,14 +671,14 @@
       },
       {
         "chapter_number": 21.1,
-        "lock_hours": 672,
+        "lock_hours": 661,
         "pages": 10,
         "release_date": "2026-07-03T11:30:39+07:00",
         "r2_folder": 21.1,
         "id": "10-nenburi-ch-21.1",
         "r2_prefix": "manga/10-nenburi/21.1/",
         "title": "Ch. 21.1",
-        "unlockDate": "2026-07-31T04:30:39.000Z",
+        "unlockDate": "2026-07-30T17:30:39.000Z",
         "isLocked": true,
         "views": 6
       },
