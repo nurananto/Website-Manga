@@ -39,11 +39,10 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
   return (
     <nav className="w-full bg-[#07111f]">
       <div className="flex items-center h-14 md:h-16 xl:h-[72px] px-3 sm:px-4 md:px-5 xl:px-6 gap-3 md:gap-4 w-full">
-        {/* Ikon saja — teks "Nurananto Scanlation" dilepas. Ikonnya portrait
-            (488x658) sehingga terlihat ramping kalau tingginya pas tombol, jadi
-            dinaikkan satu tingkat dari tinggi tombol di sisi kanan. Tetap ikut
+        {/* Ikon saja — teks "Nurananto Scanlation" dilepas. Tingginya disamakan
+            dengan tombol di sisi kanan supaya kedua ujung header sejajar; ikut
             status login karena tombol akun (h-10/11/12) lebih tinggi daripada
-            tombol Log In (h-8/10/12), supaya proporsinya konsisten. */}
+            tombol Log In (h-8/10/12). */}
         <a
           href="/"
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
@@ -55,7 +54,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
             alt="Nurananto Scanlation"
             width="488"
             height="658"
-            className={`w-auto ${isLoggedIn ? 'h-12 md:h-13 xl:h-14' : 'h-10 md:h-12 xl:h-14'}`}
+            className={`w-auto ${isLoggedIn ? 'h-10 md:h-11 xl:h-12' : 'h-8 md:h-10 xl:h-12'}`}
           />
         </a>
 

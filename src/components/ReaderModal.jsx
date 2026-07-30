@@ -854,26 +854,12 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             {/* Navigasi bawah */}
             {renderNavBar('bottom')}
 
-            {/* Ikuti Update — ditaruh SETELAH navigasi chapter (aksi utama pembaca)
-                tapi SEBELUM tombol keluar, supaya masih terlihat. Di chapter
-                terbaru porsinya dibesarkan: itu momen pembaca bertanya "kapan
-                lanjutannya?", jadi ajakan follow paling relevan di sana. */}
-            <div className="px-2 pt-1 pb-2">
-              <div className={`rounded-xl border px-3 py-3 sm:px-4 sm:py-3.5 ${
-                isAtNewest
-                  ? 'border-primary/30 bg-primary/5'
-                  : 'border-white/10 bg-surface-container/60'
-              }`}>
-                <SocialFollowLinks
-                  layout="row"
-                  headingText={isAtNewest ? 'Ini chapter terbaru' : 'Ikuti Update'}
-                  subtext={
-                    isAtNewest
-                      ? 'Chapter berikutnya diumumkan duluan di Discord & Facebook.'
-                      : 'Chapter baru diumumkan duluan di Discord & Facebook.'
-                  }
-                />
-              </div>
+            {/* Discord & Facebook — tanpa teks apa pun. Pesan "chapter terbaru"
+                sudah ditangani modal Chapter Terakhir, jadi menambah judul di
+                sini hanya menduplikasi. Ditaruh setelah navigasi chapter (aksi
+                utama pembaca) tapi sebelum tombol keluar agar tetap terlihat. */}
+            <div className="px-2 pb-1">
+              <SocialFollowLinks layout="row" heading={false} />
             </div>
 
             {/* Kembali ke detail — bawah */}
@@ -1127,8 +1113,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 <div>
                   <h3 id="latest-chapter-title" className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface">Kamu sudah sampai chapter terbaru!</h3>
                   <p className="font-headline-md text-sm sm:text-base font-black text-on-surface/90 mt-2 line-clamp-2">{activeManga?.title}</p>
-                  <p className="font-label-sm text-[10px] sm:text-xs text-outline/60 font-bold uppercase tracking-wider mt-1">Chapter saat ini</p>
-                  <p className="font-body-md text-sm sm:text-base text-primary font-bold">{activeChapter?.title}</p>
+                  <p className="font-body-md text-sm sm:text-base font-bold mt-1">
+                    <span className="text-outline/60">Chapter saat ini</span>{' '}
+                    <span className="text-primary">{activeChapter?.title}</span>
+                  </p>
 
                   <NextUpdateInfo value={activeManga?.next_update} />
                 </div>

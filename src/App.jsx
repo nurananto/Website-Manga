@@ -7,7 +7,6 @@ import LazyBoundary from './components/LazyBoundary';
 import { loadCoinModals } from './lib/coinModalsLoader';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
-import SocialFollowLinks from './components/SocialFollowLinks';
 import ResponsiveCover from './components/ResponsiveCover';
 import { Sparkles, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
 import { coverUrlForWidth, timeAgo } from './utils';
@@ -1174,14 +1173,6 @@ export default function App() {
               />
             </div>
             <VisitorCount />
-            {/* Pengganti tombol sosial yang dilepas dari header — tanpa ini
-                pengunjung yang belum login tidak punya akses ke Discord/Facebook
-                di homepage sama sekali. */}
-            <SocialFollowLinks
-              layout="row"
-              className="w-full max-w-xs sm:max-w-sm"
-              subtext="Chapter baru diumumkan duluan di sini."
-            />
             <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
               <button
                 onClick={() => setShowDisclaimer(true)}

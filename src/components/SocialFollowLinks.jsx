@@ -25,11 +25,11 @@ const BUTTON_BASE = 'flex items-center justify-center gap-2 rounded-xl border bo
   + 'hover:-translate-y-0.5 hover:brightness-110 hover:shadow-md active:translate-y-0 active:scale-[0.98]';
 
 // layout: 'row' (berdampingan, membagi lebar) | 'stack' (bertumpuk penuh)
+// heading: judul "Ikuti Update" — dimatikan di reader, yang hanya menampilkan
+// dua tombol tanpa teks (pesan "chapter terbaru" sudah ada di modal tersendiri).
 export default function SocialFollowLinks({
   layout = 'row',
   heading = true,
-  headingText = 'Ikuti Update',
-  subtext = '',
   className = '',
 }) {
   const isRow = layout === 'row';
@@ -52,12 +52,7 @@ export default function SocialFollowLinks({
       {heading && (
         <p className="flex items-center gap-1 pb-1.5 font-label-sm text-[9px] font-black uppercase tracking-wider text-outline md:text-[10px]">
           <Bell className="h-3 w-3 shrink-0 md:h-3.5 md:w-3.5" />
-          {headingText}
-        </p>
-      )}
-      {subtext && (
-        <p className="pb-2 font-body-md text-[11px] leading-snug text-outline/80 sm:text-xs">
-          {subtext}
+          Ikuti Update
         </p>
       )}
       <div className={wrapper}>
