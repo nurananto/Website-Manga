@@ -2,6 +2,14 @@
 <html lang="id" class="dark">
   <head>
     <meta charset="UTF-8" />
+    <!-- Blok statis SEO (dibuat scripts/inline-css.cjs) ditujukan HANYA untuk agen
+         yang tidak menjalankan JS. Kelas .js dipasang di sini, sebelum isi body
+         diurai, jadi aturan di bawah sudah berlaku pada lukisan pertama dan
+         pembaca biasa tidak pernah melihat daftar teks polos itu berkedip
+         sebelum React mount. Tanpa JS kelas itu tidak pernah ada, sehingga blok
+         tetap tampil dan crawler tetap membacanya. -->
+    <script>document.documentElement.classList.add('js')</script>
+    <style>.js #seo-static{display:none}</style>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />

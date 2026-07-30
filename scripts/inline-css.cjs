@@ -117,7 +117,7 @@ function mangaSeoBody(manga, detail, canonical, siteUrl) {
     }),
   ].join('');
 
-  return `<div id="root"><main style="${S.main}">`
+  return `<div id="root"><main id="seo-static" style="${S.main}">`
     + `<nav aria-label="Breadcrumb" style="${S.crumb}"><a href="/" style="${S.link}">Beranda</a> / ${escapeText(manga.title)}</nav>`
     + '<article>'
     + cover
@@ -165,7 +165,7 @@ function homeSeoBody(catalog, siteUrl) {
     }),
   ].join('');
 
-  return `<div id="root"><main style="${S.main}">`
+  return `<div id="root"><main id="seo-static" style="${S.main}">`
     + '<h1 style="' + S.h1 + '">Nurananto Scanlation</h1>'
     + '<p style="' + S.alt + '">Manga terjemahan Indonesia.</p>'
     + `<h2 style="${S.h2}">Daftar Manga</h2><ul style="${S.list}">${items}</ul>`
