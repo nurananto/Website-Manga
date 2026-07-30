@@ -40,7 +40,7 @@
   },
   "total_views": 77,
   "mangadex_cover": "6da6cf64-c44f-4153-801e-77cdf9a92d3b.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "10d163e1-853d-4bbb-9131-b99534a1836b.jpg",
@@ -50,7 +50,7 @@
         "manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@tablet.webp",
         "manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "c95c3728-3229-41d7-9d11-e2a01ec94333.jpg",
@@ -60,7 +60,7 @@
         "manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@tablet.webp",
         "manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "6da6cf64-c44f-4153-801e-77cdf9a92d3b.jpg",
@@ -70,10 +70,10 @@
         "manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@tablet.webp",
         "manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
-  "cover_version": 2,
+  "cover_version": 3,
   "detail_views": 40,
   "view_sync_cutoff": "2026-07-29 17:00:45"
 }

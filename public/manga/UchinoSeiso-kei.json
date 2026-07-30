@@ -40,48 +40,61 @@
   },
   "total_views": 77,
   "mangadex_cover": "6da6cf64-c44f-4153-801e-77cdf9a92d3b.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "3",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@mobile.webp?v=3"
       }
     },
     {
       "volume": "2",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@mobile.webp?v=3"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@mobile.webp?v=3"
       }
     }
   ],
-  "cover_version": 2,
+  "cover_version": 3,
   "detail_views": 40,
   "mangadex_id": "5993c10b-c49e-4771-9a3a-8b8436b12d80",
   "rating": 8.37,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
+    {
+      "chapter_number": 14.1,
+      "lock_hours": 0,
+      "pages": 15,
+      "r2_folder": 14.1,
+      "id": "UchinoSeiso-kei-ch-14.1",
+      "r2_prefix": "manga/UchinoSeiso-kei/14.1/",
+      "title": "Ch. 14.1",
+      "release_date": "2026-07-30T18:18:57+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
     {
       "chapter_number": 13.2,
       "lock_hours": 0,
