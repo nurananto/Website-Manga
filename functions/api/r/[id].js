@@ -1,6 +1,13 @@
 // Cloudflare Pages Function — proxy SAME-ORIGIN untuk pencatatan view
 // chapter/detail gratis (dipanggil dari src/lib/viewGate.js).
 //
+// Catatan deploy: project ini pakai Direct Upload (wrangler pages deploy lewat
+// .github/workflows/deploy-pages.yml), bukan Git-integration bawaan Cloudflare.
+// Env var yang ditambah/diubah di dashboard Pages baru terikat ke Function pada
+// DEPLOYMENT BERIKUTNYA — menambah var saja tidak menyuntik ke deployment yang
+// sudah berjalan. Habis ubah env var, picu deploy baru (push apa pun yang tidak
+// menyentuh manga/**/.github/**, atau jalankan workflow "Deploy Pages" manual).
+//
 // Kenapa ini perlu: dibuktikan langsung lewat DevTools bahwa beberapa ekstensi
 // privasi mem-patch window.fetch() di browser dan MENJATUHKAN request SEBELUM
 // sampai jaringan sama sekali — tidak muncul di Network tab, tidak error, tidak
