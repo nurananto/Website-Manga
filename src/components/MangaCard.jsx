@@ -5,7 +5,11 @@ import CountdownTimer from './CountdownTimer';
 import ResponsiveCover from './ResponsiveCover';
 import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
 
-export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter }) {
+// coverPriority: true setelah pembaca memakai pagination. Cover halaman tetangga
+// sudah di-prefetch + di-decode oleh App, jadi kartu baru bisa dipasang eager dan
+// di-decode sinkron — tanpa itu <img> yang baru dibuat (key per manga) selalu
+// melukis satu frame kosong lebih dulu dan terlihat berkedip.
+export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter, coverPriority = false }) {
   const [, setAccessVersion] = useState(0);
   const now = nowTimestamp();
 
@@ -26,10 +30,10 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
         <ResponsiveCover
             manga={manga}
             alt={manga.title}
-            loading="lazy"
-            fetchPriority="low"
-            decoding="async"
-            className="h-full w-full object-cover rounded-lg shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-white/10 hover:scale-105 transition-transform duration-500"
+            loading={coverPriority ? 'eager' : 'lazy'}
+            fetchPriority={coverPriority ? 'high' : 'low'}
+            decoding={coverPriority ? 'sync' : 'async'}
+            className="h-full w-full object-cover rounded-lg bg-surface-container-high shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-white/10 hover:scale-105 transition-transform duration-500"
           />
       </a>
 

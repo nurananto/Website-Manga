@@ -256,6 +256,15 @@ export default function App() {
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [historyChapters, setHistoryChapters] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  // Muat pertama tetap lazy supaya 12 cover tidak berebut bandwidth dan merusak
+  // LCP. Begitu pembaca menekan pagination, cover halaman tetangga sudah
+  // di-prefetch + di-decode, jadi kartu boleh dipasang eager & decode sinkron —
+  // ini yang menghilangkan frame kosong saat berpindah halaman.
+  const [hasPaginated, setHasPaginated] = useState(false);
+  const goToPage = (next) => {
+    setHasPaginated(true);
+    setCurrentPage(next);
+  };
   const [itemsPerPage, setItemsPerPage] = useState(() =>
     window.matchMedia('(min-width: 768px)').matches ? 12 : 6
   );
@@ -799,6 +808,10 @@ export default function App() {
         const image = new Image();
         image.fetchPriority = 'low';
         image.src = url;
+        // decode() menyiapkan bitmap-nya, bukan cuma mengunduh byte. Tanpa ini
+        // cover halaman berikutnya tetap perlu di-decode saat dipasang, dan
+        // itulah yang terlihat sebagai kedipan sesaat ketika pagination ditekan.
+        image.decode?.().catch(() => { /* URL rusak / dibatalkan — abaikan */ });
       }
     }
   }, [currentPage, filteredManga, itemsPerPage, totalPages]);
@@ -1074,6 +1087,7 @@ export default function App() {
                             <div key={manga.id}>
                               <MangaCard
                                 manga={manga}
+                                coverPriority={hasPaginated}
                                 isLoggedIn={isLoggedIn}
                                 isSupporter={isSupporter}
                                 onViewManga={() => { navigate(`/${manga.id}`); }}
@@ -1088,7 +1102,7 @@ export default function App() {
                       {totalPages > 1 && (
                         <div className="flex items-center justify-center gap-2">
                           <button
-                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            onClick={() => goToPage(prev => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
                             className="px-4 py-2 min-w-[92px] text-center rounded-xl bg-surface-container border border-white/5 text-xs font-bold text-outline hover:text-on-surface disabled:opacity-30 disabled:pointer-events-none hover:bg-surface-container-high transition-all cursor-pointer"
                           >
@@ -1102,7 +1116,7 @@ export default function App() {
                             return [startP, startP + 1].map((p) => (
                               <button
                                 key={p}
-                                onClick={() => setCurrentPage(p)}
+                                onClick={() => goToPage(p)}
                                 className={p === currentPage
                                   ? "w-9 h-9 rounded-xl text-xs font-black bg-primary text-on-primary shadow-lg shadow-primary/20 cursor-default"
                                   : "w-9 h-9 rounded-xl text-xs font-black bg-surface-container border border-white/5 text-outline hover:text-on-surface hover:bg-surface-container-high cursor-pointer"}
@@ -1113,7 +1127,7 @@ export default function App() {
                           })()}
 
                           <button
-                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            onClick={() => goToPage(prev => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
                             className="px-4 py-2 min-w-[92px] text-center rounded-xl bg-surface-container border border-white/5 text-xs font-bold text-outline hover:text-on-surface disabled:opacity-30 disabled:pointer-events-none hover:bg-surface-container-high transition-all cursor-pointer"
                           >
