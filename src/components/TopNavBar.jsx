@@ -1,42 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { Key, RotateCcw, LogOut, LogIn, Crown, Bell } from 'lucide-react';
-import { DISCORD_INVITE_URL } from '../lib/links';
+import { Key, RotateCcw, LogOut, LogIn, Crown } from 'lucide-react';
 import { nowTimestamp } from '../utils';
-
-const FACEBOOK_URL = 'https://web.facebook.com/profile.php?id=61590960336418';
-
-function AccountSocialLinks() {
-  return (
-    <div className="animate-[fadeIn_0.2s_ease-out] border-t border-white/5 px-3 py-2 md:py-2.5">
-      <p className="flex items-center gap-1 px-1 pb-1.5 text-[9px] font-black uppercase tracking-wider text-outline md:text-[10px]">
-        <Bell className="h-3 w-3 md:h-3.5 md:w-3.5" />
-        Ikuti Update
-      </p>
-      <div className="flex flex-col gap-2">
-        <a
-          href={DISCORD_INVITE_URL || undefined}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex h-9 items-center gap-2 rounded-xl border border-white/15 bg-[#5865F2] px-3 text-white shadow-sm transition-[transform,filter,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 hover:shadow-md active:translate-y-0 active:scale-[0.98] md:h-10 md:gap-2.5"
-        >
-          <img src="/discord-mark-white.svg" alt="" className="h-4 w-4 md:h-[18px] md:w-[18px]" />
-          <span className="text-[11px] font-bold md:text-xs">Discord</span>
-        </a>
-        <a
-          href={FACEBOOK_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex h-9 items-center gap-2 rounded-xl border border-white/15 bg-[#1877F2] px-3 text-white shadow-sm transition-[transform,filter,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 hover:shadow-md active:translate-y-0 active:scale-[0.98] md:h-10 md:gap-2.5"
-        >
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4 md:h-[18px] md:w-[18px]">
-            <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.7V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.3v3h2.8v8h3.4Z" />
-          </svg>
-          <span className="text-[11px] font-bold md:text-xs">Facebook</span>
-        </a>
-      </div>
-    </div>
-  );
-}
+import SocialFollowLinks from './SocialFollowLinks';
 
 export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, isSupporter, supporterUntil, isLoggedIn, currentUser, onLoginClick, onLogout, onBecomeSupporter, onDropdownOpen }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -74,53 +39,32 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
   return (
     <nav className="w-full bg-[#07111f]">
       <div className="flex items-center h-14 md:h-16 xl:h-[72px] px-3 sm:px-4 md:px-5 xl:px-6 gap-3 md:gap-4 w-full">
+        {/* Ikon saja — teks "Nurananto Scanlation" dilepas. Ikonnya portrait
+            (488x658) sehingga terlihat ramping kalau tingginya pas tombol, jadi
+            dinaikkan satu tingkat dari tinggi tombol di sisi kanan. Tetap ikut
+            status login karena tombol akun (h-10/11/12) lebih tinggi daripada
+            tombol Log In (h-8/10/12), supaya proporsinya konsisten. */}
         <a
           href="/"
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
-          className="flex items-center gap-2 sm:gap-3 active:scale-95 transition-transform duration-150 shrink-0"
+          aria-label="Nurananto Scanlation — ke beranda"
+          className="flex items-center active:scale-95 transition-transform duration-150 shrink-0"
         >
-          <img src="/logo-header.webp" alt="Nurananto Scanlation" width="1740" height="847"
-            className="h-8 md:h-10 xl:h-12 w-auto" />
-          <span className="flex flex-col leading-none gap-0">
-            <span className="text-xs md:text-base xl:text-xl font-black text-blue-400 tracking-tight">Nurananto</span>
-            <span className="text-xs md:text-base xl:text-xl font-bold text-white tracking-tight">Scanlation</span>
-          </span>
+          <img
+            src="/icon.webp"
+            alt="Nurananto Scanlation"
+            width="488"
+            height="658"
+            className={`w-auto ${isLoggedIn ? 'h-12 md:h-13 xl:h-14' : 'h-10 md:h-12 xl:h-14'}`}
+          />
         </a>
 
         <div className="flex-1" />
 
+        {/* Tombol Discord/Facebook sengaja TIDAK di header — sudah pindah ke blok
+            "Ikuti Update" di bawah reader, footer, dan dropdown akun. Header
+            disisakan untuk logo + aksi akun saja. */}
         <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
-          {!isLoggedIn && (
-            <>
-              <a
-                href={DISCORD_INVITE_URL || undefined}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Gabung Discord Nurananto Scanlation"
-                title="Discord"
-                className="flex h-8 w-8 items-center justify-center rounded-[30%] border border-white/15 bg-[#5865F2] shadow-md transition-[transform,filter,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 hover:shadow-lg active:translate-y-0 active:scale-95 md:h-10 md:w-10 xl:h-12 xl:w-12"
-              >
-                <img
-                  src="/discord-mark-white.svg"
-                  alt=""
-                  className="h-4 w-4 md:h-5 md:w-5 xl:h-6 xl:w-6"
-                />
-              </a>
-              <a
-                href={FACEBOOK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Ikuti Facebook Nurananto Scanlation"
-                title="Facebook"
-                className="flex h-8 w-8 items-center justify-center rounded-[30%] border border-white/15 bg-[#1877F2] text-white shadow-md transition-[transform,filter,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 hover:shadow-lg active:translate-y-0 active:scale-95 md:h-10 md:w-10 xl:h-12 xl:w-12"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4 md:h-5 md:w-5 xl:h-6 xl:w-6">
-                  <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.7V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.3v3h2.8v8h3.4Z" />
-                </svg>
-              </a>
-            </>
-          )}
-
           <div ref={dropdownRef} className="relative">
             <div className="relative">
             {isLoggedIn ? (
@@ -205,7 +149,10 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                     <span>Pengaturan Akun</span>
                   </button>
 
-                  <AccountSocialLinks />
+                  <SocialFollowLinks
+                    layout="stack"
+                    className="animate-[fadeIn_0.2s_ease-out] border-t border-white/5 px-3 py-2 md:py-2.5"
+                  />
 
                   <button
                     onClick={() => { setIsDropdownOpen(false); onLogout(); }}

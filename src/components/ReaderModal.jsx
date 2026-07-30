@@ -11,35 +11,50 @@ import { getDeviceId } from '../lib/device';
 import { canReadChapter, chapterAccessLevel } from '../lib/chapterAccess';
 import { useDialogFocus } from '../lib/useDialogFocus';
 import ResponsiveCover from './ResponsiveCover';
+import SocialFollowLinks from './SocialFollowLinks';
 
-// Widget Turnstile interaktif (wajib centang) untuk membuka locked chapter.
-function TurnstileGate({ onToken, onError }) {
+// Widget Turnstile interaktif untuk gate locked chapter maupun view-gate gratis.
+// PENTING: onToken & onError harus referensi stabil (useCallback / setter state) —
+// fungsi inline membuat effect ini teardown + render ulang widget tiap parent
+// re-render, dan challenge yang sedang jalan ikut hilang.
+function TurnstileGate({ onToken, onError, timeoutMs = 20000 }) {
   const ref = useRef(null);
   useEffect(() => {
     let widgetId;
     let cancelled = false;
+    // Skrip bisa termuat tapi challenge tidak pernah selesai (jaringan tersendat,
+    // challenges.cloudflare.com diblokir sebagian). Tanpa batas waktu, pembaca
+    // terjebak menatap widget kosong tanpa jalan keluar selain menutup modal.
+    const timer = setTimeout(() => {
+      if (!cancelled) onError?.('Verifikasi tidak merespons. Periksa koneksi lalu coba lagi.');
+    }, timeoutMs);
+    const settle = (fn) => (value) => {
+      clearTimeout(timer);
+      if (!cancelled) fn(value);
+    };
     loadTurnstile().then((ts) => {
       if (cancelled) return;
       if (!ts || !ref.current || !TURNSTILE_SITEKEY) {
-        onError?.('Verifikasi gagal dimuat. Periksa koneksi lalu coba lagi.');
+        settle(() => onError?.('Verifikasi gagal dimuat. Periksa koneksi lalu coba lagi.'))();
         return;
       }
       try {
         widgetId = ts.render(ref.current, {
           sitekey: TURNSTILE_SITEKEY,
-          callback: (t) => onToken(t),
-          'error-callback': () => onError?.('Verifikasi gagal. Silakan coba lagi.'),
-          'expired-callback': () => onError?.('Verifikasi kedaluwarsa. Silakan ulangi.'),
+          callback: settle((t) => onToken(t)),
+          'error-callback': settle(() => onError?.('Verifikasi gagal. Silakan coba lagi.')),
+          'expired-callback': settle(() => onError?.('Verifikasi kedaluwarsa. Silakan ulangi.')),
         });
       } catch {
-        onError?.('Verifikasi gagal dimuat. Silakan coba lagi.');
+        settle(() => onError?.('Verifikasi gagal dimuat. Silakan coba lagi.'))();
       }
     });
     return () => {
       cancelled = true;
+      clearTimeout(timer);
       try { if (widgetId != null && window.turnstile) window.turnstile.remove(widgetId); } catch {}
     };
-  }, [onError, onToken]);
+  }, [onError, onToken, timeoutMs]);
   return <div ref={ref} className="min-h-[65px] flex items-center justify-center" />;
 }
 
@@ -271,6 +286,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const [viewTsToken, setViewTsToken] = useState(null);
   const [viewGateError, setViewGateError] = useState('');
   const [viewGateVersion, setViewGateVersion] = useState(0);
+  const [viewGateConfirmed, setViewGateConfirmed] = useState(0); // naik saat pembaca menekan tombol lanjut
   const [viewGateBypassed, setViewGateBypassed] = useState(false); // fallback: baca tanpa hitung view
   const scrollRef = useRef(null);
   const readerDialogRef = useRef(null);
@@ -288,16 +304,23 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   }, []);
 
   // Tukar Turnstile (dari gate free) → view_gate_token 24 jam.
+  // Menunggu viewGateConfirmed: Turnstile mode Managed sering lolos sendiri tanpa
+  // interaksi, jadi persetujuan eksplisit datang dari tombol pembaca — bukan dari
+  // callback widget.
   useEffect(() => {
-    if (chapterNeedsToken || viewGateToken || !viewTsToken) return;
+    if (chapterNeedsToken || viewGateToken || !viewTsToken || !viewGateConfirmed) return;
     let cancelled = false;
     submitViewGate(viewTsToken).then((token) => {
       if (cancelled) return;
       if (token) { setViewGateToken(token); setViewGateError(''); }
-      else { setViewGateError('Verifikasi gagal. Silakan coba lagi.'); setViewTsToken(null); }
+      else {
+        setViewGateError('Verifikasi gagal. Silakan coba lagi.');
+        setViewTsToken(null);
+        setViewGateConfirmed(0);
+      }
     });
     return () => { cancelled = true; };
-  }, [chapterNeedsToken, viewGateToken, viewTsToken]);
+  }, [chapterNeedsToken, viewGateToken, viewTsToken, viewGateConfirmed]);
 
   // Kirim view ke Worker SETELAH gate terlewati (token ada). Dedup PER HARI (WIB),
   // bukan permanen — pembaca yang balik besok tetap terhitung (server dedup device+chapter+hari).
@@ -510,13 +533,25 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const accessGateOpen = chapterNeedsToken && !imageReady;
   // Chapter GRATIS: gate Turnstile dulu (sekali/24 jam) sebelum konten & pencatatan
   // view — kecuali user memilih "Lewati" saat verifikasi bermasalah (fallback).
-  const freeGateOpen = !!chapter?.id && !chapterNeedsToken && !viewGateToken && !viewGateBypassed;
+  // Tanpa VITE_TURNSTILE_SITEKEY gate mustahil dilewati, jadi jangan pasang sama
+  // sekali: chapter gratis tetap terbaca, view-nya saja yang tidak tercatat.
+  const freeGateOpen = !!chapter?.id
+    && !chapterNeedsToken
+    && !viewGateToken
+    && !viewGateBypassed
+    && !!TURNSTILE_SITEKEY;
 
-  const retryViewGate = () => {
+  const retryViewGate = useCallback(() => {
     setViewGateError('');
     setViewTsToken(null);
+    setViewGateConfirmed(0);
     setViewGateVersion((v) => v + 1);
-  };
+  }, []);
+
+  // Referensi stabil — lihat catatan di TurnstileGate.
+  const handleViewGateError = useCallback((message) => {
+    setViewGateError(message || 'Verifikasi gagal dimuat.');
+  }, []);
 
   useDialogFocus(
     readerDialogRef,
@@ -819,6 +854,28 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             {/* Navigasi bawah */}
             {renderNavBar('bottom')}
 
+            {/* Ikuti Update — ditaruh SETELAH navigasi chapter (aksi utama pembaca)
+                tapi SEBELUM tombol keluar, supaya masih terlihat. Di chapter
+                terbaru porsinya dibesarkan: itu momen pembaca bertanya "kapan
+                lanjutannya?", jadi ajakan follow paling relevan di sana. */}
+            <div className="px-2 pt-1 pb-2">
+              <div className={`rounded-xl border px-3 py-3 sm:px-4 sm:py-3.5 ${
+                isAtNewest
+                  ? 'border-primary/30 bg-primary/5'
+                  : 'border-white/10 bg-surface-container/60'
+              }`}>
+                <SocialFollowLinks
+                  layout="row"
+                  headingText={isAtNewest ? 'Ini chapter terbaru' : 'Ikuti Update'}
+                  subtext={
+                    isAtNewest
+                      ? 'Chapter berikutnya diumumkan duluan di Discord & Facebook.'
+                      : 'Chapter baru diumumkan duluan di Discord & Facebook.'
+                  }
+                />
+              </div>
+            </div>
+
             {/* Kembali ke detail — bawah */}
             {renderDetailBackBar()}
 
@@ -912,7 +969,21 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 </div>
               </div>
             ) : !viewTsToken ? (
-              <TurnstileGate key={viewGateVersion} onToken={setViewTsToken} onError={(m) => setViewGateError(m || 'Verifikasi gagal dimuat.')} />
+              <TurnstileGate key={viewGateVersion} onToken={setViewTsToken} onError={handleViewGateError} />
+            ) : !viewGateConfirmed ? (
+              // Persetujuan manual. Turnstile Managed kerap lolos otomatis, jadi
+              // langkah ini yang memastikan chapter tidak terbuka tanpa satu pun
+              // tindakan pembaca.
+              <div className="flex flex-col items-center gap-3">
+                <p className="font-body-md text-xs sm:text-sm text-emerald-400 font-semibold">✓ Verifikasi berhasil</p>
+                <button
+                  type="button"
+                  onClick={() => setViewGateConfirmed((v) => v + 1)}
+                  className="h-11 rounded-xl bg-primary px-6 font-label-sm text-sm font-black text-on-primary transition-colors hover:bg-primary/90 cursor-pointer"
+                >
+                  Lanjut Baca
+                </button>
+              </div>
             ) : (
               <div className="flex items-center gap-2 text-outline/70">
                 <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
