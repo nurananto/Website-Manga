@@ -1,6 +1,18 @@
 // Cloudflare Pages Function — proxy SAME-ORIGIN untuk pencatatan view
 // chapter/detail gratis (dipanggil dari src/lib/viewGate.js).
 //
+// PENTING — path SENGAJA di luar namespace /api/: zona ini punya Custom Rules
+// WAF (Security -> WAF -> Custom rules) yang melindungi /api/* secara path-based
+// (mis. "Challenge bot user-..." yang mengecualikan /api/webhook/trakteer secara
+// eksplisit, ~38rb events — jelas dibuat untuk api.nuranantoscans.my.id tapi
+// path-based sehingga ikut menyasar path apa pun berawalan /api/ di domain MANA
+// PUN di zona ini) + "Geo gate ID/MY/SG" (Interactive Challenge — MUSTAHIL
+// diselesaikan oleh fetch() background, jadi kalau kena, request pasti gagal
+// apa pun isinya). Dibuktikan langsung: POST ke nuranantoscans.my.id/api/r/<id>
+// dari browser pengunjung asli kena 403 "Sorry, you have been blocked" persis
+// halaman block WAF Cloudflare. Path /n/r/ ini menghindari SELURUH proteksi
+// yang menyasar /api/* tanpa perlu mengubah/melemahkan rule yang sudah ada.
+//
 // Catatan deploy: project ini pakai Direct Upload (wrangler pages deploy lewat
 // .github/workflows/deploy-pages.yml), bukan Git-integration bawaan Cloudflare.
 // Env var yang ditambah/diubah di dashboard Pages baru terikat ke Function pada
@@ -8,16 +20,16 @@
 // sudah berjalan. Habis ubah env var, picu deploy baru (push apa pun yang tidak
 // menyentuh manga/**/.github/**, atau jalankan workflow "Deploy Pages" manual).
 //
-// Kenapa ini perlu: dibuktikan langsung lewat DevTools bahwa beberapa ekstensi
-// privasi mem-patch window.fetch() di browser dan MENJATUHKAN request SEBELUM
-// sampai jaringan sama sekali — tidak muncul di Network tab, tidak error, tidak
-// ada jejak apa pun — begitu polanya terlihat seperti "beacon pihak ketiga":
-// POST cross-origin (subdomain api. berbeda dari halaman) + header custom
-// (X-Device-Id) segera setelah page load. Domain api.nuranantoscans.my.id
-// sendiri BERSIH dari EasyList/EasyPrivacy dan first-party menurut Public
-// Suffix List (my.id terdaftar di PSL) — jadi ini heuristik pola perilaku,
-// bukan reputasi domain, dan pindah ke path ini (satu origin dengan halaman,
-// tanpa CORS) menghilangkan sinyal "cross-origin" yang jadi pemicu utamanya.
+// Kenapa proxy same-origin ini perlu (terpisah dari masalah WAF di atas):
+// dibuktikan lewat DevTools bahwa beberapa ekstensi privasi mem-patch
+// window.fetch() di browser dan MENJATUHKAN request SEBELUM sampai jaringan
+// sama sekali — tidak muncul di Network tab, tidak error — begitu polanya
+// terlihat seperti "beacon pihak ketiga": POST cross-origin (subdomain api.
+// berbeda dari halaman) + header custom (X-Device-Id) segera setelah page
+// load. Domain api.nuranantoscans.my.id sendiri BERSIH dari EasyList/
+// EasyPrivacy dan first-party menurut Public Suffix List (my.id terdaftar di
+// PSL) — jadi ini heuristik pola perilaku, bukan reputasi domain, dan pindah
+// ke path same-origin ini menghilangkan sinyal "cross-origin" pemicunya.
 //
 // deploy: folder ini bagian dari repo utama (Cloudflare Pages), auto-deploy
 // lewat GitHub — BEDA dari worker/api-worker.js yang di-deploy manual via

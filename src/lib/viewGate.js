@@ -8,10 +8,16 @@
 // privasi tertentu mem-patch fetch() dan menjatuhkan POST cross-origin ber-
 // header custom SEBELUM sampai jaringan (tak muncul di Network tab sama
 // sekali) — profil normal nihil, Incognito (ekstensi nonaktif) 200 OK. Path
-// relatif "/api/r/<id>" diproxy oleh functions/api/r/[id].js (Cloudflare Pages
+// relatif "/n/r/<id>" diproxy oleh functions/n/r/[id].js (Cloudflare Pages
 // Function, satu origin dengan halaman) ke worker sesungguhnya di
 // api.nuranantoscans.my.id, menghilangkan sinyal "POST cross-origin" yang
 // jadi pemicu heuristik itu.
+//
+// PENTING: path SENGAJA "/n/r/", BUKAN "/api/r/" — zona ini punya Custom Rules
+// WAF yang menyasar /api/* secara path-based (dibuat untuk api.nuranantoscans.
+// my.id, tapi ikut memblokir path apa pun berawalan /api/ di domain manapun di
+// zona ini). Dibuktikan langsung: POST ke nuranantoscans.my.id/api/r/<id> kena
+// 403 "Sorry, you have been blocked" dari WAF, sebelum sampai ke Function.
 
 import { getDeviceId } from './device';
 
@@ -24,7 +30,7 @@ try { localStorage.removeItem(LEGACY_KEY); } catch { /* private mode */ }
 export async function recordView(id) {
   if (!id) return false;
   try {
-    const res = await fetch(`/api/r/${encodeURIComponent(id)}`, {
+    const res = await fetch(`/n/r/${encodeURIComponent(id)}`, {
       method: 'POST',
       headers: { 'X-Device-Id': getDeviceId() },
       keepalive: true,
