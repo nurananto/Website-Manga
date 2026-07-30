@@ -83,14 +83,27 @@
   },
   "chapters": [
     {
+      "chapter_number": 14.2,
+      "lock_hours": 0,
+      "pages": 20,
+      "r2_folder": 14.2,
+      "id": "UchinoSeiso-kei-ch-14.2",
+      "r2_prefix": "manga/UchinoSeiso-kei/14.2/",
+      "title": "Ch. 14.2",
+      "release_date": "2026-07-30T20:01:44+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 14.1,
       "lock_hours": 0,
       "pages": 15,
+      "release_date": "2026-07-30T18:18:57+07:00",
       "r2_folder": 14.1,
       "id": "UchinoSeiso-kei-ch-14.1",
       "r2_prefix": "manga/UchinoSeiso-kei/14.1/",
       "title": "Ch. 14.1",
-      "release_date": "2026-07-30T18:18:57+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
