@@ -6,7 +6,14 @@
   "type": "WEBTOON",
   "author": "Homenoba",
   "artist": "Homenoba",
-  "genres": ["Long Strip", "Romance", "Comedy", "School Life", "Slice of Life", "Full Color"],
+  "genres": [
+    "Long Strip",
+    "Romance",
+    "Comedy",
+    "School Life",
+    "Slice of Life",
+    "Full Color"
+  ],
   "description": "Aku, si bocchi pendiam, tiba-tiba memiliki sebuah kisah cinta hanya karena satu momen!? Siapa sangka kebahagiaan seperti apa yang tersembunyi di dunia ini...! Channel video manga romantis populer di YouTube, 'Hometenobasu', kini menjadi sebuah manga! Berlatar sekolah sebagai panggung utama masa muda, cerita ini menyajikan kisah cinta dramatis seorang bocchi pendiam yang berbalik menjadi sosok populer! Source YT : @Homenoba ",
   "covers": [
     "manga/InkyaDanshi/covers/cover.webp",
@@ -20,5 +27,19 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "6d6bb634-822b-41c9-9249-d2f2c1d87ba6.png",
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 2,
+  "cover_gallery": [
+    {
+      "file": "6d6bb634-822b-41c9-9249-d2f2c1d87ba6.png",
+      "volume": "0",
+      "keys": [
+        "manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6.webp",
+        "manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6@tablet.webp",
+        "manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6@mobile.webp"
+      ],
+      "widths": "1280x960x640q75"
+    }
+  ]
 }

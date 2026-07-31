@@ -1,0 +1,81 @@
+{
+  "id": "InkyaDanshi",
+  "title": "Inkya Danshi ga Keiken Shita, Urayamakeshikaranna Love Comedy",
+  "alt_title": "陰キャ男子が経験した、羨まけしからんなラブコメ",
+  "status": "Tamat",
+  "type": "WEBTOON",
+  "author": "Homenoba",
+  "artist": "Homenoba",
+  "genres": [
+    "Comedy",
+    "Full Color",
+    "Long Strip",
+    "Romance",
+    "School Life",
+    "Slice of Life"
+  ],
+  "description": "Aku, si bocchi pendiam, tiba-tiba memiliki sebuah kisah cinta hanya karena satu momen!? Siapa sangka kebahagiaan seperti apa yang tersembunyi di dunia ini...! Channel video manga romantis populer di YouTube, 'Hometenobasu', kini menjadi sebuah manga! Berlatar sekolah sebagai panggung utama masa muda, cerita ini menyajikan kisah cinta dramatis seorang bocchi pendiam yang berbalik menjadi sosok populer! Source YT : @Homenoba ",
+  "covers": [
+    "manga/InkyaDanshi/covers/cover.webp",
+    "manga/InkyaDanshi/covers/cover@tablet.webp",
+    "manga/InkyaDanshi/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/927d687f-ceb6-4e56-baff-461d6660443a/inkya-danshi-ga-keiken-shita-urayamakeshikaran-na-love-comedy",
+  "raw_url": "https://bookwalker.jp/series/485592/",
+  "notif_image": "cover",
+  "tamat_at_chapter": 10,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": "6d6bb634-822b-41c9-9249-d2f2c1d87ba6.png",
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 2,
+  "cover_gallery": [
+    {
+      "volume": "0",
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6@mobile.webp?v=2"
+      }
+    }
+  ],
+  "mangadex_id": "927d687f-ceb6-4e56-baff-461d6660443a",
+  "rating": 8.19,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover.webp?v=2",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover@mobile.webp?v=2"
+  },
+  "chapters": [
+    {
+      "chapter_number": 2,
+      "lock_hours": 0,
+      "pages": 32,
+      "r2_folder": 2,
+      "id": "InkyaDanshi-ch-2",
+      "r2_prefix": "manga/InkyaDanshi/2/",
+      "title": "Ch. 2",
+      "release_date": "2026-07-31T23:42:14+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 64,
+      "r2_folder": 1,
+      "id": "InkyaDanshi-ch-1",
+      "r2_prefix": "manga/InkyaDanshi/1/",
+      "title": "Ch. 1",
+      "release_date": "2026-07-31T23:42:14+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    }
+  ]
+}

@@ -1,5 +1,61 @@
 [
   {
+    "id": "InkyaDanshi",
+    "title": "Inkya Danshi ga Keiken Shita, Urayamakeshikaranna Love Comedy",
+    "description": "Aku, si bocchi pendiam, tiba-tiba memiliki sebuah kisah cinta hanya karena satu momen!? Siapa sangka kebahagiaan seperti apa yang tersembunyi di dunia ini...! Channel video manga romantis populer di YouTube, 'Hometenobasu', kini menjadi sebuah manga! Berlatar sekolah sebagai panggung utama masa…",
+    "status": "Tamat",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Comedy",
+      "Full Color",
+      "Long Strip",
+      "Romance",
+      "School Life",
+      "Slice of Life"
+    ],
+    "rating": 8.19,
+    "chapter_count": 2,
+    "total_views": 0,
+    "isTrending": true,
+    "latest_release_date": "2026-07-31T23:42:14+07:00",
+    "next_update": null,
+    "tamat_at_chapter": 10,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 2,
+        "lock_hours": 0,
+        "pages": 32,
+        "r2_folder": 2,
+        "id": "InkyaDanshi-ch-2",
+        "r2_prefix": "manga/InkyaDanshi/2/",
+        "title": "Ch. 2",
+        "release_date": "2026-07-31T23:42:14+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 1,
+        "lock_hours": 0,
+        "pages": 64,
+        "r2_folder": 1,
+        "id": "InkyaDanshi-ch-1",
+        "r2_prefix": "manga/InkyaDanshi/1/",
+        "title": "Ch. 1",
+        "release_date": "2026-07-31T23:42:14+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "Chikasugiru",
     "title": "Chikasugiru Futari",
     "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang greget—ini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun…",
@@ -295,7 +351,7 @@
     "rating": 6.79,
     "chapter_count": 17,
     "total_views": 140,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-07-27T22:52:51+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
