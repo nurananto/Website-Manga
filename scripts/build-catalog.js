@@ -506,13 +506,292 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
   console.log(`📘 Facebook posting terkirim: ${sent}/${posts.length} post`);
 }
 
+// ============================================================
+// Build catalog — dipecah per tahap. Tiap fungsi satu tanggung jawab;
+// buildCatalog() di bawah hanya orkestrasi urutannya per manga.
+// ============================================================
+
+// Hasil build SEBELUMNYA (public/manga/<slug>.json) — dibaca SEBELUM file
+// ditimpa. Dipakai untuk: deteksi manga baru (intro), deteksi chapter baru
+// (notifikasi), dan rating lama saat fetch dilewati/gagal.
+function readPreviousBuild(slug) {
+  const prevJsonPath = path.join(outDir, `${slug}.json`);
+  const isNewManga = !fs.existsSync(prevJsonPath); // manga belum pernah ada → intro 1×
+  let previousCatalog = null;
+  let prevChapterNums = new Set();
+  if (!isNewManga) {
+    try {
+      previousCatalog = JSON.parse(fs.readFileSync(prevJsonPath, 'utf-8'));
+      prevChapterNums = new Set((previousCatalog.chapters || []).map(c => c.chapter_number));
+    } catch {}
+  }
+  return { isNewManga, previousCatalog, prevChapterNums };
+}
+
+// Rating MangaDex — fetch hanya untuk manga yang berubah di push ini; manga lain
+// pakai rating hasil build sebelumnya (refresh penuh terjadi saat cron mingguan).
+async function resolveRating(manga, isChanged, previousCatalog) {
+  if (manga.mangadex_id && isChanged) {
+    console.log(`📡 Fetching rating for ${manga.title}...`);
+    manga.rating = await fetchMangaDexRating(manga.mangadex_id);
+    if (manga.rating) {
+      manga.rating = Math.round(manga.rating * 100) / 100; // 2 desimal (x.xx)
+      console.log(`   ⭐ ${manga.rating}`);
+    } else if (previousCatalog?.rating != null) {
+      manga.rating = previousCatalog.rating;
+      console.log(`   ♻️  Rating gagal diambil; pakai rating lama (${manga.rating})`);
+    }
+  } else if (manga.mangadex_id && previousCatalog) {
+    manga.rating = previousCatalog.rating ?? null;
+    console.log(`♻️  ${manga.title} — rating lama dipakai (${manga.rating ?? '—'})`);
+  } else {
+    manga.rating = null;
+  }
+}
+
+// Baca semua folder chapter satu manga → daftar chapter lengkap (id, unlockDate,
+// isLocked, views, dst). Menulis balik release_date ke meta chapter bila belum
+// ada, dan mengembalikan daftar lock Early Access untuk sync ke Worker.
+function buildChapters(slug, mangaPath, manga) {
+  const chapters = [];
+  const protectedChapters = [];
+  for (const entry of fs.readdirSync(mangaPath)) {
+    const chapterPath = path.join(mangaPath, entry);
+    if (!fs.statSync(chapterPath).isDirectory()) continue;
+    const chMetaPath = path.join(chapterPath, 'meta.json');
+    if (!fs.existsSync(chMetaPath)) continue;
+    const ch = fixEncoding(JSON.parse(fs.readFileSync(chMetaPath, 'utf-8')));
+    const forceNotify = ch.republish_notification === true;
+    if (forceNotify) {
+      delete ch.republish_notification;
+      Object.defineProperty(ch, '_forceNotify', { value: true, enumerable: false });
+      try {
+        const raw = JSON.parse(fs.readFileSync(chMetaPath, 'utf-8'));
+        delete raw.republish_notification;
+        fs.writeFileSync(chMetaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
+        console.log(`   🔁 ${slug} Ch.${ch.chapter_number} dijadwalkan publish ulang`);
+      } catch {}
+    }
+
+    // pages wajib diisi
+    if (!ch.pages || ch.pages < 1) {
+      console.warn(`⚠️  SKIP ${slug} Ch.${ch.chapter_number}: field "pages" wajib diisi!`);
+      continue;
+    }
+
+    // Auto-generate id, title, dan r2_prefix
+    const isOneshot = manga.status === 'Oneshot';
+    const chapterNumber = isOneshot ? 'oneshot' : ch.chapter_number;
+    const r2Folder = isOneshot ? entry : chapterNumber;
+    ch.chapter_number = chapterNumber;
+    ch.r2_folder = r2Folder;
+    ch.id = `${slug}-ch-${chapterNumber}`;
+    ch.r2_prefix = `manga/${slug}/${r2Folder}/`;
+    if (!ch.title) {
+      ch.title = isOneshot ? 'Oneshot' : `Ch. ${chapterNumber}`;
+    }
+
+    // release_date: kalau belum ada di meta.json, ambil dari waktu commit PERTAMA
+    // file meta.json chapter ini (WIB), lalu tulis balik agar permanen & stabil
+    if (!ch.release_date) {
+      const added = gitAddedDate(chMetaPath);
+      ch.release_date = toWibString(added || Date.now());
+      try {
+        const raw = JSON.parse(fs.readFileSync(chMetaPath, 'utf-8'));
+        raw.release_date = ch.release_date;
+        fs.writeFileSync(chMetaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
+        console.log(`   🕐 ${slug} Ch.${ch.chapter_number} release_date ← waktu commit (${ch.release_date})`);
+      } catch {}
+    }
+
+    // Override eksplisit dipakai untuk penjadwalan hingga detik tanpa mengubah
+    // release_date asli. Jika tidak ada, tetap gunakan release + lock_hours.
+    const explicitUnlockDate = ch.unlock_date;
+    delete ch.unlock_date;
+    if (explicitUnlockDate) {
+      const unlockMs = new Date(explicitUnlockDate).getTime();
+      if (!Number.isFinite(unlockMs)) {
+        throw new Error(`${slug} Ch.${ch.chapter_number}: unlock_date tidak valid`);
+      }
+      ch.unlockDate = new Date(unlockMs).toISOString();
+    } else if (ch.lock_hours > 0) {
+      const unlockDate = new Date(ch.release_date);
+      unlockDate.setHours(unlockDate.getHours() + ch.lock_hours);
+      ch.unlockDate = unlockDate.toISOString();
+    } else {
+      ch.unlockDate = null;
+    }
+
+    // isLocked: terkunci kalau unlockDate masih di masa depan
+    ch.isLocked = ch.unlockDate ? new Date(ch.unlockDate) > new Date() : false;
+    // Hanya ada dua fase: Early Access hingga unlockDate, lalu langsung publik.
+    if (ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()) {
+      protectedChapters.push({ chapter_id: ch.id, unlock_at: ch.unlockDate });
+    }
+
+    // isNew dihitung di frontend dari release_date (bukan disimpan di catalog)
+
+    // Views per chapter dari manga meta.json (field chapter_views)
+    ch.views = (manga.chapter_views ?? {})[String(ch.chapter_number)] ?? 0;
+
+    chapters.push(ch);
+  }
+
+  // Urutkan chapter: terbaru di atas (descending)
+  chapters.sort((a, b) => chapterSortValue(b.chapter_number) - chapterSortValue(a.chapter_number));
+  return { chapters, protectedChapters };
+}
+
+// coverUrl/coverUrls via CDN + cache-busting ?v=<cover_version>, dan galeri
+// SEMUA cover (terbaru duluan). Menghapus field internal cover_dev.
+function applyCoverUrls(manga) {
+  // CDN_BASE (mis. https://cdn.nuranantoscans.my.id) → cover diserve langsung
+  // dari R2 publik tanpa lewat image worker (0 invocation).
+  const cdnBase = (process.env.CDN_BASE || '').replace(/\/$/, '');
+  // cover_version (default 1) → cache-busting query. Naikkan di meta.json tiap
+  // ganti cover supaya URL berubah → cover bisa di-cache lama (immutable) tanpa stale.
+  const coverVer = Number.isFinite(manga.cover_version) ? manga.cover_version : 1;
+  const vq = `?v=${coverVer}`;
+  const coverFull = (key) => (key ? (cdnBase ? `${cdnBase}/${key}${vq}` : `${key}${vq}`) : null);
+  manga.coverUrl = coverFull(manga.cover_dev ?? manga.covers?.[0]);
+  manga.coverUrls = {
+    desktop: coverFull(manga.covers?.[0]) ?? manga.coverUrl,
+    tablet:  coverFull(manga.covers?.[1]) ?? manga.coverUrl,
+    mobile:  coverFull(manga.covers?.[2]) ?? manga.coverUrl,
+  };
+  delete manga.cover_dev;
+
+  // Galeri SEMUA cover (termasuk yang sedang dipakai) — terbaru duluan, URL via CDN
+  if (Array.isArray(manga.cover_gallery)) {
+    manga.cover_gallery = manga.cover_gallery
+      .filter(g => g.keys?.length >= 3)
+      .map(g => ({
+        volume: g.volume ?? null,
+        is_current: g.file === manga.mangadex_cover,
+        urls: {
+          desktop: coverFull(g.keys[0]),
+          tablet:  coverFull(g.keys[1]),
+          mobile:  coverFull(g.keys[2]),
+        },
+      }))
+      .reverse();
+  }
+}
+
+// Tulis detail lengkap per manga → public/manga/<slug>.json (di-fetch halaman detail).
+function writeMangaDetailJson(slug, manga, chapters) {
+  fs.mkdirSync(outDir, { recursive: true });
+  const publicManga = { ...manga, chapters };
+  // Watermark internal cron hanya diperlukan di meta sumber GitHub. Jangan
+  // ikut mempublikasikan detail sinkronisasi Worker ke katalog frontend.
+  delete publicManga.view_sync_cutoff;
+  fs.writeFileSync(path.join(outDir, `${slug}.json`), JSON.stringify(publicManga, null, 2), 'utf-8');
+}
+
+// Entri index.json — hanya field yang DIPAKAI homepage (kartu, search, carousel)
+// + 3 chapter terbaru. Field detail-only (description penuh, alt_title, covers,
+// author, type) sengaja TIDAK disertakan — sudah ada di per-manga JSON.
+// description RINGKAS (~300 char) untuk FeaturedCarousel; potong di batas kata.
+function buildIndexEntry(manga, chapters, latestReleaseDate) {
+  const rawDesc = manga.description || '';
+  const shortDesc = rawDesc.length > 300
+    ? rawDesc.slice(0, 300).replace(/\s+\S*$/, '') + '…'
+    : rawDesc;
+  return {
+    id:           manga.id,
+    title:        manga.title,
+    description:  shortDesc,
+    status:       manga.status,
+    coverUrl:     manga.coverUrl,
+    coverUrls:    manga.coverUrls,
+    genres:       manga.genres,
+    rating:       manga.rating,
+    chapter_count: chapters.length,
+    total_views:  manga.total_views,
+    isTrending:   manga.isTrending,
+    latest_release_date: latestReleaseDate,
+    next_update:  manga.next_update,
+    tamat_at_chapter:  manga.tamat_at_chapter ?? null,
+    hiatus_at_chapter: manga.hiatus_at_chapter ?? null,
+    chapters:     chapters.slice(0, 3),
+  };
+}
+
+// Chapter BARU (belum ada di build sebelumnya, atau ditandai publish ulang) —
+// hanya saat push spesifik (CHANGED_SLUGS), bukan full cron build.
+function detectNewChapters(slug, manga, chapters, prevChapterNums) {
+  const found = [];
+  if (!(CHANGED_SLUGS.length > 0 && CHANGED_SLUGS.includes(slug))) return found;
+  for (const ch of chapters) {
+    if (!prevChapterNums.has(ch.chapter_number) || ch._forceNotify) {
+      found.push({
+        mangaId:          manga.id,
+        mangaTitle:       manga.title,
+        slug,                         // path R2: manga/<slug>/<chapter>/Image01.webp
+        chapterNumber:    ch.chapter_number,
+        r2Folder:         ch.r2_folder,
+        chapterTitle:     ch.title,
+        isLocked:         ch.isLocked,
+        releaseDate:      ch.release_date,
+      });
+      console.log(`   🔔 ${ch._forceNotify ? 'Publish ulang' : 'Chapter baru terdeteksi'}: ${manga.title} — ${ch.title}`);
+    }
+  }
+  return found;
+}
+
+// Urutkan homepage (update terbaru di atas), tandai trending fallback build-time
+// (5 update terbaru — ranking utama tetap /api/trending), tulis index.json.
+function writeIndexJson(catalog) {
+  catalog.sort((a, b) => {
+    const byDate = releaseSortValue(b.latest_release_date) - releaseSortValue(a.latest_release_date);
+    if (byDate !== 0) return byDate;
+    return String(a.title || '').localeCompare(String(b.title || ''));
+  });
+
+  const trendingIds = new Set(catalog.slice(0, 5).map(m => m.id));
+  catalog.forEach(m => { m.isTrending = trendingIds.has(m.id); });
+
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, 'index.json'), JSON.stringify(catalog, null, 2), 'utf-8');
+
+  console.log(`\n📦 index.json: ${catalog.length} manga`);
+  console.log(`🔥 Trending: ${[...trendingIds].join(', ')}`);
+}
+
+// Sync lock Early Access ke Worker (D1 chapter_locks) — retry 3×; kalau tetap
+// gagal, build DIBATALKAN supaya catalog yang mengira chapter terkunci tidak
+// dideploy tanpa lock di sisi server (chapter bisa bocor).
+async function syncChapterLocks(locks) {
+  const workerUrl   = process.env.WORKER_URL;
+  const adminSecret = process.env.WORKER_ADMIN_SECRET;
+  if (!workerUrl || !adminSecret || !locks.length) return;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const res = await fetchT(`${workerUrl}/api/admin/sync-locks`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': adminSecret },
+        body: JSON.stringify({ locks }),
+      });
+      if (res.ok) {
+        console.log(`🔒 Synced ${locks.length} locks → Worker OK (attempt ${attempt})`);
+        return;
+      }
+      console.warn(`⚠️  Attempt ${attempt}: ${await res.text()}`);
+    } catch (e) {
+      console.warn(`⚠️  Attempt ${attempt}: ${e.message}`);
+    }
+    if (attempt < 3) await new Promise(r => setTimeout(r, 2000));
+  }
+  console.error('❌ Lock sync gagal 3x — batalkan deploy agar chapter tidak bocor!');
+  process.exit(1);
+}
+
 async function buildCatalog() {
   const catalog = [];
   const protectedChapters = [];
   const newChaptersList = []; // dikumpulkan untuk notifikasi Discord
   const newMangaList    = []; // manga BARU (intro 1× ke #manga-list)
-
-  // views dibaca langsung dari manga meta.json (field chapter_views)
 
   const mangaSlugs = fs.readdirSync(chaptersDir).filter(f =>
     fs.statSync(path.join(chaptersDir, f)).isDirectory()
@@ -534,131 +813,17 @@ async function buildCatalog() {
       if (match) manga.mangadex_id = match[1];
     }
 
-    // Fetch rating dari MangaDex — hanya untuk manga yang berubah di push ini.
-    // Manga lain pakai rating dari hasil build sebelumnya (refresh penuh saat cron mingguan).
+    // Hasil build lama HARUS dibaca sebelum writeMangaDetailJson menimpanya.
+    const { isNewManga, previousCatalog, prevChapterNums } = readPreviousBuild(slug);
     const isChanged = CHANGED_SLUGS.length === 0 || CHANGED_SLUGS.includes(slug);
-    const prevJsonPath = path.join(outDir, `${slug}.json`);
-
-    // Tangkap chapter LAMA SEKARANG, sebelum per-manga JSON ditimpa di bawah —
-    // kalau dibaca setelah ditimpa, semua chapter dianggap "lama" (notif tak pernah jalan).
-    const isNewManga = !fs.existsSync(prevJsonPath); // manga belum pernah ada → intro 1×
-    let prevChapterNums = new Set();
-    let previousCatalog = null;
-    if (fs.existsSync(prevJsonPath)) {
-      try {
-        previousCatalog = JSON.parse(fs.readFileSync(prevJsonPath, 'utf-8'));
-        prevChapterNums = new Set((previousCatalog.chapters || []).map(c => c.chapter_number));
-      } catch {}
-    }
-    if (manga.mangadex_id && isChanged) {
-      console.log(`📡 Fetching rating for ${manga.title}...`);
-      manga.rating = await fetchMangaDexRating(manga.mangadex_id);
-      if (manga.rating) {
-        manga.rating = Math.round(manga.rating * 100) / 100; // 2 desimal (x.xx)
-        console.log(`   ⭐ ${manga.rating}`);
-      } else if (previousCatalog?.rating != null) {
-        manga.rating = previousCatalog.rating;
-        console.log(`   ♻️  Rating gagal diambil; pakai rating lama (${manga.rating})`);
-      }
-    } else if (manga.mangadex_id && previousCatalog) {
-      manga.rating = previousCatalog.rating ?? null;
-      console.log(`♻️  ${manga.title} — rating lama dipakai (${manga.rating ?? '—'})`);
-    } else {
-      manga.rating = null;
-    }
+    await resolveRating(manga, isChanged, previousCatalog);
 
     manga.status = normalizeStatus(manga.status);
     manga.type   = normalizeType(manga.type);
 
-    // Kumpulkan semua chapter
-    const chapters = [];
-    for (const entry of fs.readdirSync(mangaPath)) {
-      const chapterPath = path.join(mangaPath, entry);
-      if (!fs.statSync(chapterPath).isDirectory()) continue;
-      const chMetaPath = path.join(chapterPath, 'meta.json');
-      if (!fs.existsSync(chMetaPath)) continue;
-      const ch = fixEncoding(JSON.parse(fs.readFileSync(chMetaPath, 'utf-8')));
-      const forceNotify = ch.republish_notification === true;
-      if (forceNotify) {
-        delete ch.republish_notification;
-        Object.defineProperty(ch, '_forceNotify', { value: true, enumerable: false });
-        try {
-          const raw = JSON.parse(fs.readFileSync(chMetaPath, 'utf-8'));
-          delete raw.republish_notification;
-          fs.writeFileSync(chMetaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
-          console.log(`   🔁 ${slug} Ch.${ch.chapter_number} dijadwalkan publish ulang`);
-        } catch {}
-      }
+    const { chapters, protectedChapters: mangaLocks } = buildChapters(slug, mangaPath, manga);
+    protectedChapters.push(...mangaLocks);
 
-      // pages wajib diisi
-      if (!ch.pages || ch.pages < 1) {
-        console.warn(`⚠️  SKIP ${slug} Ch.${ch.chapter_number}: field "pages" wajib diisi!`);
-        continue;
-      }
-
-      // Auto-generate id, title, dan r2_prefix
-      const isOneshot = manga.status === 'Oneshot';
-      const chapterNumber = isOneshot ? 'oneshot' : ch.chapter_number;
-      const r2Folder = isOneshot ? entry : chapterNumber;
-      ch.chapter_number = chapterNumber;
-      ch.r2_folder = r2Folder;
-      ch.id = `${slug}-ch-${chapterNumber}`;
-      ch.r2_prefix = `manga/${slug}/${r2Folder}/`;
-      if (!ch.title) {
-        ch.title = isOneshot ? 'Oneshot' : `Ch. ${chapterNumber}`;
-      }
-
-      // release_date: kalau belum ada di meta.json, ambil dari waktu commit PERTAMA
-      // file meta.json chapter ini (WIB), lalu tulis balik agar permanen & stabil
-      if (!ch.release_date) {
-        const added = gitAddedDate(chMetaPath);
-        ch.release_date = toWibString(added || Date.now());
-        try {
-          const raw = JSON.parse(fs.readFileSync(chMetaPath, 'utf-8'));
-          raw.release_date = ch.release_date;
-          fs.writeFileSync(chMetaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
-          console.log(`   🕐 ${slug} Ch.${ch.chapter_number} release_date ← waktu commit (${ch.release_date})`);
-        } catch {}
-      }
-
-      // Override eksplisit dipakai untuk penjadwalan hingga detik tanpa mengubah
-      // release_date asli. Jika tidak ada, tetap gunakan release + lock_hours.
-      const explicitUnlockDate = ch.unlock_date;
-      delete ch.unlock_date;
-      if (explicitUnlockDate) {
-        const unlockMs = new Date(explicitUnlockDate).getTime();
-        if (!Number.isFinite(unlockMs)) {
-          throw new Error(`${slug} Ch.${ch.chapter_number}: unlock_date tidak valid`);
-        }
-        ch.unlockDate = new Date(unlockMs).toISOString();
-      } else if (ch.lock_hours > 0) {
-        const unlockDate = new Date(ch.release_date);
-        unlockDate.setHours(unlockDate.getHours() + ch.lock_hours);
-        ch.unlockDate = unlockDate.toISOString();
-      } else {
-        ch.unlockDate = null;
-      }
-
-      // isLocked: terkunci kalau unlockDate masih di masa depan
-      ch.isLocked = ch.unlockDate ? new Date(ch.unlockDate) > new Date() : false;
-      // Hanya ada dua fase: Early Access hingga unlockDate, lalu langsung publik.
-      if (ch.unlockDate && new Date(ch.unlockDate).getTime() > Date.now()) {
-        protectedChapters.push({
-          chapter_id: ch.id,
-          unlock_at: ch.unlockDate,
-        });
-      }
-
-      // isNew dihitung di frontend dari release_date (bukan disimpan di catalog)
-
-      // Views per chapter dari manga meta.json (field chapter_views)
-      ch.views = (manga.chapter_views ?? {})[String(ch.chapter_number)] ?? 0;
-
-      chapters.push(ch);
-    }
-
-    // Urutkan chapter: terbaru di atas (descending)
-    chapters.sort((a, b) => chapterSortValue(b.chapter_number) - chapterSortValue(a.chapter_number));
     const recentChapters = [...chapters].sort(compareRecentChapters);
     const latestReleaseDate = recentChapters[0]?.release_date ?? null;
 
@@ -671,56 +836,9 @@ async function buildCatalog() {
 
     // Urutkan genre abjad
     if (Array.isArray(manga.genres)) manga.genres.sort();
-    // status & type sudah dinormalisasi lewat normalizeStatus()/normalizeType()
-    // di awal iterasi manga — dulu sempat dinormalisasi ulang di sini dengan map
-    // duplikat, pass kedua itu tidak pernah mengubah apa pun.
 
-    // coverUrl dari covers[0] (desktop), coverUrls untuk semua ukuran.
-    // CDN_BASE (mis. https://cdn.nuranantoscans.my.id) → cover diserve langsung
-    // dari R2 publik tanpa lewat image worker (0 invocation).
-    const cdnBase = (process.env.CDN_BASE || '').replace(/\/$/, '');
-    // cover_version (default 1) → cache-busting query. Naikkan di meta.json tiap
-    // ganti cover supaya URL berubah → cover bisa di-cache lama (immutable) tanpa stale.
-    const coverVer = Number.isFinite(manga.cover_version) ? manga.cover_version : 1;
-    const vq = `?v=${coverVer}`;
-    const coverFull = (key) => (key ? (cdnBase ? `${cdnBase}/${key}${vq}` : `${key}${vq}`) : null);
-    manga.coverUrl = coverFull(manga.cover_dev ?? manga.covers?.[0]);
-    manga.coverUrls = {
-      desktop: coverFull(manga.covers?.[0]) ?? manga.coverUrl,
-      tablet:  coverFull(manga.covers?.[1]) ?? manga.coverUrl,
-      mobile:  coverFull(manga.covers?.[2]) ?? manga.coverUrl,
-    };
-    delete manga.cover_dev;
-
-    // Galeri SEMUA cover (termasuk yang sedang dipakai) — terbaru duluan, URL via CDN
-    if (Array.isArray(manga.cover_gallery)) {
-      manga.cover_gallery = manga.cover_gallery
-        .filter(g => g.keys?.length >= 3)
-        .map(g => ({
-          volume: g.volume ?? null,
-          is_current: g.file === manga.mangadex_cover,
-          urls: {
-            desktop: coverFull(g.keys[0]),
-            tablet:  coverFull(g.keys[1]),
-            mobile:  coverFull(g.keys[2]),
-          },
-        }))
-        .reverse();
-    }
-
-    // Simpan full detail per manga → public/manga/{id}.json
-    // Frontend fetch ini saat user buka halaman detail manga
-    const mangaPublicDir = './public/manga';
-    fs.mkdirSync(mangaPublicDir, { recursive: true });
-    const publicManga = { ...manga, chapters };
-    // Watermark internal cron hanya diperlukan di meta sumber GitHub. Jangan
-    // ikut mempublikasikan detail sinkronisasi Worker ke katalog frontend.
-    delete publicManga.view_sync_cutoff;
-    fs.writeFileSync(
-      path.join(mangaPublicDir, `${slug}.json`),
-      JSON.stringify(publicManga, null, 2),
-      'utf-8'
-    );
+    applyCoverUrls(manga);
+    writeMangaDetailJson(slug, manga, chapters);
 
     // Manga BARU (belum pernah ada JSON-nya) → intro 1× ke #manga-list.
     // MANGALIST_BACKFILL=1 → kirim SEMUA manga (sekali, untuk isi channel kosong).
@@ -736,113 +854,14 @@ async function buildCatalog() {
       });
     }
 
-    // index.json hanya simpan field yang DIPAKAI homepage (kartu, search, carousel)
-    // + 3 chapter terbaru. Field detail-only (description, alt_title, covers, author,
-    // type) sengaja TIDAK disertakan — sudah ada di per-manga JSON yang di-load
-    // halaman detail. Tujuannya agar index.json tetap ramping saat judul bertambah.
-    // description RINGKAS (~300 char) untuk FeaturedCarousel. Semua manga dapat
-    // karena trending kini dinamis (lihat /api/trending). Versi penuh ada di
-    // per-manga JSON (dipakai halaman detail). Potong di batas kata + elipsis.
-    const rawDesc = manga.description || '';
-    const shortDesc = rawDesc.length > 300
-      ? rawDesc.slice(0, 300).replace(/\s+\S*$/, '') + '…'
-      : rawDesc;
-    catalog.push({
-      id:           manga.id,
-      title:        manga.title,
-      description:  shortDesc,
-      status:       manga.status,
-      coverUrl:     manga.coverUrl,
-      coverUrls:    manga.coverUrls,
-      genres:       manga.genres,
-      rating:       manga.rating,
-      chapter_count: chapters.length,
-      total_views:  manga.total_views,
-      isTrending:   manga.isTrending,
-      latest_release_date: latestReleaseDate,
-      next_update:  manga.next_update,
-      tamat_at_chapter:  manga.tamat_at_chapter ?? null,
-      hiatus_at_chapter: manga.hiatus_at_chapter ?? null,
-      chapters:     chapters.slice(0, 3),
-    });
-
-    // Deteksi chapter baru (hanya saat push spesifik, bukan full cron build).
-    // prevChapterNums sudah ditangkap di atas SEBELUM file ditimpa.
-    if (CHANGED_SLUGS.length > 0 && CHANGED_SLUGS.includes(slug)) {
-      for (const ch of chapters) {
-        if (!prevChapterNums.has(ch.chapter_number) || ch._forceNotify) {
-          newChaptersList.push({
-            mangaId:          manga.id,
-            mangaTitle:       manga.title,
-            slug,                         // path R2: manga/<slug>/<chapter>/Image01.webp
-            chapterNumber:    ch.chapter_number,
-            r2Folder:         ch.r2_folder,
-            chapterTitle:     ch.title,
-            isLocked:         ch.isLocked,
-            releaseDate:      ch.release_date,
-          });
-          console.log(`   🔔 ${ch._forceNotify ? 'Publish ulang' : 'Chapter baru terdeteksi'}: ${manga.title} — ${ch.title}`);
-        }
-      }
-    }
+    catalog.push(buildIndexEntry(manga, chapters, latestReleaseDate));
+    newChaptersList.push(...detectNewChapters(slug, manga, chapters, prevChapterNums));
 
     console.log(`✅ ${manga.title} — ${chapters.length} chapters`);
   }
 
-  // Urutkan homepage: manga yang paling baru diupdate tampil paling atas
-  catalog.sort((a, b) => {
-    const byDate = releaseSortValue(b.latest_release_date) - releaseSortValue(a.latest_release_date);
-    if (byDate !== 0) return byDate;
-    return String(a.title || '').localeCompare(String(b.title || ''));
-  });
-
-  // Fallback build-time memakai lima update terbaru, bukan total view lifetime.
-  // Ranking utama tetap berasal dari /api/trending rolling 24 jam.
-  const trendingIds = new Set(catalog.slice(0, 5).map(m => m.id));
-  catalog.forEach(m => { m.isTrending = trendingIds.has(m.id); });
-
-  fs.mkdirSync(outDir, { recursive: true });
-  fs.writeFileSync(
-    path.join(outDir, 'index.json'),
-    JSON.stringify(catalog, null, 2),
-    'utf-8'
-  );
-
-  console.log(`\n📦 index.json: ${catalog.length} manga`);
-  console.log(`🔥 Trending: ${[...trendingIds].join(', ')}`);
-
-  // Sync chapter locks ke Worker (jika env var tersedia)
-  const workerUrl   = process.env.WORKER_URL;
-  const adminSecret = process.env.WORKER_ADMIN_SECRET;
-  if (workerUrl && adminSecret) {
-    const locks = protectedChapters;
-    if (locks.length) {
-      // Retry 3x — pastikan lock tersinkron SEBELUM catalog di-deploy ke Pages
-      let synced = false;
-      for (let attempt = 1; attempt <= 3; attempt++) {
-        try {
-          const res = await fetchT(`${workerUrl}/api/admin/sync-locks`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': adminSecret },
-            body: JSON.stringify({ locks }),
-          });
-          if (res.ok) {
-            console.log(`🔒 Synced ${locks.length} locks → Worker OK (attempt ${attempt})`);
-            synced = true;
-            break;
-          }
-          console.warn(`⚠️  Attempt ${attempt}: ${await res.text()}`);
-        } catch (e) {
-          console.warn(`⚠️  Attempt ${attempt}: ${e.message}`);
-        }
-        if (attempt < 3) await new Promise(r => setTimeout(r, 2000));
-      }
-      if (!synced) {
-        console.error('❌ Lock sync gagal 3x — batalkan deploy agar chapter tidak bocor!');
-        process.exit(1);
-      }
-    }
-  }
+  writeIndexJson(catalog);
+  await syncChapterLocks(protectedChapters);
 
   // Notifikasi Discord untuk chapter-chapter baru
   await sendDiscordNotifications(newChaptersList, DISCORD_WEBHOOK_URL, SITE_URL);
