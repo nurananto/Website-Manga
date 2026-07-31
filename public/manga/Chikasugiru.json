@@ -59,6 +59,19 @@
   },
   "chapters": [
     {
+      "chapter_number": 8.2,
+      "lock_hours": 0,
+      "pages": 6,
+      "r2_folder": 8.2,
+      "id": "Chikasugiru-ch-8.2",
+      "r2_prefix": "manga/Chikasugiru/8.2/",
+      "title": "Ch. 8.2",
+      "release_date": "2026-07-31T16:12:23+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 8.1,
       "lock_hours": 0,
       "pages": 10,
