@@ -154,7 +154,7 @@ const renderChapterRow = (ch) => {
                 </span>
               )}
               {isNew && (
-                <span className="bg-emerald-500 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0 animate-pulse">
+                <span className="badge-new-glow bg-emerald-500 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0">
                   <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 stroke-[3] shrink-0" />
                   <span>UP</span>
                 </span>

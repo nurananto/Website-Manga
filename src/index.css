@@ -85,10 +85,13 @@ body {
   padding-bottom: max(5rem, env(safe-area-inset-bottom));
 }
 
-/* Glow lembut untuk badge NEW; ukuran badge tetap stabil agar layout tidak bergetar. */
+/* Glow badge NEW & UP — ring membesar dari badge, ukuran badge tetap stabil
+   (cuma box-shadow yang berubah) agar layout tidak bergetar. Dipakai bersama
+   supaya kedua badge konsisten; sebelumnya UP pakai animate-pulse Tailwind
+   (opacity 100%→50%) yang nyaris tak terlihat di badge sekecil ini. */
 @keyframes new-badge-glow {
-  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { box-shadow: 0 0 0 5px rgba(16, 185, 129, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.85); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
   100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 .badge-new-glow {
