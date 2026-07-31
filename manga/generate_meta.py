@@ -192,6 +192,16 @@ def ask_next_update():
             print("  ⚠  Tanggal tidak valid, coba lagi.")
 
 
+def ask_notif_image():
+    """Tanya gambar notifikasi chapter baru (Discord & Facebook). Return 'page1'/'cover'."""
+    print()
+    print("Gambar notifikasi chapter baru (Discord & Facebook):")
+    print("  1. Halaman 1 chapter (default)")
+    print("  2. Cover manga")
+    pilih = ask("Pilihan (1/2, Enter=1)", allow_empty=True)
+    return "cover" if pilih == "2" else "page1"
+
+
 def hapus_webp(ch_dir):
     files = get_webp_files(ch_dir)
     for f in files:
@@ -199,7 +209,7 @@ def hapus_webp(ch_dir):
     return len(files)
 
 
-def _write_manga_meta(title_dir):
+def _write_manga_meta(title_dir, notif_image="page1"):
     """Tulis meta.json kosongan untuk satu judul. Return path."""
     folder_id = title_dir.name
     status = infer_manga_status(title_dir)
@@ -222,7 +232,7 @@ def _write_manga_meta(title_dir):
         "raw_url": "",
         # Gambar notifikasi chapter baru (Discord & Facebook): "page1" (default,
         # halaman 1 chapter) atau "cover" (cover manga). Kosongkan/hapus = page1.
-        "notif_image": "page1",
+        "notif_image": notif_image,
         "tamat_at_chapter": None,
         "hiatus_at_chapter": None,
         "chapter_views": {},
@@ -267,9 +277,10 @@ def buat_manga_meta(manga_dir):
             return
 
         if pilih.upper() == "A":
+            notif_image = ask_notif_image()  # satu pilihan dipakai utk semua judul
             print()
             for t in titles:
-                _write_manga_meta(t)
+                _write_manga_meta(t, notif_image)
                 print(f"  ✅  {t.name}")
             print()
             input(f"{len(titles)} meta.json kosongan dibuat. Tekan Enter...")
@@ -289,7 +300,8 @@ def buat_manga_meta(manga_dir):
                 input("  Dibatalkan. Tekan Enter...")
                 continue
 
-        _write_manga_meta(title_dir)
+        notif_image = ask_notif_image()
+        _write_manga_meta(title_dir, notif_image)
 
         print(f"\n  ✅  meta.json dibuat: {meta_path}")
         print(f'      id: "{title_dir.name}"')

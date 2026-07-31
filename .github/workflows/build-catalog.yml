@@ -127,3 +127,14 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+
+      # Cache Rules di zone Cloudflare (di depan Pages) bisa menahan HTML/JSON lama
+      # walau header origin sudah no-cache. Purge di sini memastikan pembaca dapat
+      # katalog terbaru segera setelah deploy, tanpa perlu clear cache browser.
+      - name: Purge Cloudflare cache
+        if: ${{ secrets.CF_ZONE_ID != '' }}
+        run: |
+          curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}'

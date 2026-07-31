@@ -197,7 +197,7 @@ const renderChapterRow = (ch) => {
         {/* Hero Banner Section */}
         <section className="relative mx-3 sm:mx-4 md:mx-5 rounded-2xl overflow-hidden border border-white/15 flex items-end pt-3 pb-2">
           {/* Darkened dynamic background */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute inset-0 z-0 overflow-hidden bg-surface-container-high">
             <ResponsiveCover
               manga={manga}
               alt=""
@@ -214,7 +214,7 @@ const renderChapterRow = (ch) => {
           {/* Info Over Cover Container */}
           <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-3 sm:gap-6 pb-4">
             {/* Cover Image */}
-            <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[2/3] flex-shrink-0">
+            <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[2/3] flex-shrink-0 rounded-xl bg-surface-container-high">
               <ResponsiveCover
                   manga={manga}
                   alt={`${manga.title} Cover`}

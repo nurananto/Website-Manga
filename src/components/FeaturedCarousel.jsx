@@ -117,7 +117,7 @@ export default function FeaturedCarousel({
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div key={activeManga.id} className="absolute inset-0 w-full h-full animate-[featuredSlideIn_0.45s_cubic-bezier(0.22,1,0.36,1)]">
+      <div key={activeManga.id} className="absolute inset-0 w-full h-full bg-surface-container-high animate-[featuredSlideIn_0.45s_cubic-bezier(0.22,1,0.36,1)]">
           {/* Background Image with dark overlays */}
           <ResponsiveCover
             manga={activeManga}
