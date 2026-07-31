@@ -202,6 +202,19 @@ def ask_notif_image():
     return "cover" if pilih == "2" else "page1"
 
 
+def set_manga_notif_image(title_dir, notif_image):
+    """Update field notif_image di meta.json manga (dibaca build-catalog.js
+    saat posting notifikasi chapter baru ini ke Discord & Facebook)."""
+    meta_path = title_dir / "meta.json"
+    if not meta_path.exists():
+        return
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    meta["notif_image"] = notif_image
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump(meta, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+
+
 def hapus_webp(ch_dir):
     files = get_webp_files(ch_dir)
     for f in files:
@@ -209,7 +222,7 @@ def hapus_webp(ch_dir):
     return len(files)
 
 
-def _write_manga_meta(title_dir, notif_image="page1"):
+def _write_manga_meta(title_dir):
     """Tulis meta.json kosongan untuk satu judul. Return path."""
     folder_id = title_dir.name
     status = infer_manga_status(title_dir)
@@ -230,9 +243,9 @@ def _write_manga_meta(title_dir, notif_image="page1"):
         ],
         "mangadex_url": "",
         "raw_url": "",
-        # Gambar notifikasi chapter baru (Discord & Facebook): "page1" (default,
-        # halaman 1 chapter) atau "cover" (cover manga). Kosongkan/hapus = page1.
-        "notif_image": notif_image,
+        # Gambar notifikasi chapter baru (Discord & Facebook): "cover" (default,
+        # cover manga) atau "page1" (halaman 1 chapter).
+        "notif_image": "cover",
         "tamat_at_chapter": None,
         "hiatus_at_chapter": None,
         "chapter_views": {},
@@ -277,10 +290,9 @@ def buat_manga_meta(manga_dir):
             return
 
         if pilih.upper() == "A":
-            notif_image = ask_notif_image()  # satu pilihan dipakai utk semua judul
             print()
             for t in titles:
-                _write_manga_meta(t, notif_image)
+                _write_manga_meta(t)
                 print(f"  ✅  {t.name}")
             print()
             input(f"{len(titles)} meta.json kosongan dibuat. Tekan Enter...")
@@ -300,8 +312,7 @@ def buat_manga_meta(manga_dir):
                 input("  Dibatalkan. Tekan Enter...")
                 continue
 
-        notif_image = ask_notif_image()
-        _write_manga_meta(title_dir, notif_image)
+        _write_manga_meta(title_dir)
 
         print(f"\n  ✅  meta.json dibuat: {meta_path}")
         print(f'      id: "{title_dir.name}"')
@@ -351,6 +362,8 @@ def proses_semua_judul(titles):
     except ValueError:
         lock_hours = 0
 
+    notif_image = ask_notif_image()
+
     print()
     print("⚠️  PERINGATAN: pastikan SEMUA webp sudah di-upload ke R2 via Mountain Duck!")
     print("    Script akan buat meta.json lalu MENGHAPUS semua .webp.")
@@ -368,6 +381,7 @@ def proses_semua_judul(titles):
         chs = pending_chapters(t)
         if not chs:
             continue
+        set_manga_notif_image(t, notif_image)
         newest = max(chs, key=lambda d: chapter_sort_key(d.name))
         ok = 0
         for ch in chs:
@@ -481,6 +495,10 @@ def proses_chapter_menu(manga_dir):
             next_update = ask_next_update()
             # chapter terbaru = nomor terbesar di antara yang dipilih
             newest_ch = max(selected, key=lambda d: chapter_sort_key(d.name))
+
+            # ── Gambar notifikasi chapter baru (Discord & Facebook) ─
+            notif_image = ask_notif_image()
+            set_manga_notif_image(title_dir, notif_image)
 
             # ── PERINGATAN R2 ──────────────────────────────
             cls()
