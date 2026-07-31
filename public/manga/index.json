@@ -20,7 +20,7 @@
     ],
     "rating": 8.19,
     "chapter_count": 2,
-    "total_views": 0,
+    "total_views": 2,
     "isTrending": true,
     "latest_release_date": "2026-07-31T23:42:14+07:00",
     "next_update": null,
@@ -31,11 +31,11 @@
         "chapter_number": 2,
         "lock_hours": 0,
         "pages": 32,
+        "release_date": "2026-07-31T23:42:14+07:00",
         "r2_folder": 2,
         "id": "InkyaDanshi-ch-2",
         "r2_prefix": "manga/InkyaDanshi/2/",
         "title": "Ch. 2",
-        "release_date": "2026-07-31T23:42:14+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -44,14 +44,14 @@
         "chapter_number": 1,
         "lock_hours": 0,
         "pages": 64,
+        "release_date": "2026-07-31T23:42:14+07:00",
         "r2_folder": 1,
         "id": "InkyaDanshi-ch-1",
         "r2_prefix": "manga/InkyaDanshi/1/",
         "title": "Ch. 1",
-        "release_date": "2026-07-31T23:42:14+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       }
     ]
   },
@@ -74,7 +74,7 @@
     ],
     "rating": 8.43,
     "chapter_count": 11,
-    "total_views": 16,
+    "total_views": 23,
     "isTrending": true,
     "latest_release_date": "2026-07-31T18:26:52+07:00",
     "next_update": null,
@@ -92,7 +92,7 @@
         "title": "Ch. 9.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 9.1,
@@ -105,7 +105,7 @@
         "title": "Ch. 9.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 8.2,
@@ -143,7 +143,7 @@
     ],
     "rating": 7.5,
     "chapter_count": 25,
-    "total_views": 225,
+    "total_views": 228,
     "isTrending": true,
     "latest_release_date": "2026-07-31T14:20:21+07:00",
     "next_update": null,
@@ -187,7 +187,7 @@
         "title": "Ch. 21.1",
         "unlockDate": "2026-07-30T17:30:39.000Z",
         "isLocked": false,
-        "views": 6
+        "views": 8
       }
     ]
   },
@@ -212,7 +212,7 @@
     ],
     "rating": 8.37,
     "chapter_count": 19,
-    "total_views": 88,
+    "total_views": 90,
     "isTrending": true,
     "latest_release_date": "2026-07-30T20:01:44+07:00",
     "next_update": null,
@@ -243,7 +243,7 @@
         "title": "Ch. 14.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 13.2,
@@ -281,7 +281,7 @@
     ],
     "rating": 7.81,
     "chapter_count": 19,
-    "total_views": 117,
+    "total_views": 118,
     "isTrending": true,
     "latest_release_date": "2026-07-28T16:05:03+07:00",
     "next_update": null,
@@ -299,7 +299,7 @@
         "title": "Ch. 18.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 9
+        "views": 10
       },
       {
         "chapter_number": 17.2,
@@ -350,7 +350,7 @@
     ],
     "rating": 6.79,
     "chapter_count": 17,
-    "total_views": 140,
+    "total_views": 142,
     "isTrending": false,
     "latest_release_date": "2026-07-27T22:52:51+07:00",
     "next_update": null,
@@ -368,7 +368,7 @@
         "title": "Ch. 17",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 9
       },
       {
         "chapter_number": 16,
@@ -474,11 +474,11 @@
     "title": "Tensai Bishoujo Sanshimai wa Isourou ni Dake Choro Kawaii",
     "description": "Seorang pemuda biasa dan para jenius tinggal bersama di bawah satu atap — romcom harem penuh kekacauan dengan tingkat keimutannya MAX! '…Mau datang ke rumahku?' Setelah rumahnya tiba-tiba hangus terbakar, Riku akhirnya tinggal menumpang di rumah keluarga Tennousu — tiga kakak beradik cantik jelita…",
     "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=1",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=2",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=1"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=2"
     },
     "genres": [
       "Adaptation",
@@ -491,7 +491,7 @@
     ],
     "rating": 7.78,
     "chapter_count": 5,
-    "total_views": 47,
+    "total_views": 53,
     "isTrending": false,
     "latest_release_date": "2026-07-24T13:49:29+07:00",
     "next_update": null,
@@ -509,7 +509,7 @@
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 7
+        "views": 10
       },
       {
         "chapter_number": 4,
@@ -561,7 +561,7 @@
     ],
     "rating": 8.2,
     "chapter_count": 12,
-    "total_views": 257,
+    "total_views": 270,
     "isTrending": false,
     "latest_release_date": "2026-07-22T15:25:23+07:00",
     "next_update": null,
@@ -579,7 +579,7 @@
         "title": "Ch. 7.2",
         "unlockDate": "2026-08-06T08:25:23.000Z",
         "isLocked": true,
-        "views": 5
+        "views": 6
       },
       {
         "chapter_number": 7.1,
@@ -605,7 +605,7 @@
         "title": "Ch. 6.3",
         "unlockDate": "2026-07-22T11:03:47.000Z",
         "isLocked": false,
-        "views": 16
+        "views": 17
       }
     ]
   },
@@ -631,7 +631,7 @@
     ],
     "rating": 8.21,
     "chapter_count": 28,
-    "total_views": 287,
+    "total_views": 322,
     "isTrending": false,
     "latest_release_date": "2026-07-21T23:28:24+07:00",
     "next_update": null,
@@ -662,7 +662,7 @@
         "title": "Ch. 23.1",
         "unlockDate": "2026-07-29T14:00:00.000Z",
         "isLocked": false,
-        "views": 12
+        "views": 17
       },
       {
         "chapter_number": 22.2,
@@ -675,7 +675,7 @@
         "title": "Ch. 22.2",
         "unlockDate": "2026-07-08T04:27:34.000Z",
         "isLocked": false,
-        "views": 41
+        "views": 42
       }
     ]
   },
@@ -701,7 +701,7 @@
     ],
     "rating": 7.69,
     "chapter_count": 19,
-    "total_views": 116,
+    "total_views": 118,
     "isTrending": false,
     "latest_release_date": "2026-07-19T23:08:03+07:00",
     "next_update": null,
@@ -732,7 +732,7 @@
         "title": "Ch. 14.2",
         "unlockDate": "2026-07-20T11:20:01.000Z",
         "isLocked": false,
-        "views": 9
+        "views": 11
       },
       {
         "chapter_number": 14.1,
@@ -772,7 +772,7 @@
     ],
     "rating": 7.71,
     "chapter_count": 16,
-    "total_views": 580,
+    "total_views": 583,
     "isTrending": false,
     "latest_release_date": "2026-07-17T22:42:07+07:00",
     "next_update": null,
@@ -803,7 +803,7 @@
         "title": "Ch. 7.1",
         "unlockDate": "2026-07-18T02:52:50.000Z",
         "isLocked": false,
-        "views": 40
+        "views": 41
       },
       {
         "chapter_number": 6.5,
@@ -816,7 +816,7 @@
         "title": "Ch. 6.5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 43
+        "views": 44
       }
     ]
   },
@@ -936,11 +936,11 @@
     "title": "Yuuri-kun to Chihiro-chan",
     "description": "Tokoh utama, Chihiro, akan segera masuk sekolah menengah atas dan berharap dapat bertemu kembali dengan teman masa kecilnya, Yuuri. Meskipun mereka berdua bersekolah di sekolah dasar yang berbeda, mereka telah bertukar surat selama bertahun-tahun dan akhirnya memutuskan untuk bersekolah di sekolah…",
     "status": "Oneshot",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover.webp?v=2",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover.webp?v=3",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover@mobile.webp?v=2"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuuri-kun/covers/cover@mobile.webp?v=3"
     },
     "genres": [
       "Comedy",
@@ -953,7 +953,7 @@
     ],
     "rating": 8.83,
     "chapter_count": 1,
-    "total_views": 21,
+    "total_views": 23,
     "isTrending": false,
     "latest_release_date": "2026-07-09T21:15:37+07:00",
     "next_update": null,
@@ -971,7 +971,7 @@
         "r2_prefix": "manga/Yuuri-kun/Oneshot/",
         "unlockDate": null,
         "isLocked": false,
-        "views": 11
+        "views": 12
       }
     ]
   },
@@ -1277,7 +1277,7 @@
     ],
     "rating": 8.28,
     "chapter_count": 4,
-    "total_views": 42,
+    "total_views": 45,
     "isTrending": false,
     "latest_release_date": "2026-07-03T20:15:09+07:00",
     "next_update": null,
@@ -1295,7 +1295,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 10
       },
       {
         "chapter_number": 3,
@@ -1349,7 +1349,7 @@
     ],
     "rating": 7.35,
     "chapter_count": 9,
-    "total_views": 135,
+    "total_views": 136,
     "isTrending": false,
     "latest_release_date": "2026-07-02T18:06:40+07:00",
     "next_update": null,
@@ -1367,7 +1367,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 27
+        "views": 28
       },
       {
         "chapter_number": 8,
@@ -1402,11 +1402,11 @@
     "title": "Seishun wa Sankakukei no Loop",
     "description": "Karena aku lebih memperhatikannya daripada siapa pun, aku jadi tahu. Kalau dia sedang jatuh cinta sekarang. Dan orang yang dia sukai itu adalah sahabatku sendiri, teman masa kecil kami berdua. Sang protagonis, Tsubaki, memutuskan untuk mengubur perasaannya dan membantu cinta sang gadis terwujud.…",
     "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp?v=1",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp?v=2",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@mobile.webp?v=1"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover@mobile.webp?v=2"
     },
     "genres": [
       "Comedy",
@@ -1418,7 +1418,7 @@
     ],
     "rating": 8.43,
     "chapter_count": 12,
-    "total_views": 83,
+    "total_views": 85,
     "isTrending": false,
     "latest_release_date": "2026-06-21T17:41:08+07:00",
     "next_update": null,
@@ -1436,7 +1436,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 13
+        "views": 14
       },
       {
         "chapter_number": 11,
@@ -1471,11 +1471,11 @@
     "title": "Midari ni Tsukasete wa Narimasen",
     "description": "Tamotsu Sugawara, seorang karyawan yang tidak bisa menolak permintaan apa pun, mendapati dirinya tidak bisa lagi pergi ke kantor dan memutuskan untuk beristirahat sementara di kuil keluarganya. Suatu malam, hantu yang sangat mirip dengan Makoto Hiiragi, seorang mahasiswi yang bekerja part time di…",
     "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=1",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=2",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@mobile.webp?v=1"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@mobile.webp?v=2"
     },
     "genres": [
       "Comedy",
@@ -1485,7 +1485,7 @@
     ],
     "rating": 8.61,
     "chapter_count": 18,
-    "total_views": 65,
+    "total_views": 67,
     "isTrending": false,
     "latest_release_date": "2026-06-20T18:38:40+07:00",
     "next_update": null,
@@ -1503,7 +1503,7 @@
         "title": "Ch. 13",
         "unlockDate": null,
         "isLocked": false,
-        "views": 13
+        "views": 14
       },
       {
         "chapter_number": 12,
@@ -1608,11 +1608,11 @@
     "title": "We Are Not Dating!!",
     "description": "Kenapa kamu terus tanya kalau kita pacaran? Kita cuma bergandengan tangan, kita nggak pacaran!!",
     "status": "Hiatus",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=2",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=3",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@mobile.webp?v=2"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@mobile.webp?v=3"
     },
     "genres": [
       "Comedy",
@@ -1624,7 +1624,7 @@
     ],
     "rating": 8.6,
     "chapter_count": 142,
-    "total_views": 14,
+    "total_views": 15,
     "isTrending": false,
     "latest_release_date": "2026-06-20T14:53:29+07:00",
     "next_update": null,
@@ -1745,11 +1745,11 @@
     "title": "Ikemen Joshi Demo Kawaii Heroine ni Naremasu ka?",
     "description": "'Bisakah kamu membuat diriku menjadi seorang princess (Heroine)?' Sumeragi Tsukasa — siswi SMA yang dijuluki ikemen, seorang artis populer, dan selalu dikerubungi cewek-cewek. Sedangkan Mikage Himeno — cowok SMA yang sudah debut jadi mangaka tapi proposal serialisasinya selalu ditolak. Saat tujuan…",
     "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp?v=1",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp?v=2",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@mobile.webp?v=1"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@mobile.webp?v=2"
     },
     "genres": [
       "Comedy",
@@ -1760,7 +1760,7 @@
     ],
     "rating": 8.74,
     "chapter_count": 2,
-    "total_views": 9,
+    "total_views": 11,
     "isTrending": false,
     "latest_release_date": "2026-06-14T15:10:34+07:00",
     "next_update": null,
@@ -1778,7 +1778,7 @@
         "title": "Ch. 2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 1,
@@ -1885,7 +1885,7 @@
     ],
     "rating": 8.64,
     "chapter_count": 25,
-    "total_views": 41,
+    "total_views": 43,
     "isTrending": false,
     "latest_release_date": "2026-06-13T20:30:05+07:00",
     "next_update": null,
@@ -1903,7 +1903,7 @@
         "title": "Ch. 25",
         "unlockDate": null,
         "isLocked": false,
-        "views": 10
+        "views": 11
       },
       {
         "chapter_number": 24,
@@ -1938,11 +1938,11 @@
     "title": "Waka-chan wa Kyou mo Azatoi",
     "description": "Tomoya adalah mahasiswi baru dalam misi untuk akhirnya mendapatkan pacar pertamanya, tetapi dengan satu masalah kecil: dia masih perawan! Sementara dia dekat dengan gadis cantik dan menawan Waka Sakuraba di klubnya di sekolah, dia tidak bisa memberanikan diri untuk mengambil langkah pertama dan…",
     "status": "Tamat",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp?v=1",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp?v=2",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@mobile.webp?v=1"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@mobile.webp?v=2"
     },
     "genres": [
       "Comedy",
@@ -1952,7 +1952,7 @@
     ],
     "rating": 8.66,
     "chapter_count": 216,
-    "total_views": 215,
+    "total_views": 219,
     "isTrending": false,
     "latest_release_date": "2026-06-13T19:03:42+07:00",
     "next_update": null,

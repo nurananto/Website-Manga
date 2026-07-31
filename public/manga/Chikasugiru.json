@@ -28,11 +28,13 @@
     "3": 1,
     "4": 1,
     "5": 1,
-    "6": 1,
+    "6": 2,
     "7": 1,
-    "8.1": 4
+    "8.1": 4,
+    "9.1": 1,
+    "9.2": 1
   },
-  "total_views": 16,
+  "total_views": 23,
   "mangadex_cover": "fadafe71-37cd-4c73-ac98-59fd79e07f58.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -46,7 +48,7 @@
       }
     }
   ],
-  "detail_views": 5,
+  "detail_views": 9,
   "cover_version": 2,
   "mangadex_id": "c679bf28-e054-4bb7-93e6-18c089ee79f1",
   "rating": 8.43,
@@ -69,7 +71,7 @@
       "title": "Ch. 9.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 9.1,
@@ -82,7 +84,7 @@
       "title": "Ch. 9.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 8.2,
@@ -134,7 +136,7 @@
       "title": "Ch. 6",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 5,

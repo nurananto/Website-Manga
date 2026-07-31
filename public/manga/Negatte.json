@@ -41,9 +41,9 @@
     "14": 8,
     "15": 10,
     "16": 22,
-    "17": 8
+    "17": 9
   },
-  "total_views": 140,
+  "total_views": 142,
   "mangadex_cover": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -76,7 +76,7 @@
     }
   ],
   "cover_version": 3,
-  "detail_views": 43,
+  "detail_views": 44,
   "mangadex_id": "748d2aab-cea8-4ffb-89b3-e716872cb027",
   "rating": 6.79,
   "next_update": null,
@@ -98,7 +98,7 @@
       "title": "Ch. 17",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 16,

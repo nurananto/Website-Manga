@@ -25,8 +25,10 @@
   "notif_image": "cover",
   "tamat_at_chapter": 10,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "1": 1
+  },
+  "total_views": 2,
   "mangadex_cover": "6d6bb634-822b-41c9-9249-d2f2c1d87ba6.png",
   "cover_widths": "1280x960x640q75",
   "cover_version": 2,
@@ -41,6 +43,7 @@
       }
     }
   ],
+  "detail_views": 1,
   "mangadex_id": "927d687f-ceb6-4e56-baff-461d6660443a",
   "rating": 8.19,
   "next_update": null,
@@ -55,11 +58,11 @@
       "chapter_number": 2,
       "lock_hours": 0,
       "pages": 32,
+      "release_date": "2026-07-31T23:42:14+07:00",
       "r2_folder": 2,
       "id": "InkyaDanshi-ch-2",
       "r2_prefix": "manga/InkyaDanshi/2/",
       "title": "Ch. 2",
-      "release_date": "2026-07-31T23:42:14+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
@@ -68,14 +71,14 @@
       "chapter_number": 1,
       "lock_hours": 0,
       "pages": 64,
+      "release_date": "2026-07-31T23:42:14+07:00",
       "r2_folder": 1,
       "id": "InkyaDanshi-ch-1",
       "r2_prefix": "manga/InkyaDanshi/1/",
       "title": "Ch. 1",
-      "release_date": "2026-07-31T23:42:14+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     }
   ]
 }

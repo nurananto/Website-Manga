@@ -23,7 +23,7 @@
   "tamat_at_chapter": 215.9,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "25": 9,
+    "25": 10,
     "26": 4,
     "27": 1,
     "29": 1,
@@ -93,128 +93,129 @@
     "195.5": 1,
     "161.5": 1
   },
-  "total_views": 215,
+  "total_views": 219,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "1.0",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba@mobile.webp?v=2"
       }
     },
     {
       "volume": "0.9",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/bbabca8a-db2f-4b77-870d-2512af396763.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/bbabca8a-db2f-4b77-870d-2512af396763@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/bbabca8a-db2f-4b77-870d-2512af396763@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/bbabca8a-db2f-4b77-870d-2512af396763.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/bbabca8a-db2f-4b77-870d-2512af396763@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/bbabca8a-db2f-4b77-870d-2512af396763@mobile.webp?v=2"
       }
     },
     {
       "volume": "0.8",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/9d7bd60c-655f-41f3-be4d-be5ebc91106c.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/9d7bd60c-655f-41f3-be4d-be5ebc91106c@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/9d7bd60c-655f-41f3-be4d-be5ebc91106c@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/9d7bd60c-655f-41f3-be4d-be5ebc91106c.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/9d7bd60c-655f-41f3-be4d-be5ebc91106c@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/9d7bd60c-655f-41f3-be4d-be5ebc91106c@mobile.webp?v=2"
       }
     },
     {
       "volume": "0",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/59609e1c-3523-4284-b3be-2577892ed6ec.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/59609e1c-3523-4284-b3be-2577892ed6ec@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/59609e1c-3523-4284-b3be-2577892ed6ec@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/59609e1c-3523-4284-b3be-2577892ed6ec.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/59609e1c-3523-4284-b3be-2577892ed6ec@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/59609e1c-3523-4284-b3be-2577892ed6ec@mobile.webp?v=2"
       }
     },
     {
       "volume": "0.7",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/07cfe301-96be-414e-b03e-80068315dbe4.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/07cfe301-96be-414e-b03e-80068315dbe4@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/07cfe301-96be-414e-b03e-80068315dbe4@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/07cfe301-96be-414e-b03e-80068315dbe4.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/07cfe301-96be-414e-b03e-80068315dbe4@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/07cfe301-96be-414e-b03e-80068315dbe4@mobile.webp?v=2"
       }
     },
     {
       "volume": "0.2",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/ccd144f6-4c14-4c8a-8d1e-f94be5c568c8.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/ccd144f6-4c14-4c8a-8d1e-f94be5c568c8@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/ccd144f6-4c14-4c8a-8d1e-f94be5c568c8@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/ccd144f6-4c14-4c8a-8d1e-f94be5c568c8.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/ccd144f6-4c14-4c8a-8d1e-f94be5c568c8@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/ccd144f6-4c14-4c8a-8d1e-f94be5c568c8@mobile.webp?v=2"
       }
     },
     {
       "volume": "0.1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/bd17f6f1-7f45-4aa7-a559-0184645c0e99.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/bd17f6f1-7f45-4aa7-a559-0184645c0e99@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/bd17f6f1-7f45-4aa7-a559-0184645c0e99@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/bd17f6f1-7f45-4aa7-a559-0184645c0e99.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/bd17f6f1-7f45-4aa7-a559-0184645c0e99@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/bd17f6f1-7f45-4aa7-a559-0184645c0e99@mobile.webp?v=2"
       }
     },
     {
       "volume": "0.5",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/59515fa4-4da0-4f68-9dd0-b9110d7716d8.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/59515fa4-4da0-4f68-9dd0-b9110d7716d8@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/59515fa4-4da0-4f68-9dd0-b9110d7716d8@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/59515fa4-4da0-4f68-9dd0-b9110d7716d8.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/59515fa4-4da0-4f68-9dd0-b9110d7716d8@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/59515fa4-4da0-4f68-9dd0-b9110d7716d8@mobile.webp?v=2"
       }
     },
     {
       "volume": "0.3",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/7f617325-8fcd-4e60-b866-878cf969625c.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/7f617325-8fcd-4e60-b866-878cf969625c@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/7f617325-8fcd-4e60-b866-878cf969625c@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/7f617325-8fcd-4e60-b866-878cf969625c.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/7f617325-8fcd-4e60-b866-878cf969625c@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/7f617325-8fcd-4e60-b866-878cf969625c@mobile.webp?v=2"
       }
     },
     {
       "volume": "0.4",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/68047225-c38a-4f31-826e-424977bec9fb.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/68047225-c38a-4f31-826e-424977bec9fb@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/68047225-c38a-4f31-826e-424977bec9fb@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/68047225-c38a-4f31-826e-424977bec9fb.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/68047225-c38a-4f31-826e-424977bec9fb@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/68047225-c38a-4f31-826e-424977bec9fb@mobile.webp?v=2"
       }
     },
     {
       "volume": "0.6",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/c4a47ff5-4ebc-4b4e-afa1-8830e7da478d.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/c4a47ff5-4ebc-4b4e-afa1-8830e7da478d@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/c4a47ff5-4ebc-4b4e-afa1-8830e7da478d@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/c4a47ff5-4ebc-4b4e-afa1-8830e7da478d.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/c4a47ff5-4ebc-4b4e-afa1-8830e7da478d@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/c4a47ff5-4ebc-4b4e-afa1-8830e7da478d@mobile.webp?v=2"
       }
     },
     {
       "volume": "0",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a@mobile.webp?v=2"
       }
     }
   ],
-  "detail_views": 37,
+  "detail_views": 40,
+  "cover_version": 2,
   "mangadex_id": "57fe3f00-8626-462b-8f75-fce0e6faa6be",
   "rating": 8.66,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Waka-chan/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
@@ -3023,7 +3024,7 @@
       "title": "Ch. 25",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     }
   ]
 }

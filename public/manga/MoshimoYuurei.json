@@ -44,9 +44,9 @@
     "22": 2,
     "23": 2,
     "24": 2,
-    "25": 10
+    "25": 11
   },
-  "total_views": 41,
+  "total_views": 43,
   "mangadex_cover": "1f5fe857-3e84-451f-8a1c-d25e3960c1b4.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -60,7 +60,7 @@
       }
     }
   ],
-  "detail_views": 6,
+  "detail_views": 7,
   "cover_version": 2,
   "mangadex_id": "832a0bcb-f58a-4118-9130-43c03d289a8d",
   "rating": 8.64,
@@ -83,7 +83,7 @@
       "title": "Ch. 25",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 24,

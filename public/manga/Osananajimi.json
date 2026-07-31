@@ -40,11 +40,11 @@
     "6.1": 41,
     "6.2": 42,
     "6.3": 39,
-    "7.1": 40,
-    "6.5": 43,
+    "7.1": 41,
+    "6.5": 44,
     "7.2": 7
   },
-  "total_views": 580,
+  "total_views": 583,
   "mangadex_cover": "a1bd83b1-b73e-430f-8f3b-cd194cb2c029.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -58,7 +58,7 @@
       }
     }
   ],
-  "detail_views": 152,
+  "detail_views": 153,
   "cover_version": 2,
   "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
   "rating": 7.71,
@@ -94,7 +94,7 @@
       "title": "Ch. 7.1",
       "unlockDate": "2026-07-18T02:52:50.000Z",
       "isLocked": false,
-      "views": 40
+      "views": 41
     },
     {
       "chapter_number": 6.5,
@@ -107,7 +107,7 @@
       "title": "Ch. 6.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 43
+      "views": 44
     },
     {
       "chapter_number": 6.3,

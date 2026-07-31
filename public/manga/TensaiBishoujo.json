@@ -26,35 +26,36 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 10,
+    "1": 11,
     "2": 3,
     "3": 3,
     "4": 5,
-    "5": 7
+    "5": 10
   },
-  "total_views": 47,
+  "total_views": 53,
   "mangadex_cover": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp?v=2"
       }
     }
   ],
-  "detail_views": 19,
+  "detail_views": 21,
+  "cover_version": 2,
   "mangadex_id": "ee1eb629-79c9-410f-927c-dd7a4cd1d87b",
   "rating": 7.78,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
@@ -68,7 +69,7 @@
       "title": "Ch. 5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 10
     },
     {
       "chapter_number": 4,
@@ -120,7 +121,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 11
     }
   ]
 }

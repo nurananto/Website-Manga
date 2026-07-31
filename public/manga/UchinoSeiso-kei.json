@@ -37,10 +37,10 @@
     "12.2": 5,
     "13.1": 2,
     "13.2": 5,
-    "14.1": 1,
+    "14.1": 2,
     "14.2": 4
   },
-  "total_views": 88,
+  "total_views": 90,
   "mangadex_cover": "6da6cf64-c44f-4153-801e-77cdf9a92d3b.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -73,7 +73,7 @@
     }
   ],
   "cover_version": 3,
-  "detail_views": 45,
+  "detail_views": 46,
   "mangadex_id": "5993c10b-c49e-4771-9a3a-8b8436b12d80",
   "rating": 8.37,
   "next_update": null,
@@ -108,7 +108,7 @@
       "title": "Ch. 14.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 13.2,

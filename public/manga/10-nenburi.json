@@ -47,10 +47,10 @@
     "18.2": 10,
     "20.1": 10,
     "20.2": 12,
-    "21.1": 6,
+    "21.1": 8,
     "21.2": 5
   },
-  "total_views": 225,
+  "total_views": 228,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -82,7 +82,7 @@
       }
     }
   ],
-  "detail_views": 67,
+  "detail_views": 68,
   "cover_version": 2,
   "mangadex_id": "26854d1a-dfd0-4e5c-b6d1-ab291035b8cc",
   "rating": 7.5,
@@ -131,7 +131,7 @@
       "title": "Ch. 21.1",
       "unlockDate": "2026-07-30T17:30:39.000Z",
       "isLocked": false,
-      "views": 6
+      "views": 8
     },
     {
       "chapter_number": 20.2,

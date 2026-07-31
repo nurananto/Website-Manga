@@ -25,31 +25,32 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 3,
-    "2": 2
+    "2": 3
   },
-  "total_views": 9,
+  "total_views": 11,
   "mangadex_cover": "6beb2e72-2c1b-443f-8348-b6a0a96e7d6a.png",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "0",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@mobile.webp?v=2"
       }
     }
   ],
-  "detail_views": 4,
+  "detail_views": 5,
+  "cover_version": 2,
   "mangadex_id": "755733bb-5842-4ff5-af0f-b4c1605bfe85",
   "rating": 8.74,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
@@ -63,7 +64,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 1,

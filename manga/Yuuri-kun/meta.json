@@ -30,8 +30,8 @@
   },
   "total_views": 23,
   "mangadex_cover": "8235d341-4f78-4d32-a747-08ba7c4afa58.png",
-  "cover_widths": "1280x960x640",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "file": "8235d341-4f78-4d32-a747-08ba7c4afa58.png",
@@ -41,7 +41,7 @@
         "manga/Yuuri-kun/covers/gallery/8235d341-4f78-4d32-a747-08ba7c4afa58@tablet.webp",
         "manga/Yuuri-kun/covers/gallery/8235d341-4f78-4d32-a747-08ba7c4afa58@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 11,

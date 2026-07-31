@@ -34,7 +34,7 @@
   },
   "total_views": 53,
   "mangadex_cover": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
@@ -44,9 +44,10 @@
         "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@tablet.webp",
         "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 21,
-  "view_sync_cutoff": "2026-07-31 17:00:49"
+  "view_sync_cutoff": "2026-07-31 17:00:49",
+  "cover_version": 2
 }

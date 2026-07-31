@@ -30,7 +30,7 @@
     "10": 3,
     "11": 5,
     "12": 6,
-    "13": 13,
+    "13": 14,
     "2.1": 1,
     "2.2": 1,
     "3.1": 1,
@@ -42,29 +42,30 @@
     "6.1": 1,
     "6.2": 1
   },
-  "total_views": 65,
+  "total_views": 67,
   "mangadex_cover": "d86648a6-77d3-4a95-a8d2-b296da206065.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@mobile.webp?v=2"
       }
     }
   ],
-  "detail_views": 16,
+  "detail_views": 17,
+  "cover_version": 2,
   "mangadex_id": "3076dc1f-e6f2-418c-baa9-125694eb36cc",
   "rating": 8.61,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
@@ -78,7 +79,7 @@
       "title": "Ch. 13",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 12,

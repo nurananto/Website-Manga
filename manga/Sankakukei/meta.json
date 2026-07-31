@@ -40,7 +40,7 @@
   },
   "total_views": 85,
   "mangadex_cover": "4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.jpg",
@@ -50,9 +50,10 @@
         "manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16@tablet.webp",
         "manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 14,
-  "view_sync_cutoff": "2026-07-31 17:00:49"
+  "view_sync_cutoff": "2026-07-31 17:00:49",
+  "cover_version": 2
 }

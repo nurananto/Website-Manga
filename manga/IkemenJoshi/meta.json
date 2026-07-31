@@ -29,7 +29,7 @@
   },
   "total_views": 11,
   "mangadex_cover": "6beb2e72-2c1b-443f-8348-b6a0a96e7d6a.png",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "6beb2e72-2c1b-443f-8348-b6a0a96e7d6a.png",
@@ -39,9 +39,10 @@
         "manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@tablet.webp",
         "manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 5,
-  "view_sync_cutoff": "2026-07-31 17:00:49"
+  "view_sync_cutoff": "2026-07-31 17:00:49",
+  "cover_version": 2
 }

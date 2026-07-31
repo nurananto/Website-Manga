@@ -29,9 +29,9 @@
     "1": 7,
     "2": 3,
     "3": 1,
-    "4": 8
+    "4": 10
   },
-  "total_views": 42,
+  "total_views": 45,
   "mangadex_cover": "4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_version": 3,
@@ -46,7 +46,7 @@
       }
     }
   ],
-  "detail_views": 23,
+  "detail_views": 24,
   "mangadex_id": "bb64b3e5-64d1-4d7d-bbd5-e6cd754dd5fa",
   "rating": 8.28,
   "next_update": null,
@@ -68,7 +68,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 10
     },
     {
       "chapter_number": 3,
