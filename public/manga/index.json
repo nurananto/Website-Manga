@@ -17,23 +17,36 @@
       "Slice of Life"
     ],
     "rating": 8.43,
-    "chapter_count": 9,
+    "chapter_count": 10,
     "total_views": 16,
     "isTrending": true,
-    "latest_release_date": "2026-07-31T16:12:23+07:00",
+    "latest_release_date": "2026-07-31T17:02:52+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
     "hiatus_at_chapter": null,
     "chapters": [
       {
+        "chapter_number": 9.1,
+        "lock_hours": 0,
+        "pages": 10,
+        "r2_folder": 9.1,
+        "id": "Chikasugiru-ch-9.1",
+        "r2_prefix": "manga/Chikasugiru/9.1/",
+        "title": "Ch. 9.1",
+        "release_date": "2026-07-31T17:02:52+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
         "chapter_number": 8.2,
         "lock_hours": 0,
         "pages": 6,
+        "release_date": "2026-07-31T16:12:23+07:00",
         "r2_folder": 8.2,
         "id": "Chikasugiru-ch-8.2",
         "r2_prefix": "manga/Chikasugiru/8.2/",
         "title": "Ch. 8.2",
-        "release_date": "2026-07-31T16:12:23+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -50,19 +63,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 4
-      },
-      {
-        "chapter_number": 7,
-        "lock_hours": 0,
-        "pages": 20,
-        "release_date": "2026-06-14T12:26:53+07:00",
-        "r2_folder": 7,
-        "id": "Chikasugiru-ch-7",
-        "r2_prefix": "manga/Chikasugiru/7/",
-        "title": "Ch. 7",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 1
       }
     ]
   },
