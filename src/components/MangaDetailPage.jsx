@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { nowTimestamp, timeAgo } from '../utils';
-import { Star, BookOpen, ArrowUpDown, ArrowUp, Eye, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play, Lock } from 'lucide-react';
+import { Star, BookOpen, ArrowUpDown, Eye, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play, Lock } from 'lucide-react';
 import SupportButtons from './SupportButtons';
 import ResponsiveCover from './ResponsiveCover';
 import CountdownTimer from './CountdownTimer';
@@ -154,9 +154,8 @@ const renderChapterRow = (ch) => {
                 </span>
               )}
               {isNew && (
-                <span className="badge-new-glow bg-emerald-500 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0">
-                  <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 stroke-[3] shrink-0" />
-                  <span>UP</span>
+                <span className="badge-new-glow bg-emerald-500 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
+                  NEW
                 </span>
               )}
               {showStatusBadge && (
@@ -262,7 +261,7 @@ const renderChapterRow = (ch) => {
                         className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest border border-white/10 text-on-surface font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
                       >
                         <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
-                        Continue {manga.status === 'Oneshot' ? 'Oneshot' : `Ch. ${continueChapter.chapter_number}`}
+                        Lanjut {manga.status === 'Oneshot' ? 'Oneshot' : `Ch. ${continueChapter.chapter_number}`}
                       </button>
                     )}
                   </div>

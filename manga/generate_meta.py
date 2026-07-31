@@ -220,6 +220,9 @@ def _write_manga_meta(title_dir):
         ],
         "mangadex_url": "",
         "raw_url": "",
+        # Gambar notifikasi chapter baru (Discord & Facebook): "page1" (default,
+        # halaman 1 chapter) atau "cover" (cover manga). Kosongkan/hapus = page1.
+        "notif_image": "page1",
         "tamat_at_chapter": None,
         "hiatus_at_chapter": None,
         "chapter_views": {},

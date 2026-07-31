@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { nowTimestamp, timeAgoShort } from '../utils';
-import { Lock, ArrowUp, BookOpen } from 'lucide-react';
+import { Lock, BookOpen } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import ResponsiveCover from './ResponsiveCover';
 import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
@@ -127,9 +127,8 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
                     {chapterTitle}
                   </span>
                   {isUp && (
-                    <span className="badge-new-glow bg-emerald-500 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider flex items-center gap-0.5 shrink-0">
-                      <ArrowUp className="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 stroke-[3] shrink-0" />
-                      <span>UP</span>
+                    <span className="badge-new-glow bg-emerald-500 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
+                      NEW
                     </span>
                   )}
                   {showStatusBadge && (
