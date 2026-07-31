@@ -150,6 +150,17 @@ function releaseSortValue(value) {
   return Number.isFinite(t) ? t : 0;
 }
 
+// Kelompokkan daftar chapter baru per mangaId — dipakai notifikasi Discord & FB.
+// Urutan asal dipertahankan (newChapters sudah desc terbaru→lama per judul).
+function groupByManga(newChapters) {
+  const byManga = new Map();
+  for (const ch of newChapters) {
+    if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, []);
+    byManga.get(ch.mangaId).push(ch);
+  }
+  return byManga;
+}
+
 function compareRecentChapters(a, b) {
   const byDate = releaseSortValue(b.release_date) - releaseSortValue(a.release_date);
   if (byDate !== 0) return byDate;
@@ -273,11 +284,7 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   // server Discord.
   const linksOf = (ch) => `🌐 [Baca](${base}/${ch.mangaId})`;
 
-  const byManga = new Map();
-  for (const ch of newChapters) {
-    if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, []);
-    byManga.get(ch.mangaId).push(ch);
-  }
+  const byManga = groupByManga(newChapters);
 
   // Bangun 1 embed → satu embed SELALU jadi satu pesan tersendiri (attByName
   // dibawa per-pesan, bukan digabung global) agar judul tidak pernah tercampur
@@ -423,11 +430,7 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
   const host = siteUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
   // newChapters urut terbaru→lama per judul (chapters sudah desc dari build-catalog).
-  const byManga = new Map();
-  for (const ch of newChapters) {
-    if (!byManga.has(ch.mangaId)) byManga.set(ch.mangaId, []);
-    byManga.get(ch.mangaId).push(ch);
-  }
+  const byManga = groupByManga(newChapters);
 
   const posts = []; // { title, rep, message } — tiap elemen = 1 post FB
   for (const [mangaId, list] of byManga) {
@@ -668,19 +671,9 @@ async function buildCatalog() {
 
     // Urutkan genre abjad
     if (Array.isArray(manga.genres)) manga.genres.sort();
-
-    // Normalisasi status & type — case insensitive.
-    // Nilai resmi: Ongoing, Tamat, Hiatus, Oneshot. Sinonim umum dipetakan;
-    // nilai tak dikenal default ke 'Ongoing' agar tampilan selalu konsisten.
-    const statusMap = {
-      'ongoing':'Ongoing', 'berlanjut':'Ongoing', 'berjalan':'Ongoing',
-      'hiatus':'Hiatus',
-      'tamat':'Tamat', 'end':'Tamat', 'ended':'Tamat', 'completed':'Tamat', 'finished':'Tamat', 'selesai':'Tamat',
-      'oneshot':'Oneshot', 'oneshoot':'Oneshot',
-    };
-    const typeMap   = { 'manga':'MANGA', 'manhwa':'MANHWA', 'manhua':'MANHUA', 'novel':'NOVEL' };
-    manga.status = statusMap[manga.status?.toLowerCase()] ?? 'Ongoing';
-    manga.type   = typeMap[manga.type?.toLowerCase()] ?? manga.type;
+    // status & type sudah dinormalisasi lewat normalizeStatus()/normalizeType()
+    // di awal iterasi manga — dulu sempat dinormalisasi ulang di sini dengan map
+    // duplikat, pass kedua itu tidak pernah mengubah apa pun.
 
     // coverUrl dari covers[0] (desktop), coverUrls untuk semua ukuran.
     // CDN_BASE (mis. https://cdn.nuranantoscans.my.id) → cover diserve langsung

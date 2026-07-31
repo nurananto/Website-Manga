@@ -99,11 +99,19 @@ function selectTargets(catalog) {
   return targets;
 }
 
+// Folder R2 + daftar halaman yang diperiksa untuk satu chapter.
+// --all-pages memeriksa semuanya; default cukup halaman pertama.
+function chapterPagePlan(chapter) {
+  return {
+    folder: chapter.r2_folder ?? chapter.chapter_number,
+    pages: ALL_PAGES
+      ? Array.from({ length: chapter.pages || 1 }, (_, index) => index + 1)
+      : [1],
+  };
+}
+
 async function auditLocked({ mangaId, chapter }, cdn, now) {
-  const folder = chapter.r2_folder ?? chapter.chapter_number;
-  const pages = ALL_PAGES
-    ? Array.from({ length: chapter.pages || 1 }, (_, index) => index + 1)
-    : [1];
+  const { folder, pages } = chapterPagePlan(chapter);
   let issues = 0;
 
   for (const page of pages) {
@@ -126,10 +134,7 @@ async function auditLocked({ mangaId, chapter }, cdn, now) {
 }
 
 async function auditPublic({ mangaId, chapter }, cdn, images, now) {
-  const folder = chapter.r2_folder ?? chapter.chapter_number;
-  const pages = ALL_PAGES
-    ? Array.from({ length: chapter.pages || 1 }, (_, index) => index + 1)
-    : [1];
+  const { folder, pages } = chapterPagePlan(chapter);
   let issues = 0;
   let viaCdn = 0;
   let viaWorker = 0;

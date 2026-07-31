@@ -5,6 +5,8 @@ const path = require('path');
 
 const dist = 'dist';
 const htmlPath = path.join(dist, 'index.html');
+// Katalog homepage — satu-satunya sumber untuk preload, inline data, dan blok SEO.
+const CATALOG_PATH = path.join('public', 'manga', 'index.json');
 if (!fs.existsSync(htmlPath)) {
   console.warn('inline-css: dist/index.html tidak ada, dilewati');
   process.exit(0);
@@ -183,7 +185,7 @@ function replaceMeta(documentHtml, attribute, key, content) {
 }
 
 function writeMangaRouteHtml(rootHtml) {
-  const catalogPath = path.join('public', 'manga', 'index.json');
+  const catalogPath = CATALOG_PATH;
   if (!fs.existsSync(catalogPath)) return 0;
   const siteUrl = (process.env.SITE_URL || 'https://nuranantoscans.my.id').replace(/\/$/, '');
   const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
@@ -275,7 +277,7 @@ function getReleaseTime(manga) {
 }
 
 function imagePreloads() {
-  const catalogPath = path.join('public', 'manga', 'index.json');
+  const catalogPath = CATALOG_PATH;
   if (!fs.existsSync(catalogPath)) return [];
 
   try {
@@ -318,7 +320,7 @@ function imagePreloads() {
 }
 
 function inlineHomepageCatalog() {
-  const catalogPath = path.join('public', 'manga', 'index.json');
+  const catalogPath = CATALOG_PATH;
   if (!fs.existsSync(catalogPath)) return;
 
   try {
@@ -369,7 +371,7 @@ if (resourceHints.length) {
 // route bisa menyisipkan blok statis miliknya sendiri.
 const mangaRoutes = writeMangaRouteHtml(html);
 
-const catalogPath = path.join('public', 'manga', 'index.json');
+const catalogPath = CATALOG_PATH;
 let homeCatalog = [];
 if (fs.existsSync(catalogPath)) {
   try {
