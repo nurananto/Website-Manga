@@ -237,6 +237,17 @@ async function resolveCoverAttachment(m) {
   return null;
 }
 
+// Gambar notifikasi chapter baru (Discord & Facebook) — halaman 1 (default,
+// sama seperti sebelumnya) atau cover manga, tergantung meta.json manga
+// (field "notif_image": "page1" | "cover"). ch.coverKey/ch.coverUrl diisi
+// oleh detectNewChapters() dari manga yang sudah diproses applyCoverUrls().
+async function resolveNotifImage(ch) {
+  if (ch.notifImage === 'cover') {
+    return resolveCoverAttachment({ id: ch.mangaId, coverKey: ch.coverKey, coverUrl: ch.coverUrl });
+  }
+  return resolveFirstPage(ch);
+}
+
 // Ambil bytes gambar dari URL CDN publik — dipakai supaya Facebook TIDAK perlu
 // fetch sendiri (Graph API /photos kadang gagal unduh/decode WebP dari URL
 // pihak ketiga → "Missing or invalid image file", code 324/2069019, meski
@@ -290,7 +301,7 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   // dibawa per-pesan, bukan digabung global) agar judul tidak pernah tercampur
   // dalam 1 notifikasi, walau embed-nya kecil dan sebenarnya muat digabung.
   const buildEmbed = async (ch, descTop) => {
-    const img = await resolveFirstPage(ch);
+    const img = await resolveNotifImage(ch);
     let image;
     const attByName = new Map();
     if (img?.bytes) {
@@ -462,7 +473,7 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
       // fetchImageBytes). 1× retry karena FB sering menandai kegagalan ini transient.
       // Timeout 45s: FB memproses gambar server-side, kadang >15s.
       // Dibungkus try sendiri agar timeout/error JATUH ke fallback teks, bukan ter-skip.
-      const img = await resolveFirstPage(rep);
+      const img = await resolveNotifImage(rep);
       if (img) {
         try {
           const bytes = img.bytes || (img.url ? await fetchImageBytes(img.url) : null);
@@ -733,6 +744,10 @@ function detectNewChapters(slug, manga, chapters, prevChapterNums) {
         chapterTitle:     ch.title,
         isLocked:         ch.isLocked,
         releaseDate:      ch.release_date,
+        // Gambar notifikasi: halaman 1 (default) atau cover, lihat resolveNotifImage().
+        notifImage:       manga.notif_image === 'cover' ? 'cover' : 'page1',
+        coverKey:         manga.cover_dev ?? manga.covers?.[0],
+        coverUrl:         manga.coverUrl,
       });
       console.log(`   🔔 ${ch._forceNotify ? 'Publish ulang' : 'Chapter baru terdeteksi'}: ${manga.title} — ${ch.title}`);
     }
