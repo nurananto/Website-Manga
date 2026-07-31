@@ -1,5 +1,72 @@
 [
   {
+    "id": "Chikasugiru",
+    "title": "Chikasugiru Futari",
+    "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang greget—ini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.43,
+    "chapter_count": 9,
+    "total_views": 16,
+    "isTrending": true,
+    "latest_release_date": "2026-07-31T16:12:23+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 8.2,
+        "lock_hours": 0,
+        "pages": 6,
+        "r2_folder": 8.2,
+        "id": "Chikasugiru-ch-8.2",
+        "r2_prefix": "manga/Chikasugiru/8.2/",
+        "title": "Ch. 8.2",
+        "release_date": "2026-07-31T16:12:23+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 8.1,
+        "lock_hours": 0,
+        "pages": 10,
+        "release_date": "2026-06-14T12:26:53+07:00",
+        "r2_folder": 8.1,
+        "id": "Chikasugiru-ch-8.1",
+        "r2_prefix": "manga/Chikasugiru/8.1/",
+        "title": "Ch. 8.1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 4
+      },
+      {
+        "chapter_number": 7,
+        "lock_hours": 0,
+        "pages": 20,
+        "release_date": "2026-06-14T12:26:53+07:00",
+        "r2_folder": 7,
+        "id": "Chikasugiru-ch-7",
+        "r2_prefix": "manga/Chikasugiru/7/",
+        "title": "Ch. 7",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 1
+      }
+    ]
+  },
+  {
     "id": "10-nenburi",
     "title": "10-Nen Buri ni Saikai shita Kusogaki wa Seijun Bishoujo JK ni Seichou shiteita",
     "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
@@ -31,11 +98,11 @@
         "chapter_number": 22.1,
         "lock_hours": 670,
         "pages": 10,
+        "release_date": "2026-07-31T14:20:21+07:00",
         "r2_folder": 22.1,
         "id": "10-nenburi-ch-22.1",
         "r2_prefix": "manga/10-nenburi/22.1/",
         "title": "Ch. 22.1",
-        "release_date": "2026-07-31T14:20:21+07:00",
         "unlockDate": "2026-08-28T05:20:21.000Z",
         "isLocked": true,
         "views": 0
@@ -299,7 +366,7 @@
     "rating": 7.37,
     "chapter_count": 18,
     "total_views": 204,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-07-26T11:43:43+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -1738,73 +1805,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 0
-      }
-    ]
-  },
-  {
-    "id": "Chikasugiru",
-    "title": "Chikasugiru Futari",
-    "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang greget—ini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 8.43,
-    "chapter_count": 8,
-    "total_views": 16,
-    "isTrending": false,
-    "latest_release_date": "2026-06-14T12:26:53+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 8.1,
-        "lock_hours": 0,
-        "pages": 10,
-        "release_date": "2026-06-14T12:26:53+07:00",
-        "r2_folder": 8.1,
-        "id": "Chikasugiru-ch-8.1",
-        "r2_prefix": "manga/Chikasugiru/8.1/",
-        "title": "Ch. 8.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 4
-      },
-      {
-        "chapter_number": 7,
-        "lock_hours": 0,
-        "pages": 20,
-        "release_date": "2026-06-14T12:26:53+07:00",
-        "r2_folder": 7,
-        "id": "Chikasugiru-ch-7",
-        "r2_prefix": "manga/Chikasugiru/7/",
-        "title": "Ch. 7",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 1
-      },
-      {
-        "chapter_number": 6,
-        "lock_hours": 0,
-        "pages": 16,
-        "release_date": "2026-06-14T12:26:53+07:00",
-        "r2_folder": 6,
-        "id": "Chikasugiru-ch-6",
-        "r2_prefix": "manga/Chikasugiru/6/",
-        "title": "Ch. 6",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 1
       }
     ]
   },
