@@ -132,9 +132,15 @@ jobs:
       # walau header origin sudah no-cache. Purge di sini memastikan pembaca dapat
       # katalog terbaru segera setelah deploy, tanpa perlu clear cache browser.
       - name: Purge Cloudflare cache
-        if: ${{ secrets.CF_ZONE_ID != '' }}
+        env:
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
         run: |
-          curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache" \
-            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+          if [ -z "$CF_ZONE_ID" ]; then
+            echo "CF_ZONE_ID belum diset, lewati purge cache."
+            exit 0
+          fi
+          curl -s -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
+            -H "Authorization: Bearer $CF_API_TOKEN" \
             -H "Content-Type: application/json" \
             --data '{"purge_everything":true}'
