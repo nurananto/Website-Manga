@@ -27,10 +27,13 @@
 
 # Main app entry is intentionally not hashed. It points to the latest hashed
 # chunks after every deploy, so stale HTML will not request a deleted entry file.
-# no-cache (bukan no-store): browser tetap menyimpan salinan dan boleh menerima
-# 304, jadi kunjungan berulang hemat satu transfer penuh tanpa risiko basi.
+# no-store (bukan no-cache): sebagian profil Chrome (fitur Preload/Prerender)
+# terbukti tidak selalu mau memvalidasi ulang respons no-cache sebelum
+# navigasi/prefetch, sehingga bisa menampilkan bundle lama tanpa error apa pun
+# untuk dideteksi. no-store melarang penyimpanan sama sekali — tidak ada celah
+# bagi mekanisme apa pun (termasuk incognito-only bugs) untuk menahan salinan.
 /entry/*
-  Cache-Control: no-cache
+  Cache-Control: no-store
 
 # Media di root (icon.webp, logo-header.webp, header-*.webp, favicon, svg).
 # JANGAN pakai immutable setahun seperti /assets/*: nama file ini TIDAK ber-hash,
@@ -46,28 +49,29 @@
 /*.svg
   Cache-Control: public, max-age=86400
 
-# Catalog JSON must stay fresh after catalog deploys.
+# Catalog JSON must stay fresh after catalog deploys. no-store (lihat alasan
+# di /entry/* di atas) — chapter/manga baru tidak boleh tertahan di cache
+# profil Chrome mana pun.
 /manga/index.json
-  Cache-Control: no-cache
+  Cache-Control: no-store
 
 /manga/*.json
-  Cache-Control: no-cache
+  Cache-Control: no-store
 
-# HTML selalu divalidasi ulang sebelum dipakai, tapi tetap boleh disimpan supaya
-# respons 304 menghemat transfer bodi 27,5 KB pada kunjungan berulang.
+# HTML — no-store, sama seperti /entry/* di atas.
 /
-  Cache-Control: no-cache
+  Cache-Control: no-store
 
 /index.html
-  Cache-Control: no-cache
+  Cache-Control: no-store
 
 # Service worker must update immediately.
 /sw.js
-  Cache-Control: no-cache
+  Cache-Control: no-store
 
 # Dipoll App.jsx untuk mendeteksi deploy baru — harus selalu segar.
 /version.json
-  Cache-Control: no-cache
+  Cache-Control: no-store
 
 /.well-known/security.txt
   Cache-Control: public, max-age=3600
