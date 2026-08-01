@@ -6,7 +6,15 @@
   "type": "WEBTOON",
   "author": "Shiogama Ume",
   "artist": "Kurosaki Koko",
-  "genres": ["Ghosts", "Long Strip", "Romance", "Comedy", "Horror", "Mystery", "Full Color"],
+  "genres": [
+    "Ghosts",
+    "Long Strip",
+    "Romance",
+    "Comedy",
+    "Horror",
+    "Mystery",
+    "Full Color"
+  ],
   "description": "Seorang Mahasiswa, Mamoru Suou mengalami serangkaian kejadian buruk: pencarian kerjanya tidak berjalan lancar, dan dia harus keluar dari tempat tinggalnya. Namun, dia bertemu dengan agen properti yang menunjukkan sebuah properti ideal. Meskipun agak tua, ukuran dan harga sewanya sangat baik, jadi dia segera pindah... Setelah pindahan selesai dengan aman, malam itu Mamoru bertemu Madoka, hantu dengan kecantikan luar biasa. Madoka menyentuh leher Mamoru dengan bibirnya yang menggoda... dan malam penuh kenikmatan dan teror dimulai...",
   "covers": [
     "manga/Mendokusai/covers/cover.webp",
@@ -20,5 +28,19 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.jpg",
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 2,
+  "cover_gallery": [
+    {
+      "file": "ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.webp",
+        "manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@tablet.webp",
+        "manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@mobile.webp"
+      ],
+      "widths": "1280x960x640q75"
+    }
+  ]
 }

@@ -1,5 +1,75 @@
 [
   {
+    "id": "Mendokusai",
+    "title": "Mendokusai yuurei desu ga, watashi to koi shite kuremasu ka?",
+    "description": "Seorang Mahasiswa, Mamoru Suou mengalami serangkaian kejadian buruk: pencarian kerjanya tidak berjalan lancar, dan dia harus keluar dari tempat tinggalnya. Namun, dia bertemu dengan agen properti yang menunjukkan sebuah properti ideal. Meskipun agak tua, ukuran dan harga sewanya sangat baik, jadi…",
+    "status": "Tamat",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Comedy",
+      "Full Color",
+      "Ghosts",
+      "Horror",
+      "Long Strip",
+      "Mystery",
+      "Romance"
+    ],
+    "rating": 8.81,
+    "chapter_count": 15,
+    "total_views": 0,
+    "isTrending": true,
+    "latest_release_date": "2026-08-01T23:00:15+07:00",
+    "next_update": null,
+    "tamat_at_chapter": 30,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 15,
+        "lock_hours": 0,
+        "pages": 32,
+        "r2_folder": 15,
+        "id": "Mendokusai-ch-15",
+        "r2_prefix": "manga/Mendokusai/15/",
+        "title": "Ch. 15",
+        "release_date": "2026-08-01T23:00:15+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 14,
+        "lock_hours": 0,
+        "pages": 31,
+        "r2_folder": 14,
+        "id": "Mendokusai-ch-14",
+        "r2_prefix": "manga/Mendokusai/14/",
+        "title": "Ch. 14",
+        "release_date": "2026-08-01T23:00:15+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 13,
+        "lock_hours": 0,
+        "pages": 32,
+        "r2_folder": 13,
+        "id": "Mendokusai-ch-13",
+        "r2_prefix": "manga/Mendokusai/13/",
+        "title": "Ch. 13",
+        "release_date": "2026-08-01T23:00:15+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "InkyaDanshi",
     "title": "Inkya Danshi ga Keiken Shita, Urayamakeshikaranna Love Comedy",
     "description": "Aku, si bocchi pendiam, tiba-tiba memiliki sebuah kisah cinta hanya karena satu momen!? Siapa sangka kebahagiaan seperti apa yang tersembunyi di dunia ini...! Channel video manga romantis populer di YouTube, 'Hometenobasu', kini menjadi sebuah manga! Berlatar sekolah sebagai panggung utama masa…",
@@ -282,7 +352,7 @@
     "rating": 7.81,
     "chapter_count": 19,
     "total_views": 118,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-07-28T16:05:03+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
