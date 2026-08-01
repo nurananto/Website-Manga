@@ -42,7 +42,7 @@
   },
   "total_views": 130,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "9afc7e54-6049-4ad9-9592-451a9a11a7f8.jpg",
@@ -52,7 +52,7 @@
         "manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@tablet.webp",
         "manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
@@ -62,9 +62,10 @@
         "manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@tablet.webp",
         "manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 44,
-  "view_sync_cutoff": "2026-08-01 17:00:49"
+  "view_sync_cutoff": "2026-08-01 17:00:49",
+  "cover_version": 2
 }

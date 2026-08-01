@@ -40,38 +40,39 @@
     "7.2": 12,
     "7.3": 14
   },
-  "total_views": 129,
+  "total_views": 130,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@mobile.webp?v=2"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@mobile.webp?v=2"
       }
     }
   ],
-  "detail_views": 43,
+  "detail_views": 44,
+  "cover_version": 2,
   "mangadex_id": "8556c131-23ed-42d6-98ba-5f2aa5037843",
-  "rating": 7.42,
+  "rating": 7.43,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {

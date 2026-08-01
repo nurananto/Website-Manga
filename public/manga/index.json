@@ -21,7 +21,7 @@
     ],
     "rating": 8.81,
     "chapter_count": 15,
-    "total_views": 0,
+    "total_views": 2,
     "isTrending": true,
     "latest_release_date": "2026-08-01T23:00:15+07:00",
     "next_update": null,
@@ -32,24 +32,24 @@
         "chapter_number": 15,
         "lock_hours": 0,
         "pages": 32,
+        "release_date": "2026-08-01T23:00:15+07:00",
         "r2_folder": 15,
         "id": "Mendokusai-ch-15",
         "r2_prefix": "manga/Mendokusai/15/",
         "title": "Ch. 15",
-        "release_date": "2026-08-01T23:00:15+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 14,
         "lock_hours": 0,
         "pages": 31,
+        "release_date": "2026-08-01T23:00:15+07:00",
         "r2_folder": 14,
         "id": "Mendokusai-ch-14",
         "r2_prefix": "manga/Mendokusai/14/",
         "title": "Ch. 14",
-        "release_date": "2026-08-01T23:00:15+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -58,11 +58,11 @@
         "chapter_number": 13,
         "lock_hours": 0,
         "pages": 32,
+        "release_date": "2026-08-01T23:00:15+07:00",
         "r2_folder": 13,
         "id": "Mendokusai-ch-13",
         "r2_prefix": "manga/Mendokusai/13/",
         "title": "Ch. 13",
-        "release_date": "2026-08-01T23:00:15+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -88,9 +88,9 @@
       "School Life",
       "Slice of Life"
     ],
-    "rating": 8.19,
+    "rating": 8.24,
     "chapter_count": 2,
-    "total_views": 2,
+    "total_views": 21,
     "isTrending": true,
     "latest_release_date": "2026-07-31T23:42:14+07:00",
     "next_update": null,
@@ -108,7 +108,7 @@
         "title": "Ch. 2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 7
       },
       {
         "chapter_number": 1,
@@ -121,7 +121,7 @@
         "title": "Ch. 1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 7
       }
     ]
   },
@@ -144,7 +144,7 @@
     ],
     "rating": 8.43,
     "chapter_count": 11,
-    "total_views": 23,
+    "total_views": 25,
     "isTrending": true,
     "latest_release_date": "2026-07-31T18:26:52+07:00",
     "next_update": null,
@@ -162,7 +162,7 @@
         "title": "Ch. 9.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 9.1,
@@ -420,7 +420,7 @@
     ],
     "rating": 6.79,
     "chapter_count": 17,
-    "total_views": 142,
+    "total_views": 144,
     "isTrending": false,
     "latest_release_date": "2026-07-27T22:52:51+07:00",
     "next_update": null,
@@ -438,7 +438,7 @@
         "title": "Ch. 17",
         "unlockDate": null,
         "isLocked": false,
-        "views": 9
+        "views": 10
       },
       {
         "chapter_number": 16,
@@ -464,7 +464,7 @@
         "title": "Ch. 15",
         "unlockDate": null,
         "isLocked": false,
-        "views": 10
+        "views": 11
       }
     ]
   },
@@ -491,7 +491,7 @@
     ],
     "rating": 7.37,
     "chapter_count": 18,
-    "total_views": 204,
+    "total_views": 205,
     "isTrending": false,
     "latest_release_date": "2026-07-26T11:43:43+07:00",
     "next_update": null,
@@ -631,7 +631,7 @@
     ],
     "rating": 8.2,
     "chapter_count": 12,
-    "total_views": 270,
+    "total_views": 273,
     "isTrending": false,
     "latest_release_date": "2026-07-22T15:25:23+07:00",
     "next_update": null,
@@ -701,7 +701,7 @@
     ],
     "rating": 8.21,
     "chapter_count": 28,
-    "total_views": 322,
+    "total_views": 329,
     "isTrending": false,
     "latest_release_date": "2026-07-21T23:28:24+07:00",
     "next_update": null,
@@ -732,7 +732,7 @@
         "title": "Ch. 23.1",
         "unlockDate": "2026-07-29T14:00:00.000Z",
         "isLocked": false,
-        "views": 17
+        "views": 19
       },
       {
         "chapter_number": 22.2,
@@ -745,7 +745,7 @@
         "title": "Ch. 22.2",
         "unlockDate": "2026-07-08T04:27:34.000Z",
         "isLocked": false,
-        "views": 42
+        "views": 43
       }
     ]
   },
@@ -771,7 +771,7 @@
     ],
     "rating": 7.69,
     "chapter_count": 19,
-    "total_views": 118,
+    "total_views": 122,
     "isTrending": false,
     "latest_release_date": "2026-07-19T23:08:03+07:00",
     "next_update": null,
@@ -802,7 +802,7 @@
         "title": "Ch. 14.2",
         "unlockDate": "2026-07-20T11:20:01.000Z",
         "isLocked": false,
-        "views": 11
+        "views": 12
       },
       {
         "chapter_number": 14.1,
@@ -824,11 +824,11 @@
     "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
     "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
     "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=2",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=3",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=2"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=3"
     },
     "genres": [
       "Adaptation",
@@ -840,9 +840,9 @@
       "Slice of Life",
       "Tragedy"
     ],
-    "rating": 7.71,
+    "rating": 7.72,
     "chapter_count": 16,
-    "total_views": 583,
+    "total_views": 586,
     "isTrending": false,
     "latest_release_date": "2026-07-17T22:42:07+07:00",
     "next_update": null,
@@ -1187,11 +1187,11 @@
     "title": "Teisou Gyakuten Sekai Nara Moteru to Omotte Itara",
     "description": "Dunia dengan moral nafsu yang terbalik —rasio gender 1:20, cewek-cewek memiliki hasrat nafsu yang kuat, sedangkan para cowok ingin menjalani hidup nyaman dan damai dilindungi bodyguard. Bodyguard Cowok yang ada di sekitarnya semuanya tampan, dan Ikuto mengeluh bahwa terutama sahabatnya, Toosaka…",
     "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=1",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=2",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@mobile.webp?v=1"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@mobile.webp?v=2"
     },
     "genres": [
       "Adaptation",
@@ -1205,9 +1205,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.42,
+    "rating": 7.43,
     "chapter_count": 10,
-    "total_views": 129,
+    "total_views": 130,
     "isTrending": false,
     "latest_release_date": "2026-07-07T20:55:27+07:00",
     "next_update": null,
@@ -1747,11 +1747,11 @@
     "title": "Youkya ni Natta Ore no Seishun Shijou Shugi",
     "description": "【Anak gaul】dan【anak kuper】Kurang lebih, di dunia ini manusia bisa dibagi jadi dua tipe itu. Kalau mau menikmati masa muda yang cuma datang sekali, cuma ada satu jalan yang harus dipilih. Singkatnya—kalau mau populer dan disukai banyak orang, jadilah anak gaul. Ueda Kyouta, mantan anak kuper,…",
     "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp?v=1",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp?v=2",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp?v=1",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@tablet.webp?v=1",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@mobile.webp?v=1"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@mobile.webp?v=2"
     },
     "genres": [
       "Adaptation",
@@ -1762,7 +1762,7 @@
     ],
     "rating": 8.21,
     "chapter_count": 6,
-    "total_views": 9,
+    "total_views": 12,
     "isTrending": false,
     "latest_release_date": "2026-06-18T18:38:29+07:00",
     "next_update": null,
@@ -1830,7 +1830,7 @@
     ],
     "rating": 8.74,
     "chapter_count": 2,
-    "total_views": 11,
+    "total_views": 12,
     "isTrending": false,
     "latest_release_date": "2026-06-14T15:10:34+07:00",
     "next_update": null,

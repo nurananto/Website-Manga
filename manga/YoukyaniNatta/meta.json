@@ -31,7 +31,7 @@
   },
   "total_views": 12,
   "mangadex_cover": "2c142b06-cf48-405d-b5e6-5af0c1651688.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "3eaf02cf-980c-44af-9ab9-2032f7458fb8.jpg",
@@ -41,7 +41,7 @@
         "manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@tablet.webp",
         "manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "2c142b06-cf48-405d-b5e6-5af0c1651688.jpg",
@@ -51,9 +51,10 @@
         "manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@tablet.webp",
         "manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 4,
-  "view_sync_cutoff": "2026-08-01 17:00:49"
+  "view_sync_cutoff": "2026-08-01 17:00:49",
+  "cover_version": 2
 }
