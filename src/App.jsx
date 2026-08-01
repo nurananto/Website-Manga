@@ -8,7 +8,7 @@ import { loadCoinModals } from './lib/coinModalsLoader';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
 import ResponsiveCover from './components/ResponsiveCover';
-import { Sparkles, RotateCcw, Search, CheckCircle, ArrowRight } from 'lucide-react';
+import { Sparkles, RotateCcw, Search, CheckCircle, ArrowRight, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import { coverUrlForWidth, timeAgo } from './utils';
 import { HomepageHeroSkeleton, MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
@@ -61,6 +61,16 @@ const BOOTSTRAP_MANGA_LIST = Array.isArray(window.__INLINE_MANGA_INDEX__)
 const INITIAL_ROUTE = parsePath();
 const TRENDING_CACHE_KEY = 'nurananto_trending_24h';
 const TRENDING_CACHE_MAX_AGE = 30 * 60 * 60 * 1000;
+
+const SORT_OPTIONS = [
+  { key: 'update',     label: 'Update Terbaru' },
+  { key: 'popularity', label: 'Popularitas' },
+  { key: 'alphabet',   label: 'Alfabet' },
+  { key: 'chapters',   label: 'Jumlah Chapter' },
+];
+// Klik ulang sortir aktif → balik arah. Pindah sortir → mulai dari arah
+// default yang masuk akal untuk sortir itu (alfabet A→Z, sisanya terbesar dulu).
+const SORT_DEFAULT_DIR = { update: 'desc', popularity: 'desc', alphabet: 'asc', chapters: 'desc' };
 
 function readCachedTrending() {
   try {
@@ -248,6 +258,10 @@ export default function App() {
   }, [triggerUpdate]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [sortBy, setSortBy] = useState('update');   // 'update' | 'popularity' | 'alphabet' | 'chapters'
+  const [sortDir, setSortDir] = useState('desc');   // 'asc' | 'desc'
+  const [isSortOpen, setIsSortOpen] = useState(false);
+  const sortMenuRef = useRef(null);
   const [activeChapter, setActiveChapter] = useState(null);
   const [activeMangaTitle, setActiveMangaTitle] = useState('');
   const [activeTab, setActiveTab] = useState(INITIAL_ROUTE.page === 'history' ? 'profile' : 'library'); // 'library' | 'profile'
@@ -790,9 +804,62 @@ export default function App() {
     m.genres.some((g) => g.toLowerCase().includes(searchQuery.toLowerCase()))
   ), [MANGA_LIST, searchQuery]);
 
-  const totalPages = Math.ceil(filteredManga.length / itemsPerPage);
+  const handleSortClick = (key) => {
+    if (sortBy === key) {
+      setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'));
+    } else {
+      setSortBy(key);
+      setSortDir(SORT_DEFAULT_DIR[key]);
+    }
+    setCurrentPage(1);
+    // Sama seperti pagination: cover halaman 1 hasil sortir baru dipasang
+    // eager + decode sinkron, supaya tidak ada frame kosong/kedip saat
+    // urutan manga berubah total.
+    setHasPaginated(true);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sortMenuRef.current && !sortMenuRef.current.contains(event.target)) {
+        setIsSortOpen(false);
+      }
+    };
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') setIsSortOpen(false);
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
+
+  const sortedManga = useMemo(() => {
+    const list = [...filteredManga];
+    const dir = sortDir === 'asc' ? 1 : -1;
+    list.sort((a, b) => {
+      switch (sortBy) {
+        case 'popularity':
+          return dir * ((a.total_views ?? 0) - (b.total_views ?? 0));
+        case 'alphabet':
+          return dir * a.title.localeCompare(b.title);
+        case 'chapters':
+          return dir * ((a.chapter_count ?? a.chapters?.length ?? 0) - (b.chapter_count ?? b.chapters?.length ?? 0));
+        case 'update':
+        default: {
+          const av = a.latest_release_date ? new Date(a.latest_release_date).getTime() : 0;
+          const bv = b.latest_release_date ? new Date(b.latest_release_date).getTime() : 0;
+          return dir * (av - bv);
+        }
+      }
+    });
+    return list;
+  }, [filteredManga, sortBy, sortDir]);
+
+  const totalPages = Math.ceil(sortedManga.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedManga = filteredManga.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedManga = sortedManga.slice(startIndex, startIndex + itemsPerPage);
 
   // Hangatkan cover halaman sebelum/sesudah halaman aktif agar teks dan cover
   // berganti bersamaan ketika pagination ditekan.
@@ -802,7 +869,7 @@ export default function App() {
       .filter((page) => page >= 1 && page <= totalPages);
     for (const page of adjacentPages) {
       const offset = (page - 1) * itemsPerPage;
-      for (const manga of filteredManga.slice(offset, offset + itemsPerPage)) {
+      for (const manga of sortedManga.slice(offset, offset + itemsPerPage)) {
         const url = coverUrlForWidth(manga, window.innerWidth);
         if (!url) continue;
         const image = new Image();
@@ -814,7 +881,7 @@ export default function App() {
         image.decode?.().catch(() => { /* URL rusak / dibatalkan — abaikan */ });
       }
     }
-  }, [currentPage, filteredManga, itemsPerPage, totalPages]);
+  }, [currentPage, sortedManga, itemsPerPage, totalPages]);
 
   // Auto-recovery race pasca-login: begitu status Supporter terkonfirmasi (me-fetch
   // selesai), kalau modal locked masih nyangkut untuk chapter tertunda → tutup &
@@ -1032,15 +1099,57 @@ export default function App() {
                         {searchQuery ? `Search Results for "${searchQuery}"` : 'List Bacaan'}
                       </h2>
                     </div>
-                    <button
-                      onClick={() => setIsSearchOpen(!isSearchOpen)}
-                      className={`p-2 rounded-full hover:bg-white/5 text-outline hover:text-primary transition-all active:scale-95 cursor-pointer ${
-                        isSearchOpen ? 'text-primary bg-white/5' : ''
-                      }`}
-                      title="Search manga"
-                    >
-                      <Search className="w-5 h-5" />
-                    </button>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <button
+                        onClick={() => setIsSearchOpen(!isSearchOpen)}
+                        className={`h-9 w-9 flex items-center justify-center rounded-2xl border transition-all active:scale-95 cursor-pointer ${
+                          isSearchOpen
+                            ? 'border-primary text-primary bg-white/5'
+                            : 'border-white/10 text-outline hover:border-primary/50 hover:text-primary hover:bg-white/5'
+                        }`}
+                        title="Search manga"
+                      >
+                        <Search className="w-5 h-5" />
+                      </button>
+
+                      <div className="relative" ref={sortMenuRef}>
+                        <button
+                          onClick={() => setIsSortOpen((v) => !v)}
+                          className={`h-9 w-9 flex items-center justify-center rounded-2xl border transition-all active:scale-95 cursor-pointer ${
+                            isSortOpen
+                              ? 'border-primary text-primary bg-white/5'
+                              : 'border-white/10 text-outline hover:border-primary/50 hover:text-primary hover:bg-white/5'
+                          }`}
+                          title="Urutkan manga"
+                        >
+                          <ArrowUpDown className="w-4 h-4" />
+                        </button>
+
+                        {isSortOpen && (
+                          <div className="absolute right-0 top-11 w-52 bg-surface-container border border-white/5 rounded-xl shadow-2xl py-1.5 z-50 animate-[fadeIn_0.15s_ease-out]">
+                            {SORT_OPTIONS.map((opt) => {
+                              const active = sortBy === opt.key;
+                              return (
+                                <button
+                                  key={opt.key}
+                                  onClick={() => { handleSortClick(opt.key); setIsSortOpen(false); }}
+                                  className={`w-full flex items-center justify-between gap-2 px-4 py-2.5 text-sm font-body-md transition-colors cursor-pointer ${
+                                    active ? 'text-primary bg-white/5' : 'text-on-surface-variant hover:bg-white/5 hover:text-on-surface'
+                                  }`}
+                                >
+                                  <span>{opt.label}</span>
+                                  {active && (
+                                    sortDir === 'asc'
+                                      ? <ArrowUp className="w-3.5 h-3.5 shrink-0" />
+                                      : <ArrowDown className="w-3.5 h-3.5 shrink-0" />
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
 
                   {/* Expandable Search Input (Full Width) */}
