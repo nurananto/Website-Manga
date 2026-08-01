@@ -63,7 +63,7 @@ const TRENDING_CACHE_KEY = 'nurananto_trending_24h';
 const TRENDING_CACHE_MAX_AGE = 30 * 60 * 60 * 1000;
 
 const SORT_OPTIONS = [
-  { key: 'update',     label: 'Update Terbaru' },
+  { key: 'update',     label: 'Update' },
   { key: 'popularity', label: 'Popularitas' },
   { key: 'alphabet',   label: 'Alfabet' },
   { key: 'chapters',   label: 'Jumlah Chapter' },
@@ -1132,7 +1132,7 @@ export default function App() {
                               return (
                                 <button
                                   key={opt.key}
-                                  onClick={() => { handleSortClick(opt.key); setIsSortOpen(false); }}
+                                  onClick={() => handleSortClick(opt.key)}
                                   className={`w-full flex items-center justify-between gap-2 px-4 py-2.5 text-sm font-body-md transition-colors cursor-pointer ${
                                     active ? 'text-primary bg-white/5' : 'text-on-surface-variant hover:bg-white/5 hover:text-on-surface'
                                   }`}
