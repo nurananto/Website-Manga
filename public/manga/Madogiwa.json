@@ -71,6 +71,7 @@
   ],
   "detail_views": 73,
   "cover_version": 2,
+  "notif_image": "page1",
   "mangadex_id": "a0ecce48-aa4c-48e6-8d9b-90f322a5687a",
   "rating": 7.37,
   "next_update": null,
@@ -81,6 +82,19 @@
     "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
+    {
+      "chapter_number": 15.2,
+      "lock_hours": 0,
+      "pages": 12,
+      "r2_folder": 15.2,
+      "id": "Madogiwa-ch-15.2",
+      "r2_prefix": "manga/Madogiwa/15.2/",
+      "title": "Ch. 15.2",
+      "release_date": "2026-08-02T11:52:46+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
     {
       "chapter_number": 15.1,
       "lock_hours": 0,
