@@ -33,8 +33,8 @@
   },
   "total_views": 17,
   "mangadex_cover": "462b16a8-3a01-405f-b174-4db2846cef92.jpg",
-  "cover_widths": "1280x960x640",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "file": "462b16a8-3a01-405f-b174-4db2846cef92.jpg",
@@ -44,7 +44,7 @@
         "manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@tablet.webp",
         "manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 8,

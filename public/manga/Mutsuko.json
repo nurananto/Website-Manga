@@ -30,37 +30,37 @@
   },
   "total_views": 22,
   "mangadex_cover": "80b2f022-46fc-4506-919a-60c0382e797e.jpg",
-  "cover_widths": "1280x960x640",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e@mobile.webp?v=3"
       }
     },
     {
       "volume": "0",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/bd09f38f-5e05-43bc-9edc-2e3272ddc7cb.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/bd09f38f-5e05-43bc-9edc-2e3272ddc7cb@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/bd09f38f-5e05-43bc-9edc-2e3272ddc7cb@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/bd09f38f-5e05-43bc-9edc-2e3272ddc7cb.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/bd09f38f-5e05-43bc-9edc-2e3272ddc7cb@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/bd09f38f-5e05-43bc-9edc-2e3272ddc7cb@mobile.webp?v=3"
       }
     }
   ],
   "detail_views": 9,
   "mangadex_id": "12db645e-8482-4f58-8ba3-44e15d07f614",
-  "rating": 7.98,
+  "rating": 8.01,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {

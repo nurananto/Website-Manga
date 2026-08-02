@@ -30,8 +30,8 @@
   },
   "total_views": 22,
   "mangadex_cover": "80b2f022-46fc-4506-919a-60c0382e797e.jpg",
-  "cover_widths": "1280x960x640",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "file": "bd09f38f-5e05-43bc-9edc-2e3272ddc7cb.jpg",
@@ -41,7 +41,7 @@
         "manga/Mutsuko/covers/gallery/bd09f38f-5e05-43bc-9edc-2e3272ddc7cb@tablet.webp",
         "manga/Mutsuko/covers/gallery/bd09f38f-5e05-43bc-9edc-2e3272ddc7cb@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     },
     {
       "file": "80b2f022-46fc-4506-919a-60c0382e797e.jpg",
@@ -51,7 +51,7 @@
         "manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e@tablet.webp",
         "manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e@mobile.webp"
       ],
-      "widths": "1280x960x640"
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 9,

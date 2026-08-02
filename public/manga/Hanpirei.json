@@ -33,16 +33,16 @@
   },
   "total_views": 17,
   "mangadex_cover": "462b16a8-3a01-405f-b174-4db2846cef92.jpg",
-  "cover_widths": "1280x960x640",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@mobile.webp?v=3"
       }
     }
   ],
@@ -50,11 +50,11 @@
   "mangadex_id": "5d87115b-058d-4e36-a624-80c66f0115eb",
   "rating": 8.56,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {

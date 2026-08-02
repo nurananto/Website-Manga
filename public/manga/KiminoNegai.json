@@ -39,36 +39,37 @@
   },
   "total_views": 19,
   "mangadex_cover": "b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/gallery/e468847e-fee9-453b-a9ec-215f0128154c.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/gallery/e468847e-fee9-453b-a9ec-215f0128154c@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/gallery/e468847e-fee9-453b-a9ec-215f0128154c@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/gallery/e468847e-fee9-453b-a9ec-215f0128154c.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/gallery/e468847e-fee9-453b-a9ec-215f0128154c@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/gallery/e468847e-fee9-453b-a9ec-215f0128154c@mobile.webp?v=2"
       }
     },
     {
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/gallery/b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/gallery/b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/gallery/b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/gallery/b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/gallery/b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/gallery/b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b@mobile.webp?v=2"
       }
     }
   ],
   "detail_views": 6,
+  "cover_version": 2,
   "mangadex_id": "90d81edd-accb-4c8d-b44c-e38254d77935",
   "rating": 8.9,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/KiminoNegai/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {

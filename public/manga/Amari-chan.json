@@ -39,37 +39,37 @@
   },
   "total_views": 52,
   "mangadex_cover": "c402aa68-08d7-49da-9fbd-7b84a9da4f7c.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@mobile.webp?v=3"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@mobile.webp?v=3"
       }
     }
   ],
   "detail_views": 21,
-  "cover_version": 2,
+  "cover_version": 3,
   "mangadex_id": "624d6ceb-768d-40a7-8412-84e083afbdb1",
   "rating": 8.48,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {

@@ -37,54 +37,55 @@
   },
   "total_views": 25,
   "mangadex_cover": "511f749e-21de-4ba8-ab27-b6cd74cbb6e5.jpg",
-  "cover_widths": "1280x960x640",
+  "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "3",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5@mobile.webp?v=2"
       }
     },
     {
       "volume": "2",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff@mobile.webp?v=2"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8@mobile.webp?v=2"
       }
     },
     {
       "volume": "0",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79.webp?v=1",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79@tablet.webp?v=1",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79@mobile.webp?v=1"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79@mobile.webp?v=2"
       }
     }
   ],
   "detail_views": 9,
+  "cover_version": 2,
   "mangadex_id": "c14b2a85-ca88-4bf7-8937-87baf95491c0",
   "rating": 8.2,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/AiwoOshiete/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
