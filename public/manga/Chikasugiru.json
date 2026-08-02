@@ -50,6 +50,7 @@
   ],
   "detail_views": 10,
   "cover_version": 2,
+  "notif_image": "page1",
   "mangadex_id": "c679bf28-e054-4bb7-93e6-18c089ee79f1",
   "rating": 8.43,
   "next_update": null,
@@ -60,6 +61,19 @@
     "mobile": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
+    {
+      "chapter_number": 10.1,
+      "lock_hours": 0,
+      "pages": 10,
+      "r2_folder": 10.1,
+      "id": "Chikasugiru-ch-10.1",
+      "r2_prefix": "manga/Chikasugiru/10.1/",
+      "title": "Ch. 10.1",
+      "release_date": "2026-08-02T20:26:55+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
     {
       "chapter_number": 9.2,
       "lock_hours": 0,
