@@ -204,11 +204,15 @@ def ask_notif_image():
 
 def set_manga_notif_image(title_dir, notif_image):
     """Update field notif_image di meta.json manga (dibaca build-catalog.js
-    saat posting notifikasi chapter baru ini ke Discord & Facebook)."""
+    saat posting notifikasi chapter baru ini ke Discord & Facebook).
+    Hanya menulis file kalau nilainya berubah, supaya meta.json manga
+    tidak ikut "berubah" di git tiap kali proses chapter baru."""
     meta_path = title_dir / "meta.json"
     if not meta_path.exists():
         return
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    if meta.get("notif_image") == notif_image:
+        return
     meta["notif_image"] = notif_image
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump(meta, f, indent=2, ensure_ascii=False)
