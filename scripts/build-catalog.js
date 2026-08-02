@@ -288,6 +288,7 @@ async function fetchImageBytes(url) {
 //  - >3 chapter baru  → digabung jadi 1 pesan ringkas (cegah banjir notif /
 //    kena rate-limit saat upload chapter massal atau backfill).
 // Hanya berjalan kalau DISCORD_WEBHOOK_URL diset & ada chapter baru.
+// @everyone dipasang di SETIAP pesan (tiap chapter baru selalu nge-ping).
 async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   if (!webhookUrl || newChapters.length === 0) return;
   const base  = siteUrl.replace(/\/$/, '');
@@ -348,7 +349,8 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
     const { embed, attByName } = messages[i];
     const payload = {
       username: 'Nurananto Scanlation',
-      content:  i === 0 ? '## 📢 Baru Saja Dirilis!' : undefined,
+      content:  `@everyone${i === 0 ? '\n## 📢 Baru Saja Dirilis!' : ''}`,
+      allowed_mentions: { parse: ['everyone'] },
       embeds:   [embed],
     };
     try {
