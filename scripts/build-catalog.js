@@ -298,7 +298,7 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   // "Tombol" link teks (webhook tidak bisa button asli). Link "Diskusi" per judul
   // sudah dilepas — channel komentar per manga dihapus, diskusi dipusatkan di satu
   // server Discord.
-  const linksOf = (ch) => `🌐 [Baca](${base}/${ch.mangaId})`;
+  const linksOf = (ch) => `🌐 [Baca](${base}/${ch.mangaId})` + (ch.rawUrl ? ` · 📄 [Raw](${ch.rawUrl})` : '');
 
   const byManga = groupByManga(newChapters);
 
@@ -757,6 +757,7 @@ function detectNewChapters(slug, manga, chapters, prevChapterNums) {
         notifImage:       manga.notif_image === 'cover' ? 'cover' : 'page1',
         coverKey:         manga.cover_dev ?? manga.covers?.[0],
         coverUrl:         manga.coverUrl,
+        rawUrl:           manga.raw_url,
       });
       console.log(`   🔔 ${ch._forceNotify ? 'Publish ulang' : 'Chapter baru terdeteksi'}: ${manga.title} — ${ch.title}`);
     }
