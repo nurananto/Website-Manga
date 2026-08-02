@@ -29,7 +29,7 @@
   "chapter_views": {
     "15": 1
   },
-  "total_views": 2,
+  "total_views": 3,
   "mangadex_cover": "ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_version": 2,
@@ -45,6 +45,6 @@
       "widths": "1280x960x640q75"
     }
   ],
-  "detail_views": 1,
-  "view_sync_cutoff": "2026-08-01 17:00:49"
+  "detail_views": 2,
+  "view_sync_cutoff": "2026-08-02 17:00:40"
 }
