@@ -18,6 +18,7 @@ import fs from 'fs';
 import path from 'path';
 
 const MANGA_DIR = './public/manga';
+const FOREVER_UNLOCK_DATE = '9999-12-31T00:00:00.000Z';
 const SITE = process.env.SITE_URL || 'https://nuranantoscans.pages.dev';
 const rawArgs = process.argv.slice(2);
 const ALL_PAGES = rawArgs.includes('--all-pages');
@@ -127,8 +128,10 @@ async function auditLocked({ mangaId, chapter }, cdn, now) {
   }
 
   if (!issues) {
-    const unlockAt = new Date(chapter.unlockDate).getTime();
-    console.log(`🔒 aman   ${mangaId} Ch.${chapter.chapter_number} — unlock ${formatDuration(unlockAt - now)} lagi`);
+    const label = chapter.unlockDate === FOREVER_UNLOCK_DATE
+      ? 'lock permanen (buka manual)'
+      : `unlock ${formatDuration(new Date(chapter.unlockDate).getTime() - now)} lagi`;
+    console.log(`🔒 aman   ${mangaId} Ch.${chapter.chapter_number} — ${label}`);
   }
   return issues;
 }

@@ -5,6 +5,10 @@ import { execSync } from 'child_process';
 const chaptersDir = './manga';
 const outDir = './public/manga';
 
+// Sentinel unlockDate untuk lock permanen (lock_hours: -1) — chapter dibuka
+// manual dengan mengubah lock_hours, bukan lewat timer.
+const FOREVER_UNLOCK_DATE = '9999-12-31T00:00:00.000Z';
+
 // Manga yang berubah di push ini (dari workflow, koma-separated).
 // Kosong = full build (cron mingguan / manual dispatch).
 const CHANGED_SLUGS = (process.env.CHANGED_SLUGS || '')
@@ -625,6 +629,9 @@ function buildChapters(slug, mangaPath, manga) {
         throw new Error(`${slug} Ch.${ch.chapter_number}: unlock_date tidak valid`);
       }
       ch.unlockDate = new Date(unlockMs).toISOString();
+    } else if (ch.lock_hours === -1) {
+      // Lock permanen — tidak ada timer, buka manual lewat meta.json.
+      ch.unlockDate = FOREVER_UNLOCK_DATE;
     } else if (ch.lock_hours > 0) {
       const unlockDate = new Date(ch.release_date);
       unlockDate.setHours(unlockDate.getHours() + ch.lock_hours);

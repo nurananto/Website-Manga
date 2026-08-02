@@ -356,7 +356,7 @@ def proses_semua_judul(titles):
         print(f"  • {t.name}  ({len(pending_chapters(t))} chapter)")
     print()
 
-    lock_input = ask("Lock hours utk chapter TERBARU tiap judul (Enter=0/gratis)", allow_empty=True)
+    lock_input = ask("Lock hours utk chapter TERBARU tiap judul (Enter=0/gratis, -1=permanen)", allow_empty=True)
     try:
         lock_hours = int(lock_input) if lock_input else 0
     except ValueError:
@@ -485,7 +485,7 @@ def proses_chapter_menu(manga_dir):
 
             # ── Lock hours ─────────────────────────────────
             print()
-            lock_input = ask("Lock hours (Enter=0/gratis, 336=14hari)", allow_empty=True)
+            lock_input = ask("Lock hours (Enter=0/gratis, 336=14hari, -1=permanen)", allow_empty=True)
             try:
                 lock_hours = int(lock_input) if lock_input else 0
             except ValueError:
