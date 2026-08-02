@@ -62,14 +62,27 @@
   },
   "chapters": [
     {
+      "chapter_number": 10.2,
+      "lock_hours": 0,
+      "pages": 6,
+      "r2_folder": 10.2,
+      "id": "Chikasugiru-ch-10.2",
+      "r2_prefix": "manga/Chikasugiru/10.2/",
+      "title": "Ch. 10.2",
+      "release_date": "2026-08-02T21:03:00+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 10.1,
       "lock_hours": 0,
       "pages": 10,
+      "release_date": "2026-08-02T20:26:55+07:00",
       "r2_folder": 10.1,
       "id": "Chikasugiru-ch-10.1",
       "r2_prefix": "manga/Chikasugiru/10.1/",
       "title": "Ch. 10.1",
-      "release_date": "2026-08-02T20:26:55+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
