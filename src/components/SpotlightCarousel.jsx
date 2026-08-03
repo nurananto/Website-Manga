@@ -16,10 +16,10 @@ const AUTO_ADVANCE_MS = 5000;
 
 function getPadV() {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
-  if (w < 640)  return 18;
-  if (w < 768)  return 16;
-  if (w < 1024) return 14;
-  return 12;
+  if (w < 640)  return 10;
+  if (w < 768)  return 9;
+  if (w < 1024) return 8;
+  return 7;
 }
 
 function getCoverMetaGap() {
