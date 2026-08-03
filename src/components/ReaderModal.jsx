@@ -1087,7 +1087,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                           </span>
                         )}
                         {isNew && (
-                          <span className="badge-new-glow shrink-0 font-label-sm bg-emerald-500 text-white border border-emerald-300/70 px-1 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-extrabold uppercase">New</span>
+                          <span className="badge-new-glow shrink-0 font-label-sm bg-emerald-500 text-emerald-950 border border-emerald-300/70 px-1 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-extrabold uppercase">New</span>
                         )}
                         {showStatusBadge && (
                           <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider ${

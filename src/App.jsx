@@ -1315,21 +1315,21 @@ export default function App() {
               >
                 Disclaimer
               </button>
-              <span className="text-outline/70 text-[10px]">·</span>
+              <span className="text-outline text-[10px]">·</span>
               <button
                 onClick={() => setShowPrivacy(true)}
                 className="font-body-sm text-[10px] text-outline hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
               >
                 Kebijakan Privasi
               </button>
-              <span className="text-outline/70 text-[10px]">·</span>
+              <span className="text-outline text-[10px]">·</span>
               <button
                 onClick={() => setShowTerms(true)}
                 className="font-body-sm text-[10px] text-outline hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
               >
                 Syarat &amp; Ketentuan
               </button>
-              <span className="text-outline/70 text-[10px]">·</span>
+              <span className="text-outline text-[10px]">·</span>
               <button
                 onClick={() => setShowDmca(true)}
                 className="font-body-sm text-[10px] text-outline hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
@@ -1337,12 +1337,12 @@ export default function App() {
                 DMCA
               </button>
             </div>
-            <span className="font-body-sm text-[10px] text-outline/80">
+            <span className="font-body-sm text-[10px] text-outline">
               © {new Date().getFullYear()} Nurananto Scanlation. Fan Translation — Not for commercial use.
             </span>
             {buildId && (
               <div className="flex items-center gap-2">
-                <span className="font-body-sm text-[9px] text-outline/70">
+                <span className="font-body-sm text-[9px] text-outline">
                   build #{buildId.slice(-6)}
                 </span>
               </div>

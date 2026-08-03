@@ -154,7 +154,7 @@ const renderChapterRow = (ch) => {
                 </span>
               )}
               {isNew && (
-                <span className="badge-new-glow bg-emerald-500 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
+                <span className="badge-new-glow bg-emerald-500 text-emerald-950 ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
                   NEW
                 </span>
               )}
