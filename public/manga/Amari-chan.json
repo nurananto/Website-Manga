@@ -26,7 +26,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "0": 3,
+    "0": 4,
     "1": 1,
     "6": 1,
     "7": 1,
@@ -37,7 +37,7 @@
     "10.2": 3,
     "10.3": 7
   },
-  "total_views": 53,
+  "total_views": 56,
   "mangadex_cover": "c402aa68-08d7-49da-9fbd-7b84a9da4f7c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -60,7 +60,7 @@
       }
     }
   ],
-  "detail_views": 22,
+  "detail_views": 24,
   "cover_version": 3,
   "mangadex_id": "624d6ceb-768d-40a7-8412-84e083afbdb1",
   "rating": 8.48,
@@ -278,7 +278,7 @@
       "title": "Ch. 0",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     }
   ]
 }

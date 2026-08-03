@@ -26,19 +26,20 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 8,
+    "1": 10,
+    "2": 1,
     "10": 3,
     "11": 1,
-    "12": 7,
+    "12": 8,
     "10.5": 4,
-    "13.1": 4,
+    "13.1": 5,
     "13.2": 5,
     "13.3": 4,
     "14.1": 12,
-    "14.2": 13,
+    "14.2": 16,
     "15.1": 5
   },
-  "total_views": 123,
+  "total_views": 137,
   "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -61,7 +62,7 @@
       }
     }
   ],
-  "detail_views": 57,
+  "detail_views": 63,
   "cover_version": 2,
   "notif_image": "13",
   "mangadex_id": "acfd6902-b39c-4b7d-91a8-9825dda4ede8",
@@ -78,11 +79,11 @@
       "chapter_number": 15.2,
       "lock_hours": 360,
       "pages": 13,
+      "release_date": "2026-08-03T16:14:51+07:00",
       "r2_folder": 15.2,
       "id": "ClassdeIchiban-ch-15.2",
       "r2_prefix": "manga/ClassdeIchiban/15.2/",
       "title": "Ch. 15.2",
-      "release_date": "2026-08-03T16:14:51+07:00",
       "unlockDate": "2026-08-18T09:14:51.000Z",
       "isLocked": true,
       "views": 0
@@ -97,7 +98,7 @@
       "r2_prefix": "manga/ClassdeIchiban/15.1/",
       "title": "Ch. 15.1",
       "unlockDate": "2026-08-03T16:08:03.000Z",
-      "isLocked": true,
+      "isLocked": false,
       "views": 5
     },
     {
@@ -111,7 +112,7 @@
       "title": "Ch. 14.2",
       "unlockDate": "2026-07-20T11:20:01.000Z",
       "isLocked": false,
-      "views": 13
+      "views": 16
     },
     {
       "chapter_number": 14.1,
@@ -163,7 +164,7 @@
       "title": "Ch. 13.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 12,
@@ -176,7 +177,7 @@
       "title": "Ch. 12",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     },
     {
       "chapter_number": 11,
@@ -319,7 +320,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 1,
@@ -332,7 +333,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 10
     }
   ]
 }

@@ -47,15 +47,15 @@
     "19": 5,
     "20": 14,
     "21.1": 16,
-    "21.2": 19,
-    "22.1": 35,
-    "22.2": 46,
-    "23.1": 22,
+    "21.2": 20,
+    "22.1": 36,
+    "22.2": 47,
+    "23.1": 24,
     "1.5": 4,
-    "23.2": 5,
+    "23.2": 7,
     "8.5": 3
   },
-  "total_views": 343,
+  "total_views": 353,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -87,7 +87,7 @@
       }
     }
   ],
-  "detail_views": 101,
+  "detail_views": 104,
   "cover_version": 4,
   "mangadex_id": "9aebe60e-777f-4a58-a3bf-143c3096b94f",
   "rating": 8.21,
@@ -110,7 +110,7 @@
       "title": "Ch. 23.2",
       "unlockDate": "2026-08-11T16:28:24.000Z",
       "isLocked": true,
-      "views": 5
+      "views": 7
     },
     {
       "chapter_number": 23.1,
@@ -123,7 +123,7 @@
       "title": "Ch. 23.1",
       "unlockDate": "2026-07-29T14:00:00.000Z",
       "isLocked": false,
-      "views": 22
+      "views": 24
     },
     {
       "chapter_number": 22.2,
@@ -136,7 +136,7 @@
       "title": "Ch. 22.2",
       "unlockDate": "2026-07-08T04:27:34.000Z",
       "isLocked": false,
-      "views": 46
+      "views": 47
     },
     {
       "chapter_number": 22.1,
@@ -149,7 +149,7 @@
       "title": "Ch. 22.1",
       "unlockDate": "2026-06-30T13:34:53.000Z",
       "isLocked": false,
-      "views": 35
+      "views": 36
     },
     {
       "chapter_number": 21.2,
@@ -162,7 +162,7 @@
       "title": "Ch. 21.2",
       "unlockDate": "2026-06-23T14:06:03.000Z",
       "isLocked": false,
-      "views": 19
+      "views": 20
     },
     {
       "chapter_number": 21.1,

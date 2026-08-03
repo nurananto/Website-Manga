@@ -26,9 +26,9 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "oneshot": 12
+    "oneshot": 13
   },
-  "total_views": 23,
+  "total_views": 25,
   "mangadex_cover": "8235d341-4f78-4d32-a747-08ba7c4afa58.png",
   "cover_widths": "1280x960x640q75",
   "cover_version": 3,
@@ -43,7 +43,7 @@
       }
     }
   ],
-  "detail_views": 11,
+  "detail_views": 12,
   "mangadex_id": "16e716dd-0774-4332-a5d4-8fad6e9e09a7",
   "rating": 8.83,
   "next_update": null,
@@ -65,7 +65,7 @@
       "r2_prefix": "manga/Yuuri-kun/Oneshot/",
       "unlockDate": null,
       "isLocked": false,
-      "views": 12
+      "views": 13
     }
   ]
 }

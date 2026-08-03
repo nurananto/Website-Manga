@@ -45,7 +45,7 @@
     "7.2": 7
   },
   "total_views": 596,
-  "mangadex_cover": "28ca2e7e-b8d7-4e99-bbd0-ebdda3b67fa5.jpg",
+  "mangadex_cover": "7924e82c-7b57-4fda-9800-8dde50833030.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
@@ -59,17 +59,17 @@
       "widths": "1280x960x640q75"
     },
     {
-      "file": "28ca2e7e-b8d7-4e99-bbd0-ebdda3b67fa5.jpg",
+      "file": "7924e82c-7b57-4fda-9800-8dde50833030.jpg",
       "volume": "1",
       "keys": [
-        "manga/Osananajimi/covers/gallery/28ca2e7e-b8d7-4e99-bbd0-ebdda3b67fa5.webp",
-        "manga/Osananajimi/covers/gallery/28ca2e7e-b8d7-4e99-bbd0-ebdda3b67fa5@tablet.webp",
-        "manga/Osananajimi/covers/gallery/28ca2e7e-b8d7-4e99-bbd0-ebdda3b67fa5@mobile.webp"
+        "manga/Osananajimi/covers/gallery/7924e82c-7b57-4fda-9800-8dde50833030.webp",
+        "manga/Osananajimi/covers/gallery/7924e82c-7b57-4fda-9800-8dde50833030@tablet.webp",
+        "manga/Osananajimi/covers/gallery/7924e82c-7b57-4fda-9800-8dde50833030@mobile.webp"
       ],
       "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 163,
   "view_sync_cutoff": "2026-08-03 17:00:40",
-  "cover_version": 3
+  "cover_version": 4
 }
