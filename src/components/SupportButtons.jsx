@@ -9,7 +9,7 @@ const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
 // donatur lupa menautkan email sehingga status Supporter tidak otomatis aktif.
 // Tanpa `onDonate` → fallback link langsung (kompatibilitas pemakaian lama).
 export default function SupportButtons({ className = '', onDonate }) {
-  const cls = `group relative flex w-full items-center gap-3 rounded-xl border border-[#1877F2]/45 px-3 py-2.5 shadow-md transition-colors hover:border-[#89ceff]/65 sm:px-4 sm:py-3 ${className}`;
+  const cls = `donate-glow group relative flex w-full items-center gap-3 rounded-xl border border-[#1877F2]/45 px-3 py-2.5 shadow-md transition-colors hover:border-[#89ceff]/65 sm:px-4 sm:py-3 ${className}`;
   const style = { background: 'linear-gradient(to right, rgba(0,82,174,0.92), rgba(24,119,242,0.78), rgba(88,101,242,0.9))' };
   const inner = (
     <>

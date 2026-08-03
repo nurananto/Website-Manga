@@ -43,7 +43,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
             {isMangaNew && (
-              <span className="badge-new-glow shrink-0 rounded-md bg-emerald-500 px-1.5 py-0.5 font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider text-emerald-950 ring-1 ring-emerald-300/70">
+              <span className="badge-new-glow shrink-0 rounded-md bg-emerald-700 px-1.5 py-0.5 font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider text-white ring-1 ring-emerald-300/70">
                 NEW
               </span>
             )}
@@ -127,7 +127,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                     {chapterTitle}
                   </span>
                   {isUp && (
-                    <span className="badge-new-glow bg-emerald-500 text-emerald-950 ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
+                    <span className="badge-new-glow bg-emerald-700 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
                       NEW
                     </span>
                   )}
