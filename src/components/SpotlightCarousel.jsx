@@ -320,10 +320,10 @@ export default function SpotlightCarousel({
             {active.title}
           </h3>
 
-          <div className="inline-flex max-w-full items-center justify-center gap-1.5 overflow-hidden border-y border-white/18 px-2.5 py-1.5 font-body-md text-[10px] sm:text-xs md:text-sm font-bold leading-none">
+          <div className="inline-flex max-w-full items-center justify-center gap-1.5 overflow-hidden border-y border-white/18 px-2.5 py-1.5 font-body-md text-xs sm:text-sm md:text-base font-bold leading-none">
             {activeRating && (
               <span className="flex min-w-0 items-center gap-1 font-extrabold text-amber-400">
-                <Star className="h-3 w-3 sm:h-3.5 sm:w-3.5 fill-current shrink-0" />
+                <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4 fill-current shrink-0" />
                 <span>{activeRating}</span>
               </span>
             )}
