@@ -135,27 +135,27 @@ export default function FeaturedCarousel({
 
       {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}
       {/* pr pixel tetap agar gap ke cover konsisten di semua lebar viewport */}
-      <div className="absolute inset-0 left-0 py-1.5 pl-3 pr-36 sm:py-2 sm:pl-5 sm:pr-44 md:py-2.5 md:pl-7 md:pr-52 lg:py-3 lg:pl-9 lg:pr-60 flex flex-col justify-center z-10">
+      <div className="absolute inset-0 left-0 py-1.5 pl-3 pr-32 sm:py-2 sm:pl-5 sm:pr-44 md:py-2.5 md:pl-7 md:pr-52 lg:py-3 lg:pl-9 lg:pr-60 flex flex-col justify-center z-10">
 
         {/* Satu blok konten, di-center secara vertikal */}
         <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5">
           {/* Badges */}
-          <div className="flex gap-1.5 sm:gap-2 items-center flex-wrap">
+          <div className="flex gap-1 sm:gap-2 items-center flex-wrap">
             {/* genre 1: selalu tampil (termasuk mobile) */}
             {activeManga.genres[0] && (
-              <span className="bg-surface-variant/85 text-on-surface px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+              <span className="bg-surface-variant/85 text-on-surface px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase sm:tracking-wider backdrop-blur-md">
                 {activeManga.genres[0]}
               </span>
             )}
             {/* genre 2: tampil juga di mobile */}
             {activeManga.genres[1] && (
-              <span className="bg-surface-variant/85 text-on-surface px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+              <span className="bg-surface-variant/85 text-on-surface px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase sm:tracking-wider backdrop-blur-md">
                 {activeManga.genres[1]}
               </span>
             )}
             {/* genre 3: tampil juga di mobile */}
             {activeManga.genres[2] && (
-              <span className="bg-surface-variant/85 text-on-surface px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+              <span className="bg-surface-variant/85 text-on-surface px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase sm:tracking-wider backdrop-blur-md">
                 {activeManga.genres[2]}
               </span>
             )}
@@ -166,7 +166,7 @@ export default function FeaturedCarousel({
               </span>
             )}
             {activeManga.genres.length > 3 && (
-              <span className="sm:hidden bg-black/40 text-white/80 px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
+              <span className="sm:hidden bg-black/40 text-white/80 px-1.5 py-0.5 rounded-md font-label-sm text-[9px] uppercase backdrop-blur-md font-semibold">
                 +{activeManga.genres.length - 3}
               </span>
             )}
