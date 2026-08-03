@@ -193,13 +193,23 @@ def ask_next_update():
 
 
 def ask_notif_image():
-    """Tanya gambar notifikasi chapter baru (Discord & Facebook). Return 'page1'/'cover'."""
+    """Tanya gambar notifikasi chapter baru (Discord & Facebook).
+    Return 'page1' / 'cover' / nomor halaman custom (str angka, mis. '5')."""
     print()
     print("Gambar notifikasi chapter baru (Discord & Facebook):")
     print("  1. Halaman 1 chapter (default)")
     print("  2. Cover manga")
-    pilih = ask("Pilihan (1/2, Enter=1)", allow_empty=True)
-    return "cover" if pilih == "2" else "page1"
+    print("  3. Halaman tertentu (Imagexx.webp, kamu pilih nomornya)")
+    pilih = ask("Pilihan (1/2/3, Enter=1)", allow_empty=True)
+    if pilih == "2":
+        return "cover"
+    if pilih == "3":
+        while True:
+            nomor = ask("  Nomor halaman (mis. 5 utk Image05.webp)")
+            if nomor.isdigit() and int(nomor) > 0:
+                return nomor
+            print("  ⚠  Nomor tidak valid, coba lagi.")
+    return "page1"
 
 
 def set_manga_notif_image(title_dir, notif_image):

@@ -125,7 +125,7 @@ async function fetchMangaDexRating(mangadexId) {
 // R2_SECRET_ACCESS_KEY + R2_LOCKED_BUCKET_NAME di env (lihat build-catalog.yml).
 const CDN_BASE = (process.env.CDN_BASE || '').replace(/\/$/, '');
 const pageFileName = (n) => `Image${String(n).padStart(2, '0')}.webp`; // samakan ReaderModal/check-chapters
-const firstPageKey = (slug, chapterFolder) => `manga/${slug}/${chapterFolder}/${pageFileName(1)}`;
+const pageKey = (slug, chapterFolder, n) => `manga/${slug}/${chapterFolder}/${pageFileName(n)}`;
 
 const STATUS_MAP = {
   'ongoing':'Ongoing', 'berlanjut':'Ongoing', 'berjalan':'Ongoing',
@@ -198,9 +198,9 @@ async function getR2ObjectBytes(bucket, key, label) {
   }
 }
 
-async function getPublicPageBytes(slug, chapterFolder) {
+async function getPublicPageBytes(slug, chapterFolder, page) {
   const bucket = process.env.R2_PUBLIC_BUCKET_NAME || process.env.R2_BUCKET_NAME;
-  return getR2ObjectBytes(bucket, firstPageKey(slug, chapterFolder), `public ${slug} Ch.${chapterFolder}`);
+  return getR2ObjectBytes(bucket, pageKey(slug, chapterFolder, page), `public ${slug} Ch.${chapterFolder} hal.${page}`);
 }
 
 async function getPublicAssetBytes(key, label) {
@@ -208,22 +208,23 @@ async function getPublicAssetBytes(key, label) {
   return getR2ObjectBytes(bucket, key, label);
 }
 
-async function getLockedPageBytes(slug, chapterFolder) {
-  return getR2ObjectBytes(process.env.R2_LOCKED_BUCKET_NAME, firstPageKey(slug, chapterFolder), `locked ${slug} Ch.${chapterFolder}`);
+async function getLockedPageBytes(slug, chapterFolder, page) {
+  return getR2ObjectBytes(process.env.R2_LOCKED_BUCKET_NAME, pageKey(slug, chapterFolder, page), `locked ${slug} Ch.${chapterFolder} hal.${page}`);
 }
 
 // → { bytes, name } | { url } fallback CDN | null
-async function resolveFirstPage(ch) {
+// `page` = nomor halaman (Imagexx.webp) yang dipakai, default 1.
+async function resolveFirstPage(ch, page = 1) {
   if (!ch.slug || ch.chapterNumber == null) return null;
   const chapterFolder = ch.r2Folder ?? ch.chapterNumber;
   const name = `${ch.mangaId}-ch-${ch.chapterNumber}.webp`.replace(/[^a-zA-Z0-9._-]/g, '_');
   if (!ch.isLocked) {
-    const bytes = await getPublicPageBytes(ch.slug, chapterFolder);
+    const bytes = await getPublicPageBytes(ch.slug, chapterFolder, page);
     if (bytes) return { bytes, name };
     if (!CDN_BASE) return null;
-    return { url: `${CDN_BASE}/${firstPageKey(ch.slug, chapterFolder)}` };
+    return { url: `${CDN_BASE}/${pageKey(ch.slug, chapterFolder, page)}` };
   }
-  const bytes = await getLockedPageBytes(ch.slug, chapterFolder);
+  const bytes = await getLockedPageBytes(ch.slug, chapterFolder, page);
   if (!bytes) return null;
   return { bytes, name };
 }
@@ -241,15 +242,17 @@ async function resolveCoverAttachment(m) {
   return null;
 }
 
-// Gambar notifikasi chapter baru (Discord & Facebook) — halaman 1 (default,
-// sama seperti sebelumnya) atau cover manga, tergantung meta.json manga
-// (field "notif_image": "page1" | "cover"). ch.coverKey/ch.coverUrl diisi
-// oleh detectNewChapters() dari manga yang sudah diproses applyCoverUrls().
+// Gambar notifikasi chapter baru (Discord & Facebook) — halaman 1 (default),
+// halaman tertentu (Imagexx.webp), atau cover manga, tergantung meta.json
+// manga (field "notif_image": "page1" | "cover" | "<nomor halaman>", mis. "5").
+// ch.coverKey/ch.coverUrl diisi oleh detectNewChapters() dari manga yang
+// sudah diproses applyCoverUrls().
 async function resolveNotifImage(ch) {
   if (ch.notifImage === 'cover') {
     return resolveCoverAttachment({ id: ch.mangaId, coverKey: ch.coverKey, coverUrl: ch.coverUrl });
   }
-  return resolveFirstPage(ch);
+  const page = Number(ch.notifImage);
+  return resolveFirstPage(ch, Number.isInteger(page) && page > 0 ? page : 1);
 }
 
 // Ambil bytes gambar dari URL CDN publik — dipakai supaya Facebook TIDAK perlu
@@ -753,8 +756,8 @@ function detectNewChapters(slug, manga, chapters, prevChapterNums) {
         chapterTitle:     ch.title,
         isLocked:         ch.isLocked,
         releaseDate:      ch.release_date,
-        // Gambar notifikasi: halaman 1 (default) atau cover, lihat resolveNotifImage().
-        notifImage:       manga.notif_image === 'cover' ? 'cover' : 'page1',
+        // Gambar notifikasi: halaman 1 (default), halaman tertentu, atau cover — lihat resolveNotifImage().
+        notifImage:       manga.notif_image || 'page1',
         coverKey:         manga.cover_dev ?? manga.covers?.[0],
         coverUrl:         manga.coverUrl,
         rawUrl:           manga.raw_url,

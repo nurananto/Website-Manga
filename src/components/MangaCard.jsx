@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { nowTimestamp, timeAgoShort } from '../utils';
 import { Lock, BookOpen } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
@@ -9,7 +9,7 @@ import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../li
 // sudah di-prefetch + di-decode oleh App, jadi kartu baru bisa dipasang eager dan
 // di-decode sinkron — tanpa itu <img> yang baru dibuat (key per manga) selalu
 // melukis satu frame kosong lebih dulu dan terlihat berkedip.
-export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter, coverPriority = false }) {
+function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter, coverPriority = false }) {
   const [, setAccessVersion] = useState(0);
   const now = nowTimestamp();
 
@@ -23,7 +23,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
       {/* Cover — link crawlable ke detail (SPA: preventDefault + navigate) */}
       <a
         href={`/${manga.id}`}
-        onClick={(e) => { e.preventDefault(); onViewManga(); }}
+        onClick={(e) => { e.preventDefault(); onViewManga(manga); }}
         aria-label={manga.title}
         className="relative w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full flex-shrink-0 flex items-center justify-center py-2 sm:py-2.5 md:py-3 px-2 cursor-pointer"
       >
@@ -49,7 +49,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
             )}
             <a
               href={`/${manga.id}`}
-              onClick={(e) => { e.preventDefault(); onViewManga(); }}
+              onClick={(e) => { e.preventDefault(); onViewManga(manga); }}
               className="min-w-0 flex-1"
             >
               <h3 className="font-headline-md text-base md:text-lg lg:text-xl leading-tight font-black text-on-surface truncate hover:text-primary transition-colors cursor-pointer">
@@ -100,7 +100,7 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
                 key={ch.id}
                 onClick={(e) => {
                   e.stopPropagation();
-                  onReadChapter(ch, manga.title);
+                  onReadChapter(ch, manga.title, manga);
                 }}
                 className="flex min-h-[34px] w-full sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border text-left transition-all group/ch border-white/5 hover:bg-surface-container-highest hover:border-white/10 cursor-pointer"
               >
@@ -160,3 +160,5 @@ export default function MangaCard({ manga, onReadChapter, onViewManga, isLoggedI
     </div>
   );
 }
+
+export default memo(MangaCard);

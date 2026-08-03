@@ -67,6 +67,19 @@ function getMaxSide() {
   return 5;
 }
 
+// Satu snapshot layout per breakpoint — dihitung sekali per resize (bukan 6
+// setState terpisah) supaya tidak memicu beberapa re-render berturut-turut.
+function getLayout() {
+  return {
+    coverW: getCoverW(),
+    maxSide: getMaxSide(),
+    itemGap: getItemGap(),
+    metaH: getMetaH(),
+    padV: getPadV(),
+    metaGap: getCoverMetaGap(),
+  };
+}
+
 function getMostRecentIdx(list) {
   let best = 0, bestMs = 0;
   list.forEach((manga, i) => {
@@ -114,12 +127,8 @@ export default function SpotlightCarousel({
   const [isPageVisible, setIsPageVisible] = useState(() => document.visibilityState === 'visible');
   const [pendingDetailIdx, setPendingDetailIdx] = useState(null);
   const [autoResetKey, setAutoResetKey] = useState(0);
-  const [coverW,    setCoverW]    = useState(getCoverW);
-  const [maxSide,   setMaxSide]   = useState(getMaxSide);
-  const [itemGap,   setItemGap]   = useState(getItemGap);
-  const [metaH,     setMetaH]     = useState(getMetaH);
-  const [padV,      setPadV]      = useState(getPadV);
-  const [metaGap,   setMetaGap]   = useState(getCoverMetaGap);
+  const [layout, setLayout] = useState(getLayout);
+  const { coverW, maxSide, itemGap, metaH, padV, metaGap } = layout;
   const [hasMoved, setHasMoved] = useState(false);
   const [previousIdx, setPreviousIdx] = useState(null);
   const activeIdxRef = useRef(activeIdx);
@@ -150,14 +159,7 @@ export default function SpotlightCarousel({
   }, [N]);
 
   useEffect(() => {
-    const onResize = () => {
-      setCoverW(getCoverW());
-      setMaxSide(getMaxSide());
-      setItemGap(getItemGap());
-      setMetaH(getMetaH());
-      setPadV(getPadV());
-      setMetaGap(getCoverMetaGap());
-    };
+    const onResize = () => setLayout(getLayout());
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);

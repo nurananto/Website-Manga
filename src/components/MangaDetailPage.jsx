@@ -473,8 +473,8 @@ const renderChapterRow = (ch) => {
                                 isCurrent ? 'border-primary/50 ring-1 ring-primary/30' : 'border-white/10 hover:border-primary/40'
                               }`}
                             >
-                              <img
-                                src={g.urls.mobile}
+                              <ResponsiveCover
+                                manga={{ coverUrls: g.urls, coverUrl: g.urls.mobile }}
                                 alt={g.volume ? `Cover Vol. ${g.volume}` : 'Cover'}
                                 loading="lazy"
                                 className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300"
@@ -593,8 +593,8 @@ const renderChapterRow = (ch) => {
               className="relative"
               onClick={e => e.stopPropagation()}
             >
-              <img
-                src={lightboxCover.urls.desktop}
+              <ResponsiveCover
+                manga={{ coverUrls: lightboxCover.urls, coverUrl: lightboxCover.urls.desktop }}
                 alt={lightboxCover.volume ? `Cover Vol. ${lightboxCover.volume}` : 'Cover'}
                 className="max-h-[82vh] max-w-[88vw] sm:max-w-[60vw] lg:max-w-[42vw] rounded-xl shadow-2xl border border-white/15 object-contain"
               />

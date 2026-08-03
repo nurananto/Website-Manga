@@ -858,8 +858,10 @@ export default function App() {
   }, [filteredManga, sortBy, sortDir]);
 
   const totalPages = Math.ceil(sortedManga.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedManga = sortedManga.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedManga = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return sortedManga.slice(startIndex, startIndex + itemsPerPage);
+  }, [sortedManga, currentPage, itemsPerPage]);
 
   // Hangatkan cover halaman sebelum/sesudah halaman aktif agar teks dan cover
   // berganti bersamaan ketika pagination ditekan.
@@ -912,6 +914,16 @@ export default function App() {
     }
     openChapterReader(chapter, mangaTitle);
   };
+
+  // Callback stabil (identitas tidak pernah berubah) untuk MangaCard yang di-memo —
+  // lewat ref supaya MangaCard tidak re-render tiap App re-render tak terkait
+  // (search, sort, polling), tapi tetap selalu memanggil logic handleReadChapter terbaru.
+  const handleReadChapterRef = useRef(handleReadChapter);
+  useEffect(() => { handleReadChapterRef.current = handleReadChapter; });
+  const stableReadChapter = useCallback((chapter, mangaTitle, mangaObj) => {
+    handleReadChapterRef.current(chapter, mangaTitle, mangaObj);
+  }, []);
+  const stableViewManga = useCallback((manga) => { navigate(`/${manga.id}`); }, []);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -1199,8 +1211,8 @@ export default function App() {
                                 coverPriority={hasPaginated}
                                 isLoggedIn={isLoggedIn}
                                 isSupporter={isSupporter}
-                                onViewManga={() => { navigate(`/${manga.id}`); }}
-                                onReadChapter={(ch, title) => handleReadChapter(ch, title || manga.title, manga)}
+                                onViewManga={stableViewManga}
+                                onReadChapter={stableReadChapter}
                               />
                             </div>
                           );
