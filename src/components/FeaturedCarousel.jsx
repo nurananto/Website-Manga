@@ -113,7 +113,7 @@ export default function FeaturedCarousel({
       </div>
     </div>
     <section
-      className="relative w-full h-[190px] sm:h-[220px] md:h-[255px] lg:h-[285px] rounded-xl overflow-hidden group shadow-2xl border border-primary/45 flex items-center justify-between"
+      className="relative w-full h-[165px] sm:h-[190px] md:h-[218px] lg:h-[245px] rounded-xl overflow-hidden group shadow-2xl border border-primary/45 flex items-center justify-between"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -135,7 +135,7 @@ export default function FeaturedCarousel({
 
       {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}
       {/* pr pixel tetap agar gap ke cover konsisten di semua lebar viewport */}
-      <div className="absolute inset-0 left-0 py-2 pl-3 pr-36 sm:py-3 sm:pl-5 sm:pr-44 md:py-3 md:pl-7 md:pr-52 lg:py-4 lg:pl-9 lg:pr-60 flex flex-col justify-center z-10">
+      <div className="absolute inset-0 left-0 py-1.5 pl-3 pr-36 sm:py-2 sm:pl-5 sm:pr-44 md:py-2.5 md:pl-7 md:pr-52 lg:py-3 lg:pl-9 lg:pr-60 flex flex-col justify-center z-10">
 
         {/* Satu blok konten, di-center secara vertikal */}
         <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5">
@@ -153,20 +153,26 @@ export default function FeaturedCarousel({
                 {activeManga.genres[1]}
               </span>
             )}
-            {/* genre ke-3: tablet ke atas */}
+            {/* genre 3: tampil juga di mobile */}
             {activeManga.genres[2] && (
-              <span className="hidden sm:inline bg-surface-variant/85 text-on-surface px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+              <span className="bg-surface-variant/85 text-on-surface px-2 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
                 {activeManga.genres[2]}
               </span>
             )}
-            {activeManga.genres.length > 2 && (
-              <span className="sm:hidden bg-black/40 text-white/80 px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
-                +{activeManga.genres.length - 2}
+            {/* genre ke-4: tablet ke atas */}
+            {activeManga.genres[3] && (
+              <span className="hidden sm:inline bg-surface-variant/85 text-on-surface px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+                {activeManga.genres[3]}
               </span>
             )}
             {activeManga.genres.length > 3 && (
-              <span className="hidden sm:inline bg-black/40 text-white/80 px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
+              <span className="sm:hidden bg-black/40 text-white/80 px-2 py-0.5 rounded-md font-label-sm text-[9px] uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
                 +{activeManga.genres.length - 3}
+              </span>
+            )}
+            {activeManga.genres.length > 4 && (
+              <span className="hidden sm:inline bg-black/40 text-white/80 px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20">
+                +{activeManga.genres.length - 4}
               </span>
             )}
           </div>
