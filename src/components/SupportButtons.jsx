@@ -9,7 +9,7 @@ const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
 // donatur lupa menautkan email sehingga status Supporter tidak otomatis aktif.
 // Tanpa `onDonate` → fallback link langsung (kompatibilitas pemakaian lama).
 export default function SupportButtons({ className = '', onDonate }) {
-  const cls = `donate-glow group relative flex w-full items-center gap-3 rounded-xl border border-[#1877F2]/45 px-3 py-2.5 shadow-md transition-colors hover:border-[#89ceff]/65 sm:px-4 sm:py-3 ${className}`;
+  const cls = `group relative flex w-full items-center gap-3 rounded-xl border border-[#1877F2]/45 px-3 py-2.5 shadow-md transition-colors hover:border-[#89ceff]/65 sm:px-4 sm:py-3 ${className}`;
   const style = { background: 'linear-gradient(to right, rgba(0,82,174,0.92), rgba(24,119,242,0.78), rgba(88,101,242,0.9))' };
   const inner = (
     <>
@@ -20,7 +20,7 @@ export default function SupportButtons({ className = '', onDonate }) {
           Bantu biaya server dan rilis chapter berikutnya melalui Trakteer.
         </p>
       </div>
-      <span className="shrink-0 rounded-lg border border-white/20 bg-white/20 px-2.5 py-1.5 text-[10px] font-black text-white transition-colors group-hover:bg-white/30 sm:px-3 sm:text-xs">
+      <span className="donate-glow shrink-0 rounded-lg border border-white/20 bg-white/20 px-2.5 py-1.5 text-[10px] font-black text-white transition-colors group-hover:bg-white/30 sm:px-3 sm:text-xs">
         Donasi
       </span>
     </>
