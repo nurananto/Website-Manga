@@ -63,6 +63,7 @@
   ],
   "detail_views": 57,
   "cover_version": 2,
+  "notif_image": "13",
   "mangadex_id": "acfd6902-b39c-4b7d-91a8-9825dda4ede8",
   "rating": 7.69,
   "next_update": null,
@@ -73,6 +74,19 @@
     "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
+    {
+      "chapter_number": 15.2,
+      "lock_hours": 360,
+      "pages": 13,
+      "r2_folder": 15.2,
+      "id": "ClassdeIchiban-ch-15.2",
+      "r2_prefix": "manga/ClassdeIchiban/15.2/",
+      "title": "Ch. 15.2",
+      "release_date": "2026-08-03T16:14:51+07:00",
+      "unlockDate": "2026-08-18T09:14:51.000Z",
+      "isLocked": true,
+      "views": 0
+    },
     {
       "chapter_number": 15.1,
       "lock_hours": 360,

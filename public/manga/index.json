@@ -1,5 +1,75 @@
 [
   {
+    "id": "ClassdeIchiban",
+    "title": "Class de Ichiban Kawaii Gal wo Ezuke shiteiru Hanashi",
+    "description": "Sakura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Cooking",
+      "Gyaru",
+      "Romance",
+      "School Life",
+      "Slice of Life"
+    ],
+    "rating": 7.69,
+    "chapter_count": 20,
+    "total_views": 123,
+    "isTrending": true,
+    "latest_release_date": "2026-08-03T16:14:51+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 15.2,
+        "lock_hours": 360,
+        "pages": 13,
+        "r2_folder": 15.2,
+        "id": "ClassdeIchiban-ch-15.2",
+        "r2_prefix": "manga/ClassdeIchiban/15.2/",
+        "title": "Ch. 15.2",
+        "release_date": "2026-08-03T16:14:51+07:00",
+        "unlockDate": "2026-08-18T09:14:51.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 15.1,
+        "lock_hours": 360,
+        "pages": 10,
+        "release_date": "2026-07-19T23:08:03+07:00",
+        "r2_folder": 15.1,
+        "id": "ClassdeIchiban-ch-15.1",
+        "r2_prefix": "manga/ClassdeIchiban/15.1/",
+        "title": "Ch. 15.1",
+        "unlockDate": "2026-08-03T16:08:03.000Z",
+        "isLocked": true,
+        "views": 5
+      },
+      {
+        "chapter_number": 14.2,
+        "lock_hours": 192,
+        "pages": 12,
+        "release_date": "2026-07-12T18:20:01+07:00",
+        "r2_folder": 14.2,
+        "id": "ClassdeIchiban-ch-14.2",
+        "r2_prefix": "manga/ClassdeIchiban/14.2/",
+        "title": "Ch. 14.2",
+        "unlockDate": "2026-07-20T11:20:01.000Z",
+        "isLocked": false,
+        "views": 13
+      }
+    ]
+  },
+  {
     "id": "Chikasugiru",
     "title": "Chikasugiru Futari",
     "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang greget—ini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun…",
@@ -285,7 +355,7 @@
     "rating": 7.5,
     "chapter_count": 25,
     "total_views": 236,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-07-31T14:20:21+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -746,76 +816,6 @@
         "unlockDate": "2026-07-08T04:27:34.000Z",
         "isLocked": false,
         "views": 46
-      }
-    ]
-  },
-  {
-    "id": "ClassdeIchiban",
-    "title": "Class de Ichiban Kawaii Gal wo Ezuke shiteiru Hanashi",
-    "description": "Sakura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Cooking",
-      "Gyaru",
-      "Romance",
-      "School Life",
-      "Slice of Life"
-    ],
-    "rating": 7.69,
-    "chapter_count": 19,
-    "total_views": 123,
-    "isTrending": false,
-    "latest_release_date": "2026-07-19T23:08:03+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 15.1,
-        "lock_hours": 360,
-        "pages": 10,
-        "release_date": "2026-07-19T23:08:03+07:00",
-        "r2_folder": 15.1,
-        "id": "ClassdeIchiban-ch-15.1",
-        "r2_prefix": "manga/ClassdeIchiban/15.1/",
-        "title": "Ch. 15.1",
-        "unlockDate": "2026-08-03T16:08:03.000Z",
-        "isLocked": true,
-        "views": 5
-      },
-      {
-        "chapter_number": 14.2,
-        "lock_hours": 192,
-        "pages": 12,
-        "release_date": "2026-07-12T18:20:01+07:00",
-        "r2_folder": 14.2,
-        "id": "ClassdeIchiban-ch-14.2",
-        "r2_prefix": "manga/ClassdeIchiban/14.2/",
-        "title": "Ch. 14.2",
-        "unlockDate": "2026-07-20T11:20:01.000Z",
-        "isLocked": false,
-        "views": 13
-      },
-      {
-        "chapter_number": 14.1,
-        "lock_hours": 0,
-        "pages": 11,
-        "release_date": "2026-07-12T16:50:10+07:00",
-        "r2_folder": 14.1,
-        "id": "ClassdeIchiban-ch-14.1",
-        "r2_prefix": "manga/ClassdeIchiban/14.1/",
-        "title": "Ch. 14.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 12
       }
     ]
   },
