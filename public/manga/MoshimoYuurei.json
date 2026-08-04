@@ -42,11 +42,11 @@
     "20": 1,
     "21": 1,
     "22": 2,
-    "23": 2,
+    "23": 3,
     "24": 2,
     "25": 11
   },
-  "total_views": 43,
+  "total_views": 44,
   "mangadex_cover": "1f5fe857-3e84-451f-8a1c-d25e3960c1b4.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -110,7 +110,7 @@
       "title": "Ch. 23",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 22,

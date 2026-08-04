@@ -34,10 +34,10 @@
     "9.1": 2,
     "9.2": 3,
     "10.1": 3,
-    "10.2": 2,
+    "10.2": 3,
     "8.2": 1
   },
-  "total_views": 44,
+  "total_views": 48,
   "mangadex_cover": "fadafe71-37cd-4c73-ac98-59fd79e07f58.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -51,7 +51,7 @@
       }
     }
   ],
-  "detail_views": 13,
+  "detail_views": 16,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "c679bf28-e054-4bb7-93e6-18c089ee79f1",
@@ -75,7 +75,7 @@
       "title": "Ch. 10.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 10.1,
