@@ -65,6 +65,7 @@
   ],
   "detail_views": 47,
   "cover_version": 2,
+  "notif_image": "page1",
   "mangadex_id": "8556c131-23ed-42d6-98ba-5f2aa5037843",
   "rating": 7.43,
   "next_update": null,
@@ -75,6 +76,19 @@
     "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
+    {
+      "chapter_number": 8.1,
+      "lock_hours": 0,
+      "pages": 16,
+      "r2_folder": 8.1,
+      "id": "TeisouGyakuten-ch-8.1",
+      "r2_prefix": "manga/TeisouGyakuten/8.1/",
+      "title": "Ch. 8.1",
+      "release_date": "2026-08-04T15:13:59+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
     {
       "chapter_number": 7.3,
       "lock_hours": 0,
