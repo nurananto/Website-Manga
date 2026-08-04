@@ -108,7 +108,7 @@ def header(subtitle=""):
     print()
 
 
-def proses_chapter(ch_dir, lock_hours, next_update=None):
+def proses_chapter(ch_dir, lock_hours, next_update=None, notif_image=None):
     pages = count_webp(ch_dir)
     if pages == 0:
         return False, "tidak ada .webp"
@@ -144,6 +144,11 @@ def proses_chapter(ch_dir, lock_hours, next_update=None):
     # next_update hanya untuk chapter terakhir/terbaru (jadwal rilis berikutnya)
     if next_update:
         meta["next_update"] = next_update
+    # Gambar notifikasi chapter INI (Discord & FB) — disimpan per-chapter, BUKAN
+    # di meta.json manga, supaya tiap chapter bisa beda-beda tanpa manga meta.json
+    # ikut berubah tiap kali proses chapter baru.
+    if notif_image:
+        meta["notif_image"] = notif_image
 
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump(meta, f, indent=2, ensure_ascii=False)
@@ -210,23 +215,6 @@ def ask_notif_image():
                 return nomor
             print("  ⚠  Nomor tidak valid, coba lagi.")
     return "page1"
-
-
-def set_manga_notif_image(title_dir, notif_image):
-    """Update field notif_image di meta.json manga (dibaca build-catalog.js
-    saat posting notifikasi chapter baru ini ke Discord & Facebook).
-    Hanya menulis file kalau nilainya berubah, supaya meta.json manga
-    tidak ikut "berubah" di git tiap kali proses chapter baru."""
-    meta_path = title_dir / "meta.json"
-    if not meta_path.exists():
-        return
-    meta = json.loads(meta_path.read_text(encoding="utf-8"))
-    if meta.get("notif_image") == notif_image:
-        return
-    meta["notif_image"] = notif_image
-    with open(meta_path, "w", encoding="utf-8") as f:
-        json.dump(meta, f, indent=2, ensure_ascii=False)
-        f.write("\n")
 
 
 def hapus_webp(ch_dir):
@@ -395,12 +383,11 @@ def proses_semua_judul(titles):
         chs = pending_chapters(t)
         if not chs:
             continue
-        set_manga_notif_image(t, notif_image)
         newest = max(chs, key=lambda d: chapter_sort_key(d.name))
         ok = 0
         for ch in chs:
             is_newest = ch == newest
-            berhasil, info = proses_chapter(ch, lock_hours if is_newest else 0, None)
+            berhasil, info = proses_chapter(ch, lock_hours if is_newest else 0, None, notif_image)
             if berhasil:
                 ok += 1
                 grand_ok += 1
@@ -512,7 +499,6 @@ def proses_chapter_menu(manga_dir):
 
             # ── Gambar notifikasi chapter baru (Discord & Facebook) ─
             notif_image = ask_notif_image()
-            set_manga_notif_image(title_dir, notif_image)
 
             # ── PERINGATAN R2 ──────────────────────────────
             cls()
@@ -551,6 +537,7 @@ def proses_chapter_menu(manga_dir):
                         ch,
                         lock_hours if is_newest else 0,
                         next_update if is_newest else None,
+                        notif_image,
                     )
                     if berhasil:
                         print(f"  ✅  Chapter {ch.name}  →  meta.json ({info} hal)")
@@ -575,6 +562,7 @@ def proses_chapter_menu(manga_dir):
                         ch,
                         lock_hours if is_newest else 0,
                         next_update if is_newest else None,
+                        notif_image,
                     )
                     if berhasil:
                         print(f"  ✅  Chapter {ch.name}  →  meta.json ({info} hal)")

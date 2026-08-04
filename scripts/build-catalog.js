@@ -243,8 +243,9 @@ async function resolveCoverAttachment(m) {
 }
 
 // Gambar notifikasi chapter baru (Discord & Facebook) — halaman 1 (default),
-// halaman tertentu (Imagexx.webp), atau cover manga, tergantung meta.json
-// manga (field "notif_image": "page1" | "cover" | "<nomor halaman>", mis. "5").
+// halaman tertentu (Imagexx.webp), atau cover manga. Field "notif_image"
+// dibaca dari meta.json CHAPTER dulu (per-chapter, lihat detectNewChapters()),
+// fallback ke meta.json manga (nilai lama/manual) kalau chapter tidak set.
 // ch.coverKey/ch.coverUrl diisi oleh detectNewChapters() dari manga yang
 // sudah diproses applyCoverUrls().
 async function resolveNotifImage(ch) {
@@ -756,8 +757,8 @@ function detectNewChapters(slug, manga, chapters, prevChapterNums) {
         chapterTitle:     ch.title,
         isLocked:         ch.isLocked,
         releaseDate:      ch.release_date,
-        // Gambar notifikasi: halaman 1 (default), halaman tertentu, atau cover — lihat resolveNotifImage().
-        notifImage:       manga.notif_image || 'page1',
+        // Gambar notifikasi: prioritas notif_image CHAPTER, fallback ke manga, lalu 'page1'.
+        notifImage:       ch.notif_image || manga.notif_image || 'page1',
         coverKey:         manga.cover_dev ?? manga.covers?.[0],
         coverUrl:         manga.coverUrl,
         rawUrl:           manga.raw_url,
