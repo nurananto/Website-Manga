@@ -220,5 +220,6 @@
   ],
   "detail_views": 40,
   "view_sync_cutoff": "2026-07-31 17:00:49",
-  "cover_version": 2
+  "cover_version": 2,
+  "notif_image": "page1"
 }

@@ -48,5 +48,6 @@
     }
   ],
   "detail_views": 8,
-  "view_sync_cutoff": "2026-07-28 17:00:44"
+  "view_sync_cutoff": "2026-07-28 17:00:44",
+  "notif_image": "page1"
 }

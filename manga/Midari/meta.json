@@ -59,5 +59,6 @@
   ],
   "detail_views": 20,
   "view_sync_cutoff": "2026-08-03 17:00:40",
-  "cover_version": 2
+  "cover_version": 2,
+  "notif_image": "page1"
 }
