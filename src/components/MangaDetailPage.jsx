@@ -256,7 +256,7 @@ const renderChapterRow = (ch) => {
                     {continueChapter && (
                       <button
                         onClick={() => onReadChapter(continueChapter, manga.title)}
-                        className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-black hover:bg-black/85 border border-white/10 text-white font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
+                        className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-black hover:bg-black/85 border border-white/40 text-white font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
                       >
                         <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
                         Lanjut {manga.status === 'Oneshot' ? 'Oneshot' : `Ch. ${continueChapter.chapter_number}`}
