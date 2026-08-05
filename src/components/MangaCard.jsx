@@ -111,7 +111,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                 <div className="flex items-center gap-1 min-w-0 mr-1">
                   <span
                     aria-hidden="true"
-                    className={`mr-1 flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[6px] md:mr-1.5 md:h-6 md:w-6 lg:h-[26px] lg:w-[26px] ${
+                    className={`mr-1 flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[6px] md:mr-1.5 md:h-6 md:w-6 lg:h-[26px] lg:w-[26px] transition-opacity ${isRead ? 'opacity-40' : ''} ${
                       showEarlyAccessGate
                         ? 'border border-amber-400/60 bg-amber-500/20'
                         : 'border border-white/20 bg-white/5'

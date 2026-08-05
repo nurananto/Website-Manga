@@ -124,7 +124,7 @@ const renderChapterRow = (ch) => {
         <div className="flex items-center gap-2.5 min-w-0 flex-1">
           <span
             aria-hidden="true"
-            className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${
+            className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-opacity ${!isUnread ? 'opacity-40' : ''} ${
               showEarlyAccess
                 ? 'bg-amber-500/20 border border-amber-400/60'
                 : 'bg-white/5 border border-white/20'
