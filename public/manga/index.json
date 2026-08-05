@@ -27,7 +27,7 @@
     "chapters": [
       {
         "chapter_number": 11.2,
-        "lock_hours": 1,
+        "lock_hours": 0,
         "pages": 6,
         "notif_image": "page1",
         "release_date": "2026-08-05T22:36:09+07:00",
@@ -35,7 +35,7 @@
         "id": "Chikasugiru-ch-11.2",
         "r2_prefix": "manga/Chikasugiru/11.2/",
         "title": "Ch. 11.2",
-        "unlockDate": "2026-08-05T16:36:09.000Z",
+        "unlockDate": null,
         "isLocked": false,
         "views": 0
       },
