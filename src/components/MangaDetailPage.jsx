@@ -121,7 +121,7 @@ const renderChapterRow = (ch) => {
         className="group flex w-full items-center justify-between py-3 px-2 sm:px-3 text-left transition-all cursor-pointer rounded-xl border bg-surface-container/30 border-white/8 hover:bg-white/5 hover:border-white/15"
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
-        <div className={`flex items-center gap-2.5 min-w-0 flex-1 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>
+        <div className="flex items-center gap-2.5 min-w-0 flex-1">
           <span
             aria-hidden="true"
             className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${
@@ -138,7 +138,7 @@ const renderChapterRow = (ch) => {
           </span>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 min-w-0">
-              <p className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-colors truncate ${
+              <p className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-all truncate ${!isUnread ? 'opacity-40' : ''} ${
                 showEarlyAccess
                   ? 'text-amber-300 group-hover:text-amber-200'
                   : 'text-on-surface group-hover:text-primary'
@@ -165,7 +165,7 @@ const renderChapterRow = (ch) => {
                 </span>
               )}
             </div>
-            <p className="font-label-sm text-xs md:text-sm lg:text-base text-outline/60 mt-0.5">{ch.date || timeAgo(ch.release_date)}</p>
+            <p className={`font-label-sm text-xs md:text-sm lg:text-base text-outline/60 mt-0.5 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>{ch.date || timeAgo(ch.release_date)}</p>
           </div>
         </div>
 

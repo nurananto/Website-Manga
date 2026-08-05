@@ -108,7 +108,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                 }}
                 className="flex min-h-[34px] w-full sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border text-left transition-all group/ch border-white/5 hover:bg-surface-container-highest hover:border-white/10 cursor-pointer"
               >
-                <div className={`flex items-center gap-1 min-w-0 mr-1 transition-opacity ${isRead ? 'opacity-40' : ''}`}>
+                <div className="flex items-center gap-1 min-w-0 mr-1">
                   <span
                     aria-hidden="true"
                     className={`mr-1 flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[6px] md:mr-1.5 md:h-6 md:w-6 lg:h-[26px] lg:w-[26px] ${
@@ -123,7 +123,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                       <BookOpen className="h-3.5 w-3.5 text-white stroke-[2.25] md:h-4 md:w-4 lg:h-[18px] lg:w-[18px]" />
                     )}
                   </span>
-                  <span className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-colors whitespace-nowrap ${
+                  <span className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-all whitespace-nowrap ${isRead ? 'opacity-40' : ''} ${
                     showEarlyAccessGate
                       ? 'text-amber-300 group-hover/ch:text-amber-200'
                       : 'text-on-surface-variant group-hover/ch:text-primary'
@@ -155,7 +155,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                     }}
                   />
                 )}
-                <span className="font-label-sm text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0">{ch.date || timeAgoShort(ch.release_date)}</span>
+                <span className={`font-label-sm text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0 transition-opacity ${isRead ? 'opacity-40' : ''}`}>{ch.date || timeAgoShort(ch.release_date)}</span>
               </button>
             );
           })}
