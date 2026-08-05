@@ -36,7 +36,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
             loading={coverPriority ? 'eager' : 'lazy'}
             fetchPriority={coverPriority ? 'high' : 'low'}
             decoding={coverPriority ? 'sync' : 'async'}
-            className="h-full w-full object-cover rounded-lg bg-surface-container-high shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-outline-variant hover:scale-105 transition-transform duration-500"
+            className="h-full w-full object-cover rounded-lg bg-surface-container-high shadow-[0_2px_6px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-outline-variant hover:scale-105 transition-transform duration-500"
           />
       </a>
 
@@ -106,7 +106,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                   e.stopPropagation();
                   onReadChapter(ch, manga.title, manga);
                 }}
-                className="flex min-h-[34px] w-full sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border text-left transition-all group/ch border-outline-variant/40 hover:bg-surface-container-highest hover:border-outline-variant cursor-pointer"
+                className="flex min-h-[34px] w-full sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border text-left transition-all group/ch border-outline-variant hover:bg-surface-container-highest hover:border-outline-variant cursor-pointer"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
                   <span

@@ -168,6 +168,15 @@ export default function App() {
   });
   // useLayoutEffect (bukan useEffect) — atribut ke-set sebelum browser paint
   // frame berikutnya, supaya toggle terasa instan tanpa kedip.
+  //
+  // style.colorScheme SENGAJA TIDAK di-set ulang di sini (beda dari inline
+  // script index.html). Di initial load itu wajib — mencegah kanvas awal
+  // Chrome ikut warna gelap/terang OS sebelum CSS terbaca. Tapi di-set ULANG
+  // tiap kali toggle manual justru bikin browser menghitung ulang rendering
+  // native teks/UI dan memicu repaint yang terlihat seperti font "berkedip
+  // menghilang sebentar" — jauh lebih kasar dibanding transisi warna CSS biasa
+  // (lihat transition di index.css). Attribute data-theme saja sudah cukup
+  // untuk transisi warna smooth lewat CSS custom variant `dark:`.
   useLayoutEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     try { localStorage.setItem('mf_theme', theme); } catch {}

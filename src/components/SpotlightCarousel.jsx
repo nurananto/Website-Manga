@@ -3,12 +3,13 @@ import { Star } from 'lucide-react';
 import { coverUrlForWidth } from '../utils';
 import ResponsiveCover from './ResponsiveCover';
 
+// textCls: warna light mode dulu (di atas panel terang), dark: menyusul (di atas scrim gelap).
 const STATUS_CFG = {
-  'Tamat':   { label: 'END',     textCls: 'text-red-500' },
-  'Hiatus':  { label: 'HIATUS',  textCls: 'text-zinc-400' },
-  'Oneshot': { label: 'ONESHOT', textCls: 'text-red-500' },
+  'Tamat':   { label: 'END',     textCls: 'text-red-700 dark:text-red-500' },
+  'Hiatus':  { label: 'HIATUS',  textCls: 'text-zinc-600 dark:text-zinc-400' },
+  'Oneshot': { label: 'ONESHOT', textCls: 'text-red-700 dark:text-red-500' },
 };
-const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-emerald-300' };
+const ONGOING_CFG = { label: 'ONGOING', textCls: 'text-[#166534] dark:text-emerald-300' };
 
 // Hanya cover aktif yang membesar; cover lain tetap opaque dan digelapkan via overlay.
 const SCALES = [1, 0.88];
@@ -103,14 +104,12 @@ function SpotlightBackground({ manga, animate = false, priority = 'low' }) {
         decoding="async"
         className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
       />
-      {/* Scrim ikut tema (from-surface) seperti hero MangaDetailPage, + bg-black/28
-          tetap sebagai lapisan gelap konstan dasar. Teks di atasnya pakai shadow
-          kuat (bukan text-shadow-md bawaan) supaya tetap terbaca walau gradient
-          jadi terang di light mode. */}
-      <div className="absolute inset-0 bg-black/28" />
-      <div className="absolute inset-0 bg-gradient-to-t from-surface/56 via-surface/20 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-r from-surface/72 via-surface/18 to-transparent" />
-      <div className="absolute inset-0 shadow-[inset_0_22px_64px_rgba(0,0,0,0.45),inset_0_-58px_90px_rgba(0,0,0,0.5),inset_64px_0_84px_rgba(0,0,0,0.58),inset_-64px_0_84px_rgba(0,0,0,0.58)]" />
+      {/* Scrim: light mode = panel putih-pudar tembus pandang (bg-black/28 tidak
+          aktif); dark mode = scrim gelap seperti sebelumnya. Inset shadow vignette
+          DIHAPUS — nyembur ke area judul di bawah cover dan bikin teks ketutupan. */}
+      <div className="absolute inset-0 dark:bg-black/28" />
+      <div className="absolute inset-0 bg-gradient-to-t from-surface/70 via-surface/35 to-transparent dark:from-surface/56 dark:via-surface/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-surface/80 via-surface/30 to-transparent dark:from-surface/72 dark:via-surface/18" />
     </div>
   );
 }
@@ -288,8 +287,8 @@ export default function SpotlightCarousel({
               <div
                 className={`relative rounded-xl overflow-hidden border transition-[border-color,box-shadow] duration-500 ${
                   isActive
-                    ? 'border-white/20 shadow-[0_18px_55px_rgba(0,0,0,0.72)]'
-                    : 'border-black/55 shadow-[0_20px_42px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.04)]'
+                    ? 'border-[#E5E7EB] shadow-[0_4px_10px_rgba(0,0,0,0.10)] dark:border-white/20 dark:shadow-[0_8px_20px_rgba(0,0,0,0.55)]'
+                    : 'border-black/10 shadow-[0_2px_6px_rgba(0,0,0,0.08)] dark:border-black/55 dark:shadow-[0_6px_14px_rgba(0,0,0,0.45),0_0_0_1px_rgba(255,255,255,0.04)]'
                 }`}
                 style={{ width: coverW, height: coverH }}
               >
@@ -303,10 +302,13 @@ export default function SpotlightCarousel({
                   draggable={false}
                 />
 
-                <div className={`absolute inset-0 bg-black/36 pointer-events-none transition-opacity duration-500 ${isActive ? 'opacity-0' : 'opacity-100'}`} />
+                {/* Dim overlay cover non-aktif — ikut tema: putih tembus pandang di
+                    light mode (biar nyatu sama background terang, bukan bikin
+                    corak hitam), scrim gelap di dark mode seperti sebelumnya. */}
+                <div className={`absolute inset-0 bg-white/45 dark:bg-black/36 pointer-events-none transition-opacity duration-500 ${isActive ? 'opacity-0' : 'opacity-100'}`} />
 
                 {/* Active glow ring */}
-                <div className={`absolute inset-0 rounded-xl ring-[2px] ring-white/30 ring-inset pointer-events-none transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+                <div className={`absolute inset-0 rounded-xl ring-[2px] ring-black/10 dark:ring-white/30 ring-inset pointer-events-none transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
               </div>
 
             </button>
@@ -320,21 +322,21 @@ export default function SpotlightCarousel({
           className={`absolute inset-x-2 sm:inset-x-4 z-20 flex flex-col items-center gap-1.5 px-1 ${hasMoved ? 'animate-[spotlightMetaIn_0.38s_cubic-bezier(0.22,1,0.36,1)]' : ''}`}
           style={{ top: padV + coverH + metaGap }}
         >
-          <h3 className="w-full max-w-full truncate text-center font-headline-md text-base sm:text-lg md:text-xl font-black leading-tight text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_10px_rgba(0,0,0,0.75)]">
+          <h3 className="w-full max-w-full truncate text-center font-headline-md text-base sm:text-lg md:text-xl font-black leading-tight text-on-surface dark:text-white dark:[text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_10px_rgba(0,0,0,0.75)]">
             {active.title}
           </h3>
 
-          <div className="inline-flex max-w-full items-center justify-center gap-1.5 overflow-hidden border-y border-white/18 px-2.5 py-1.5 font-body-md text-xs sm:text-sm md:text-base font-bold leading-none">
+          <div className="inline-flex max-w-full items-center justify-center gap-1.5 overflow-hidden border-y-2 border-[#9CA3AF] dark:border-white/35 px-2.5 py-1.5 font-body-md text-xs sm:text-sm md:text-base font-bold leading-none">
             {activeRating && (
-              <span className="flex min-w-0 items-center gap-1 font-extrabold text-amber-400">
+              <span className="flex min-w-0 items-center gap-1 font-extrabold text-amber-700 dark:text-amber-400">
                 <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4 fill-current shrink-0" />
                 <span>{activeRating}</span>
               </span>
             )}
-            {activeRating && <span className="font-black text-white/50">|</span>}
+            {activeRating && <span className="font-black text-on-surface-variant dark:text-white/50">|</span>}
             <span className={`min-w-0 truncate font-black ${activeStatusCfg.textCls}`}>{activeStatusCfg.label}</span>
-            <span className="font-black text-white/50">|</span>
-            <span className="min-w-0 truncate font-extrabold text-white">{activeChapterCount} Chapter</span>
+            <span className="font-black text-on-surface-variant dark:text-white/50">|</span>
+            <span className="min-w-0 truncate font-extrabold text-on-surface-variant dark:text-white">{activeChapterCount} Chapter</span>
           </div>
 
         </div>

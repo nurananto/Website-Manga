@@ -9,7 +9,14 @@
          data-cfasync="false" — Cloudflare Rocket Loader (kalau aktif di zone)
          menunda SEMUA script termasuk inline ke setelah render pertama demi
          "performa", yang justru bikin flash tema ini terjadi. Atribut ini
-         flag resmi Cloudflare utk kecualikan 1 script ini dari penundaan itu. -->
+         flag resmi Cloudflare utk kecualikan 1 script ini dari penundaan itu.
+
+         style.colorScheme — INI YANG MENCEGAH KEDIP GELAP SESAAT DI TEMA TERANG.
+         Sebelum CSS kebaca, Chrome mengecat kanvas pertama pakai preferensi
+         color-scheme OS/browser (kalau OS dalam dark mode, kanvas awal jadi
+         gelap) — sama sekali di luar kendali data-theme attribute/CSS kita.
+         Dengan men-set color-scheme di sini (seserempak dgn data-theme), kanvas
+         awal Chrome langsung ikut tema yang benar, bukan ikut OS. -->
     <script data-cfasync="false">
       (function () {
         try {
@@ -18,6 +25,7 @@
             ? saved
             : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
           document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.style.colorScheme = theme;
         } catch (e) {}
       })();
     </script>

@@ -131,7 +131,7 @@ export function MangaDetailSkeleton() {
 // menutup halaman detail di belakang — cegah skeleton detail berkedip.
 export function ReaderLoadingSkeleton() {
   return (
-    <div className="fixed inset-0 z-[300] bg-[#090b0d] overflow-hidden flex flex-col items-center">
+    <div className="fixed inset-0 z-[300] bg-surface overflow-hidden flex flex-col items-center">
       <div className="w-full h-12 md:h-14 border-b border-outline-variant/40 flex items-center px-3 gap-3 shrink-0">
         <Skeleton className="h-7 w-7 rounded-lg" />
         <Skeleton className="h-4 w-40 max-w-[50%]" />

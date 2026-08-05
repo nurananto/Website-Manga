@@ -118,7 +118,7 @@ const renderChapterRow = (ch) => {
         type="button"
         key={ch.id}
         onClick={() => onReadChapter(ch, manga.title)}
-        className="group flex w-full items-center justify-between py-3 px-2 sm:px-3 text-left transition-all cursor-pointer rounded-xl border bg-surface-container/30 border-outline-variant/40 hover:bg-surface-container-high hover:border-outline-variant"
+        className="group flex w-full items-center justify-between py-3 px-2 sm:px-3 text-left transition-all cursor-pointer rounded-xl border bg-surface-container/30 border-outline-variant hover:bg-surface-container-high hover:border-outline-variant"
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
         <div className="flex items-center gap-2.5 min-w-0 flex-1">
@@ -202,10 +202,9 @@ const renderChapterRow = (ch) => {
               fetchPriority="low"
               className="w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
             />
-            <div className="absolute inset-0 bg-black/28" />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface/56 via-surface/20 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-surface/72 via-surface/18 to-transparent" />
-            <div className="absolute inset-0 shadow-[inset_0_22px_64px_rgba(0,0,0,0.45),inset_0_-58px_90px_rgba(0,0,0,0.5),inset_64px_0_84px_rgba(0,0,0,0.58),inset_-64px_0_84px_rgba(0,0,0,0.58)]" />
+            <div className="absolute inset-0 dark:bg-black/45" />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface/95 via-surface/70 to-transparent dark:from-surface/95 dark:via-surface/55" />
+            <div className="absolute inset-0 bg-gradient-to-r from-surface/92 via-surface/55 to-transparent dark:from-surface/90 dark:via-surface/44" />
           </div>
 
           {/* Info Over Cover Container */}
@@ -224,14 +223,14 @@ const renderChapterRow = (ch) => {
             {/* Metadata info */}
             <div className="flex-grow min-w-0 w-full flex flex-col items-center sm:items-start pb-1">
               {/* Title — max 2 baris */}
-              <h2 className="font-headline-md text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_12px_rgba(0,0,0,0.75)] font-black tracking-tight mb-1.5 text-center sm:text-left line-clamp-2">
+              <h2 className="font-headline-md text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-on-surface dark:text-white dark:[text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_12px_rgba(0,0,0,0.75)] font-black tracking-tight mb-1.5 text-center sm:text-left line-clamp-2">
                 {manga.title}
               </h2>
 
-              {/* Alternative Title — SENGAJA text-white (bukan ikut tema): duduk di atas
-                  scrim gelap tetap (bg-black/28 + gradient) yang sengaja selalu gelap
-                  apa pun tema situs, sama seperti FeaturedCarousel/SpotlightCarousel. */}
-              <p className="text-white/80 [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_1px_8px_rgba(0,0,0,0.7)] text-sm sm:text-base md:text-lg font-semibold mb-3 leading-normal text-center sm:text-left line-clamp-1">
+              {/* Alternative Title — ikut tema seperti Judul di atas: panel terang
+                  tembus pandang di light mode (teks gelap), scrim gelap tetap di
+                  dark mode (teks putih), sama seperti FeaturedCarousel/SpotlightCarousel. */}
+              <p className="text-on-surface-variant dark:text-white/90 dark:[text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_1px_8px_rgba(0,0,0,0.7)] text-sm sm:text-base md:text-lg font-semibold mb-3 leading-normal text-center sm:text-left line-clamp-1">
                 {manga.alternativeTitle || manga.alt_title || ''}
               </p>
 
@@ -249,7 +248,7 @@ const renderChapterRow = (ch) => {
                   <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
                     <button
                       onClick={() => onReadChapter(firstChapter, manga.title)}
-                      className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-white hover:bg-white/90 text-black font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
+                      className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-white hover:bg-white/90 border border-black/15 text-black font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
                     >
                       <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       {manga.status === 'Oneshot' ? 'Baca Oneshot' : `Baca Ch. ${firstChapter.chapter_number}`}
@@ -257,7 +256,7 @@ const renderChapterRow = (ch) => {
                     {continueChapter && (
                       <button
                         onClick={() => onReadChapter(continueChapter, manga.title)}
-                        className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-black/30 hover:bg-black/45 border border-white/30 text-white backdrop-blur-sm font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
+                        className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-black hover:bg-black/85 border border-white/10 text-white font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
                       >
                         <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
                         Lanjut {manga.status === 'Oneshot' ? 'Oneshot' : `Ch. ${continueChapter.chapter_number}`}
@@ -309,21 +308,21 @@ const renderChapterRow = (ch) => {
 
             {/* Stats: Rating + Chapters + Total Views */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3">
-              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-outline-variant/40">
+              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-outline-variant">
                 <div className="flex items-center gap-1.5">
                   <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-current" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.rating}</span>
                 </div>
                 <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/70 font-semibold uppercase tracking-wide">Rating</span>
               </div>
-              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-outline-variant/40">
+              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-outline-variant">
                 <div className="flex items-center gap-1.5">
                   <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.chapters.length}</span>
                 </div>
                 <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/70 font-semibold uppercase tracking-wide">Chapters</span>
               </div>
-              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-outline-variant/40">
+              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-outline-variant">
                 <div className="flex items-center gap-1.5">
                   <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.total_views ? (manga.total_views >= 1000 ? `${(manga.total_views / 1000).toFixed(1)}k` : String(manga.total_views)) : '—'}</span>
@@ -333,8 +332,8 @@ const renderChapterRow = (ch) => {
             </div>
 
             {/* Author + Artist */}
-            <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-outline-variant/40 overflow-hidden">
-              <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 border-r border-outline-variant/40 min-w-0" style={fitCreatorStyle(manga.author)}>
+            <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-outline-variant overflow-hidden">
+              <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 border-r border-outline-variant min-w-0" style={fitCreatorStyle(manga.author)}>
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Author</span>
                 <span className="font-body-md text-sm sm:text-sm md:text-base font-bold text-on-surface truncate">{manga.author || '—'}</span>
               </div>
@@ -345,8 +344,8 @@ const renderChapterRow = (ch) => {
             </div>
 
             {/* Status + Type */}
-            <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-outline-variant/40 overflow-hidden">
-              <div className="flex flex-col gap-1 p-3 sm:p-4 border-r border-outline-variant/40">
+            <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-outline-variant overflow-hidden">
+              <div className="flex flex-col gap-1 p-3 sm:p-4 border-r border-outline-variant">
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Status</span>
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full shrink-0 ${
