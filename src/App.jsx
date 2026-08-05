@@ -15,6 +15,7 @@ import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
 import { clearCachedSession } from './lib/session';
 import { clearChapterTokens } from './lib/chapterToken';
+import { getReadChapters, markChapterRead, mergeReadChapters } from './lib/readChapters';
 import { chapterAccessLevel } from './lib/chapterAccess';
 
 // Lazy-load komponen besar/jarang dipakai → kurangi JS bundle awal (homepage)
@@ -269,6 +270,7 @@ export default function App() {
   const [featuredMangaId, setFeaturedMangaId] = useState(null);
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [historyChapters, setHistoryChapters] = useState({});
+  const [readChapterIds, setReadChapterIds] = useState(() => getReadChapters());
   const [currentPage, setCurrentPage] = useState(1);
   // Muat pertama tetap lazy supaya 12 cover tidak berebut bandwidth dan merusak
   // LCP. Begitu pembaca menekan pagination, cover halaman tetangga sudah
@@ -394,6 +396,9 @@ export default function App() {
     // Simpan history pakai mangaId langsung. (Sebelumnya cari manga via chapter id di
     // MANGA_LIST yang cuma simpan 3 chapter terbaru → baca chapter lama = tak tersimpan.)
     setHistoryChapters(prev => ({ ...prev, [mangaId]: { ...chapter, last_read_at: new Date().toISOString() } }));
+    // Tandai chapter ini "sudah dibaca" (fade di daftar chapter) — localStorage
+    // instan (guest & login), disinkron ke D1 kalau login (lintas device).
+    if (chapter.id) setReadChapterIds(prev => markChapterRead(chapter.id, prev));
     if (isLoggedIn && currentUser) {
       const workerUrl = import.meta.env.VITE_WORKER_URL || '';
       getAccessToken().then(token => {
@@ -403,6 +408,13 @@ export default function App() {
           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
           body: JSON.stringify({ manga_id: mangaId, chapter_id: chapter.id, chapter_number: chapter.chapter_number, chapter_title: chapter.title }),
         }).catch(() => {});
+        if (chapter.id) {
+          fetch(`${workerUrl}/api/user/reads`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+            body: JSON.stringify({ chapter_ids: [chapter.id] }),
+          }).catch(() => {});
+        }
       });
     }
   };
@@ -481,6 +493,26 @@ export default function App() {
           };
         });
         setHistoryChapters(hist);
+      }).catch(() => {});
+
+    // Gabungkan riwayat "sudah dibaca": ambil dari D1 (device lain), gabung ke
+    // localStorage device ini, lalu upload balik id yang cuma ada di device ini
+    // (belum pernah disinkron) supaya D1 lengkap juga.
+    fetch(`${workerUrl}/api/user/reads`, { headers })
+      .then(r => r.json()).then(remoteIds => {
+        if (!Array.isArray(remoteIds)) return;
+        const localIds = getReadChapters();
+        const merged = mergeReadChapters(remoteIds, localIds);
+        setReadChapterIds(merged);
+        const remoteSet = new Set(remoteIds);
+        const onlyLocal = [...localIds].filter(id => !remoteSet.has(id));
+        if (onlyLocal.length) {
+          fetch(`${workerUrl}/api/user/reads`, {
+            method: 'POST',
+            headers: { ...headers, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chapter_ids: onlyLocal }),
+          }).catch(() => {});
+        }
       }).catch(() => {});
   }
 
@@ -1035,6 +1067,7 @@ export default function App() {
               manga={selectedManga}
               onReadChapter={handleReadChapter}
               lastReadChapter={historyChapters[selectedManga.id]}
+              readChapterIds={readChapterIds}
               isSupporter={isSupporter}
               isLoggedIn={isLoggedIn}
               onDonate={() => setIsCoinModalOpen(true)}
@@ -1389,6 +1422,7 @@ export default function App() {
             onReadChapter={handleReadChapter}
             isSupporter={isSupporter}
             currentUser={currentUser}
+            readChapterIds={readChapterIds}
           />
         </Suspense>
       )}

@@ -108,7 +108,7 @@ function NextUpdateInfo({ value }) {
   );
 }
 
-function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError }) {
+function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, withCredentials }) {
   const [loaded,     setLoaded]     = useState(false);
   const [failed,     setFailed]     = useState(false);
   const [retryCount, setRetryCount] = useState(0);
@@ -134,12 +134,17 @@ function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError }
   // Ambil gambar via fetch → blob, supaya <img src> tampil "blob:" bukan path asli
   // (path tetap terlihat di Network tab — ini cuma obscure DOM/klik-kanan/hotlink).
   // Kalau fetch CDN gagal (mis. CORS belum di-set), jatuh ke worker (fallbackSrc).
+  // credentials 'include' HANYA untuk chapter locked (perlu cookie img_session di
+  // image-worker) — chapter gratis dari CDN publik TIDAK boleh ikut kirim
+  // credentials, karena CDN belum tentu set Access-Control-Allow-Credentials
+  // dan request credentialed ke response 'Access-Control-Allow-Origin: *' akan
+  // ditolak browser (CORS gagal total, bukan cuma fallback).
   useEffect(() => {
     if (!ready || !inView || !activeSrc) return;
     let cancelled = false;
     let objUrl = null;
     const controller = new AbortController();
-    fetch(activeSrc, { signal: controller.signal })
+    fetch(activeSrc, { signal: controller.signal, credentials: withCredentials ? 'include' : 'same-origin' })
       .then(r => { if (!r.ok) { const e = new Error(`HTTP ${r.status}`); e.status = r.status; throw e; } return r.blob(); })
       .then(blob => {
         if (cancelled) return;
@@ -159,7 +164,7 @@ function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError }
       controller.abort();
       if (objUrl) URL.revokeObjectURL(objUrl);
     };
-  }, [ready, inView, activeSrc, retryCount]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [ready, inView, activeSrc, retryCount, withCredentials]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleRetry = (e) => {
     e.stopPropagation();
@@ -259,7 +264,10 @@ function useChapterDropdown() {
   return { chapterBtnRefs, dropdownAnchor, openChapterList, setOpenChapterList, toggleChapterList };
 }
 
-export default function ReaderModal({ chapter, manga, onClose, onReadChapter, isSupporter, currentUser }) {
+const EMPTY_READ_SET = new Set();
+
+export default function ReaderModal({ chapter, manga, onClose, onReadChapter, isSupporter, currentUser, readChapterIds }) {
+  const readChapters = readChapterIds || EMPTY_READ_SET;
   const now = nowTimestamp();
   const accessLevel = chapterAccessLevel(chapter, now);
   const chapterNeedsToken = accessLevel !== 'public';
@@ -800,6 +808,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                   idx={idx}
                   registerPage={registerPage}
                   ready={imageReady}
+                  withCredentials={chapterNeedsToken}
                   onAccessError={chapterNeedsToken ? handleLockedImageError : undefined}
                 />
               ))}
@@ -1051,6 +1060,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
               >
                 {chapters.map((ch) => {
                   const isActive = ch.id === activeChapter.id;
+                  const isRead = !isActive && readChapters.has(ch.id);
                   const itemAccessLevel = chapterAccessLevel(ch, now);
                   const showEarlyAccess = itemAccessLevel === 'supporter'
                     && !canReadChapter(ch, { isLoggedIn: !!currentUser, isSupporter }, now);
@@ -1079,7 +1089,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                           : 'text-on-surface-variant hover:bg-white/5 hover:text-on-surface'
                       }`}
                     >
-                      <div className="flex items-center gap-1.5 min-w-0 flex-1">
+                      <div className={`flex items-center gap-1.5 min-w-0 flex-1 transition-opacity ${isRead ? 'opacity-40' : ''}`}>
                         <span className={`truncate ${showEarlyAccess ? 'text-amber-300' : ''}`}>{ch.title}</span>
                         {showEarlyAccess && (
                           <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30">

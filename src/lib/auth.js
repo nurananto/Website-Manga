@@ -46,9 +46,10 @@ export async function getAccessToken(forceRefresh = false) {
       if (!rt) { clearAuth(); return null; }
       try {
         const res = await fetch(`${API}/api/auth/refresh`, {
-          method:  'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify({ refresh_token: rt }),
+          method:      'POST',
+          headers:     { 'Content-Type': 'application/json' },
+          body:        JSON.stringify({ refresh_token: rt }),
+          credentials: 'include', // wajib supaya cookie img_session ikut terkirim & backfill Set-Cookie diterima
         });
         if (!res.ok) { clearAuth(); return null; }
         const { access_token, refresh_token } = await res.json();
@@ -80,9 +81,10 @@ export function loginWithGoogle(turnstileToken) {
 // ── Exchange one-time login code for tokens ───────────────────
 export async function exchangeLoginCode(code) {
   const res = await fetch(`${API}/api/auth/exchange`, {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ code }),
+    method:      'POST',
+    headers:     { 'Content-Type': 'application/json' },
+    body:        JSON.stringify({ code }),
+    credentials: 'include', // wajib supaya Set-Cookie img_session (cross-subdomain) diterima
   });
   if (!res.ok) return null;
   const data = await res.json();
@@ -99,9 +101,10 @@ export async function logout() {
   if (rt) {
     try {
       await fetch(`${API}/api/auth/logout`, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ refresh_token: rt }),
+        method:      'POST',
+        headers:     { 'Content-Type': 'application/json' },
+        body:        JSON.stringify({ refresh_token: rt }),
+        credentials: 'include', // wajib supaya cookie img_session ikut terkirim & terhapus
       });
     } catch {}
   }

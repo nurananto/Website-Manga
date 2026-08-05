@@ -8,6 +8,8 @@ import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../li
 import { useDialogFocus } from '../lib/useDialogFocus';
 import { recordView } from '../lib/viewGate';
 
+const EMPTY_SET = new Set();
+
 const chapterSortValue = (value) => {
   const n = Number(value);
   return Number.isFinite(n) ? n : Number.NEGATIVE_INFINITY;
@@ -18,7 +20,7 @@ const fitCreatorStyle = (value) => ({
   '--creator-chars': Math.max(String(value || '').length, 8),
 });
 
-export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, isSupporter, isLoggedIn, onDonate }) {
+export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, readChapterIds, isSupporter, isLoggedIn, onDonate }) {
   const [expandedSynopsis, setExpandedSynopsis] = useState(false);
 
   // Rekam view halaman detail (manga dibuka tapi belum tentu dibaca).
@@ -45,7 +47,7 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   const [showAllChapters, setShowAllChapters] = useState(false);
   const [activeDetailTab, setActiveDetailTab] = useState('info');
   const [accessNow, setAccessNow] = useState(() => Date.now());
-  const [readChapters, setReadChapters] = useState(new Set());
+  const readChapters = readChapterIds || EMPTY_SET;
   const [lightboxCover, setLightboxCover] = useState(null);
   const lightboxRef = useRef(null);
   const [galleryPage, setGalleryPage] = useState(0);
@@ -115,12 +117,7 @@ const renderChapterRow = (ch) => {
       <button
         type="button"
         key={ch.id}
-        onClick={() => {
-          // Chapter terkunci hanya membuka modal beli — belum benar-benar dibaca,
-          // jadi jangan tandai "sudah dibaca" (cegah row meredup setelah modal ditutup).
-          if (!isBlocked) setReadChapters(prev => new Set([...prev, ch.id]));
-          onReadChapter(ch, manga.title);
-        }}
+        onClick={() => onReadChapter(ch, manga.title)}
         className="group flex w-full items-center justify-between py-3 px-2 sm:px-3 text-left transition-all cursor-pointer rounded-xl border bg-surface-container/30 border-white/8 hover:bg-white/5 hover:border-white/15"
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
