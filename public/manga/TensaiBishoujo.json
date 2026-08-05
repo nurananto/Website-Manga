@@ -30,9 +30,9 @@
     "2": 3,
     "3": 3,
     "4": 5,
-    "5": 10
+    "5": 11
   },
-  "total_views": 55,
+  "total_views": 56,
   "mangadex_cover": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -70,7 +70,7 @@
       "title": "Ch. 5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 4,

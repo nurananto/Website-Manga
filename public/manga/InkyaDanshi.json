@@ -26,10 +26,10 @@
   "tamat_at_chapter": 10,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 8,
-    "2": 7
+    "1": 9,
+    "2": 9
   },
-  "total_views": 26,
+  "total_views": 29,
   "mangadex_cover": "6d6bb634-822b-41c9-9249-d2f2c1d87ba6.png",
   "cover_widths": "1280x960x640q75",
   "cover_version": 2,
@@ -66,7 +66,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 9
     },
     {
       "chapter_number": 1,
@@ -79,7 +79,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     }
   ]
 }

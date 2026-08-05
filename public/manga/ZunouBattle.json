@@ -26,20 +26,21 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 11,
+    "1": 12,
     "2": 5,
     "3": 7,
     "4": 12,
-    "5.2": 15,
+    "5.2": 16,
     "5.3": 20,
     "5.1": 14,
-    "6.1": 23,
-    "6.3": 20,
-    "6.2": 24,
-    "7.1": 13,
-    "7.2": 6
+    "6.1": 25,
+    "6.3": 24,
+    "6.2": 27,
+    "7.1": 18,
+    "7.2": 6,
+    "8.1": 1
   },
-  "total_views": 293,
+  "total_views": 323,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -54,7 +55,7 @@
     }
   ],
   "cover_version": 4,
-  "detail_views": 123,
+  "detail_views": 136,
   "notif_image": "page1",
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
   "rating": 8.18,
@@ -78,7 +79,7 @@
       "title": "Ch. 8.1",
       "unlockDate": "2026-09-03T07:48:36.000Z",
       "isLocked": true,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 7.2,
@@ -104,7 +105,7 @@
       "title": "Ch. 7.1",
       "unlockDate": "2026-08-05T12:49:50.000Z",
       "isLocked": false,
-      "views": 13
+      "views": 18
     },
     {
       "chapter_number": 6.3,
@@ -117,7 +118,7 @@
       "title": "Ch. 6.3",
       "unlockDate": "2026-07-22T11:03:47.000Z",
       "isLocked": false,
-      "views": 20
+      "views": 24
     },
     {
       "chapter_number": 6.2,
@@ -130,7 +131,7 @@
       "title": "Ch. 6.2",
       "unlockDate": "2026-07-08T11:03:47.000Z",
       "isLocked": false,
-      "views": 24
+      "views": 27
     },
     {
       "chapter_number": 6.1,
@@ -143,7 +144,7 @@
       "title": "Ch. 6.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 23
+      "views": 25
     },
     {
       "chapter_number": 5.3,
@@ -169,7 +170,7 @@
       "title": "Ch. 5.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 15
+      "views": 16
     },
     {
       "chapter_number": 5.1,
@@ -234,7 +235,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     }
   ]
 }
