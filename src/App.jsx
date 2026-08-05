@@ -1246,6 +1246,7 @@ export default function App() {
                                 isSupporter={isSupporter}
                                 onViewManga={stableViewManga}
                                 onReadChapter={stableReadChapter}
+                                readChapterIds={readChapterIds}
                               />
                             </div>
                           );

@@ -9,7 +9,10 @@ import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../li
 // sudah di-prefetch + di-decode oleh App, jadi kartu baru bisa dipasang eager dan
 // di-decode sinkron — tanpa itu <img> yang baru dibuat (key per manga) selalu
 // melukis satu frame kosong lebih dulu dan terlihat berkedip.
-function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter, coverPriority = false }) {
+const EMPTY_READ_SET = new Set();
+
+function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter, coverPriority = false, readChapterIds }) {
+  const readChapters = readChapterIds || EMPTY_READ_SET;
   const [, setAccessVersion] = useState(0);
   const now = nowTimestamp();
 
@@ -93,6 +96,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
               isOneshot ||
               (targetChapter != null && String(ch.chapter_number) === String(targetChapter))
             );
+            const isRead = readChapters.has(ch.id);
 
             return (
               <button
@@ -104,7 +108,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                 }}
                 className="flex min-h-[34px] w-full sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border text-left transition-all group/ch border-white/5 hover:bg-surface-container-highest hover:border-white/10 cursor-pointer"
               >
-                <div className="flex items-center gap-1 min-w-0 mr-1">
+                <div className={`flex items-center gap-1 min-w-0 mr-1 transition-opacity ${isRead ? 'opacity-40' : ''}`}>
                   <span
                     aria-hidden="true"
                     className={`mr-1 flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[6px] md:mr-1.5 md:h-6 md:w-6 lg:h-[26px] lg:w-[26px] ${
