@@ -6,7 +6,7 @@ export function Skeleton({ className = '', style, ...props }) {
 
 export function MangaCardSkeleton() {
   return (
-    <div className="flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden border border-white/5">
+    <div className="flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden border border-outline-variant/40">
       {/* Cover */}
       <div className="w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full bg-surface-container-high animate-pulse shrink-0" />
       {/* Content */}
@@ -32,12 +32,12 @@ export function HomepageHeroSkeleton() {
     <>
       <div
         aria-hidden="true"
-        className="h-[323px] w-auto -mx-3 animate-pulse border-y border-white/5 bg-surface-container sm:-mx-4 sm:h-[382px] md:-mx-5 md:h-[446px] lg:h-[494px]"
+        className="h-[323px] w-auto -mx-3 animate-pulse border-y border-outline-variant/40 bg-surface-container sm:-mx-4 sm:h-[382px] md:-mx-5 md:h-[446px] lg:h-[494px]"
       />
 
       <div
         aria-hidden="true"
-        className="w-auto -mx-3 border-t border-white/60 -mt-2 sm:-mx-4 md:-mx-5 md:-mt-3 xl:-mt-4"
+        className="w-auto -mx-3 border-t border-outline-variant -mt-2 sm:-mx-4 md:-mx-5 md:-mt-3 xl:-mt-4"
       />
 
       <div aria-hidden="true" className="flex flex-col gap-3">
@@ -64,7 +64,7 @@ export function MangaDetailSkeleton() {
   return (
     <div className="pt-[72px] w-full animate-pulse">
       {/* Hero Banner */}
-      <div className="mx-3 sm:mx-4 md:mx-5 mt-4 rounded-2xl overflow-hidden border border-white/15 bg-surface-container">
+      <div className="mx-3 sm:mx-4 md:mx-5 mt-4 rounded-2xl overflow-hidden border border-outline-variant bg-surface-container">
         <div className="w-full px-4 sm:px-6 md:px-8 py-4 sm:py-6 flex flex-col sm:flex-row gap-5 items-center sm:items-end">
           <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[2/3] rounded-xl bg-surface-container-high shrink-0" />
           <div className="flex-1 flex flex-col gap-3 w-full pb-2">
@@ -88,7 +88,7 @@ export function MangaDetailSkeleton() {
       <Skeleton className="w-full h-10 rounded-none mt-3" />
 
       {/* Tab switcher */}
-      <div className="flex px-3 sm:px-4 md:px-5 mt-4 border-b border-white/10">
+      <div className="flex px-3 sm:px-4 md:px-5 mt-4 border-b border-outline-variant">
         <Skeleton className="h-10 w-28 rounded-none" />
         <Skeleton className="h-10 w-28 rounded-none ml-2" />
       </div>
@@ -96,7 +96,7 @@ export function MangaDetailSkeleton() {
       {/* Grid info + chapters */}
       <div className="mt-4 grid grid-cols-1 lg:grid-cols-12 lg:gap-5 lg:px-4">
         {/* Info column */}
-        <div className="lg:col-span-5 flex flex-col gap-3 p-3 lg:border lg:border-white/10 lg:rounded-2xl">
+        <div className="lg:col-span-5 flex flex-col gap-3 p-3 lg:border lg:border-outline-variant lg:rounded-2xl">
           <div className="grid grid-cols-3 gap-2">
             <Skeleton className="h-14 sm:h-16 rounded-xl" />
             <Skeleton className="h-14 sm:h-16 rounded-xl" />
@@ -115,8 +115,8 @@ export function MangaDetailSkeleton() {
         </div>
 
         {/* Chapter list — hanya desktop */}
-        <div className="lg:col-span-7 hidden lg:flex flex-col gap-2 p-3 border border-white/10 rounded-2xl">
-          <div className="flex justify-between items-center mb-2 pb-2 border-b border-white/5">
+        <div className="lg:col-span-7 hidden lg:flex flex-col gap-2 p-3 border border-outline-variant rounded-2xl">
+          <div className="flex justify-between items-center mb-2 pb-2 border-b border-outline-variant/40">
             <Skeleton className="h-5 w-32" />
             <Skeleton className="h-4 w-16" />
           </div>
@@ -132,7 +132,7 @@ export function MangaDetailSkeleton() {
 export function ReaderLoadingSkeleton() {
   return (
     <div className="fixed inset-0 z-[300] bg-[#090b0d] overflow-hidden flex flex-col items-center">
-      <div className="w-full h-12 md:h-14 border-b border-white/5 flex items-center px-3 gap-3 shrink-0">
+      <div className="w-full h-12 md:h-14 border-b border-outline-variant/40 flex items-center px-3 gap-3 shrink-0">
         <Skeleton className="h-7 w-7 rounded-lg" />
         <Skeleton className="h-4 w-40 max-w-[50%]" />
       </div>

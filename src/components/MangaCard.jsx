@@ -22,7 +22,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
   const isMangaNew = Number.isFinite(latestReleaseAge) && latestReleaseAge >= 0 && latestReleaseAge < 24 * 60 * 60 * 1000;
 
   return (
-    <div className="flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden group border border-white/5 hover:border-primary/20 shadow-md transition-colors">
+    <div className="flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden group border border-outline-variant/40 hover:border-primary/20 shadow-md transition-colors">
       {/* Cover — link crawlable ke detail (SPA: preventDefault + navigate) */}
       <a
         href={`/${manga.id}`}
@@ -36,7 +36,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
             loading={coverPriority ? 'eager' : 'lazy'}
             fetchPriority={coverPriority ? 'high' : 'low'}
             decoding={coverPriority ? 'sync' : 'async'}
-            className="h-full w-full object-cover rounded-lg bg-surface-container-high shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-white/10 hover:scale-105 transition-transform duration-500"
+            className="h-full w-full object-cover rounded-lg bg-surface-container-high shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-outline-variant hover:scale-105 transition-transform duration-500"
           />
       </a>
 
@@ -106,7 +106,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                   e.stopPropagation();
                   onReadChapter(ch, manga.title, manga);
                 }}
-                className="flex min-h-[34px] w-full sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border text-left transition-all group/ch border-white/5 hover:bg-surface-container-highest hover:border-white/10 cursor-pointer"
+                className="flex min-h-[34px] w-full sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border text-left transition-all group/ch border-outline-variant/40 hover:bg-surface-container-highest hover:border-outline-variant cursor-pointer"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
                   <span
@@ -114,18 +114,18 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                     className={`mr-1 flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[6px] md:mr-1.5 md:h-6 md:w-6 lg:h-[26px] lg:w-[26px] transition-opacity ${isRead ? 'opacity-40' : ''} ${
                       showEarlyAccessGate
                         ? 'border border-amber-400/60 bg-amber-500/20'
-                        : 'border border-white/20 bg-white/5'
+                        : 'border border-outline-variant bg-surface-container-high'
                     }`}
                   >
                     {showEarlyAccessGate ? (
-                      <Lock className="h-3.5 w-3.5 text-amber-300 stroke-[2.5] md:h-4 md:w-4 lg:h-[18px] lg:w-[18px]" />
+                      <Lock className="h-3.5 w-3.5 text-amber-600 dark:text-amber-300 stroke-[2.5] md:h-4 md:w-4 lg:h-[18px] lg:w-[18px]" />
                     ) : (
-                      <BookOpen className="h-3.5 w-3.5 text-white stroke-[2.25] md:h-4 md:w-4 lg:h-[18px] lg:w-[18px]" />
+                      <BookOpen className="h-3.5 w-3.5 text-on-surface stroke-[2.25] md:h-4 md:w-4 lg:h-[18px] lg:w-[18px]" />
                     )}
                   </span>
                   <span className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-all whitespace-nowrap ${isRead ? 'opacity-40' : ''} ${
                     showEarlyAccessGate
-                      ? 'text-amber-300 group-hover/ch:text-amber-200'
+                      ? 'text-amber-600 dark:text-amber-300 group-hover/ch:text-amber-500 dark:group-hover/ch:text-amber-200'
                       : 'text-on-surface-variant group-hover/ch:text-primary'
                   }`}>
                     {chapterTitle}
@@ -138,8 +138,8 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                   {showStatusBadge && (
                     <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider ${
                       manga.status === 'Tamat' || isOneshot
-                        ? 'bg-red-500/15 text-red-400 border border-red-500/30'
-                        : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
+                        ? 'bg-red-500/15 text-red-700 dark:text-red-400 border border-red-500/30'
+                        : 'bg-zinc-500/15 text-zinc-700 dark:text-zinc-400 border border-zinc-500/30'
                     }`}>
                       {manga.status === 'Tamat' || isOneshot ? 'END' : manga.status}
                     </span>

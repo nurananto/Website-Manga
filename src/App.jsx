@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, useEffectEvent, useMemo, lazy, Suspense } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef, useCallback, useEffectEvent, useMemo, lazy, Suspense } from 'react';
 import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
@@ -108,9 +108,9 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
         <div className="flex flex-col gap-2">
           {historyEntries.map(({ manga, chapter }) => (
             <button type="button" key={manga.id} onClick={() => handleReadChapter(chapter, manga.title, manga)}
-              className="flex w-full items-stretch gap-3 sm:gap-4 bg-surface-container border border-white/8 hover:border-primary/30 rounded-xl p-2.5 sm:p-3 md:p-4 text-left cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
+              className="flex w-full items-stretch gap-3 sm:gap-4 bg-surface-container border border-outline-variant/50 hover:border-primary/30 rounded-xl p-2.5 sm:p-3 md:p-4 text-left cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
               <ResponsiveCover manga={manga} alt={manga.title}
-                className="object-cover rounded-lg border border-white/10 shrink-0 shadow-md"
+                className="object-cover rounded-lg border border-outline-variant/60 shrink-0 shadow-md"
                 style={{ aspectRatio: '2/3', width: 'auto', maxHeight: 'calc(1.25rem + 2.5rem + 1.25rem + 0.5rem)' }} />
               <div className="min-w-0 flex-1 flex flex-col justify-center gap-0.5 sm:gap-1">
                 <h3 className="font-headline-md text-sm sm:text-base md:text-lg font-black text-on-surface line-clamp-1">{manga.title}</h3>
@@ -148,6 +148,33 @@ export default function App() {
   const trendingIdsRef = useRef(trendingIds);
   const [isLoading, setIsLoading] = useState(() => !BOOTSTRAP_MANGA_LIST);
   const [routePage, setRoutePage] = useState(INITIAL_ROUTE.page);
+
+  // Tema light/dark — default ikut preferensi OS (prefers-color-scheme), TAPI
+  // begitu user pernah pilih manual (tersimpan di localStorage), pilihan itu
+  // yang menang selamanya (tidak balik ikut OS lagi). Nilai awal dibaca dari
+  // atribut data-theme di <html> yang sudah di-set inline script di index.html
+  // (sebelum React mount) — mencegah flash tema salah sesaat sebelum JS jalan.
+  const [theme, setTheme] = useState(() => {
+    if (typeof document !== 'undefined') {
+      const fromHtml = document.documentElement.getAttribute('data-theme');
+      if (fromHtml === 'dark' || fromHtml === 'light') return fromHtml;
+    }
+    try {
+      const saved = localStorage.getItem('mf_theme');
+      if (saved === 'dark' || saved === 'light') return saved;
+    } catch {}
+    return (typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches)
+      ? 'dark' : 'light';
+  });
+  // useLayoutEffect (bukan useEffect) — atribut ke-set sebelum browser paint
+  // frame berikutnya, supaya toggle terasa instan tanpa kedip.
+  useLayoutEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    try { localStorage.setItem('mf_theme', theme); } catch {}
+  }, [theme]);
+  const toggleTheme = useCallback(() => {
+    setTheme(t => (t === 'dark' ? 'light' : 'dark'));
+  }, []);
 
   // Paksa refresh saat ada versi baru di server
   const [showUpdateBanner, setShowUpdateBanner] = useState(false);
@@ -1001,7 +1028,7 @@ export default function App() {
             {updateLabel && <p className="text-xs text-outline mt-1">{updateLabel}</p>}
             <button
               onClick={softResetApp}
-              className="mt-3 px-3 py-1.5 rounded-lg border border-white/15 text-xs font-bold text-on-surface/90 hover:bg-white/10 transition-colors cursor-pointer"
+              className="mt-3 px-3 py-1.5 rounded-lg border border-outline-variant text-xs font-bold text-on-surface/90 hover:bg-surface-container-high transition-colors cursor-pointer"
             >
               {isResettingApp ? 'Membersihkan cache...' : 'Refresh Paksa Sekarang'}
             </button>
@@ -1014,6 +1041,8 @@ export default function App() {
         <TopNavBar
           activeTab={activeTab}
           onTabClick={handleTabClick}
+          theme={theme}
+          onToggleTheme={toggleTheme}
           onChangePasswordClick={() => setIsChangePasswordOpen(true)}
           isSupporter={isSupporter}
           supporterUntil={supporterUntil}
@@ -1049,7 +1078,7 @@ export default function App() {
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
         {routePage === 'auth' ? (
-          <div className="fixed inset-0 bg-[#090b0d] flex items-center justify-center z-[199]">
+          <div className="fixed inset-0 bg-surface flex items-center justify-center z-[199]">
             <div className="w-10 h-10 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
           </div>
         ) : loadingManga && routePage !== 'reader' ? (
@@ -1084,7 +1113,7 @@ export default function App() {
                   <>
                     <div
                       aria-hidden="true"
-                      className="w-auto -mx-3 sm:-mx-4 md:-mx-5 border-t border-white/60 -mb-2 md:-mb-3 xl:-mb-4"
+                      className="w-auto -mx-3 sm:-mx-4 md:-mx-5 border-t border-outline-variant -mb-2 md:-mb-3 xl:-mb-4"
                     />
 
                     {isLoading ? (
@@ -1100,7 +1129,7 @@ export default function App() {
 
                     <div
                       aria-hidden="true"
-                      className="w-auto -mx-3 sm:-mx-4 md:-mx-5 border-t border-white/60 -mt-2 md:-mt-3 xl:-mt-4"
+                      className="w-auto -mx-3 sm:-mx-4 md:-mx-5 border-t border-outline-variant -mt-2 md:-mt-3 xl:-mt-4"
                     />
 
                     <FeaturedCarousel
@@ -1149,8 +1178,8 @@ export default function App() {
                         onClick={() => setIsSearchOpen(!isSearchOpen)}
                         className={`h-9 w-9 flex items-center justify-center rounded-2xl border transition-all active:scale-95 cursor-pointer ${
                           isSearchOpen
-                            ? 'border-primary text-primary bg-white/5'
-                            : 'border-white/10 text-outline hover:border-primary/50 hover:text-primary hover:bg-white/5'
+                            ? 'border-primary text-primary bg-surface-container-high'
+                            : 'border-outline-variant text-outline hover:border-primary/50 hover:text-primary hover:bg-surface-container-high'
                         }`}
                         title="Search manga"
                       >
@@ -1162,8 +1191,8 @@ export default function App() {
                           onClick={() => setIsSortOpen((v) => !v)}
                           className={`h-9 w-9 flex items-center justify-center rounded-2xl border transition-all active:scale-95 cursor-pointer ${
                             isSortOpen
-                              ? 'border-primary text-primary bg-white/5'
-                              : 'border-white/10 text-outline hover:border-primary/50 hover:text-primary hover:bg-white/5'
+                              ? 'border-primary text-primary bg-surface-container-high'
+                              : 'border-outline-variant text-outline hover:border-primary/50 hover:text-primary hover:bg-surface-container-high'
                           }`}
                           title="Urutkan manga"
                         >
@@ -1171,7 +1200,7 @@ export default function App() {
                         </button>
 
                         {isSortOpen && (
-                          <div className="absolute right-0 top-11 w-52 bg-surface-container border border-white/5 rounded-xl shadow-2xl py-1.5 z-50 animate-[fadeIn_0.15s_ease-out]">
+                          <div className="absolute right-0 top-11 w-52 bg-surface-container border border-outline-variant/40 rounded-xl shadow-2xl py-1.5 z-50 animate-[fadeIn_0.15s_ease-out]">
                             {SORT_OPTIONS.map((opt) => {
                               const active = sortBy === opt.key;
                               return (
@@ -1179,7 +1208,7 @@ export default function App() {
                                   key={opt.key}
                                   onClick={() => handleSortClick(opt.key)}
                                   className={`w-full flex items-center justify-between gap-2 px-4 py-2.5 text-sm font-body-md transition-colors cursor-pointer ${
-                                    active ? 'text-primary bg-white/5' : 'text-on-surface-variant hover:bg-white/5 hover:text-on-surface'
+                                    active ? 'text-primary bg-surface-container-high' : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
                                   }`}
                                 >
                                   <span>{opt.label}</span>
@@ -1259,7 +1288,7 @@ export default function App() {
                           <button
                             onClick={() => goToPage(prev => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
-                            className="px-4 py-2 min-w-[92px] text-center rounded-xl bg-surface-container border border-white/5 text-xs font-bold text-outline hover:text-on-surface disabled:opacity-30 disabled:pointer-events-none hover:bg-surface-container-high transition-all cursor-pointer"
+                            className="px-4 py-2 min-w-[92px] text-center rounded-xl bg-surface-container border border-outline-variant/40 text-xs font-bold text-outline hover:text-on-surface disabled:opacity-30 disabled:pointer-events-none hover:bg-surface-container-high transition-all cursor-pointer"
                           >
                             Previous
                           </button>
@@ -1274,7 +1303,7 @@ export default function App() {
                                 onClick={() => goToPage(p)}
                                 className={p === currentPage
                                   ? "w-9 h-9 rounded-xl text-xs font-black bg-primary text-on-primary shadow-lg shadow-primary/20 cursor-default"
-                                  : "w-9 h-9 rounded-xl text-xs font-black bg-surface-container border border-white/5 text-outline hover:text-on-surface hover:bg-surface-container-high cursor-pointer"}
+                                  : "w-9 h-9 rounded-xl text-xs font-black bg-surface-container border border-outline-variant/40 text-outline hover:text-on-surface hover:bg-surface-container-high cursor-pointer"}
                               >
                                 {p}
                               </button>
@@ -1284,7 +1313,7 @@ export default function App() {
                           <button
                             onClick={() => goToPage(prev => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
-                            className="px-4 py-2 min-w-[92px] text-center rounded-xl bg-surface-container border border-white/5 text-xs font-bold text-outline hover:text-on-surface disabled:opacity-30 disabled:pointer-events-none hover:bg-surface-container-high transition-all cursor-pointer"
+                            className="px-4 py-2 min-w-[92px] text-center rounded-xl bg-surface-container border border-outline-variant/40 text-xs font-bold text-outline hover:text-on-surface disabled:opacity-30 disabled:pointer-events-none hover:bg-surface-container-high transition-all cursor-pointer"
                           >
                             Next
                           </button>
@@ -1303,7 +1332,7 @@ export default function App() {
                 .sort((a, b) => new Date(b.chapter.last_read_at || 0) - new Date(a.chapter.last_read_at || 0));
               return (
                 <section className="flex flex-col gap-4 w-full">
-                  <div className="border-b border-white/5 pb-4">
+                  <div className="border-b border-outline-variant/40 pb-4">
                     <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface flex items-center gap-3">
                       <RotateCcw className="w-6 h-6 text-sky-400" />
                       Riwayat
@@ -1328,7 +1357,7 @@ export default function App() {
 
       {/* Global Footer (Only on Homepage catalog) */}
       {!loadingManga && routePage !== 'reader' && (activeTab === 'library' || !!selectedManga) && (
-        <footer className="w-full pt-4 md:pt-6 xl:pt-8 pb-4 md:pb-6 xl:pb-8 bg-surface border-t border-white/60 mt-auto">
+        <footer className="w-full pt-4 md:pt-6 xl:pt-8 pb-4 md:pb-6 xl:pb-8 bg-surface border-t border-outline-variant mt-auto">
           <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-3">
             <div className="h-11 aspect-[1843/552] md:h-14 xl:h-16">
               <img
@@ -1345,38 +1374,38 @@ export default function App() {
             <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
               <button
                 onClick={() => setShowDisclaimer(true)}
-                className="font-body-sm text-[10px] text-outline hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
+                className="font-body-sm text-[10px] text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
               >
                 Disclaimer
               </button>
-              <span className="text-outline text-[10px]">·</span>
+              <span className="text-on-surface-variant text-[10px]">·</span>
               <button
                 onClick={() => setShowPrivacy(true)}
-                className="font-body-sm text-[10px] text-outline hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
+                className="font-body-sm text-[10px] text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
               >
                 Kebijakan Privasi
               </button>
-              <span className="text-outline text-[10px]">·</span>
+              <span className="text-on-surface-variant text-[10px]">·</span>
               <button
                 onClick={() => setShowTerms(true)}
-                className="font-body-sm text-[10px] text-outline hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
+                className="font-body-sm text-[10px] text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
               >
                 Syarat &amp; Ketentuan
               </button>
-              <span className="text-outline text-[10px]">·</span>
+              <span className="text-on-surface-variant text-[10px]">·</span>
               <button
                 onClick={() => setShowDmca(true)}
-                className="font-body-sm text-[10px] text-outline hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
+                className="font-body-sm text-[10px] text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer underline underline-offset-2"
               >
                 DMCA
               </button>
             </div>
-            <span className="font-body-sm text-[10px] text-outline">
+            <span className="font-body-sm text-[10px] text-on-surface-variant">
               © {new Date().getFullYear()} Nurananto Scanlation. Fan Translation — Not for commercial use.
             </span>
             {buildId && (
               <div className="flex items-center gap-2">
-                <span className="font-body-sm text-[9px] text-outline">
+                <span className="font-body-sm text-[9px] text-on-surface-variant">
                   build #{buildId.slice(-6)}
                 </span>
               </div>
@@ -1396,9 +1425,9 @@ export default function App() {
 
       {/* Checking chapter access overlay */}
       {isCheckingAccess && (
-        <div className="fixed inset-0 z-[250] bg-[#090b0d] flex flex-col items-center justify-center gap-4 animate-[fadeIn_0.16s_ease-out]">
+        <div className="fixed inset-0 z-[250] bg-surface flex flex-col items-center justify-center gap-4 animate-[fadeIn_0.16s_ease-out]">
             <div className="relative w-14 h-14">
-              <div className="absolute inset-0 rounded-full border-4 border-white/8" />
+              <div className="absolute inset-0 rounded-full border-4 border-outline-variant/40" />
               <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-primary animate-spin" />
               <div className="absolute inset-[5px] rounded-full border-2 border-transparent border-t-primary/40 animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.8s' }} />
             </div>

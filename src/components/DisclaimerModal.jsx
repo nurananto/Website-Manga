@@ -26,24 +26,24 @@ export default function DisclaimerModal({ onClose }) {
           exit={{ y: 32, opacity: 0 }}
           transition={{ type: 'spring', damping: 28, stiffness: 300 }}
           onClick={(event) => event.stopPropagation()}
-          className="w-full max-w-lg rounded-2xl border border-white/10 bg-surface-container shadow-2xl"
+          className="w-full max-w-lg rounded-2xl border-2 border-outline-variant bg-surface-container shadow-2xl"
         >
-          <div className="flex items-center justify-between border-b border-white/8 px-5 pb-4 pt-5">
+          <div className="flex items-center justify-between border-b border-outline-variant/50 px-5 pb-4 pt-5">
             <div>
               <h2 id="disclaimer-title" className="font-headline-md text-base font-black text-on-surface">Disclaimer</h2>
-              <p className="mt-0.5 font-label-sm text-[10px] text-outline/50">Fan Translation Unofficial</p>
+              <p className="mt-0.5 font-label-sm text-[10px] text-on-surface-variant">Fan Translation Unofficial</p>
             </div>
             <button
               type="button"
               onClick={onClose}
               aria-label="Tutup disclaimer"
-              className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-xl bg-white/5 text-outline/60 transition-colors hover:bg-white/10 hover:text-on-surface"
+              className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-xl bg-surface-container-high text-on-surface-variant transition-colors hover:bg-surface-container-highest hover:text-on-surface"
             >
               <X className="h-4 w-4" />
             </button>
           </div>
 
-          <div className="flex flex-col gap-3 px-5 py-5 font-body-sm text-xs leading-relaxed text-outline/80">
+          <div className="flex flex-col gap-3 px-5 py-5 font-body-sm text-xs leading-relaxed text-on-surface-variant">
             <p>
               Nurananto Scanlation adalah situs fan terjemahan <em>unofficial</em> yang dibuat semata-mata karena kecintaan terhadap manga.
             </p>

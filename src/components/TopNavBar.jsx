@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import { Key, RotateCcw, LogOut, LogIn, Crown } from 'lucide-react';
+import { Key, RotateCcw, LogOut, LogIn, Crown, Sun, Moon } from 'lucide-react';
 import { nowTimestamp } from '../utils';
 import SocialFollowLinks from './SocialFollowLinks';
 
-export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, isSupporter, supporterUntil, isLoggedIn, currentUser, onLoginClick, onLogout, onBecomeSupporter, onDropdownOpen }) {
+export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, isSupporter, supporterUntil, isLoggedIn, currentUser, onLoginClick, onLogout, onBecomeSupporter, onDropdownOpen, theme, onToggleTheme }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -37,7 +37,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
     : (supRemainMs < 86400000 ? 'hari ini berakhir' : `${Math.floor(supRemainMs / 86400000)} hari tersisa`);
 
   return (
-    <nav className="w-full bg-[#07111f]">
+    <nav className="w-full bg-surface border-b border-outline-variant/50 transition-colors">
       <div className="flex items-center h-14 md:h-16 xl:h-[72px] px-3 sm:px-4 md:px-5 xl:px-6 gap-3 md:gap-4 w-full">
         {/* Ikon saja — teks "Nurananto Scanlation" dilepas. Tingginya disamakan
             dengan tombol di sisi kanan supaya kedua ujung header sejajar; ikut
@@ -47,14 +47,14 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
           href="/"
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
           aria-label="Nurananto Scanlation — ke beranda"
-          className="flex items-center active:scale-95 transition-transform duration-150 shrink-0"
+          className="flex items-center justify-center active:scale-95 transition-transform duration-150 shrink-0 rounded-2xl bg-[#075bad] border border-outline-variant w-10 h-10 md:w-11 md:h-11 xl:w-12 xl:h-12 p-1.5"
         >
           <img
             src="/icon.webp"
             alt="Nurananto Scanlation"
             width="488"
             height="658"
-            className={`w-auto ${isLoggedIn ? 'h-10 md:h-11 xl:h-12' : 'h-8 md:h-10 xl:h-12'}`}
+            className="w-full h-full object-contain"
           />
         </a>
 
@@ -64,6 +64,19 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
             "Ikuti Update" di bawah reader, footer, dan dropdown akun. Header
             disisakan untuk logo + aksi akun saja. */}
         <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
+          {/* Toggle light/dark — di kiri tombol login/akun */}
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            aria-label={theme === 'dark' ? 'Ganti ke mode terang' : 'Ganti ke mode gelap'}
+            className="h-8 w-8 md:h-10 md:w-10 xl:h-12 xl:w-12 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center shrink-0 shadow-md active:scale-95 transition-all cursor-pointer"
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 md:w-[18px] md:h-[18px] xl:w-5 xl:h-5" />
+            ) : (
+              <Moon className="w-4 h-4 md:w-[18px] md:h-[18px] xl:w-5 xl:h-5" />
+            )}
+          </button>
           <div ref={dropdownRef} className="relative">
             <div className="relative">
             {isLoggedIn ? (
@@ -73,10 +86,10 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                 aria-expanded={isDropdownOpen}
                 onClick={() => { setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); }}
                 className={`h-10 md:h-11 xl:h-12 rounded-xl border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md flex items-center gap-2 bg-surface-container-high p-1.5 pr-3 ${
-                  activeTab === 'profile' || isDropdownOpen ? 'border-primary' : 'border-white/10'
+                  activeTab === 'profile' || isDropdownOpen ? 'border-primary' : 'border-outline-variant/60'
                 }`}
               >
-                <span className="w-7 h-7 md:w-8 md:h-8 xl:w-9 xl:h-9 rounded-full overflow-hidden border border-white/10 bg-surface-container-highest flex items-center justify-center shrink-0">
+                <span className="w-7 h-7 md:w-8 md:h-8 xl:w-9 xl:h-9 rounded-full overflow-hidden border border-outline-variant/60 bg-surface-container-highest flex items-center justify-center shrink-0">
                   {avatarUrl ? (
                     <img alt="avatar" className="w-full h-full object-cover" src={avatarUrl} referrerPolicy="no-referrer" />
                   ) : (
@@ -102,10 +115,10 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
             </div>
 
             {isLoggedIn && isDropdownOpen && (
-              <div className="absolute right-0 top-12 w-56 sm:w-60 md:w-64 bg-surface-container border border-white/5 rounded-xl shadow-2xl py-1.5 z-50 animate-[fadeIn_0.15s_ease-out]">
+              <div className="absolute right-0 top-12 w-56 sm:w-60 md:w-64 bg-surface-container border border-outline-variant/40 rounded-xl shadow-2xl py-1.5 z-50 animate-[fadeIn_0.15s_ease-out]">
               <>
                   {/* Nama + badge + countdown Supporter (tepat di bawah nama) */}
-                  <div className="px-4 py-2.5 border-b border-white/5">
+                  <div className="px-4 py-2.5 border-b border-outline-variant/40">
                     <span className={`flex w-full items-center justify-center gap-1 px-1.5 py-1 rounded-lg font-label-sm text-[9px] md:text-[10px] font-black uppercase tracking-wider mb-1.5 ${
                       supActive
                         ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
@@ -123,7 +136,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                   </div>
 
                   {/* Jadi / Perpanjang Supporter */}
-                  <div className="px-3 py-2 md:py-2.5 border-b border-white/5">
+                  <div className="px-3 py-2 md:py-2.5 border-b border-outline-variant/40">
                     <button
                       onClick={() => { onBecomeSupporter?.(); setIsDropdownOpen(false); }}
                       className="w-full h-9 md:h-10 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white text-[11px] md:text-xs font-black flex items-center justify-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer"
@@ -135,14 +148,14 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
                   <button
                     onClick={() => { onTabClick('profile'); setIsDropdownOpen(false); }}
-                    className="w-full text-left px-4 py-2.5 md:py-3 text-xs md:text-sm font-bold text-on-surface hover:bg-white/5 hover:text-primary flex items-center gap-2.5 md:gap-3 cursor-pointer"
+                    className="w-full text-left px-4 py-2.5 md:py-3 text-xs md:text-sm font-bold text-on-surface hover:bg-surface-container-high hover:text-primary flex items-center gap-2.5 md:gap-3 cursor-pointer"
                   >
                     <RotateCcw className="w-4 h-4 md:w-5 md:h-5 text-sky-400" />
                     <span>History</span>
                   </button>
                   <button
                     onClick={() => { setIsDropdownOpen(false); if (onChangePasswordClick) onChangePasswordClick(); }}
-                    className="w-full text-left px-4 py-2.5 md:py-3 text-xs md:text-sm font-bold text-on-surface hover:bg-white/5 hover:text-primary flex items-center gap-2.5 md:gap-3 cursor-pointer border-t border-white/5"
+                    className="w-full text-left px-4 py-2.5 md:py-3 text-xs md:text-sm font-bold text-on-surface hover:bg-surface-container-high hover:text-primary flex items-center gap-2.5 md:gap-3 cursor-pointer border-t border-outline-variant/40"
                   >
                     <Key className="w-4 h-4 md:w-5 md:h-5 text-amber-500" />
                     <span>Pengaturan Akun</span>
@@ -150,12 +163,12 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
                   <SocialFollowLinks
                     layout="stack"
-                    className="animate-[fadeIn_0.2s_ease-out] border-t border-white/5 px-3 py-2 md:py-2.5"
+                    className="animate-[fadeIn_0.2s_ease-out] border-t border-outline-variant/40 px-3 py-2 md:py-2.5"
                   />
 
                   <button
                     onClick={() => { setIsDropdownOpen(false); onLogout(); }}
-                    className="w-full text-left px-4 py-2.5 md:py-3 text-xs md:text-sm font-bold text-red-400 hover:bg-red-500/10 flex items-center gap-2.5 md:gap-3 cursor-pointer border-t border-white/5"
+                    className="w-full text-left px-4 py-2.5 md:py-3 text-xs md:text-sm font-bold text-red-400 hover:bg-red-500/10 flex items-center gap-2.5 md:gap-3 cursor-pointer border-t border-outline-variant/40"
                   >
                     <LogOut className="w-4 h-4 md:w-5 md:h-5" />
                     <span>Log out</span>

@@ -1,7 +1,26 @@
 <!doctype html>
-<html lang="id" class="dark">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
+    <!-- Tema light/dark — HARUS jadi script pertama yang jalan, sebelum CSS
+         sempat melukis apa pun. Baca localStorage (pilihan manual user, menang
+         selamanya) atau fallback ke prefers-color-scheme OS. Tanpa ini, halaman
+         akan flash tema default sesaat sebelum React mount & set attribute-nya.
+         data-cfasync="false" — Cloudflare Rocket Loader (kalau aktif di zone)
+         menunda SEMUA script termasuk inline ke setelah render pertama demi
+         "performa", yang justru bikin flash tema ini terjadi. Atribut ini
+         flag resmi Cloudflare utk kecualikan 1 script ini dari penundaan itu. -->
+    <script data-cfasync="false">
+      (function () {
+        try {
+          var saved = localStorage.getItem('mf_theme');
+          var theme = (saved === 'dark' || saved === 'light')
+            ? saved
+            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
     <!-- Blok statis SEO (dibuat scripts/inline-css.cjs) ditujukan HANYA untuk agen
          yang tidak menjalankan JS. Kelas .js dipasang di sini, sebelum isi body
          diurai, jadi aturan di bawah sudah berlaku pada lukisan pertama dan

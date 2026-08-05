@@ -83,7 +83,7 @@ function NextUpdateInfo({ value }) {
   // Ada isi tapi bukan tanggal → tampilkan teks apa adanya
   if (!isDate) {
     return (
-      <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-surface-container-high/50 rounded-lg px-3 py-2 border border-white/5">
+      <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-surface-container-high/50 rounded-lg px-3 py-2 border border-outline-variant/40">
         Chapter berikutnya diupload sekitar <span className="text-primary font-bold">{value}</span>
       </p>
     );
@@ -102,7 +102,7 @@ function NextUpdateInfo({ value }) {
   if (!d && m) parts.push(`${m} menit`);
 
   return (
-    <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-surface-container-high/50 rounded-lg px-3 py-2 border border-white/5">
+    <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-surface-container-high/50 rounded-lg px-3 py-2 border border-outline-variant/40">
       Chapter berikutnya rilis dalam <span className="text-primary font-bold">{parts.join(' ') || 'kurang dari 1 menit'}</span>
     </p>
   );
@@ -186,17 +186,17 @@ function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, 
       style={loaded ? undefined : { aspectRatio: '2 / 3' }}
     >
       {!ready && inView && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11]">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-surface">
           <span className="font-body-md text-sm text-outline/50">Memuat akses chapter...</span>
         </div>
       )}
       {ready && !loaded && !failed && inView && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11]">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-surface">
           <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
         </div>
       )}
       {failed && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0f11] gap-3">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-surface gap-3">
           <span className="font-body-md text-sm text-outline/50">Gagal memuat halaman {idx + 1}</span>
           <button
             onClick={handleRetry}
@@ -716,14 +716,14 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   // Render helper (bukan komponen) — dipanggil sebagai fungsi agar tidak
   // di-remount tiap render dan tidak melanggar react-hooks/static-components.
   const renderNavBar = (position) => (
-    <div className={`flex items-center gap-2 w-full px-2 py-2 bg-surface-container-lowest/90 backdrop-blur-md border-white/20 ${
+    <div className={`flex items-center gap-2 w-full px-2 py-2 bg-surface-container-lowest/90 backdrop-blur-md border-outline-variant/50 ${
       position === 'top' ? 'border-b' : 'border-t pb-safe-4'
     }`}>
       {/* Previous */}
       <button
         onClick={handlePrev}
         disabled={prevDisabled}
-        className="flex-1 h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base font-bold text-on-surface disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
+        className="flex-1 h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/40 flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base font-bold text-on-surface disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
       >
         <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         <span className="hidden sm:inline">Prev</span>
@@ -734,7 +734,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
         <button
           ref={(el) => { chapterBtnRefs.current[position] = el; }}
           onClick={() => toggleChapterList(position)}
-          className="box-border w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-white/5 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-sm md:text-base font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
+          className="box-border w-full h-9 sm:h-10 md:h-11 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/40 flex items-center justify-center gap-2 px-2 sm:px-3 text-xs sm:text-sm md:text-base font-bold text-on-surface active:scale-95 transition-all cursor-pointer truncate"
         >
           <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary shrink-0" />
           <span className="truncate">{activeChapter.title.split(':')[0]}</span>
@@ -757,7 +757,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     <div className="px-2 py-2">
       <button
         onClick={onClose}
-        className="h-11 w-full min-w-0 cursor-pointer rounded-xl border border-white/10 bg-surface-container px-3 transition-colors hover:bg-surface-container-high active:scale-[0.99] sm:h-12 sm:px-4 md:h-14"
+        className="h-11 w-full min-w-0 cursor-pointer rounded-xl border border-outline-variant bg-surface-container px-3 transition-colors hover:bg-surface-container-high active:scale-[0.99] sm:h-12 sm:px-4 md:h-14"
       >
         <div className="flex h-full items-center gap-2.5 sm:gap-3">
           <ArrowLeft className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" />
@@ -781,10 +781,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[200] bg-[#090b0d] flex flex-col font-body-md"
+        className="fixed inset-0 z-[200] bg-surface flex flex-col font-body-md"
       >
         {/* Webtoon Canvas — seluruh konten ikut scroll termasuk top bar */}
-        <div ref={scrollRef} className="flex-1 overflow-y-auto bg-[#090b0d] flex flex-col items-center hide-scrollbar">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto bg-surface flex flex-col items-center hide-scrollbar">
           <div className="w-full">
 
             {/* Kembali ke detail + komentar Discord — atas */}
@@ -839,7 +839,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
         {accessGateOpen && (
           <div
             ref={accessDialogRef}
-            className="absolute inset-0 z-[205] bg-[#090b0d]/95 backdrop-blur-sm flex flex-col items-center justify-center gap-5 px-6"
+            className="absolute inset-0 z-[205] bg-surface/95 backdrop-blur-sm flex flex-col items-center justify-center gap-5 px-6"
             role="dialog"
             aria-modal="true"
             aria-labelledby="chapter-access-title"
@@ -873,7 +873,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             )}
             <button
               onClick={onClose}
-              className="mt-2 font-label-sm text-xs font-bold px-5 py-2 rounded-xl border border-white/10 text-outline hover:text-on-surface hover:bg-white/5 transition-colors cursor-pointer"
+              className="mt-2 font-label-sm text-xs font-bold px-5 py-2 rounded-xl border border-outline-variant text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors cursor-pointer"
             >
               ← Kembali
             </button>
@@ -913,9 +913,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
 
           {/* Expanded: pill segments */}
           <div
-            className={`overflow-hidden transition-all duration-200 bg-black/80 backdrop-blur-sm flex items-center gap-2 px-3 ${barExpanded ? 'h-9' : 'h-0'}`}
+            className={`overflow-hidden transition-all duration-200 bg-surface-container-lowest/90 backdrop-blur-sm flex items-center gap-2 px-3 ${barExpanded ? 'h-9' : 'h-0'}`}
           >
-            <span className="font-label-sm text-xs md:text-sm font-bold text-white/50 shrink-0 w-5 text-right tabular-nums leading-none">
+            <span className="font-label-sm text-xs md:text-sm font-bold text-on-surface-variant shrink-0 w-5 text-right tabular-nums leading-none">
               1
             </span>
             <div className="flex-1 flex items-center gap-[3px]">
@@ -925,7 +925,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                   <div className={`absolute bottom-full mb-1 left-1/2 -translate-x-1/2
                     font-label-sm text-[10px] sm:text-xs font-black px-1.5 py-0.5 rounded-md pointer-events-none
                     opacity-0 group-hover/seg:opacity-100 transition-opacity duration-100 whitespace-nowrap
-                    bg-white/20 text-white/70
+                    bg-surface-container-high text-on-surface-variant
                     ${i === currentPage ? 'hidden' : ''}`}>
                     {i + 1}
                   </div>
@@ -945,19 +945,19 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                     className="flex h-6 w-full cursor-pointer items-center"
                   >
                     <span className={`h-[6px] w-full rounded-full transition-colors duration-150 ${
-                      i <= currentPage ? 'bg-primary' : 'bg-white/25 group-hover/seg:bg-white/50'
+                      i <= currentPage ? 'bg-primary' : 'bg-outline-variant group-hover/seg:bg-outline'
                     }`} />
                   </button>
                 </div>
               ))}
             </div>
-            <span className="font-label-sm text-xs md:text-sm font-bold text-white/50 shrink-0 w-5 tabular-nums leading-none">
+            <span className="font-label-sm text-xs md:text-sm font-bold text-on-surface-variant shrink-0 w-5 tabular-nums leading-none">
               {pageCount}
             </span>
           </div>
 
           {/* Minimized: garis tipis */}
-          <div className="h-[3px] bg-white/10 w-full">
+          <div className="h-[3px] bg-outline-variant/40 w-full">
             <div
               className="h-full bg-primary transition-all duration-300 rounded-r-full"
               style={{ width: `${pageCount > 1 ? (currentPage / (pageCount - 1)) * 100 : 100}%` }}
@@ -995,14 +995,14 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
                 onClick={e => e.stopPropagation()}
-                className="bg-surface-container border border-white/10 rounded-2xl p-6 max-w-sm w-full shadow-2xl flex flex-col gap-4 text-center"
+                className="bg-surface-container border border-outline-variant rounded-2xl p-6 max-w-sm w-full shadow-2xl flex flex-col gap-4 text-center"
               >
                 {/* Cover manga menggantikan ikon buku */}
                 {activeManga?.coverUrl && (
                   <ResponsiveCover
                     manga={activeManga}
                     alt={activeManga.title}
-                    className="w-24 aspect-[2/3] object-cover rounded-xl mx-auto shadow-lg border border-white/15"
+                    className="w-24 aspect-[2/3] object-cover rounded-xl mx-auto shadow-lg border border-outline-variant"
                   />
                 )}
                 <div>
@@ -1047,7 +1047,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 top: dropdownAnchor?.top,
                 bottom: dropdownAnchor?.bottom,
               }}
-              className="bg-surface-container border border-white/10 rounded-xl shadow-2xl overflow-hidden"
+              className="bg-surface-container border border-outline-variant rounded-xl shadow-2xl overflow-hidden"
             >
               <div
                 className="overflow-y-auto hide-scrollbar"
@@ -1083,16 +1083,16 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                         setOpenChapterList(null);
                         if (!isActive) onReadChapter(ch, manga.title);
                       }}
-                      className={`w-full flex items-center justify-between px-4 py-3 text-left text-sm md:text-base lg:text-lg font-semibold transition-colors cursor-pointer border-b border-white/5 last:border-0 ${
+                      className={`w-full flex items-center justify-between px-4 py-3 text-left text-sm md:text-base lg:text-lg font-semibold transition-colors cursor-pointer border-b border-outline-variant/40 last:border-0 ${
                         isActive
                           ? 'bg-primary/10 text-primary font-black'
                           : 'text-on-surface-variant hover:bg-white/5 hover:text-on-surface'
                       }`}
                     >
                       <div className="flex items-center gap-1.5 min-w-0 flex-1">
-                        <span className={`truncate transition-opacity ${isRead ? 'opacity-40' : ''} ${showEarlyAccess ? 'text-amber-300' : ''}`}>{ch.title}</span>
+                        <span className={`truncate transition-opacity ${isRead ? 'opacity-40' : ''} ${showEarlyAccess ? 'text-amber-600 dark:text-amber-300' : ''}`}>{ch.title}</span>
                         {showEarlyAccess && (
-                          <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                          <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30">
                             Early Access
                           </span>
                         )}

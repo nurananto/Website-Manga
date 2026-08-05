@@ -1,7 +1,78 @@
 @import "tailwindcss";
 
+/* dark: aktif berdasar atribut data-theme di <html> (di-set JS + localStorage),
+   BUKAN prefers-color-scheme OS — supaya toggle manual selalu menang. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
-  /* Theme variables matching the custom layout */
+  /* Custom fonts */
+  --font-body-md: "Inter", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-display-lg: "Hanken Grotesk", sans-serif;
+  --font-label-sm: "Geist", sans-serif;
+  --font-headline-md: "Hanken Grotesk", sans-serif;
+  --font-display-lg-mobile: "Hanken Grotesk", sans-serif;
+
+  /* Spacing and constants */
+  --spacing-safe-area: max(2rem, 5vw);
+  --spacing-content-max-width: 1200px;
+  --spacing-element-gap: 1.5rem;
+  --spacing-section-gap: 4rem;
+
+  /* Warna LIGHT (default) didaftarkan langsung di sini supaya Tailwind generate
+     utility-nya (bg-surface, text-on-surface, dst). Nilai DARK di-override di
+     bawah lewat selector [data-theme="dark"] pada :root. */
+  --color-on-secondary-fixed: #0d1c2d;
+  --color-on-secondary: #ffffff;
+  --color-surface-tint: #075bad;
+  --color-on-secondary-container: #1b3a57;
+  --color-surface-bright: #ffffff;
+  --color-on-error-container: #410002;
+  --color-outline-variant: #9aa2ae;
+  --color-on-tertiary-fixed-variant: #693c00;
+  --color-surface-dim: #dadde1;
+  --color-surface-container: #f0f2f5;
+  --color-surface-variant: #e1e5eb;
+  --color-surface: #ffffff;
+  --color-inverse-surface: #2c3135;
+  --color-tertiary-fixed-dim: #ffb86e;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-primary-fixed: #001e2f;
+  --color-primary-container: #cfe6ff;
+  --color-primary: #0a4a86;
+  --color-error-container: #ffdad6;
+  --color-tertiary-container: #ffddb3;
+  --color-inverse-primary: #89ceff;
+  --color-tertiary-fixed: #ffdcbd;
+  --color-outline: #73777f;
+  --color-tertiary: #8a5000;
+  --color-secondary: #39485a;
+  --color-on-error: #ffffff;
+  --color-primary-fixed: #c9e6ff;
+  --color-secondary-fixed: #d4e4fa;
+  --color-background: #ffffff;
+  --color-on-surface-variant: #43474e;
+  --color-on-surface: #1a1c1e;
+  --color-secondary-container: #dbe7f7;
+  --color-primary-fixed-dim: #89ceff;
+  --color-error: #ba1a1a;
+  --color-surface-container-high: #e8eaed;
+  --color-inverse-on-surface: #f1f0f4;
+  --color-on-primary-fixed-variant: #004c6e;
+  --color-on-secondary-fixed-variant: #39485a;
+  --color-on-primary-container: #003751;
+  --color-on-background: #1a1c1e;
+  --color-secondary-fixed-dim: #b9c8de;
+  --color-on-tertiary-fixed: #2c1600;
+  --color-on-primary: #ffffff;
+  --color-surface-container-highest: #e0e3e7;
+  --color-surface-container-low: #f6f8fa;
+  --color-on-tertiary-container: #291800;
+  --color-on-tertiary: #ffffff;
+}
+
+/* ── Dark (toggle) ── */
+:root[data-theme="dark"] {
   --color-on-secondary-fixed: #0d1c2d;
   --color-on-secondary: #233143;
   --color-surface-tint: #89ceff;
@@ -49,20 +120,6 @@
   --color-surface-container-low: #171c20;
   --color-on-tertiary-container: #4d2b00;
   --color-on-tertiary: #492900;
-
-  /* Custom fonts */
-  --font-body-md: "Inter", sans-serif;
-  --font-body-lg: "Inter", sans-serif;
-  --font-display-lg: "Hanken Grotesk", sans-serif;
-  --font-label-sm: "Geist", sans-serif;
-  --font-headline-md: "Hanken Grotesk", sans-serif;
-  --font-display-lg-mobile: "Hanken Grotesk", sans-serif;
-
-  /* Spacing and constants */
-  --spacing-safe-area: max(2rem, 5vw);
-  --spacing-content-max-width: 1200px;
-  --spacing-element-gap: 1.5rem;
-  --spacing-section-gap: 4rem;
 }
 
 /* Custom Styles */
@@ -72,6 +129,19 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+}
+
+/* Transisi halus saat toggle light/dark — cuma warna (bukan transform/layout),
+   supaya tidak bentrok dengan transition-transform (active:scale-95, dst) atau
+   animation lain (badge-new-glow, donate-glow tetap pakai box-shadow sendiri).
+   Elemen yang sudah punya transition-colors/transition-all sendiri (Tailwind)
+   tetap pakai punya sendiri karena class selector lebih spesifik dari *. */
+*, *::before, *::after {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, fill 0.2s ease, stroke 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
 }
 
 /* Safe area padding for mobile device nav bar */

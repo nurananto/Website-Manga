@@ -118,7 +118,7 @@ const renderChapterRow = (ch) => {
         type="button"
         key={ch.id}
         onClick={() => onReadChapter(ch, manga.title)}
-        className="group flex w-full items-center justify-between py-3 px-2 sm:px-3 text-left transition-all cursor-pointer rounded-xl border bg-surface-container/30 border-white/8 hover:bg-white/5 hover:border-white/15"
+        className="group flex w-full items-center justify-between py-3 px-2 sm:px-3 text-left transition-all cursor-pointer rounded-xl border bg-surface-container/30 border-outline-variant/40 hover:bg-surface-container-high hover:border-outline-variant"
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
         <div className="flex items-center gap-2.5 min-w-0 flex-1">
@@ -127,26 +127,26 @@ const renderChapterRow = (ch) => {
             className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-opacity ${!isUnread ? 'opacity-40' : ''} ${
               showEarlyAccess
                 ? 'bg-amber-500/20 border border-amber-400/60'
-                : 'bg-white/5 border border-white/20'
+                : 'bg-surface-container-high border border-outline-variant'
             }`}
           >
             {showEarlyAccess ? (
-              <Lock className="w-6 h-6 md:w-[26px] md:h-[26px] lg:w-7 lg:h-7 text-amber-300 stroke-[2.5]" />
+              <Lock className="w-6 h-6 md:w-[26px] md:h-[26px] lg:w-7 lg:h-7 text-amber-600 dark:text-amber-300 stroke-[2.5]" />
             ) : (
-              <BookOpen className="w-6 h-6 md:w-[26px] md:h-[26px] lg:w-7 lg:h-7 text-white stroke-[2.25]" />
+              <BookOpen className="w-6 h-6 md:w-[26px] md:h-[26px] lg:w-7 lg:h-7 text-on-surface stroke-[2.25]" />
             )}
           </span>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 min-w-0">
               <p className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-all truncate ${!isUnread ? 'opacity-40' : ''} ${
                 showEarlyAccess
-                  ? 'text-amber-300 group-hover:text-amber-200'
+                  ? 'text-amber-600 dark:text-amber-300 group-hover:text-amber-500 dark:group-hover:text-amber-200'
                   : 'text-on-surface group-hover:text-primary'
               }`}>
                 {chapterTitle}
               </p>
               {showEarlyAccess && (
-                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30">
                   Early Access
                 </span>
               )}
@@ -158,8 +158,8 @@ const renderChapterRow = (ch) => {
               {showStatusBadge && (
                 <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider ${
                   manga.status === 'Tamat' || isOneshot
-                    ? 'bg-red-500/15 text-red-400 border border-red-500/30'
-                    : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
+                    ? 'bg-red-500/15 text-red-700 dark:text-red-400 border border-red-500/30'
+                    : 'bg-zinc-500/15 text-zinc-700 dark:text-zinc-400 border border-zinc-500/30'
                 }`}>
                   {manga.status === 'Tamat' || isOneshot ? 'END' : manga.status}
                 </span>
@@ -192,7 +192,7 @@ const renderChapterRow = (ch) => {
       {/* Main Section — pt mengikuti TopNavBar (72px) */}
       <div className="pt-4 md:pt-6 xl:pt-8 w-full">
         {/* Hero Banner Section */}
-        <section className="relative mx-3 sm:mx-4 md:mx-5 rounded-2xl overflow-hidden border border-white/15 flex items-end pt-3 pb-2">
+        <section className="relative mx-3 sm:mx-4 md:mx-5 rounded-2xl overflow-hidden border border-outline-variant flex items-end pt-3 pb-2">
           {/* Darkened dynamic background */}
           <div className="absolute inset-0 z-0 overflow-hidden bg-surface-container-high">
             <ResponsiveCover
@@ -224,12 +224,14 @@ const renderChapterRow = (ch) => {
             {/* Metadata info */}
             <div className="flex-grow min-w-0 w-full flex flex-col items-center sm:items-start pb-1">
               {/* Title — max 2 baris */}
-              <h2 className="font-headline-md text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-on-surface font-black tracking-tight mb-1.5 text-center sm:text-left line-clamp-2">
+              <h2 className="font-headline-md text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_12px_rgba(0,0,0,0.75)] font-black tracking-tight mb-1.5 text-center sm:text-left line-clamp-2">
                 {manga.title}
               </h2>
 
-              {/* Alternative Title */}
-              <p className="text-outline/80 text-sm sm:text-base md:text-lg font-semibold mb-3 leading-normal text-center sm:text-left line-clamp-1">
+              {/* Alternative Title — SENGAJA text-white (bukan ikut tema): duduk di atas
+                  scrim gelap tetap (bg-black/28 + gradient) yang sengaja selalu gelap
+                  apa pun tema situs, sama seperti FeaturedCarousel/SpotlightCarousel. */}
+              <p className="text-white/80 [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_1px_8px_rgba(0,0,0,0.7)] text-sm sm:text-base md:text-lg font-semibold mb-3 leading-normal text-center sm:text-left line-clamp-1">
                 {manga.alternativeTitle || manga.alt_title || ''}
               </p>
 
@@ -255,7 +257,7 @@ const renderChapterRow = (ch) => {
                     {continueChapter && (
                       <button
                         onClick={() => onReadChapter(continueChapter, manga.title)}
-                        className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest border border-white/10 text-on-surface font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
+                        className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-black/30 hover:bg-black/45 border border-white/30 text-white backdrop-blur-sm font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
                       >
                         <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
                         Lanjut {manga.status === 'Oneshot' ? 'Oneshot' : `Ch. ${continueChapter.chapter_number}`}
@@ -274,10 +276,10 @@ const renderChapterRow = (ch) => {
         </div>
 
         {/* Wrapper: border di mobile/tablet, tidak di desktop */}
-        <div className="mx-3 sm:mx-4 md:mx-5 mt-4 md:mt-6 border border-white/15 rounded-2xl lg:border-0 lg:rounded-none lg:mx-0 lg:mt-0">
+        <div className="mx-3 sm:mx-4 md:mx-5 mt-4 md:mt-6 border border-outline-variant rounded-2xl lg:border-0 lg:rounded-none lg:mx-0 lg:mt-0">
 
           {/* Tab Switcher — mobile/tablet only */}
-          <div className="flex border-b border-white/10 lg:hidden">
+          <div className="flex border-b border-outline-variant lg:hidden">
             <button
               onClick={() => setActiveDetailTab('info')}
               className={`flex-1 py-3 text-sm font-bold border-b-2 transition-all cursor-pointer ${
@@ -303,25 +305,25 @@ const renderChapterRow = (ch) => {
           {/* Grid: 1 kolom mobile, 2 kolom desktop */}
           <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-5 lg:mt-4 lg:px-4 lg:items-start">
             {/* Column 1: Info */}
-            <div className={`lg:col-span-5 lg:flex flex-col gap-4 p-3 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
+            <div className={`lg:col-span-5 lg:flex flex-col gap-4 p-3 lg:border lg:border-outline-variant lg:rounded-2xl ${activeDetailTab === 'info' ? 'flex' : 'hidden'}`}>
 
             {/* Stats: Rating + Chapters + Total Views */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3">
-              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-white/5">
+              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-outline-variant/40">
                 <div className="flex items-center gap-1.5">
                   <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-current" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.rating}</span>
                 </div>
                 <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/70 font-semibold uppercase tracking-wide">Rating</span>
               </div>
-              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-white/5">
+              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-outline-variant/40">
                 <div className="flex items-center gap-1.5">
                   <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.chapters.length}</span>
                 </div>
                 <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/70 font-semibold uppercase tracking-wide">Chapters</span>
               </div>
-              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-white/5">
+              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-outline-variant/40">
                 <div className="flex items-center gap-1.5">
                   <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.total_views ? (manga.total_views >= 1000 ? `${(manga.total_views / 1000).toFixed(1)}k` : String(manga.total_views)) : '—'}</span>
@@ -331,8 +333,8 @@ const renderChapterRow = (ch) => {
             </div>
 
             {/* Author + Artist */}
-            <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-white/5 overflow-hidden">
-              <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 border-r border-white/5 min-w-0" style={fitCreatorStyle(manga.author)}>
+            <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-outline-variant/40 overflow-hidden">
+              <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 border-r border-outline-variant/40 min-w-0" style={fitCreatorStyle(manga.author)}>
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Author</span>
                 <span className="font-body-md text-sm sm:text-sm md:text-base font-bold text-on-surface truncate">{manga.author || '—'}</span>
               </div>
@@ -343,8 +345,8 @@ const renderChapterRow = (ch) => {
             </div>
 
             {/* Status + Type */}
-            <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-white/5 overflow-hidden">
-              <div className="flex flex-col gap-1 p-3 sm:p-4 border-r border-white/5">
+            <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-outline-variant/40 overflow-hidden">
+              <div className="flex flex-col gap-1 p-3 sm:p-4 border-r border-outline-variant/40">
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Status</span>
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full shrink-0 ${
@@ -352,8 +354,8 @@ const renderChapterRow = (ch) => {
                     manga.status === 'Hiatus' ? 'bg-zinc-400' : 'bg-emerald-400'
                   }`} />
                   <span className={`font-body-md text-sm sm:text-sm md:text-base font-black ${
-                    manga.status === 'Tamat' || manga.status === 'Oneshot' ? 'text-red-400' :
-                    manga.status === 'Hiatus' ? 'text-zinc-400' : 'text-emerald-400'
+                    manga.status === 'Tamat' || manga.status === 'Oneshot' ? 'text-red-700 dark:text-red-400' :
+                    manga.status === 'Hiatus' ? 'text-zinc-600 dark:text-zinc-400' : 'text-emerald-700 dark:text-emerald-400'
                   }`}>{manga.status === 'Tamat' ? 'Complete' : (manga.status || 'Ongoing')}</span>
                 </div>
               </div>
@@ -365,7 +367,7 @@ const renderChapterRow = (ch) => {
                     const isWebtoon = t === 'webtoon';
                     return (
                       <>
-                        <span className="w-2 h-2 rounded-full shrink-0 bg-white/60" />
+                        <span className="w-2 h-2 rounded-full shrink-0 bg-outline" />
                         <span className="font-body-md text-sm sm:text-sm md:text-base font-black text-on-surface">
                           {isWebtoon ? 'Webtoon' : 'Manga'}
                         </span>
@@ -379,7 +381,7 @@ const renderChapterRow = (ch) => {
             {/* Genres */}
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {manga.genres.map((g) => (
-                <span key={g} className="font-label-sm bg-surface-container-high px-3 py-1.5 rounded-lg text-xs sm:text-sm md:text-base text-on-surface border border-white/5 font-semibold">
+                <span key={g} className="font-label-sm bg-surface-container-high px-3 py-1.5 rounded-lg text-xs sm:text-sm md:text-base text-on-surface border border-outline-variant/40 font-semibold">
                   {g}
                 </span>
               ))}
@@ -389,19 +391,19 @@ const renderChapterRow = (ch) => {
             <div className="grid grid-cols-2 gap-3">
               {manga.mangadex_url ? (
                 <a href={manga.mangadex_url} target="_blank" rel="noopener noreferrer"
-                  className="h-9 sm:h-10 md:h-11 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/20 rounded-xl font-label-sm text-xs sm:text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-orange-400 hover:text-orange-300 cursor-pointer">
+                  className="h-9 sm:h-10 md:h-11 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/30 rounded-xl font-label-sm text-xs sm:text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 cursor-pointer">
                   MangaDex
                 </a>
               ) : (
-                <div className="h-10 bg-surface-container/20 border border-white/5 rounded-xl font-label-sm text-xs font-bold flex items-center justify-center text-outline/30 select-none">MangaDex</div>
+                <div className="h-10 bg-surface-container/20 border border-outline-variant/40 rounded-xl font-label-sm text-xs font-bold flex items-center justify-center text-outline/30 select-none">MangaDex</div>
               )}
               {manga.raw_url ? (
                 <a href={manga.raw_url} target="_blank" rel="noopener noreferrer"
-                  className="h-9 sm:h-10 md:h-11 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 rounded-xl font-label-sm text-xs sm:text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-cyan-400 hover:text-cyan-300 cursor-pointer">
+                  className="h-9 sm:h-10 md:h-11 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 rounded-xl font-label-sm text-xs sm:text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all text-cyan-700 dark:text-cyan-400 hover:text-cyan-800 dark:hover:text-cyan-300 cursor-pointer">
                   Raw Link
                 </a>
               ) : (
-                <div className="h-10 bg-surface-container/20 border border-white/5 rounded-xl font-label-sm text-xs font-bold flex items-center justify-center text-outline/30 select-none">Raw Link</div>
+                <div className="h-10 bg-surface-container/20 border border-outline-variant/40 rounded-xl font-label-sm text-xs font-bold flex items-center justify-center text-outline/30 select-none">Raw Link</div>
               )}
             </div>
 
@@ -427,12 +429,12 @@ const renderChapterRow = (ch) => {
                 <button
                   onClick={() => setGalleryOpen(v => !v)}
                   className={`w-full py-3 flex items-center justify-center gap-2 border-b-2 transition-all cursor-pointer ${
-                    galleryOpen ? 'border-primary text-primary' : 'border-white/10 text-outline hover:text-on-surface'
+                    galleryOpen ? 'border-primary text-primary' : 'border-outline-variant text-outline hover:text-on-surface'
                   }`}
                 >
                   <Images className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span className="font-headline-md text-sm sm:text-base font-bold">Cover Manga</span>
-                  <span className="font-label-sm text-[10px] sm:text-xs font-black text-outline/70 bg-white/5 border border-white/10 rounded-full px-2 py-0.5">
+                  <span className="font-label-sm text-[10px] sm:text-xs font-black text-outline/70 bg-surface-container-high border border-outline-variant rounded-full px-2 py-0.5">
                     {manga.cover_gallery.length}
                   </span>
                   {galleryPages > 1 && galleryOpen && (
@@ -467,7 +469,7 @@ const renderChapterRow = (ch) => {
                               key={`${galleryPage}-${i}`}
                               onClick={() => setLightboxCover(g)}
                               className={`group relative rounded-xl overflow-hidden border transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.6)] ${
-                                isCurrent ? 'border-primary/50 ring-1 ring-primary/30' : 'border-white/10 hover:border-primary/40'
+                                isCurrent ? 'border-primary/50 ring-1 ring-primary/30' : 'border-outline-variant hover:border-primary/40'
                               }`}
                             >
                               <ResponsiveCover
@@ -510,10 +512,10 @@ const renderChapterRow = (ch) => {
           </div>
 
           {/* Column 2: Chapters */}
-          <div className={`lg:col-span-7 lg:flex flex-col p-3 lg:border lg:border-white/10 lg:rounded-2xl ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
+          <div className={`lg:col-span-7 lg:flex flex-col p-3 lg:border lg:border-outline-variant lg:rounded-2xl ${activeDetailTab === 'chapters' ? 'flex' : 'hidden'}`}>
 
             {/* Chapter List Header */}
-            <div className="flex items-center justify-between mb-3 border-b border-white/5 pb-2">
+            <div className="flex items-center justify-between mb-3 border-b border-outline-variant/40 pb-2">
               <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">
                 Chapters <span className="font-body-md text-on-surface-variant font-normal text-xs sm:text-sm">({manga.chapters.length})</span>
               </h3>
@@ -540,7 +542,7 @@ const renderChapterRow = (ch) => {
                     <div className="py-2.5 px-2 -mx-2">
                       <button
                         onClick={() => setShowAllChapters(true)}
-                        className="font-label-sm w-full py-2.5 bg-surface-container/20 hover:bg-surface-container-high/40 border border-white/5 rounded-lg text-on-surface-variant hover:text-primary tracking-wider text-xs font-bold transition-all cursor-pointer text-center"
+                        className="font-label-sm w-full py-2.5 bg-surface-container/20 hover:bg-surface-container-high/40 border border-outline-variant/40 rounded-lg text-on-surface-variant hover:text-primary tracking-wider text-xs font-bold transition-all cursor-pointer text-center"
                       >
                         View More ({sortedChapters.length - 7} more chapters)
                       </button>
@@ -557,7 +559,7 @@ const renderChapterRow = (ch) => {
             {showAllChapters && sortedChapters.length > 7 && (
               <button
                 onClick={() => setShowAllChapters(false)}
-                className="font-label-sm w-full mt-4 py-3 bg-surface-container/20 hover:bg-surface-container-high/40 border border-white/5 rounded-lg text-on-surface-variant hover:text-primary tracking-wider text-xs font-bold transition-all cursor-pointer text-center"
+                className="font-label-sm w-full mt-4 py-3 bg-surface-container/20 hover:bg-surface-container-high/40 border border-outline-variant/40 rounded-lg text-on-surface-variant hover:text-primary tracking-wider text-xs font-bold transition-all cursor-pointer text-center"
               >
                 View Less
               </button>

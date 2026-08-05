@@ -127,7 +127,11 @@ export default function FeaturedCarousel({
             decoding="async"
             className="w-full h-full object-cover object-top"
           />
-          {/* Vignette Overlay */}
+          {/* Vignette Overlay — from-surface (ikut tema, ikut lebih terang di light
+              mode seperti hero MangaDetailPage) + bg-black/45 tetap (lapisan gelap
+              konstan) sebagai jaminan dasar kontras. Teks di atasnya pakai shadow
+              kuat (bukan sekadar text-shadow-md bawaan) supaya tetap terbaca walau
+              gradient-nya jadi terang. */}
           <div className="absolute inset-0 bg-black/45" />
           <div className="absolute inset-0 bg-gradient-to-t from-surface/95 via-surface/55 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/44 to-transparent" />
@@ -143,25 +147,25 @@ export default function FeaturedCarousel({
           <div className="flex gap-1 sm:gap-2 items-center flex-wrap">
             {/* genre 1: selalu tampil (termasuk mobile) */}
             {activeManga.genres[0] && (
-              <span className="bg-surface-variant/85 text-on-surface px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase sm:tracking-wider backdrop-blur-md">
+              <span className="bg-black/40 text-white px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase sm:tracking-wider backdrop-blur-md">
                 {activeManga.genres[0]}
               </span>
             )}
             {/* genre 2: tampil juga di mobile */}
             {activeManga.genres[1] && (
-              <span className="bg-surface-variant/85 text-on-surface px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase sm:tracking-wider backdrop-blur-md">
+              <span className="bg-black/40 text-white px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase sm:tracking-wider backdrop-blur-md">
                 {activeManga.genres[1]}
               </span>
             )}
             {/* genre 3: tampil juga di mobile */}
             {activeManga.genres[2] && (
-              <span className="bg-surface-variant/85 text-on-surface px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase sm:tracking-wider backdrop-blur-md">
+              <span className="bg-black/40 text-white px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase sm:tracking-wider backdrop-blur-md">
                 {activeManga.genres[2]}
               </span>
             )}
             {/* genre ke-4: tablet ke atas */}
             {activeManga.genres[3] && (
-              <span className="hidden sm:inline bg-surface-variant/85 text-on-surface px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
+              <span className="hidden sm:inline bg-black/40 text-white px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
                 {activeManga.genres[3]}
               </span>
             )}
@@ -180,7 +184,7 @@ export default function FeaturedCarousel({
           {/* Title */}
           <h1
             key={`title-${activeManga.id}`}
-            className="min-w-0 font-display-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface text-shadow-md leading-tight truncate animate-[slideUpFade_0.3s_ease-out]"
+            className="min-w-0 font-display-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_12px_rgba(0,0,0,0.75)] leading-tight truncate animate-[slideUpFade_0.3s_ease-out]"
           >
             {activeManga.title}
           </h1>
@@ -188,7 +192,7 @@ export default function FeaturedCarousel({
           {/* Description */}
           <p
             key={`desc-${activeManga.id}`}
-            className="line-clamp-2 sm:line-clamp-3 font-body-lg text-xs sm:text-sm md:text-base lg:text-lg text-on-surface-variant leading-relaxed text-justify animate-[slideUpFade_0.34s_ease-out]"
+            className="line-clamp-2 sm:line-clamp-3 font-body-lg text-xs sm:text-sm md:text-base lg:text-lg text-white/90 [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_1px_8px_rgba(0,0,0,0.7)] leading-relaxed text-justify animate-[slideUpFade_0.34s_ease-out]"
           >
             {activeManga.description}
           </p>
@@ -207,7 +211,7 @@ export default function FeaturedCarousel({
             </button>
             <button
               onClick={() => onViewManga && onViewManga(activeManga)}
-              className="flex items-center gap-1.5 sm:gap-2 bg-surface-container-high hover:bg-surface-container-highest border border-white/10 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
+              className="flex items-center gap-1.5 sm:gap-2 bg-black/30 hover:bg-black/45 border border-white/30 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] backdrop-blur-sm transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
             >
               <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
               Lihat Detail

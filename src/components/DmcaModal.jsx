@@ -26,18 +26,18 @@ export default function DmcaModal({ onClose }) {
           exit={{ y: 40, opacity: 0 }}
           transition={{ type: 'spring', damping: 28, stiffness: 300 }}
           onClick={e => e.stopPropagation()}
-          className="bg-surface-container border border-white/10 rounded-2xl w-full max-w-xl max-h-[85vh] flex flex-col shadow-2xl"
+          className="bg-surface-container border-2 border-outline-variant rounded-2xl w-full max-w-xl max-h-[85vh] flex flex-col shadow-2xl"
         >
-          <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-white/8 shrink-0">
+          <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-outline-variant/50 shrink-0">
             <div>
               <h2 id="dmca-title" className="font-headline-md text-base font-black text-on-surface">Kebijakan DMCA</h2>
-              <p className="font-label-sm text-[10px] text-outline/50 mt-0.5">Perlindungan Hak Cipta</p>
+              <p className="font-label-sm text-[10px] text-on-surface-variant mt-0.5">Perlindungan Hak Cipta</p>
             </div>
             <button
               type="button"
               aria-label="Tutup kebijakan DMCA"
               onClick={onClose}
-              className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-outline/60 hover:text-on-surface transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-xl bg-surface-container-high hover:bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -78,7 +78,7 @@ export default function DmcaModal({ onClose }) {
 
             <Section title="5. Informasi Kontak">
               <p>Kirimkan semua pemberitahuan DMCA dan pemberitahuan balik kepada:</p>
-              <div className="mt-1 p-3 rounded-xl bg-white/5 border border-white/8 flex flex-col gap-0.5">
+              <div className="mt-1 p-3 rounded-xl bg-surface-container-high border border-outline-variant/40 flex flex-col gap-0.5">
                 <strong>DMCA Agent</strong>
                 <span>Nurananto Scanlation</span>
                 <span>Email: <a href="mailto:admin@nuranantoscans.my.id" className="text-primary hover:underline">admin@nuranantoscans.my.id</a></span>
@@ -97,7 +97,7 @@ function Section({ title, children }) {
   return (
     <div className="flex flex-col gap-2">
       <h3 className="font-label-sm text-xs font-black text-primary uppercase tracking-wider">{title}</h3>
-      <div className="font-body-sm text-xs text-outline/80 leading-relaxed flex flex-col gap-1.5 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-1 [&_ul]:pl-3 [&_li]:relative [&_li]:before:content-['•'] [&_li]:before:absolute [&_li]:before:-left-3 [&_li]:before:text-primary/60 [&_ol]:flex [&_ol]:flex-col [&_ol]:gap-1 [&_ol]:pl-4 [&_ol_li]:list-decimal [&_ol_li]:before:content-none [&_strong]:text-on-surface/80 [&_strong]:font-bold">
+      <div className="font-body-sm text-xs text-on-surface-variant leading-relaxed flex flex-col gap-1.5 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-1 [&_ul]:pl-3 [&_li]:relative [&_li]:before:content-['•'] [&_li]:before:absolute [&_li]:before:-left-3 [&_li]:before:text-primary/60 [&_ol]:flex [&_ol]:flex-col [&_ol]:gap-1 [&_ol]:pl-4 [&_ol_li]:list-decimal [&_ol_li]:before:content-none [&_strong]:text-on-surface/80 [&_strong]:font-bold">
         {children}
       </div>
     </div>

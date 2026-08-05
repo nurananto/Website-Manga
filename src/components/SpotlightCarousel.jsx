@@ -103,6 +103,10 @@ function SpotlightBackground({ manga, animate = false, priority = 'low' }) {
         decoding="async"
         className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
       />
+      {/* Scrim ikut tema (from-surface) seperti hero MangaDetailPage, + bg-black/28
+          tetap sebagai lapisan gelap konstan dasar. Teks di atasnya pakai shadow
+          kuat (bukan text-shadow-md bawaan) supaya tetap terbaca walau gradient
+          jadi terang di light mode. */}
       <div className="absolute inset-0 bg-black/28" />
       <div className="absolute inset-0 bg-gradient-to-t from-surface/56 via-surface/20 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-r from-surface/72 via-surface/18 to-transparent" />
@@ -316,7 +320,7 @@ export default function SpotlightCarousel({
           className={`absolute inset-x-2 sm:inset-x-4 z-20 flex flex-col items-center gap-1.5 px-1 ${hasMoved ? 'animate-[spotlightMetaIn_0.38s_cubic-bezier(0.22,1,0.36,1)]' : ''}`}
           style={{ top: padV + coverH + metaGap }}
         >
-          <h3 className="w-full max-w-full truncate text-center font-headline-md text-base sm:text-lg md:text-xl font-black leading-tight text-on-surface">
+          <h3 className="w-full max-w-full truncate text-center font-headline-md text-base sm:text-lg md:text-xl font-black leading-tight text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_10px_rgba(0,0,0,0.75)]">
             {active.title}
           </h3>
 
