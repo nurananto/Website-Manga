@@ -169,7 +169,9 @@ const renderChapterRow = (ch) => {
                 </span>
               )}
             </div>
-            <p className={`font-label-sm text-xs md:text-sm lg:text-base text-outline/60 mt-0.5 transition-opacity ${!isUnread ? 'opacity-80' : ''}`}>{ch.date || timeAgo(ch.release_date)}</p>
+            {/* text-outline solid (bukan /60): /60 cuma ~2.4:1 di atas bg — gagal WCAG
+                AA (butuh 4.5:1) walau tanpa isUnread dimming. Samakan dengan MangaCard. */}
+            <p className={`font-label-sm text-xs md:text-sm lg:text-base text-outline mt-0.5 transition-opacity ${!isUnread ? 'opacity-80' : ''}`}>{ch.date || timeAgo(ch.release_date)}</p>
           </div>
         </div>
 
