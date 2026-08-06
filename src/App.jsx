@@ -1271,7 +1271,7 @@ export default function App() {
                               <div
                                 key={`empty-${i}`}
                                 aria-hidden="true"
-                                className="invisible h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px]"
+                                className="invisible h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px]"
                               />
                             );
                           }
@@ -1303,10 +1303,12 @@ export default function App() {
                           </button>
                           
                           {(() => {
-                            // Jendela 2 nomor halaman: [current, current+1], kecuali di
-                            // halaman terakhir → [last-1, last]. Yang aktif di-highlight.
-                            const startP = currentPage === totalPages ? currentPage - 1 : currentPage;
-                            return [startP, startP + 1].map((p) => (
+                            // Tampilkan SEMUA nomor halaman (katalog cuma puluhan manga,
+                            // totalPages biasanya ≤6) — dulu cuma jendela geser 2 nomor
+                            // [current, current+1] yang bikin tombol biru aktif "loncat"
+                            // ke posisi/angka lain tiap pindah halaman (key={p} beda →
+                            // React remount, bukan cuma re-style, jadi kelihatan blink).
+                            return Array.from({ length: totalPages }, (_, idx) => idx + 1).map((p) => (
                               <button
                                 key={p}
                                 onClick={() => goToPage(p)}

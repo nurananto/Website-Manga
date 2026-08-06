@@ -4,6 +4,8 @@ import { Star, BookOpen, ArrowUpDown, Eye, Images, Download, X, ChevronLeft, Che
 import SupportButtons from './SupportButtons';
 import ResponsiveCover from './ResponsiveCover';
 import CountdownTimer from './CountdownTimer';
+import CoverScrim from './CoverScrim';
+import SolidButton from './SolidButton';
 import { canReadChapter, chapterAccessLevel, chapterNextAccessDate } from '../lib/chapterAccess';
 import { useDialogFocus } from '../lib/useDialogFocus';
 import { recordView } from '../lib/viewGate';
@@ -118,7 +120,7 @@ const renderChapterRow = (ch) => {
         type="button"
         key={ch.id}
         onClick={() => onReadChapter(ch, manga.title)}
-        className="group flex w-full items-center justify-between py-3 px-2 sm:px-3 text-left transition-all cursor-pointer rounded-xl border bg-surface-container/30 border-outline-variant hover:bg-surface-container-high hover:border-outline-variant"
+        className="group flex w-full items-center justify-between py-3 px-2 sm:px-3 text-left transition-all cursor-pointer rounded-xl border bg-surface-container/30 border-transparent hover:bg-surface-container-high hover:border-outline-variant"
       >
         {/* Left: title + date — redup kalau sudah dibaca */}
         <div className="flex items-center gap-2.5 min-w-0 flex-1">
@@ -192,7 +194,7 @@ const renderChapterRow = (ch) => {
       {/* Main Section — pt mengikuti TopNavBar (72px) */}
       <div className="pt-4 md:pt-6 xl:pt-8 w-full">
         {/* Hero Banner Section */}
-        <section className="relative mx-3 sm:mx-4 md:mx-5 rounded-2xl overflow-hidden border border-outline-variant flex items-end pt-3 pb-2">
+        <section className="relative mx-3 sm:mx-4 md:mx-5 rounded-2xl overflow-hidden border border-transparent flex items-end pt-3 pb-2">
           {/* Darkened dynamic background */}
           <div className="absolute inset-0 z-0 overflow-hidden bg-surface-container-high">
             <ResponsiveCover
@@ -202,9 +204,7 @@ const renderChapterRow = (ch) => {
               fetchPriority="low"
               className="w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
             />
-            <div className="absolute inset-0 dark:bg-black/45" />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface/95 via-surface/70 to-transparent dark:from-surface/95 dark:via-surface/55" />
-            <div className="absolute inset-0 bg-gradient-to-r from-surface/92 via-surface/55 to-transparent dark:from-surface/90 dark:via-surface/44" />
+            <CoverScrim variant="hero" />
           </div>
 
           {/* Info Over Cover Container */}
@@ -216,7 +216,7 @@ const renderChapterRow = (ch) => {
                   alt={`${manga.title} Cover`}
                   loading="eager"
                   fetchPriority="high"
-                  className="w-full h-full object-cover rounded-xl shadow-2xl border-2 border-white/25"
+                  className="w-full h-full object-cover rounded-xl shadow-2xl"
                 />
             </div>
 
@@ -246,21 +246,15 @@ const renderChapterRow = (ch) => {
                 if (!firstChapter) return null;
                 return (
                   <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
-                    <button
-                      onClick={() => onReadChapter(firstChapter, manga.title)}
-                      className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-white hover:bg-white/90 border border-black/15 text-black font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
-                    >
+                    <SolidButton variant="light" size="fixed" onClick={() => onReadChapter(firstChapter, manga.title)}>
                       <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       {manga.status === 'Oneshot' ? 'Baca Oneshot' : `Baca Ch. ${firstChapter.chapter_number}`}
-                    </button>
+                    </SolidButton>
                     {continueChapter && (
-                      <button
-                        onClick={() => onReadChapter(continueChapter, manga.title)}
-                        className="h-9 sm:h-10 md:h-11 px-4 sm:px-5 rounded-xl bg-black hover:bg-black/85 border border-white/40 text-white font-bold text-xs sm:text-sm md:text-base flex items-center gap-2 active:scale-95 transition-all cursor-pointer shadow-md"
-                      >
+                      <SolidButton variant="dark" size="fixed" onClick={() => onReadChapter(continueChapter, manga.title)}>
                         <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
                         Lanjut {manga.status === 'Oneshot' ? 'Oneshot' : `Ch. ${continueChapter.chapter_number}`}
-                      </button>
+                      </SolidButton>
                     )}
                   </div>
                 );
@@ -308,21 +302,24 @@ const renderChapterRow = (ch) => {
 
             {/* Stats: Rating + Chapters + Total Views */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3">
-              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-outline-variant">
+              {/* Tanpa border — cukup beda warna background dari halaman buat jadi
+                  "sekat" antar tile. Border cuma dipertahankan di elemen yang bisa
+                  diklik (MangaDex/Raw Link di bawah), bukan di info pasif kayak ini. */}
+              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/50 rounded-xl">
                 <div className="flex items-center gap-1.5">
                   <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-current" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.rating}</span>
                 </div>
                 <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/70 font-semibold uppercase tracking-wide">Rating</span>
               </div>
-              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-outline-variant">
+              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/50 rounded-xl">
                 <div className="flex items-center gap-1.5">
                   <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.chapters.length}</span>
                 </div>
                 <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/70 font-semibold uppercase tracking-wide">Chapters</span>
               </div>
-              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/20 rounded-xl border border-outline-variant">
+              <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/50 rounded-xl">
                 <div className="flex items-center gap-1.5">
                   <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.total_views ? (manga.total_views >= 1000 ? `${(manga.total_views / 1000).toFixed(1)}k` : String(manga.total_views)) : '—'}</span>
@@ -331,21 +328,23 @@ const renderChapterRow = (ch) => {
               </div>
             </div>
 
-            {/* Author + Artist */}
-            <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-outline-variant overflow-hidden">
-              <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 border-r border-outline-variant min-w-0" style={fitCreatorStyle(manga.author)}>
+            {/* Author + Artist — dulu 1 kotak bareng + garis pemisah tengah (border-r),
+                sekarang 2 tile terpisah (masing-masing bg sendiri, dipisah gap) biar
+                konsisten sama pola tile Rating/Chapters/Views di atas. */}
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+              <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 min-w-0 bg-surface-container/50 rounded-xl" style={fitCreatorStyle(manga.author)}>
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Author</span>
                 <span className="font-body-md text-sm sm:text-sm md:text-base font-bold text-on-surface truncate">{manga.author || '—'}</span>
               </div>
-              <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 min-w-0" style={fitCreatorStyle(manga.artist)}>
+              <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 min-w-0 bg-surface-container/50 rounded-xl" style={fitCreatorStyle(manga.artist)}>
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Artist</span>
                 <span className="font-body-md text-sm font-bold text-on-surface truncate">{manga.artist || '—'}</span>
               </div>
             </div>
 
-            {/* Status + Type */}
-            <div className="grid grid-cols-2 gap-0 bg-surface-container/20 rounded-xl border border-outline-variant overflow-hidden">
-              <div className="flex flex-col gap-1 p-3 sm:p-4 border-r border-outline-variant">
+            {/* Status + Type — sama seperti Author/Artist di atas. */}
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+              <div className="flex flex-col gap-1 p-3 sm:p-4 bg-surface-container/50 rounded-xl">
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Status</span>
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full shrink-0 ${
@@ -358,7 +357,7 @@ const renderChapterRow = (ch) => {
                   }`}>{manga.status === 'Tamat' ? 'Complete' : (manga.status || 'Ongoing')}</span>
                 </div>
               </div>
-              <div className="flex flex-col gap-1 p-3 sm:p-4">
+              <div className="flex flex-col gap-1 p-3 sm:p-4 bg-surface-container/50 rounded-xl">
                 <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Type</span>
                 <div className="flex items-center gap-2">
                   {(() => {
@@ -380,7 +379,7 @@ const renderChapterRow = (ch) => {
             {/* Genres */}
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {manga.genres.map((g) => (
-                <span key={g} className="font-label-sm bg-surface-container-high px-3 py-1.5 rounded-lg text-xs sm:text-sm md:text-base text-on-surface border border-outline-variant/40 font-semibold">
+                <span key={g} className="font-label-sm bg-surface-container-high px-3 py-1.5 rounded-lg text-xs sm:text-sm md:text-base text-on-surface font-semibold">
                   {g}
                 </span>
               ))}
@@ -541,7 +540,7 @@ const renderChapterRow = (ch) => {
                     <div className="py-2.5 px-2 -mx-2">
                       <button
                         onClick={() => setShowAllChapters(true)}
-                        className="font-label-sm w-full py-2.5 bg-surface-container/20 hover:bg-surface-container-high/40 border border-outline-variant/40 rounded-lg text-on-surface-variant hover:text-primary tracking-wider text-xs font-bold transition-all cursor-pointer text-center"
+                        className="font-label-sm w-full py-2.5 bg-surface-container/20 hover:bg-surface-container-high/40 border-2 border-outline-variant rounded-lg text-on-surface-variant hover:text-primary tracking-wider text-xs font-bold transition-all cursor-pointer text-center"
                       >
                         View More ({sortedChapters.length - 7} more chapters)
                       </button>

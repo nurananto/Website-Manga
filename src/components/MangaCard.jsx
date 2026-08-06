@@ -22,7 +22,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
   const isMangaNew = Number.isFinite(latestReleaseAge) && latestReleaseAge >= 0 && latestReleaseAge < 24 * 60 * 60 * 1000;
 
   return (
-    <div className="flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden group border border-outline-variant/40 hover:border-primary/20 shadow-md transition-colors">
+    <div className="flex h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px] bg-surface-container rounded-xl overflow-hidden group border border-transparent hover:border-primary/20 shadow-md transition-colors">
       {/* Cover — link crawlable ke detail (SPA: preventDefault + navigate) */}
       <a
         href={`/${manga.id}`}
@@ -33,29 +33,29 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
         <ResponsiveCover
             manga={manga}
             alt={manga.title}
+            title={isMangaNew ? 'Ada update baru di manga ini' : undefined}
             loading={coverPriority ? 'eager' : 'lazy'}
             fetchPriority={coverPriority ? 'high' : 'low'}
             decoding={coverPriority ? 'sync' : 'async'}
-            className="h-full w-full object-cover rounded-lg bg-surface-container-high shadow-[0_2px_6px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-outline-variant hover:scale-105 transition-transform duration-500"
+            className={`h-full w-full object-cover rounded-lg bg-surface-container-high shadow-[0_2px_6px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-outline-variant hover:scale-105 transition-transform duration-500 ${isMangaNew ? 'cover-new-glow' : ''}`}
           />
       </a>
 
       {/* Details Section */}
       <div className="flex-1 py-3 pr-3 pl-1 sm:py-4 sm:pr-4 sm:pl-1.5 lg:py-5 lg:pr-5 lg:pl-2 flex flex-col min-w-0">
-        {/* Title row */}
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-1.5 min-w-0 flex-1">
-            {isMangaNew && (
-              <span className="badge-new-glow shrink-0 rounded-md bg-emerald-700 px-1.5 py-0.5 font-label-sm text-[10px] md:text-xs font-black uppercase tracking-wider text-white ring-1 ring-emerald-300/70">
-                NEW
-              </span>
-            )}
+        {/* Title row — px-2 sm:px-2.5 lg:px-3 SAMA PERSIS dengan padding tombol
+            chapter di bawah (button punya padding sendiri di luar ikon). Judul
+            sengaja sejajar dengan BORDER KIRI kotak ikon buku/gembok (bukan
+            dengan teks "Ch. X" setelah ikon) — makanya di sini TIDAK ada
+            placeholder selebar ikon lagi, cukup padding ini saja. */}
+        <div className="flex items-center justify-between gap-2 px-2 sm:px-2.5 lg:px-3">
+          <div className="flex items-center gap-1 min-w-0 flex-1">
             <a
               href={`/${manga.id}`}
               onClick={(e) => { e.preventDefault(); onViewManga(manga); }}
               className="min-w-0 flex-1"
             >
-              <h3 className="font-headline-md text-base md:text-lg lg:text-xl leading-tight font-black text-on-surface truncate hover:text-primary transition-colors cursor-pointer">
+              <h3 className="font-headline-md text-lg md:text-xl lg:text-2xl leading-tight font-black text-on-surface truncate hover:text-primary transition-colors cursor-pointer">
                 {manga.title}
               </h3>
             </a>
@@ -106,7 +106,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                   e.stopPropagation();
                   onReadChapter(ch, manga.title, manga);
                 }}
-                className="flex min-h-[34px] w-full sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border text-left transition-all group/ch border-outline-variant hover:bg-surface-container-highest hover:border-outline-variant cursor-pointer"
+                className="flex min-h-[34px] w-full sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border text-left transition-all group/ch border-transparent hover:bg-surface-container-highest hover:border-outline-variant cursor-pointer"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
                   <span
@@ -131,7 +131,11 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                     {chapterTitle}
                   </span>
                   {isUp && (
-                    <span className="badge-new-glow bg-emerald-700 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
+                    // ml-1.5 (bukan cuma andalkan gap-1 parent) — box-shadow glow badge
+                    // ini melebar sampai 8px ke kiri (lihat @keyframes new-badge-glow di
+                    // index.css), jarak gap-1 (4px) saja bikin separuh glow nembus ke
+                    // tulisan chapter di sebelahnya.
+                    <span className="badge-new-glow ml-1.5 bg-emerald-700 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
                       NEW
                     </span>
                   )}

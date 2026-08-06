@@ -6,7 +6,7 @@ export function Skeleton({ className = '', style, ...props }) {
 
 export function MangaCardSkeleton() {
   return (
-    <div className="flex h-[160px] sm:h-[190px] md:h-[205px] lg:h-[220px] bg-surface-container rounded-xl overflow-hidden border border-outline-variant/40">
+    <div className="flex h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px] bg-surface-container rounded-xl overflow-hidden border border-transparent">
       {/* Cover */}
       <div className="w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full bg-surface-container-high animate-pulse shrink-0" />
       {/* Content */}

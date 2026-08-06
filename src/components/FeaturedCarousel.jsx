@@ -1,7 +1,37 @@
 import { useEffect, useMemo, useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Play, Info } from 'lucide-react';
 import ResponsiveCover from './ResponsiveCover';
+import CoverScrim from './CoverScrim';
+import SolidButton from './SolidButton';
 import { coverUrlForWidth } from '../utils';
+
+// Badge genre di banner — base sama semua, cuma beda ukuran (mobile vs sm+
+// penuh) dan gaya "+N" overflow. Dulu 6 blok JSX disalin manual, sekarang loop.
+const GENRE_TAG_BASE = 'rounded-md font-label-sm uppercase backdrop-blur-md bg-[#2b2b2b]/85 text-white dark:bg-white/85 dark:text-black';
+
+function GenreTag({ children, hiddenOnMobile = false }) {
+  const sizeCls = hiddenOnMobile
+    ? 'px-2.5 py-0.5 text-[10px] md:text-xs tracking-wider'
+    : 'px-1.5 sm:px-2.5 py-0.5 text-[9px] sm:text-[10px] md:text-xs sm:tracking-wider';
+  return (
+    <span className={`${GENRE_TAG_BASE} ${sizeCls} ${hiddenOnMobile ? 'hidden sm:inline' : ''}`}>
+      {children}
+    </span>
+  );
+}
+
+// "+N genre lainnya" — onlyMobile dipakai saat mobile cuma nampung 3 genre
+// penuh (sisanya diringkas), bordered dipakai varian sm+ (setelah 4 genre penuh).
+function GenreOverflowTag({ count, onlyMobile = false, bordered = false }) {
+  const base = `${GENRE_TAG_BASE} font-semibold text-white/80 dark:text-black/70`;
+  return onlyMobile ? (
+    <span className={`${base} sm:hidden px-1.5 py-0.5 text-[9px]`}>+{count}</span>
+  ) : (
+    <span className={`${base} hidden sm:inline px-2.5 py-0.5 text-[10px] md:text-xs tracking-wider ${bordered ? 'border border-white/20 dark:border-black/20' : ''}`}>
+      +{count}
+    </span>
+  );
+}
 
 export default function FeaturedCarousel({
   mangaList,
@@ -127,12 +157,7 @@ export default function FeaturedCarousel({
             decoding="async"
             className="w-full h-full object-cover object-top"
           />
-          {/* Vignette Overlay — light mode: panel putih-pudar tembus pandang (bukan
-              gelap) dengan teks gelap di atasnya. Dark mode: tetap scrim gelap +
-              teks putih seperti sebelumnya. bg-black/45 konstan cuma di dark mode. */}
-          <div className="absolute inset-0 dark:bg-black/45" />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface/95 via-surface/70 to-transparent dark:from-surface/95 dark:via-surface/55" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/92 via-surface/55 to-transparent dark:from-surface/90 dark:via-surface/44" />
+          <CoverScrim variant="hero" />
       </div>
 
       {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}
@@ -141,41 +166,21 @@ export default function FeaturedCarousel({
 
         {/* Satu blok konten, di-center secara vertikal */}
         <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5">
-          {/* Badges */}
+          {/* Badges — genre[0..2] tampil semua breakpoint, genre[3] cuma sm+,
+              sisanya diringkas jadi "+N" (angkanya beda antara mobile & sm+
+              karena mobile cuma sanggup nampung 3 genre penuh). */}
           <div className="flex gap-1 sm:gap-2 items-center flex-wrap">
-            {/* genre 1: selalu tampil (termasuk mobile) */}
-            {activeManga.genres[0] && (
-              <span className="bg-[#2b2b2b]/85 text-white dark:bg-white/85 dark:text-black px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase sm:tracking-wider backdrop-blur-md">
-                {activeManga.genres[0]}
-              </span>
-            )}
-            {/* genre 2: tampil juga di mobile */}
-            {activeManga.genres[1] && (
-              <span className="bg-[#2b2b2b]/85 text-white dark:bg-white/85 dark:text-black px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase sm:tracking-wider backdrop-blur-md">
-                {activeManga.genres[1]}
-              </span>
-            )}
-            {/* genre 3: tampil juga di mobile */}
-            {activeManga.genres[2] && (
-              <span className="bg-[#2b2b2b]/85 text-white dark:bg-white/85 dark:text-black px-1.5 sm:px-2.5 py-0.5 rounded-md font-label-sm text-[9px] sm:text-[10px] md:text-xs uppercase sm:tracking-wider backdrop-blur-md">
-                {activeManga.genres[2]}
-              </span>
-            )}
-            {/* genre ke-4: tablet ke atas */}
+            {activeManga.genres.slice(0, 3).map((genre) => (
+              <GenreTag key={genre}>{genre}</GenreTag>
+            ))}
             {activeManga.genres[3] && (
-              <span className="hidden sm:inline bg-[#2b2b2b]/85 text-white dark:bg-white/85 dark:text-black px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md">
-                {activeManga.genres[3]}
-              </span>
+              <GenreTag hiddenOnMobile>{activeManga.genres[3]}</GenreTag>
             )}
             {activeManga.genres.length > 3 && (
-              <span className="sm:hidden bg-[#2b2b2b]/85 text-white/80 dark:bg-white/85 dark:text-black/70 px-1.5 py-0.5 rounded-md font-label-sm text-[9px] uppercase backdrop-blur-md font-semibold">
-                +{activeManga.genres.length - 3}
-              </span>
+              <GenreOverflowTag onlyMobile count={activeManga.genres.length - 3} />
             )}
             {activeManga.genres.length > 4 && (
-              <span className="hidden sm:inline bg-[#2b2b2b]/85 text-white/80 dark:bg-white/85 dark:text-black/70 px-2.5 py-0.5 rounded-md font-label-sm text-[10px] md:text-xs uppercase tracking-wider backdrop-blur-md font-semibold border border-white/20 dark:border-black/20">
-                +{activeManga.genres.length - 4}
-              </span>
+              <GenreOverflowTag bordered count={activeManga.genres.length - 4} />
             )}
           </div>
 
@@ -200,20 +205,14 @@ export default function FeaturedCarousel({
             key={`btn-${activeManga.id}`}
             className="flex items-center gap-2 sm:gap-3 mt-1 sm:mt-2 animate-[slideUpFade_0.38s_ease-out]"
           >
-            <button
-              onClick={() => onReadFirst(activeManga.id)}
-              className="flex items-center gap-1.5 sm:gap-2 bg-white hover:bg-white/90 border border-black/15 text-black font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
-            >
+            <SolidButton variant="light" onClick={() => onReadFirst(activeManga.id)}>
               <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-current" />
               Baca dari Awal
-            </button>
-            <button
-              onClick={() => onViewManga && onViewManga(activeManga)}
-              className="flex items-center gap-1.5 sm:gap-2 bg-black hover:bg-black/85 border border-white/40 text-white font-bold px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg md:rounded-xl shadow-md active:scale-[0.98] transition-all text-[10px] sm:text-xs md:text-sm lg:text-base cursor-pointer"
-            >
+            </SolidButton>
+            <SolidButton variant="dark" onClick={() => onViewManga && onViewManga(activeManga)}>
               <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
               Lihat Detail
-            </button>
+            </SolidButton>
           </div>
         </div>
       </div>

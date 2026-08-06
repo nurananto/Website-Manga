@@ -2,8 +2,13 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Star } from 'lucide-react';
 import { coverUrlForWidth } from '../utils';
 import ResponsiveCover from './ResponsiveCover';
+import CoverScrim from './CoverScrim';
 
 // textCls: warna light mode dulu (di atas panel terang), dark: menyusul (di atas scrim gelap).
+// SENGAJA tidak disatukan dengan mapping status di MangaCard/MangaDetailPage —
+// label ini duduk di atas cover foto blur (butuh warna lebih ngejreng/custom
+// #166534 biar kebaca), sedangkan 2 tempat lain adalah badge/dot polos di atas
+// kartu UI biasa. Nilai memang beda by design, bukan drift yang perlu disatukan.
 const STATUS_CFG = {
   'Tamat':   { label: 'END',     textCls: 'text-red-700 dark:text-red-500' },
   'Hiatus':  { label: 'HIATUS',  textCls: 'text-zinc-600 dark:text-zinc-400' },
@@ -104,12 +109,7 @@ function SpotlightBackground({ manga, animate = false, priority = 'low' }) {
         decoding="async"
         className="absolute inset-0 w-full h-full object-cover object-top brightness-[0.68] saturate-[0.95]"
       />
-      {/* Scrim: light mode = panel putih-pudar tembus pandang (bg-black/28 tidak
-          aktif); dark mode = scrim gelap seperti sebelumnya. Inset shadow vignette
-          DIHAPUS — nyembur ke area judul di bawah cover dan bikin teks ketutupan. */}
-      <div className="absolute inset-0 dark:bg-black/28" />
-      <div className="absolute inset-0 bg-gradient-to-t from-surface/70 via-surface/35 to-transparent dark:from-surface/56 dark:via-surface/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-surface/80 via-surface/30 to-transparent dark:from-surface/72 dark:via-surface/18" />
+      <CoverScrim variant="spotlight" />
     </div>
   );
 }

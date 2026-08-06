@@ -172,6 +172,27 @@ body {
   .badge-new-glow { animation: none; }
 }
 
+/* Glow COVER MangaCard — sinyal "ada update di manga ini" di level manga
+   (isMangaNew), pengganti dot kecil di sebelah judul yang kelihatan aneh
+   nyempil sendirian pas gak ada badge NEW aktif di chapter manapun. Pakai
+   `outline` (bukan box-shadow) SENGAJA — cover-nya sendiri sudah punya
+   box-shadow tema (lihat className ResponsiveCover di MangaCard), kalau
+   glow ini juga pakai box-shadow dia akan MENIMPA shadow itu tiap frame
+   animasi. Outline itu layer terpisah, jadi dua-duanya bisa tampil bareng
+   tanpa saling menimpa. */
+@keyframes cover-new-glow {
+  0%   { outline: 3px solid rgba(16, 185, 129, 0.85); outline-offset: 0px; }
+  70%  { outline: 3px solid rgba(16, 185, 129, 0);    outline-offset: 6px; }
+  100% { outline: 3px solid rgba(16, 185, 129, 0);    outline-offset: 6px; }
+}
+.cover-new-glow {
+  animation: cover-new-glow 2s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover-new-glow { animation: none; }
+}
+
 /* Glow tombol Donasi — ring putih membesar dari tepi tombol (bukan biru,
    karena biru menyatu dengan gradient background tombol & jadi nyaris tak
    kelihatan). Ukuran tombol tetap stabil (cuma box-shadow yang berubah)
