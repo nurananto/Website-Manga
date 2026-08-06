@@ -8,7 +8,7 @@ import { loadCoinModals } from './lib/coinModalsLoader';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
 import ResponsiveCover from './components/ResponsiveCover';
-import { Sparkles, RotateCcw, Search, CheckCircle, ArrowRight, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import { Sparkles, RotateCcw, Search, CheckCircle, ArrowRight, ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { coverUrlForWidth, timeAgo } from './utils';
 import { HomepageHeroSkeleton, MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
 import { parsePath, navigate } from './router';
@@ -1291,42 +1291,35 @@ export default function App() {
                         })}
                       </div>
 
-                      {/* Pagination Controls */}
+                      {/* Pagination Controls — gaya sama kayak indikator FeaturedCarousel
+                          (prev/next + pil "current | total") supaya ukurannya FIXED, gak
+                          nge-scale/berubah ikut jumlah halaman. Dulu render 1 tombol per
+                          nomor halaman: totalPages beda2 tiap breakpoint (itemsPerPage
+                          mobile 6 vs desktop 12 dari katalog yang sama → jumlah halaman
+                          beda), jadi lebar barisnya ikut beda2 & berisiko kepanjangan
+                          kalau katalog nambah banyak. */}
                       {totalPages > 1 && (
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => goToPage(prev => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
-                            className="px-4 py-2 min-w-[92px] text-center rounded-xl bg-surface-container border border-outline-variant/40 text-xs font-bold text-outline hover:text-on-surface disabled:opacity-30 disabled:pointer-events-none hover:bg-surface-container-high transition-all cursor-pointer"
+                            aria-label="Halaman sebelumnya"
+                            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center active:scale-95 transition-all cursor-pointer"
                           >
-                            Previous
+                            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                           </button>
-                          
-                          {(() => {
-                            // Tampilkan SEMUA nomor halaman (katalog cuma puluhan manga,
-                            // totalPages biasanya ≤6) — dulu cuma jendela geser 2 nomor
-                            // [current, current+1] yang bikin tombol biru aktif "loncat"
-                            // ke posisi/angka lain tiap pindah halaman (key={p} beda →
-                            // React remount, bukan cuma re-style, jadi kelihatan blink).
-                            return Array.from({ length: totalPages }, (_, idx) => idx + 1).map((p) => (
-                              <button
-                                key={p}
-                                onClick={() => goToPage(p)}
-                                className={p === currentPage
-                                  ? "w-9 h-9 rounded-xl text-xs font-black bg-primary text-on-primary shadow-lg shadow-primary/20 cursor-default"
-                                  : "w-9 h-9 rounded-xl text-xs font-black bg-surface-container border border-outline-variant/40 text-outline hover:text-on-surface hover:bg-surface-container-high cursor-pointer"}
-                              >
-                                {p}
-                              </button>
-                            ));
-                          })()}
+
+                          <div className="min-w-10 h-9 sm:h-10 px-2 rounded-xl border border-outline-variant bg-surface-container text-on-surface flex items-center justify-center font-label-sm text-xs sm:text-sm font-black tabular-nums">
+                            {currentPage} | {totalPages}
+                          </div>
 
                           <button
                             onClick={() => goToPage(prev => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
-                            className="px-4 py-2 min-w-[92px] text-center rounded-xl bg-surface-container border border-outline-variant/40 text-xs font-bold text-outline hover:text-on-surface disabled:opacity-30 disabled:pointer-events-none hover:bg-surface-container-high transition-all cursor-pointer"
+                            aria-label="Halaman berikutnya"
+                            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center active:scale-95 transition-all cursor-pointer"
                           >
-                            Next
+                            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                           </button>
                         </div>
                       )}
