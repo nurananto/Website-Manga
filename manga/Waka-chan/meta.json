@@ -79,7 +79,7 @@
     "215.6": 6,
     "215.7": 6,
     "215.8": 7,
-    "215.9": 13,
+    "215.9": 14,
     "215.1": 4,
     "204.5": 2,
     "208.5": 3,
@@ -93,7 +93,7 @@
     "195.5": 1,
     "161.5": 1
   },
-  "total_views": 220,
+  "total_views": 221,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -219,7 +219,7 @@
     }
   ],
   "detail_views": 41,
-  "view_sync_cutoff": "2026-08-05 17:00:33",
+  "view_sync_cutoff": "2026-08-06 17:01:13",
   "cover_version": 2,
   "notif_image": "page1"
 }

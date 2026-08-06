@@ -28,7 +28,8 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 1,
-    "2": 1,
+    "2": 2,
+    "3": 1,
     "10": 1,
     "11": 1,
     "12": 1,
@@ -36,7 +37,7 @@
     "14": 1,
     "15": 3
   },
-  "total_views": 17,
+  "total_views": 19,
   "mangadex_cover": "ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_version": 2,
@@ -53,5 +54,5 @@
     }
   ],
   "detail_views": 7,
-  "view_sync_cutoff": "2026-08-05 17:00:33"
+  "view_sync_cutoff": "2026-08-06 17:01:13"
 }
