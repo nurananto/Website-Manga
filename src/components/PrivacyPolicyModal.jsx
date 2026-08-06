@@ -93,7 +93,7 @@ function Section({ title, children }) {
   return (
     <div className="flex flex-col gap-2">
       <h3 className="font-label-sm text-xs font-black text-primary uppercase tracking-wider">{title}</h3>
-      <div className="font-body-sm text-xs text-on-surface-variant leading-relaxed flex flex-col gap-1.5 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-1 [&_ul]:pl-3 [&_li]:relative [&_li]:before:content-['•'] [&_li]:before:absolute [&_li]:before:-left-3 [&_li]:before:text-primary/60 [&_strong]:text-on-surface/80 [&_strong]:font-bold">
+      <div className="font-body-sm text-xs text-on-surface-variant leading-relaxed flex flex-col gap-1.5 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-1 [&_ul]:pl-3 [&_li]:relative [&_li]:before:content-['•'] [&_li]:before:absolute [&_li]:before:-left-3 [&_li]:before:text-primary/80 [&_strong]:text-on-surface/80 [&_strong]:font-bold">
         {children}
       </div>
     </div>

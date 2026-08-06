@@ -177,7 +177,7 @@ const renderChapterRow = (ch) => {
 
         {/* Right: views */}
         <div className="flex items-center gap-1.5 shrink-0 ml-2">
-          <div className="flex items-center gap-1 text-outline/50 font-label-sm text-xs md:text-sm lg:text-base select-none shrink-0">
+          <div className="flex items-center gap-1 text-outline font-label-sm text-xs md:text-sm lg:text-base select-none shrink-0">
             <Eye className="w-3.5 h-3.5 md:w-4 md:h-4 shrink-0" />
             <span>{chapterViews}</span>
           </div>
@@ -314,21 +314,21 @@ const renderChapterRow = (ch) => {
                   <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-current" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.rating}</span>
                 </div>
-                <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/70 font-semibold uppercase tracking-wide">Rating</span>
+                <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline font-semibold uppercase tracking-wide">Rating</span>
               </div>
               <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/50 rounded-xl">
                 <div className="flex items-center gap-1.5">
                   <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.chapters.length}</span>
                 </div>
-                <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/70 font-semibold uppercase tracking-wide">Chapters</span>
+                <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline font-semibold uppercase tracking-wide">Chapters</span>
               </div>
               <div className="flex flex-col items-center gap-1 sm:gap-1.5 p-3 sm:p-4 bg-surface-container/50 rounded-xl">
                 <div className="flex items-center gap-1.5">
                   <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" />
                   <span className="font-headline-md text-lg sm:text-xl md:text-2xl font-black text-on-surface">{manga.total_views ? (manga.total_views >= 1000 ? `${(manga.total_views / 1000).toFixed(1)}k` : String(manga.total_views)) : '—'}</span>
                 </div>
-                <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline/70 font-semibold uppercase tracking-wide">Views</span>
+                <span className="font-label-sm text-xs sm:text-xs md:text-sm text-outline font-semibold uppercase tracking-wide">Views</span>
               </div>
             </div>
 
@@ -337,11 +337,11 @@ const renderChapterRow = (ch) => {
                 konsisten sama pola tile Rating/Chapters/Views di atas. */}
             <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 min-w-0 bg-surface-container/50 rounded-xl" style={fitCreatorStyle(manga.author)}>
-                <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Author</span>
+                <span className="font-label-sm text-xs text-outline font-bold uppercase tracking-widest">Author</span>
                 <span className="font-body-md text-sm sm:text-sm md:text-base font-bold text-on-surface truncate">{manga.author || '—'}</span>
               </div>
               <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 min-w-0 bg-surface-container/50 rounded-xl" style={fitCreatorStyle(manga.artist)}>
-                <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Artist</span>
+                <span className="font-label-sm text-xs text-outline font-bold uppercase tracking-widest">Artist</span>
                 <span className="font-body-md text-sm font-bold text-on-surface truncate">{manga.artist || '—'}</span>
               </div>
             </div>
@@ -349,7 +349,7 @@ const renderChapterRow = (ch) => {
             {/* Status + Type — sama seperti Author/Artist di atas. */}
             <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <div className="flex flex-col gap-1 p-3 sm:p-4 bg-surface-container/50 rounded-xl">
-                <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Status</span>
+                <span className="font-label-sm text-xs text-outline font-bold uppercase tracking-widest">Status</span>
                 <div className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full shrink-0 ${
                     manga.status === 'Tamat' || manga.status === 'Oneshot' ? 'bg-red-400' :
@@ -362,7 +362,7 @@ const renderChapterRow = (ch) => {
                 </div>
               </div>
               <div className="flex flex-col gap-1 p-3 sm:p-4 bg-surface-container/50 rounded-xl">
-                <span className="font-label-sm text-xs text-outline/60 font-bold uppercase tracking-widest">Type</span>
+                <span className="font-label-sm text-xs text-outline font-bold uppercase tracking-widest">Type</span>
                 <div className="flex items-center gap-2">
                   {(() => {
                     const t = (manga.type || 'manga').toLowerCase();
@@ -436,11 +436,11 @@ const renderChapterRow = (ch) => {
                 >
                   <Images className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span className="font-headline-md text-sm sm:text-base font-bold">Cover Manga</span>
-                  <span className="font-label-sm text-[10px] sm:text-xs font-black text-outline/70 bg-surface-container-high border border-outline-variant rounded-full px-2 py-0.5">
+                  <span className="font-label-sm text-[10px] sm:text-xs font-black text-outline bg-surface-container-high border border-outline-variant rounded-full px-2 py-0.5">
                     {manga.cover_gallery.length}
                   </span>
                   {galleryPages > 1 && galleryOpen && (
-                    <span className="font-label-sm text-[10px] sm:text-xs font-bold text-outline/60">
+                    <span className="font-label-sm text-[10px] sm:text-xs font-bold text-outline">
                       {galleryPage + 1}/{galleryPages}
                     </span>
                   )}

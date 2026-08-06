@@ -187,7 +187,7 @@ function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, 
     >
       {!ready && inView && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-surface">
-          <span className="font-body-md text-sm text-outline/50">Memuat akses chapter...</span>
+          <span className="font-body-md text-sm text-outline">Memuat akses chapter...</span>
         </div>
       )}
       {ready && !loaded && !failed && inView && (
@@ -197,7 +197,7 @@ function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, 
       )}
       {failed && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-surface gap-3">
-          <span className="font-body-md text-sm text-outline/50">Gagal memuat halaman {idx + 1}</span>
+          <span className="font-body-md text-sm text-outline">Gagal memuat halaman {idx + 1}</span>
           <button
             onClick={handleRetry}
             className="font-label-sm text-xs font-bold px-5 py-2.5 rounded-xl bg-white/10 active:bg-white/25 text-white/70 active:text-white transition-colors cursor-pointer touch-manipulation select-none"
@@ -848,7 +848,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             <div className="flex flex-col items-center gap-2 text-center">
               <Lock className="w-8 h-8 text-primary" />
               <h3 id="chapter-access-title" className="font-headline-md text-base sm:text-lg font-black text-on-surface">Verifikasi untuk membuka chapter</h3>
-              <p className="font-body-md text-xs sm:text-sm text-outline/70 max-w-xs">
+              <p className="font-body-md text-xs sm:text-sm text-outline max-w-xs">
                 Chapter berbayar — centang kotak di bawah untuk memuat gambar.
               </p>
             </div>
@@ -866,7 +866,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             ) : !tsToken ? (
               <TurnstileGate key={gateVersion} onToken={setTsToken} onError={handleTurnstileError} />
             ) : (
-              <div className="flex items-center gap-2 text-outline/70">
+              <div className="flex items-center gap-2 text-outline">
                 <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
                 <span className="font-body-md text-sm">Memuat akses chapter...</span>
               </div>
@@ -1009,7 +1009,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                   <h3 id="latest-chapter-title" className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface">Kamu sudah sampai chapter terbaru!</h3>
                   <p className="font-headline-md text-sm sm:text-base font-black text-on-surface/90 mt-2 line-clamp-2">{activeManga?.title}</p>
                   <p className="font-body-md text-sm sm:text-base font-bold mt-1">
-                    <span className="text-outline/60">Chapter saat ini</span>{' '}
+                    <span className="text-outline">Chapter saat ini</span>{' '}
                     <span className="text-primary">{activeChapter?.title}</span>
                   </p>
 

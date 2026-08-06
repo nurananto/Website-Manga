@@ -38,7 +38,7 @@ export default class LazyBoundary extends Component {
       return (
         <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-4 bg-surface/95 px-6 text-center backdrop-blur-xl">
           <p className="text-sm font-bold text-on-surface">Gagal memuat halaman.</p>
-          <p className="max-w-xs text-xs text-outline/70">Mungkin ada pembaruan situs. Coba muat ulang.</p>
+          <p className="max-w-xs text-xs text-outline">Mungkin ada pembaruan situs. Coba muat ulang.</p>
           <button
             type="button"
             onClick={() => { try { sessionStorage.removeItem(RELOAD_KEY); } catch {} window.location.reload(); }}

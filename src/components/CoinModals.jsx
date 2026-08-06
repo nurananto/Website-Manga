@@ -168,7 +168,7 @@ export function AuthModal({ isOpen, onClose, reason }) {
               </div>
             )}
 
-            <p className="text-center text-[10px] text-on-surface-variant/70 leading-relaxed">
+            <p className="text-center text-[10px] text-on-surface-variant leading-relaxed">
               Akun hanya bisa aktif di satu perangkat. Dengan masuk, kamu menyetujui syarat &amp; ketentuan layanan kami.
             </p>
           </div>

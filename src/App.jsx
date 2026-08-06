@@ -1433,7 +1433,7 @@ export default function App() {
               <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-primary animate-spin" />
               <div className="absolute inset-[5px] rounded-full border-2 border-transparent border-t-primary/40 animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.8s' }} />
             </div>
-            <p className="font-body-md text-sm text-outline/70 font-semibold tracking-wide">Checking chapter access</p>
+            <p className="font-body-md text-sm text-outline font-semibold tracking-wide">Checking chapter access</p>
         </div>
       )}
 
