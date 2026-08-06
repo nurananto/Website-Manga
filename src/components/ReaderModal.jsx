@@ -1090,7 +1090,9 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                       }`}
                     >
                       <div className="flex items-center gap-1.5 min-w-0 flex-1">
-                        <span className={`truncate transition-opacity ${isRead ? 'opacity-40' : ''} ${showEarlyAccess ? 'text-amber-600 dark:text-amber-300' : ''}`}>{ch.title}</span>
+                        {/* opacity-80 (bukan -40): -40 gagal WCAG AA (contrast jatuh
+                            terlalu rendah begitu chapter isRead) — lihat MangaCard.jsx. */}
+                        <span className={`truncate transition-opacity ${isRead ? 'opacity-80' : ''} ${showEarlyAccess ? 'text-amber-600 dark:text-amber-300' : ''}`}>{ch.title}</span>
                         {showEarlyAccess && (
                           <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30">
                             Early Access

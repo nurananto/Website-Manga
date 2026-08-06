@@ -123,7 +123,11 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                       <BookOpen className="h-3.5 w-3.5 text-on-surface stroke-[2.25] md:h-4 md:w-4 lg:h-[18px] lg:w-[18px]" />
                     )}
                   </span>
-                  <span className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-all whitespace-nowrap ${isRead ? 'opacity-40' : ''} ${
+                  {/* opacity-80 (bukan -40) di teks: -40 nge-drop contrast on-surface-variant
+                      dari ~8:1 (light) / ~10:1 (dark) jadi ~2:1 begitu chapter isRead — gagal
+                      WCAG AA (butuh 4.5:1). -80 tetap kebaca "dibaca/pudar" tapi aman AA di
+                      kedua tema. Icon box boleh tetap -40 karena itu dekoratif, bukan teks. */}
+                  <span className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-all whitespace-nowrap ${isRead ? 'opacity-80' : ''} ${
                     showEarlyAccessGate
                       ? 'text-amber-600 dark:text-amber-300 group-hover/ch:text-amber-500 dark:group-hover/ch:text-amber-200'
                       : 'text-on-surface-variant group-hover/ch:text-primary'
@@ -159,7 +163,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                     }}
                   />
                 )}
-                <span className={`font-label-sm text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0 transition-opacity ${isRead ? 'opacity-40' : ''}`}>{ch.date || timeAgoShort(ch.release_date)}</span>
+                <span className={`font-label-sm text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0 transition-opacity ${isRead ? 'opacity-80' : ''}`}>{ch.date || timeAgoShort(ch.release_date)}</span>
               </button>
             );
           })}

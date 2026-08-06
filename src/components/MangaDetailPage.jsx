@@ -140,7 +140,9 @@ const renderChapterRow = (ch) => {
           </span>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 min-w-0">
-              <p className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-all truncate ${!isUnread ? 'opacity-40' : ''} ${
+              {/* opacity-80 (bukan -40): -40 gagal WCAG AA (contrast jatuh terlalu
+                  rendah begitu chapter sudah dibaca) — lihat MangaCard.jsx. */}
+              <p className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-all truncate ${!isUnread ? 'opacity-80' : ''} ${
                 showEarlyAccess
                   ? 'text-amber-600 dark:text-amber-300 group-hover:text-amber-500 dark:group-hover:text-amber-200'
                   : 'text-on-surface group-hover:text-primary'
@@ -167,7 +169,7 @@ const renderChapterRow = (ch) => {
                 </span>
               )}
             </div>
-            <p className={`font-label-sm text-xs md:text-sm lg:text-base text-outline/60 mt-0.5 transition-opacity ${!isUnread ? 'opacity-40' : ''}`}>{ch.date || timeAgo(ch.release_date)}</p>
+            <p className={`font-label-sm text-xs md:text-sm lg:text-base text-outline/60 mt-0.5 transition-opacity ${!isUnread ? 'opacity-80' : ''}`}>{ch.date || timeAgo(ch.release_date)}</p>
           </div>
         </div>
 
