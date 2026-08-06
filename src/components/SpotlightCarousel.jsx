@@ -305,10 +305,10 @@ export default function SpotlightCarousel({
                 {/* Dim overlay cover non-aktif — ikut tema: putih tembus pandang di
                     light mode (biar nyatu sama background terang, bukan bikin
                     corak hitam), scrim gelap di dark mode seperti sebelumnya. */}
-                <div className={`absolute inset-0 bg-white/45 dark:bg-black/36 pointer-events-none transition-opacity duration-500 ${isActive ? 'opacity-0' : 'opacity-100'}`} />
+                <div className={`absolute inset-0 bg-white/45 dark:bg-black/36 pointer-events-none transition-all duration-500 ${isActive ? 'opacity-0' : 'opacity-100'}`} />
 
                 {/* Active glow ring */}
-                <div className={`absolute inset-0 rounded-xl ring-[2px] ring-black/10 dark:ring-white/30 ring-inset pointer-events-none transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+                <div className={`absolute inset-0 rounded-xl ring-[2px] ring-black/10 dark:ring-white/30 ring-inset pointer-events-none transition-all duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
               </div>
 
             </button>

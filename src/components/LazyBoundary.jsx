@@ -42,7 +42,7 @@ export default class LazyBoundary extends Component {
           <button
             type="button"
             onClick={() => { try { sessionStorage.removeItem(RELOAD_KEY); } catch {} window.location.reload(); }}
-            className="rounded-xl bg-primary px-5 py-2.5 text-sm font-black text-on-primary active:scale-95 transition-transform cursor-pointer"
+            className="rounded-xl bg-primary px-5 py-2.5 text-sm font-black text-on-primary active:scale-95 transition-all cursor-pointer"
           >
             Muat ulang
           </button>

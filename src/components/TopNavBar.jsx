@@ -47,7 +47,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
           href="/"
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
           aria-label="Nurananto Scanlation — ke beranda"
-          className="flex items-center justify-center active:scale-95 transition-transform duration-150 shrink-0 rounded-2xl bg-[#075bad] border border-outline-variant w-10 h-10 md:w-11 md:h-11 xl:w-12 xl:h-12 p-1.5"
+          className="flex items-center justify-center active:scale-95 transition-all duration-150 shrink-0 rounded-2xl bg-[#075bad] border border-outline-variant w-10 h-10 md:w-11 md:h-11 xl:w-12 xl:h-12 p-1.5"
         >
           <img
             src="/icon.webp"
@@ -64,18 +64,21 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
             "Ikuti Update" di bawah reader, footer, dan dropdown akun. Header
             disisakan untuk logo + aksi akun saja. */}
         <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
-          {/* Toggle light/dark — di kiri tombol login/akun */}
+          {/* Toggle light/dark — di kiri tombol login/akun. Dua ikon ditumpuk
+              (absolute + m-auto, bukan render kondisional satu ikon) — kalau
+              cuma {cond ? <Sun/> : <Moon/>}, React copot-pasang elemennya
+              via mount/unmount yang urutannya gak selalu presisi 1 frame,
+              kadang sempat kelihatan "kedip kosong". Opacity-nya sengaja TANPA
+              transition (bukan lupa) — konsisten sama toggle tema di index.css
+              yang sekarang instan juga, bukan di-fade. */}
           <button
             type="button"
             onClick={onToggleTheme}
             aria-label={theme === 'dark' ? 'Ganti ke mode terang' : 'Ganti ke mode gelap'}
-            className="h-8 w-8 md:h-10 md:w-10 xl:h-12 xl:w-12 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center shrink-0 shadow-md active:scale-95 transition-all cursor-pointer"
+            className="relative h-8 w-8 md:h-10 md:w-10 xl:h-12 xl:w-12 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface shrink-0 shadow-md active:scale-95 transition-all cursor-pointer"
           >
-            {theme === 'dark' ? (
-              <Sun className="w-4 h-4 md:w-[18px] md:h-[18px] xl:w-5 xl:h-5" />
-            ) : (
-              <Moon className="w-4 h-4 md:w-[18px] md:h-[18px] xl:w-5 xl:h-5" />
-            )}
+            <Sun className={`absolute inset-0 m-auto w-4 h-4 md:w-[18px] md:h-[18px] xl:w-5 xl:h-5 ${theme === 'dark' ? 'opacity-100' : 'opacity-0'}`} />
+            <Moon className={`absolute inset-0 m-auto w-4 h-4 md:w-[18px] md:h-[18px] xl:w-5 xl:h-5 ${theme === 'dark' ? 'opacity-0' : 'opacity-100'}`} />
           </button>
           <div ref={dropdownRef} className="relative">
             <div className="relative">

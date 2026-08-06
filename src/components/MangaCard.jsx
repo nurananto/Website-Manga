@@ -37,7 +37,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
             loading={coverPriority ? 'eager' : 'lazy'}
             fetchPriority={coverPriority ? 'high' : 'low'}
             decoding={coverPriority ? 'sync' : 'async'}
-            className={`h-full w-full object-cover rounded-lg bg-surface-container-high shadow-[0_2px_6px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-outline-variant hover:scale-105 transition-transform duration-500 ${isMangaNew ? 'cover-new-glow' : ''}`}
+            className={`h-full w-full object-cover rounded-lg bg-surface-container-high shadow-[0_2px_6px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-outline-variant hover:scale-105 transition-all duration-500 ${isMangaNew ? 'cover-new-glow' : ''}`}
           />
       </a>
 
@@ -111,7 +111,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                 <div className="flex items-center gap-1 min-w-0 mr-1">
                   <span
                     aria-hidden="true"
-                    className={`mr-1 flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[6px] md:mr-1.5 md:h-6 md:w-6 lg:h-[26px] lg:w-[26px] transition-opacity ${isRead ? 'opacity-40' : ''} ${
+                    className={`mr-1 flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[6px] md:mr-1.5 md:h-6 md:w-6 lg:h-[26px] lg:w-[26px] transition-all ${isRead ? 'opacity-40' : ''} ${
                       showEarlyAccessGate
                         ? 'border border-amber-400/60 bg-amber-500/20'
                         : 'border border-outline-variant bg-surface-container-high'

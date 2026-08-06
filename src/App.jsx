@@ -1291,22 +1291,20 @@ export default function App() {
                         })}
                       </div>
 
-                      {/* Pagination Controls — gaya sama kayak indikator FeaturedCarousel
-                          (prev/next + pil "current | total") supaya ukurannya FIXED, gak
-                          nge-scale/berubah ikut jumlah halaman. Dulu render 1 tombol per
-                          nomor halaman: totalPages beda2 tiap breakpoint (itemsPerPage
-                          mobile 6 vs desktop 12 dari katalog yang sama → jumlah halaman
-                          beda), jadi lebar barisnya ikut beda2 & berisiko kepanjangan
-                          kalau katalog nambah banyak. */}
+                      {/* Pagination Controls — pil "current | total" di tengah gayanya
+                          diambil dari indikator FeaturedCarousel (ukuran FIXED, gak
+                          nge-scale ikut jumlah halaman — lihat catatan di commit
+                          sebelumnya). Prev/Next tetap pakai teks (bukan cuma ikon)
+                          seperti sebelumnya, biar aksinya jelas tanpa perlu nebak. */}
                       {totalPages > 1 && (
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => goToPage(prev => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
-                            aria-label="Halaman sebelumnya"
-                            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center active:scale-95 transition-all cursor-pointer"
+                            className="px-3 sm:px-4 h-9 sm:h-10 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-35 disabled:cursor-not-allowed flex items-center gap-1 justify-center font-label-sm text-xs sm:text-sm font-bold active:scale-95 transition-all cursor-pointer"
                           >
                             <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                            Previous
                           </button>
 
                           <div className="min-w-10 h-9 sm:h-10 px-2 rounded-xl border border-outline-variant bg-surface-container text-on-surface flex items-center justify-center font-label-sm text-xs sm:text-sm font-black tabular-nums">
@@ -1316,9 +1314,9 @@ export default function App() {
                           <button
                             onClick={() => goToPage(prev => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
-                            aria-label="Halaman berikutnya"
-                            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center active:scale-95 transition-all cursor-pointer"
+                            className="px-3 sm:px-4 h-9 sm:h-10 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-35 disabled:cursor-not-allowed flex items-center gap-1 justify-center font-label-sm text-xs sm:text-sm font-bold active:scale-95 transition-all cursor-pointer"
                           >
+                            Next
                             <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                           </button>
                         </div>

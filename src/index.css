@@ -44,7 +44,10 @@
   --color-tertiary-container: #ffddb3;
   --color-inverse-primary: #89ceff;
   --color-tertiary-fixed: #ffdcbd;
-  --color-outline: #73777f;
+  /* #73777f cuma ~4.0:1 di atas --color-surface-container (#f0f2f5) — gagal
+     WCAG AA (butuh 4.5:1) buat teks kecil kayak tanggal chapter (text-outline
+     text-xs/sm). #5f6368 ~5.4:1, aman & masih di rentang abu netral yang sama. */
+  --color-outline: #5f6368;
   --color-tertiary: #8a5000;
   --color-secondary: #39485a;
   --color-on-error: #ffffff;
@@ -131,17 +134,25 @@ body {
   padding: 0;
 }
 
-/* Transisi halus saat toggle light/dark — cuma warna (bukan transform/layout),
-   supaya tidak bentrok dengan transition-transform (active:scale-95, dst) atau
-   animation lain (badge-new-glow, donate-glow tetap pakai box-shadow sendiri).
-   Elemen yang sudah punya transition-colors/transition-all sendiri (Tailwind)
-   tetap pakai punya sendiri karena class selector lebih spesifik dari *. */
-*, *::before, *::after {
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, fill 0.2s ease, stroke 0.2s ease;
-}
+/* Toggle light/dark SENGAJA instan (bukan di-fade) — bukan lupa nambahin
+   transition, ini pilihan sadar. Background situs geser dari putih ke hitam
+   (atau sebaliknya) dan teks dari hitam ke putih; kalau di-interpolasi warna
+   linear, titik tengah transisi APAPUN durasinya SELALU lewat abu-abu (itu
+   memang rupa "hitam nge-fade ke putih" persis di tengah jalan, bukan bug
+   CSS). Di durasi berapa pun momen abu-abu itu kelihatan "washed out"/glitch
+   sesaat. Ganti instan (pola yang sama dipakai GitHub/X) menghindari fase itu
+   sama sekali — konsekuensinya ganti tema kerasa "getok", bukan smooth, tapi
+   tanpa momen aneh. Kalau nanti mau coba pendekatan lain (mis. circular
+   reveal pakai View Transition API), aturan transition di sini yang perlu
+   diisi lagi. */
 
+/* Matikan SEMUA animasi/transisi (hover-scale, badge glow, dst) buat user yang
+   nyalain "reduce motion" di OS — ini terpisah dari toggle tema di atas (yang
+   sekarang sudah instan sendiri tanpa perlu ini), guard umum aksesibilitas
+   biar transition-all/transition-transform bawaan Tailwind di tombol/card
+   juga ikut mati, bukan cuma warna tema. */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition: none !important; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 
 /* Safe area padding for mobile device nav bar */

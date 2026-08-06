@@ -112,7 +112,13 @@ export function AuthModal({ isOpen, onClose, reason }) {
 
           <div className="relative px-7 pt-6 sm:pt-9 pb-7 flex flex-col items-center gap-5">
             <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-400/20 to-indigo-600/20 border border-outline-variant flex items-center justify-center shadow-lg overflow-hidden p-2">
+              {/* bg-[#075bad] solid — SAMA PERSIS kayak ikon logo di TopNavBar pojok
+                  kiri atas. Sebelumnya pakai gradient biru tembus pandang (from-sky-
+                  400/20 to-indigo-600/20) yang warnanya ikut goyah kebawa tema (di
+                  light mode nyaris pudar karena numpuk di atas bg-surface-container
+                  yang terang) — solid color gak peduli tema, ikon logo-nya (dominan
+                  putih) selalu kontras. */}
+              <div className="w-16 h-16 rounded-2xl bg-[#075bad] border border-outline-variant flex items-center justify-center shadow-lg overflow-hidden p-2.5">
                 <img src="/icon.webp" alt="Logo" className="w-full h-full object-contain" />
               </div>
               <div className="text-center">
