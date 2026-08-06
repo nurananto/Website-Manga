@@ -17,14 +17,28 @@
       "Slice of Life"
     ],
     "rating": 8.43,
-    "chapter_count": 15,
+    "chapter_count": 16,
     "total_views": 51,
     "isTrending": true,
-    "latest_release_date": "2026-08-05T22:36:09+07:00",
+    "latest_release_date": "2026-08-06T11:41:15+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
     "hiatus_at_chapter": null,
     "chapters": [
+      {
+        "chapter_number": 12.1,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "page1",
+        "r2_folder": 12.1,
+        "id": "Chikasugiru-ch-12.1",
+        "r2_prefix": "manga/Chikasugiru/12.1/",
+        "title": "Ch. 12.1",
+        "release_date": "2026-08-06T11:41:15+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
       {
         "chapter_number": 11.2,
         "lock_hours": 0,
@@ -52,19 +66,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 2
-      },
-      {
-        "chapter_number": 10.2,
-        "lock_hours": 0,
-        "pages": 6,
-        "release_date": "2026-08-02T21:03:00+07:00",
-        "r2_folder": 10.2,
-        "id": "Chikasugiru-ch-10.2",
-        "r2_prefix": "manga/Chikasugiru/10.2/",
-        "title": "Ch. 10.2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 3
       }
     ]
   },

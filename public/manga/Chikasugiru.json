@@ -66,6 +66,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 12.1,
+      "lock_hours": 0,
+      "pages": 10,
+      "notif_image": "page1",
+      "r2_folder": 12.1,
+      "id": "Chikasugiru-ch-12.1",
+      "r2_prefix": "manga/Chikasugiru/12.1/",
+      "title": "Ch. 12.1",
+      "release_date": "2026-08-06T11:41:15+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 11.2,
       "lock_hours": 0,
       "pages": 6,
