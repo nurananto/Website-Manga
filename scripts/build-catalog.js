@@ -336,14 +336,22 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
     return { embed, attByName };
   };
 
+  // Opening beda kalau chapter ini menandai manga Tamat/Hiatus (lihat
+  // isFinalChapter/isHiatusChapter di detectNewChapters).
+  const openingOf = (ch, fallback) => {
+    if (ch.isFinalChapter)  return `🏁 **TAMAT!** Chapter terakhir ${ch.mangaTitle} sudah rilis, baca sampai habis!`;
+    if (ch.isHiatusChapter) return `⏸️ **HIATUS** — ${ch.mangaTitle} rehat sementara mulai chapter ini.`;
+    return fallback;
+  };
+
   const messages = []; // { embed, attByName } — tiap elemen = 1 pesan Discord
   for (const list of byManga.values()) {
     if (list.length > 3) {
       const ch = list[0]; // chapter terbaru = representatif (list sudah desc)
       const nums = list.map(c => c.chapterNumber);
-      messages.push(await buildEmbed(ch, `📖 **${list.length} chapter baru** (Ch ${nums[nums.length - 1]}–${nums[0]})`));
+      messages.push(await buildEmbed(ch, openingOf(ch, `📖 **${list.length} chapter baru** (Ch ${nums[nums.length - 1]}–${nums[0]})`)));
     } else {
-      for (const ch of list) messages.push(await buildEmbed(ch, `📖 **${ch.chapterTitle}**`));
+      for (const ch of list) messages.push(await buildEmbed(ch, openingOf(ch, `📖 **${ch.chapterTitle}**`)));
     }
   }
 
@@ -453,20 +461,29 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
   // newChapters urut terbaru→lama per judul (chapters sudah desc dari build-catalog).
   const byManga = groupByManga(newChapters);
 
+  // Opening beda kalau chapter ini menandai manga Tamat/Hiatus (lihat
+  // isFinalChapter/isHiatusChapter di detectNewChapters).
+  const openingOf = (ch, title, fallback) => {
+    if (ch.isFinalChapter)  return `🏁 Chapter terakhir — TAMAT!\n${title}\nTerima kasih sudah menikmati series ini.`;
+    if (ch.isHiatusChapter) return `⏸️ Masuk hiatus mulai chapter ini\n${title}\nPantau terus ya!`;
+    return fallback;
+  };
+
   const posts = []; // { title, rep, message } — tiap elemen = 1 post FB
   for (const [mangaId, list] of byManga) {
     const title = list[0].mangaTitle;
     if (list.length > 3) {
       const nums = list.map(c => c.chapterNumber);
+      const ch = list[0];
       const message =
-        `📖 ${title}\n${list.length} chapter baru (Ch ${nums[nums.length - 1]}–${nums[0]}) sudah update!\n\n` +
-        `Baca: ${host}/${mangaId}`;
-      posts.push({ title, rep: list[0], message });
+        openingOf(ch, title, `📖 ${title}\n${list.length} chapter baru (Ch ${nums[nums.length - 1]}–${nums[0]}) sudah update!`) +
+        `\n\nBaca: ${host}/${mangaId}`;
+      posts.push({ title, rep: ch, message });
     } else {
       for (const ch of list) {
         const message =
-          `📖 ${title}\nChapter ${ch.chapterNumber} sudah update!\n\n` +
-          `Baca: ${host}/${mangaId}`;
+          openingOf(ch, title, `📖 ${title}\nChapter ${ch.chapterNumber} sudah update!`) +
+          `\n\nBaca: ${host}/${mangaId}`;
         posts.push({ title, rep: ch, message });
       }
     }
@@ -757,6 +774,11 @@ function detectNewChapters(slug, manga, chapters, prevChapterNums) {
         chapterTitle:     ch.title,
         isLocked:         ch.isLocked,
         releaseDate:      ch.release_date,
+        // Chapter penutup (Tamat) / awal rehat (Hiatus) — ditandai manual via
+        // tamat_at_chapter / hiatus_at_chapter di meta.json manga, dipakai untuk
+        // opening pesan notif Discord/Facebook yang beda dari update biasa.
+        isFinalChapter:   manga.status === 'Tamat'  && String(manga.tamat_at_chapter  ?? '') === String(ch.chapter_number),
+        isHiatusChapter:  manga.status === 'Hiatus' && String(manga.hiatus_at_chapter ?? '') === String(ch.chapter_number),
         // Gambar notifikasi: prioritas notif_image CHAPTER, fallback ke manga, lalu 'page1'.
         notifImage:       ch.notif_image || manga.notif_image || 'page1',
         coverKey:         manga.cover_dev ?? manga.covers?.[0],
