@@ -268,28 +268,29 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
                     </h3>
                   </div>
 
-                  {/* Mockup Trakteer — tiruan screenshot website lain, SENGAJA selalu
-                      TERANG (situs Trakteer aslinya memang light UI) apa pun tema situs
-                      kita sendiri — bukan ikut dark/light toggle kita, ikut Trakteer asli. */}
-                  <div className="border border-gray-300 rounded-xl overflow-hidden bg-white">
-                    <div className="px-3 py-2 border-b border-gray-200 flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-sky-500 flex items-center justify-center text-[8px] font-black text-white">N</div>
+                  {/* Mockup Trakteer — tiruan screenshot website lain, ikut dark/light
+                      toggle situs kita (bukan dikunci terang kayak Trakteer asli) —
+                      light mode: abu terang niru Trakteer, dark mode: gelap translucent
+                      niru gaya lama situs (sebelum ada toggle) biar nyatu sama tema. */}
+                  <div className="border border-gray-300 dark:border-white/10 rounded-xl overflow-hidden bg-white dark:bg-[#1a1a2e]">
+                    <div className="px-3 py-2 border-b border-gray-200 dark:border-white/5 flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-sky-500 dark:bg-sky-500/30 flex items-center justify-center text-[8px] font-black text-white dark:text-sky-300">N</div>
                       <div>
-                        <p className="text-[10px] font-black text-gray-900">Nurananto Scanlation</p>
-                        <p className="text-[9px] text-gray-500">@NuranantoScanlation</p>
+                        <p className="text-[10px] font-black text-gray-900 dark:text-white/80">Nurananto Scanlation</p>
+                        <p className="text-[9px] text-gray-500 dark:text-white/40">@NuranantoScanlation</p>
                       </div>
                     </div>
                     <div className="p-3 flex flex-col gap-2">
-                      <div className="bg-gray-100 rounded-lg p-2.5">
-                        <p className="text-[9px] text-gray-500 mb-1">Pesan</p>
-                        <p className="text-[10px] font-bold text-amber-700 break-all">{userEmail || 'email@kamu.com'}</p>
+                      <div className="bg-gray-100 dark:bg-white/5 rounded-lg p-2.5">
+                        <p className="text-[9px] text-gray-500 dark:text-white/40 mb-1">Pesan</p>
+                        <p className="text-[10px] font-bold text-amber-700 dark:text-amber-300 break-all">{userEmail || 'email@kamu.com'}</p>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <div className="w-3 h-3 rounded border border-gray-400 flex items-center justify-center bg-gray-100">
-                          <div className="w-1.5 h-1.5 rounded-[1px] bg-red-500" />
+                        <div className="w-3 h-3 rounded border border-gray-400 dark:border-white/20 flex items-center justify-center bg-gray-100 dark:bg-white/5">
+                          <div className="w-1.5 h-1.5 rounded-[1px] bg-red-500 dark:bg-red-400" />
                         </div>
-                        <p className="text-[9px] text-red-500 line-through">Jadikan pesan private</p>
-                        <span className="text-[9px] text-gray-500">← jangan!</span>
+                        <p className="text-[9px] text-red-500 dark:text-red-400 line-through">Jadikan pesan private</p>
+                        <span className="text-[9px] text-gray-500 dark:text-white/40">← jangan!</span>
                       </div>
                     </div>
                   </div>
