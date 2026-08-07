@@ -1,5 +1,73 @@
 [
   {
+    "id": "Midari",
+    "title": "Midari ni Tsukasete wa Narimasen",
+    "description": "Tamotsu Sugawara, seorang karyawan yang tidak bisa menolak permintaan apa pun, mendapati dirinya tidak bisa lagi pergi ke kantor dan memutuskan untuk beristirahat sementara di kuil keluarganya. Suatu malam, hantu yang sangat mirip dengan Makoto Hiiragi, seorang mahasiswi yang bekerja part time di…",
+    "status": "Tamat",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Comedy",
+      "Romance",
+      "Shounen",
+      "Supernatural"
+    ],
+    "rating": 8.61,
+    "chapter_count": 19,
+    "total_views": 72,
+    "isTrending": true,
+    "latest_release_date": "2026-08-07T00:02:21+07:00",
+    "next_update": null,
+    "tamat_at_chapter": 14,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 14,
+        "lock_hours": 0,
+        "pages": 25,
+        "notif_image": "page1",
+        "r2_folder": 14,
+        "id": "Midari-ch-14",
+        "r2_prefix": "manga/Midari/14/",
+        "title": "Ch. 14",
+        "release_date": "2026-08-07T00:02:21+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 13,
+        "lock_hours": 0,
+        "pages": 18,
+        "release_date": "2026-06-20T18:38:40+07:00",
+        "r2_folder": 13,
+        "id": "Midari-ch-13",
+        "r2_prefix": "manga/Midari/13/",
+        "title": "Ch. 13",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 15
+      },
+      {
+        "chapter_number": 12,
+        "lock_hours": 0,
+        "pages": 16,
+        "release_date": "2026-06-15T18:33:54+07:00",
+        "r2_folder": 12,
+        "id": "Midari-ch-12",
+        "r2_prefix": "manga/Midari/12/",
+        "title": "Ch. 12",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 7
+      }
+    ]
+  },
+  {
     "id": "Chikasugiru",
     "title": "Chikasugiru Futari",
     "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang greget—ini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun…",
@@ -306,7 +374,7 @@
     "rating": 7.69,
     "chapter_count": 20,
     "total_views": 166,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-03T16:14:51+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -1124,7 +1192,7 @@
       "School Life",
       "Slice of Life"
     ],
-    "rating": 8.34,
+    "rating": 8.4,
     "chapter_count": 1,
     "total_views": 25,
     "isTrending": false,
@@ -1349,7 +1417,7 @@
       "Shounen",
       "Supernatural"
     ],
-    "rating": 8.28,
+    "rating": 8.3,
     "chapter_count": 4,
     "total_views": 45,
     "isTrending": false,
@@ -1537,73 +1605,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 8
-      }
-    ]
-  },
-  {
-    "id": "Midari",
-    "title": "Midari ni Tsukasete wa Narimasen",
-    "description": "Tamotsu Sugawara, seorang karyawan yang tidak bisa menolak permintaan apa pun, mendapati dirinya tidak bisa lagi pergi ke kantor dan memutuskan untuk beristirahat sementara di kuil keluarganya. Suatu malam, hantu yang sangat mirip dengan Makoto Hiiragi, seorang mahasiswi yang bekerja part time di…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Comedy",
-      "Romance",
-      "Shounen",
-      "Supernatural"
-    ],
-    "rating": 8.61,
-    "chapter_count": 18,
-    "total_views": 72,
-    "isTrending": false,
-    "latest_release_date": "2026-06-20T18:38:40+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 13,
-        "lock_hours": 0,
-        "pages": 18,
-        "release_date": "2026-06-20T18:38:40+07:00",
-        "r2_folder": 13,
-        "id": "Midari-ch-13",
-        "r2_prefix": "manga/Midari/13/",
-        "title": "Ch. 13",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 15
-      },
-      {
-        "chapter_number": 12,
-        "lock_hours": 0,
-        "pages": 16,
-        "release_date": "2026-06-15T18:33:54+07:00",
-        "r2_folder": 12,
-        "id": "Midari-ch-12",
-        "r2_prefix": "manga/Midari/12/",
-        "title": "Ch. 12",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 7
-      },
-      {
-        "chapter_number": 11,
-        "lock_hours": 0,
-        "pages": 16,
-        "release_date": "2026-06-15T18:33:53+07:00",
-        "r2_folder": 11,
-        "id": "Midari-ch-11",
-        "r2_prefix": "manga/Midari/11/",
-        "title": "Ch. 11",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 5
       }
     ]
   },
