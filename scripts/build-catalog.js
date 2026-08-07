@@ -401,7 +401,7 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
     if (m.genres?.length) desc.push(`🏷️ ${m.genres.join(' · ')}`);
     if (m.synopsis)       desc.push('', (m.synopsis || '').trim());
     desc.push('', links.join('  •  '));
-    const cover = await resolveCoverAttachment(m);
+    const cover = m.cover; // sudah di-resolve di buildCatalog() sebelum push ke newMangaList
     messages.push({
       att: cover,
       embed: {
@@ -447,6 +447,66 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
     await new Promise(r => setTimeout(r, 1200)); // anti rate-limit (5 req / 2 dtk)
   }
   console.log(`📚 Intro manga-list terkirim: ${sent}/${messages.length} judul`);
+}
+
+// ── Intro manga BARU ke Facebook Page (padanan sendMangaIntros Discord) ──
+// Dipanggil 1× per manga baru (sama trigger dengan newMangaList). Foto cover
+// jadi gambar utama (caption clickable), fallback teks polos kalau upload
+// foto gagal — sama pola dengan sendFacebookNotifications di bawah.
+async function sendFacebookMangaIntros(newManga, pageId, pageToken, siteUrl) {
+  if (!pageId || !pageToken || newManga.length === 0) return;
+  const base = siteUrl.replace(/\/$/, '');
+
+  let sent = 0;
+  for (const m of newManga) {
+    const rawDesc = (m.synopsis || '').trim();
+    // Potong di batas kata (sama pola dengan shortDesc di buildIndexEntry).
+    const shortDesc = rawDesc.length > 400
+      ? rawDesc.slice(0, 400).replace(/\s+\S*$/, '') + '…'
+      : rawDesc;
+
+    const lines = ['📚 Manga Baru!', m.title, '', shortDesc, '', `Baca: ${base}/${m.id}`];
+    if (m.mangadexUrl) lines.push(`MangaDex: ${m.mangadexUrl}`);
+    if (m.rawUrl)      lines.push(`Raw: ${m.rawUrl}`);
+    const message = lines.join('\n');
+
+    try {
+      let ok = false;
+      const cover = m.cover; // sudah di-resolve di buildCatalog() sebelum push ke newMangaList
+      if (cover) {
+        try {
+          const postPhoto = () => {
+            const form = new FormData();
+            form.append('caption', message);
+            form.append('access_token', pageToken);
+            form.append('source', new Blob([cover.bytes], { type: 'image/webp' }), cover.name);
+            return fetchT(`https://graph.facebook.com/v21.0/${pageId}/photos`, { method: 'POST', body: form }, 45000);
+          };
+          let r = await postPhoto();
+          if (!r.ok) {
+            await new Promise(res => setTimeout(res, 2000)); // jeda sebelum retry (FB: is_transient)
+            r = await postPhoto();
+          }
+          if (r.ok) ok = true;
+          else console.warn(`⚠️  FB manga-intro photo gagal (${m.title}): ${r.status} ${await r.text()} — fallback teks`);
+        } catch (e) {
+          console.warn(`⚠️  FB manga-intro photo timeout/error (${m.title}): ${e.message} — fallback teks`);
+        }
+      }
+      if (!ok) {
+        const r = await fetchT(`https://graph.facebook.com/v21.0/${pageId}/feed`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message, access_token: pageToken }),
+        });
+        if (r.ok) ok = true;
+        else console.warn(`⚠️  FB manga-intro feed gagal (${m.title}): ${r.status} ${await r.text()}`);
+      }
+      if (ok) sent++;
+    } catch (e) { console.warn(`⚠️  FB manga-intro error (${m.title}): ${e.message}`); }
+    await new Promise(r => setTimeout(r, 1500)); // jeda antar post
+  }
+  console.log(`📘 Facebook manga-intro terkirim: ${sent}/${newManga.length} judul`);
 }
 
 // ── Post chapter baru ke Facebook Page (teks polos, link tanpa html) ──
@@ -891,18 +951,52 @@ async function buildCatalog() {
     applyCoverUrls(manga);
     writeMangaDetailJson(slug, manga, chapters);
 
-    // Manga BARU (belum pernah ada JSON-nya) → intro 1× ke #manga-list.
+    // Manga BARU (belum pernah ada JSON-nya) → intro 1× ke #manga-list + FB.
     // MANGALIST_BACKFILL=1 → kirim SEMUA manga (sekali, untuk isi channel kosong).
-    if (isNewManga || MANGALIST_BACKFILL) {
-      newMangaList.push({
-        id:               manga.id,
-        title:            manga.title,
-        coverKey:         manga.cover_dev ?? manga.covers?.[0],
-        coverUrl:         manga.coverUrl,
-        genres:           manga.genres,
-        rating:           manga.rating,
-        synopsis:         manga.description,
+    // SENGAJA nunggu cover BENAR-BENAR bisa diunduh (bukan cuma field covers[0]
+    // terisi) — manga baru sering meta.json-nya sudah di-push duluan sebelum
+    // sync-covers.js berhasil dapat cover dari MangaDex (mis. judul belum
+    // terindeks / mangadex_url belum diisi), jadi kalau dipaksa kirim sekarang
+    // hasilnya post tanpa gambar. intro_pending ditulis balik ke meta.json
+    // SUMBER supaya build berikutnya otomatis coba lagi sampai cover ketemu —
+    // tanpa ini, begitu isNewManga jadi false (JSON sudah pernah ditulis),
+    // intro-nya hilang permanen walau cover-nya nanti akhirnya ada.
+    if (isNewManga || manga.intro_pending === true || MANGALIST_BACKFILL) {
+      const cover = await resolveCoverAttachment({
+        id:       manga.id,
+        coverKey: manga.covers?.[0],
+        coverUrl: manga.coverUrl,
       });
+      if (cover) {
+        newMangaList.push({
+          id:          manga.id,
+          title:       manga.title,
+          cover,
+          genres:      manga.genres,
+          rating:      manga.rating,
+          synopsis:    manga.description,
+          mangadexUrl: manga.mangadex_url,
+          rawUrl:      manga.raw_url,
+        });
+        if (manga.intro_pending) {
+          delete manga.intro_pending;
+          try {
+            const raw = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+            delete raw.intro_pending;
+            fs.writeFileSync(metaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
+          } catch {}
+        }
+      } else if (!MANGALIST_BACKFILL) {
+        console.warn(`   ⏳ ${manga.title}: cover belum tersedia, intro ditunda ke build berikutnya`);
+        if (!manga.intro_pending) {
+          manga.intro_pending = true;
+          try {
+            const raw = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+            raw.intro_pending = true;
+            fs.writeFileSync(metaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
+          } catch {}
+        }
+      }
     }
 
     catalog.push(buildIndexEntry(manga, chapters, latestReleaseDate));
@@ -917,6 +1011,7 @@ async function buildCatalog() {
   // Notifikasi Discord untuk chapter-chapter baru
   await sendDiscordNotifications(newChaptersList, DISCORD_WEBHOOK_URL, SITE_URL);
   await sendMangaIntros(newMangaList, DISCORD_MANGALIST_WEBHOOK_URL, SITE_URL);
+  await sendFacebookMangaIntros(newMangaList, FB_PAGE_ID, FB_PAGE_TOKEN, SITE_URL);
   await sendFacebookNotifications(newChaptersList, FB_PAGE_ID, FB_PAGE_TOKEN, SITE_URL);
 }
 
