@@ -31,9 +31,20 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "raw_cover_url": "https://c.bookwalker.jp/6cd5fb59e64c33b8724f3c9e0546529/t_700x780.jpg",
-  "cover_source": "raw",
+  "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
-  "cover_version": 2,
-  "intro_pending": true
+  "cover_version": 3,
+  "mangadex_cover": "d72b641b-59bc-4103-82b2-d3c7fc584bc7.png",
+  "cover_gallery": [
+    {
+      "file": "d72b641b-59bc-4103-82b2-d3c7fc584bc7.png",
+      "volume": "1",
+      "keys": [
+        "manga/NanimoDekinai/covers/gallery/d72b641b-59bc-4103-82b2-d3c7fc584bc7.webp",
+        "manga/NanimoDekinai/covers/gallery/d72b641b-59bc-4103-82b2-d3c7fc584bc7@tablet.webp",
+        "manga/NanimoDekinai/covers/gallery/d72b641b-59bc-4103-82b2-d3c7fc584bc7@mobile.webp"
+      ],
+      "widths": "1280x960x640q75"
+    }
+  ]
 }
