@@ -37,10 +37,10 @@
     "13.3": 5,
     "14.1": 14,
     "14.2": 18,
-    "15.1": 10,
-    "15.2": 3
+    "15.1": 11,
+    "15.2": 4
   },
-  "total_views": 162,
+  "total_views": 166,
   "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -63,7 +63,7 @@
       }
     }
   ],
-  "detail_views": 70,
+  "detail_views": 72,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "acfd6902-b39c-4b7d-91a8-9825dda4ede8",
@@ -87,7 +87,7 @@
       "title": "Ch. 15.2",
       "unlockDate": "2026-08-18T09:14:51.000Z",
       "isLocked": true,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 15.1,
@@ -100,7 +100,7 @@
       "title": "Ch. 15.1",
       "unlockDate": "2026-08-03T16:08:03.000Z",
       "isLocked": false,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 14.2,

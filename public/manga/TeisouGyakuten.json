@@ -37,11 +37,11 @@
     "6": 7,
     "6.5": 11,
     "7.1": 9,
-    "7.2": 14,
+    "7.2": 15,
     "7.3": 15,
-    "8.1": 9
+    "8.1": 10
   },
-  "total_views": 158,
+  "total_views": 161,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -64,7 +64,7 @@
       }
     }
   ],
-  "detail_views": 52,
+  "detail_views": 53,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "8556c131-23ed-42d6-98ba-5f2aa5037843",
@@ -88,7 +88,7 @@
       "title": "Ch. 8.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 7.3,
@@ -114,7 +114,7 @@
       "title": "Ch. 7.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 14
+      "views": 15
     },
     {
       "chapter_number": 7.1,

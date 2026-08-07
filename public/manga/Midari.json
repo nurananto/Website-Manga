@@ -2,7 +2,7 @@
   "id": "Midari",
   "title": "Midari ni Tsukasete wa Narimasen",
   "alt_title": "みだりに憑かせてはなりません",
-  "status": "Ongoing",
+  "status": "Tamat",
   "type": "MANGA",
   "author": "Kurita Aguri",
   "artist": "Kurita Aguri",
@@ -20,7 +20,7 @@
   ],
   "mangadex_url": "https://mangadex.org/title/3076dc1f-e6f2-418c-baa9-125694eb36cc/midari-ni-tsukasete-wa-narimasen",
   "raw_url": "https://comic-walker.com/detail/KC_006109_S?episodeType=first",
-  "tamat_at_chapter": null,
+  "tamat_at_chapter": 14,
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 4,
@@ -29,8 +29,8 @@
     "9": 3,
     "10": 3,
     "11": 5,
-    "12": 6,
-    "13": 14,
+    "12": 7,
+    "13": 15,
     "2.1": 1,
     "2.2": 1,
     "3.1": 1,
@@ -42,7 +42,7 @@
     "6.1": 1,
     "6.2": 1
   },
-  "total_views": 70,
+  "total_views": 72,
   "mangadex_cover": "d86648a6-77d3-4a95-a8d2-b296da206065.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -70,6 +70,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 14,
+      "lock_hours": 0,
+      "pages": 25,
+      "notif_image": "page1",
+      "r2_folder": 14,
+      "id": "Midari-ch-14",
+      "r2_prefix": "manga/Midari/14/",
+      "title": "Ch. 14",
+      "release_date": "2026-08-07T00:02:21+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 13,
       "lock_hours": 0,
       "pages": 18,
@@ -80,7 +94,7 @@
       "title": "Ch. 13",
       "unlockDate": null,
       "isLocked": false,
-      "views": 14
+      "views": 15
     },
     {
       "chapter_number": 12,
@@ -93,7 +107,7 @@
       "title": "Ch. 12",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 11,
