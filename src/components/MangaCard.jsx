@@ -30,9 +30,11 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
         aria-label={manga.title}
         // Padding disetel per-breakpoint (bukan px-2 rata semua) supaya cover
         // yang tampil rasionya ~0.70 (rata-rata cover asli manga, lihat catatan
-        // riset), bukan ~0.6 (kepotong kurus/tinggi). Efek samping: gap ke kolom
-        // teks sebelah kanan ikut mengecil (disengaja, sudah disetujui).
-        className="relative w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full flex-shrink-0 flex items-center justify-center py-2 sm:py-3 px-0.5 sm:px-0 md:px-0.5 lg:px-1 cursor-pointer"
+        // riset), bukan ~0.6 (kepotong kurus/tinggi). py dinaikkan (cover jadi
+        // sedikit lebih pendek) supaya px juga bisa dinaikkan — versi awal px
+        // terlalu mepet (sm:px-0 = 0px), bikin efek hover:scale-105 & glow
+        // cover-new-glow ikut kepotong overflow-hidden kartu di sisi kanan.
+        className="relative w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full flex-shrink-0 flex items-center justify-center py-4 md:py-3.5 px-2 sm:px-1 lg:px-1.5 cursor-pointer"
       >
         <ResponsiveCover
             manga={manga}
@@ -52,7 +54,8 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
             sengaja sejajar dengan BORDER KIRI kotak ikon buku/gembok (bukan
             dengan teks "Ch. X" setelah ikon) — makanya di sini TIDAK ada
             placeholder selebar ikon lagi, cukup padding ini saja. */}
-        <div className="flex items-center justify-between gap-2 px-2 sm:px-2.5 lg:px-3">
+        {/* border-b + pb sebagai pemisah visual judul vs daftar chapter di bawahnya */}
+        <div className="flex items-center justify-between gap-2 px-2 sm:px-2.5 lg:px-3 pb-1.5 sm:pb-2 border-b-2 border-outline-variant/50">
           <div className="flex items-center gap-1 min-w-0 flex-1">
             <a
               href={`/${manga.id}`}
