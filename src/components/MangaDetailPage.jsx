@@ -214,7 +214,9 @@ const renderChapterRow = (ch) => {
           {/* Info Over Cover Container */}
           <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-3 sm:gap-6 pb-4">
             {/* Cover Image */}
-            <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[2/3] flex-shrink-0 rounded-xl bg-surface-container-high">
+            {/* aspect-[7/10] (~0.70), bukan 2/3 — rata-rata rasio cover asli
+                di situs ini, lihat MangaCard/FeaturedCarousel/SpotlightCarousel */}
+            <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[7/10] flex-shrink-0 rounded-xl bg-surface-container-high">
               <ResponsiveCover
                   manga={manga}
                   alt={`${manga.title} Cover`}

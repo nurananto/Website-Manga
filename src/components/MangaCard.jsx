@@ -28,7 +28,11 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
         href={`/${manga.id}`}
         onClick={(e) => { e.preventDefault(); onViewManga(manga); }}
         aria-label={manga.title}
-        className="relative w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full flex-shrink-0 flex items-center justify-center py-2 sm:py-2.5 md:py-3 px-2 cursor-pointer"
+        // Padding disetel per-breakpoint (bukan px-2 rata semua) supaya cover
+        // yang tampil rasionya ~0.70 (rata-rata cover asli manga, lihat catatan
+        // riset), bukan ~0.6 (kepotong kurus/tinggi). Efek samping: gap ke kolom
+        // teks sebelah kanan ikut mengecil (disengaja, sudah disetujui).
+        className="relative w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full flex-shrink-0 flex items-center justify-center py-2 sm:py-3 px-0.5 sm:px-0 md:px-0.5 lg:px-1 cursor-pointer"
       >
         <ResponsiveCover
             manga={manga}

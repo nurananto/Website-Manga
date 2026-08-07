@@ -161,8 +161,11 @@ export default function FeaturedCarousel({
       </div>
 
       {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}
-      {/* pr pixel tetap agar gap ke cover konsisten di semua lebar viewport */}
-      <div className="absolute inset-0 left-0 py-1.5 pl-3 pr-32 sm:py-2 sm:pl-5 sm:pr-44 md:py-2.5 md:pl-7 md:pr-52 lg:py-3 lg:pl-9 lg:pr-60 flex flex-col justify-center z-10">
+      {/* pr pixel tetap agar gap ke cover konsisten di semua lebar viewport. Nilai
+          dihitung dari lebar cover aktual (aspect-[7/10] × tinggi efektifnya) + ~14px
+          jarak — sebelumnya kelewat lega (31-80px) karena pr ditulis manual tanpa
+          disesuaikan ulang saat cover dilebarkan (2/3 -> 7/10). */}
+      <div className="absolute inset-0 left-0 py-1.5 pl-3 pr-28 sm:py-2 sm:pl-5 sm:pr-32 md:py-2.5 md:pl-7 md:pr-40 lg:py-3 lg:pl-9 lg:pr-44 flex flex-col justify-center z-10">
 
         {/* Satu blok konten, di-center secara vertikal */}
         <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5">
@@ -223,7 +226,9 @@ export default function FeaturedCarousel({
         <ResponsiveCover
           manga={activeManga}
           alt={activeManga.title}
-          className="h-[85%] sm:h-[90%] md:h-[93%] aspect-[2/3] object-cover rounded-lg sm:rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.14)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-black/10 dark:border-white/10 group-hover:scale-105 transition-all duration-500 animate-[featuredCoverIn_0.45s_cubic-bezier(0.22,1,0.36,1)]"
+          // aspect-[7/10] (~0.70), bukan 2/3 (0.667) — rata-rata rasio cover
+          // manga asli di situs ini ~0.70 (diukur langsung dari 31 file cover).
+          className="h-[85%] sm:h-[90%] md:h-[93%] aspect-[7/10] object-cover rounded-lg sm:rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.14)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-black/10 dark:border-white/10 group-hover:scale-105 transition-all duration-500 animate-[featuredCoverIn_0.45s_cubic-bezier(0.22,1,0.36,1)]"
           loading="eager"
           fetchPriority="auto"
           decoding="async"

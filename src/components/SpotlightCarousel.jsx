@@ -137,7 +137,9 @@ export default function SpotlightCarousel({
   const activeIdxRef = useRef(activeIdx);
   const nextAdvanceAtRef = useRef(0);
 
-  const coverH     = Math.round(coverW * 1.5);
+  // ÷0.7 (bukan ×1.5) — rasio cover asli manga di situs ini rata-rata ~0.70
+  // (w/h), bukan 2:3 (0.667/×1.5) yang bikin cover kepotong kurus/tinggi.
+  const coverH     = Math.round(coverW / 0.7);
   const containerH = padV + coverH + metaGap + metaH + padV;
 
   // How many items to show on each side: capped by breakpoint and available items
