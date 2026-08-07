@@ -31,14 +31,18 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": "",
+  "intro_pending": true,
+  "raw_cover_url": "https://c.bookwalker.jp/6cd5fb59e64c33b8724f3c9e0546529/t_700x780.jpg",
+  "cover_source": "raw",
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 2,
   "rating": null,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
@@ -46,11 +50,11 @@
       "lock_hours": 0,
       "pages": 32,
       "notif_image": "cover",
+      "release_date": "2026-08-08T00:07:19+07:00",
       "r2_folder": 1,
       "id": "NanimoDekinai-ch-1",
       "r2_prefix": "manga/NanimoDekinai/1/",
       "title": "Ch. 1",
-      "release_date": "2026-08-08T00:07:19+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
