@@ -31,16 +31,16 @@
     "3": 8,
     "4": 12,
     "5.2": 16,
-    "5.3": 22,
+    "5.3": 24,
     "5.1": 14,
-    "6.1": 29,
-    "6.3": 28,
-    "6.2": 31,
-    "7.1": 23,
-    "7.2": 10,
-    "8.1": 2
+    "6.1": 31,
+    "6.3": 30,
+    "6.2": 33,
+    "7.1": 26,
+    "7.2": 11,
+    "8.1": 4
   },
-  "total_views": 359,
+  "total_views": 379,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -55,7 +55,7 @@
     }
   ],
   "cover_version": 4,
-  "detail_views": 147,
+  "detail_views": 153,
   "notif_image": "page1",
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
   "rating": 8.18,
@@ -79,7 +79,7 @@
       "title": "Ch. 8.1",
       "unlockDate": "2026-09-03T07:48:36.000Z",
       "isLocked": true,
-      "views": 2
+      "views": 4
     },
     {
       "chapter_number": 7.2,
@@ -92,7 +92,7 @@
       "title": "Ch. 7.2",
       "unlockDate": "2026-08-20T10:13:46.000Z",
       "isLocked": true,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 7.1,
@@ -105,7 +105,7 @@
       "title": "Ch. 7.1",
       "unlockDate": "2026-08-05T12:49:50.000Z",
       "isLocked": false,
-      "views": 23
+      "views": 26
     },
     {
       "chapter_number": 6.3,
@@ -118,7 +118,7 @@
       "title": "Ch. 6.3",
       "unlockDate": "2026-07-22T11:03:47.000Z",
       "isLocked": false,
-      "views": 28
+      "views": 30
     },
     {
       "chapter_number": 6.2,
@@ -131,7 +131,7 @@
       "title": "Ch. 6.2",
       "unlockDate": "2026-07-08T11:03:47.000Z",
       "isLocked": false,
-      "views": 31
+      "views": 33
     },
     {
       "chapter_number": 6.1,
@@ -144,7 +144,7 @@
       "title": "Ch. 6.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 29
+      "views": 31
     },
     {
       "chapter_number": 5.3,
@@ -157,7 +157,7 @@
       "title": "Ch. 5.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 22
+      "views": 24
     },
     {
       "chapter_number": 5.2,

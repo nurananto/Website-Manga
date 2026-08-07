@@ -29,9 +29,9 @@
     "3": 2,
     "4": 1,
     "5": 1,
-    "6": 3
+    "6": 4
   },
-  "total_views": 20,
+  "total_views": 21,
   "mangadex_cover": "2c142b06-cf48-405d-b5e6-5af0c1651688.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -78,7 +78,7 @@
       "title": "Ch. 6",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 5,
