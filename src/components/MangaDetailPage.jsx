@@ -414,7 +414,7 @@ const renderChapterRow = (ch) => {
             {/* Synopsis */}
             <div className="flex flex-col gap-2">
               <h3 className="font-headline-md text-base sm:text-lg text-on-surface font-black">Sinopsis</h3>
-              <p className="font-body-md text-sm sm:text-sm md:text-base text-on-surface-variant leading-relaxed opacity-90 text-justify">
+              <p className="font-body-md text-sm sm:text-sm md:text-base text-on-surface-variant leading-relaxed opacity-90 text-justify whitespace-pre-line">
                 {expandedSynopsis ? (manga.description || '') : `${(manga.description || '').substring(0, 160)}${(manga.description || '').length > 160 ? '...' : ''}`}
                 {(manga.description || '').length > 160 && (
                   <button
