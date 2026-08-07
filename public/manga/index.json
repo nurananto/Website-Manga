@@ -1,5 +1,48 @@
 [
   {
+    "id": "NanimoDekinai",
+    "title": "Na-nimo Dekinai Gyaru ga Yuiitsu Dekiru Koto",
+    "description": "Romcom serumah paling bikin iri sedunia, bareng “adik tiri” yang seorang “ilustrator dewa” sekaligus “gyaru”! Ini adalah kisah Arata Arashiyama, anak SMA yang tanpa sengaja memenangkan “lotre” dengan peluang yang nggak masuk akal.\n\n1. Si gyaru idaman semua orang, Suzuka Ichinose, siswa pindahan…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=1",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=1",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@tablet.webp?v=1",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@mobile.webp?v=1"
+    },
+    "genres": [
+      "Adaptation",
+      "Full Color",
+      "Long Strip",
+      "School Life",
+      "Shounen Gyaru"
+    ],
+    "rating": null,
+    "chapter_count": 1,
+    "total_views": 0,
+    "isTrending": true,
+    "latest_release_date": "2026-08-08T00:07:19+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 1,
+        "lock_hours": 0,
+        "pages": 32,
+        "notif_image": "cover",
+        "r2_folder": 1,
+        "id": "NanimoDekinai-ch-1",
+        "r2_prefix": "manga/NanimoDekinai/1/",
+        "title": "Ch. 1",
+        "release_date": "2026-08-08T00:07:19+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "Osananajimi",
     "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
     "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
@@ -299,7 +342,7 @@
     "rating": 8.43,
     "chapter_count": 16,
     "total_views": 68,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-06T11:41:15+07:00",
     "next_update": null,
     "tamat_at_chapter": null,

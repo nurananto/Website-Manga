@@ -2,7 +2,7 @@
   "id": "NanimoDekinai",
   "title": "Na-nimo Dekinai Gyaru ga Yuiitsu Dekiru Koto",
   "alt_title": "なーんにもできないギャルが唯一できるコト",
-  "status": "ONGOING",
+  "status": "Ongoing",
   "type": "WEBTOON",
   "author": "Suzuki Daisuke",
   "artist": [
@@ -15,8 +15,8 @@
     "Adaptation",
     "Full Color",
     "Long Strip",
-    "Shounen Gyaru",
-    "School Life"
+    "School Life",
+    "Shounen Gyaru"
   ],
   "description": "Romcom serumah paling bikin iri sedunia, bareng “adik tiri” yang seorang “ilustrator dewa” sekaligus “gyaru”! Ini adalah kisah Arata Arashiyama, anak SMA yang tanpa sengaja memenangkan “lotre” dengan peluang yang nggak masuk akal.\n\n1. Si gyaru idaman semua orang, Suzuka Ichinose, siswa pindahan yang baru datang, malah duduk tepat di sebelahnya.\n2. Gyaru ini kemudian jadi adik tiri Arata.\n3. Dan yang lebih gila lagi, ternyata dia adalah ilustrator dewa yang selama ini Arata idolakan.\n\nTapi ternyata Suzuka Ichinose adalah gyaru yang nggak bisa ngapa-ngapain selain gambar!? Kehidupan Arashiyama Arata yang tadinya biasa aja langsung berubah total! Sekarang dia jadi pengurus gyaru nomor satu di sekolah! Romcom serumah paling bikin iri sedunia pun resmi dimulai!",
   "covers": [
@@ -32,5 +32,28 @@
   "chapter_views": {},
   "total_views": 0,
   "mangadex_cover": "",
-  "intro_pending": true
+  "rating": null,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=1",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=1",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@tablet.webp?v=1",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@mobile.webp?v=1"
+  },
+  "chapters": [
+    {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 32,
+      "notif_image": "cover",
+      "r2_folder": 1,
+      "id": "NanimoDekinai-ch-1",
+      "r2_prefix": "manga/NanimoDekinai/1/",
+      "title": "Ch. 1",
+      "release_date": "2026-08-08T00:07:19+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    }
+  ]
 }
