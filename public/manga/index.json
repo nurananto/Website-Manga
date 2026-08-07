@@ -1,5 +1,77 @@
 [
   {
+    "id": "Osananajimi",
+    "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
+    "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=4",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=4"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Drama",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life",
+      "Tragedy"
+    ],
+    "rating": 7.7,
+    "chapter_count": 17,
+    "total_views": 608,
+    "isTrending": true,
+    "latest_release_date": "2026-08-07T23:38:57+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 7.3,
+        "lock_hours": 528,
+        "pages": 14,
+        "notif_image": "4",
+        "r2_folder": 7.3,
+        "id": "Osananajimi-ch-7.3",
+        "r2_prefix": "manga/Osananajimi/7.3/",
+        "title": "Ch. 7.3",
+        "release_date": "2026-08-07T23:38:57+07:00",
+        "unlockDate": "2026-08-29T16:38:57.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 7.2,
+        "lock_hours": 672,
+        "pages": 9,
+        "release_date": "2026-07-17T22:42:07+07:00",
+        "r2_folder": 7.2,
+        "id": "Osananajimi-ch-7.2",
+        "r2_prefix": "manga/Osananajimi/7.2/",
+        "title": "Ch. 7.2",
+        "unlockDate": "2026-08-14T15:42:07.000Z",
+        "isLocked": true,
+        "views": 7
+      },
+      {
+        "chapter_number": 7.1,
+        "lock_hours": 504,
+        "pages": 11,
+        "release_date": "2026-06-27T09:52:50+07:00",
+        "r2_folder": 7.1,
+        "id": "Osananajimi-ch-7.1",
+        "r2_prefix": "manga/Osananajimi/7.1/",
+        "title": "Ch. 7.1",
+        "unlockDate": "2026-07-18T02:52:50.000Z",
+        "isLocked": false,
+        "views": 44
+      }
+    ]
+  },
+  {
     "id": "10-nenburi",
     "title": "10-Nen Buri ni Saikai Shita Kusogaki wa Seijun Bishoujo JK ni Seichou Shiteita",
     "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
@@ -32,11 +104,11 @@
         "lock_hours": 696,
         "pages": 10,
         "notif_image": "page1",
+        "release_date": "2026-08-07T13:26:55+07:00",
         "r2_folder": 22.2,
         "id": "10-nenburi-ch-22.2",
         "r2_prefix": "manga/10-nenburi/22.2/",
         "title": "Ch. 22.2",
-        "release_date": "2026-08-07T13:26:55+07:00",
         "unlockDate": "2026-09-05T06:26:55.000Z",
         "isLocked": true,
         "views": 0
@@ -300,7 +372,7 @@
     "rating": 8.18,
     "chapter_count": 13,
     "total_views": 359,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-05T14:48:36+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -1102,77 +1174,6 @@
         "unlockDate": "2026-07-08T04:27:34.000Z",
         "isLocked": false,
         "views": 49
-      }
-    ]
-  },
-  {
-    "id": "Osananajimi",
-    "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
-    "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=4",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=4"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Drama",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life",
-      "Tragedy"
-    ],
-    "rating": 7.7,
-    "chapter_count": 16,
-    "total_views": 608,
-    "isTrending": false,
-    "latest_release_date": "2026-07-17T22:42:07+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 7.2,
-        "lock_hours": 672,
-        "pages": 9,
-        "release_date": "2026-07-17T22:42:07+07:00",
-        "r2_folder": 7.2,
-        "id": "Osananajimi-ch-7.2",
-        "r2_prefix": "manga/Osananajimi/7.2/",
-        "title": "Ch. 7.2",
-        "unlockDate": "2026-08-14T15:42:07.000Z",
-        "isLocked": true,
-        "views": 7
-      },
-      {
-        "chapter_number": 7.1,
-        "lock_hours": 504,
-        "pages": 11,
-        "release_date": "2026-06-27T09:52:50+07:00",
-        "r2_folder": 7.1,
-        "id": "Osananajimi-ch-7.1",
-        "r2_prefix": "manga/Osananajimi/7.1/",
-        "title": "Ch. 7.1",
-        "unlockDate": "2026-07-18T02:52:50.000Z",
-        "isLocked": false,
-        "views": 44
-      },
-      {
-        "chapter_number": 6.5,
-        "lock_hours": 0,
-        "pages": 1,
-        "release_date": "2026-07-10T22:23:15+07:00",
-        "r2_folder": 6.5,
-        "id": "Osananajimi-ch-6.5",
-        "r2_prefix": "manga/Osananajimi/6.5/",
-        "title": "Ch. 6.5",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 46
       }
     ]
   },
