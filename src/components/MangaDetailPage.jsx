@@ -24,7 +24,9 @@ const joinCreator = (value) => Array.isArray(value) ? value.join(', ') : (value 
 
 // Tampilan ringkas: ≤2 nama tampil penuh ("A, B"), lebih dari itu dipotong
 // ("A, B & 2 lainnya") supaya kartu Author/Artist tidak melebar liar kalau
-// nama-namanya panjang. List lengkap tetap ada lewat title= (hover tooltip).
+// nama-namanya panjang. List lengkap bisa dibuka dengan tap (lihat
+// expandedCreator) — title= cuma bonus buat desktop, HP/tablet tidak punya
+// hover jadi tap adalah jalur utamanya.
 const creatorDisplay = (value) => {
   if (!Array.isArray(value)) return value || '—';
   if (value.length === 0) return '—';
@@ -39,6 +41,10 @@ const fitCreatorStyle = (value) => ({
 
 export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, readChapterIds, isSupporter, isLoggedIn, onDonate }) {
   const [expandedSynopsis, setExpandedSynopsis] = useState(false);
+  // Author/Artist dengan >2 nama tampil dipotong ("A, B & N lainnya") — tap
+  // untuk expand. title= (hover) tetap dipasang buat desktop, tapi ini yang
+  // jadi jalur utama karena HP/tablet tidak punya hover sama sekali.
+  const [expandedCreator, setExpandedCreator] = useState({ author: false, artist: false });
 
   // Rekam view halaman detail (manga dibuka tapi belum tentu dibaca).
   // Dedup ringan per sesi; server juga dedup per IP/hari. chapter_id = slug manga
@@ -353,14 +359,30 @@ const renderChapterRow = (ch) => {
                 sekarang 2 tile terpisah (masing-masing bg sendiri, dipisah gap) biar
                 konsisten sama pola tile Rating/Chapters/Views di atas. */}
             <div className="grid grid-cols-2 gap-2 sm:gap-3">
-              <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 min-w-0 bg-surface-container/50 rounded-xl" style={fitCreatorStyle(manga.author)}>
-                <span className="font-label-sm text-xs text-outline font-bold uppercase tracking-widest">Author</span>
-                <span className="font-body-md text-sm sm:text-sm md:text-base font-bold text-on-surface truncate" title={joinCreator(manga.author)}>{creatorDisplay(manga.author)}</span>
-              </div>
-              <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 min-w-0 bg-surface-container/50 rounded-xl" style={fitCreatorStyle(manga.artist)}>
-                <span className="font-label-sm text-xs text-outline font-bold uppercase tracking-widest">Artist</span>
-                <span className="font-body-md text-sm font-bold text-on-surface truncate" title={joinCreator(manga.artist)}>{creatorDisplay(manga.artist)}</span>
-              </div>
+              {[
+                { key: 'author', label: 'Author', value: manga.author, textCls: 'text-sm sm:text-sm md:text-base' },
+                { key: 'artist', label: 'Artist', value: manga.artist, textCls: 'text-sm' },
+              ].map(({ key, label, value, textCls }) => {
+                const isTruncated = Array.isArray(value) && value.length > 2;
+                const isExpanded = isTruncated && expandedCreator[key];
+                return (
+                  <div key={key} className="creator-fit flex flex-col gap-1 p-3 sm:p-4 min-w-0 bg-surface-container/50 rounded-xl" style={fitCreatorStyle(value)}>
+                    <span className="font-label-sm text-xs text-outline font-bold uppercase tracking-widest">{label}</span>
+                    {isTruncated ? (
+                      <button
+                        type="button"
+                        onClick={() => setExpandedCreator((prev) => ({ ...prev, [key]: !prev[key] }))}
+                        title={joinCreator(value)}
+                        className={`font-body-md ${textCls} font-bold text-on-surface text-left cursor-pointer ${isExpanded ? '' : 'truncate'}`}
+                      >
+                        {isExpanded ? joinCreator(value) : creatorDisplay(value)}
+                      </button>
+                    ) : (
+                      <span className={`font-body-md ${textCls} font-bold text-on-surface truncate`}>{creatorDisplay(value)}</span>
+                    )}
+                  </div>
+                );
+              })}
             </div>
 
             {/* Status + Type — sama seperti Author/Artist di atas. */}
