@@ -298,7 +298,8 @@ p, h1, h2, h3, h4, h5, h6, span.selectable {
   container-type: inline-size;
 }
 
-.creator-fit > span:last-child {
+.creator-fit > span:last-child,
+.creator-fit > button:last-child {
   font-size: clamp(0.68rem, calc((100cqw - 0.5rem) / var(--creator-chars, 14) * 1.7), 1rem) !important;
   line-height: 1.15;
 }

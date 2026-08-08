@@ -373,6 +373,7 @@ const renderChapterRow = (ch) => {
                         type="button"
                         onClick={() => setExpandedCreator((prev) => ({ ...prev, [key]: !prev[key] }))}
                         title={joinCreator(value)}
+                        aria-expanded={isExpanded}
                         className={`font-body-md ${textCls} font-bold text-on-surface text-left cursor-pointer ${isExpanded ? '' : 'truncate'}`}
                       >
                         {isExpanded ? joinCreator(value) : creatorDisplay(value)}
