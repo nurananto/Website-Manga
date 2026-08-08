@@ -17,9 +17,24 @@ const chapterSortValue = (value) => {
   return Number.isFinite(n) ? n : Number.NEGATIVE_INFINITY;
 };
 
+// author/artist bisa berupa string tunggal ATAU array (kolaborasi banyak
+// orang, mis. studio) — selalu gabung jadi satu string ", "-separated
+// sebelum dipakai hitung lebar container / tooltip.
+const joinCreator = (value) => Array.isArray(value) ? value.join(', ') : (value || '');
+
+// Tampilan ringkas: ≤2 nama tampil penuh ("A, B"), lebih dari itu dipotong
+// ("A, B & 2 lainnya") supaya kartu Author/Artist tidak melebar liar kalau
+// nama-namanya panjang. List lengkap tetap ada lewat title= (hover tooltip).
+const creatorDisplay = (value) => {
+  if (!Array.isArray(value)) return value || '—';
+  if (value.length === 0) return '—';
+  if (value.length <= 2) return value.join(', ');
+  return `${value.slice(0, 2).join(', ')} & ${value.length - 2} lainnya`;
+};
+
 const fitCreatorStyle = (value) => ({
   containerType: 'inline-size',
-  '--creator-chars': Math.max(String(value || '').length, 8),
+  '--creator-chars': Math.max(creatorDisplay(value).length, 8),
 });
 
 export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, readChapterIds, isSupporter, isLoggedIn, onDonate }) {
@@ -340,11 +355,11 @@ const renderChapterRow = (ch) => {
             <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 min-w-0 bg-surface-container/50 rounded-xl" style={fitCreatorStyle(manga.author)}>
                 <span className="font-label-sm text-xs text-outline font-bold uppercase tracking-widest">Author</span>
-                <span className="font-body-md text-sm sm:text-sm md:text-base font-bold text-on-surface truncate">{manga.author || '—'}</span>
+                <span className="font-body-md text-sm sm:text-sm md:text-base font-bold text-on-surface truncate" title={joinCreator(manga.author)}>{creatorDisplay(manga.author)}</span>
               </div>
               <div className="creator-fit flex flex-col gap-1 p-3 sm:p-4 min-w-0 bg-surface-container/50 rounded-xl" style={fitCreatorStyle(manga.artist)}>
                 <span className="font-label-sm text-xs text-outline font-bold uppercase tracking-widest">Artist</span>
-                <span className="font-body-md text-sm font-bold text-on-surface truncate">{manga.artist || '—'}</span>
+                <span className="font-body-md text-sm font-bold text-on-surface truncate" title={joinCreator(manga.artist)}>{creatorDisplay(manga.artist)}</span>
               </div>
             </div>
 
