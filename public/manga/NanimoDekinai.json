@@ -13,12 +13,15 @@
   ],
   "genres": [
     "Adaptation",
+    "Comedy",
     "Full Color",
+    "Gyaru",
     "Long Strip",
+    "Romance",
     "School Life",
-    "Shounen Gyaru"
+    "Shounen"
   ],
-  "description": "Romcom serumah paling bikin iri sedunia, bareng “adik tiri” yang seorang “ilustrator dewa” sekaligus “gyaru”! Ini adalah kisah Arata Arashiyama, anak SMA yang tanpa sengaja memenangkan “lotre” dengan peluang yang nggak masuk akal.\n\n1. Si gyaru idaman semua orang, Suzuka Ichinose, siswa pindahan yang baru datang, malah duduk tepat di sebelahnya.\n2. Gyaru ini kemudian jadi adik tiri Arata.\n3. Dan yang lebih gila lagi, ternyata dia adalah ilustrator dewa yang selama ini Arata idolakan.\n\nTapi ternyata Suzuka Ichinose adalah gyaru yang nggak bisa ngapa-ngapain selain gambar!? Kehidupan Arashiyama Arata yang tadinya biasa aja langsung berubah total! Sekarang dia jadi pengurus gyaru nomor satu di sekolah! Romcom serumah paling bikin iri sedunia pun resmi dimulai!",
+  "description": "Romcom serumah paling bikin iri sedunia, bareng “adik tiri” yang seorang “ilustrator dewa” sekaligus “gyaru”! Ini adalah kisah Shinta Arashiyama, anak SMA yang tanpa sengaja memenangkan “lotre” dengan peluang yang nggak masuk akal.\n\n1. Si gyaru idaman semua orang, Suzuka Ichinose, siswa pindahan yang baru datang, malah duduk tepat di sebelahnya.\n2. Gyaru ini kemudian jadi adik tiri Shinta.\n3. Dan yang lebih gila lagi, ternyata dia adalah ilustrator dewa yang selama ini Shinta idolakan.\n\nTapi ternyata Suzuka Ichinose adalah gyaru yang nggak bisa ngapa-ngapain selain gambar!? Kehidupan Arashiyama Shinta yang tadinya biasa aja langsung berubah total! Sekarang dia jadi pengurus gyaru nomor satu di sekolah! Romcom serumah paling bikin iri sedunia pun resmi dimulai!",
   "covers": [
     "manga/NanimoDekinai/covers/cover.webp",
     "manga/NanimoDekinai/covers/cover@tablet.webp",
@@ -34,7 +37,6 @@
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
   "cover_version": 3,
-  "intro_pending": true,
   "mangadex_cover": "d72b641b-59bc-4103-82b2-d3c7fc584bc7.png",
   "cover_gallery": [
     {
@@ -48,7 +50,7 @@
     }
   ],
   "mangadex_id": "e440bccd-51fc-43e7-b226-00525d959f61",
-  "rating": null,
+  "rating": 9.6,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
   "coverUrls": {
