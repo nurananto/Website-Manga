@@ -50,7 +50,7 @@
     }
   ],
   "mangadex_id": "e440bccd-51fc-43e7-b226-00525d959f61",
-  "rating": 9.6,
+  "rating": 9.67,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
   "coverUrls": {
@@ -59,6 +59,20 @@
     "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
+    {
+      "chapter_number": 2,
+      "lock_hours": 0,
+      "pages": 32,
+      "notif_image": "cover",
+      "r2_folder": 2,
+      "id": "NanimoDekinai-ch-2",
+      "r2_prefix": "manga/NanimoDekinai/2/",
+      "title": "Ch. 2",
+      "release_date": "2026-08-08T20:27:39+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
     {
       "chapter_number": 1,
       "lock_hours": 0,

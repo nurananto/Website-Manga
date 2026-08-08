@@ -20,15 +20,29 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 9.6,
-    "chapter_count": 1,
+    "rating": 9.67,
+    "chapter_count": 2,
     "total_views": 0,
     "isTrending": true,
-    "latest_release_date": "2026-08-08T00:07:19+07:00",
+    "latest_release_date": "2026-08-08T20:27:39+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
     "hiatus_at_chapter": null,
     "chapters": [
+      {
+        "chapter_number": 2,
+        "lock_hours": 0,
+        "pages": 32,
+        "notif_image": "cover",
+        "r2_folder": 2,
+        "id": "NanimoDekinai-ch-2",
+        "r2_prefix": "manga/NanimoDekinai/2/",
+        "title": "Ch. 2",
+        "release_date": "2026-08-08T20:27:39+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
       {
         "chapter_number": 1,
         "lock_hours": 0,
