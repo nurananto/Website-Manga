@@ -32,8 +32,12 @@
   "notif_image": "cover",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "1": 5,
+    "2": 1,
+    "3": 1
+  },
+  "total_views": 17,
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
   "cover_version": 3,
@@ -49,6 +53,7 @@
       }
     }
   ],
+  "detail_views": 10,
   "mangadex_id": "e440bccd-51fc-43e7-b226-00525d959f61",
   "rating": 9.67,
   "next_update": null,
@@ -64,14 +69,14 @@
       "lock_hours": 0,
       "pages": 32,
       "notif_image": "cover",
+      "release_date": "2026-08-08T22:15:36+07:00",
       "r2_folder": 3,
       "id": "NanimoDekinai-ch-3",
       "r2_prefix": "manga/NanimoDekinai/3/",
       "title": "Ch. 3",
-      "release_date": "2026-08-08T22:15:36+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 2,
@@ -85,7 +90,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 1,
@@ -99,7 +104,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 5
     }
   ]
 }

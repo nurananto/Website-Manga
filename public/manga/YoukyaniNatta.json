@@ -29,9 +29,9 @@
     "3": 2,
     "4": 1,
     "5": 1,
-    "6": 4
+    "6": 5
   },
-  "total_views": 21,
+  "total_views": 22,
   "mangadex_cover": "2c142b06-cf48-405d-b5e6-5af0c1651688.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -58,7 +58,7 @@
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "cfcb65ff-cf9b-4628-a666-76d1b06553dc",
-  "rating": 8.21,
+  "rating": 8.22,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp?v=2",
   "coverUrls": {
@@ -78,7 +78,7 @@
       "title": "Ch. 6",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 5,
