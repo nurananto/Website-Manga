@@ -29,9 +29,9 @@
     "1": 7,
     "2": 3,
     "3": 1,
-    "4": 10
+    "4": 11
   },
-  "total_views": 45,
+  "total_views": 46,
   "mangadex_cover": "4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_version": 3,
@@ -69,7 +69,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 3,
