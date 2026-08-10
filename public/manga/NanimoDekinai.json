@@ -35,9 +35,9 @@
   "chapter_views": {
     "1": 8,
     "2": 2,
-    "3": 2
+    "3": 3
   },
-  "total_views": 26,
+  "total_views": 30,
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
   "cover_version": 3,
@@ -53,9 +53,9 @@
       }
     }
   ],
-  "detail_views": 14,
+  "detail_views": 17,
   "mangadex_id": "e440bccd-51fc-43e7-b226-00525d959f61",
-  "rating": 9.44,
+  "rating": 9.36,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
   "coverUrls": {
@@ -76,7 +76,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 2,
