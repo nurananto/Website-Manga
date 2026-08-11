@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Check, Crown, Info, ChevronLeft } from 'lucide-react';
+import { X, Check, Crown, Info, ChevronLeft, AlertTriangle } from 'lucide-react';
 import { loginWithGoogle } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
 import ResponsiveCover from './ResponsiveCover';
@@ -241,6 +241,27 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
                     </p>
                   </div>
 
+                  {/* Reminder email SEBELUM tombol Trakteer — sengaja di halaman
+                      pertama (bukan cuma di "Tata Cara"), karena kebanyakan orang
+                      langsung klik "Lanjut Trakteer" tanpa pernah buka panduan.
+                      Status Supporter dicocokkan otomatis berdasar email di kolom
+                      Pesan Trakteer == email akun login — beda kasus gagal match:
+                      1) login tapi lupa isi/salah isi email pas donasi, 2) isi
+                      email pas donasi tapi belum/tidak pernah login pakai email
+                      itu. Pesannya dibedakan tergantung status login sekarang. */}
+                  <div className="bg-red-500/10 border border-red-500/25 rounded-xl px-3 py-2.5 flex gap-2 items-start">
+                    <AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                    {userEmail ? (
+                      <p className="text-[11px] text-on-surface-variant leading-relaxed text-justify">
+                        <strong className="text-on-surface">Penting:</strong> isi kolom <strong className="text-on-surface">Pesan</strong> Trakteer dengan email akun kamu yang sekarang login: <strong className="text-amber-700 dark:text-amber-300 break-all">{userEmail}</strong> — beda email = status Supporter tidak otomatis nyambung.
+                      </p>
+                    ) : (
+                      <p className="text-[11px] text-on-surface-variant leading-relaxed text-justify">
+                        <strong className="text-on-surface">Penting:</strong> kamu belum login. Login/daftar dulu, lalu pastikan email di kolom <strong className="text-on-surface">Pesan</strong> Trakteer sama persis dengan email login kamu — kalau tidak, status Supporter tidak akan otomatis nyambung ke akunmu.
+                      </p>
+                    )}
+                  </div>
+
                   <p className="text-[11px] text-on-surface-variant leading-relaxed text-center">
                     Panduan lengkap, baca <strong className="text-on-surface">Tata Cara</strong> di bawah ini.
                   </p>
@@ -299,7 +320,7 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
                   <div className="flex flex-col gap-2">
                     {[
                       { n: 1, text: 'Klik "Lanjut Trakteer" → buka halaman Trakteer' },
-                      { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan email akunmu: <span className="text-amber-700 dark:text-amber-300 font-bold break-all">{userEmail || 'email yang kamu pakai untuk masuk'}</span></> },
+                      { n: 2, text: <>Isi kolom <strong className="text-on-surface">Pesan</strong> dengan Email <span className={`text-amber-700 dark:text-amber-300 font-bold ${userEmail ? 'break-all' : ''}`}>{userEmail || 'yang kamu gunakan untuk login'}</span></> },
                       { n: 3, text: <><strong className="text-red-400">Jangan</strong> centang "Jadikan pesan private"</> },
                       { n: 4, text: <>Donasi minimal <strong className="text-on-surface">{SUPPORTER_MIN}</strong>, lalu bayar</> },
                       { n: 5, text: 'Status Supporter aktif otomatis setelah donasi dikonfirmasi (30 hari)' },
