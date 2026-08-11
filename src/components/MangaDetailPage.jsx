@@ -105,6 +105,18 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
     return sortNewest ? list : list.reverse();
   }, [manga.chapters, sortNewest]);
 
+  // Chapter pertama (nomor terkecil) buat tombol "Baca dari Awal" — cuma butuh
+  // 1 elemen, jadi cukup scan min O(n) + di-memo, bukan sort O(n log n) ulang
+  // tiap render (dulu inline di JSX, kepicu ulang tiap state apa pun berubah:
+  // tab switch, buka galeri, expand sinopsis, dst — mubazir utk manga
+  // berchapter banyak, mis. 216 chapter di Waka-chan).
+  const firstChapter = useMemo(() => {
+    const list = manga.chapters || [];
+    return list.reduce((min, ch) =>
+      !min || chapterSortValue(ch.chapter_number) < chapterSortValue(min.chapter_number) ? ch : min
+    , null);
+  }, [manga.chapters]);
+
   // Satu timer tersembunyi untuk transisi terdekat. Badge/gembok berubah tepat
   // waktu tanpa menampilkan countdown dan tanpa membuat timer untuk tiap baris.
   const nextAccessTransition = useMemo(() => {
@@ -263,8 +275,6 @@ const renderChapterRow = (ch) => {
 
               {/* Baca dari Awal + Lanjut Baca */}
               {(() => {
-                const chaptersAsc = [...(manga.chapters || [])].sort((a, b) => chapterSortValue(a.chapter_number) - chapterSortValue(b.chapter_number));
-                const firstChapter = chaptersAsc[0];
                 const continueChapter = lastReadChapter
                   ? (manga.chapters || []).find(c =>
                       c.id === lastReadChapter.id ||
