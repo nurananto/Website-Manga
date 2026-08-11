@@ -101,6 +101,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 24.1,
+      "lock_hours": 360,
+      "pages": 14,
+      "notif_image": "10",
+      "r2_folder": 24.1,
+      "id": "Yuumei-ch-24.1",
+      "r2_prefix": "manga/Yuumei/24.1/",
+      "title": "Ch. 24.1",
+      "release_date": "2026-08-11T23:14:43+07:00",
+      "unlockDate": "2026-08-26T16:14:43.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 23.2,
       "lock_hours": 504,
       "pages": 15,
