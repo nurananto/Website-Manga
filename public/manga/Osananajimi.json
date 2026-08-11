@@ -39,13 +39,13 @@
     "5.1": 25,
     "6.1": 44,
     "6.2": 44,
-    "6.3": 46,
-    "7.1": 52,
-    "6.5": 48,
+    "6.3": 48,
+    "7.1": 55,
+    "6.5": 50,
     "7.2": 11,
     "7.3": 4
   },
-  "total_views": 669,
+  "total_views": 678,
   "mangadex_cover": "7924e82c-7b57-4fda-9800-8dde50833030.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -68,11 +68,11 @@
       }
     }
   ],
-  "detail_views": 188,
+  "detail_views": 190,
   "cover_version": 4,
   "notif_image": "page1",
   "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
-  "rating": 7.71,
+  "rating": 7.72,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
   "coverUrls": {
@@ -119,7 +119,7 @@
       "title": "Ch. 7.1",
       "unlockDate": "2026-07-18T02:52:50.000Z",
       "isLocked": false,
-      "views": 52
+      "views": 55
     },
     {
       "chapter_number": 6.5,
@@ -132,7 +132,7 @@
       "title": "Ch. 6.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 48
+      "views": 50
     },
     {
       "chapter_number": 6.3,
@@ -145,7 +145,7 @@
       "title": "Ch. 6.3",
       "unlockDate": "2026-07-11T13:25:25.000Z",
       "isLocked": false,
-      "views": 46
+      "views": 48
     },
     {
       "chapter_number": 6.2,

@@ -25,7 +25,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 6,
+    "1": 7,
     "2": 2,
     "3": 3,
     "4": 2,
@@ -43,7 +43,7 @@
     "16": 24,
     "17": 19
   },
-  "total_views": 179,
+  "total_views": 181,
   "mangadex_cover": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -76,10 +76,10 @@
     }
   ],
   "cover_version": 3,
-  "detail_views": 53,
+  "detail_views": 54,
   "notif_image": "page1",
   "mangadex_id": "748d2aab-cea8-4ffb-89b3-e716872cb027",
-  "rating": 6.79,
+  "rating": 6.8,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=3",
   "coverUrls": {
@@ -307,7 +307,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     }
   ]
 }
