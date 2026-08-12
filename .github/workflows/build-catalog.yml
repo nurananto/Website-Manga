@@ -91,13 +91,50 @@ jobs:
           echo "{\"v\":\"$(date +%s)\",\"label\":\"$(date +'%-d %b %Y')\",\"type\":\"catalog\"}" > public/version.json
 
       - name: Commit hasil build
+        # Retry push dengan rebase — Worker cron (sync view count, lihat
+        # handleCron di worker/api-worker.js) commit LANGSUNG ke GitHub API
+        # ke file manga/*/meta.json yang SAMA, independen dari job ini. Kalau
+        # keduanya kebetulan nyaris bersamaan, push pertama bisa ditolak
+        # (non-fast-forward). Sebelumnya cuma "git pull --rebase || true"
+        # lalu 1x git push tanpa retry — kalau masih gagal setelah rebase,
+        # job ini mati begitu saja dan step deploy di bawah IKUT TIDAK JALAN,
+        # padahal build/sync-nya sendiri sudah sukses. Loop ini meniru pola
+        # retry-dgn-HEAD-terbaru yang sudah dipakai Worker (commitGitHubTree).
+        # Rebase yang KONFLIK BENERAN (bukan cuma "ketinggalan commit") tidak
+        # bisa di-auto-resolve di sini — di-abort lalu digagalkan eksplisit
+        # (exit 1) supaya job merah dengan pesan jelas, bukan gagal senyap.
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add manga/ public/manga/ public/version.json
-          git diff --staged --quiet || git commit -m "chore: sync covers & update catalog"
-          git pull --rebase origin main || true
-          git push
+
+          if git diff --staged --quiet; then
+            echo "Tidak ada perubahan untuk di-commit."
+            exit 0
+          fi
+          git commit -m "chore: sync covers & update catalog"
+
+          max_attempts=5
+          attempt=1
+          while true; do
+            if git push; then
+              break
+            fi
+            if [ "$attempt" -ge "$max_attempts" ]; then
+              echo "::error::Gagal push setelah $max_attempts percobaan (kemungkinan konflik nyata di meta.json, bukan cuma ketinggalan commit)."
+              exit 1
+            fi
+            echo "Push ditolak — percobaan $attempt/$max_attempts, rebase ulang ke HEAD terbaru..."
+            git fetch origin main
+            if ! git rebase origin/main; then
+              echo "::error::Rebase konflik saat percobaan $attempt — kemungkinan dua proses menulis baris yang sama persis di meta.json."
+              git rebase --abort || true
+              attempt=$((attempt + 1))
+              sleep $((attempt * 3))
+              continue
+            fi
+            attempt=$((attempt + 1))
+          done
 
       # ── Deploy Direct Upload (commit bot tidak men-trigger deploy-pages.yml) ──
       - name: Install dependencies
