@@ -27,9 +27,10 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 9,
-    "2": 10
+    "2": 10,
+    "3": 2
   },
-  "total_views": 36,
+  "total_views": 39,
   "mangadex_cover": "6d6bb634-822b-41c9-9249-d2f2c1d87ba6.png",
   "cover_widths": "1280x960x640q75",
   "cover_version": 2,
@@ -44,7 +45,7 @@
       }
     }
   ],
-  "detail_views": 17,
+  "detail_views": 18,
   "mangadex_id": "927d687f-ceb6-4e56-baff-461d6660443a",
   "rating": 8.24,
   "next_update": null,
@@ -60,14 +61,14 @@
       "lock_hours": 0,
       "pages": 32,
       "notif_image": "cover",
+      "release_date": "2026-08-12T22:54:08+07:00",
       "r2_folder": 3,
       "id": "InkyaDanshi-ch-3",
       "r2_prefix": "manga/InkyaDanshi/3/",
       "title": "Ch. 3",
-      "release_date": "2026-08-12T22:54:08+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 2,

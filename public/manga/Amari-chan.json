@@ -33,9 +33,9 @@
     "4": 1,
     "5": 1,
     "6": 3,
-    "7": 1,
+    "7": 2,
     "8": 3,
-    "9": 6,
+    "9": 7,
     "7.5": 2,
     "10.1": 4,
     "10.2": 3,
@@ -44,7 +44,7 @@
     "1.5": 1,
     "4.5": 1
   },
-  "total_views": 95,
+  "total_views": 99,
   "mangadex_cover": "c402aa68-08d7-49da-9fbd-7b84a9da4f7c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -67,7 +67,7 @@
       }
     }
   ],
-  "detail_views": 37,
+  "detail_views": 39,
   "cover_version": 3,
   "notif_image": "page1",
   "mangadex_id": "624d6ceb-768d-40a7-8412-84e083afbdb1",
@@ -143,7 +143,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 8,
@@ -182,7 +182,7 @@
       "title": "Ch. 7",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 6,
