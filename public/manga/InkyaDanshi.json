@@ -56,6 +56,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 3,
+      "lock_hours": 0,
+      "pages": 32,
+      "notif_image": "cover",
+      "r2_folder": 3,
+      "id": "InkyaDanshi-ch-3",
+      "r2_prefix": "manga/InkyaDanshi/3/",
+      "title": "Ch. 3",
+      "release_date": "2026-08-12T22:54:08+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 2,
       "lock_hours": 0,
       "pages": 32,
