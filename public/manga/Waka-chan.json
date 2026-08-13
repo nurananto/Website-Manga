@@ -79,7 +79,7 @@
     "215.6": 6,
     "215.7": 6,
     "215.8": 7,
-    "215.9": 15,
+    "215.9": 16,
     "215.1": 4,
     "204.5": 2,
     "208.5": 3,
@@ -93,7 +93,7 @@
     "195.5": 1,
     "161.5": 1
   },
-  "total_views": 226,
+  "total_views": 227,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -230,7 +230,7 @@
       "title": "Ch. 215.9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 15
+      "views": 16
     },
     {
       "chapter_number": 215.8,
