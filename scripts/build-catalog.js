@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 
 const chaptersDir = './manga';
 const outDir = './public/manga';
@@ -27,10 +27,21 @@ const FB_PAGE_ID    = (process.env.FB_PAGE_ID || '').trim();
 const FB_PAGE_TOKEN = (process.env.FB_PAGE_TOKEN || '').trim();
 const SITE_URL = (process.env.SITE_URL || 'https://nuranantoscans.my.id').replace(/\/$/, '');
 
-// Waktu commit PERTAMA yang menambahkan file — stabil, tidak berubah oleh commit berikutnya
+// Waktu commit PERTAMA yang menambahkan file — stabil, tidak berubah oleh commit berikutnya.
+// execFileSync (bukan execSync) — filePath jadi ELEMEN ARRAY argumen, bukan
+// disisipkan ke teks command via template literal. execSync menjalankan lewat
+// shell (git bash di Windows runner / sh di Linux), jadi kalau filePath (nama
+// folder manga/chapter, ikut apa pun ada di repo) kebetulan mengandung
+// karakter shell (`"`, `` ` ``, `$(...)`, `;`, dst), itu bisa DIINTERPRETASI
+// ulang oleh shell alih-alih diperlakukan sebagai path biasa. execFileSync
+// TIDAK pernah lewat shell — argumen selalu diteruskan apa adanya ke proses
+// git, kebal dari karakter apa pun isinya.
 function gitAddedDate(filePath) {
   try {
-    const out = execSync(`git log --diff-filter=A --format=%aI -1 -- "${filePath}"`, { encoding: 'utf-8' }).trim();
+    const out = execFileSync(
+      'git', ['log', '--diff-filter=A', '--format=%aI', '-1', '--', filePath],
+      { encoding: 'utf-8' }
+    ).trim();
     return out || null;
   } catch { return null; }
 }
