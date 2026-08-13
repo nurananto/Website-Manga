@@ -197,6 +197,13 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
   // bukan expand ke bawah, supaya modal tidak memanjang dan harus di-scroll.
   // Modal di-unmount saat ditutup, jadi selalu kembali ke 'info' saat dibuka lagi.
   const [page, setPage] = useState('info');
+  // 'komentar' (cara lama, pasti kerja — tulis email di kolom Pesan) |
+  // 'eksperimental' (cara baru — Trakteer Public API baca email otomatis dari
+  // akun Trakteer, ASALKAN sama persis dengan email login web; tidak perlu
+  // tulis apa-apa di Pesan). Default 'eksperimental' — lebih simpel buat
+  // kebanyakan orang, 'komentar' tinggal jadi cadangan kalau gagal. Reset ke
+  // default ini lagi tiap modal dibuka ulang.
+  const [guideTab, setGuideTab] = useState('eksperimental');
   useDialogFocus(dialogRef, onClose, isOpen);
   if (!isOpen) return null;
   return (
@@ -205,8 +212,10 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           onClick={onClose} className="absolute inset-0" />
 
-        <motion.div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="supporter-modal-title" tabIndex={-1} initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+        <motion.div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="supporter-modal-title" tabIndex={-1} layout
+          initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
+          transition={{ layout: { duration: 0.22, ease: 'easeInOut' } }}
           className="relative w-full max-w-sm bg-surface-container border-2 border-outline-variant rounded-2xl shadow-2xl z-10 overflow-hidden"
         >
           <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -241,34 +250,13 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
                     </p>
                   </div>
 
-                  {/* Reminder email SEBELUM tombol Trakteer — sengaja di halaman
-                      pertama (bukan cuma di "Tata Cara"), karena kebanyakan orang
-                      langsung klik "Lanjut Trakteer" tanpa pernah buka panduan.
-                      Status Supporter dicocokkan otomatis berdasar email di kolom
-                      Pesan Trakteer == email akun login — beda kasus gagal match:
-                      1) login tapi lupa isi/salah isi email pas donasi, 2) isi
-                      email pas donasi tapi belum/tidak pernah login pakai email
-                      itu. Pesannya dibedakan tergantung status login sekarang. */}
-                  <div className="bg-red-500/10 border border-red-500/25 rounded-xl px-3 py-2.5 flex gap-2 items-start">
-                    <AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                    {userEmail ? (
-                      <p className="text-[11px] text-on-surface-variant leading-relaxed text-justify">
-                        <strong className="text-on-surface">Penting:</strong> isi kolom <strong className="text-on-surface">Pesan</strong> Trakteer dengan email akun kamu yang sekarang login: <strong className="text-amber-700 dark:text-amber-300 break-all">{userEmail}</strong> — beda email = status Supporter tidak otomatis nyambung.
-                      </p>
-                    ) : (
-                      <p className="text-[11px] text-on-surface-variant leading-relaxed text-justify">
-                        <strong className="text-on-surface">Penting:</strong> kamu belum login. Login/daftar dulu, lalu pastikan email di kolom <strong className="text-on-surface">Pesan</strong> Trakteer sama persis dengan email login kamu — kalau tidak, status Supporter tidak akan otomatis nyambung ke akunmu.
-                      </p>
-                    )}
-                  </div>
-
                   <p className="text-[11px] text-on-surface-variant leading-relaxed text-center">
                     Panduan lengkap, baca <strong className="text-on-surface">Tata Cara</strong> di bawah ini.
                   </p>
 
                   <div className="flex flex-col gap-2">
                     <button type="button" onClick={() => setPage('guide')}
-                      className="w-full h-12 rounded-xl border border-amber-400/45 text-amber-700 dark:text-amber-300 hover:bg-amber-400/10 font-black text-sm flex items-center justify-center gap-2 transition-colors active:scale-[0.98] cursor-pointer">
+                      className="w-full h-12 rounded-xl border-2 border-amber-500/70 dark:border-amber-400/60 text-amber-700 dark:text-amber-300 hover:bg-amber-400/10 font-black text-sm flex items-center justify-center gap-2 transition-colors active:scale-[0.98] cursor-pointer">
                       <Info className="w-4 h-4" />
                       Tata Cara
                     </button>
@@ -289,6 +277,32 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
                     </h3>
                   </div>
 
+                  {/* Tab: Komentar (cara lama, pasti kerja) vs Eksperimental (baru,
+                      otomatis lewat Trakteer Public API — lihat CATATAN_EKSPERIMENTAL
+                      di bawah soal batasannya). */}
+                  <div className="flex bg-surface-container-high border border-outline-variant/60 rounded-xl p-1 gap-1">
+                    <button type="button" onClick={() => setGuideTab('eksperimental')}
+                      className={`flex-1 h-8 rounded-lg border text-[11px] font-black transition-colors cursor-pointer flex items-center justify-center gap-1 ${
+                        guideTab === 'eksperimental'
+                          ? 'bg-surface-container border-outline-variant text-on-surface shadow-sm'
+                          : 'border-transparent text-on-surface-variant hover:text-on-surface'
+                      }`}>
+                      Metode API
+                      <span className="font-label-sm text-[8px] font-black uppercase tracking-wider px-1 py-0.5 rounded bg-amber-500/20 text-amber-700 dark:text-amber-400">Beta</span>
+                    </button>
+                    <button type="button" onClick={() => setGuideTab('komentar')}
+                      className={`flex-1 h-8 rounded-lg border text-[11px] font-black transition-colors cursor-pointer ${
+                        guideTab === 'komentar'
+                          ? 'bg-surface-container border-outline-variant text-on-surface shadow-sm'
+                          : 'border-transparent text-on-surface-variant hover:text-on-surface'
+                      }`}>
+                      Metode Komentar
+                    </button>
+                  </div>
+
+                  <AnimatePresence mode="wait" initial={false}>
+                  {guideTab === 'komentar' ? (
+                  <motion.div key="tab-komentar" className="contents" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
                   {/* Mockup Trakteer — tiruan screenshot website lain, ikut dark/light
                       toggle situs kita (bukan dikunci terang kayak Trakteer asli) —
                       light mode: abu terang niru Trakteer, dark mode: gelap translucent
@@ -331,6 +345,66 @@ export function SupporterModal({ isOpen, onClose, userEmail }) {
                       </div>
                     ))}
                   </div>
+
+                  {/* Reminder ini spesifik buat Metode Komentar — beda kasus gagal
+                      match: 1) login tapi lupa isi/salah isi email pas donasi,
+                      2) isi email pas donasi tapi belum/tidak pernah login pakai
+                      email itu. Dulu tampil di halaman pertama modal, dipindah ke
+                      sini karena isinya soal kolom Pesan doang (nggak relevan lagi
+                      buat Metode API yang otomatis). */}
+                  <div className="bg-red-500/10 border border-red-500/25 rounded-xl px-3 py-2.5 flex gap-2 items-start">
+                    <AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                    {userEmail ? (
+                      <p className="text-[11px] text-on-surface-variant leading-relaxed text-justify">
+                        <strong className="text-on-surface">Penting:</strong> isi kolom <strong className="text-on-surface">Pesan</strong> Trakteer dengan email akun kamu yang sekarang login: <strong className="text-amber-700 dark:text-amber-300 break-all">{userEmail}</strong> — beda email = status Supporter tidak otomatis nyambung.
+                      </p>
+                    ) : (
+                      <p className="text-[11px] text-on-surface-variant leading-relaxed text-justify">
+                        <strong className="text-on-surface">Penting:</strong> kamu belum login. Login/daftar dulu, lalu pastikan email di kolom <strong className="text-on-surface">Pesan</strong> Trakteer sama persis dengan email login kamu — kalau tidak, status Supporter tidak akan otomatis nyambung ke akunmu.
+                      </p>
+                    )}
+                  </div>
+                  </motion.div>
+                  ) : (
+                  <motion.div key="tab-api" className="contents" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
+                  {/* Metode Eksperimental — nggak perlu isi Pesan sama sekali, sistem
+                      otomatis narik email dari akun Trakteer kamu (Public API),
+                      ASALKAN email akun Trakteer sama persis dengan email login web
+                      ini. Ditandai "Beta" karena baru diuji terbatas — Metode Komentar
+                      tetap jadi cadangan yang lebih pasti kalau email beda/donasi
+                      sebagai tamu tanpa akun Trakteer. */}
+                  <div className="bg-sky-500/10 border-2 border-sky-500/50 dark:border-sky-400/40 rounded-xl px-3 py-3 flex flex-col gap-2">
+                    <p className="text-center text-sm font-semibold text-sky-800 dark:text-sky-100 leading-snug">
+                      Nggak perlu tulis apa-apa di kolom Pesan — sistem otomatis mendeteksi email dari akun Trakteer kamu.
+                    </p>
+                    <p className="text-[11px] text-on-surface-variant leading-relaxed text-justify">
+                      Syaratnya <strong className="text-on-surface">satu</strong>: email akun Trakteer yang kamu pakai donasi harus <strong className="text-on-surface">sama persis</strong> dengan email login kamu di website ini{userEmail && <> — <strong className="text-sky-700 dark:text-sky-300 break-all">{userEmail}</strong></>}.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    {[
+                      { n: 1, text: <>Pastikan kamu <strong className="text-on-surface">login pakai Google di Trakteer</strong> dengan email yang sama seperti login di website ini</> },
+                      { n: 2, text: 'Klik "Lanjut Trakteer" → donasi seperti biasa, kolom Pesan boleh dikosongkan' },
+                      { n: 3, text: <>Donasi minimal <strong className="text-on-surface">{SUPPORTER_MIN}</strong>, lalu bayar</> },
+                      { n: 4, text: 'Status Supporter aktif otomatis setelah donasi dikonfirmasi (30 hari)' },
+                    ].map(({ n, text }) => (
+                      <div key={n} className="flex gap-2.5 items-start">
+                        <span className="w-4 h-4 rounded-full bg-sky-500/20 border border-sky-500/30 text-sky-700 dark:text-sky-400 text-[9px] font-black flex items-center justify-center shrink-0 mt-0.5">{n}</span>
+                        <p className="text-[11px] text-on-surface-variant leading-relaxed">{text}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-red-500/10 border border-red-500/25 rounded-xl px-3 py-2.5 flex gap-2 items-start">
+                    <AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                    <p className="text-[11px] text-on-surface-variant leading-relaxed text-justify">
+                      Kalau email Trakteer kamu <strong className="text-on-surface">beda</strong> dari email login web, atau donasi sebagai <strong className="text-on-surface">tamu</strong> (tanpa akun Trakteer), cara ini bisa gagal — pakai <strong className="text-on-surface">Metode Komentar</strong> aja biar pasti kedeteksi.
+                    </p>
+                  </div>
+                  </motion.div>
+                  )}
+                  </AnimatePresence>
 
                   <TrakteerButton />
                 </motion.div>
