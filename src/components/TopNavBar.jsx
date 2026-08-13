@@ -39,10 +39,10 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
   return (
     <nav className="w-full bg-surface border-b border-outline-variant/50 transition-colors">
       <div className="flex items-center h-14 md:h-16 xl:h-[72px] px-3 sm:px-4 md:px-5 xl:px-6 gap-3 md:gap-4 w-full">
-        {/* Ikon saja — teks "Nurananto Scanlation" dilepas. Tingginya disamakan
-            dengan tombol di sisi kanan supaya kedua ujung header sejajar; ikut
-            status login karena tombol akun (h-10/11/12) lebih tinggi daripada
-            tombol Log In (h-8/10/12). */}
+        {/* Ikon saja — teks "Nurananto Scanlation" dilepas. Tingginya (w/h-10/11/12)
+            jadi skala acuan buat SEMUA tombol di sisi kanan (toggle tema, Log In,
+            tombol akun) supaya kedua ujung header selalu sejajar — sama persis
+            baik sebelum maupun sesudah login, bukan cuma pas salah satu state. */}
         <a
           href="/"
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
@@ -75,10 +75,10 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
             type="button"
             onClick={onToggleTheme}
             aria-label={theme === 'dark' ? 'Ganti ke mode terang' : 'Ganti ke mode gelap'}
-            className="relative h-8 w-8 md:h-10 md:w-10 xl:h-12 xl:w-12 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface shrink-0 shadow-md active:scale-95 transition-all cursor-pointer"
+            className="relative h-10 w-10 md:h-11 md:w-11 xl:h-12 xl:w-12 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface shrink-0 shadow-md active:scale-95 transition-all cursor-pointer"
           >
-            <Sun className={`absolute inset-0 m-auto w-4 h-4 md:w-[18px] md:h-[18px] xl:w-5 xl:h-5 ${theme === 'dark' ? 'opacity-100' : 'opacity-0'}`} />
-            <Moon className={`absolute inset-0 m-auto w-4 h-4 md:w-[18px] md:h-[18px] xl:w-5 xl:h-5 ${theme === 'dark' ? 'opacity-0' : 'opacity-100'}`} />
+            <Sun className={`absolute inset-0 m-auto w-[18px] h-[18px] md:w-5 md:h-5 ${theme === 'dark' ? 'opacity-100' : 'opacity-0'}`} />
+            <Moon className={`absolute inset-0 m-auto w-[18px] h-[18px] md:w-5 md:h-5 ${theme === 'dark' ? 'opacity-0' : 'opacity-100'}`} />
           </button>
           <div ref={dropdownRef} className="relative">
             <div className="relative">
@@ -109,9 +109,9 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
               <button
                 type="button"
                 onClick={onLoginClick}
-                className="h-8 md:h-10 xl:h-12 rounded-lg bg-[#075bad] hover:bg-[#096bc5] px-2.5 md:px-3.5 xl:px-4 text-white text-[11px] md:text-xs xl:text-sm font-black flex items-center justify-center gap-1.5 md:gap-2 border border-[#89ceff]/40 shadow-md active:scale-95 transition-all cursor-pointer"
+                className="h-10 md:h-11 xl:h-12 rounded-lg bg-[#075bad] hover:bg-[#096bc5] px-3 md:px-3.5 xl:px-4 text-white text-[11px] md:text-xs xl:text-sm font-black flex items-center justify-center gap-1.5 md:gap-2 border border-[#89ceff]/40 shadow-md active:scale-95 transition-all cursor-pointer"
               >
-                <LogIn className="w-3.5 h-3.5 md:w-4 md:h-4 xl:w-[18px] xl:h-[18px]" />
+                <LogIn className="w-4 h-4 md:w-[18px] md:h-[18px]" />
                 <span>Log In</span>
               </button>
             )}
