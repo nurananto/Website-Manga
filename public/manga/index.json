@@ -1,5 +1,79 @@
 [
   {
+    "id": "NanimoDekinai",
+    "title": "Na-nimo Dekinai Gyaru ga Yuiitsu Dekiru Koto",
+    "description": "Romcom serumah paling bikin iri sedunia, bareng “adik tiri” yang seorang “ilustrator dewa” sekaligus “gyaru”! Ini adalah kisah Shinta Arashiyama, anak SMA yang tanpa sengaja memenangkan “lotre” dengan peluang yang nggak masuk akal.\n\n1. Si gyaru idaman semua orang, Suzuka Ichinose, siswa pindahan…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@mobile.webp?v=3"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Full Color",
+      "Gyaru",
+      "Long Strip",
+      "Romance",
+      "School Life",
+      "Shounen"
+    ],
+    "rating": 9.31,
+    "chapter_count": 4,
+    "total_views": 33,
+    "isTrending": true,
+    "latest_release_date": "2026-08-13T11:29:05+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 4,
+        "lock_hours": 0,
+        "pages": 32,
+        "notif_image": "cover",
+        "r2_folder": 4,
+        "id": "NanimoDekinai-ch-4",
+        "r2_prefix": "manga/NanimoDekinai/4/",
+        "title": "Ch. 4",
+        "release_date": "2026-08-13T11:29:05+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 3,
+        "lock_hours": 0,
+        "pages": 32,
+        "notif_image": "cover",
+        "release_date": "2026-08-08T22:15:36+07:00",
+        "r2_folder": 3,
+        "id": "NanimoDekinai-ch-3",
+        "r2_prefix": "manga/NanimoDekinai/3/",
+        "title": "Ch. 3",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 4
+      },
+      {
+        "chapter_number": 2,
+        "lock_hours": 0,
+        "pages": 32,
+        "notif_image": "cover",
+        "release_date": "2026-08-08T20:27:39+07:00",
+        "r2_folder": 2,
+        "id": "NanimoDekinai-ch-2",
+        "r2_prefix": "manga/NanimoDekinai/2/",
+        "title": "Ch. 2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 2
+      }
+    ]
+  },
+  {
     "id": "InkyaDanshi",
     "title": "Inkya Danshi ga Keiken Shita, Urayamakeshikaranna Love Comedy",
     "description": "Aku, si bocchi pendiam, tiba-tiba memiliki sebuah kisah cinta hanya karena satu momen!? Siapa sangka kebahagiaan seperti apa yang tersembunyi di dunia ini...! Channel video manga romantis populer di YouTube, 'Hometenobasu', kini menjadi sebuah manga! Berlatar sekolah sebagai panggung utama masa…",
@@ -137,80 +211,6 @@
         "unlockDate": "2026-07-29T14:00:00.000Z",
         "isLocked": false,
         "views": 35
-      }
-    ]
-  },
-  {
-    "id": "NanimoDekinai",
-    "title": "Na-nimo Dekinai Gyaru ga Yuiitsu Dekiru Koto",
-    "description": "Romcom serumah paling bikin iri sedunia, bareng “adik tiri” yang seorang “ilustrator dewa” sekaligus “gyaru”! Ini adalah kisah Shinta Arashiyama, anak SMA yang tanpa sengaja memenangkan “lotre” dengan peluang yang nggak masuk akal.\n\n1. Si gyaru idaman semua orang, Suzuka Ichinose, siswa pindahan…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@tablet.webp?v=3",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@mobile.webp?v=3"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Full Color",
-      "Gyaru",
-      "Long Strip",
-      "Romance",
-      "School Life",
-      "Shounen"
-    ],
-    "rating": 9.31,
-    "chapter_count": 3,
-    "total_views": 33,
-    "isTrending": true,
-    "latest_release_date": "2026-08-08T22:15:36+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 3,
-        "lock_hours": 0,
-        "pages": 32,
-        "notif_image": "cover",
-        "release_date": "2026-08-08T22:15:36+07:00",
-        "r2_folder": 3,
-        "id": "NanimoDekinai-ch-3",
-        "r2_prefix": "manga/NanimoDekinai/3/",
-        "title": "Ch. 3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 4
-      },
-      {
-        "chapter_number": 2,
-        "lock_hours": 0,
-        "pages": 32,
-        "notif_image": "cover",
-        "release_date": "2026-08-08T20:27:39+07:00",
-        "r2_folder": 2,
-        "id": "NanimoDekinai-ch-2",
-        "r2_prefix": "manga/NanimoDekinai/2/",
-        "title": "Ch. 2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 2
-      },
-      {
-        "chapter_number": 1,
-        "lock_hours": 0,
-        "pages": 32,
-        "notif_image": "cover",
-        "release_date": "2026-08-08T00:07:19+07:00",
-        "r2_folder": 1,
-        "id": "NanimoDekinai-ch-1",
-        "r2_prefix": "manga/NanimoDekinai/1/",
-        "title": "Ch. 1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 8
       }
     ]
   },
