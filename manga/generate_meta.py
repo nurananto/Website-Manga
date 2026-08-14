@@ -108,7 +108,7 @@ def header(subtitle=""):
     print()
 
 
-def proses_chapter(ch_dir, lock_hours, next_update=None, notif_image=None):
+def proses_chapter(ch_dir, lock_hours, next_update=None, notif_image=None, unlock_date=None):
     pages = count_webp(ch_dir)
     if pages == 0:
         return False, "tidak ada .webp"
@@ -139,7 +139,11 @@ def proses_chapter(ch_dir, lock_hours, next_update=None, notif_image=None):
     }
     if existing_release:
         meta["release_date"] = existing_release
-    if existing_unlock and lock_hours > 0:
+    # unlock_date baru (dari ask_lock_config, mode "sampai tanggal") menang
+    # atas yang lama; kalau tidak ada input baru, pertahankan yang sudah ada.
+    if unlock_date:
+        meta["unlock_date"] = unlock_date
+    elif existing_unlock and lock_hours > 0:
         meta["unlock_date"] = existing_unlock
     # next_update hanya untuk chapter terakhir/terbaru (jadwal rilis berikutnya)
     if next_update:
@@ -195,6 +199,53 @@ def ask_next_update():
             return f"{y:04d}-{m:02d}-{d:02d}T00:00:00+07:00"
         except ValueError:
             print("  ⚠  Tanggal tidak valid, coba lagi.")
+
+
+def ask_lock_config():
+    """Tanya cara kunci chapter: jumlah JAM (lama) atau sampai TANGGAL tertentu
+    (baru — dibuka otomatis jam 00:00 WIB di tanggal itu). Return dict siap
+    disebar ke proses_chapter(): {"lock_hours": int} atau
+    {"lock_hours": 0, "unlock_date": iso_str}.
+
+    unlock_date ini dibaca build-catalog.js sebagai OVERRIDE — kalau field itu
+    ada di meta.json, lock_hours diabaikan sepenuhnya (lihat komentar
+    "Override eksplisit" di scripts/build-catalog.js), jadi nilai lock_hours
+    yang ditulis di sini cuma placeholder (0), bukan dipakai buat hitung apa-apa.
+    """
+    print()
+    print("Kunci chapter ini:")
+    print("  1. Gratis, tidak dikunci (default)")
+    print("  2. Sekian JAM dari waktu rilis (mis. 336 = 14 hari)")
+    print("  3. PERMANEN — dibuka manual nanti lewat meta.json")
+    print("  4. Sampai TANGGAL tertentu (otomatis buka jam 00:00 WIB)")
+    pilih = ask("Pilihan (1/2/3/4, Enter=1)", allow_empty=True)
+
+    if pilih == "2":
+        jam = ask("  Jumlah jam (mis. 336 = 14 hari)")
+        try:
+            return {"lock_hours": int(jam)}
+        except ValueError:
+            print("  ⚠  Bukan angka, dianggap gratis (0 jam).")
+            return {"lock_hours": 0}
+
+    if pilih == "3":
+        return {"lock_hours": -1}
+
+    if pilih == "4":
+        while True:
+            tgl = ask("  Tanggal buka (1-31)")
+            bln = ask("  Bulan (1-12)")
+            thn = ask("  Tahun (mis. 2026)")
+            try:
+                d = int(tgl); m = int(bln); y = int(thn)
+                datetime(y, m, d)  # validasi tanggal
+                iso = f"{y:04d}-{m:02d}-{d:02d}T00:00:00+07:00"
+                print(f"  ✅  Akan terbuka otomatis: {d:02d}-{m:02d}-{y} 00:00 WIB")
+                return {"lock_hours": 0, "unlock_date": iso}
+            except ValueError:
+                print("  ⚠  Tanggal tidak valid, coba lagi.")
+
+    return {"lock_hours": 0}
 
 
 def ask_notif_image():
@@ -283,7 +334,10 @@ def buat_manga_meta(manga_dir):
         for i, t in enumerate(titles, 1):
             print(f"  {i:>2}. {t.name}")
         print()
-        print("  [nomor] pilih   ·   [A] buat SEMUA   ·   [B] kembali   ·   [X] keluar")
+        print("  [nomor]  pilih")
+        print("  [A]      buat SEMUA")
+        print("  [B]      kembali")
+        print("  [X]      keluar")
         print()
 
         pilih = ask("Pilih", allow_empty=True)
@@ -358,11 +412,10 @@ def proses_semua_judul(titles):
         print(f"  • {t.name}  ({len(pending_chapters(t))} chapter)")
     print()
 
-    lock_input = ask("Lock hours utk chapter TERBARU tiap judul (Enter=0/gratis, -1=permanen)", allow_empty=True)
-    try:
-        lock_hours = int(lock_input) if lock_input else 0
-    except ValueError:
-        lock_hours = 0
+    print("(Berlaku untuk chapter TERBARU tiap judul)")
+    lock_cfg = ask_lock_config()
+    lock_hours = lock_cfg["lock_hours"]
+    unlock_date = lock_cfg.get("unlock_date")
 
     notif_image = ask_notif_image()
 
@@ -387,7 +440,10 @@ def proses_semua_judul(titles):
         ok = 0
         for ch in chs:
             is_newest = ch == newest
-            berhasil, info = proses_chapter(ch, lock_hours if is_newest else 0, None, notif_image)
+            berhasil, info = proses_chapter(
+                ch, lock_hours if is_newest else 0, None, notif_image,
+                unlock_date if is_newest else None,
+            )
             if berhasil:
                 ok += 1
                 grand_ok += 1
@@ -427,7 +483,10 @@ def proses_chapter_menu(manga_dir):
         for i, t in enumerate(titles, 1):
             print(f"  {i:>2}. {t.name}  ({len(pending_chapters(t))} chapter baru)")
         print()
-        print("  [nomor] pilih   ·   [A] SEMUA judul   ·   [B] kembali   ·   [X] keluar")
+        print("  [nomor]  pilih")
+        print("  [A]      SEMUA judul")
+        print("  [B]      kembali")
+        print("  [X]      keluar")
         print()
 
         pilih = ask("Pilih", allow_empty=True)
@@ -459,7 +518,10 @@ def proses_chapter_menu(manga_dir):
                 print(f"  {i:>2}. {ch.name}  ({count_webp(ch)} hal)")
 
             print()
-            print("  [nomor/koma] pilih   ·   [0 / Enter] semua   ·   [B] kembali   ·   [X] keluar")
+            print("  [nomor/koma]  pilih (bisa lebih dari satu, pisah koma)")
+            print("  [0 / Enter]   semua")
+            print("  [B]           kembali")
+            print("  [X]           keluar")
             print()
 
             pilih_ch = ask("Pilih", allow_empty=True)
@@ -484,13 +546,10 @@ def proses_chapter_menu(manga_dir):
                 input("  Tidak ada chapter dipilih. Tekan Enter...")
                 continue
 
-            # ── Lock hours ─────────────────────────────────
-            print()
-            lock_input = ask("Lock hours (Enter=0/gratis, 336=14hari, -1=permanen)", allow_empty=True)
-            try:
-                lock_hours = int(lock_input) if lock_input else 0
-            except ValueError:
-                lock_hours = 0
+            # ── Lock hours / tanggal buka ────────────────────
+            lock_cfg = ask_lock_config()
+            lock_hours = lock_cfg["lock_hours"]
+            unlock_date = lock_cfg.get("unlock_date")
 
             # ── Jadwal rilis berikutnya (chapter terbaru saja) ─
             next_update = ask_next_update()
@@ -538,6 +597,7 @@ def proses_chapter_menu(manga_dir):
                         lock_hours if is_newest else 0,
                         next_update if is_newest else None,
                         notif_image,
+                        unlock_date if is_newest else None,
                     )
                     if berhasil:
                         print(f"  ✅  Chapter {ch.name}  →  meta.json ({info} hal)")
@@ -563,6 +623,7 @@ def proses_chapter_menu(manga_dir):
                         lock_hours if is_newest else 0,
                         next_update if is_newest else None,
                         notif_image,
+                        unlock_date if is_newest else None,
                     )
                     if berhasil:
                         print(f"  ✅  Chapter {ch.name}  →  meta.json ({info} hal)")
