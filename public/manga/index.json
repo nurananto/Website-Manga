@@ -1,5 +1,149 @@
 [
   {
+    "id": "Osananajimi",
+    "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
+    "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=4",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=4"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Drama",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life",
+      "Tragedy"
+    ],
+    "rating": 7.7,
+    "chapter_count": 18,
+    "total_views": 685,
+    "isTrending": true,
+    "latest_release_date": "2026-08-14T23:12:12+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 8.1,
+        "lock_hours": 0,
+        "pages": 9,
+        "notif_image": "4",
+        "r2_folder": 8.1,
+        "id": "Osananajimi-ch-8.1",
+        "r2_prefix": "manga/Osananajimi/8.1/",
+        "title": "Ch. 8.1",
+        "release_date": "2026-08-14T23:12:12+07:00",
+        "unlockDate": "2026-08-28T17:00:00.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 7.3,
+        "lock_hours": 696,
+        "pages": 14,
+        "notif_image": "4",
+        "release_date": "2026-08-07T23:38:57+07:00",
+        "r2_folder": 7.3,
+        "id": "Osananajimi-ch-7.3",
+        "r2_prefix": "manga/Osananajimi/7.3/",
+        "title": "Ch. 7.3",
+        "unlockDate": "2026-09-05T16:38:57.000Z",
+        "isLocked": true,
+        "views": 4
+      },
+      {
+        "chapter_number": 7.2,
+        "lock_hours": 360,
+        "pages": 9,
+        "release_date": "2026-07-17T22:42:07+07:00",
+        "r2_folder": 7.2,
+        "id": "Osananajimi-ch-7.2",
+        "r2_prefix": "manga/Osananajimi/7.2/",
+        "title": "Ch. 7.2",
+        "unlockDate": "2026-08-20T17:00:00.000Z",
+        "isLocked": true,
+        "views": 11
+      }
+    ]
+  },
+  {
+    "id": "ShokeiFlag",
+    "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
+    "description": "Gue malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… pembalasan brutal dari para heroine! Demi menebus dosa pada para heroine yang dulu ditindas Diabolo dan menyelamatkan mereka, dia harus melewati berbagai rintangan berat dan…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Action",
+      "Fantasy",
+      "Isekai Harem",
+      "Reincarnation Shounen",
+      "Romance"
+    ],
+    "rating": 6,
+    "chapter_count": 3,
+    "total_views": 0,
+    "isTrending": true,
+    "latest_release_date": "2026-08-14T23:12:12+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 2.2,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "page1",
+        "r2_folder": 2.2,
+        "id": "ShokeiFlag-ch-2.2",
+        "r2_prefix": "manga/ShokeiFlag/2.2/",
+        "title": "Ch. 2.2",
+        "release_date": "2026-08-14T23:12:12+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 2.1,
+        "lock_hours": 0,
+        "pages": 12,
+        "notif_image": "page1",
+        "r2_folder": 2.1,
+        "id": "ShokeiFlag-ch-2.1",
+        "r2_prefix": "manga/ShokeiFlag/2.1/",
+        "title": "Ch. 2.1",
+        "release_date": "2026-08-14T23:12:12+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 1,
+        "lock_hours": 0,
+        "pages": 60,
+        "notif_image": "page1",
+        "r2_folder": 1,
+        "id": "ShokeiFlag-ch-1",
+        "r2_prefix": "manga/ShokeiFlag/1/",
+        "title": "Ch. 1",
+        "release_date": "2026-08-14T23:12:12+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "NanimoDekinai",
     "title": "Na-nimo Dekinai Gyaru ga Yuiitsu Dekiru Koto",
     "description": "Romcom serumah paling bikin iri sedunia, bareng “adik tiri” yang seorang “ilustrator dewa” sekaligus “gyaru”! Ini adalah kisah Shinta Arashiyama, anak SMA yang tanpa sengaja memenangkan “lotre” dengan peluang yang nggak masuk akal.\n\n1. Si gyaru idaman semua orang, Suzuka Ichinose, siswa pindahan…",
@@ -215,78 +359,6 @@
     ]
   },
   {
-    "id": "Osananajimi",
-    "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
-    "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=4",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=4"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Drama",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life",
-      "Tragedy"
-    ],
-    "rating": 7.7,
-    "chapter_count": 17,
-    "total_views": 685,
-    "isTrending": true,
-    "latest_release_date": "2026-08-07T23:38:57+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 7.3,
-        "lock_hours": 696,
-        "pages": 14,
-        "notif_image": "4",
-        "release_date": "2026-08-07T23:38:57+07:00",
-        "r2_folder": 7.3,
-        "id": "Osananajimi-ch-7.3",
-        "r2_prefix": "manga/Osananajimi/7.3/",
-        "title": "Ch. 7.3",
-        "unlockDate": "2026-09-05T16:38:57.000Z",
-        "isLocked": true,
-        "views": 4
-      },
-      {
-        "chapter_number": 7.2,
-        "lock_hours": 360,
-        "pages": 9,
-        "release_date": "2026-07-17T22:42:07+07:00",
-        "r2_folder": 7.2,
-        "id": "Osananajimi-ch-7.2",
-        "r2_prefix": "manga/Osananajimi/7.2/",
-        "title": "Ch. 7.2",
-        "unlockDate": "2026-08-20T17:00:00.000Z",
-        "isLocked": true,
-        "views": 11
-      },
-      {
-        "chapter_number": 7.1,
-        "lock_hours": 504,
-        "pages": 11,
-        "release_date": "2026-06-27T09:52:50+07:00",
-        "r2_folder": 7.1,
-        "id": "Osananajimi-ch-7.1",
-        "r2_prefix": "manga/Osananajimi/7.1/",
-        "title": "Ch. 7.1",
-        "unlockDate": "2026-07-18T02:52:50.000Z",
-        "isLocked": false,
-        "views": 56
-      }
-    ]
-  },
-  {
     "id": "10-nenburi",
     "title": "10-Nen Buri ni Saikai Shita Kusogaki wa Seijun Bishoujo JK ni Seichou Shiteita",
     "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
@@ -308,7 +380,7 @@
     "rating": 7.5,
     "chapter_count": 26,
     "total_views": 323,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-07T13:26:55+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -512,7 +584,7 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.41,
+    "rating": 8.4,
     "chapter_count": 16,
     "total_views": 88,
     "isTrending": false,
@@ -585,7 +657,7 @@
       "Shounen",
       "Video Games"
     ],
-    "rating": 8.04,
+    "rating": 8.06,
     "chapter_count": 13,
     "total_views": 452,
     "isTrending": false,
@@ -1217,7 +1289,7 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.79,
+    "rating": 7.78,
     "chapter_count": 5,
     "total_views": 58,
     "isTrending": false,
@@ -1285,7 +1357,7 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.03,
+    "rating": 8.04,
     "chapter_count": 14,
     "total_views": 37,
     "isTrending": false,
@@ -1354,7 +1426,7 @@
       "School Life",
       "Slice of Life"
     ],
-    "rating": 8.4,
+    "rating": 8.39,
     "chapter_count": 1,
     "total_views": 26,
     "isTrending": false,
@@ -1440,7 +1512,7 @@
       "Romance",
       "Slice of Life"
     ],
-    "rating": 8.07,
+    "rating": 8.05,
     "chapter_count": 3,
     "total_views": 23,
     "isTrending": false,
@@ -1858,7 +1930,7 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 8.22,
+    "rating": 8.25,
     "chapter_count": 6,
     "total_views": 22,
     "isTrending": false,
@@ -1926,7 +1998,7 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.74,
+    "rating": 8.7,
     "chapter_count": 2,
     "total_views": 19,
     "isTrending": false,

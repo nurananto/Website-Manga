@@ -6,7 +6,13 @@
   "type": "MANGA",
   "author": "Aozora Akana",
   "artist": "Takaoka Yuu",
-  "genres": ["Action", "Fantasy", "Isekai Harem", "Reincarnation Shounen", "Romance"],
+  "genres": [
+    "Action",
+    "Fantasy",
+    "Isekai Harem",
+    "Reincarnation Shounen",
+    "Romance"
+  ],
   "description": "Gue malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… pembalasan brutal dari para heroine! Demi menebus dosa pada para heroine yang dulu ditindas Diabolo dan menyelamatkan mereka, dia harus melewati berbagai rintangan berat dan mendapatkan kekuatan terkuat!",
   "covers": [
     "manga/ShokeiFlag/covers/cover.webp",
@@ -20,5 +26,20 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
+  "cover_source": "mangadex",
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 2,
+  "cover_gallery": [
+    {
+      "file": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
+      "volume": null,
+      "keys": [
+        "manga/ShokeiFlag/covers/gallery/5a774b7c-eb16-4f85-9410-c211b24c6f68.webp",
+        "manga/ShokeiFlag/covers/gallery/5a774b7c-eb16-4f85-9410-c211b24c6f68@tablet.webp",
+        "manga/ShokeiFlag/covers/gallery/5a774b7c-eb16-4f85-9410-c211b24c6f68@mobile.webp"
+      ],
+      "widths": "1280x960x640q75"
+    }
+  ]
 }
