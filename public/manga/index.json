@@ -174,7 +174,7 @@
     "chapters": [
       {
         "chapter_number": 24.1,
-        "lock_hours": 528,
+        "lock_hours": 360,
         "pages": 14,
         "notif_image": "10",
         "release_date": "2026-08-11T23:14:43+07:00",
@@ -182,7 +182,7 @@
         "id": "Yuumei-ch-24.1",
         "r2_prefix": "manga/Yuumei/24.1/",
         "title": "Ch. 24.1",
-        "unlockDate": "2026-09-02T16:14:43.000Z",
+        "unlockDate": "2026-08-26T16:14:43.000Z",
         "isLocked": true,
         "views": 6
       },
@@ -260,14 +260,14 @@
       },
       {
         "chapter_number": 7.2,
-        "lock_hours": 672,
+        "lock_hours": 360,
         "pages": 9,
         "release_date": "2026-07-17T22:42:07+07:00",
         "r2_folder": 7.2,
         "id": "Osananajimi-ch-7.2",
         "r2_prefix": "manga/Osananajimi/7.2/",
         "title": "Ch. 7.2",
-        "unlockDate": "2026-08-14T15:42:07.000Z",
+        "unlockDate": "2026-08-20T17:00:00.000Z",
         "isLocked": true,
         "views": 11
       },
@@ -810,14 +810,14 @@
     "chapters": [
       {
         "chapter_number": 15.2,
-        "lock_hours": 528,
+        "lock_hours": 360,
         "pages": 13,
         "release_date": "2026-08-03T16:14:51+07:00",
         "r2_folder": 15.2,
         "id": "ClassdeIchiban-ch-15.2",
         "r2_prefix": "manga/ClassdeIchiban/15.2/",
         "title": "Ch. 15.2",
-        "unlockDate": "2026-08-25T09:14:51.000Z",
+        "unlockDate": "2026-08-18T09:14:51.000Z",
         "isLocked": true,
         "views": 4
       },
