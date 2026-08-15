@@ -86,11 +86,11 @@
       "lock_hours": 0,
       "pages": 9,
       "notif_image": "4",
+      "release_date": "2026-08-14T23:12:12+07:00",
       "r2_folder": 8.1,
       "id": "Osananajimi-ch-8.1",
       "r2_prefix": "manga/Osananajimi/8.1/",
       "title": "Ch. 8.1",
-      "release_date": "2026-08-14T23:12:12+07:00",
       "unlockDate": "2026-08-28T17:00:00.000Z",
       "isLocked": true,
       "views": 0
@@ -118,7 +118,7 @@
       "id": "Osananajimi-ch-7.2",
       "r2_prefix": "manga/Osananajimi/7.2/",
       "title": "Ch. 7.2",
-      "unlockDate": "2026-08-20T17:00:00.000Z",
+      "unlockDate": "2026-08-15T01:00:00.000Z",
       "isLocked": true,
       "views": 11
     },
