@@ -34,13 +34,13 @@
     "5.3": 27,
     "5.1": 17,
     "6.1": 37,
-    "6.3": 38,
+    "6.3": 39,
     "6.2": 40,
     "7.1": 39,
     "7.2": 12,
     "8.1": 5
   },
-  "total_views": 452,
+  "total_views": 456,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -55,10 +55,10 @@
     }
   ],
   "cover_version": 4,
-  "detail_views": 171,
+  "detail_views": 174,
   "notif_image": "page1",
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
-  "rating": 8.06,
+  "rating": 8.02,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=4",
   "coverUrls": {
@@ -118,7 +118,7 @@
       "title": "Ch. 6.3",
       "unlockDate": "2026-07-22T11:03:47.000Z",
       "isLocked": false,
-      "views": 38
+      "views": 39
     },
     {
       "chapter_number": 6.2,

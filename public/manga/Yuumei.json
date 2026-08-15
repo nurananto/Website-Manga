@@ -26,7 +26,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 12,
+    "1": 13,
     "2": 7,
     "3": 7,
     "4": 5,
@@ -46,17 +46,17 @@
     "18": 7,
     "19": 10,
     "20": 16,
-    "21.1": 19,
-    "21.2": 23,
-    "22.1": 43,
-    "22.2": 58,
-    "23.1": 36,
+    "21.1": 20,
+    "21.2": 24,
+    "22.1": 44,
+    "22.2": 60,
+    "23.1": 39,
     "1.5": 6,
-    "23.2": 18,
+    "23.2": 24,
     "8.5": 6,
     "24.1": 6
   },
-  "total_views": 492,
+  "total_views": 509,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -88,7 +88,7 @@
       }
     }
   ],
-  "detail_views": 132,
+  "detail_views": 134,
   "cover_version": 4,
   "notif_image": "page1",
   "mangadex_id": "9aebe60e-777f-4a58-a3bf-143c3096b94f",
@@ -126,7 +126,7 @@
       "title": "Ch. 23.2",
       "unlockDate": "2026-08-11T16:28:24.000Z",
       "isLocked": false,
-      "views": 18
+      "views": 24
     },
     {
       "chapter_number": 23.1,
@@ -139,7 +139,7 @@
       "title": "Ch. 23.1",
       "unlockDate": "2026-07-29T14:00:00.000Z",
       "isLocked": false,
-      "views": 36
+      "views": 39
     },
     {
       "chapter_number": 22.2,
@@ -152,7 +152,7 @@
       "title": "Ch. 22.2",
       "unlockDate": "2026-07-08T04:27:34.000Z",
       "isLocked": false,
-      "views": 58
+      "views": 60
     },
     {
       "chapter_number": 22.1,
@@ -165,7 +165,7 @@
       "title": "Ch. 22.1",
       "unlockDate": "2026-06-30T13:34:53.000Z",
       "isLocked": false,
-      "views": 43
+      "views": 44
     },
     {
       "chapter_number": 21.2,
@@ -178,7 +178,7 @@
       "title": "Ch. 21.2",
       "unlockDate": "2026-06-23T14:06:03.000Z",
       "isLocked": false,
-      "views": 23
+      "views": 24
     },
     {
       "chapter_number": 21.1,
@@ -191,7 +191,7 @@
       "title": "Ch. 21.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 19
+      "views": 20
     },
     {
       "chapter_number": 20,
@@ -477,7 +477,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 12
+      "views": 13
     }
   ]
 }
