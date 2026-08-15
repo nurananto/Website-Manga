@@ -53,7 +53,7 @@
         "id": "Osananajimi-ch-7.3",
         "r2_prefix": "manga/Osananajimi/7.3/",
         "title": "Ch. 7.3",
-        "unlockDate": "2026-09-05T16:38:57.000Z",
+        "unlockDate": "2026-08-21T17:00:00.000Z",
         "isLocked": true,
         "views": 4
       },
@@ -67,7 +67,7 @@
         "r2_prefix": "manga/Osananajimi/7.2/",
         "title": "Ch. 7.2",
         "unlockDate": "2026-08-15T01:00:00.000Z",
-        "isLocked": true,
+        "isLocked": false,
         "views": 11
       }
     ]
