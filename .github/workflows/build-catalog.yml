@@ -103,9 +103,23 @@ jobs:
         # Rebase yang KONFLIK BENERAN (bukan cuma "ketinggalan commit") tidak
         # bisa di-auto-resolve di sini — di-abort lalu digagalkan eksplisit
         # (exit 1) supaya job merah dengan pesan jelas, bukan gagal senyap.
+        #
+        # KECUALI public/version.json: isinya cuma timestamp yang di-generate
+        # ULANG setiap run (lihat step "Generate version file" di atas) —
+        # SELALU nulis baris yang sama, jadi kalau 2 run/push nyaris bersamaan
+        # (sering kejadian pas lagi banyak push beruntun), baris itu HAMPIR
+        # PASTI konflik tiap retry, walau bukan data yang perlu dipertahankan
+        # dua-duanya ("siapa pun menang duluan" itu aman — cuma sinyal "ada
+        # versi baru" buat poll App.jsx, bukan data manga). Kalau KONFLIKNYA
+        # CUMA di file ini, regenerate timestamp baru & lanjut rebase alih-alih
+        # abort — file lain (meta.json dkk) tetap diperlakukan strict.
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # git rebase --continue bisa buka editor buat commit message tiap
+          # commit yang di-replay — di CI non-interaktif itu bakal nge-hang.
+          export GIT_EDITOR=true
+
           git add manga/ public/manga/ public/version.json
 
           if git diff --staged --quiet; then
@@ -127,6 +141,17 @@ jobs:
             echo "Push ditolak — percobaan $attempt/$max_attempts, rebase ulang ke HEAD terbaru..."
             git fetch origin main
             if ! git rebase origin/main; then
+              conflicted=$(git diff --name-only --diff-filter=U)
+              if [ "$conflicted" = "public/version.json" ]; then
+                echo "Konflik cuma di public/version.json (timestamp) — regenerate & lanjut rebase, bukan abort."
+                echo "{\"v\":\"$(date +%s)\",\"label\":\"$(date +'%-d %b %Y')\",\"type\":\"catalog\"}" > public/version.json
+                git add public/version.json
+                if git rebase --continue; then
+                  attempt=$((attempt + 1))
+                  continue
+                fi
+                echo "::error::git rebase --continue tetap gagal walau version.json sudah di-resolve — ada masalah lain."
+              fi
               echo "::error::Rebase konflik saat percobaan $attempt — kemungkinan dua proses menulis baris yang sama persis di meta.json."
               git rebase --abort || true
               attempt=$((attempt + 1))
