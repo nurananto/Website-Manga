@@ -1,0 +1,24 @@
+{
+  "id": "ClassMaid",
+  "title": "Class Maid",
+  "alt_title": "くらすめいど",
+  "status": "TAMAT",
+  "type": "WEBTOON",
+  "author": "Shimamura",
+  "artist": "Shimamura",
+  "genres": ["Shounen", "School Life", "Comedy", "Romance", "Slice of Life"],
+  "description": "Anak sekolah otaku, Arise Riku, yang hanya tertarik pada karakter anime wanita, adalah penggemar Yu-Tan dari kafe pelayan. Namun, dia mengetahui bahwa Yu-Tan sebenarnya adalah Maejima Yuuko dan duduk di sebelahnya di kelas. Dia memutuskan untuk melepaskan perasaannya, tapi...",
+  "covers": [
+    "manga/ClassMaid/covers/cover.webp",
+    "manga/ClassMaid/covers/cover@tablet.webp",
+    "manga/ClassMaid/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/57a75b25-4cc6-45ac-ab1a-6670a271a6b5/class-maid",
+  "raw_url": "https://www.comico.jp/comic/132",
+  "notif_image": "cover",
+  "tamat_at_chapter": 150,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": ""
+}
