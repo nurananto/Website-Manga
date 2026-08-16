@@ -29,18 +29,40 @@ export function timeAgo(dateStr) {
   if (typeof s === 'string' && /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(s)) {
     s = s.replace(' ', 'T') + 'Z';
   }
-  const diff = Date.now() - new Date(s).getTime();
+  const date = new Date(s);
+  const diff = Date.now() - date.getTime();
   const m = Math.floor(diff / 60000);
   const h = Math.floor(m / 60);
   const d = Math.floor(h / 24);
   const mo = Math.floor(d / 30);
   const w = Math.floor(d / 7);
+  // >12 bulan: "N bln lalu" jadi janggal dibaca (mis. "31 bln lalu") — ganti
+  // ke "Bulan Tahun" (mis. "Jan 2024"), lebih gampang dicerna utk chapter lama.
+  if (mo >= 12) return date.toLocaleDateString('id-ID', { month: 'short', year: 'numeric' });
   if (mo > 0)  return `${mo} bln lalu`;
   if (w > 0)   return `${w} mgg lalu`;
   if (d > 0)   return `${d} hari lalu`;
   if (h > 0)   return `${h} jam lalu`;
   if (m > 0)   return `${m} mnt lalu`;
   return 'Baru saja';
+}
+
+// Label tanggal chapter di halaman detail: relatif ("2 hari lalu") selama
+// masih ≤3 hari, lewat itu tanggal lengkap ("16 Agustus 2026") — beda dari
+// timeAgo() biasa yang tetap relatif sampai 12 bulan (dipakai di History,
+// konteksnya beda: "kapan aku terakhir baca" tetap masuk akal relatif lama-
+// lama, sementara "kapan chapter rilis" lebih berguna sebagai tanggal pasti
+// begitu lewat beberapa hari).
+export function chapterDateLabel(dateStr) {
+  if (!dateStr) return '';
+  let s = dateStr;
+  if (typeof s === 'string' && /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(s)) {
+    s = s.replace(' ', 'T') + 'Z';
+  }
+  const date = new Date(s);
+  const days = Math.floor((Date.now() - date.getTime()) / 86400000);
+  if (days > 3) return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+  return timeAgo(dateStr);
 }
 
 // Versi ringkas tanpa "lalu" — untuk ruang sempit (manga card)

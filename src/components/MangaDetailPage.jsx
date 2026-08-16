@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { nowTimestamp, timeAgo } from '../utils';
+import { nowTimestamp, chapterDateLabel } from '../utils';
 import { Star, BookOpen, ArrowUpDown, Eye, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play, Lock } from 'lucide-react';
 import SupportButtons from './SupportButtons';
 import ResponsiveCover from './ResponsiveCover';
@@ -204,7 +204,7 @@ const renderChapterRow = (ch) => {
             </div>
             {/* text-outline solid (bukan /60): /60 cuma ~2.4:1 di atas bg — gagal WCAG
                 AA (butuh 4.5:1) walau tanpa isUnread dimming. Samakan dengan MangaCard. */}
-            <p className={`font-label-sm text-xs md:text-sm lg:text-base text-outline mt-0.5 transition-opacity ${!isUnread ? 'opacity-80' : ''}`}>{ch.date || timeAgo(ch.release_date)}</p>
+            <p className={`font-label-sm text-xs md:text-sm lg:text-base text-outline mt-0.5 transition-opacity ${!isUnread ? 'opacity-80' : ''}`}>{ch.date || chapterDateLabel(ch.release_date)}</p>
           </div>
         </div>
 
