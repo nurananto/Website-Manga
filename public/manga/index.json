@@ -34,11 +34,11 @@
         "lock_hours": 0,
         "pages": 13,
         "notif_image": "7",
+        "release_date": "2026-08-16T18:49:43+07:00",
         "r2_folder": 16.1,
         "id": "Madogiwa-ch-16.1",
         "r2_prefix": "manga/Madogiwa/16.1/",
         "title": "Ch. 16.1",
-        "release_date": "2026-08-16T18:49:43+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -148,7 +148,7 @@
   {
     "id": "ShokeiFlag",
     "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
-    "description": "Gue malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… pembalasan brutal dari para heroine! Demi menebus dosa pada para heroine yang dulu ditindas Diabolo dan menyelamatkan mereka, dia harus melewati berbagai rintangan berat dan…",
+    "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
     "status": "Ongoing",
     "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
     "coverUrls": {
@@ -158,10 +158,13 @@
     },
     "genres": [
       "Action",
+      "Adaptation",
       "Fantasy",
-      "Isekai Harem",
-      "Reincarnation Shounen",
-      "Romance"
+      "Harem",
+      "Isekai",
+      "Reincarnation",
+      "Romance",
+      "Shounen"
     ],
     "rating": 6,
     "chapter_count": 4,
