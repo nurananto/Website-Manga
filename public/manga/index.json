@@ -1,5 +1,150 @@
 [
   {
+    "id": "NanimoDekinai",
+    "title": "Na-nimo Dekinai Gyaru ga Yuiitsu Dekiru Koto",
+    "description": "Romcom serumah paling bikin iri sedunia, bareng “adik tiri” yang seorang “ilustrator dewa” sekaligus “gyaru”! Ini adalah kisah Shinta Arashiyama, anak SMA yang tanpa sengaja memenangkan “lotre” dengan peluang yang nggak masuk akal.\n\n1. Si gyaru idaman semua orang, Suzuka Ichinose, siswa pindahan…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@mobile.webp?v=3"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Full Color",
+      "Gyaru",
+      "Long Strip",
+      "Romance",
+      "School Life",
+      "Shounen"
+    ],
+    "rating": 9.21,
+    "chapter_count": 5,
+    "total_views": 64,
+    "isTrending": true,
+    "latest_release_date": "2026-08-16T02:31:56+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 5,
+        "lock_hours": 0,
+        "pages": 32,
+        "notif_image": "cover",
+        "release_date": "2026-08-16T02:31:56+07:00",
+        "r2_folder": 5,
+        "id": "NanimoDekinai-ch-5",
+        "r2_prefix": "manga/NanimoDekinai/5/",
+        "title": "Ch. 5",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 4,
+        "lock_hours": 0,
+        "pages": 32,
+        "notif_image": "cover",
+        "release_date": "2026-08-13T11:29:05+07:00",
+        "r2_folder": 4,
+        "id": "NanimoDekinai-ch-4",
+        "r2_prefix": "manga/NanimoDekinai/4/",
+        "title": "Ch. 4",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 11
+      },
+      {
+        "chapter_number": 3,
+        "lock_hours": 0,
+        "pages": 32,
+        "notif_image": "cover",
+        "release_date": "2026-08-08T22:15:36+07:00",
+        "r2_folder": 3,
+        "id": "NanimoDekinai-ch-3",
+        "r2_prefix": "manga/NanimoDekinai/3/",
+        "title": "Ch. 3",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 5
+      }
+    ]
+  },
+  {
+    "id": "ShokeiFlag",
+    "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
+    "description": "Gue malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… pembalasan brutal dari para heroine! Demi menebus dosa pada para heroine yang dulu ditindas Diabolo dan menyelamatkan mereka, dia harus melewati berbagai rintangan berat dan…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Action",
+      "Fantasy",
+      "Isekai Harem",
+      "Reincarnation Shounen",
+      "Romance"
+    ],
+    "rating": 6,
+    "chapter_count": 4,
+    "total_views": 18,
+    "isTrending": true,
+    "latest_release_date": "2026-08-16T02:31:56+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 2.3,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "10",
+        "release_date": "2026-08-16T02:31:56+07:00",
+        "r2_folder": 2.3,
+        "id": "ShokeiFlag-ch-2.3",
+        "r2_prefix": "manga/ShokeiFlag/2.3/",
+        "title": "Ch. 2.3",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 2.2,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "page1",
+        "release_date": "2026-08-14T23:12:12+07:00",
+        "r2_folder": 2.2,
+        "id": "ShokeiFlag-ch-2.2",
+        "r2_prefix": "manga/ShokeiFlag/2.2/",
+        "title": "Ch. 2.2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 6
+      },
+      {
+        "chapter_number": 2.1,
+        "lock_hours": 0,
+        "pages": 12,
+        "notif_image": "page1",
+        "release_date": "2026-08-14T23:12:12+07:00",
+        "r2_folder": 2.1,
+        "id": "ShokeiFlag-ch-2.1",
+        "r2_prefix": "manga/ShokeiFlag/2.1/",
+        "title": "Ch. 2.1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 2
+      }
+    ]
+  },
+  {
     "id": "Osananajimi",
     "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
     "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
@@ -20,7 +165,7 @@
       "Slice of Life",
       "Tragedy"
     ],
-    "rating": 7.7,
+    "rating": 7.68,
     "chapter_count": 18,
     "total_views": 702,
     "isTrending": true,
@@ -69,151 +214,6 @@
         "unlockDate": "2026-08-15T01:00:00.000Z",
         "isLocked": false,
         "views": 15
-      }
-    ]
-  },
-  {
-    "id": "ShokeiFlag",
-    "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
-    "description": "Gue malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… pembalasan brutal dari para heroine! Demi menebus dosa pada para heroine yang dulu ditindas Diabolo dan menyelamatkan mereka, dia harus melewati berbagai rintangan berat dan…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Action",
-      "Fantasy",
-      "Isekai Harem",
-      "Reincarnation Shounen",
-      "Romance"
-    ],
-    "rating": 6,
-    "chapter_count": 3,
-    "total_views": 18,
-    "isTrending": true,
-    "latest_release_date": "2026-08-14T23:12:12+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 2.2,
-        "lock_hours": 0,
-        "pages": 10,
-        "notif_image": "page1",
-        "release_date": "2026-08-14T23:12:12+07:00",
-        "r2_folder": 2.2,
-        "id": "ShokeiFlag-ch-2.2",
-        "r2_prefix": "manga/ShokeiFlag/2.2/",
-        "title": "Ch. 2.2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 6
-      },
-      {
-        "chapter_number": 2.1,
-        "lock_hours": 0,
-        "pages": 12,
-        "notif_image": "page1",
-        "release_date": "2026-08-14T23:12:12+07:00",
-        "r2_folder": 2.1,
-        "id": "ShokeiFlag-ch-2.1",
-        "r2_prefix": "manga/ShokeiFlag/2.1/",
-        "title": "Ch. 2.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 2
-      },
-      {
-        "chapter_number": 1,
-        "lock_hours": 0,
-        "pages": 60,
-        "notif_image": "page1",
-        "release_date": "2026-08-14T23:12:12+07:00",
-        "r2_folder": 1,
-        "id": "ShokeiFlag-ch-1",
-        "r2_prefix": "manga/ShokeiFlag/1/",
-        "title": "Ch. 1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 3
-      }
-    ]
-  },
-  {
-    "id": "NanimoDekinai",
-    "title": "Na-nimo Dekinai Gyaru ga Yuiitsu Dekiru Koto",
-    "description": "Romcom serumah paling bikin iri sedunia, bareng “adik tiri” yang seorang “ilustrator dewa” sekaligus “gyaru”! Ini adalah kisah Shinta Arashiyama, anak SMA yang tanpa sengaja memenangkan “lotre” dengan peluang yang nggak masuk akal.\n\n1. Si gyaru idaman semua orang, Suzuka Ichinose, siswa pindahan…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@tablet.webp?v=3",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@mobile.webp?v=3"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Full Color",
-      "Gyaru",
-      "Long Strip",
-      "Romance",
-      "School Life",
-      "Shounen"
-    ],
-    "rating": 9.21,
-    "chapter_count": 4,
-    "total_views": 64,
-    "isTrending": true,
-    "latest_release_date": "2026-08-13T11:29:05+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 4,
-        "lock_hours": 0,
-        "pages": 32,
-        "notif_image": "cover",
-        "release_date": "2026-08-13T11:29:05+07:00",
-        "r2_folder": 4,
-        "id": "NanimoDekinai-ch-4",
-        "r2_prefix": "manga/NanimoDekinai/4/",
-        "title": "Ch. 4",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 11
-      },
-      {
-        "chapter_number": 3,
-        "lock_hours": 0,
-        "pages": 32,
-        "notif_image": "cover",
-        "release_date": "2026-08-08T22:15:36+07:00",
-        "r2_folder": 3,
-        "id": "NanimoDekinai-ch-3",
-        "r2_prefix": "manga/NanimoDekinai/3/",
-        "title": "Ch. 3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 5
-      },
-      {
-        "chapter_number": 2,
-        "lock_hours": 0,
-        "pages": 32,
-        "notif_image": "cover",
-        "release_date": "2026-08-08T20:27:39+07:00",
-        "r2_folder": 2,
-        "id": "NanimoDekinai-ch-2",
-        "r2_prefix": "manga/NanimoDekinai/2/",
-        "title": "Ch. 2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 4
       }
     ]
   },
