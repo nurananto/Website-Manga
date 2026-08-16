@@ -45,9 +45,10 @@
     "14.1": 23,
     "14.2": 30,
     "15.1": 18,
-    "15.2": 22
+    "15.2": 22,
+    "16.1": 4
   },
-  "total_views": 255,
+  "total_views": 263,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -70,7 +71,7 @@
       }
     }
   ],
-  "detail_views": 89,
+  "detail_views": 93,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "a0ecce48-aa4c-48e6-8d9b-90f322a5687a",
@@ -95,7 +96,7 @@
       "title": "Ch. 16.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 4
     },
     {
       "chapter_number": 15.2,

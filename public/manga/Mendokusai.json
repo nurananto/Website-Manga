@@ -40,10 +40,10 @@
     "11": 3,
     "12": 2,
     "13": 2,
-    "14": 2,
+    "14": 3,
     "15": 6
   },
-  "total_views": 46,
+  "total_views": 47,
   "mangadex_cover": "ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_version": 2,
@@ -93,7 +93,7 @@
       "title": "Ch. 14",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 13,

@@ -25,7 +25,7 @@
   "tamat_at_chapter": 150,
   "hiatus_at_chapter": null,
   "chapter_views": {},
-  "total_views": 0,
+  "total_views": 2,
   "mangadex_cover": "556f9b48-02b6-42c8-ae8c-02f3c92870e3.png",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -50,6 +50,7 @@
       }
     }
   ],
+  "detail_views": 2,
   "mangadex_id": "57a75b25-4cc6-45ac-ab1a-6670a271a6b5",
   "rating": 8.29,
   "next_update": null,

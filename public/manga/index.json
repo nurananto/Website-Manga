@@ -22,7 +22,7 @@
     ],
     "rating": 7.38,
     "chapter_count": 20,
-    "total_views": 255,
+    "total_views": 263,
     "isTrending": true,
     "latest_release_date": "2026-08-16T18:49:43+07:00",
     "next_update": null,
@@ -41,7 +41,7 @@
         "title": "Ch. 16.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 4
       },
       {
         "chapter_number": 15.2,
@@ -92,9 +92,9 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 9.21,
+    "rating": 9,
     "chapter_count": 5,
-    "total_views": 64,
+    "total_views": 81,
     "isTrending": true,
     "latest_release_date": "2026-08-16T02:31:56+07:00",
     "next_update": null,
@@ -113,7 +113,7 @@
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 8
       },
       {
         "chapter_number": 4,
@@ -127,7 +127,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 11
+        "views": 12
       },
       {
         "chapter_number": 3,
@@ -141,7 +141,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 6
       }
     ]
   },
@@ -168,7 +168,7 @@
     ],
     "rating": 6,
     "chapter_count": 4,
-    "total_views": 18,
+    "total_views": 27,
     "isTrending": true,
     "latest_release_date": "2026-08-16T02:31:56+07:00",
     "next_update": null,
@@ -187,7 +187,7 @@
         "title": "Ch. 2.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 2.2,
@@ -242,7 +242,7 @@
     ],
     "rating": 7.68,
     "chapter_count": 18,
-    "total_views": 702,
+    "total_views": 709,
     "isTrending": true,
     "latest_release_date": "2026-08-14T23:12:12+07:00",
     "next_update": null,
@@ -288,7 +288,7 @@
         "title": "Ch. 7.2",
         "unlockDate": "2026-08-15T01:00:00.000Z",
         "isLocked": false,
-        "views": 15
+        "views": 16
       }
     ]
   },
@@ -313,7 +313,7 @@
     ],
     "rating": 8.24,
     "chapter_count": 3,
-    "total_views": 60,
+    "total_views": 70,
     "isTrending": true,
     "latest_release_date": "2026-08-12T22:54:08+07:00",
     "next_update": null,
@@ -332,7 +332,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 11
       },
       {
         "chapter_number": 2,
@@ -345,7 +345,7 @@
         "title": "Ch. 2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 12
+        "views": 14
       },
       {
         "chapter_number": 1,
@@ -358,7 +358,7 @@
         "title": "Ch. 1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 14
+        "views": 16
       }
     ]
   },
@@ -384,7 +384,7 @@
     ],
     "rating": 8.21,
     "chapter_count": 29,
-    "total_views": 509,
+    "total_views": 521,
     "isTrending": false,
     "latest_release_date": "2026-08-11T23:14:43+07:00",
     "next_update": null,
@@ -416,7 +416,7 @@
         "title": "Ch. 23.2",
         "unlockDate": "2026-08-11T16:28:24.000Z",
         "isLocked": false,
-        "views": 24
+        "views": 27
       },
       {
         "chapter_number": 23.1,
@@ -429,7 +429,7 @@
         "title": "Ch. 23.1",
         "unlockDate": "2026-07-29T14:00:00.000Z",
         "isLocked": false,
-        "views": 39
+        "views": 41
       }
     ]
   },
@@ -524,7 +524,7 @@
     ],
     "rating": 8.44,
     "chapter_count": 13,
-    "total_views": 123,
+    "total_views": 131,
     "isTrending": false,
     "latest_release_date": "2026-08-07T11:26:33+07:00",
     "next_update": null,
@@ -543,7 +543,7 @@
         "title": "Ch. 13",
         "unlockDate": null,
         "isLocked": false,
-        "views": 18
+        "views": 19
       },
       {
         "chapter_number": 12,
@@ -556,7 +556,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 17
+        "views": 18
       },
       {
         "chapter_number": 11,
@@ -661,7 +661,7 @@
     ],
     "rating": 8.4,
     "chapter_count": 16,
-    "total_views": 90,
+    "total_views": 94,
     "isTrending": false,
     "latest_release_date": "2026-08-06T11:41:15+07:00",
     "next_update": null,
@@ -680,7 +680,7 @@
         "title": "Ch. 12.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 9
       },
       {
         "chapter_number": 11.2,
@@ -694,7 +694,7 @@
         "title": "Ch. 11.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 9
+        "views": 10
       },
       {
         "chapter_number": 11.1,
@@ -734,7 +734,7 @@
     ],
     "rating": 8.02,
     "chapter_count": 13,
-    "total_views": 456,
+    "total_views": 460,
     "isTrending": false,
     "latest_release_date": "2026-08-05T14:48:36+07:00",
     "next_update": null,
@@ -878,7 +878,7 @@
     ],
     "rating": 7.43,
     "chapter_count": 11,
-    "total_views": 186,
+    "total_views": 188,
     "isTrending": false,
     "latest_release_date": "2026-08-04T15:13:59+07:00",
     "next_update": null,
@@ -922,7 +922,7 @@
         "title": "Ch. 7.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 18
+        "views": 19
       }
     ]
   },
@@ -948,7 +948,7 @@
     ],
     "rating": 7.69,
     "chapter_count": 20,
-    "total_views": 181,
+    "total_views": 182,
     "isTrending": false,
     "latest_release_date": "2026-08-03T16:14:51+07:00",
     "next_update": null,
@@ -1018,7 +1018,7 @@
     ],
     "rating": 8.81,
     "chapter_count": 15,
-    "total_views": 46,
+    "total_views": 47,
     "isTrending": false,
     "latest_release_date": "2026-08-01T23:00:15+07:00",
     "next_update": null,
@@ -1049,7 +1049,7 @@
         "title": "Ch. 14",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 13,
@@ -1156,7 +1156,7 @@
     ],
     "rating": 7.81,
     "chapter_count": 19,
-    "total_views": 158,
+    "total_views": 161,
     "isTrending": false,
     "latest_release_date": "2026-07-28T16:05:03+07:00",
     "next_update": null,
@@ -1174,7 +1174,7 @@
         "title": "Ch. 18.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 18
+        "views": 19
       },
       {
         "chapter_number": 17.2,
@@ -1295,7 +1295,7 @@
     ],
     "rating": 7.78,
     "chapter_count": 5,
-    "total_views": 59,
+    "total_views": 62,
     "isTrending": false,
     "latest_release_date": "2026-07-24T13:49:29+07:00",
     "next_update": null,
@@ -1313,7 +1313,7 @@
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 12
+        "views": 13
       },
       {
         "chapter_number": 4,
@@ -1326,7 +1326,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 7
       },
       {
         "chapter_number": 3,
@@ -2060,7 +2060,7 @@
     ],
     "rating": 8.9,
     "chapter_count": 13,
-    "total_views": 19,
+    "total_views": 24,
     "isTrending": false,
     "latest_release_date": "2026-06-14T15:10:34+07:00",
     "next_update": null,
@@ -2078,7 +2078,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       },
       {
         "chapter_number": 8,
@@ -2091,7 +2091,7 @@
         "title": "Ch. 8",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       },
       {
         "chapter_number": 7,
@@ -2104,7 +2104,7 @@
         "title": "Ch. 7",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 1
       }
     ]
   },
@@ -2196,7 +2196,7 @@
     ],
     "rating": 8.66,
     "chapter_count": 216,
-    "total_views": 234,
+    "total_views": 257,
     "isTrending": false,
     "latest_release_date": "2026-06-13T19:03:42+07:00",
     "next_update": null,
@@ -2214,7 +2214,7 @@
         "title": "Ch. 215.9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 18
+        "views": 19
       },
       {
         "chapter_number": 215.8,
@@ -2264,7 +2264,7 @@
     ],
     "rating": 8.29,
     "chapter_count": 95,
-    "total_views": 0,
+    "total_views": 2,
     "isTrending": false,
     "latest_release_date": "2024-01-05T00:00:00+07:00",
     "next_update": null,
