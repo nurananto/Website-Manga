@@ -84,6 +84,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 16.1,
+      "lock_hours": 0,
+      "pages": 13,
+      "notif_image": "7",
+      "r2_folder": 16.1,
+      "id": "Madogiwa-ch-16.1",
+      "r2_prefix": "manga/Madogiwa/16.1/",
+      "title": "Ch. 16.1",
+      "release_date": "2026-08-16T18:49:43+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 15.2,
       "lock_hours": 0,
       "pages": 12,
