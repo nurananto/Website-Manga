@@ -2243,5 +2243,76 @@
         "views": 6
       }
     ]
+  },
+  {
+    "id": "ClassMaid",
+    "title": "Class Maid",
+    "description": "Anak sekolah otaku, Arise Riku, yang hanya tertarik pada karakter anime wanita, adalah penggemar Yu-Tan dari kafe pelayan. Namun, dia mengetahui bahwa Yu-Tan sebenarnya adalah Maejima Yuuko dan duduk di sebelahnya di kelas. Dia memutuskan untuk melepaskan perasaannya, tapi...",
+    "status": "Tamat",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Comedy",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.29,
+    "chapter_count": 95,
+    "total_views": 0,
+    "isTrending": false,
+    "latest_release_date": "2024-01-05T00:00:00+07:00",
+    "next_update": null,
+    "tamat_at_chapter": 150,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 95,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "cover",
+        "release_date": "2024-01-05T00:00:00+07:00",
+        "r2_folder": 95,
+        "id": "ClassMaid-ch-95",
+        "r2_prefix": "manga/ClassMaid/95/",
+        "title": "Ch. 95",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 94,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "cover",
+        "release_date": "2024-01-05T00:00:00+07:00",
+        "r2_folder": 94,
+        "id": "ClassMaid-ch-94",
+        "r2_prefix": "manga/ClassMaid/94/",
+        "title": "Ch. 94",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 93,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "cover",
+        "release_date": "2024-01-05T00:00:00+07:00",
+        "r2_folder": 93,
+        "id": "ClassMaid-ch-93",
+        "r2_prefix": "manga/ClassMaid/93/",
+        "title": "Ch. 93",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
   }
 ]

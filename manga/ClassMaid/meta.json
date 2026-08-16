@@ -6,7 +6,13 @@
   "type": "WEBTOON",
   "author": "Shimamura",
   "artist": "Shimamura",
-  "genres": ["Shounen", "School Life", "Comedy", "Romance", "Slice of Life"],
+  "genres": [
+    "Shounen",
+    "School Life",
+    "Comedy",
+    "Romance",
+    "Slice of Life"
+  ],
   "description": "Anak sekolah otaku, Arise Riku, yang hanya tertarik pada karakter anime wanita, adalah penggemar Yu-Tan dari kafe pelayan. Namun, dia mengetahui bahwa Yu-Tan sebenarnya adalah Maejima Yuuko dan duduk di sebelahnya di kelas. Dia memutuskan untuk melepaskan perasaannya, tapi...",
   "covers": [
     "manga/ClassMaid/covers/cover.webp",
@@ -20,5 +26,30 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": ""
+  "mangadex_cover": "556f9b48-02b6-42c8-ae8c-02f3c92870e3.png",
+  "cover_source": "mangadex",
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 2,
+  "cover_gallery": [
+    {
+      "file": "556f9b48-02b6-42c8-ae8c-02f3c92870e3.png",
+      "volume": "1",
+      "keys": [
+        "manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3.webp",
+        "manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3@tablet.webp",
+        "manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3@mobile.webp"
+      ],
+      "widths": "1280x960x640q75"
+    },
+    {
+      "file": "19efe3dc-b745-4030-8196-e6aac97d7697.jpg",
+      "volume": "2",
+      "keys": [
+        "manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697.webp",
+        "manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697@tablet.webp",
+        "manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697@mobile.webp"
+      ],
+      "widths": "1280x960x640q75"
+    }
+  ]
 }
