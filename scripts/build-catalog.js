@@ -313,7 +313,10 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
   // "Tombol" link teks (webhook tidak bisa button asli). Link "Diskusi" per judul
   // sudah dilepas — channel komentar per manga dihapus, diskusi dipusatkan di satu
   // server Discord.
-  const linksOf = (ch) => `🌐 [Baca](${base}/${ch.mangaId})` + (ch.rawUrl ? ` · 📄 [Raw](${ch.rawUrl})` : '');
+  // Trailing slash wajib — Cloudflare Pages nyajiin halaman ini dari
+  // dist/<id>/index.html, tanpa "/" di akhir bakal kena 308 redirect dulu
+  // (lihat catatan sama di generate-sitemap.js).
+  const linksOf = (ch) => `🌐 [Baca](${base}/${ch.mangaId}/)` + (ch.rawUrl ? ` · 📄 [Raw](${ch.rawUrl})` : '');
 
   const byManga = groupByManga(newChapters);
 
@@ -337,7 +340,7 @@ async function sendDiscordNotifications(newChapters, webhookUrl, siteUrl) {
     }
     const embed = {
       title:     ch.mangaTitle,
-      url:       `${base}/${ch.mangaId}`,
+      url:       `${base}/${ch.mangaId}/`,
       description: [descTop, linksOf(ch)].join('\n'),
       color:     0x5865F2,
       image,     // halaman 1 chapter (pengganti cover)
@@ -407,7 +410,7 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
 
   const messages = [];
   for (const m of newManga) {
-    const links = [`🌐 [Website](${base}/${m.id})`];
+    const links = [`🌐 [Website](${base}/${m.id}/)`];
     const desc = [];
     if (m.genres?.length) desc.push(`🏷️ ${m.genres.join(' · ')}`);
     if (m.synopsis)       desc.push('', (m.synopsis || '').trim());
@@ -418,7 +421,7 @@ async function sendMangaIntros(newManga, webhookUrl, siteUrl) {
       embed: {
       author:    { name: '📚 Judul Baru di Nurananto Scanlation', url: base },
       title:     m.title,
-      url:       `${base}/${m.id}`,
+      url:       `${base}/${m.id}/`,
       description: desc.join('\n').slice(0, 4000),
       color:     0x5865F2,
       image:     cover ? { url: `attachment://${cover.name}` } : undefined,
@@ -476,7 +479,7 @@ async function sendFacebookMangaIntros(newManga, pageId, pageToken, siteUrl) {
       ? rawDesc.slice(0, 400).replace(/\s+\S*$/, '') + '…'
       : rawDesc;
 
-    const lines = ['📚 Manga Baru!', m.title, '', shortDesc, '', `Baca: ${base}/${m.id}`];
+    const lines = ['📚 Manga Baru!', m.title, '', shortDesc, '', `Baca: ${base}/${m.id}/`];
     if (m.mangadexUrl) lines.push(`MangaDex: ${m.mangadexUrl}`);
     if (m.rawUrl)      lines.push(`Raw: ${m.rawUrl}`);
     const message = lines.join('\n');
@@ -548,13 +551,13 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
       const ch = list[0];
       const message =
         openingOf(ch, title, `📖 ${title}\n${list.length} chapter baru (Ch ${nums[nums.length - 1]}–${nums[0]}) sudah update!`) +
-        `\n\nBaca: ${host}/${mangaId}`;
+        `\n\nBaca: ${host}/${mangaId}/`;
       posts.push({ title, rep: ch, message });
     } else {
       for (const ch of list) {
         const message =
           openingOf(ch, title, `📖 ${title}\nChapter ${ch.chapterNumber} sudah update!`) +
-          `\n\nBaca: ${host}/${mangaId}`;
+          `\n\nBaca: ${host}/${mangaId}/`;
         posts.push({ title, rep: ch, message });
       }
     }

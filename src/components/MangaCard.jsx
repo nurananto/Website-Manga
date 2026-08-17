@@ -25,7 +25,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
     <div className="flex h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px] bg-surface-container rounded-xl overflow-hidden group border border-transparent hover:border-primary/20 shadow-md transition-colors">
       {/* Cover — link crawlable ke detail (SPA: preventDefault + navigate) */}
       <a
-        href={`/${manga.id}`}
+        href={`/${manga.id}/`}
         onClick={(e) => { e.preventDefault(); onViewManga(manga); }}
         aria-label={manga.title}
         // Padding disetel per-breakpoint (bukan px-2 rata semua) supaya cover
@@ -58,7 +58,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
         <div className="flex items-center justify-between gap-2 px-2 sm:px-2.5 lg:px-3 pb-1.5 sm:pb-2 border-b-2 border-outline-variant/50">
           <div className="flex items-center gap-1 min-w-0 flex-1">
             <a
-              href={`/${manga.id}`}
+              href={`/${manga.id}/`}
               onClick={(e) => { e.preventDefault(); onViewManga(manga); }}
               className="min-w-0 flex-1"
             >
