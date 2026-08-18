@@ -81,6 +81,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 11.2,
+      "lock_hours": 0,
+      "pages": 11,
+      "notif_image": "2",
+      "r2_folder": 11.2,
+      "id": "Amari-chan-ch-11.2",
+      "r2_prefix": "manga/Amari-chan/11.2/",
+      "title": "Ch. 11.2",
+      "release_date": "2026-08-18T11:22:53+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 11.1,
       "lock_hours": 0,
       "pages": 9,

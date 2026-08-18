@@ -1,5 +1,76 @@
 [
   {
+    "id": "Amari-chan",
+    "title": "Kanojo ni Shitai Joshi Ichii, no Tonari de Mitsuketa Amari-chan",
+    "description": "'Kisah Romantis Komedi Dimulai dari Persahabatan dengan Heroine Tersembunyi yang Hanya Aku Tahu.'Dia anak baik, tapi terlalu biasa saja… Itulah Fukusuke Mogi, yang diam-diam mengagumi Kureha Yua, gadis tercantik di kelas.Namun, orang yang digosipkan bersama Yui adalah sahabatnya, Fujisaki Yuusei,…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=3",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp?v=3"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Drama",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.48,
+    "chapter_count": 18,
+    "total_views": 105,
+    "isTrending": true,
+    "latest_release_date": "2026-08-18T11:22:53+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 11.2,
+        "lock_hours": 0,
+        "pages": 11,
+        "notif_image": "2",
+        "r2_folder": 11.2,
+        "id": "Amari-chan-ch-11.2",
+        "r2_prefix": "manga/Amari-chan/11.2/",
+        "title": "Ch. 11.2",
+        "release_date": "2026-08-18T11:22:53+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 11.1,
+        "lock_hours": 0,
+        "pages": 9,
+        "release_date": "2026-08-04T16:08:07+07:00",
+        "r2_folder": 11.1,
+        "id": "Amari-chan-ch-11.1",
+        "r2_prefix": "manga/Amari-chan/11.1/",
+        "title": "Ch. 11.1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 13
+      },
+      {
+        "chapter_number": 10.3,
+        "lock_hours": 0,
+        "pages": 13,
+        "release_date": "2026-07-05T23:57:11+07:00",
+        "r2_folder": 10.3,
+        "id": "Amari-chan-ch-10.3",
+        "r2_prefix": "manga/Amari-chan/10.3/",
+        "title": "Ch. 10.3",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 11
+      }
+    ]
+  },
+  {
     "id": "Madogiwa",
     "title": "Madogiwa Henshuu to Baka ni Sareta Ore ga, Futago JK to Doukyo Suru Koto ni Natta",
     "description": "'Kalau kamu membiarkan kami menginap... kamu boleh melakukan hal apapun ke kita.' Mitsuhiko Okaya, seorang pria biasa, dikhianati oleh istrinya dan kouhainya di kantor. Di tempat kerja, dia dihina sebagai editor tak berguna dan tenggelam dalam keputusasaan, sampai suatu hari di hadapannya muncul…",
@@ -314,7 +385,7 @@
     "rating": 8.24,
     "chapter_count": 3,
     "total_views": 71,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-12T22:54:08+07:00",
     "next_update": null,
     "tamat_at_chapter": 10,
@@ -780,76 +851,6 @@
         "unlockDate": "2026-08-05T12:49:50.000Z",
         "isLocked": false,
         "views": 40
-      }
-    ]
-  },
-  {
-    "id": "Amari-chan",
-    "title": "Kanojo ni Shitai Joshi Ichii, no Tonari de Mitsuketa Amari-chan",
-    "description": "'Kisah Romantis Komedi Dimulai dari Persahabatan dengan Heroine Tersembunyi yang Hanya Aku Tahu.'Dia anak baik, tapi terlalu biasa saja… Itulah Fukusuke Mogi, yang diam-diam mengagumi Kureha Yua, gadis tercantik di kelas.Namun, orang yang digosipkan bersama Yui adalah sahabatnya, Fujisaki Yuusei,…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=3",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=3",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp?v=3",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp?v=3"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Drama",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 8.48,
-    "chapter_count": 17,
-    "total_views": 105,
-    "isTrending": false,
-    "latest_release_date": "2026-08-04T16:08:07+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 11.1,
-        "lock_hours": 0,
-        "pages": 9,
-        "release_date": "2026-08-04T16:08:07+07:00",
-        "r2_folder": 11.1,
-        "id": "Amari-chan-ch-11.1",
-        "r2_prefix": "manga/Amari-chan/11.1/",
-        "title": "Ch. 11.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 13
-      },
-      {
-        "chapter_number": 10.3,
-        "lock_hours": 0,
-        "pages": 13,
-        "release_date": "2026-07-05T23:57:11+07:00",
-        "r2_folder": 10.3,
-        "id": "Amari-chan-ch-10.3",
-        "r2_prefix": "manga/Amari-chan/10.3/",
-        "title": "Ch. 10.3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 11
-      },
-      {
-        "chapter_number": 10.2,
-        "lock_hours": 0,
-        "pages": 11,
-        "release_date": "2026-07-05T23:57:11+07:00",
-        "r2_folder": 10.2,
-        "id": "Amari-chan-ch-10.2",
-        "r2_prefix": "manga/Amari-chan/10.2/",
-        "title": "Ch. 10.2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 3
       }
     ]
   },
