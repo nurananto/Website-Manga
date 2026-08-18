@@ -42,10 +42,10 @@
     "6.3": 51,
     "7.1": 61,
     "6.5": 53,
-    "7.2": 24,
+    "7.2": 29,
     "7.3": 4
   },
-  "total_views": 753,
+  "total_views": 762,
   "mangadex_cover": "7924e82c-7b57-4fda-9800-8dde50833030.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -68,7 +68,7 @@
       }
     }
   ],
-  "detail_views": 210,
+  "detail_views": 214,
   "cover_version": 4,
   "notif_image": "page1",
   "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
@@ -120,7 +120,7 @@
       "title": "Ch. 7.2",
       "unlockDate": "2026-08-15T01:00:00.000Z",
       "isLocked": false,
-      "views": 24
+      "views": 29
     },
     {
       "chapter_number": 7.1,

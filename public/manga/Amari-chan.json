@@ -40,11 +40,12 @@
     "10.1": 4,
     "10.2": 3,
     "10.3": 11,
-    "11.1": 13,
+    "11.1": 14,
     "1.5": 1,
-    "4.5": 1
+    "4.5": 1,
+    "11.2": 6
   },
-  "total_views": 105,
+  "total_views": 116,
   "mangadex_cover": "c402aa68-08d7-49da-9fbd-7b84a9da4f7c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -67,7 +68,7 @@
       }
     }
   ],
-  "detail_views": 43,
+  "detail_views": 47,
   "cover_version": 3,
   "notif_image": "page1",
   "mangadex_id": "624d6ceb-768d-40a7-8412-84e083afbdb1",
@@ -85,14 +86,14 @@
       "lock_hours": 0,
       "pages": 11,
       "notif_image": "2",
+      "release_date": "2026-08-18T11:22:53+07:00",
       "r2_folder": 11.2,
       "id": "Amari-chan-ch-11.2",
       "r2_prefix": "manga/Amari-chan/11.2/",
       "title": "Ch. 11.2",
-      "release_date": "2026-08-18T11:22:53+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 6
     },
     {
       "chapter_number": 11.1,
@@ -105,7 +106,7 @@
       "title": "Ch. 11.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 10.3,

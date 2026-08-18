@@ -33,13 +33,13 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 14,
+    "1": 16,
     "2": 6,
     "3": 7,
     "4": 14,
     "5": 10
   },
-  "total_views": 94,
+  "total_views": 99,
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
   "cover_version": 3,
@@ -55,9 +55,9 @@
       }
     }
   ],
-  "detail_views": 43,
+  "detail_views": 46,
   "mangadex_id": "e440bccd-51fc-43e7-b226-00525d959f61",
-  "rating": 8.94,
+  "rating": 9,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
   "coverUrls": {
@@ -134,7 +134,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 14
+      "views": 16
     }
   ]
 }
