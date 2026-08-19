@@ -36,9 +36,9 @@
     "6": 4,
     "7": 6,
     "8": 20,
-    "9": 32
+    "9": 33
   },
-  "total_views": 140,
+  "total_views": 141,
   "mangadex_cover": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -75,6 +75,6 @@
   ],
   "detail_views": 45,
   "cover_version": 3,
-  "view_sync_cutoff": "2026-08-17 17:00:57",
+  "view_sync_cutoff": "2026-08-18 17:00:15",
   "notif_image": "page1"
 }

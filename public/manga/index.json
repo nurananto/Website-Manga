@@ -1,5 +1,76 @@
 [
   {
+    "id": "Amari-chan",
+    "title": "Kanojo ni Shitai Joshi Ichii, no Tonari de Mitsuketa Amari-chan",
+    "description": "'Kisah Romantis Komedi Dimulai dari Persahabatan dengan Heroine Tersembunyi yang Hanya Aku Tahu.'Dia anak baik, tapi terlalu biasa saja… Itulah Fukusuke Mogi, yang diam-diam mengagumi Kureha Yua, gadis tercantik di kelas.Namun, orang yang digosipkan bersama Yui adalah sahabatnya, Fujisaki Yuusei,…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=3",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp?v=3"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Drama",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.48,
+    "chapter_count": 18,
+    "total_views": 116,
+    "isTrending": true,
+    "latest_release_date": "2026-08-18T11:22:53+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 11.2,
+        "lock_hours": 0,
+        "pages": 11,
+        "notif_image": "2",
+        "release_date": "2026-08-18T11:22:53+07:00",
+        "r2_folder": 11.2,
+        "id": "Amari-chan-ch-11.2",
+        "r2_prefix": "manga/Amari-chan/11.2/",
+        "title": "Ch. 11.2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 6
+      },
+      {
+        "chapter_number": 11.1,
+        "lock_hours": 0,
+        "pages": 9,
+        "release_date": "2026-08-04T16:08:07+07:00",
+        "r2_folder": 11.1,
+        "id": "Amari-chan-ch-11.1",
+        "r2_prefix": "manga/Amari-chan/11.1/",
+        "title": "Ch. 11.1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 14
+      },
+      {
+        "chapter_number": 10.3,
+        "lock_hours": 0,
+        "pages": 13,
+        "release_date": "2026-07-05T23:57:11+07:00",
+        "r2_folder": 10.3,
+        "id": "Amari-chan-ch-10.3",
+        "r2_prefix": "manga/Amari-chan/10.3/",
+        "title": "Ch. 10.3",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 11
+      }
+    ]
+  },
+  {
     "id": "Madogiwa",
     "title": "Madogiwa Henshuu to Baka ni Sareta Ore ga, Futago JK to Doukyo Suru Koto ni Natta",
     "description": "'Kalau kamu membiarkan kami menginap... kamu boleh melakukan hal apapun ke kita.' Mitsuhiko Okaya, seorang pria biasa, dikhianati oleh istrinya dan kouhainya di kantor. Di tempat kerja, dia dihina sebagai editor tak berguna dan tenggelam dalam keputusasaan, sampai suatu hari di hadapannya muncul…",
@@ -22,7 +93,7 @@
     ],
     "rating": 7.38,
     "chapter_count": 20,
-    "total_views": 280,
+    "total_views": 298,
     "isTrending": true,
     "latest_release_date": "2026-08-16T18:49:43+07:00",
     "next_update": null,
@@ -41,7 +112,7 @@
         "title": "Ch. 16.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 15
+        "views": 22
       },
       {
         "chapter_number": 15.2,
@@ -54,7 +125,7 @@
         "title": "Ch. 15.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 24
+        "views": 27
       },
       {
         "chapter_number": 15.1,
@@ -67,7 +138,7 @@
         "title": "Ch. 15.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 19
+        "views": 20
       }
     ]
   },
@@ -92,9 +163,9 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 8.94,
+    "rating": 9,
     "chapter_count": 5,
-    "total_views": 94,
+    "total_views": 99,
     "isTrending": true,
     "latest_release_date": "2026-08-16T02:31:56+07:00",
     "next_update": null,
@@ -168,7 +239,7 @@
     ],
     "rating": 6,
     "chapter_count": 4,
-    "total_views": 30,
+    "total_views": 40,
     "isTrending": true,
     "latest_release_date": "2026-08-16T02:31:56+07:00",
     "next_update": null,
@@ -187,7 +258,7 @@
         "title": "Ch. 2.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 5
       },
       {
         "chapter_number": 2.2,
@@ -201,7 +272,7 @@
         "title": "Ch. 2.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 7
       },
       {
         "chapter_number": 2.1,
@@ -215,7 +286,7 @@
         "title": "Ch. 2.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 2
+        "views": 3
       }
     ]
   },
@@ -242,7 +313,7 @@
     ],
     "rating": 7.68,
     "chapter_count": 18,
-    "total_views": 753,
+    "total_views": 762,
     "isTrending": true,
     "latest_release_date": "2026-08-14T23:12:12+07:00",
     "next_update": null,
@@ -288,7 +359,7 @@
         "title": "Ch. 7.2",
         "unlockDate": "2026-08-15T01:00:00.000Z",
         "isLocked": false,
-        "views": 24
+        "views": 29
       }
     ]
   },
@@ -313,8 +384,8 @@
     ],
     "rating": 8.24,
     "chapter_count": 3,
-    "total_views": 71,
-    "isTrending": true,
+    "total_views": 72,
+    "isTrending": false,
     "latest_release_date": "2026-08-12T22:54:08+07:00",
     "next_update": null,
     "tamat_at_chapter": 10,
@@ -358,7 +429,7 @@
         "title": "Ch. 1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 16
+        "views": 17
       }
     ]
   },
@@ -384,7 +455,7 @@
     ],
     "rating": 8.21,
     "chapter_count": 29,
-    "total_views": 546,
+    "total_views": 547,
     "isTrending": false,
     "latest_release_date": "2026-08-11T23:14:43+07:00",
     "next_update": null,
@@ -416,7 +487,7 @@
         "title": "Ch. 23.2",
         "unlockDate": "2026-08-11T16:28:24.000Z",
         "isLocked": false,
-        "views": 29
+        "views": 30
       },
       {
         "chapter_number": 23.1,
@@ -454,7 +525,7 @@
     ],
     "rating": 7.5,
     "chapter_count": 26,
-    "total_views": 340,
+    "total_views": 343,
     "isTrending": false,
     "latest_release_date": "2026-08-07T13:26:55+07:00",
     "next_update": null,
@@ -592,7 +663,7 @@
     ],
     "rating": 8.61,
     "chapter_count": 19,
-    "total_views": 102,
+    "total_views": 103,
     "isTrending": false,
     "latest_release_date": "2026-08-07T00:02:21+07:00",
     "next_update": null,
@@ -611,7 +682,7 @@
         "title": "Ch. 14",
         "unlockDate": null,
         "isLocked": false,
-        "views": 15
+        "views": 16
       },
       {
         "chapter_number": 13,
@@ -734,7 +805,7 @@
     ],
     "rating": 8.02,
     "chapter_count": 13,
-    "total_views": 463,
+    "total_views": 471,
     "isTrending": false,
     "latest_release_date": "2026-08-05T14:48:36+07:00",
     "next_update": null,
@@ -779,77 +850,7 @@
         "title": "Ch. 7.1",
         "unlockDate": "2026-08-05T12:49:50.000Z",
         "isLocked": false,
-        "views": 40
-      }
-    ]
-  },
-  {
-    "id": "Amari-chan",
-    "title": "Kanojo ni Shitai Joshi Ichii, no Tonari de Mitsuketa Amari-chan",
-    "description": "'Kisah Romantis Komedi Dimulai dari Persahabatan dengan Heroine Tersembunyi yang Hanya Aku Tahu.'Dia anak baik, tapi terlalu biasa saja… Itulah Fukusuke Mogi, yang diam-diam mengagumi Kureha Yua, gadis tercantik di kelas.Namun, orang yang digosipkan bersama Yui adalah sahabatnya, Fujisaki Yuusei,…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=3",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=3",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp?v=3",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp?v=3"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Drama",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 8.48,
-    "chapter_count": 17,
-    "total_views": 105,
-    "isTrending": false,
-    "latest_release_date": "2026-08-04T16:08:07+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 11.1,
-        "lock_hours": 0,
-        "pages": 9,
-        "release_date": "2026-08-04T16:08:07+07:00",
-        "r2_folder": 11.1,
-        "id": "Amari-chan-ch-11.1",
-        "r2_prefix": "manga/Amari-chan/11.1/",
-        "title": "Ch. 11.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 13
-      },
-      {
-        "chapter_number": 10.3,
-        "lock_hours": 0,
-        "pages": 13,
-        "release_date": "2026-07-05T23:57:11+07:00",
-        "r2_folder": 10.3,
-        "id": "Amari-chan-ch-10.3",
-        "r2_prefix": "manga/Amari-chan/10.3/",
-        "title": "Ch. 10.3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 11
-      },
-      {
-        "chapter_number": 10.2,
-        "lock_hours": 0,
-        "pages": 11,
-        "release_date": "2026-07-05T23:57:11+07:00",
-        "r2_folder": 10.2,
-        "id": "Amari-chan-ch-10.2",
-        "r2_prefix": "manga/Amari-chan/10.2/",
-        "title": "Ch. 10.2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 3
+        "views": 42
       }
     ]
   },
@@ -878,7 +879,7 @@
     ],
     "rating": 7.43,
     "chapter_count": 11,
-    "total_views": 191,
+    "total_views": 196,
     "isTrending": false,
     "latest_release_date": "2026-08-04T15:13:59+07:00",
     "next_update": null,
@@ -896,7 +897,7 @@
         "title": "Ch. 8.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 22
+        "views": 23
       },
       {
         "chapter_number": 7.3,
@@ -909,7 +910,7 @@
         "title": "Ch. 7.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 17
+        "views": 18
       },
       {
         "chapter_number": 7.2,
@@ -922,7 +923,7 @@
         "title": "Ch. 7.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 19
+        "views": 20
       }
     ]
   },
@@ -965,7 +966,7 @@
         "r2_prefix": "manga/ClassdeIchiban/15.2/",
         "title": "Ch. 15.2",
         "unlockDate": "2026-08-18T09:14:51.000Z",
-        "isLocked": true,
+        "isLocked": false,
         "views": 4
       },
       {
@@ -1087,7 +1088,7 @@
     ],
     "rating": 8.38,
     "chapter_count": 19,
-    "total_views": 104,
+    "total_views": 105,
     "isTrending": false,
     "latest_release_date": "2026-07-30T20:01:44+07:00",
     "next_update": null,
@@ -1156,7 +1157,7 @@
     ],
     "rating": 7.81,
     "chapter_count": 19,
-    "total_views": 162,
+    "total_views": 167,
     "isTrending": false,
     "latest_release_date": "2026-07-28T16:05:03+07:00",
     "next_update": null,
@@ -1174,7 +1175,7 @@
         "title": "Ch. 18.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 20
+        "views": 23
       },
       {
         "chapter_number": 17.2,
@@ -1225,7 +1226,7 @@
     ],
     "rating": 6.8,
     "chapter_count": 17,
-    "total_views": 203,
+    "total_views": 205,
     "isTrending": false,
     "latest_release_date": "2026-07-27T22:52:51+07:00",
     "next_update": null,
@@ -1243,7 +1244,7 @@
         "title": "Ch. 17",
         "unlockDate": null,
         "isLocked": false,
-        "views": 24
+        "views": 25
       },
       {
         "chapter_number": 16,
@@ -1432,7 +1433,7 @@
     ],
     "rating": 8.39,
     "chapter_count": 1,
-    "total_views": 26,
+    "total_views": 28,
     "isTrending": false,
     "latest_release_date": "2026-07-09T21:15:37+07:00",
     "next_update": null,
@@ -1450,7 +1451,7 @@
         "r2_prefix": "manga/AotoSakura/Oneshot/",
         "unlockDate": null,
         "isLocked": false,
-        "views": 14
+        "views": 15
       }
     ]
   },
@@ -1587,7 +1588,7 @@
     ],
     "rating": 8.56,
     "chapter_count": 5,
-    "total_views": 17,
+    "total_views": 18,
     "isTrending": false,
     "latest_release_date": "2026-07-08T18:41:58+07:00",
     "next_update": null,
@@ -1605,7 +1606,7 @@
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 5
       },
       {
         "chapter_number": 4,
@@ -1657,7 +1658,7 @@
     ],
     "rating": 8.3,
     "chapter_count": 4,
-    "total_views": 55,
+    "total_views": 56,
     "isTrending": false,
     "latest_release_date": "2026-07-03T20:15:09+07:00",
     "next_update": null,
@@ -1729,7 +1730,7 @@
     ],
     "rating": 7.35,
     "chapter_count": 9,
-    "total_views": 140,
+    "total_views": 141,
     "isTrending": false,
     "latest_release_date": "2026-07-02T18:06:40+07:00",
     "next_update": null,
@@ -1747,7 +1748,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 32
+        "views": 33
       },
       {
         "chapter_number": 8,
@@ -1934,9 +1935,9 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 8.25,
+    "rating": 8.24,
     "chapter_count": 6,
-    "total_views": 22,
+    "total_views": 24,
     "isTrending": false,
     "latest_release_date": "2026-06-18T18:38:29+07:00",
     "next_update": null,
@@ -1954,7 +1955,7 @@
         "title": "Ch. 6",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 6
       },
       {
         "chapter_number": 5,
@@ -2196,7 +2197,7 @@
     ],
     "rating": 8.65,
     "chapter_count": 216,
-    "total_views": 309,
+    "total_views": 310,
     "isTrending": false,
     "latest_release_date": "2026-06-13T19:03:42+07:00",
     "next_update": null,
@@ -2214,7 +2215,7 @@
         "title": "Ch. 215.9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 21
+        "views": 22
       },
       {
         "chapter_number": 215.8,
@@ -2264,7 +2265,7 @@
     ],
     "rating": 8.29,
     "chapter_count": 95,
-    "total_views": 3,
+    "total_views": 4,
     "isTrending": false,
     "latest_release_date": "2024-01-05T00:00:00+07:00",
     "next_update": null,
