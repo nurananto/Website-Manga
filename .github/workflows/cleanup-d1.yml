@@ -1,0 +1,25 @@
+name: Cleanup D1 Audit Log
+
+on:
+  schedule:
+    - cron: '0 2 1 * *'   # Tanggal 1 tiap bulan, jam 02:00 UTC (09:00 WIB)
+  workflow_dispatch:        # bisa dipicu manual dari GitHub UI
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Wrangler
+        run: npm install -g wrangler@latest
+
+      # chapter_read_events = audit log append-only (akses chapter locked, granted/denied).
+      # Bukan dedup harian seperti chapter_views, jadi retensi 30 hari cukup longgar
+      # buat investigasi sengketa akses tapi tetap mencegah tabel tumbuh tanpa batas.
+      - name: Hapus chapter_read_events lebih dari 30 hari
+        run: |
+          wrangler d1 execute manga-db --remote --command \
+            "DELETE FROM chapter_read_events WHERE occurred_at < datetime('now', '-30 days')"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
