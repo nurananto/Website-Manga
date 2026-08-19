@@ -131,20 +131,28 @@ def proses_chapter(ch_dir, lock_hours, next_update=None, notif_image=None, unloc
         except Exception:
             pass
 
+    # unlock_date baru (dari ask_lock_config, mode "sampai tanggal") menang
+    # atas yang lama; kalau tidak ada input baru, pertahankan yang sudah ada
+    # (selama lock_hours masih >0 — kalau dibuka jadi gratis, unlock_date lama
+    # dibuang, bukan dipertahankan diam-diam).
+    final_unlock = unlock_date or (existing_unlock if lock_hours > 0 else None)
+
+    # Kalau ujungnya pakai unlock_date (baru ATAU dipertahankan), "lock_hours"
+    # SENGAJA tidak ditulis sama sekali — dia cuma placeholder yang tidak
+    # dipakai sama sekali (unlock_date selalu menang duluan di build-catalog.js),
+    # dan kalau tetap ditulis (mis. "lock_hours": 0) orang yang buka meta.json
+    # belakangan bisa salah baca "0 = gratis/tidak dikunci". Satu sumber
+    # kebenaran per chapter, bukan dua field yang bisa kelihatan kontradiktif.
     meta = {
         "chapter_number": to_chapter_number(ch_dir.name),
         **({"title": "Oneshot"} if chapter_number == "oneshot" else {}),
-        "lock_hours": lock_hours,
+        **({} if final_unlock else {"lock_hours": lock_hours}),
         "pages": pages,
     }
     if existing_release:
         meta["release_date"] = existing_release
-    # unlock_date baru (dari ask_lock_config, mode "sampai tanggal") menang
-    # atas yang lama; kalau tidak ada input baru, pertahankan yang sudah ada.
-    if unlock_date:
-        meta["unlock_date"] = unlock_date
-    elif existing_unlock and lock_hours > 0:
-        meta["unlock_date"] = existing_unlock
+    if final_unlock:
+        meta["unlock_date"] = final_unlock
     # next_update hanya untuk chapter terakhir/terbaru (jadwal rilis berikutnya)
     if next_update:
         meta["next_update"] = next_update
@@ -202,36 +210,29 @@ def ask_next_update():
 
 
 def ask_lock_config():
-    """Tanya cara kunci chapter: jumlah JAM (lama) atau sampai TANGGAL tertentu
-    (baru — dibuka otomatis jam 00:00 WIB di tanggal itu). Return dict siap
-    disebar ke proses_chapter(): {"lock_hours": int} atau
+    """Tanya cara kunci chapter — cuma 3 mode yang benar-benar dipakai (mode
+    "sekian jam" dihapus, sudah nggak dipakai lagi). Return dict siap disebar
+    ke proses_chapter(): {"lock_hours": int} atau
     {"lock_hours": 0, "unlock_date": iso_str}.
 
     unlock_date ini dibaca build-catalog.js sebagai OVERRIDE — kalau field itu
     ada di meta.json, lock_hours diabaikan sepenuhnya (lihat komentar
     "Override eksplisit" di scripts/build-catalog.js), jadi nilai lock_hours
-    yang ditulis di sini cuma placeholder (0), bukan dipakai buat hitung apa-apa.
+    yang ditulis di sini cuma placeholder (0), bukan dipakai buat hitung apa-apa
+    — dan proses_chapter() sendiri bakal skip nulis field itu sama sekali kalau
+    unlock_date ada, biar nggak ambigu di meta.json.
     """
     print()
     print("Kunci chapter ini:")
     print("  1. Gratis, tidak dikunci (default)")
-    print("  2. Sekian JAM dari waktu rilis (mis. 336 = 14 hari)")
-    print("  3. PERMANEN — dibuka manual nanti lewat meta.json")
-    print("  4. Sampai TANGGAL tertentu (otomatis buka jam 00:00 WIB)")
-    pilih = ask("Pilihan (1/2/3/4, Enter=1)", allow_empty=True)
+    print("  2. PERMANEN — dibuka manual nanti lewat meta.json")
+    print("  3. Sampai TANGGAL tertentu (otomatis buka jam 00:00 WIB)")
+    pilih = ask("Pilihan (1/2/3, Enter=1)", allow_empty=True)
 
     if pilih == "2":
-        jam = ask("  Jumlah jam (mis. 336 = 14 hari)")
-        try:
-            return {"lock_hours": int(jam)}
-        except ValueError:
-            print("  ⚠  Bukan angka, dianggap gratis (0 jam).")
-            return {"lock_hours": 0}
-
-    if pilih == "3":
         return {"lock_hours": -1}
 
-    if pilih == "4":
+    if pilih == "3":
         while True:
             tgl = ask("  Tanggal buka (1-31)")
             bln = ask("  Bulan (1-12)")
