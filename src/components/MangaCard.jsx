@@ -36,15 +36,24 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
         // cover-new-glow ikut kepotong overflow-hidden kartu di sisi kanan.
         className="relative w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full flex-shrink-0 flex items-center justify-center py-4 md:py-3.5 px-2 sm:px-1 lg:px-1.5 cursor-pointer"
       >
-        <ResponsiveCover
-            manga={manga}
-            alt={manga.title}
-            title={isMangaNew ? 'Ada update baru di manga ini' : undefined}
-            loading={coverPriority ? 'eager' : 'lazy'}
-            fetchPriority={coverPriority ? 'high' : 'low'}
-            decoding={coverPriority ? 'sync' : 'async'}
-            className={`h-full w-full object-cover rounded-lg bg-surface-container-high shadow-[0_2px_6px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-outline-variant hover:scale-105 transition-all duration-500 ${isMangaNew ? 'cover-new-glow' : ''}`}
-          />
+        <div className="relative h-full w-full">
+          <ResponsiveCover
+              manga={manga}
+              alt={manga.title}
+              title={isMangaNew ? 'Ada update baru di manga ini' : undefined}
+              loading={coverPriority ? 'eager' : 'lazy'}
+              fetchPriority={coverPriority ? 'high' : 'low'}
+              decoding={coverPriority ? 'sync' : 'async'}
+              className="h-full w-full object-cover rounded-lg bg-surface-container-high shadow-[0_2px_6px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-outline-variant hover:scale-105 transition-all duration-500"
+            />
+          {/* Ring "ada update" — elemen terpisah (bukan class di <img>): pseudo-
+              element ::after tidak dirender di elemen <img> (replaced element),
+              jadi ring-nya sibling <span> sendiri yang di-scale+opacity-in,
+              lihat .cover-new-glow-ring di index.css. */}
+          {isMangaNew && (
+            <span aria-hidden="true" className="cover-new-glow-ring pointer-events-none absolute inset-0 rounded-lg" />
+          )}
+        </div>
       </a>
 
       {/* Details Section */}
@@ -136,7 +145,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                       kedua tema. Icon box boleh tetap -40 karena itu dekoratif, bukan teks. */}
                   <span className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-all whitespace-nowrap ${isRead ? 'opacity-80' : ''} ${
                     showEarlyAccessGate
-                      ? 'text-amber-600 dark:text-amber-300 group-hover/ch:text-amber-500 dark:group-hover/ch:text-amber-200'
+                      ? 'text-amber-800 dark:text-amber-300 group-hover/ch:text-amber-700 dark:group-hover/ch:text-amber-200'
                       : 'text-on-surface-variant group-hover/ch:text-primary'
                   }`}>
                     {chapterTitle}
@@ -146,7 +155,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                     // ini melebar sampai 8px ke kiri (lihat @keyframes new-badge-glow di
                     // index.css), jarak gap-1 (4px) saja bikin separuh glow nembus ke
                     // tulisan chapter di sebelahnya.
-                    <span className="badge-new-glow ml-1.5 bg-emerald-700 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
+                    <span className="badge-new-glow relative ml-1.5 bg-emerald-700 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
                       NEW
                     </span>
                   )}

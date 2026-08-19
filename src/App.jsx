@@ -129,15 +129,29 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
 export default function App() {
   // Modal login/Supporter tetap menjadi chunk terpisah. Unduh saat browser idle
   // agar tidak bersaing dengan cover LCP, tetapi tetap siap sebelum interaksi umum.
+  // Timeout requestIdleCallback dulu 1800ms — di koneksi lambat/throttled itu
+  // JUSTRU jadi jaminan "paksa jalan" yang jatuh tepat di tengah jendela LCP,
+  // bikin chunk ini (+ dependennya) rebutan bandwidth sama cover hero (lihat
+  // Lighthouse "Element render delay" pada gambar spotlight). Digeser jadi
+  // nunggu event `load` dulu (sinyal render awal sudah beres) baru dijadwalkan,
+  // timeout dinaikkan supaya backstop-nya juga tidak buru-buru.
   useEffect(() => {
     let idleId;
     let timerId;
-    if ('requestIdleCallback' in window) {
-      idleId = window.requestIdleCallback(() => { void loadCoinModals(); }, { timeout: 1800 });
+    const schedule = () => {
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(() => { void loadCoinModals(); }, { timeout: 4000 });
+      } else {
+        timerId = window.setTimeout(() => { void loadCoinModals(); }, 2500);
+      }
+    };
+    if (document.readyState === 'complete') {
+      schedule();
     } else {
-      timerId = window.setTimeout(() => { void loadCoinModals(); }, 900);
+      window.addEventListener('load', schedule, { once: true });
     }
     return () => {
+      window.removeEventListener('load', schedule);
       if (idleId !== undefined) window.cancelIdleCallback(idleId);
       if (timerId !== undefined) window.clearTimeout(timerId);
     };

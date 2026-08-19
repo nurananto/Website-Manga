@@ -124,7 +124,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                   <div className="px-4 py-2.5 border-b border-outline-variant/40">
                     <span className={`flex w-full items-center justify-center gap-1 px-1.5 py-1 rounded-lg font-label-sm text-[9px] md:text-[10px] font-black uppercase tracking-wider mb-1.5 ${
                       supActive
-                        ? 'bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30'
+                        ? 'bg-amber-500/15 text-amber-800 dark:text-amber-400 border border-amber-500/30'
                         : 'bg-zinc-500/15 text-zinc-600 dark:text-zinc-400 border border-zinc-500/30'
                     }`}>
                       {supActive ? '★ Supporter' : 'Pembaca Setia'}

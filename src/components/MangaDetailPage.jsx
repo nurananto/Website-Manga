@@ -177,13 +177,13 @@ const renderChapterRow = (ch) => {
                   rendah begitu chapter sudah dibaca) — lihat MangaCard.jsx. */}
               <p className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-all truncate ${!isUnread ? 'opacity-80' : ''} ${
                 showEarlyAccess
-                  ? 'text-amber-600 dark:text-amber-300 group-hover:text-amber-500 dark:group-hover:text-amber-200'
+                  ? 'text-amber-800 dark:text-amber-300 group-hover:text-amber-700 dark:group-hover:text-amber-200'
                   : 'text-on-surface group-hover:text-primary'
               }`}>
                 {chapterTitle}
               </p>
               {showEarlyAccess && (
-                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30">
+                <span className="shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider bg-amber-500/15 text-amber-800 dark:text-amber-400 border border-amber-500/30">
                   Early Access
                 </span>
               )}

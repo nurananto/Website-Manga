@@ -1,33 +1,29 @@
-import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useRef } from 'react';
 import { useDialogFocus } from '../lib/useDialogFocus';
 
+// framer-motion dicopot dari 4 modal legal (Dmca/Disclaimer/Privacy/Terms) —
+// cuma dipakai buat fade+slide-in sederhana yang sudah ada padanannya di CSS
+// keyframes (index.css), sementara modal lain (SupporterModal dkk) juga sudah
+// tanpa animasi exit. Chunk framer-motion (~125KB, terbesar di "unused JS"
+// Lighthouse) sekarang cuma ke-load kalau ReaderModal/CoinModals dibuka.
 export default function DmcaModal({ onClose }) {
   const dialogRef = useRef(null);
   useDialogFocus(dialogRef, onClose);
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[300] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
-        onClick={onClose}
+    <div
+      className="fixed inset-0 z-[300] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-[fadeIn_0.2s_ease-out]"
+      onClick={onClose}
+    >
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dmca-title"
+        tabIndex={-1}
+        onClick={e => e.stopPropagation()}
+        className="bg-surface-container border-2 border-outline-variant rounded-2xl w-full max-w-xl max-h-[85vh] flex flex-col shadow-2xl animate-[slideUpFade_0.3s_cubic-bezier(0.22,1,0.36,1)]"
       >
-        <motion.div
-          ref={dialogRef}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="dmca-title"
-          tabIndex={-1}
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 40, opacity: 0 }}
-          transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-          onClick={e => e.stopPropagation()}
-          className="bg-surface-container border-2 border-outline-variant rounded-2xl w-full max-w-xl max-h-[85vh] flex flex-col shadow-2xl"
-        >
           <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-outline-variant/50 shrink-0">
             <div>
               <h2 id="dmca-title" className="font-headline-md text-base font-black text-on-surface">Kebijakan DMCA</h2>
@@ -87,9 +83,8 @@ export default function DmcaModal({ onClose }) {
 
             <div className="pb-2" />
           </div>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    </div>
   );
 }
 

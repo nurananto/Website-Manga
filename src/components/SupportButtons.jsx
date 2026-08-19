@@ -20,7 +20,7 @@ export default function SupportButtons({ className = '', onDonate }) {
           Bantu biaya server dan rilis chapter berikutnya melalui Trakteer.
         </p>
       </div>
-      <span className="donate-glow shrink-0 rounded-lg border border-white/20 bg-white/20 px-2.5 py-1.5 text-[10px] font-black text-white transition-colors group-hover:bg-white/30 sm:px-3 sm:text-xs">
+      <span className="donate-glow relative shrink-0 rounded-lg border border-white/20 bg-white/20 px-2.5 py-1.5 text-[10px] font-black text-white transition-colors group-hover:bg-white/30 sm:px-3 sm:text-xs">
         Donasi
       </span>
     </>

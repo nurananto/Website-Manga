@@ -294,15 +294,27 @@ export default function SpotlightCarousel({
                 }`}
                 style={{ width: coverW, height: coverH }}
               >
-                <ResponsiveCover
-                  manga={manga}
-                  alt={manga.title}
-                  loading={isActive || offset === 1 ? 'eager' : 'lazy'}
-                  fetchPriority={isActive ? 'high' : 'low'}
-                  decoding="async"
-                  className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-100 saturate-100' : 'brightness-[0.72] saturate-[0.82]'}`}
-                  draggable={false}
-                />
+                {/* Semua item di window carousel ada di dalam viewport (posisinya
+                    absolute, cuma digeser transform), jadi loading="lazy" TIDAK
+                    menunda fetch-nya — browser tetap langsung unduh semua begitu
+                    ke-mount (lihat Lighthouse "Avoid enormous network payloads",
+                    ~1.8MB cover kebawa sekaligus). Cover asli cuma dipasang untuk
+                    dist<=2 dari yang aktif; sisanya placeholder polos tanpa
+                    request, baru dapat cover sungguhan begitu carousel bergeser
+                    mendekat (progresif, bukan sekaligus). */}
+                {dist <= 2 ? (
+                  <ResponsiveCover
+                    manga={manga}
+                    alt={manga.title}
+                    loading={isActive || offset === 1 ? 'eager' : 'lazy'}
+                    fetchPriority={isActive ? 'high' : 'low'}
+                    decoding="async"
+                    className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-100 saturate-100' : 'brightness-[0.72] saturate-[0.82]'}`}
+                    draggable={false}
+                  />
+                ) : (
+                  <div className="w-full h-full bg-surface-container-high" />
+                )}
 
                 {/* Dim overlay cover non-aktif — ikut tema: putih tembus pandang di
                     light mode (biar nyatu sama background terang, bukan bikin

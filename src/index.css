@@ -166,60 +166,79 @@ body {
   padding-bottom: max(5rem, env(safe-area-inset-bottom));
 }
 
-/* Glow badge NEW & UP — ring membesar dari badge, ukuran badge tetap stabil
-   (cuma box-shadow yang berubah) agar layout tidak bergetar. Dipakai bersama
-   supaya kedua badge konsisten; sebelumnya UP pakai animate-pulse Tailwind
-   (opacity 100%→50%) yang nyaris tak terlihat di badge sekecil ini. */
-@keyframes new-badge-glow {
-  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.85); }
-  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+/* Glow badge NEW/UP, ring cover MangaCard, dan glow tombol Donasi — dulu
+   animasi box-shadow/outline (Lighthouse: "Avoid non-composited animations",
+   browser harus repaint tiap frame di main thread, bukan compositor/GPU).
+   Sekarang ring digambar SEKALI (border statis, tidak animasi) di elemen
+   ::after / <span> terpisah, dan yang dianimasikan cuma `transform: scale`
+   + `opacity` — dua-duanya murni compositor, tidak memicu repaint/layout.
+   Ukuran elemen aslinya (badge/tombol/cover) tetap stabil karena ring ada
+   di layer terpisah, bukan bagian box model elemen itu sendiri. */
+@keyframes ring-pulse {
+  0%   { transform: scale(1);    opacity: 0.85; }
+  70%  { transform: scale(1.5);  opacity: 0; }
+  100% { transform: scale(1.5);  opacity: 0; }
 }
+
 .badge-new-glow {
-  animation: new-badge-glow 1.8s ease-out infinite;
+  position: relative;
+}
+.badge-new-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1.5px solid rgba(16, 185, 129, 0.85);
+  pointer-events: none;
+  animation: ring-pulse 1.8s ease-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .badge-new-glow { animation: none; }
+  .badge-new-glow::after { animation: none; }
 }
 
 /* Glow COVER MangaCard — sinyal "ada update di manga ini" di level manga
    (isMangaNew), pengganti dot kecil di sebelah judul yang kelihatan aneh
-   nyempil sendirian pas gak ada badge NEW aktif di chapter manapun. Pakai
-   `outline` (bukan box-shadow) SENGAJA — cover-nya sendiri sudah punya
-   box-shadow tema (lihat className ResponsiveCover di MangaCard), kalau
-   glow ini juga pakai box-shadow dia akan MENIMPA shadow itu tiap frame
-   animasi. Outline itu layer terpisah, jadi dua-duanya bisa tampil bareng
-   tanpa saling menimpa. */
-@keyframes cover-new-glow {
-  0%   { outline: 3px solid rgba(16, 185, 129, 0.85); outline-offset: 0px; }
-  70%  { outline: 3px solid rgba(16, 185, 129, 0);    outline-offset: 6px; }
-  100% { outline: 3px solid rgba(16, 185, 129, 0);    outline-offset: 6px; }
+   nyempil sendirian pas gak ada badge NEW aktif di chapter manapun.
+   `.cover-new-glow-ring` sendiri elemen <span> terpisah (MangaCard.jsx),
+   BUKAN class di <img> — pseudo-element ::after tidak dirender di elemen
+   <img> (replaced element), makanya di sini ring-nya elemen langsung,
+   bukan ::after seperti badge-new-glow di atas. Skala pertumbuhan lebih
+   kecil (1.08) karena cover jauh lebih besar dari badge, biar sama-sama
+   terasa proporsional. */
+@keyframes cover-glow-pulse {
+  0%   { transform: scale(1);    opacity: 0.85; }
+  70%  { transform: scale(1.08); opacity: 0; }
+  100% { transform: scale(1.08); opacity: 0; }
 }
-.cover-new-glow {
-  animation: cover-new-glow 2s ease-out infinite;
+.cover-new-glow-ring {
+  border: 3px solid rgba(16, 185, 129, 0.85);
+  animation: cover-glow-pulse 2s ease-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cover-new-glow { animation: none; }
+  .cover-new-glow-ring { animation: none; }
 }
 
-/* Glow tombol Donasi — ring putih membesar dari tepi tombol (bukan biru,
-   karena biru menyatu dengan gradient background tombol & jadi nyaris tak
-   kelihatan). Ukuran tombol tetap stabil (cuma box-shadow yang berubah)
-   agar tidak bergetar. Dipakai di SupportButtons supaya CTA donasi lebih
+/* Glow tombol Donasi — ring putih membesar dari tepi badge "Donasi" (bukan
+   biru, karena biru menyatu dengan gradient background tombol & jadi nyaris
+   tak kelihatan). Dipakai di SupportButtons supaya CTA donasi lebih
    mencolok tanpa ganggu layout. */
-@keyframes donate-glow {
-  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.85); }
-  70% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-}
 .donate-glow {
-  animation: donate-glow 1.8s ease-out infinite;
+  position: relative;
+}
+.donate-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+  animation: ring-pulse 1.8s ease-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .donate-glow { animation: none; }
+  .donate-glow::after { animation: none; }
 }
 
 @keyframes fadeIn {
