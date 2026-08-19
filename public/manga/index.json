@@ -1,5 +1,77 @@
 [
   {
+    "id": "ZunouBattle",
+    "title": "Ore wa Gakuen Zunou Battle no Enshutsuka!: Jishou Mobu ga Kage kara Egaku Saikyou Shujinkou Musou Scenario",
+    "description": "Di SMA Teio, segalanya ditentukan lewat duel permainan. Yang harus kulakukan sebagai perwujudan karakter figuran, Tanaka Kanata, bukanlah meraih kejayaan untuk diriku sendiri! Satu-satunya tugasku adalah “menyutradarai” dari balik layar agar Kiriya, murid pindahan terkuat dari bawah, hingga…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=4",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=4",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@tablet.webp?v=4",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@mobile.webp?v=4"
+    },
+    "genres": [
+      "Action",
+      "Adaptation",
+      "Comedy",
+      "Psychological",
+      "School Life",
+      "Shounen",
+      "Video Games"
+    ],
+    "rating": 8.02,
+    "chapter_count": 14,
+    "total_views": 471,
+    "isTrending": true,
+    "latest_release_date": "2026-08-19T19:01:02+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 8.2,
+        "lock_hours": 0,
+        "pages": 13,
+        "notif_image": "11",
+        "r2_folder": 8.2,
+        "id": "ZunouBattle-ch-8.2",
+        "r2_prefix": "manga/ZunouBattle/8.2/",
+        "title": "Ch. 8.2",
+        "release_date": "2026-08-19T19:01:02+07:00",
+        "unlockDate": "2026-09-16T17:00:00.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 8.1,
+        "lock_hours": 696,
+        "pages": 17,
+        "notif_image": "page1",
+        "release_date": "2026-08-05T14:48:36+07:00",
+        "r2_folder": 8.1,
+        "id": "ZunouBattle-ch-8.1",
+        "r2_prefix": "manga/ZunouBattle/8.1/",
+        "title": "Ch. 8.1",
+        "unlockDate": "2026-09-03T07:48:36.000Z",
+        "isLocked": true,
+        "views": 5
+      },
+      {
+        "chapter_number": 7.2,
+        "lock_hours": 360,
+        "pages": 11,
+        "release_date": "2026-07-22T15:25:23+07:00",
+        "r2_folder": 7.2,
+        "id": "ZunouBattle-ch-7.2",
+        "r2_prefix": "manga/ZunouBattle/7.2/",
+        "title": "Ch. 7.2",
+        "unlockDate": "2026-08-20T10:13:46.000Z",
+        "isLocked": true,
+        "views": 12
+      }
+    ]
+  },
+  {
     "id": "Amari-chan",
     "title": "Kanojo ni Shitai Joshi Ichii, no Tonari de Mitsuketa Amari-chan",
     "description": "'Kisah Romantis Komedi Dimulai dari Persahabatan dengan Heroine Tersembunyi yang Hanya Aku Tahu.'Dia anak baik, tapi terlalu biasa saja… Itulah Fukusuke Mogi, yang diam-diam mengagumi Kureha Yua, gadis tercantik di kelas.Namun, orang yang digosipkan bersama Yui adalah sahabatnya, Fujisaki Yuusei,…",
@@ -314,7 +386,7 @@
     "rating": 7.68,
     "chapter_count": 18,
     "total_views": 762,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-14T23:12:12+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -780,77 +852,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 4
-      }
-    ]
-  },
-  {
-    "id": "ZunouBattle",
-    "title": "Ore wa Gakuen Zunou Battle no Enshutsuka!: Jishou Mobu ga Kage kara Egaku Saikyou Shujinkou Musou Scenario",
-    "description": "Di SMA Teio, segalanya ditentukan lewat duel permainan. Yang harus kulakukan sebagai perwujudan karakter figuran, Tanaka Kanata, bukanlah meraih kejayaan untuk diriku sendiri! Satu-satunya tugasku adalah “menyutradarai” dari balik layar agar Kiriya, murid pindahan terkuat dari bawah, hingga…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=4",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=4",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@tablet.webp?v=4",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@mobile.webp?v=4"
-    },
-    "genres": [
-      "Action",
-      "Adaptation",
-      "Comedy",
-      "Psychological",
-      "School Life",
-      "Shounen",
-      "Video Games"
-    ],
-    "rating": 8.02,
-    "chapter_count": 13,
-    "total_views": 471,
-    "isTrending": false,
-    "latest_release_date": "2026-08-05T14:48:36+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 8.1,
-        "lock_hours": 696,
-        "pages": 17,
-        "notif_image": "page1",
-        "release_date": "2026-08-05T14:48:36+07:00",
-        "r2_folder": 8.1,
-        "id": "ZunouBattle-ch-8.1",
-        "r2_prefix": "manga/ZunouBattle/8.1/",
-        "title": "Ch. 8.1",
-        "unlockDate": "2026-09-03T07:48:36.000Z",
-        "isLocked": true,
-        "views": 5
-      },
-      {
-        "chapter_number": 7.2,
-        "lock_hours": 360,
-        "pages": 11,
-        "release_date": "2026-07-22T15:25:23+07:00",
-        "r2_folder": 7.2,
-        "id": "ZunouBattle-ch-7.2",
-        "r2_prefix": "manga/ZunouBattle/7.2/",
-        "title": "Ch. 7.2",
-        "unlockDate": "2026-08-20T10:13:46.000Z",
-        "isLocked": true,
-        "views": 12
-      },
-      {
-        "chapter_number": 7.1,
-        "lock_hours": 672,
-        "pages": 12,
-        "release_date": "2026-07-08T19:49:50+07:00",
-        "r2_folder": 7.1,
-        "id": "ZunouBattle-ch-7.1",
-        "r2_prefix": "manga/ZunouBattle/7.1/",
-        "title": "Ch. 7.1",
-        "unlockDate": "2026-08-05T12:49:50.000Z",
-        "isLocked": false,
-        "views": 42
       }
     ]
   },
