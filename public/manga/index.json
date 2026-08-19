@@ -30,7 +30,6 @@
     "chapters": [
       {
         "chapter_number": 8.2,
-        "lock_hours": 0,
         "pages": 13,
         "notif_image": "11",
         "release_date": "2026-08-19T19:01:02+07:00",
@@ -38,13 +37,12 @@
         "id": "ZunouBattle-ch-8.2",
         "r2_prefix": "manga/ZunouBattle/8.2/",
         "title": "Ch. 8.2",
-        "unlockDate": "2026-09-16T17:00:00.000Z",
+        "unlockDate": "2026-09-29T17:00:00.000Z",
         "isLocked": true,
         "views": 0
       },
       {
         "chapter_number": 8.1,
-        "lock_hours": 696,
         "pages": 17,
         "notif_image": "page1",
         "release_date": "2026-08-05T14:48:36+07:00",
@@ -52,7 +50,7 @@
         "id": "ZunouBattle-ch-8.1",
         "r2_prefix": "manga/ZunouBattle/8.1/",
         "title": "Ch. 8.1",
-        "unlockDate": "2026-09-03T07:48:36.000Z",
+        "unlockDate": "2026-09-16T17:00:00.000Z",
         "isLocked": true,
         "views": 5
       },
