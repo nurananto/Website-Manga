@@ -36,11 +36,12 @@
     "6.1": 37,
     "6.3": 41,
     "6.2": 40,
-    "7.1": 42,
-    "7.2": 12,
-    "8.1": 5
+    "7.1": 44,
+    "7.2": 13,
+    "8.1": 5,
+    "8.2": 2
   },
-  "total_views": 471,
+  "total_views": 482,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -55,7 +56,7 @@
     }
   ],
   "cover_version": 4,
-  "detail_views": 184,
+  "detail_views": 190,
   "notif_image": "page1",
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
   "rating": 8.02,
@@ -78,7 +79,7 @@
       "title": "Ch. 8.2",
       "unlockDate": "2026-09-29T17:00:00.000Z",
       "isLocked": true,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 8.1,
@@ -102,8 +103,8 @@
       "r2_prefix": "manga/ZunouBattle/7.2/",
       "title": "Ch. 7.2",
       "unlockDate": "2026-08-19T17:00:00.000Z",
-      "isLocked": true,
-      "views": 12
+      "isLocked": false,
+      "views": 13
     },
     {
       "chapter_number": 7.1,
@@ -116,7 +117,7 @@
       "title": "Ch. 7.1",
       "unlockDate": "2026-08-05T12:49:50.000Z",
       "isLocked": false,
-      "views": 42
+      "views": 44
     },
     {
       "chapter_number": 6.3,

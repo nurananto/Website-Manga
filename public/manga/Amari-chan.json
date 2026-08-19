@@ -26,26 +26,26 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "0": 6,
-    "1": 2,
-    "2": 1,
-    "3": 1,
-    "4": 1,
-    "5": 1,
-    "6": 3,
-    "7": 2,
-    "8": 3,
-    "9": 7,
-    "7.5": 2,
-    "10.1": 4,
-    "10.2": 3,
-    "10.3": 11,
-    "11.1": 14,
-    "1.5": 1,
-    "4.5": 1,
-    "11.2": 6
+    "0": 7,
+    "1": 3,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 2,
+    "6": 4,
+    "7": 3,
+    "8": 4,
+    "9": 8,
+    "7.5": 3,
+    "10.1": 5,
+    "10.2": 4,
+    "10.3": 12,
+    "11.1": 15,
+    "1.5": 2,
+    "4.5": 2,
+    "11.2": 10
   },
-  "total_views": 116,
+  "total_views": 140,
   "mangadex_cover": "c402aa68-08d7-49da-9fbd-7b84a9da4f7c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -68,7 +68,7 @@
       }
     }
   ],
-  "detail_views": 47,
+  "detail_views": 50,
   "cover_version": 3,
   "notif_image": "page1",
   "mangadex_id": "624d6ceb-768d-40a7-8412-84e083afbdb1",
@@ -93,7 +93,7 @@
       "title": "Ch. 11.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 10
     },
     {
       "chapter_number": 11.1,
@@ -106,7 +106,7 @@
       "title": "Ch. 11.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 14
+      "views": 15
     },
     {
       "chapter_number": 10.3,
@@ -119,7 +119,7 @@
       "title": "Ch. 10.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 10.2,
@@ -132,7 +132,7 @@
       "title": "Ch. 10.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 10.1,
@@ -145,7 +145,7 @@
       "title": "Ch. 10.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 9,
@@ -158,7 +158,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     },
     {
       "chapter_number": 8,
@@ -171,7 +171,7 @@
       "title": "Ch. 8",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 7.5,
@@ -184,7 +184,7 @@
       "title": "Ch. 7.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 7,
@@ -197,7 +197,7 @@
       "title": "Ch. 7",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 6,
@@ -210,7 +210,7 @@
       "title": "Ch. 6",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 5,
@@ -223,7 +223,7 @@
       "title": "Ch. 5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 4.5,
@@ -236,7 +236,7 @@
       "title": "Ch. 4.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 4,
@@ -249,7 +249,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 3,
@@ -262,7 +262,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 2,
@@ -275,7 +275,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 1.5,
@@ -288,7 +288,7 @@
       "title": "Ch. 1.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 1,
@@ -301,7 +301,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 0,
@@ -314,7 +314,7 @@
       "title": "Ch. 0",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     }
   ]
 }
