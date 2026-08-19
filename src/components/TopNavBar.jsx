@@ -124,15 +124,15 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                   <div className="px-4 py-2.5 border-b border-outline-variant/40">
                     <span className={`flex w-full items-center justify-center gap-1 px-1.5 py-1 rounded-lg font-label-sm text-[9px] md:text-[10px] font-black uppercase tracking-wider mb-1.5 ${
                       supActive
-                        ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
-                        : 'bg-zinc-500/15 text-zinc-400 border border-zinc-500/30'
+                        ? 'bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30'
+                        : 'bg-zinc-500/15 text-zinc-600 dark:text-zinc-400 border border-zinc-500/30'
                     }`}>
                       {supActive ? '★ Supporter' : 'Pembaca Setia'}
                     </span>
                     <p className="text-xs md:text-sm font-black text-on-surface truncate">{displayName}</p>
                     <p className="text-[10px] md:text-xs text-outline truncate mt-0.5">{currentUser?.email}</p>
                     {supActive && (
-                      <p className="text-[10px] md:text-xs font-bold text-amber-300 mt-1.5">
+                      <p className="text-[10px] md:text-xs font-bold text-amber-700 dark:text-amber-300 mt-1.5">
                         Supporter aktif: {supLabel}
                       </p>
                     )}
@@ -153,14 +153,14 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                     onClick={() => { onTabClick('profile'); setIsDropdownOpen(false); }}
                     className="w-full text-left px-4 py-2.5 md:py-3 text-xs md:text-sm font-bold text-on-surface hover:bg-surface-container-high hover:text-primary flex items-center gap-2.5 md:gap-3 cursor-pointer"
                   >
-                    <RotateCcw className="w-4 h-4 md:w-5 md:h-5 text-sky-400" />
+                    <RotateCcw className="w-4 h-4 md:w-5 md:h-5 text-sky-600 dark:text-sky-400" />
                     <span>History</span>
                   </button>
                   <button
                     onClick={() => { setIsDropdownOpen(false); if (onChangePasswordClick) onChangePasswordClick(); }}
                     className="w-full text-left px-4 py-2.5 md:py-3 text-xs md:text-sm font-bold text-on-surface hover:bg-surface-container-high hover:text-primary flex items-center gap-2.5 md:gap-3 cursor-pointer border-t border-outline-variant/40"
                   >
-                    <Key className="w-4 h-4 md:w-5 md:h-5 text-amber-500" />
+                    <Key className="w-4 h-4 md:w-5 md:h-5 text-amber-600 dark:text-amber-400" />
                     <span>Pengaturan Akun</span>
                   </button>
 
@@ -171,7 +171,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
                   <button
                     onClick={() => { setIsDropdownOpen(false); onLogout(); }}
-                    className="w-full text-left px-4 py-2.5 md:py-3 text-xs md:text-sm font-bold text-red-400 hover:bg-red-500/10 flex items-center gap-2.5 md:gap-3 cursor-pointer border-t border-outline-variant/40"
+                    className="w-full text-left px-4 py-2.5 md:py-3 text-xs md:text-sm font-bold text-red-600 dark:text-red-400 hover:bg-red-500/10 flex items-center gap-2.5 md:gap-3 cursor-pointer border-t border-outline-variant/40"
                   >
                     <LogOut className="w-4 h-4 md:w-5 md:h-5" />
                     <span>Log out</span>
