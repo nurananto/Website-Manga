@@ -294,38 +294,32 @@ export default function SpotlightCarousel({
                 }`}
                 style={{ width: coverW, height: coverH }}
               >
-                {/* Semua item di window carousel ada di dalam viewport (posisinya
+                {/* SEMUA item di window carousel selalu ada di viewport (posisinya
                     absolute, cuma digeser transform), jadi loading="lazy" TIDAK
-                    menunda fetch-nya — browser tetap langsung unduh semua begitu
-                    ke-mount. Sempat dicoba SEMBUNYIKAN cover item jauh (dist>2)
-                    demi payload (Lighthouse "Avoid enormous network payloads"),
-                    tapi di layar lebar getMaxSide() bisa sampai 5 → 3 item paling
-                    pinggir kelihatan kosong beneran (regresi visual, dilaporkan
-                    user). Sekarang tetap tampilkan cover di SEMUA posisi, item
-                    jauh (dist>2) pakai varian mobile (jauh lebih kecil dari
-                    desktop) alih-alih ResponsiveCover penuh — cover tetap
-                    kelihatan, payload tetap ditekan. */}
-                {dist <= 2 ? (
-                  <ResponsiveCover
-                    manga={manga}
-                    alt={manga.title}
-                    loading={isActive || offset === 1 ? 'eager' : 'lazy'}
-                    fetchPriority={isActive ? 'high' : 'low'}
-                    decoding="async"
-                    className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-100 saturate-100' : 'brightness-[0.72] saturate-[0.82]'}`}
-                    draggable={false}
-                  />
-                ) : (
-                  <img
-                    src={imgUrl(manga.coverUrls?.mobile || manga.coverUrls?.tablet || manga.coverUrl)}
-                    alt={manga.title}
-                    loading="lazy"
-                    fetchPriority="low"
-                    decoding="async"
-                    className="w-full h-full object-cover brightness-[0.72] saturate-[0.82]"
-                    draggable={false}
-                  />
-                )}
+                    menunda fetch — semua ke-unduh begitu ke-mount. Dua percobaan
+                    sebelumnya salah sasaran:
+                    1. Sembunyikan cover item jauh (dist>2) -> di layar lebar
+                       getMaxSide() bisa 5, jadi 3 item pinggir kosong beneran
+                       (regresi visual, dilaporkan user).
+                    2. ResponsiveCover (ganti sumber berdasar LEBAR VIEWPORT) buat
+                       item dist<=2 -> di viewport desktop dia SELALU pasang
+                       tier "desktop" (1280w) walau kotak cover ini max cuma
+                       ~260px CSS (Lighthouse "Improve image delivery" — file
+                       170-213KB buat elemen yang tampil <300px).
+                    Baris ini ukurannya SAMA untuk semua item (cuma discale via
+                    transform, bukan resize beda tingkat), jadi cukup 1 tier
+                    kecil (mobile, ~640w) buat semua posisi — aktif maupun
+                    tidak, dekat maupun jauh. Cover tetap kelihatan penuh di
+                    semua posisi, payload-nya jauh lebih kecil dari tier desktop. */}
+                <img
+                  src={imgUrl(manga.coverUrls?.mobile || manga.coverUrls?.tablet || manga.coverUrl)}
+                  alt={manga.title}
+                  loading={isActive || offset === 1 ? 'eager' : 'lazy'}
+                  fetchPriority={isActive ? 'high' : 'low'}
+                  decoding="async"
+                  className={`w-full h-full object-cover transition-[filter] duration-500 ease-out ${isActive ? 'brightness-100 saturate-100' : 'brightness-[0.72] saturate-[0.82]'}`}
+                  draggable={false}
+                />
 
                 {/* Dim overlay cover non-aktif — ikut tema: putih tembus pandang di
                     light mode (biar nyatu sama background terang, bukan bikin
