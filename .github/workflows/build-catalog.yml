@@ -21,6 +21,19 @@ on:
         type: boolean
         default: false
 
+# GitHub kadang mengirim webhook `push` DUPLIKAT untuk 1 push yang sama
+# (dibuktikan lewat API: 2 run dengan head_sha identik, jalan bersamaan —
+# lihat kasus Chikasugiru Ch.12.2, 20 Agu 2026). Tanpa concurrency, 2 run
+# itu checkout state repo yang SAMA (belum ada yang sempat commit-balik
+# public/manga/*.json), jadi sama-sama mendeteksi chapter yang sama sebagai
+# "baru" -> notifikasi Discord/Facebook terkirim 2x. cancel-in-progress:
+# false supaya run kedua ANTRE (bukan dibatalkan) sampai run pertama commit
+# balik — begitu run kedua mulai, dia lihat chapter itu sudah tercatat,
+# tidak dianggap baru lagi.
+concurrency:
+  group: build-catalog-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
