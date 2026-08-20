@@ -1,14 +1,44 @@
+import { useState } from 'react';
 import { imgUrl } from '../utils';
 
+const MAX_RETRIES = 2;
+const RETRY_DELAY_MS = [400, 1200]; // backoff per percobaan
+
+// Kadang <img> cover gagal muat sesaat (network blip, race pas banyak cover
+// diminta bareng — mis. ganti halaman pagination) — tanpa retry, begitu gagal
+// sekali dia nyangkut kosong/hitam (cuma keliatan bg-surface-container-high
+// di baliknya) sampai user refresh manual. Retry otomatis dengan query param
+// pembeda (bukan re-request URL identik yang bisa kena cache negatif yang
+// sama) sebelum benar-benar menyerah.
 export default function ResponsiveCover({ manga, alt = '', ...imgProps }) {
   const covers = manga?.coverUrls;
-  const fallback = imgUrl(covers?.desktop || manga?.coverUrl);
+  const base = imgUrl(covers?.desktop || manga?.coverUrl);
+  const mobileBase = covers?.mobile ? imgUrl(covers.mobile) : null;
+  const tabletBase = covers?.tablet ? imgUrl(covers.tablet) : null;
+
+  // Reset retry sinkron pas render (bukan lewat effect) begitu cover beda —
+  // pola resmi React utk "derive state dari perubahan prop" tanpa render
+  // ekstra yang dipicu effect. Lihat react.dev/learn/you-might-not-need-an-effect.
+  const [state, setState] = useState({ base, retry: 0 });
+  if (state.base !== base) setState({ base, retry: 0 });
+  const retry = state.retry;
+
+  const withRetry = (url) => {
+    if (!url || retry === 0) return url;
+    return url + (url.includes('?') ? '&' : '?') + '_r=' + retry;
+  };
+
+  const handleError = () => {
+    if (retry >= MAX_RETRIES) return;
+    const delay = RETRY_DELAY_MS[retry] || RETRY_DELAY_MS[RETRY_DELAY_MS.length - 1];
+    setTimeout(() => setState((s) => (s.base === base ? { ...s, retry: s.retry + 1 } : s)), delay);
+  };
 
   return (
     <picture className="contents">
-      {covers?.mobile && <source media="(max-width: 639px)" srcSet={imgUrl(covers.mobile)} />}
-      {covers?.tablet && <source media="(max-width: 1023px)" srcSet={imgUrl(covers.tablet)} />}
-      <img {...imgProps} src={fallback} alt={alt} />
+      {mobileBase && <source media="(max-width: 639px)" srcSet={withRetry(mobileBase)} />}
+      {tabletBase && <source media="(max-width: 1023px)" srcSet={withRetry(tabletBase)} />}
+      <img {...imgProps} src={withRetry(base)} alt={alt} onError={handleError} />
     </picture>
   );
 }
