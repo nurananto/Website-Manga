@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Star } from 'lucide-react';
-import { coverUrlForWidth } from '../utils';
+import { coverUrlForWidth, imgUrl } from '../utils';
 import ResponsiveCover from './ResponsiveCover';
 import CoverScrim from './CoverScrim';
 
@@ -297,11 +297,14 @@ export default function SpotlightCarousel({
                 {/* Semua item di window carousel ada di dalam viewport (posisinya
                     absolute, cuma digeser transform), jadi loading="lazy" TIDAK
                     menunda fetch-nya — browser tetap langsung unduh semua begitu
-                    ke-mount (lihat Lighthouse "Avoid enormous network payloads",
-                    ~1.8MB cover kebawa sekaligus). Cover asli cuma dipasang untuk
-                    dist<=2 dari yang aktif; sisanya placeholder polos tanpa
-                    request, baru dapat cover sungguhan begitu carousel bergeser
-                    mendekat (progresif, bukan sekaligus). */}
+                    ke-mount. Sempat dicoba SEMBUNYIKAN cover item jauh (dist>2)
+                    demi payload (Lighthouse "Avoid enormous network payloads"),
+                    tapi di layar lebar getMaxSide() bisa sampai 5 → 3 item paling
+                    pinggir kelihatan kosong beneran (regresi visual, dilaporkan
+                    user). Sekarang tetap tampilkan cover di SEMUA posisi, item
+                    jauh (dist>2) pakai varian mobile (jauh lebih kecil dari
+                    desktop) alih-alih ResponsiveCover penuh — cover tetap
+                    kelihatan, payload tetap ditekan. */}
                 {dist <= 2 ? (
                   <ResponsiveCover
                     manga={manga}
@@ -313,7 +316,15 @@ export default function SpotlightCarousel({
                     draggable={false}
                   />
                 ) : (
-                  <div className="w-full h-full bg-surface-container-high" />
+                  <img
+                    src={imgUrl(manga.coverUrls?.mobile || manga.coverUrls?.tablet || manga.coverUrl)}
+                    alt={manga.title}
+                    loading="lazy"
+                    fetchPriority="low"
+                    decoding="async"
+                    className="w-full h-full object-cover brightness-[0.72] saturate-[0.82]"
+                    draggable={false}
+                  />
                 )}
 
                 {/* Dim overlay cover non-aktif — ikut tema: putih tembus pandang di
