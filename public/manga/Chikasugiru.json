@@ -59,7 +59,7 @@
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "c679bf28-e054-4bb7-93e6-18c089ee79f1",
-  "rating": 8.4,
+  "rating": 8.41,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=2",
   "coverUrls": {
@@ -68,6 +68,20 @@
     "mobile": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
+    {
+      "chapter_number": 12.2,
+      "lock_hours": 0,
+      "pages": 6,
+      "notif_image": "3",
+      "r2_folder": 12.2,
+      "id": "Chikasugiru-ch-12.2",
+      "r2_prefix": "manga/Chikasugiru/12.2/",
+      "title": "Ch. 12.2",
+      "release_date": "2026-08-20T19:55:22+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
     {
       "chapter_number": 12.1,
       "lock_hours": 0,

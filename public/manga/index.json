@@ -1,5 +1,76 @@
 [
   {
+    "id": "Chikasugiru",
+    "title": "Chikasugiru Futari",
+    "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang greget—ini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Comedy",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.41,
+    "chapter_count": 17,
+    "total_views": 94,
+    "isTrending": true,
+    "latest_release_date": "2026-08-20T19:55:22+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 12.2,
+        "lock_hours": 0,
+        "pages": 6,
+        "notif_image": "3",
+        "r2_folder": 12.2,
+        "id": "Chikasugiru-ch-12.2",
+        "r2_prefix": "manga/Chikasugiru/12.2/",
+        "title": "Ch. 12.2",
+        "release_date": "2026-08-20T19:55:22+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 12.1,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "page1",
+        "release_date": "2026-08-06T11:41:15+07:00",
+        "r2_folder": 12.1,
+        "id": "Chikasugiru-ch-12.1",
+        "r2_prefix": "manga/Chikasugiru/12.1/",
+        "title": "Ch. 12.1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 9
+      },
+      {
+        "chapter_number": 11.2,
+        "lock_hours": 0,
+        "pages": 6,
+        "notif_image": "page1",
+        "release_date": "2026-08-05T22:36:09+07:00",
+        "r2_folder": 11.2,
+        "id": "Chikasugiru-ch-11.2",
+        "r2_prefix": "manga/Chikasugiru/11.2/",
+        "title": "Ch. 11.2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 10
+      }
+    ]
+  },
+  {
     "id": "ZunouBattle",
     "title": "Ore wa Gakuen Zunou Battle no Enshutsuka!: Jishou Mobu ga Kage kara Egaku Saikyou Shujinkou Musou Scenario",
     "description": "Di SMA Teio, segalanya ditentukan lewat duel permainan. Yang harus kulakukan sebagai perwujudan karakter figuran, Tanaka Kanata, bukanlah meraih kejayaan untuk diriku sendiri! Satu-satunya tugasku adalah “menyutradarai” dari balik layar agar Kiriya, murid pindahan terkuat dari bawah, hingga…",
@@ -309,7 +380,7 @@
     "rating": 6,
     "chapter_count": 4,
     "total_views": 47,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-16T02:31:56+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -778,77 +849,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 8
-      }
-    ]
-  },
-  {
-    "id": "Chikasugiru",
-    "title": "Chikasugiru Futari",
-    "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang greget—ini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Comedy",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 8.4,
-    "chapter_count": 16,
-    "total_views": 94,
-    "isTrending": false,
-    "latest_release_date": "2026-08-06T11:41:15+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 12.1,
-        "lock_hours": 0,
-        "pages": 10,
-        "notif_image": "page1",
-        "release_date": "2026-08-06T11:41:15+07:00",
-        "r2_folder": 12.1,
-        "id": "Chikasugiru-ch-12.1",
-        "r2_prefix": "manga/Chikasugiru/12.1/",
-        "title": "Ch. 12.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 9
-      },
-      {
-        "chapter_number": 11.2,
-        "lock_hours": 0,
-        "pages": 6,
-        "notif_image": "page1",
-        "release_date": "2026-08-05T22:36:09+07:00",
-        "r2_folder": 11.2,
-        "id": "Chikasugiru-ch-11.2",
-        "r2_prefix": "manga/Chikasugiru/11.2/",
-        "title": "Ch. 11.2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 10
-      },
-      {
-        "chapter_number": 11.1,
-        "lock_hours": 0,
-        "pages": 10,
-        "notif_image": "page1",
-        "release_date": "2026-08-05T20:57:31+07:00",
-        "r2_folder": 11.1,
-        "id": "Chikasugiru-ch-11.1",
-        "r2_prefix": "manga/Chikasugiru/11.1/",
-        "title": "Ch. 11.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 4
       }
     ]
   },
