@@ -25,7 +25,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 18,
+    "1": 19,
     "2": 8,
     "3": 5,
     "4": 6,
@@ -48,11 +48,11 @@
     "20.1": 15,
     "20.2": 17,
     "21.1": 15,
-    "21.2": 16,
+    "21.2": 17,
     "22.1": 7,
     "22.2": 7
   },
-  "total_views": 344,
+  "total_views": 349,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -84,7 +84,7 @@
       }
     }
   ],
-  "detail_views": 100,
+  "detail_views": 103,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "26854d1a-dfd0-4e5c-b6d1-ab291035b8cc",
@@ -135,7 +135,7 @@
       "title": "Ch. 21.2",
       "unlockDate": "2026-08-07T05:00:00.000Z",
       "isLocked": false,
-      "views": 16
+      "views": 17
     },
     {
       "chapter_number": 21.1,
@@ -434,7 +434,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 18
+      "views": 19
     }
   ]
 }
