@@ -34,11 +34,11 @@
         "lock_hours": 0,
         "pages": 10,
         "notif_image": "2",
+        "release_date": "2026-08-21T18:49:42+07:00",
         "r2_folder": 4.1,
         "id": "ShokeiFlag-ch-4.1",
         "r2_prefix": "manga/ShokeiFlag/4.1/",
         "title": "Ch. 4.1",
-        "release_date": "2026-08-21T18:49:42+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -110,7 +110,7 @@
         "id": "10-nenburi-ch-23.1",
         "r2_prefix": "manga/10-nenburi/23.1/",
         "title": "Ch. 23.1",
-        "unlockDate": "2026-09-03T17:00:00.000Z",
+        "unlockDate": "2026-09-04T17:00:00.000Z",
         "isLocked": true,
         "views": 0
       },
@@ -123,7 +123,7 @@
         "id": "10-nenburi-ch-22.2",
         "r2_prefix": "manga/10-nenburi/22.2/",
         "title": "Ch. 22.2",
-        "unlockDate": "2026-08-28T17:00:00.000Z",
+        "unlockDate": "2026-08-29T17:00:00.000Z",
         "isLocked": true,
         "views": 7
       },
@@ -135,7 +135,7 @@
         "id": "10-nenburi-ch-22.1",
         "r2_prefix": "manga/10-nenburi/22.1/",
         "title": "Ch. 22.1",
-        "unlockDate": "2026-08-21T17:00:00.000Z",
+        "unlockDate": "2026-08-22T17:00:00.000Z",
         "isLocked": true,
         "views": 7
       }
@@ -530,7 +530,6 @@
     "chapters": [
       {
         "chapter_number": 8.1,
-        "lock_hours": 0,
         "pages": 9,
         "notif_image": "4",
         "release_date": "2026-08-14T23:12:12+07:00",
@@ -538,13 +537,12 @@
         "id": "Osananajimi-ch-8.1",
         "r2_prefix": "manga/Osananajimi/8.1/",
         "title": "Ch. 8.1",
-        "unlockDate": "2026-08-28T17:00:00.000Z",
+        "unlockDate": "2026-08-29T17:00:00.000Z",
         "isLocked": true,
         "views": 0
       },
       {
         "chapter_number": 7.3,
-        "lock_hours": 696,
         "pages": 14,
         "notif_image": "4",
         "release_date": "2026-08-07T23:38:57+07:00",
@@ -552,7 +550,7 @@
         "id": "Osananajimi-ch-7.3",
         "r2_prefix": "manga/Osananajimi/7.3/",
         "title": "Ch. 7.3",
-        "unlockDate": "2026-08-21T17:00:00.000Z",
+        "unlockDate": "2026-08-22T17:00:00.000Z",
         "isLocked": true,
         "views": 4
       },
