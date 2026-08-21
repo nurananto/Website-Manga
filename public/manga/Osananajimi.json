@@ -82,6 +82,19 @@
   },
   "chapters": [
     {
+      "chapter_number": 8.2,
+      "pages": 8,
+      "notif_image": "3",
+      "r2_folder": 8.2,
+      "id": "Osananajimi-ch-8.2",
+      "r2_prefix": "manga/Osananajimi/8.2/",
+      "title": "Ch. 8.2",
+      "release_date": "2026-08-21T22:37:47+07:00",
+      "unlockDate": "2026-09-05T17:00:00.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 8.1,
       "pages": 9,
       "notif_image": "4",
