@@ -61,6 +61,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 3.3,
+      "lock_hours": 0,
+      "pages": 10,
+      "notif_image": "5",
+      "r2_folder": 3.3,
+      "id": "ShokeiFlag-ch-3.3",
+      "r2_prefix": "manga/ShokeiFlag/3.3/",
+      "title": "Ch. 3.3",
+      "release_date": "2026-08-21T09:32:23+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 3.2,
       "lock_hours": 0,
       "pages": 11,
