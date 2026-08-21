@@ -1,5 +1,79 @@
 [
   {
+    "id": "ShokeiFlag",
+    "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
+    "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Action",
+      "Adaptation",
+      "Fantasy",
+      "Harem",
+      "Isekai",
+      "Reincarnation",
+      "Romance",
+      "Shounen"
+    ],
+    "rating": 6,
+    "chapter_count": 8,
+    "total_views": 59,
+    "isTrending": true,
+    "latest_release_date": "2026-08-21T18:49:42+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 4.1,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "2",
+        "r2_folder": 4.1,
+        "id": "ShokeiFlag-ch-4.1",
+        "r2_prefix": "manga/ShokeiFlag/4.1/",
+        "title": "Ch. 4.1",
+        "release_date": "2026-08-21T18:49:42+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 3.3,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "5",
+        "release_date": "2026-08-21T09:32:23+07:00",
+        "r2_folder": 3.3,
+        "id": "ShokeiFlag-ch-3.3",
+        "r2_prefix": "manga/ShokeiFlag/3.3/",
+        "title": "Ch. 3.3",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 3.2,
+        "lock_hours": 0,
+        "pages": 11,
+        "notif_image": "9",
+        "release_date": "2026-08-20T21:50:26+07:00",
+        "r2_folder": 3.2,
+        "id": "ShokeiFlag-ch-3.2",
+        "r2_prefix": "manga/ShokeiFlag/3.2/",
+        "title": "Ch. 3.2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "10-nenburi",
     "title": "10-Nen Buri ni Saikai Shita Kusogaki wa Seijun Bishoujo JK ni Seichou Shiteita",
     "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
@@ -31,11 +105,11 @@
         "chapter_number": 23.1,
         "pages": 10,
         "notif_image": "5",
+        "release_date": "2026-08-21T11:03:37+07:00",
         "r2_folder": 23.1,
         "id": "10-nenburi-ch-23.1",
         "r2_prefix": "manga/10-nenburi/23.1/",
         "title": "Ch. 23.1",
-        "release_date": "2026-08-21T11:03:37+07:00",
         "unlockDate": "2026-09-03T17:00:00.000Z",
         "isLocked": true,
         "views": 0
@@ -64,80 +138,6 @@
         "unlockDate": "2026-08-21T17:00:00.000Z",
         "isLocked": true,
         "views": 7
-      }
-    ]
-  },
-  {
-    "id": "ShokeiFlag",
-    "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
-    "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Action",
-      "Adaptation",
-      "Fantasy",
-      "Harem",
-      "Isekai",
-      "Reincarnation",
-      "Romance",
-      "Shounen"
-    ],
-    "rating": 6,
-    "chapter_count": 7,
-    "total_views": 59,
-    "isTrending": true,
-    "latest_release_date": "2026-08-21T09:32:23+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 3.3,
-        "lock_hours": 0,
-        "pages": 10,
-        "notif_image": "5",
-        "release_date": "2026-08-21T09:32:23+07:00",
-        "r2_folder": 3.3,
-        "id": "ShokeiFlag-ch-3.3",
-        "r2_prefix": "manga/ShokeiFlag/3.3/",
-        "title": "Ch. 3.3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 0
-      },
-      {
-        "chapter_number": 3.2,
-        "lock_hours": 0,
-        "pages": 11,
-        "notif_image": "9",
-        "release_date": "2026-08-20T21:50:26+07:00",
-        "r2_folder": 3.2,
-        "id": "ShokeiFlag-ch-3.2",
-        "r2_prefix": "manga/ShokeiFlag/3.2/",
-        "title": "Ch. 3.2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 0
-      },
-      {
-        "chapter_number": 3.1,
-        "lock_hours": 0,
-        "pages": 11,
-        "notif_image": "2",
-        "release_date": "2026-08-20T20:59:02+07:00",
-        "r2_folder": 3.1,
-        "id": "ShokeiFlag-ch-3.1",
-        "r2_prefix": "manga/ShokeiFlag/3.1/",
-        "title": "Ch. 3.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 0
       }
     ]
   },
