@@ -98,8 +98,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 23.1,
+      "pages": 10,
+      "notif_image": "5",
+      "r2_folder": 23.1,
+      "id": "10-nenburi-ch-23.1",
+      "r2_prefix": "manga/10-nenburi/23.1/",
+      "title": "Ch. 23.1",
+      "release_date": "2026-08-21T11:03:37+07:00",
+      "unlockDate": "2026-09-03T17:00:00.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 22.2,
-      "lock_hours": 696,
       "pages": 10,
       "notif_image": "page1",
       "release_date": "2026-08-07T13:26:55+07:00",
@@ -107,20 +119,19 @@
       "id": "10-nenburi-ch-22.2",
       "r2_prefix": "manga/10-nenburi/22.2/",
       "title": "Ch. 22.2",
-      "unlockDate": "2026-09-05T06:26:55.000Z",
+      "unlockDate": "2026-08-28T17:00:00.000Z",
       "isLocked": true,
       "views": 7
     },
     {
       "chapter_number": 22.1,
-      "lock_hours": 670,
       "pages": 10,
       "release_date": "2026-07-31T14:20:21+07:00",
       "r2_folder": 22.1,
       "id": "10-nenburi-ch-22.1",
       "r2_prefix": "manga/10-nenburi/22.1/",
       "title": "Ch. 22.1",
-      "unlockDate": "2026-08-28T05:20:21.000Z",
+      "unlockDate": "2026-08-21T17:00:00.000Z",
       "isLocked": true,
       "views": 7
     },

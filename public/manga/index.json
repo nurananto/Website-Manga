@@ -1,5 +1,73 @@
 [
   {
+    "id": "10-nenburi",
+    "title": "10-Nen Buri ni Saikai Shita Kusogaki wa Seijun Bishoujo JK ni Seichou Shiteita",
+    "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 7.5,
+    "chapter_count": 27,
+    "total_views": 349,
+    "isTrending": true,
+    "latest_release_date": "2026-08-21T11:03:37+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 23.1,
+        "pages": 10,
+        "notif_image": "5",
+        "r2_folder": 23.1,
+        "id": "10-nenburi-ch-23.1",
+        "r2_prefix": "manga/10-nenburi/23.1/",
+        "title": "Ch. 23.1",
+        "release_date": "2026-08-21T11:03:37+07:00",
+        "unlockDate": "2026-09-03T17:00:00.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 22.2,
+        "pages": 10,
+        "notif_image": "page1",
+        "release_date": "2026-08-07T13:26:55+07:00",
+        "r2_folder": 22.2,
+        "id": "10-nenburi-ch-22.2",
+        "r2_prefix": "manga/10-nenburi/22.2/",
+        "title": "Ch. 22.2",
+        "unlockDate": "2026-08-28T17:00:00.000Z",
+        "isLocked": true,
+        "views": 7
+      },
+      {
+        "chapter_number": 22.1,
+        "pages": 10,
+        "release_date": "2026-07-31T14:20:21+07:00",
+        "r2_folder": 22.1,
+        "id": "10-nenburi-ch-22.1",
+        "r2_prefix": "manga/10-nenburi/22.1/",
+        "title": "Ch. 22.1",
+        "unlockDate": "2026-08-21T17:00:00.000Z",
+        "isLocked": true,
+        "views": 7
+      }
+    ]
+  },
+  {
     "id": "ShokeiFlag",
     "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
     "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
@@ -34,11 +102,11 @@
         "lock_hours": 0,
         "pages": 10,
         "notif_image": "5",
+        "release_date": "2026-08-21T09:32:23+07:00",
         "r2_folder": 3.3,
         "id": "ShokeiFlag-ch-3.3",
         "r2_prefix": "manga/ShokeiFlag/3.3/",
         "title": "Ch. 3.3",
-        "release_date": "2026-08-21T09:32:23+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -308,7 +376,7 @@
     "rating": 7.38,
     "chapter_count": 20,
     "total_views": 333,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-16T18:49:43+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -641,76 +709,6 @@
         "unlockDate": "2026-07-29T14:00:00.000Z",
         "isLocked": false,
         "views": 45
-      }
-    ]
-  },
-  {
-    "id": "10-nenburi",
-    "title": "10-Nen Buri ni Saikai Shita Kusogaki wa Seijun Bishoujo JK ni Seichou Shiteita",
-    "description": "Setelah resign dari perusahaan hitam yang bikin hidupnya sengsara, Aritsuki Yuu pulang ke kampung halamannya untuk pertama kalinya dalam sepuluh tahun. Dia berniat memulai hidup baru dari nol. Tapi suatu hari, ada seorang siswi SMA cantik yang polos dan misterius datang ke kafe milik keluarganya.…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/10-nenburi/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Harem",
-      "Romance",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 7.5,
-    "chapter_count": 26,
-    "total_views": 349,
-    "isTrending": false,
-    "latest_release_date": "2026-08-07T13:26:55+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 22.2,
-        "lock_hours": 696,
-        "pages": 10,
-        "notif_image": "page1",
-        "release_date": "2026-08-07T13:26:55+07:00",
-        "r2_folder": 22.2,
-        "id": "10-nenburi-ch-22.2",
-        "r2_prefix": "manga/10-nenburi/22.2/",
-        "title": "Ch. 22.2",
-        "unlockDate": "2026-09-05T06:26:55.000Z",
-        "isLocked": true,
-        "views": 7
-      },
-      {
-        "chapter_number": 22.1,
-        "lock_hours": 670,
-        "pages": 10,
-        "release_date": "2026-07-31T14:20:21+07:00",
-        "r2_folder": 22.1,
-        "id": "10-nenburi-ch-22.1",
-        "r2_prefix": "manga/10-nenburi/22.1/",
-        "title": "Ch. 22.1",
-        "unlockDate": "2026-08-28T05:20:21.000Z",
-        "isLocked": true,
-        "views": 7
-      },
-      {
-        "chapter_number": 21.2,
-        "lock_hours": 672,
-        "pages": 10,
-        "release_date": "2026-07-17T11:36:23+07:00",
-        "r2_folder": 21.2,
-        "id": "10-nenburi-ch-21.2",
-        "r2_prefix": "manga/10-nenburi/21.2/",
-        "title": "Ch. 21.2",
-        "unlockDate": "2026-08-07T05:00:00.000Z",
-        "isLocked": false,
-        "views": 17
       }
     ]
   },
