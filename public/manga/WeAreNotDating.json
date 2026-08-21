@@ -35,9 +35,9 @@
     "8": 1,
     "9": 1,
     "10": 1,
-    "142": 1
+    "142": 2
   },
-  "total_views": 16,
+  "total_views": 17,
   "mangadex_cover": "98be450d-fef5-4324-a277-94856f13b8bf.png",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -94,7 +94,7 @@
       "title": "Ch. 142",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 141,

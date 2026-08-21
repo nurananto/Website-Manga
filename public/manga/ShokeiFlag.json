@@ -28,12 +28,16 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 11,
-    "2.1": 5,
-    "2.2": 8,
-    "2.3": 9
+    "1": 13,
+    "2.1": 6,
+    "2.2": 9,
+    "2.3": 12,
+    "3.1": 3,
+    "3.2": 5,
+    "3.3": 3,
+    "4.1": 1
   },
-  "total_views": 59,
+  "total_views": 83,
   "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -49,7 +53,7 @@
       }
     }
   ],
-  "detail_views": 26,
+  "detail_views": 31,
   "mangadex_id": "02c719c6-d4bc-4ad4-9ebf-d033abe2f410",
   "rating": 6,
   "next_update": null,
@@ -72,7 +76,7 @@
       "title": "Ch. 4.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 3.3,
@@ -86,7 +90,7 @@
       "title": "Ch. 3.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 3
     },
     {
       "chapter_number": 3.2,
@@ -100,7 +104,7 @@
       "title": "Ch. 3.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 5
     },
     {
       "chapter_number": 3.1,
@@ -114,7 +118,7 @@
       "title": "Ch. 3.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 3
     },
     {
       "chapter_number": 2.3,
@@ -128,7 +132,7 @@
       "title": "Ch. 2.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 12
     },
     {
       "chapter_number": 2.2,
@@ -142,7 +146,7 @@
       "title": "Ch. 2.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 2.1,
@@ -156,7 +160,7 @@
       "title": "Ch. 2.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 6
     },
     {
       "chapter_number": 1,
@@ -170,7 +174,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 13
     }
   ]
 }

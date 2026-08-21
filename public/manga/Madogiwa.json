@@ -30,7 +30,7 @@
     "1": 12,
     "2": 6,
     "3": 3,
-    "4": 3,
+    "4": 4,
     "5": 2,
     "6": 2,
     "7": 2,
@@ -48,7 +48,7 @@
     "15.2": 29,
     "16.1": 31
   },
-  "total_views": 333,
+  "total_views": 334,
   "mangadex_cover": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -304,7 +304,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 3,
