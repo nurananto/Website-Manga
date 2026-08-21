@@ -10,18 +10,18 @@ const RETRY_DELAY_MS = [400, 1200]; // backoff per percobaan
 // di baliknya) sampai user refresh manual. Retry otomatis dengan query param
 // pembeda (bukan re-request URL identik yang bisa kena cache negatif yang
 // sama) sebelum benar-benar menyerah.
-export default function ResponsiveCover({ manga, alt = '', ...imgProps }) {
+export default function ResponsiveCover({ manga, alt = '', className = '', ...imgProps }) {
   const covers = manga?.coverUrls;
   const base = imgUrl(covers?.desktop || manga?.coverUrl);
   const mobileBase = covers?.mobile ? imgUrl(covers.mobile) : null;
   const tabletBase = covers?.tablet ? imgUrl(covers.tablet) : null;
 
-  // Reset retry sinkron pas render (bukan lewat effect) begitu cover beda —
-  // pola resmi React utk "derive state dari perubahan prop" tanpa render
-  // ekstra yang dipicu effect. Lihat react.dev/learn/you-might-not-need-an-effect.
-  const [state, setState] = useState({ base, retry: 0 });
-  if (state.base !== base) setState({ base, retry: 0 });
-  const retry = state.retry;
+  // Reset retry + loaded sinkron pas render (bukan lewat effect) begitu cover
+  // beda — pola resmi React utk "derive state dari perubahan prop" tanpa
+  // render ekstra yang dipicu effect. Lihat react.dev/you-might-not-need-an-effect.
+  const [state, setState] = useState({ base, retry: 0, loaded: false });
+  if (state.base !== base) setState({ base, retry: 0, loaded: false });
+  const { retry, loaded } = state;
 
   const withRetry = (url) => {
     if (!url || retry === 0) return url;
@@ -34,11 +34,26 @@ export default function ResponsiveCover({ manga, alt = '', ...imgProps }) {
     setTimeout(() => setState((s) => (s.base === base ? { ...s, retry: s.retry + 1 } : s)), delay);
   };
 
+  // Bukan cover-nya lambat/gagal — cuma banyak gambar diminta bareng (carousel
+  // + grid kartu bisa puluhan sekaligus) jadi wajar ada yang antre beberapa
+  // detik (dikonfirmasi lewat DevTools: request-nya normal, cuma pending).
+  // Sebelumnya kotak antrean itu diam gelap polos, kesannya kayak rusak.
+  // Shimmer ini cuma sinyal visual "lagi dimuat", tidak menambah/mengubah
+  // request apa pun.
+  const handleLoad = () => setState((s) => (s.base === base ? { ...s, loaded: true } : s));
+
   return (
     <picture className="contents">
       {mobileBase && <source media="(max-width: 639px)" srcSet={withRetry(mobileBase)} />}
       {tabletBase && <source media="(max-width: 1023px)" srcSet={withRetry(tabletBase)} />}
-      <img {...imgProps} src={withRetry(base)} alt={alt} onError={handleError} />
+      <img
+        {...imgProps}
+        src={withRetry(base)}
+        alt={alt}
+        className={`${className} ${loaded ? '' : 'cover-loading-shimmer'}`}
+        onLoad={handleLoad}
+        onError={handleError}
+      />
     </picture>
   );
 }

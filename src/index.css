@@ -241,6 +241,25 @@ body {
   .donate-glow::after { animation: none; }
 }
 
+/* Shimmer cover selama <img> belum selesai load — lihat ResponsiveCover.jsx.
+   Bukan penanda error, cuma sinyal "lagi dimuat" (kotak cover sebelumnya diam
+   gelap polos selama antre, gampang disalahartikan rusak/hitam). transform +
+   opacity-nya statis (cuma background-position yang animasi) jadi tetap
+   compositor-friendly, sama seperti glow lain di file ini. */
+@keyframes coverShimmer {
+  0%   { background-position: -150% 0; }
+  100% { background-position: 250% 0; }
+}
+.cover-loading-shimmer {
+  background-image: linear-gradient(100deg, transparent 30%, rgba(255,255,255,0.14) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: coverShimmer 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover-loading-shimmer { animation: none; }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
