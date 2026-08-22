@@ -53,7 +53,7 @@
     "22.2": 7,
     "23.1": 2
   },
-  "total_views": 354,
+  "total_views": 358,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -85,7 +85,7 @@
       }
     }
   ],
-  "detail_views": 104,
+  "detail_views": 108,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "26854d1a-dfd0-4e5c-b6d1-ab291035b8cc",
@@ -133,7 +133,7 @@
       "r2_prefix": "manga/10-nenburi/22.1/",
       "title": "Ch. 22.1",
       "unlockDate": "2026-08-22T17:00:00.000Z",
-      "isLocked": true,
+      "isLocked": false,
       "views": 7
     },
     {
