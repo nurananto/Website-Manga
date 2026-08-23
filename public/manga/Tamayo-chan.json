@@ -24,8 +24,10 @@
   "notif_image": "cover",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "1": 3
+  },
+  "total_views": 8,
   "mangadex_cover": "f0327b95-bcb6-4644-a777-97ac48def2c3.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -41,8 +43,9 @@
       }
     }
   ],
+  "detail_views": 5,
   "mangadex_id": "e0456082-720e-4f5b-8e37-034afe8393ab",
-  "rating": null,
+  "rating": 10,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
   "coverUrls": {
@@ -56,14 +59,14 @@
       "lock_hours": 0,
       "pages": 32,
       "notif_image": "12",
+      "release_date": "2026-08-23T16:08:08+07:00",
       "r2_folder": 1,
       "id": "Tamayo-chan-ch-1",
       "r2_prefix": "manga/Tamayo-chan/1/",
       "title": "Ch. 1",
-      "release_date": "2026-08-23T16:08:08+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 3
     }
   ]
 }

@@ -38,9 +38,9 @@
     "14.1": 15,
     "14.2": 19,
     "15.1": 15,
-    "15.2": 5
+    "15.2": 6
   },
-  "total_views": 187,
+  "total_views": 188,
   "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -87,7 +87,7 @@
       "title": "Ch. 15.2",
       "unlockDate": "2026-08-18T09:14:51.000Z",
       "isLocked": false,
-      "views": 5
+      "views": 6
     },
     {
       "chapter_number": 15.1,

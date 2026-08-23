@@ -28,16 +28,16 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 15,
+    "1": 16,
     "2.1": 6,
     "2.2": 9,
     "2.3": 13,
     "3.1": 4,
     "3.2": 6,
     "3.3": 6,
-    "4.1": 7
+    "4.1": 8
   },
-  "total_views": 104,
+  "total_views": 108,
   "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -53,7 +53,7 @@
       }
     }
   ],
-  "detail_views": 38,
+  "detail_views": 40,
   "mangadex_id": "02c719c6-d4bc-4ad4-9ebf-d033abe2f410",
   "rating": 6,
   "next_update": null,
@@ -76,7 +76,7 @@
       "title": "Ch. 4.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     },
     {
       "chapter_number": 3.3,
@@ -174,7 +174,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 15
+      "views": 16
     }
   ]
 }

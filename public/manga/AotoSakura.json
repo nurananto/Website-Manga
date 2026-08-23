@@ -25,9 +25,9 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "oneshot": 16
+    "oneshot": 17
   },
-  "total_views": 30,
+  "total_views": 32,
   "mangadex_cover": "8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_version": 3,
@@ -42,7 +42,7 @@
       }
     }
   ],
-  "detail_views": 14,
+  "detail_views": 15,
   "notif_image": "page1",
   "mangadex_id": "7cf10b89-2c28-4df5-9087-39f076e79e4a",
   "rating": 8.39,
@@ -65,7 +65,7 @@
       "r2_prefix": "manga/AotoSakura/Oneshot/",
       "unlockDate": null,
       "isLocked": false,
-      "views": 16
+      "views": 17
     }
   ]
 }
