@@ -1,5 +1,49 @@
 [
   {
+    "id": "Seishun",
+    "title": "Seishun Matching Appli",
+    "description": "Di HP Yuukei Nagino, seorang anak SMA yang udah menyerah sama masa muda, tiba-tiba terpasang sebuah aplikasi misterius. Nama aplikasinya adalah AOHAKO,Aplikasi itu bakal ngasih hadiah kalau kita menyelesaikan misi-misi buat menjalani 'masa muda yang seharusnya' bareng pasangan yang terpilih. Dan…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 6,
+    "chapter_count": 1,
+    "total_views": 0,
+    "isTrending": true,
+    "latest_release_date": "2026-08-24T00:15:13+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 1,
+        "lock_hours": 0,
+        "pages": 42,
+        "notif_image": "3",
+        "r2_folder": 1,
+        "id": "Seishun-ch-1",
+        "r2_prefix": "manga/Seishun/1/",
+        "title": "Ch. 1",
+        "release_date": "2026-08-24T00:15:13+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "Tamayo-chan",
     "title": "Seyakate Tamayo-chan wa Koi ga Shitai",
     "description": "Guru SMA baru, Haruseto Kazutoyo, punya harga diri yang tinggi sebagai seorang guru. Pelanggaran tata tertib? Nggak bakal dia toleransi! Tapi kemudian, muncul cewek cantik yang ngomong pakai dialek Kansai, Higashiyodogawa Tamayo, yang mengaku sebagai “teman masa kecilnya”! Di depan Tamayo yang…",
@@ -276,7 +320,7 @@
     "rating": 8.4,
     "chapter_count": 17,
     "total_views": 110,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-20T19:55:22+07:00",
     "next_update": null,
     "tamat_at_chapter": null,

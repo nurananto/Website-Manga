@@ -2,7 +2,7 @@
   "id": "Seishun",
   "title": "Seishun Matching Appli",
   "alt_title": "青春マッチングアプリ",
-  "status": "ONGOING",
+  "status": "Ongoing",
   "type": "MANGA",
   "author": "Enoshima Abyss",
   "artist": "Miyahana Yuu",
@@ -33,14 +33,38 @@
   "cover_version": 2,
   "cover_gallery": [
     {
-      "file": "656c16e6-b939-4df1-a8b7-fb0e091d1b02.jpg",
       "volume": "1",
-      "keys": [
-        "manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02.webp",
-        "manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02@tablet.webp",
-        "manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02@mobile.webp"
-      ],
-      "widths": "1280x960x640q75"
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02@mobile.webp?v=2"
+      }
+    }
+  ],
+  "mangadex_id": "968f0b7d-465a-4a84-9e71-9ef3f2f9a0e3",
+  "rating": 6,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=2",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@mobile.webp?v=2"
+  },
+  "chapters": [
+    {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 42,
+      "notif_image": "3",
+      "r2_folder": 1,
+      "id": "Seishun-ch-1",
+      "r2_prefix": "manga/Seishun/1/",
+      "title": "Ch. 1",
+      "release_date": "2026-08-24T00:15:13+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
     }
   ]
 }
