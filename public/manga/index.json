@@ -1,5 +1,48 @@
 [
   {
+    "id": "Tamayo-chan",
+    "title": "Seyakate Tamayo-chan wa Koi ga Shitai",
+    "description": "Guru SMA baru, Haruseto Kazutoyo, punya harga diri yang tinggi sebagai seorang guru. Pelanggaran tata tertib? Nggak bakal dia toleransi! Tapi kemudian, muncul cewek cantik yang ngomong pakai dialek Kansai, Higashiyodogawa Tamayo, yang mengaku sebagai “teman masa kecilnya”! Di depan Tamayo yang…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Comedy",
+      "Official Colored",
+      "Romance",
+      "School Life",
+      "Shounen"
+    ],
+    "rating": null,
+    "chapter_count": 1,
+    "total_views": 0,
+    "isTrending": true,
+    "latest_release_date": "2026-08-23T16:08:08+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 1,
+        "lock_hours": 0,
+        "pages": 32,
+        "notif_image": "12",
+        "r2_folder": 1,
+        "id": "Tamayo-chan-ch-1",
+        "r2_prefix": "manga/Tamayo-chan/1/",
+        "title": "Ch. 1",
+        "release_date": "2026-08-23T16:08:08+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "Osananajimi",
     "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
     "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
@@ -306,7 +349,7 @@
     "rating": 8.03,
     "chapter_count": 14,
     "total_views": 570,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-19T19:01:02+07:00",
     "next_update": null,
     "tamat_at_chapter": null,

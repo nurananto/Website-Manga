@@ -2,16 +2,16 @@
   "id": "Tamayo-chan",
   "title": "Seyakate Tamayo-chan wa Koi ga Shitai",
   "alt_title": "せやかて珠世ちゃんは恋がしたい",
-  "status": "ONGOING",
+  "status": "Ongoing",
   "type": "MANGA",
   "author": "Kizoku Teranishi",
   "artist": "Kizoku Teranishi",
   "genres": [
     "Comedy",
+    "Official Colored",
     "Romance",
     "School Life",
-    "Shounen",
-    "Official Colored"
+    "Shounen"
   ],
   "description": "Guru SMA baru, Haruseto Kazutoyo, punya harga diri yang tinggi sebagai seorang guru. Pelanggaran tata tertib? Nggak bakal dia toleransi! Tapi kemudian, muncul cewek cantik yang ngomong pakai dialek Kansai, Higashiyodogawa Tamayo, yang mengaku sebagai “teman masa kecilnya”! Di depan Tamayo yang terang-terangan manggil dia “Kazu-nii” dan terus nempel manja tanpa jaga jarak, bisakah Kazutoyo tetap bertahan sebagai “guru yang super serius”...!? Romcom beda usia antara guru dan murid yang penuh dengan energi ini resmi dimulai!!",
   "covers": [
@@ -32,14 +32,38 @@
   "cover_version": 2,
   "cover_gallery": [
     {
-      "file": "f0327b95-bcb6-4644-a777-97ac48def2c3.jpg",
       "volume": "1",
-      "keys": [
-        "manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3.webp",
-        "manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3@tablet.webp",
-        "manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3@mobile.webp"
-      ],
-      "widths": "1280x960x640q75"
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3.webp?v=2",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3@tablet.webp?v=2",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3@mobile.webp?v=2"
+      }
+    }
+  ],
+  "mangadex_id": "e0456082-720e-4f5b-8e37-034afe8393ab",
+  "rating": null,
+  "next_update": null,
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
+  "coverUrls": {
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@mobile.webp?v=2"
+  },
+  "chapters": [
+    {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 32,
+      "notif_image": "12",
+      "r2_folder": 1,
+      "id": "Tamayo-chan-ch-1",
+      "r2_prefix": "manga/Tamayo-chan/1/",
+      "title": "Ch. 1",
+      "release_date": "2026-08-23T16:08:08+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
     }
   ]
 }
