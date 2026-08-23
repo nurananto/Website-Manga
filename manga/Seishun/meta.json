@@ -1,0 +1,24 @@
+{
+  "id": "Seishun",
+  "title": "Seishun Matching Appli",
+  "alt_title": "青春マッチングアプリ",
+  "status": "ONGOING",
+  "type": "MANGA",
+  "author": "Enoshima Abyss",
+  "artist": "Miyahana Yuu",
+  "genres": ["Adaptation", "Comedy", "Romance", "School Life", "Shounen", "Slice of Life"],
+  "description": "Di HP Yuukei Nagino, seorang anak SMA yang udah menyerah sama masa muda, tiba-tiba terpasang sebuah aplikasi misterius. Nama aplikasinya adalah AOHAKO,Aplikasi itu bakal ngasih hadiah kalau kita menyelesaikan misi-misi buat menjalani 'masa muda yang seharusnya' bareng pasangan yang terpilih. Dan yang jadi pasangan masa mudanya ternyata... Hana Hanamiya, cewek cantik dari kelasnya sendiri! Katanya, dia mau menjalankan misi-misi itu demi mewujudkan mimpinya sendiri. Buat tahu sebenarnya apa itu masa muda, sekaligus mewujudkan mimpi Hana, Yuukei pun menjalankan setiap misi yang dikirim kepadanya. Tapi—",
+  "covers": [
+    "manga/Seishun/covers/cover.webp",
+    "manga/Seishun/covers/cover@tablet.webp",
+    "manga/Seishun/covers/cover@mobile.webp"
+  ],
+  "mangadex_url": "https://mangadex.org/title/968f0b7d-465a-4a84-9e71-9ef3f2f9a0e3/seishun-matching-appli",
+  "raw_url": "https://firecross.jp/ebook/series/595",
+  "notif_image": "cover",
+  "tamat_at_chapter": null,
+  "hiatus_at_chapter": null,
+  "chapter_views": {},
+  "total_views": 0,
+  "mangadex_cover": ""
+}
