@@ -87,6 +87,58 @@ export function invalidateChapterToken(userId, chapterId) {
   try { localStorage.removeItem(key(userId, chapterId)); } catch {}
 }
 
+// ── Cap/backoff untuk kegagalan verifikasi ulang berturut-turut ──────────
+// Kasus nyata: signature halaman terikat IP saat diterbitkan (lihat komentar
+// generateAccessToken di worker) — kalau IP pembaca berubah di tengah sesi
+// (jaringan seluler/CGNAT), SEMUA halaman langsung 401/403 sekaligus, token
+// server tetap "granted" tapi gambar tak pernah termuat. Tanpa cap, pembaca
+// (atau kode) bisa minta Turnstile ulang tanpa henti. Disimpan di localStorage
+// (bukan cuma di memori komponen) supaya bertahan walau ReaderModal di-unmount
+// & dibuka lagi (tutup/buka chapter berulang saat frustrasi).
+const FAIL_PREFIX = 'mf_cfail_';
+const FAIL_WINDOW_MS = 5 * 60_000; // jendela hitung: 5 menit
+const FAIL_LIMIT = 3;              // >3 kegagalan dalam jendela → cooldown
+
+function failKey(userId, chapterId) {
+  return `${FAIL_PREFIX}${userId}::${chapterId}`;
+}
+
+function readFailures(userId, chapterId) {
+  try {
+    const raw = localStorage.getItem(failKey(userId, chapterId));
+    const arr = raw ? JSON.parse(raw) : [];
+    const cutoff = Date.now() - FAIL_WINDOW_MS;
+    return Array.isArray(arr) ? arr.filter((t) => Number.isFinite(t) && t > cutoff) : [];
+  } catch { return []; }
+}
+
+// Catat 1 percobaan verifikasi yang gagal (bukan per-gambar — pemanggil wajib
+// menggabungkan kegagalan beruntun jadi 1 percobaan, lihat handleLockedImageError).
+// Return status cap saat ini supaya UI langsung tahu tanpa query terpisah.
+export function registerImageFailure(userId, chapterId) {
+  if (!userId || !chapterId) return { blocked: false, retryAt: 0 };
+  const kept = readFailures(userId, chapterId);
+  kept.push(Date.now());
+  try { localStorage.setItem(failKey(userId, chapterId), JSON.stringify(kept)); } catch {}
+  const blocked = kept.length > FAIL_LIMIT;
+  return { blocked, retryAt: blocked ? kept[0] + FAIL_WINDOW_MS : 0 };
+}
+
+export function getImageFailureStatus(userId, chapterId) {
+  if (!userId || !chapterId) return { blocked: false, retryAt: 0 };
+  const kept = readFailures(userId, chapterId);
+  const blocked = kept.length > FAIL_LIMIT;
+  return { blocked, retryAt: blocked ? kept[0] + FAIL_WINDOW_MS : 0 };
+}
+
+// Panggil saat halaman terkunci benar-benar berhasil dimuat — bukti akses
+// sudah pulih, jadi hitungan kegagalan lama tidak perlu terus menghantui sesi
+// berikutnya.
+export function clearImageFailures(userId, chapterId) {
+  if (!userId || !chapterId) return;
+  try { localStorage.removeItem(failKey(userId, chapterId)); } catch {}
+}
+
 // Hapus semua token chapter (panggil saat logout / ganti akun).
 export function clearChapterTokens() {
   try {

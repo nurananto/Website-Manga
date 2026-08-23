@@ -5,7 +5,10 @@ import { ArrowLeft, ArrowRight, ArrowUp, BookOpen, Lock } from 'lucide-react';
 import { nowTimestamp } from '../utils';
 import { getAccessToken } from '../lib/auth';
 import { loadTurnstile, TURNSTILE_SITEKEY } from '../lib/session';
-import { getCachedChapterToken, setCachedChapterToken, invalidateChapterToken } from '../lib/chapterToken';
+import {
+  getCachedChapterToken, setCachedChapterToken, invalidateChapterToken,
+  registerImageFailure, getImageFailureStatus, clearImageFailures,
+} from '../lib/chapterToken';
 import { recordView } from '../lib/viewGate';
 import { getDeviceId } from '../lib/device';
 import { canReadChapter, chapterAccessLevel } from '../lib/chapterAccess';
@@ -108,7 +111,7 @@ function NextUpdateInfo({ value }) {
   );
 }
 
-function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, withCredentials }) {
+function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, onAccessSuccess, withCredentials }) {
   const [loaded,     setLoaded]     = useState(false);
   const [failed,     setFailed]     = useState(false);
   const [retryCount, setRetryCount] = useState(0);
@@ -150,6 +153,10 @@ function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, 
         if (cancelled) return;
         objUrl = URL.createObjectURL(blob);
         setBlobUrl(objUrl);
+        // Bukti nyata akses terkunci berhasil (bukan cuma token "granted" di
+        // server) — reset cap/backoff verifikasi supaya sesi yang sehat tidak
+        // ikut kena cooldown dari kegagalan lama.
+        if (withCredentials) onAccessSuccess?.();
       })
       .catch((err) => {
         if (cancelled || err?.name === 'AbortError') return;
@@ -365,6 +372,27 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const [tsToken, setTsToken] = useState(null); // token Turnstile (wajib centang)
   const tokenFromCacheRef = useRef(false);      // token aktif berasal dari cache?
   const reauthAttemptRef  = useRef(0);          // maks 1× re-Turnstile per buka chapter (anti-loop)
+  const failureBatchRef   = useRef(0);          // timestamp gagal terakhir — gabungkan gagal beruntun jadi 1 percobaan
+  const [cooldownUntil, setCooldownUntil] = useState(0); // >0 = "Coba Verifikasi Lagi" nonaktif sampai timestamp ini
+  const [cooldownRemainingMs, setCooldownRemainingMs] = useState(0); // dihitung ulang tiap detik, bukan langsung Date.now() saat render
+  useEffect(() => {
+    if (!cooldownUntil) {
+      const t = setTimeout(() => setCooldownRemainingMs(0), 0);
+      return () => clearTimeout(t);
+    }
+    const tick = () => {
+      const remaining = cooldownUntil - Date.now();
+      if (remaining <= 0) { setCooldownUntil(0); setCooldownRemainingMs(0); }
+      else setCooldownRemainingMs(remaining);
+    };
+    const t = setTimeout(tick, 0); // hitung nilai awal tanpa setState sinkron di body effect
+    const id = setInterval(tick, 1000);
+    return () => { clearTimeout(t); clearInterval(id); };
+  }, [cooldownUntil]);
+  const cooldownActive = cooldownRemainingMs > 0;
+  const cooldownLabel = cooldownActive
+    ? (cooldownRemainingMs > 60_000 ? `${Math.ceil(cooldownRemainingMs / 60_000)} menit` : `${Math.ceil(cooldownRemainingMs / 1000)} detik`)
+    : '';
   const nextPageRef = useRef(1);
   const userId = currentUser?.id || null;
 
@@ -375,6 +403,12 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   useEffect(() => {
     tokenFromCacheRef.current = false;
     reauthAttemptRef.current = 0;
+    failureBatchRef.current = 0;
+    // Cap gagal-verifikasi tersimpan PER (user, chapter) — chapter lain/baru
+    // mulai bersih, tapi chapter yang sama masih ingat cooldown-nya walau
+    // modal ini sempat ditutup lalu dibuka lagi.
+    const failStatus = (chapterNeedsToken && userId && chapter?.id)
+      ? getImageFailureStatus(userId, chapter.id) : { blocked: false, retryAt: 0 };
     const cachedValue = (chapterNeedsToken && userId && chapter?.id)
       ? getCachedChapterToken(userId, chapter.id) : null;
     const cached = cachedValue
@@ -382,6 +416,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
       ? cachedValue
       : null;
     const timer = setTimeout(() => {
+      setCooldownUntil(failStatus.blocked ? failStatus.retryAt : 0);
       setTsToken(null);
       setAccessError('');
       if (cached) {
@@ -474,6 +509,15 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   const handleLockedImageError = (status) => {
     // Hanya re-Turnstile kalau server menolak token (401/403) — bukan 404/429/jaringan.
     if (status !== 401 && status !== 403) return;
+
+    // Satu token yang ditolak biasanya bikin SEMUA halaman (bisa 30-40+) gagal
+    // nyaris bersamaan — tanpa digabung, itu akan dihitung sebagai puluhan
+    // "percobaan" sekaligus dan langsung membakar cap di bawah. Anggap
+    // kegagalan dalam jendela singkat sebagai 1 percobaan saja.
+    const now = Date.now();
+    if (now - failureBatchRef.current < 2000) return;
+    failureBatchRef.current = now;
+
     const cachedTokenRejected = tokenFromCacheRef.current && reauthAttemptRef.current < 1;
     if (cachedTokenRejected) reauthAttemptRef.current += 1;
     tokenFromCacheRef.current = false;
@@ -482,9 +526,30 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     setImgHash(null);
     setImgSigning(null);
     setTsToken(null);
-    if (!cachedTokenRejected) {
-      setAccessError('Akses gambar ditolak atau sudah kedaluwarsa. Silakan verifikasi ulang.');
+    if (cachedTokenRejected) return; // 1x auto-retry diam-diam, belum dihitung sbg kegagalan
+
+    // Cap/backoff: kalau verifikasi terus "granted" di server tapi gambar tak
+    // pernah termuat (mis. IP berubah di tengah sesi — lihat catatan di
+    // chapterToken.js), hentikan siklus minta-Turnstile-lagi tanpa henti alih-alih
+    // membiarkannya berulang selamanya.
+    if (userId && chapter?.id) {
+      const { blocked, retryAt } = registerImageFailure(userId, chapter.id);
+      if (blocked) {
+        setCooldownUntil(retryAt);
+        setAccessError('Gagal berulang kali — kemungkinan koneksi berubah di tengah jalan (mis. ganti jaringan seluler/WiFi). Tunggu beberapa menit lalu coba lagi.');
+        return;
+      }
     }
+    setAccessError('Akses gambar ditolak atau sudah kedaluwarsa. Silakan verifikasi ulang.');
+  };
+
+  // Bukti akses terkunci benar-benar berhasil (bukan cuma token "granted") →
+  // sesi ini sehat, jangan biarkan kegagalan lama di sesi sebelumnya terus
+  // menghantui lewat cap di atas.
+  const handleLockedImageSuccess = () => {
+    reauthAttemptRef.current = 0;
+    if (cooldownUntil) setCooldownUntil(0);
+    if (userId && chapter?.id) clearImageFailures(userId, chapter.id);
   };
 
   const handleTurnstileError = useCallback((message) => {
@@ -493,6 +558,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
   }, []);
 
   const retryChapterAccess = () => {
+    if (cooldownUntil && Date.now() < cooldownUntil) return; // masih cooldown, tombol nonaktif
     if (userId && chapter?.id) invalidateChapterToken(userId, chapter.id);
     tokenFromCacheRef.current = false;
     setImgAccess(null);
@@ -810,6 +876,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                   ready={imageReady}
                   withCredentials={chapterNeedsToken}
                   onAccessError={chapterNeedsToken ? handleLockedImageError : undefined}
+                  onAccessSuccess={chapterNeedsToken ? handleLockedImageSuccess : undefined}
                 />
               ))}
             </div>
@@ -858,9 +925,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 <button
                   type="button"
                   onClick={retryChapterAccess}
-                  className="h-10 rounded-xl bg-primary px-5 font-label-sm text-xs font-black text-on-primary transition-colors hover:bg-primary/90"
+                  disabled={cooldownActive}
+                  className="h-10 rounded-xl bg-primary px-5 font-label-sm text-xs font-black text-on-primary transition-colors hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-primary"
                 >
-                  Coba Verifikasi Lagi
+                  {cooldownActive ? `Coba lagi dalam ${cooldownLabel}` : 'Coba Verifikasi Lagi'}
                 </button>
               </div>
             ) : !tsToken ? (
