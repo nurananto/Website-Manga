@@ -53,6 +53,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 2,
+      "lock_hours": 0,
+      "pages": 24,
+      "notif_image": "2",
+      "r2_folder": 2,
+      "id": "Seishun-ch-2",
+      "r2_prefix": "manga/Seishun/2/",
+      "title": "Ch. 2",
+      "release_date": "2026-08-24T20:39:47+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 1,
       "lock_hours": 0,
       "pages": 42,
