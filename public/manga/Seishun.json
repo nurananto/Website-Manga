@@ -43,7 +43,7 @@
     }
   ],
   "mangadex_id": "968f0b7d-465a-4a84-9e71-9ef3f2f9a0e3",
-  "rating": 6,
+  "rating": 7.5,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=2",
   "coverUrls": {
@@ -53,15 +53,29 @@
   },
   "chapters": [
     {
+      "chapter_number": 3,
+      "lock_hours": 0,
+      "pages": 25,
+      "notif_image": "22",
+      "r2_folder": 3,
+      "id": "Seishun-ch-3",
+      "r2_prefix": "manga/Seishun/3/",
+      "title": "Ch. 3",
+      "release_date": "2026-08-24T23:17:11+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 2,
       "lock_hours": 0,
       "pages": 24,
       "notif_image": "2",
+      "release_date": "2026-08-24T20:39:47+07:00",
       "r2_folder": 2,
       "id": "Seishun-ch-2",
       "r2_prefix": "manga/Seishun/2/",
       "title": "Ch. 2",
-      "release_date": "2026-08-24T20:39:47+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
