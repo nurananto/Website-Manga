@@ -44,9 +44,9 @@
     "22": 2,
     "23": 3,
     "24": 2,
-    "25": 13
+    "25": 14
   },
-  "total_views": 51,
+  "total_views": 52,
   "mangadex_cover": "1f5fe857-3e84-451f-8a1c-d25e3960c1b4.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -84,7 +84,7 @@
       "title": "Ch. 25",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 24,

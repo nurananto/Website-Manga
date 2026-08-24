@@ -24,14 +24,14 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 4,
+    "1": 5,
     "2": 2,
     "3": 2,
     "4": 1,
     "5": 1,
     "6": 6
   },
-  "total_views": 26,
+  "total_views": 29,
   "mangadex_cover": "2c142b06-cf48-405d-b5e6-5af0c1651688.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -54,7 +54,7 @@
       }
     }
   ],
-  "detail_views": 10,
+  "detail_views": 12,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "cfcb65ff-cf9b-4628-a666-76d1b06553dc",
@@ -143,7 +143,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     }
   ]
 }

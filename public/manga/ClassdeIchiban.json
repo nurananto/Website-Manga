@@ -26,21 +26,28 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 13,
-    "2": 1,
-    "10": 3,
-    "11": 1,
-    "12": 9,
-    "10.5": 4,
-    "13.1": 6,
-    "13.2": 7,
-    "13.3": 6,
-    "14.1": 15,
-    "14.2": 19,
-    "15.1": 15,
-    "15.2": 6
+    "1": 14,
+    "2": 2,
+    "3": 1,
+    "4": 1,
+    "5": 1,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "9": 1,
+    "10": 4,
+    "11": 2,
+    "12": 11,
+    "10.5": 5,
+    "13.1": 8,
+    "13.2": 9,
+    "13.3": 8,
+    "14.1": 17,
+    "14.2": 21,
+    "15.1": 17,
+    "15.2": 8
   },
-  "total_views": 188,
+  "total_views": 218,
   "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -63,7 +70,7 @@
       }
     }
   ],
-  "detail_views": 83,
+  "detail_views": 85,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "acfd6902-b39c-4b7d-91a8-9825dda4ede8",
@@ -87,7 +94,7 @@
       "title": "Ch. 15.2",
       "unlockDate": "2026-08-18T09:14:51.000Z",
       "isLocked": false,
-      "views": 6
+      "views": 8
     },
     {
       "chapter_number": 15.1,
@@ -100,7 +107,7 @@
       "title": "Ch. 15.1",
       "unlockDate": "2026-08-03T16:08:03.000Z",
       "isLocked": false,
-      "views": 15
+      "views": 17
     },
     {
       "chapter_number": 14.2,
@@ -113,7 +120,7 @@
       "title": "Ch. 14.2",
       "unlockDate": "2026-07-20T11:20:01.000Z",
       "isLocked": false,
-      "views": 19
+      "views": 21
     },
     {
       "chapter_number": 14.1,
@@ -126,7 +133,7 @@
       "title": "Ch. 14.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 15
+      "views": 17
     },
     {
       "chapter_number": 13.3,
@@ -139,7 +146,7 @@
       "title": "Ch. 13.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 8
     },
     {
       "chapter_number": 13.2,
@@ -152,7 +159,7 @@
       "title": "Ch. 13.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 9
     },
     {
       "chapter_number": 13.1,
@@ -165,7 +172,7 @@
       "title": "Ch. 13.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 8
     },
     {
       "chapter_number": 12,
@@ -178,7 +185,7 @@
       "title": "Ch. 12",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 11
     },
     {
       "chapter_number": 11,
@@ -191,7 +198,7 @@
       "title": "Ch. 11",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 10.5,
@@ -204,7 +211,7 @@
       "title": "Ch. 10.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 10,
@@ -217,7 +224,7 @@
       "title": "Ch. 10",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 9,
@@ -230,7 +237,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 8,
@@ -243,7 +250,7 @@
       "title": "Ch. 8",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 7,
@@ -256,7 +263,7 @@
       "title": "Ch. 7",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 6,
@@ -269,7 +276,7 @@
       "title": "Ch. 6",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 5,
@@ -282,7 +289,7 @@
       "title": "Ch. 5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 4,
@@ -295,7 +302,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 3,
@@ -308,7 +315,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 2,
@@ -321,7 +328,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 1,
@@ -334,7 +341,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 14
     }
   ]
 }

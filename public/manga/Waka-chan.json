@@ -41,11 +41,17 @@
     "90": 1,
     "91": 1,
     "92": 1,
-    "93": 1,
-    "95": 1,
-    "98": 1,
-    "99": 2,
-    "100": 5,
+    "93": 2,
+    "94": 1,
+    "95": 2,
+    "96": 1,
+    "97": 1,
+    "98": 2,
+    "99": 3,
+    "100": 6,
+    "101": 1,
+    "102": 1,
+    "103": 1,
     "161": 1,
     "165": 2,
     "171": 1,
@@ -104,7 +110,7 @@
     "195.5": 2,
     "161.5": 1
   },
-  "total_views": 352,
+  "total_views": 364,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -217,7 +223,7 @@
       }
     }
   ],
-  "detail_views": 62,
+  "detail_views": 63,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "57fe3f00-8626-462b-8f75-fce0e6faa6be",
@@ -2009,7 +2015,7 @@
       "title": "Ch. 103",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 102,
@@ -2022,7 +2028,7 @@
       "title": "Ch. 102",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 101,
@@ -2035,7 +2041,7 @@
       "title": "Ch. 101",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 100,
@@ -2048,7 +2054,7 @@
       "title": "Ch. 100",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 6
     },
     {
       "chapter_number": 99,
@@ -2061,7 +2067,7 @@
       "title": "Ch. 99",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 98,
@@ -2074,7 +2080,7 @@
       "title": "Ch. 98",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 97,
@@ -2087,7 +2093,7 @@
       "title": "Ch. 97",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 96,
@@ -2100,7 +2106,7 @@
       "title": "Ch. 96",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 95,
@@ -2113,7 +2119,7 @@
       "title": "Ch. 95",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 94,
@@ -2126,7 +2132,7 @@
       "title": "Ch. 94",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 93,
@@ -2139,7 +2145,7 @@
       "title": "Ch. 93",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 92,

@@ -33,9 +33,9 @@
     "16": 1,
     "17": 1,
     "18": 1,
-    "19": 9
+    "19": 10
   },
-  "total_views": 30,
+  "total_views": 31,
   "mangadex_cover": "511f749e-21de-4ba8-ab27-b6cd74cbb6e5.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -100,7 +100,7 @@
       "title": "Ch. 19",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 18,

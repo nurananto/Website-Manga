@@ -39,9 +39,9 @@
     "7.1": 10,
     "7.2": 20,
     "7.3": 18,
-    "8.1": 26
+    "8.1": 27
   },
-  "total_views": 202,
+  "total_views": 203,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -88,7 +88,7 @@
       "title": "Ch. 8.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 26
+      "views": 27
     },
     {
       "chapter_number": 7.3,

@@ -36,10 +36,10 @@
     "1": 18,
     "2": 7,
     "3": 8,
-    "4": 15,
-    "5": 16
+    "4": 16,
+    "5": 18
   },
-  "total_views": 113,
+  "total_views": 118,
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
   "cover_version": 3,
@@ -55,9 +55,9 @@
       }
     }
   ],
-  "detail_views": 49,
+  "detail_views": 51,
   "mangadex_id": "e440bccd-51fc-43e7-b226-00525d959f61",
-  "rating": 9.05,
+  "rating": 9.1,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
   "coverUrls": {
@@ -78,7 +78,7 @@
       "title": "Ch. 5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 16
+      "views": 18
     },
     {
       "chapter_number": 4,
@@ -92,7 +92,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 15
+      "views": 16
     },
     {
       "chapter_number": 3,

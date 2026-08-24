@@ -38,11 +38,11 @@
     "10.2": 4,
     "8.2": 2,
     "11.1": 5,
-    "11.2": 12,
-    "12.1": 11,
-    "12.2": 5
+    "11.2": 14,
+    "12.1": 14,
+    "12.2": 7
   },
-  "total_views": 110,
+  "total_views": 117,
   "mangadex_cover": "fadafe71-37cd-4c73-ac98-59fd79e07f58.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -60,7 +60,7 @@
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "c679bf28-e054-4bb7-93e6-18c089ee79f1",
-  "rating": 8.4,
+  "rating": 8.41,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=2",
   "coverUrls": {
@@ -81,7 +81,7 @@
       "title": "Ch. 12.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 7
     },
     {
       "chapter_number": 12.1,
@@ -95,7 +95,7 @@
       "title": "Ch. 12.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 14
     },
     {
       "chapter_number": 11.2,
@@ -109,7 +109,7 @@
       "title": "Ch. 11.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 12
+      "views": 14
     },
     {
       "chapter_number": 11.1,
