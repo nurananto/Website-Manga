@@ -2,7 +2,7 @@
   "id": "Suufungo",
   "title": "Suufungo no Mirai ga Wakaru You ni Natta kedo, Onnagokoro wa Wakaranai.",
   "alt_title": "数分後の未来が分かるようになったけど、女心は分からない。",
-  "status": "Ongoing",
+  "status": "Tamat",
   "type": "MANGA",
   "author": "mty",
   "artist": "You2",
@@ -22,7 +22,7 @@
   ],
   "mangadex_url": "https://mangadex.org/title/16c34950-954c-4f0d-808e-d8278a546339/suufungo-no-mirai-ga-wakaru-you-ni-natta-kedo-onnagokoro-wa-wakaranai",
   "raw_url": "https://comic-walker.com/detail/KC_005690_S?episodeType=first",
-  "tamat_at_chapter": null,
+  "tamat_at_chapter": 18.2,
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 6,
@@ -81,6 +81,20 @@
     "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
+    {
+      "chapter_number": 18.2,
+      "lock_hours": 0,
+      "pages": 16,
+      "notif_image": "4",
+      "r2_folder": 18.2,
+      "id": "Suufungo-ch-18.2",
+      "r2_prefix": "manga/Suufungo/18.2/",
+      "title": "Ch. 18.2",
+      "release_date": "2026-08-25T11:22:09+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
     {
       "chapter_number": 18.1,
       "lock_hours": 0,
