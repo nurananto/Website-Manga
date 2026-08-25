@@ -33,30 +33,40 @@
     "5": 15
   },
   "total_views": 70,
-  "mangadex_cover": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
+  "mangadex_cover": "5b82e94e-60e6-4413-919e-c0ca483e277f.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f@mobile.webp?v=3"
+      }
+    },
+    {
+      "volume": "0",
+      "is_current": false,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp?v=3"
       }
     }
   ],
   "detail_views": 27,
-  "cover_version": 2,
+  "cover_version": 3,
   "notif_image": "page1",
+  "cover_source": "mangadex",
   "mangadex_id": "ee1eb629-79c9-410f-927c-dd7a4cd1d87b",
   "rating": 7.78,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {

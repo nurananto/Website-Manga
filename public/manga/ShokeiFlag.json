@@ -41,15 +41,15 @@
   "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
-  "cover_version": 2,
+  "cover_version": 3,
   "cover_gallery": [
     {
       "volume": null,
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/gallery/5a774b7c-eb16-4f85-9410-c211b24c6f68.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/gallery/5a774b7c-eb16-4f85-9410-c211b24c6f68@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/gallery/5a774b7c-eb16-4f85-9410-c211b24c6f68@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/gallery/5a774b7c-eb16-4f85-9410-c211b24c6f68.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/gallery/5a774b7c-eb16-4f85-9410-c211b24c6f68@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/gallery/5a774b7c-eb16-4f85-9410-c211b24c6f68@mobile.webp?v=3"
       }
     }
   ],
@@ -57,11 +57,11 @@
   "mangadex_id": "02c719c6-d4bc-4ad4-9ebf-d033abe2f410",
   "rating": 6,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {
@@ -69,11 +69,11 @@
       "lock_hours": 0,
       "pages": 10,
       "notif_image": "3",
+      "release_date": "2026-08-25T21:32:10+07:00",
       "r2_folder": 4.2,
       "id": "ShokeiFlag-ch-4.2",
       "r2_prefix": "manga/ShokeiFlag/4.2/",
       "title": "Ch. 4.2",
-      "release_date": "2026-08-25T21:32:10+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0

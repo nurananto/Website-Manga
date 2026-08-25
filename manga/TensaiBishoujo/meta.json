@@ -33,22 +33,33 @@
     "5": 15
   },
   "total_views": 70,
-  "mangadex_cover": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
+  "mangadex_cover": "5b82e94e-60e6-4413-919e-c0ca483e277f.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
     {
       "file": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
-      "volume": "1",
+      "volume": "0",
       "keys": [
         "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371.webp",
         "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@tablet.webp",
         "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp"
       ],
       "widths": "1280x960x640q75"
+    },
+    {
+      "file": "5b82e94e-60e6-4413-919e-c0ca483e277f.jpg",
+      "volume": "1",
+      "keys": [
+        "manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f.webp",
+        "manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f@tablet.webp",
+        "manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f@mobile.webp"
+      ],
+      "widths": "1280x960x640q75"
     }
   ],
   "detail_views": 27,
   "view_sync_cutoff": "2026-08-24 17:00:32",
-  "cover_version": 2,
-  "notif_image": "page1"
+  "cover_version": 3,
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }
