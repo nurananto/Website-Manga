@@ -65,6 +65,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 4.2,
+      "lock_hours": 0,
+      "pages": 10,
+      "notif_image": "3",
+      "r2_folder": 4.2,
+      "id": "ShokeiFlag-ch-4.2",
+      "r2_prefix": "manga/ShokeiFlag/4.2/",
+      "title": "Ch. 4.2",
+      "release_date": "2026-08-25T21:32:10+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 4.1,
       "lock_hours": 0,
       "pages": 10,
