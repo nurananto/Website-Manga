@@ -1,5 +1,76 @@
 [
   {
+    "id": "Yuumei",
+    "title": "Yuumei VTuber no Ani Dakedo, Nazeka Ore ga Yuumei ni Natteita",
+    "description": "Aku punya adik tiri bernama Isuzu. Dia adalah VTuber super populer dengan lebih dari 1 juta subscriber, 'Isuzu Wine'. Suatu hari, dia lupa mematikan siaran, dan percakapan aslinya denganku tanpa sengaja tersebar ke seluruh dunia! Potongan video insiden siaran itu dengan cepat menyebar, dan dalam…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=4",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=4",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=4",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=4"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.22,
+    "chapter_count": 30,
+    "total_views": 624,
+    "isTrending": true,
+    "latest_release_date": "2026-08-25T23:04:51+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 24.2,
+        "pages": 14,
+        "notif_image": "11",
+        "r2_folder": 24.2,
+        "id": "Yuumei-ch-24.2",
+        "r2_prefix": "manga/Yuumei/24.2/",
+        "title": "Ch. 24.2",
+        "release_date": "2026-08-25T23:04:51+07:00",
+        "unlockDate": "2026-09-11T17:00:00.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 24.1,
+        "lock_hours": 360,
+        "pages": 14,
+        "notif_image": "10",
+        "release_date": "2026-08-11T23:14:43+07:00",
+        "r2_folder": 24.1,
+        "id": "Yuumei-ch-24.1",
+        "r2_prefix": "manga/Yuumei/24.1/",
+        "title": "Ch. 24.1",
+        "unlockDate": "2026-08-28T17:00:00.000Z",
+        "isLocked": true,
+        "views": 7
+      },
+      {
+        "chapter_number": 23.2,
+        "lock_hours": 504,
+        "pages": 15,
+        "release_date": "2026-07-21T23:28:24+07:00",
+        "r2_folder": 23.2,
+        "id": "Yuumei-ch-23.2",
+        "r2_prefix": "manga/Yuumei/23.2/",
+        "title": "Ch. 23.2",
+        "unlockDate": "2026-08-11T16:28:24.000Z",
+        "isLocked": false,
+        "views": 38
+      }
+    ]
+  },
+  {
     "id": "ShokeiFlag",
     "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
     "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
@@ -296,7 +367,7 @@
     "rating": 7.69,
     "chapter_count": 19,
     "total_views": 931,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-21T22:37:47+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -835,77 +906,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 19
-      }
-    ]
-  },
-  {
-    "id": "Yuumei",
-    "title": "Yuumei VTuber no Ani Dakedo, Nazeka Ore ga Yuumei ni Natteita",
-    "description": "Aku punya adik tiri bernama Isuzu. Dia adalah VTuber super populer dengan lebih dari 1 juta subscriber, 'Isuzu Wine'. Suatu hari, dia lupa mematikan siaran, dan percakapan aslinya denganku tanpa sengaja tersebar ke seluruh dunia! Potongan video insiden siaran itu dengan cepat menyebar, dan dalam…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=4",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=4",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=4",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=4"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Harem",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 8.22,
-    "chapter_count": 29,
-    "total_views": 624,
-    "isTrending": false,
-    "latest_release_date": "2026-08-11T23:14:43+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 24.1,
-        "lock_hours": 360,
-        "pages": 14,
-        "notif_image": "10",
-        "release_date": "2026-08-11T23:14:43+07:00",
-        "r2_folder": 24.1,
-        "id": "Yuumei-ch-24.1",
-        "r2_prefix": "manga/Yuumei/24.1/",
-        "title": "Ch. 24.1",
-        "unlockDate": "2026-08-28T17:00:00.000Z",
-        "isLocked": true,
-        "views": 7
-      },
-      {
-        "chapter_number": 23.2,
-        "lock_hours": 504,
-        "pages": 15,
-        "release_date": "2026-07-21T23:28:24+07:00",
-        "r2_folder": 23.2,
-        "id": "Yuumei-ch-23.2",
-        "r2_prefix": "manga/Yuumei/23.2/",
-        "title": "Ch. 23.2",
-        "unlockDate": "2026-08-11T16:28:24.000Z",
-        "isLocked": false,
-        "views": 38
-      },
-      {
-        "chapter_number": 23.1,
-        "lock_hours": 672,
-        "pages": 12,
-        "release_date": "2026-07-07T22:48:58+07:00",
-        "r2_folder": 23.1,
-        "id": "Yuumei-ch-23.1",
-        "r2_prefix": "manga/Yuumei/23.1/",
-        "title": "Ch. 23.1",
-        "unlockDate": "2026-07-29T14:00:00.000Z",
-        "isLocked": false,
-        "views": 47
       }
     ]
   },
