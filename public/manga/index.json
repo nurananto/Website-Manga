@@ -1,5 +1,62 @@
 [
   {
+    "id": "Tamayo-chan",
+    "title": "Seyakate Tamayo-chan wa Koi ga Shitai",
+    "description": "Guru SMA baru, Haruseto Kazutoyo, punya harga diri yang tinggi sebagai seorang guru. Pelanggaran tata tertib? Nggak bakal dia toleransi! Tapi kemudian, muncul cewek cantik yang ngomong pakai dialek Kansai, Higashiyodogawa Tamayo, yang mengaku sebagai “teman masa kecilnya”! Di depan Tamayo yang…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Comedy",
+      "Official Colored",
+      "Romance",
+      "School Life",
+      "Shounen"
+    ],
+    "rating": 10,
+    "chapter_count": 2,
+    "total_views": 13,
+    "isTrending": true,
+    "latest_release_date": "2026-08-25T20:27:44+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 2,
+        "lock_hours": 0,
+        "pages": 13,
+        "notif_image": "4",
+        "r2_folder": 2,
+        "id": "Tamayo-chan-ch-2",
+        "r2_prefix": "manga/Tamayo-chan/2/",
+        "title": "Ch. 2",
+        "release_date": "2026-08-25T20:27:44+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 1,
+        "lock_hours": 0,
+        "pages": 32,
+        "notif_image": "12",
+        "release_date": "2026-08-23T16:08:08+07:00",
+        "r2_folder": 1,
+        "id": "Tamayo-chan-ch-1",
+        "r2_prefix": "manga/Tamayo-chan/1/",
+        "title": "Ch. 1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 5
+      }
+    ]
+  },
+  {
     "id": "Suufungo",
     "title": "Suufungo no Mirai ga Wakaru You ni Natta kedo, Onnagokoro wa Wakaranai.",
     "description": "Arase Itou bisa melihat beberapa menit ke depan. Namun, masa depan yang ia lihat selalu berhubungan dengan masalah. Arase yang baik hati berusaha menghindari masa depan yang tidak menyenangkan ini, namun pada akhirnya masalah tersebut tetap membuatnya membantu berbagai gadis dengan masalah mereka.…",
@@ -138,49 +195,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 13
-      }
-    ]
-  },
-  {
-    "id": "Tamayo-chan",
-    "title": "Seyakate Tamayo-chan wa Koi ga Shitai",
-    "description": "Guru SMA baru, Haruseto Kazutoyo, punya harga diri yang tinggi sebagai seorang guru. Pelanggaran tata tertib? Nggak bakal dia toleransi! Tapi kemudian, muncul cewek cantik yang ngomong pakai dialek Kansai, Higashiyodogawa Tamayo, yang mengaku sebagai “teman masa kecilnya”! Di depan Tamayo yang…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Comedy",
-      "Official Colored",
-      "Romance",
-      "School Life",
-      "Shounen"
-    ],
-    "rating": 10,
-    "chapter_count": 1,
-    "total_views": 13,
-    "isTrending": true,
-    "latest_release_date": "2026-08-23T16:08:08+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 1,
-        "lock_hours": 0,
-        "pages": 32,
-        "notif_image": "12",
-        "release_date": "2026-08-23T16:08:08+07:00",
-        "r2_folder": 1,
-        "id": "Tamayo-chan-ch-1",
-        "r2_prefix": "manga/Tamayo-chan/1/",
-        "title": "Ch. 1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 5
       }
     ]
   },
