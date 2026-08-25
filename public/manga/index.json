@@ -32,11 +32,11 @@
         "lock_hours": 0,
         "pages": 16,
         "notif_image": "4",
+        "release_date": "2026-08-25T11:22:09+07:00",
         "r2_folder": 18.2,
         "id": "Suufungo-ch-18.2",
         "r2_prefix": "manga/Suufungo/18.2/",
         "title": "Ch. 18.2",
-        "release_date": "2026-08-25T11:22:09+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -789,7 +789,7 @@
         "id": "Yuumei-ch-24.1",
         "r2_prefix": "manga/Yuumei/24.1/",
         "title": "Ch. 24.1",
-        "unlockDate": "2026-08-26T16:14:43.000Z",
+        "unlockDate": "2026-08-28T17:00:00.000Z",
         "isLocked": true,
         "views": 7
       },
