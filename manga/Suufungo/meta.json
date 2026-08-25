@@ -2,7 +2,7 @@
   "id": "Suufungo",
   "title": "Suufungo no Mirai ga Wakaru You ni Natta kedo, Onnagokoro wa Wakaranai.",
   "alt_title": "数分後の未来が分かるようになったけど、女心は分からない。",
-  "status": "ONGOING",
+  "status": "TAMAT",
   "type": "MANGA",
   "author": "mty",
   "artist": "You2",
@@ -22,7 +22,7 @@
   ],
   "mangadex_url": "https://mangadex.org/title/16c34950-954c-4f0d-808e-d8278a546339/suufungo-no-mirai-ga-wakaru-you-ni-natta-kedo-onnagokoro-wa-wakaranai",
   "raw_url": "https://comic-walker.com/detail/KC_005690_S?episodeType=first",
-  "tamat_at_chapter": null,
+  "tamat_at_chapter": 18.2,
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 6,

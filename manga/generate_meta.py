@@ -377,6 +377,113 @@ def buat_manga_meta(manga_dir):
         input("Tekan Enter untuk lanjut...")
 
 
+def ask_status_chapter(label, current):
+    """Tanya nomor chapter untuk status Hiatus/Tamat. Enter = pertahankan yang lama."""
+    default_txt = f" (Enter=pertahankan '{current}')" if current is not None else " (Enter=kosongkan)"
+    while True:
+        val = ask(f"  Chapter mulai {label}{default_txt}", allow_empty=True)
+        if val == "":
+            return current
+        try:
+            num = float(val)
+            return int(num) if num == int(num) else num
+        except ValueError:
+            print("  ⚠  Nomor chapter tidak valid, coba lagi.")
+
+
+def update_manga_status(manga_dir):
+    """Update status manga (ONGOING/HIATUS/TAMAT/ONESHOT) pada meta.json yang
+    sudah ada, sekaligus nomor chapter mulai hiatus/tamat kalau perlu."""
+    while True:
+        cls()
+        header("Update status manga")
+
+        titles = sorted([
+            d for d in manga_dir.iterdir()
+            if d.is_dir()
+            and not d.name.startswith('.')
+            and d.name not in ('__pycache__',)
+            and (d / "meta.json").exists()   # HANYA judul yang SUDAH punya meta.json
+        ])
+
+        if not titles:
+            print("⚠  Belum ada judul dengan meta.json. Buat dulu lewat menu 2.")
+            input("\nTekan Enter untuk kembali...")
+            return
+
+        print(f"Judul dengan meta.json ({len(titles)}):\n")
+        for i, t in enumerate(titles, 1):
+            try:
+                meta = json.loads((t / "meta.json").read_text(encoding="utf-8"))
+                status = meta.get("status", "?")
+            except Exception:
+                status = "?"
+            print(f"  {i:>2}. {t.name}  [{status}]")
+        print()
+        print("  [nomor]  pilih")
+        print("  [B]      kembali")
+        print("  [X]      keluar")
+        print()
+
+        pilih = ask("Pilih", allow_empty=True)
+        if pilih.upper() == "B" or pilih == "":
+            return
+
+        try:
+            title_dir = titles[int(pilih) - 1]
+        except (ValueError, IndexError):
+            input("  Pilihan tidak valid. Tekan Enter...")
+            continue
+
+        meta_path = title_dir / "meta.json"
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+
+        cls()
+        header(f"Judul: {title_dir.name}")
+        print(f"Status sekarang : {meta.get('status', '?')}")
+        print(f"tamat_at_chapter: {meta.get('tamat_at_chapter')}")
+        print(f"hiatus_at_chapter: {meta.get('hiatus_at_chapter')}")
+        print()
+        print("Status baru:")
+        print("  1. Ongoing")
+        print("  2. Hiatus")
+        print("  3. Tamat")
+        print("  4. Oneshot")
+        print("  B. Batal")
+        print()
+        pilih_status = ask("Pilihan (1-4/B)")
+
+        if pilih_status.upper() == "B":
+            continue
+
+        status_map = {"1": "ONGOING", "2": "HIATUS", "3": "TAMAT", "4": "ONESHOT"}
+        if pilih_status not in status_map:
+            input("  Pilihan tidak valid. Tekan Enter...")
+            continue
+
+        new_status = status_map[pilih_status]
+        meta["status"] = new_status
+
+        if new_status == "HIATUS":
+            meta["hiatus_at_chapter"] = ask_status_chapter("HIATUS", meta.get("hiatus_at_chapter"))
+        elif new_status == "TAMAT":
+            meta["tamat_at_chapter"] = ask_status_chapter("TAMAT", meta.get("tamat_at_chapter"))
+        elif new_status == "ONGOING":
+            # ongoing lagi = hapus penanda hiatus/tamat lama
+            meta["hiatus_at_chapter"] = None
+            meta["tamat_at_chapter"] = None
+        # ONESHOT: tidak butuh nomor chapter (cuma satu chapter), field
+        # hiatus/tamat_at_chapter dibiarkan apa adanya.
+
+        with open(meta_path, "w", encoding="utf-8") as f:
+            json.dump(meta, f, indent=2, ensure_ascii=False)
+            f.write("\n")
+
+        print()
+        print(f"  ✅  Status {title_dir.name} → {new_status}")
+        input("\nTekan Enter untuk lanjut...")
+
+
 def main():
     manga_dir = Path(__file__).parent
 
@@ -387,6 +494,7 @@ def main():
         print("Menu utama:")
         print("  1. Buat/update chapter meta.json")
         print("  2. Buat manga meta.json kosongan")
+        print("  3. Update status manga (ongoing/hiatus/tamat/oneshot)")
         print("  X. Keluar")
         print()
 
@@ -396,6 +504,8 @@ def main():
             proses_chapter_menu(manga_dir)
         elif pilih_menu == "2":
             buat_manga_meta(manga_dir)
+        elif pilih_menu == "3":
+            update_manga_status(manga_dir)
         else:
             input("  Pilihan tidak valid. Tekan Enter...")
             continue
