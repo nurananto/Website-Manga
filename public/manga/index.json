@@ -1,5 +1,79 @@
 [
   {
+    "id": "ShokeiFlag",
+    "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
+    "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@mobile.webp?v=3"
+    },
+    "genres": [
+      "Action",
+      "Adaptation",
+      "Fantasy",
+      "Harem",
+      "Isekai",
+      "Reincarnation",
+      "Romance",
+      "Shounen"
+    ],
+    "rating": 6,
+    "chapter_count": 9,
+    "total_views": 108,
+    "isTrending": true,
+    "latest_release_date": "2026-08-25T21:32:10+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 4.2,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "3",
+        "release_date": "2026-08-25T21:32:10+07:00",
+        "r2_folder": 4.2,
+        "id": "ShokeiFlag-ch-4.2",
+        "r2_prefix": "manga/ShokeiFlag/4.2/",
+        "title": "Ch. 4.2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 4.1,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "2",
+        "release_date": "2026-08-21T18:49:42+07:00",
+        "r2_folder": 4.1,
+        "id": "ShokeiFlag-ch-4.1",
+        "r2_prefix": "manga/ShokeiFlag/4.1/",
+        "title": "Ch. 4.1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 8
+      },
+      {
+        "chapter_number": 3.3,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "5",
+        "release_date": "2026-08-21T09:32:23+07:00",
+        "r2_folder": 3.3,
+        "id": "ShokeiFlag-ch-3.3",
+        "r2_prefix": "manga/ShokeiFlag/3.3/",
+        "title": "Ch. 3.3",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 6
+      }
+    ]
+  },
+  {
     "id": "Tamayo-chan",
     "title": "Seyakate Tamayo-chan wa Koi ga Shitai",
     "description": "Guru SMA baru, Haruseto Kazutoyo, punya harga diri yang tinggi sebagai seorang guru. Pelanggaran tata tertib? Nggak bakal dia toleransi! Tapi kemudian, muncul cewek cantik yang ngomong pakai dialek Kansai, Higashiyodogawa Tamayo, yang mengaku sebagai “teman masa kecilnya”! Di depan Tamayo yang…",
@@ -31,11 +105,11 @@
         "lock_hours": 0,
         "pages": 13,
         "notif_image": "4",
+        "release_date": "2026-08-25T20:27:44+07:00",
         "r2_folder": 2,
         "id": "Tamayo-chan-ch-2",
         "r2_prefix": "manga/Tamayo-chan/2/",
         "title": "Ch. 2",
-        "release_date": "2026-08-25T20:27:44+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -75,7 +149,7 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 7.81,
+    "rating": 7.8,
     "chapter_count": 20,
     "total_views": 184,
     "isTrending": true,
@@ -219,7 +293,7 @@
       "Slice of Life",
       "Tragedy"
     ],
-    "rating": 7.68,
+    "rating": 7.69,
     "chapter_count": 19,
     "total_views": 931,
     "isTrending": true,
@@ -288,10 +362,10 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.5,
+    "rating": 7.51,
     "chapter_count": 27,
     "total_views": 367,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-21T11:03:37+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -428,7 +502,7 @@
       "Shounen",
       "Video Games"
     ],
-    "rating": 8.05,
+    "rating": 8.06,
     "chapter_count": 14,
     "total_views": 612,
     "isTrending": false,
@@ -553,11 +627,11 @@
     "title": "Madogiwa Henshuu to Baka ni Sareta Ore ga, Futago JK to Doukyo Suru Koto ni Natta",
     "description": "'Kalau kamu membiarkan kami menginap... kamu boleh melakukan hal apapun ke kita.' Mitsuhiko Okaya, seorang pria biasa, dikhianati oleh istrinya dan kouhainya di kantor. Di tempat kerja, dia dihina sebagai editor tak berguna dan tenggelam dalam keputusasaan, sampai suatu hari di hadapannya muncul…",
     "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=2",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=3",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp?v=2"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp?v=3"
     },
     "genres": [
       "Adaptation",
@@ -641,7 +715,7 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 9.1,
+    "rating": 9.14,
     "chapter_count": 5,
     "total_views": 118,
     "isTrending": false,
@@ -1329,11 +1403,11 @@
     "title": "Tensai Bishoujo Sanshimai wa Isourou ni Dake Choro Kawaii",
     "description": "Seorang pemuda biasa dan para jenius tinggal bersama di bawah satu atap — romcom harem penuh kekacauan dengan tingkat keimutannya MAX! '…Mau datang ke rumahku?' Setelah rumahnya tiba-tiba hangus terbakar, Riku akhirnya tinggal menumpang di rumah keluarga Tennousu — tiga kakak beradik cantik jelita…",
     "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=2",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=3",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=2"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=3"
     },
     "genres": [
       "Adaptation",
@@ -2053,7 +2127,7 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.7,
+    "rating": 8.76,
     "chapter_count": 2,
     "total_views": 22,
     "isTrending": false,
@@ -2109,7 +2183,7 @@
       "Slice of Life",
       "Supernatural"
     ],
-    "rating": 8.9,
+    "rating": 8.89,
     "chapter_count": 13,
     "total_views": 24,
     "isTrending": false,
