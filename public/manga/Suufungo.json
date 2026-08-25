@@ -25,27 +25,28 @@
   "tamat_at_chapter": 18.2,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 6,
-    "2": 3,
-    "3": 4,
-    "4": 3,
-    "5": 3,
-    "6": 3,
-    "7": 4,
-    "8": 4,
-    "9": 4,
-    "10": 4,
+    "1": 7,
+    "2": 4,
+    "3": 5,
+    "4": 4,
+    "5": 4,
+    "6": 4,
+    "7": 5,
+    "8": 5,
+    "9": 5,
+    "10": 5,
     "11": 4,
     "12": 4,
     "13": 4,
     "14": 4,
     "15": 4,
     "16": 7,
-    "17.1": 15,
-    "17.2": 26,
-    "18.1": 29
+    "17.1": 16,
+    "17.2": 29,
+    "18.1": 32,
+    "18.2": 9
   },
-  "total_views": 184,
+  "total_views": 219,
   "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -68,11 +69,11 @@
       }
     }
   ],
-  "detail_views": 49,
+  "detail_views": 58,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "16c34950-954c-4f0d-808e-d8278a546339",
-  "rating": 7.8,
+  "rating": 7.79,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp?v=2",
   "coverUrls": {
@@ -93,7 +94,7 @@
       "title": "Ch. 18.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 9
     },
     {
       "chapter_number": 18.1,
@@ -106,7 +107,7 @@
       "title": "Ch. 18.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 29
+      "views": 32
     },
     {
       "chapter_number": 17.2,
@@ -119,7 +120,7 @@
       "title": "Ch. 17.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 26
+      "views": 29
     },
     {
       "chapter_number": 17.1,
@@ -132,7 +133,7 @@
       "title": "Ch. 17.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 15
+      "views": 16
     },
     {
       "chapter_number": 16,
@@ -223,7 +224,7 @@
       "title": "Ch. 10",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 9,
@@ -236,7 +237,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 8,
@@ -249,7 +250,7 @@
       "title": "Ch. 8",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 7,
@@ -262,7 +263,7 @@
       "title": "Ch. 7",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 6,
@@ -275,7 +276,7 @@
       "title": "Ch. 6",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 5,
@@ -288,7 +289,7 @@
       "title": "Ch. 5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 4,
@@ -301,7 +302,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 3,
@@ -314,7 +315,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 2,
@@ -327,7 +328,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 1,
@@ -340,7 +341,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     }
   ]
 }
