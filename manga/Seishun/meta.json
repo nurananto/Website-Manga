@@ -26,11 +26,11 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 18,
-    "2": 9,
-    "3": 8
+    "1": 19,
+    "2": 12,
+    "3": 9
   },
-  "total_views": 52,
+  "total_views": 58,
   "mangadex_cover": "656c16e6-b939-4df1-a8b7-fb0e091d1b02.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -47,6 +47,6 @@
       "widths": "1280x960x640q75"
     }
   ],
-  "detail_views": 17,
-  "view_sync_cutoff": "2026-08-25 17:00:32"
+  "detail_views": 18,
+  "view_sync_cutoff": "2026-08-26 17:00:32"
 }
