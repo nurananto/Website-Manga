@@ -49,11 +49,11 @@
     "20.2": 17,
     "21.1": 15,
     "21.2": 20,
-    "22.1": 12,
+    "22.1": 13,
     "22.2": 7,
     "23.1": 4
   },
-  "total_views": 370,
+  "total_views": 371,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -134,7 +134,7 @@
       "title": "Ch. 22.1",
       "unlockDate": "2026-08-22T17:00:00.000Z",
       "isLocked": false,
-      "views": 12
+      "views": 13
     },
     {
       "chapter_number": 21.2,

@@ -41,9 +41,9 @@
     "14": 10,
     "15": 13,
     "16": 26,
-    "17": 33
+    "17": 35
   },
-  "total_views": 222,
+  "total_views": 227,
   "mangadex_cover": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -76,7 +76,7 @@
     }
   ],
   "cover_version": 3,
-  "detail_views": 67,
+  "detail_views": 70,
   "notif_image": "page1",
   "mangadex_id": "748d2aab-cea8-4ffb-89b3-e716872cb027",
   "rating": 6.8,
@@ -89,6 +89,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 18,
+      "lock_hours": 0,
+      "pages": 28,
+      "notif_image": "page1",
+      "r2_folder": 18,
+      "id": "Negatte-ch-18",
+      "r2_prefix": "manga/Negatte/18/",
+      "title": "Ch. 18",
+      "release_date": "2026-08-26T23:49:42+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 17,
       "lock_hours": 0,
       "pages": 30,
@@ -99,7 +113,7 @@
       "title": "Ch. 17",
       "unlockDate": null,
       "isLocked": false,
-      "views": 33
+      "views": 35
     },
     {
       "chapter_number": 16,

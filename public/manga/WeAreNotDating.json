@@ -25,7 +25,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": 142,
   "chapter_views": {
-    "1": 2,
+    "1": 3,
     "2": 2,
     "3": 2,
     "4": 2,
@@ -45,7 +45,7 @@
     "18": 1,
     "142": 2
   },
-  "total_views": 37,
+  "total_views": 39,
   "mangadex_cover": "98be450d-fef5-4324-a277-94856f13b8bf.png",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -79,7 +79,7 @@
   ],
   "fb_cover": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf.webp",
   "cover_version": 3,
-  "detail_views": 7,
+  "detail_views": 8,
   "notif_image": "page1",
   "mangadex_id": "02b80fce-8fd0-46dc-a6e4-a65f701fde4a",
   "rating": 8.6,
@@ -1935,7 +1935,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     }
   ]
 }

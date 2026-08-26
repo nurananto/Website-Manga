@@ -40,9 +40,9 @@
     "11.1": 5,
     "11.2": 14,
     "12.1": 15,
-    "12.2": 8
+    "12.2": 9
   },
-  "total_views": 120,
+  "total_views": 121,
   "mangadex_cover": "fadafe71-37cd-4c73-ac98-59fd79e07f58.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -81,7 +81,7 @@
       "title": "Ch. 12.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 12.1,
