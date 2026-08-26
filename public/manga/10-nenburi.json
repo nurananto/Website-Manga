@@ -51,9 +51,9 @@
     "21.2": 20,
     "22.1": 12,
     "22.2": 7,
-    "23.1": 2
+    "23.1": 4
   },
-  "total_views": 367,
+  "total_views": 370,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -85,7 +85,7 @@
       }
     }
   ],
-  "detail_views": 111,
+  "detail_views": 112,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "26854d1a-dfd0-4e5c-b6d1-ab291035b8cc",
@@ -109,7 +109,7 @@
       "title": "Ch. 23.1",
       "unlockDate": "2026-09-04T17:00:00.000Z",
       "isLocked": true,
-      "views": 2
+      "views": 4
     },
     {
       "chapter_number": 22.2,

@@ -1,5 +1,76 @@
 [
   {
+    "id": "Yuumei",
+    "title": "Yuumei VTuber no Ani Dakedo, Nazeka Ore ga Yuumei ni Natteita",
+    "description": "Aku punya adik tiri bernama Isuzu. Dia adalah VTuber super populer dengan lebih dari 1 juta subscriber, 'Isuzu Wine'. Suatu hari, dia lupa mematikan siaran, dan percakapan aslinya denganku tanpa sengaja tersebar ke seluruh dunia! Potongan video insiden siaran itu dengan cepat menyebar, dan dalam…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=4",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=4",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=4",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=4"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Harem",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.22,
+    "chapter_count": 30,
+    "total_views": 633,
+    "isTrending": true,
+    "latest_release_date": "2026-08-25T23:04:51+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 24.2,
+        "pages": 14,
+        "notif_image": "11",
+        "release_date": "2026-08-25T23:04:51+07:00",
+        "r2_folder": 24.2,
+        "id": "Yuumei-ch-24.2",
+        "r2_prefix": "manga/Yuumei/24.2/",
+        "title": "Ch. 24.2",
+        "unlockDate": "2026-09-11T17:00:00.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 24.1,
+        "lock_hours": 360,
+        "pages": 14,
+        "notif_image": "10",
+        "release_date": "2026-08-11T23:14:43+07:00",
+        "r2_folder": 24.1,
+        "id": "Yuumei-ch-24.1",
+        "r2_prefix": "manga/Yuumei/24.1/",
+        "title": "Ch. 24.1",
+        "unlockDate": "2026-08-28T17:00:00.000Z",
+        "isLocked": true,
+        "views": 7
+      },
+      {
+        "chapter_number": 23.2,
+        "lock_hours": 504,
+        "pages": 15,
+        "release_date": "2026-07-21T23:28:24+07:00",
+        "r2_folder": 23.2,
+        "id": "Yuumei-ch-23.2",
+        "r2_prefix": "manga/Yuumei/23.2/",
+        "title": "Ch. 23.2",
+        "unlockDate": "2026-08-11T16:28:24.000Z",
+        "isLocked": false,
+        "views": 39
+      }
+    ]
+  },
+  {
     "id": "ShokeiFlag",
     "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
     "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
@@ -22,7 +93,7 @@
     ],
     "rating": 6,
     "chapter_count": 9,
-    "total_views": 108,
+    "total_views": 119,
     "isTrending": true,
     "latest_release_date": "2026-08-25T21:32:10+07:00",
     "next_update": null,
@@ -41,7 +112,7 @@
         "title": "Ch. 4.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 4.1,
@@ -55,7 +126,7 @@
         "title": "Ch. 4.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 9
       },
       {
         "chapter_number": 3.3,
@@ -93,7 +164,7 @@
     ],
     "rating": 10,
     "chapter_count": 2,
-    "total_views": 13,
+    "total_views": 18,
     "isTrending": true,
     "latest_release_date": "2026-08-25T20:27:44+07:00",
     "next_update": null,
@@ -112,7 +183,7 @@
         "title": "Ch. 2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 1,
@@ -149,9 +220,9 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 7.8,
+    "rating": 7.79,
     "chapter_count": 20,
-    "total_views": 184,
+    "total_views": 219,
     "isTrending": true,
     "latest_release_date": "2026-08-25T11:22:09+07:00",
     "next_update": null,
@@ -170,7 +241,7 @@
         "title": "Ch. 18.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 9
       },
       {
         "chapter_number": 18.1,
@@ -183,7 +254,7 @@
         "title": "Ch. 18.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 29
+        "views": 32
       },
       {
         "chapter_number": 17.2,
@@ -196,7 +267,7 @@
         "title": "Ch. 17.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 26
+        "views": 29
       }
     ]
   },
@@ -221,7 +292,7 @@
     ],
     "rating": 7.5,
     "chapter_count": 3,
-    "total_views": 23,
+    "total_views": 52,
     "isTrending": true,
     "latest_release_date": "2026-08-24T23:17:11+07:00",
     "next_update": null,
@@ -240,7 +311,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 8
       },
       {
         "chapter_number": 2,
@@ -254,7 +325,7 @@
         "title": "Ch. 2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 9
       },
       {
         "chapter_number": 1,
@@ -268,7 +339,7 @@
         "title": "Ch. 1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 13
+        "views": 18
       }
     ]
   },
@@ -295,8 +366,8 @@
     ],
     "rating": 7.69,
     "chapter_count": 19,
-    "total_views": 931,
-    "isTrending": true,
+    "total_views": 986,
+    "isTrending": false,
     "latest_release_date": "2026-08-21T22:37:47+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -313,7 +384,7 @@
         "title": "Ch. 8.2",
         "unlockDate": "2026-09-05T17:00:00.000Z",
         "isLocked": true,
-        "views": 6
+        "views": 7
       },
       {
         "chapter_number": 8.1,
@@ -339,7 +410,7 @@
         "title": "Ch. 7.3",
         "unlockDate": "2026-08-22T17:00:00.000Z",
         "isLocked": false,
-        "views": 17
+        "views": 25
       }
     ]
   },
@@ -364,7 +435,7 @@
     ],
     "rating": 7.51,
     "chapter_count": 27,
-    "total_views": 367,
+    "total_views": 370,
     "isTrending": false,
     "latest_release_date": "2026-08-21T11:03:37+07:00",
     "next_update": null,
@@ -382,7 +453,7 @@
         "title": "Ch. 23.1",
         "unlockDate": "2026-09-04T17:00:00.000Z",
         "isLocked": true,
-        "views": 2
+        "views": 4
       },
       {
         "chapter_number": 22.2,
@@ -431,7 +502,7 @@
     ],
     "rating": 8.41,
     "chapter_count": 17,
-    "total_views": 117,
+    "total_views": 120,
     "isTrending": false,
     "latest_release_date": "2026-08-20T19:55:22+07:00",
     "next_update": null,
@@ -450,7 +521,7 @@
         "title": "Ch. 12.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 7
+        "views": 8
       },
       {
         "chapter_number": 12.1,
@@ -464,7 +535,7 @@
         "title": "Ch. 12.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 14
+        "views": 15
       },
       {
         "chapter_number": 11.2,
@@ -504,7 +575,7 @@
     ],
     "rating": 8.06,
     "chapter_count": 14,
-    "total_views": 612,
+    "total_views": 620,
     "isTrending": false,
     "latest_release_date": "2026-08-19T19:01:02+07:00",
     "next_update": null,
@@ -522,7 +593,7 @@
         "title": "Ch. 8.2",
         "unlockDate": "2026-09-29T17:00:00.000Z",
         "isLocked": true,
-        "views": 13
+        "views": 14
       },
       {
         "chapter_number": 8.1,
@@ -535,7 +606,7 @@
         "title": "Ch. 8.1",
         "unlockDate": "2026-09-16T17:00:00.000Z",
         "isLocked": true,
-        "views": 9
+        "views": 10
       },
       {
         "chapter_number": 7.2,
@@ -547,7 +618,7 @@
         "title": "Ch. 7.2",
         "unlockDate": "2026-08-19T17:00:00.000Z",
         "isLocked": false,
-        "views": 32
+        "views": 34
       }
     ]
   },
@@ -573,7 +644,7 @@
     ],
     "rating": 8.48,
     "chapter_count": 18,
-    "total_views": 150,
+    "total_views": 154,
     "isTrending": false,
     "latest_release_date": "2026-08-18T11:22:53+07:00",
     "next_update": null,
@@ -645,7 +716,7 @@
     ],
     "rating": 7.38,
     "chapter_count": 20,
-    "total_views": 356,
+    "total_views": 372,
     "isTrending": false,
     "latest_release_date": "2026-08-16T18:49:43+07:00",
     "next_update": null,
@@ -664,7 +735,7 @@
         "title": "Ch. 16.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 36
+        "views": 40
       },
       {
         "chapter_number": 15.2,
@@ -677,7 +748,7 @@
         "title": "Ch. 15.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 30
+        "views": 32
       },
       {
         "chapter_number": 15.1,
@@ -690,7 +761,7 @@
         "title": "Ch. 15.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 25
+        "views": 28
       }
     ]
   },
@@ -717,7 +788,7 @@
     ],
     "rating": 9.14,
     "chapter_count": 5,
-    "total_views": 118,
+    "total_views": 126,
     "isTrending": false,
     "latest_release_date": "2026-08-16T02:31:56+07:00",
     "next_update": null,
@@ -736,7 +807,7 @@
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 18
+        "views": 20
       },
       {
         "chapter_number": 4,
@@ -750,7 +821,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 16
+        "views": 18
       },
       {
         "chapter_number": 3,
@@ -764,7 +835,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 9
       }
     ]
   },
@@ -789,7 +860,7 @@
     ],
     "rating": 8.24,
     "chapter_count": 3,
-    "total_views": 86,
+    "total_views": 98,
     "isTrending": false,
     "latest_release_date": "2026-08-12T22:54:08+07:00",
     "next_update": null,
@@ -808,7 +879,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 14
+        "views": 16
       },
       {
         "chapter_number": 2,
@@ -821,7 +892,7 @@
         "title": "Ch. 2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 16
+        "views": 18
       },
       {
         "chapter_number": 1,
@@ -834,78 +905,7 @@
         "title": "Ch. 1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 19
-      }
-    ]
-  },
-  {
-    "id": "Yuumei",
-    "title": "Yuumei VTuber no Ani Dakedo, Nazeka Ore ga Yuumei ni Natteita",
-    "description": "Aku punya adik tiri bernama Isuzu. Dia adalah VTuber super populer dengan lebih dari 1 juta subscriber, 'Isuzu Wine'. Suatu hari, dia lupa mematikan siaran, dan percakapan aslinya denganku tanpa sengaja tersebar ke seluruh dunia! Potongan video insiden siaran itu dengan cepat menyebar, dan dalam…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=4",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=4",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@tablet.webp?v=4",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover@mobile.webp?v=4"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Harem",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 8.22,
-    "chapter_count": 29,
-    "total_views": 624,
-    "isTrending": false,
-    "latest_release_date": "2026-08-11T23:14:43+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 24.1,
-        "lock_hours": 360,
-        "pages": 14,
-        "notif_image": "10",
-        "release_date": "2026-08-11T23:14:43+07:00",
-        "r2_folder": 24.1,
-        "id": "Yuumei-ch-24.1",
-        "r2_prefix": "manga/Yuumei/24.1/",
-        "title": "Ch. 24.1",
-        "unlockDate": "2026-08-28T17:00:00.000Z",
-        "isLocked": true,
-        "views": 7
-      },
-      {
-        "chapter_number": 23.2,
-        "lock_hours": 504,
-        "pages": 15,
-        "release_date": "2026-07-21T23:28:24+07:00",
-        "r2_folder": 23.2,
-        "id": "Yuumei-ch-23.2",
-        "r2_prefix": "manga/Yuumei/23.2/",
-        "title": "Ch. 23.2",
-        "unlockDate": "2026-08-11T16:28:24.000Z",
-        "isLocked": false,
-        "views": 38
-      },
-      {
-        "chapter_number": 23.1,
-        "lock_hours": 672,
-        "pages": 12,
-        "release_date": "2026-07-07T22:48:58+07:00",
-        "r2_folder": 23.1,
-        "id": "Yuumei-ch-23.1",
-        "r2_prefix": "manga/Yuumei/23.1/",
-        "title": "Ch. 23.1",
-        "unlockDate": "2026-07-29T14:00:00.000Z",
-        "isLocked": false,
-        "views": 47
+        "views": 22
       }
     ]
   },
@@ -930,7 +930,7 @@
     ],
     "rating": 8.45,
     "chapter_count": 13,
-    "total_views": 157,
+    "total_views": 161,
     "isTrending": false,
     "latest_release_date": "2026-08-07T11:26:33+07:00",
     "next_update": null,
@@ -949,7 +949,7 @@
         "title": "Ch. 13",
         "unlockDate": null,
         "isLocked": false,
-        "views": 24
+        "views": 25
       },
       {
         "chapter_number": 12,
@@ -962,7 +962,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 19
+        "views": 20
       },
       {
         "chapter_number": 11,
@@ -998,7 +998,7 @@
     ],
     "rating": 8.61,
     "chapter_count": 19,
-    "total_views": 111,
+    "total_views": 113,
     "isTrending": false,
     "latest_release_date": "2026-08-07T00:02:21+07:00",
     "next_update": null,
@@ -1072,7 +1072,7 @@
     ],
     "rating": 7.44,
     "chapter_count": 11,
-    "total_views": 203,
+    "total_views": 207,
     "isTrending": false,
     "latest_release_date": "2026-08-04T15:13:59+07:00",
     "next_update": null,
@@ -1090,7 +1090,7 @@
         "title": "Ch. 8.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 27
+        "views": 28
       },
       {
         "chapter_number": 7.3,
@@ -1103,7 +1103,7 @@
         "title": "Ch. 7.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 18
+        "views": 19
       },
       {
         "chapter_number": 7.2,
@@ -1142,7 +1142,7 @@
     ],
     "rating": 7.69,
     "chapter_count": 20,
-    "total_views": 218,
+    "total_views": 227,
     "isTrending": false,
     "latest_release_date": "2026-08-03T16:14:51+07:00",
     "next_update": null,
@@ -1160,7 +1160,7 @@
         "title": "Ch. 15.2",
         "unlockDate": "2026-08-18T09:14:51.000Z",
         "isLocked": false,
-        "views": 8
+        "views": 9
       },
       {
         "chapter_number": 15.1,
@@ -1173,7 +1173,7 @@
         "title": "Ch. 15.1",
         "unlockDate": "2026-08-03T16:08:03.000Z",
         "isLocked": false,
-        "views": 17
+        "views": 18
       },
       {
         "chapter_number": 14.2,
@@ -1186,7 +1186,7 @@
         "title": "Ch. 14.2",
         "unlockDate": "2026-07-20T11:20:01.000Z",
         "isLocked": false,
-        "views": 21
+        "views": 22
       }
     ]
   },
@@ -1281,7 +1281,7 @@
     ],
     "rating": 8.38,
     "chapter_count": 19,
-    "total_views": 111,
+    "total_views": 112,
     "isTrending": false,
     "latest_release_date": "2026-07-30T20:01:44+07:00",
     "next_update": null,
@@ -1350,7 +1350,7 @@
     ],
     "rating": 6.8,
     "chapter_count": 17,
-    "total_views": 219,
+    "total_views": 222,
     "isTrending": false,
     "latest_release_date": "2026-07-27T22:52:51+07:00",
     "next_update": null,
@@ -1420,7 +1420,7 @@
     ],
     "rating": 7.78,
     "chapter_count": 5,
-    "total_views": 70,
+    "total_views": 76,
     "isTrending": false,
     "latest_release_date": "2026-07-24T13:49:29+07:00",
     "next_update": null,
@@ -1438,7 +1438,7 @@
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 15
+        "views": 17
       },
       {
         "chapter_number": 4,
@@ -1451,7 +1451,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 9
       },
       {
         "chapter_number": 3,
@@ -1464,7 +1464,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 5
       }
     ]
   },
@@ -1924,7 +1924,7 @@
     ],
     "rating": 8.2,
     "chapter_count": 20,
-    "total_views": 31,
+    "total_views": 32,
     "isTrending": false,
     "latest_release_date": "2026-06-20T14:53:29+07:00",
     "next_update": null,
@@ -2059,9 +2059,9 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 8.26,
+    "rating": 8.27,
     "chapter_count": 6,
-    "total_views": 29,
+    "total_views": 32,
     "isTrending": false,
     "latest_release_date": "2026-06-18T18:38:29+07:00",
     "next_update": null,
@@ -2185,7 +2185,7 @@
     ],
     "rating": 8.89,
     "chapter_count": 13,
-    "total_views": 24,
+    "total_views": 27,
     "isTrending": false,
     "latest_release_date": "2026-06-14T15:10:34+07:00",
     "next_update": null,
@@ -2254,7 +2254,7 @@
     ],
     "rating": 8.64,
     "chapter_count": 25,
-    "total_views": 52,
+    "total_views": 53,
     "isTrending": false,
     "latest_release_date": "2026-06-13T20:30:05+07:00",
     "next_update": null,
@@ -2389,7 +2389,7 @@
     ],
     "rating": 8.29,
     "chapter_count": 95,
-    "total_views": 11,
+    "total_views": 13,
     "isTrending": false,
     "latest_release_date": "2019-09-05T00:00:00+07:00",
     "next_update": null,

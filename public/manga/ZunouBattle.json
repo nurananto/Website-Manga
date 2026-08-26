@@ -36,12 +36,12 @@
     "6.1": 47,
     "6.3": 52,
     "6.2": 51,
-    "7.1": 55,
-    "7.2": 32,
-    "8.1": 9,
-    "8.2": 13
+    "7.1": 56,
+    "7.2": 34,
+    "8.1": 10,
+    "8.2": 14
   },
-  "total_views": 612,
+  "total_views": 620,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -56,7 +56,7 @@
     }
   ],
   "cover_version": 4,
-  "detail_views": 226,
+  "detail_views": 229,
   "notif_image": "page1",
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
   "rating": 8.06,
@@ -79,7 +79,7 @@
       "title": "Ch. 8.2",
       "unlockDate": "2026-09-29T17:00:00.000Z",
       "isLocked": true,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 8.1,
@@ -92,7 +92,7 @@
       "title": "Ch. 8.1",
       "unlockDate": "2026-09-16T17:00:00.000Z",
       "isLocked": true,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 7.2,
@@ -104,7 +104,7 @@
       "title": "Ch. 7.2",
       "unlockDate": "2026-08-19T17:00:00.000Z",
       "isLocked": false,
-      "views": 32
+      "views": 34
     },
     {
       "chapter_number": 7.1,
@@ -117,7 +117,7 @@
       "title": "Ch. 7.1",
       "unlockDate": "2026-08-05T12:49:50.000Z",
       "isLocked": false,
-      "views": 55
+      "views": 56
     },
     {
       "chapter_number": 6.3,
