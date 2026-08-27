@@ -1,5 +1,77 @@
 [
   {
+    "id": "Seishun",
+    "title": "Seishun Matching Appli",
+    "description": "Di HP Yuukei Nagino, seorang anak SMA yang udah menyerah sama masa muda, tiba-tiba terpasang sebuah aplikasi misterius. Nama aplikasinya adalah AOHAKO,Aplikasi itu bakal ngasih hadiah kalau kita menyelesaikan misi-misi buat menjalani 'masa muda yang seharusnya' bareng pasangan yang terpilih. Dan…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 8.33,
+    "chapter_count": 4,
+    "total_views": 58,
+    "isTrending": true,
+    "latest_release_date": "2026-08-27T19:12:42+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 4,
+        "lock_hours": 0,
+        "pages": 24,
+        "notif_image": "page1",
+        "r2_folder": 4,
+        "id": "Seishun-ch-4",
+        "r2_prefix": "manga/Seishun/4/",
+        "title": "Ch. 4",
+        "release_date": "2026-08-27T19:12:42+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 3,
+        "lock_hours": 0,
+        "pages": 25,
+        "notif_image": "22",
+        "release_date": "2026-08-24T23:17:11+07:00",
+        "r2_folder": 3,
+        "id": "Seishun-ch-3",
+        "r2_prefix": "manga/Seishun/3/",
+        "title": "Ch. 3",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 9
+      },
+      {
+        "chapter_number": 2,
+        "lock_hours": 0,
+        "pages": 24,
+        "notif_image": "2",
+        "release_date": "2026-08-24T20:39:47+07:00",
+        "r2_folder": 2,
+        "id": "Seishun-ch-2",
+        "r2_prefix": "manga/Seishun/2/",
+        "title": "Ch. 2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 12
+      }
+    ]
+  },
+  {
     "id": "ShokeiFlag",
     "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
     "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
@@ -34,11 +106,11 @@
         "lock_hours": 0,
         "pages": 12,
         "notif_image": "12",
+        "release_date": "2026-08-27T09:34:05+07:00",
         "r2_folder": 4.3,
         "id": "ShokeiFlag-ch-4.3",
         "r2_prefix": "manga/ShokeiFlag/4.3/",
         "title": "Ch. 4.3",
-        "release_date": "2026-08-27T09:34:05+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -293,7 +365,7 @@
     "rating": 7.79,
     "chapter_count": 20,
     "total_views": 227,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-25T11:22:09+07:00",
     "next_update": null,
     "tamat_at_chapter": 18.2,
@@ -338,78 +410,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 29
-      }
-    ]
-  },
-  {
-    "id": "Seishun",
-    "title": "Seishun Matching Appli",
-    "description": "Di HP Yuukei Nagino, seorang anak SMA yang udah menyerah sama masa muda, tiba-tiba terpasang sebuah aplikasi misterius. Nama aplikasinya adalah AOHAKO,Aplikasi itu bakal ngasih hadiah kalau kita menyelesaikan misi-misi buat menjalani 'masa muda yang seharusnya' bareng pasangan yang terpilih. Dan…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 8.33,
-    "chapter_count": 3,
-    "total_views": 58,
-    "isTrending": false,
-    "latest_release_date": "2026-08-24T23:17:11+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 3,
-        "lock_hours": 0,
-        "pages": 25,
-        "notif_image": "22",
-        "release_date": "2026-08-24T23:17:11+07:00",
-        "r2_folder": 3,
-        "id": "Seishun-ch-3",
-        "r2_prefix": "manga/Seishun/3/",
-        "title": "Ch. 3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 9
-      },
-      {
-        "chapter_number": 2,
-        "lock_hours": 0,
-        "pages": 24,
-        "notif_image": "2",
-        "release_date": "2026-08-24T20:39:47+07:00",
-        "r2_folder": 2,
-        "id": "Seishun-ch-2",
-        "r2_prefix": "manga/Seishun/2/",
-        "title": "Ch. 2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 12
-      },
-      {
-        "chapter_number": 1,
-        "lock_hours": 0,
-        "pages": 42,
-        "notif_image": "3",
-        "release_date": "2026-08-24T00:15:13+07:00",
-        "r2_folder": 1,
-        "id": "Seishun-ch-1",
-        "r2_prefix": "manga/Seishun/1/",
-        "title": "Ch. 1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 19
       }
     ]
   },
