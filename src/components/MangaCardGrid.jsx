@@ -15,13 +15,33 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
   const now = nowTimestamp();
 
   const isOneshot = manga.status === 'Oneshot';
+  const isEnded = manga.status === 'Tamat' || isOneshot;
+  const isHiatus = manga.status === 'Hiatus';
+  const isFinished = isEnded || isHiatus;
   const latestReleaseAge = manga.latest_release_date ? now - new Date(manga.latest_release_date).getTime() : NaN;
   const isMangaNew = Number.isFinite(latestReleaseAge) && latestReleaseAge >= 0 && latestReleaseAge < 24 * 60 * 60 * 1000;
 
   return (
     <div className="flex h-full flex-col gap-1.5 sm:gap-2">
-      {/* Box 1: cover + judul */}
-      <div className="flex flex-col bg-surface-container rounded-xl overflow-hidden group border border-transparent hover:border-primary/20 shadow-md transition-colors">
+      {/* Box 1: cover + judul — glow "ada update" & border status manga
+          (lihat MangaCard.jsx) ditaruh DI SINI (bukan cuma di cover) supaya
+          gak crash dgn layout grid yg cover-nya mepet ujung box.
+          Wrapper LUAR tanpa overflow-hidden — ring glow ditaruh sbg sibling
+          box (bukan child-nya yang overflow-hidden) supaya pas scale-up dia
+          bisa nongol MELEBIHI tepi border, bukan kepotong di dalam. */}
+      <div className="relative">
+      <div className={`flex flex-col bg-surface-container rounded-xl overflow-hidden group shadow-md transition-colors ${
+        // "Ada update baru" (isMangaNew) menang duluan drpd status — glow
+        // doang kurang kelihatan, jadi ditambah border hijau solid senada
+        // (emerald-500, sama dgn warna .cover-new-glow-ring).
+        isMangaNew
+          ? 'border-[2.5px] border-emerald-500/70'
+          : isEnded
+          ? 'border-[2.5px] border-red-500/70'
+          : isHiatus
+          ? 'border-[2.5px] border-zinc-400/70 dark:border-zinc-500/70'
+          : 'border border-transparent hover:border-primary/20'
+      }`}>
         {/* Cover — poster penuh, rasio 2:3 (lihat catatan riset rasio cover di MangaCard.jsx) */}
         <a
           href={`/${manga.id}/`}
@@ -38,8 +58,21 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
             decoding={coverPriority ? 'sync' : 'async'}
             className="h-full w-full object-cover bg-surface-container-high"
           />
-          {isMangaNew && (
-            <span aria-hidden="true" className="cover-new-glow-ring pointer-events-none absolute inset-0" />
+          {/* Penanda status di pojok cover — pengganti badge END/Hiatus yang di
+              mode list nempel di chapter row (grid gak punya chapter row di
+              cover ini). "Menyatu" dgn border kartu: warna sama (red-500 /
+              zinc-400) & rounded-bl-lg dipotong pas oleh overflow-hidden Box 1
+              di corner kanan-atas. Ukuran diskalakan turun ke breakpoint
+              terkecil (mobile 3 kolom) biar gak melebihi lebar cover sempit. */}
+          {(isEnded || isHiatus) && (
+            <span
+              aria-hidden="true"
+              className={`absolute top-0 right-0 px-1 py-0.5 sm:px-1.5 md:px-2 md:py-1 rounded-bl-lg font-label-sm text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black uppercase tracking-wide whitespace-nowrap text-white ${
+                isEnded ? 'bg-red-500' : 'bg-zinc-400 dark:bg-zinc-500'
+              }`}
+            >
+              {isEnded ? 'End' : 'Hiatus'}
+            </span>
           )}
         </a>
 
@@ -52,6 +85,11 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
             {manga.title}
           </h3>
         </a>
+      </div>
+
+      {isMangaNew && (
+        <span aria-hidden="true" className="cover-new-glow-ring pointer-events-none absolute inset-0 rounded-xl" />
+      )}
       </div>
 
       {/* Chapter terbaru — tiap chapter box SENDIRI-SENDIRI (bukan digabung jadi
@@ -67,7 +105,7 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
             aria-hidden="true"
             className="invisible flex w-full items-center justify-between gap-1 rounded-lg border border-transparent p-1.5 sm:p-2"
           >
-            <span className="font-body-md text-sm md:text-base lg:text-lg font-bold">.</span>
+            <span className="font-body-md text-xs sm:text-sm md:text-base lg:text-lg font-bold">.</span>
           </div>
         );
         const accessLevel = chapterAccessLevel(ch, now);
@@ -80,16 +118,36 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
           : (ch.title.includes(':') ? ch.title.split(':')[0] : ch.title);
         const isRead = readChapters.has(ch.id);
 
+        // Chapter yang jadi "penanda" tamat/hiatus (badge END/Hiatus di mode
+        // list — lihat showStatusBadge di MangaCard.jsx). Grid gak punya
+        // badge di sini, jadi diganti border berwarna di chapter box-nya.
+        const targetChapter = manga.status === 'Tamat'
+          ? manga.tamat_at_chapter
+          : isOneshot
+          ? ch.chapter_number
+          : manga.hiatus_at_chapter;
+        const showStatusBadge = !isUp && isFinished && (
+          isOneshot ||
+          (targetChapter != null && String(ch.chapter_number) === String(targetChapter))
+        );
+
         return (
           <button
             type="button"
             key={ch.id}
             onClick={(e) => { e.stopPropagation(); onReadChapter(ch, manga.title, manga); }}
-            className="flex w-full min-w-0 items-center justify-between gap-1 text-left cursor-pointer group/ch bg-surface-container rounded-lg border border-transparent hover:border-primary/20 shadow-md transition-colors p-1.5 sm:p-2"
+            className={`flex w-full min-w-0 items-center justify-between gap-0.5 sm:gap-1 text-left cursor-pointer group/ch bg-surface-container rounded-lg shadow-md transition-colors p-1.5 sm:p-2 ${
+              showStatusBadge
+                ? (isEnded ? 'border-2 border-red-500/70' : 'border-2 border-zinc-400/70 dark:border-zinc-500/70')
+                : 'border border-transparent hover:border-primary/20'
+            }`}
           >
-            <span className="flex min-w-0 items-center gap-1">
-              {showAccessGate && <Lock className="h-3.5 w-3.5 shrink-0 text-amber-600 dark:text-amber-300" />}
-              <span className={`font-body-md text-sm md:text-base lg:text-lg font-bold truncate transition-all ${isRead ? 'opacity-70' : ''} ${
+            <span className="flex min-w-0 items-center gap-0.5 sm:gap-1">
+              {showAccessGate && <Lock className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 text-amber-600 dark:text-amber-300" />}
+              {/* Font row chapter 1 langkah lebih kecil di base (3 kolom mobile
+                  sempit banget) drpd MangaCard list, biar "Ch. X" gak ketutupan
+                  badge NEW + tanggal — md/lg tetap sama dgn list. */}
+              <span className={`font-body-md text-xs sm:text-sm md:text-base lg:text-lg font-bold truncate transition-all ${isRead ? 'opacity-70' : ''} ${
                 showAccessGate
                   ? 'text-amber-800 dark:text-amber-300'
                   : 'text-on-surface-variant group-hover/ch:text-primary'
@@ -97,17 +155,39 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
                 {chapterTitle}
               </span>
               {isUp && (
-                <span className="badge-new-glow relative bg-emerald-700 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
+                <span className="badge-new-glow relative bg-emerald-700 text-white ring-1 ring-emerald-300/70 px-1 py-0.5 sm:px-1.5 rounded font-label-sm text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
                   NEW
                 </span>
               )}
             </span>
-            <span className={`font-label-sm text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0 transition-opacity ${isRead ? 'opacity-80' : ''}`}>
+            <span className={`font-label-sm text-[10px] sm:text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0 transition-opacity ${isRead ? 'opacity-80' : ''}`}>
               {ch.date || timeAgoShort(ch.release_date)}
             </span>
           </button>
         );
       })}
+    </div>
+  );
+}
+
+// Placeholder invisible utk slot kosong di halaman terakhir pagination —
+// strukturnya mirror MangaCardGrid (gap/padding/ukuran font sama persis) biar
+// tingginya ngepas kartu asli. Tanpa ini, halaman terakhir yang kurang penuh
+// jadi lebih pendek dan bikin baris pagination di bawahnya "ketarik naik".
+export function MangaCardGridPlaceholder() {
+  return (
+    <div aria-hidden="true" className="invisible flex h-full flex-col gap-1.5 sm:gap-2">
+      <div className="flex flex-col rounded-xl overflow-hidden">
+        <div className="w-full aspect-[2/3] shrink-0" />
+        <div className="p-2 sm:p-2.5">
+          <div className="text-sm md:text-base lg:text-lg font-black leading-tight min-h-[2.5em]">.</div>
+        </div>
+      </div>
+      {[0, 1].map((idx) => (
+        <div key={idx} className="rounded-lg p-1.5 sm:p-2">
+          <span className="font-body-md text-xs sm:text-sm md:text-base lg:text-lg font-bold">.</span>
+        </div>
+      ))}
     </div>
   );
 }

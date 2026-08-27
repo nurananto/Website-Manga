@@ -11,7 +11,7 @@ import ResponsiveCover from './components/ResponsiveCover';
 import { Sparkles, RotateCcw, Search, CheckCircle, ArrowRight, ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight, LayoutGrid, List } from 'lucide-react';
 import { coverUrlForWidth, timeAgo } from './utils';
 import { HomepageHeroSkeleton, MangaCardSkeleton, MangaCardGridSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
-import MangaCardGrid from './components/MangaCardGrid';
+import MangaCardGrid, { MangaCardGridPlaceholder } from './components/MangaCardGrid';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
 import { clearCachedSession } from './lib/session';
@@ -94,6 +94,26 @@ function takePrefetch(type, slug) {
   delete window.__PREFETCH__;
   if (type === 'index') delete window.__INLINE_MANGA_INDEX__;
   return pf.promise;
+}
+
+// Kolom grid katalog mengikuti breakpoint Tailwind DEFAULT (sm 640 / md 768 /
+// lg 1024 / xl 1280) — HARUS sinkron dengan className
+// "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6" di
+// render katalog. itemsPerPage mode grid dihitung dari sini (kolom × baris)
+// supaya selalu kelipatan pas jumlah kolom yang BENAR-BENAR tampil di layar —
+// jadi baris terakhir yang bolong cuma bisa muncul di halaman paling akhir,
+// bukan di tengah pagination.
+// Minimum 3 kolom di mobile (bukan 2) — 2 kolom bikin cover kegedean di layar
+// sempit. Skala naik +1 tiap breakpoint, sama seperti sebelumnya.
+const GRID_ROWS_PER_PAGE = 3;
+function computeGridColumns() {
+  if (typeof window === 'undefined') return 3;
+  const w = window.innerWidth;
+  if (w >= 1280) return 7;
+  if (w >= 1024) return 6;
+  if (w >= 768) return 5;
+  if (w >= 640) return 4;
+  return 3;
 }
 
 // ── Riwayat Baca ──────────────────────────────────────────────
@@ -347,6 +367,19 @@ export default function App() {
   useEffect(() => {
     try { localStorage.setItem('mf_view_mode', viewMode); } catch {}
   }, [viewMode]);
+  // Jumlah kolom grid saat ini — dipakai utk hitung itemsPerPage mode grid
+  // (lihat computeGridColumns). matchMedia dipasang per breakpoint biar cuma
+  // re-render pas melewati ambang batas, bukan tiap piksel resize.
+  const [gridColumns, setGridColumns] = useState(computeGridColumns);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mqls = [640, 768, 1024, 1280].map((bp) => window.matchMedia(`(min-width: ${bp}px)`));
+    const handler = () => setGridColumns(computeGridColumns());
+    mqls.forEach((mql) => mql.addEventListener('change', handler));
+    return () => mqls.forEach((mql) => mql.removeEventListener('change', handler));
+  }, []);
+  const gridItemsPerPage = gridColumns * GRID_ROWS_PER_PAGE;
+  const effectiveItemsPerPage = viewMode === 'grid' ? gridItemsPerPage : itemsPerPage;
   const [isSupporter, setIsSupporter] = useState(false);
   const [supporterUntil, setSupporterUntil] = useState(null);
   const isSupporterRef = useRef(false);
@@ -952,11 +985,17 @@ export default function App() {
     return list;
   }, [filteredManga, sortBy, sortDir]);
 
-  const totalPages = Math.ceil(sortedManga.length / itemsPerPage);
+  const totalPages = Math.ceil(sortedManga.length / effectiveItemsPerPage);
   const paginatedManga = useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    return sortedManga.slice(startIndex, startIndex + itemsPerPage);
-  }, [sortedManga, currentPage, itemsPerPage]);
+    const startIndex = (currentPage - 1) * effectiveItemsPerPage;
+    return sortedManga.slice(startIndex, startIndex + effectiveItemsPerPage);
+  }, [sortedManga, currentPage, effectiveItemsPerPage]);
+
+  // itemsPerPage mode grid ikut breakpoint layar (bukan fix 6/12 spt list) —
+  // begitu itu berubah (ganti mode, atau breakpoint dilewati), currentPage bisa
+  // jadi > totalPages baru. Balikin ke halaman terakhir yang valid — pola
+  // "derive state saat render" (lihat ResponsiveCover.jsx), bukan efek terpisah.
+  if (currentPage > totalPages && totalPages > 0) setCurrentPage(totalPages);
 
   // Hangatkan cover halaman sebelum/sesudah halaman aktif agar teks dan cover
   // berganti bersamaan ketika pagination ditekan.
@@ -965,8 +1004,8 @@ export default function App() {
     const adjacentPages = [currentPage - 1, currentPage + 1]
       .filter((page) => page >= 1 && page <= totalPages);
     for (const page of adjacentPages) {
-      const offset = (page - 1) * itemsPerPage;
-      for (const manga of sortedManga.slice(offset, offset + itemsPerPage)) {
+      const offset = (page - 1) * effectiveItemsPerPage;
+      for (const manga of sortedManga.slice(offset, offset + effectiveItemsPerPage)) {
         const url = coverUrlForWidth(manga, window.innerWidth);
         if (!url) continue;
         const image = new Image();
@@ -978,7 +1017,7 @@ export default function App() {
         image.decode?.().catch(() => { /* URL rusak / dibatalkan — abaikan */ });
       }
     }
-  }, [currentPage, sortedManga, itemsPerPage, totalPages]);
+  }, [currentPage, sortedManga, effectiveItemsPerPage, totalPages]);
 
   // Auto-recovery race pasca-login: begitu status Supporter terkonfirmasi (me-fetch
   // selesai), kalau modal locked masih nyangkut untuk chapter tertunda → tutup &
@@ -1305,10 +1344,10 @@ export default function App() {
 
                   {isLoading ? (
                     <div className={viewMode === 'grid'
-                      ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4'
+                      ? 'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4'
                       : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4'
                     }>
-                      {Array.from({ length: itemsPerPage }).map((_, i) => (
+                      {Array.from({ length: effectiveItemsPerPage }).map((_, i) => (
                         viewMode === 'grid' ? <MangaCardGridSkeleton key={i} /> : <MangaCardSkeleton key={i} />
                       ))}
                     </div>
@@ -1322,18 +1361,20 @@ export default function App() {
                     <div className="flex flex-col gap-4">
                       {/* Key per manga mencegah cover lama tertahan ketika teks kartu sudah
                           berubah. Cover halaman sebelum/sesudahnya sudah dipreload.
-                          Mode grid TIDAK diberi slot placeholder invisible seperti mode
-                          list — tinggi kartu poster sudah intrinsik (ikut isi judul),
-                          jadi baris terakhir yang kurang penuh tidak masalah dibiarkan. */}
+                          Slot kosong di halaman terakhir (kurang dari effectiveItemsPerPage)
+                          tetap diisi placeholder invisible SEUKURAN kartu asli — supaya
+                          tinggi halaman terakhir konsisten dan pagination di bawahnya tidak
+                          "ketarik naik", cukup menyisakan ruang kosong. */}
                       <div className={viewMode === 'grid'
-                        ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 content-start items-start gap-3 sm:gap-4'
+                        ? 'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 content-start items-start gap-3 sm:gap-4'
                         : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start items-start gap-4'
                       }>
-                        {(viewMode === 'grid' ? paginatedManga : Array.from({ length: totalPages > 1 ? itemsPerPage : paginatedManga.length }))
-                          .map((item, i) => {
-                          const manga = viewMode === 'grid' ? item : paginatedManga[i];
+                        {Array.from({ length: totalPages > 1 ? effectiveItemsPerPage : paginatedManga.length }).map((_, i) => {
+                          const manga = paginatedManga[i];
                           if (!manga) {
-                            return (
+                            return viewMode === 'grid' ? (
+                              <MangaCardGridPlaceholder key={`empty-${i}`} />
+                            ) : (
                               <div
                                 key={`empty-${i}`}
                                 aria-hidden="true"

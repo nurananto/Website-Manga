@@ -18,11 +18,30 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
 
   const isOneshot = manga.status === 'Oneshot';
   const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
+  const isEnded = manga.status === 'Tamat' || isOneshot;
+  const isHiatus = manga.status === 'Hiatus';
   const latestReleaseAge = manga.latest_release_date ? now - new Date(manga.latest_release_date).getTime() : NaN;
   const isMangaNew = Number.isFinite(latestReleaseAge) && latestReleaseAge >= 0 && latestReleaseAge < 24 * 60 * 60 * 1000;
 
   return (
-    <div className="flex h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px] bg-surface-container rounded-xl overflow-hidden group border border-transparent hover:border-primary/20 shadow-md transition-colors">
+    // Wrapper LUAR tanpa overflow-hidden — ring "ada update" ditaruh di sini
+    // (sibling kartu, bukan child-nya) supaya pas scale-up dia bisa nongol
+    // MELEBIHI tepi border, bukan kepotong overflow-hidden kartu di dalamnya.
+    <div className="relative h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px]">
+      <div className={`flex h-full bg-surface-container rounded-xl overflow-hidden group shadow-md transition-colors ${
+      // Border status manga — lebih tebal (border-2) biar kebaca sekilas tanpa
+      // perlu buka detail: Tamat/Oneshot (END) merah, Hiatus abu-abu. Ongoing
+      // tetap netral seperti sebelumnya. "Ada update baru" (isMangaNew) menang
+      // duluan — glow-nya doang kurang kelihatan, jadi ditambah border hijau
+      // solid senada (emerald-500, sama dgn warna .cover-new-glow-ring).
+      isMangaNew
+        ? 'border-[2.5px] border-emerald-500/70'
+        : isEnded
+        ? 'border-[2.5px] border-red-500/70'
+        : isHiatus
+        ? 'border-[2.5px] border-zinc-400/70 dark:border-zinc-500/70'
+        : 'border border-transparent hover:border-primary/20'
+    }`}>
       {/* Cover — link crawlable ke detail (SPA: preventDefault + navigate) */}
       <a
         href={`/${manga.id}/`}
@@ -46,13 +65,6 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
               decoding={coverPriority ? 'sync' : 'async'}
               className="h-full w-full object-cover rounded-lg bg-surface-container-high shadow-[0_2px_6px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.5)] border border-outline-variant hover:scale-105 transition-all duration-500"
             />
-          {/* Ring "ada update" — elemen terpisah (bukan class di <img>): pseudo-
-              element ::after tidak dirender di elemen <img> (replaced element),
-              jadi ring-nya sibling <span> sendiri yang di-scale+opacity-in,
-              lihat .cover-new-glow-ring di index.css. */}
-          {isMangaNew && (
-            <span aria-hidden="true" className="cover-new-glow-ring pointer-events-none absolute inset-0 rounded-lg" />
-          )}
         </div>
       </a>
 
@@ -185,6 +197,17 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
           })}
         </div>
       </div>
+    </div>
+
+      {/* Ring "ada update" — melingkupi 1 KARTU PENUH (bukan cuma cover),
+          sibling kartu (bukan child-nya yang overflow-hidden) supaya glow-nya
+          nongol DI LUAR border, bukan kepotong/kegencet di dalam. Elemen
+          terpisah (bukan class di <img>/di outer div) supaya animasi
+          scale+opacity murni compositor, lihat .cover-new-glow-ring di
+          index.css. rounded-xl match radius kartu. */}
+      {isMangaNew && (
+        <span aria-hidden="true" className="cover-new-glow-ring pointer-events-none absolute inset-0 rounded-xl" />
+      )}
     </div>
   );
 }
