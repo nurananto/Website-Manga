@@ -8,9 +8,10 @@ import { loadCoinModals } from './lib/coinModalsLoader';
 import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
 import ResponsiveCover from './components/ResponsiveCover';
-import { Sparkles, RotateCcw, Search, CheckCircle, ArrowRight, ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Sparkles, RotateCcw, Search, CheckCircle, ArrowRight, ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight, LayoutGrid, List } from 'lucide-react';
 import { coverUrlForWidth, timeAgo } from './utils';
-import { HomepageHeroSkeleton, MangaCardSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
+import { HomepageHeroSkeleton, MangaCardSkeleton, MangaCardGridSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
+import MangaCardGrid from './components/MangaCardGrid';
 import { parsePath, navigate } from './router';
 import { getCurrentUser, getAccessToken, logout as authLogout, exchangeLoginCode } from './lib/auth';
 import { clearCachedSession } from './lib/session';
@@ -334,6 +335,18 @@ export default function App() {
   const [itemsPerPage, setItemsPerPage] = useState(() =>
     window.matchMedia('(min-width: 768px)').matches ? 12 : 6
   );
+  // Mode tampilan katalog: 'list' (kartu lebar, 3 chapter) atau 'grid' (poster,
+  // 2 chapter). Pilihan diingat per-device lewat localStorage, mirip pola theme.
+  const [viewMode, setViewMode] = useState(() => {
+    try {
+      const saved = localStorage.getItem('mf_view_mode');
+      if (saved === 'grid' || saved === 'list') return saved;
+    } catch {}
+    return 'grid';
+  });
+  useEffect(() => {
+    try { localStorage.setItem('mf_view_mode', viewMode); } catch {}
+  }, [viewMode]);
   const [isSupporter, setIsSupporter] = useState(false);
   const [supporterUntil, setSupporterUntil] = useState(null);
   const isSupporterRef = useRef(false);
@@ -1197,6 +1210,33 @@ export default function App() {
                       </h2>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
+                      {/* Segmented control grid/list — bukan 1 tombol yg ganti ikon pas
+                          diklik, tapi 2 ikon berdampingan, yang aktif di-highlight. */}
+                      <div className="flex items-center rounded-2xl border border-outline-variant p-0.5 gap-0.5">
+                        <button
+                          onClick={() => setViewMode('grid')}
+                          className={`h-8 w-8 flex items-center justify-center rounded-xl transition-all active:scale-95 cursor-pointer ${
+                            viewMode === 'grid'
+                              ? 'bg-primary text-on-primary shadow-sm'
+                              : 'text-outline hover:text-primary hover:bg-surface-container-high'
+                          }`}
+                          title="Tampilan grid"
+                        >
+                          <LayoutGrid className="w-4.5 h-4.5" />
+                        </button>
+                        <button
+                          onClick={() => setViewMode('list')}
+                          className={`h-8 w-8 flex items-center justify-center rounded-xl transition-all active:scale-95 cursor-pointer ${
+                            viewMode === 'list'
+                              ? 'bg-primary text-on-primary shadow-sm'
+                              : 'text-outline hover:text-primary hover:bg-surface-container-high'
+                          }`}
+                          title="Tampilan list"
+                        >
+                          <List className="w-4.5 h-4.5" />
+                        </button>
+                      </div>
+
                       <button
                         onClick={() => setIsSearchOpen(!isSearchOpen)}
                         className={`h-9 w-9 flex items-center justify-center rounded-2xl border transition-all active:scale-95 cursor-pointer ${
@@ -1264,8 +1304,13 @@ export default function App() {
                   )}
 
                   {isLoading ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                      {Array.from({ length: itemsPerPage }).map((_, i) => <MangaCardSkeleton key={i} />)}
+                    <div className={viewMode === 'grid'
+                      ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4'
+                      : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4'
+                    }>
+                      {Array.from({ length: itemsPerPage }).map((_, i) => (
+                        viewMode === 'grid' ? <MangaCardGridSkeleton key={i} /> : <MangaCardSkeleton key={i} />
+                      ))}
                     </div>
                   ) : filteredManga.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-20 text-outline">
@@ -1276,10 +1321,17 @@ export default function App() {
                   ) : (
                     <div className="flex flex-col gap-4">
                       {/* Key per manga mencegah cover lama tertahan ketika teks kartu sudah
-                          berubah. Cover halaman sebelum/sesudahnya sudah dipreload. */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start items-start gap-4">
-                        {Array.from({ length: totalPages > 1 ? itemsPerPage : paginatedManga.length }).map((_, i) => {
-                          const manga = paginatedManga[i];
+                          berubah. Cover halaman sebelum/sesudahnya sudah dipreload.
+                          Mode grid TIDAK diberi slot placeholder invisible seperti mode
+                          list — tinggi kartu poster sudah intrinsik (ikut isi judul),
+                          jadi baris terakhir yang kurang penuh tidak masalah dibiarkan. */}
+                      <div className={viewMode === 'grid'
+                        ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 content-start items-start gap-3 sm:gap-4'
+                        : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start items-start gap-4'
+                      }>
+                        {(viewMode === 'grid' ? paginatedManga : Array.from({ length: totalPages > 1 ? itemsPerPage : paginatedManga.length }))
+                          .map((item, i) => {
+                          const manga = viewMode === 'grid' ? item : paginatedManga[i];
                           if (!manga) {
                             return (
                               <div
@@ -1289,9 +1341,10 @@ export default function App() {
                               />
                             );
                           }
+                          const CardComponent = viewMode === 'grid' ? MangaCardGrid : MangaCard;
                           return (
                             <div key={manga.id}>
-                              <MangaCard
+                              <CardComponent
                                 manga={manga}
                                 coverPriority={hasPaginated}
                                 isLoggedIn={isLoggedIn}

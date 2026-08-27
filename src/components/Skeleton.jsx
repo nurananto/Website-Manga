@@ -24,6 +24,24 @@ export function MangaCardSkeleton() {
   );
 }
 
+// Versi grid dari MangaCardSkeleton — cover poster 2:3 di atas, judul + 2
+// baris chapter di bawahnya (bandingkan dgn MangaCardGrid.jsx).
+export function MangaCardGridSkeleton() {
+  return (
+    <div className="flex flex-col bg-surface-container rounded-xl overflow-hidden border border-transparent">
+      <div className="w-full aspect-[2/3] bg-surface-container-high animate-pulse" />
+      <div className="flex flex-col gap-1.5 p-2 sm:p-2.5">
+        <Skeleton className="h-3.5 sm:h-4 w-full" />
+        <Skeleton className="h-3.5 sm:h-4 w-2/3" />
+        <div className="flex flex-col gap-1 mt-1">
+          <Skeleton className="h-3 w-full rounded" />
+          <Skeleton className="h-3 w-full rounded" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Placeholder halaman utama harus mengikuti empat sibling yang muncul setelah
 // katalog selesai dimuat. Jika semuanya digabung menjadi satu blok pendek,
 // Featured + banner akan mendorong List Bacaan dan menghasilkan CLS besar.
