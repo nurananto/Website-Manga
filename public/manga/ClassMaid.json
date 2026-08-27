@@ -26,11 +26,17 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 1,
-    "93": 1,
-    "94": 1,
-    "95": 1
+    "87": 1,
+    "88": 1,
+    "89": 1,
+    "90": 1,
+    "91": 1,
+    "92": 1,
+    "93": 2,
+    "94": 2,
+    "95": 2
   },
-  "total_views": 14,
+  "total_views": 24,
   "mangadex_cover": "556f9b48-02b6-42c8-ae8c-02f3c92870e3.png",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -55,7 +61,7 @@
       }
     }
   ],
-  "detail_views": 10,
+  "detail_views": 11,
   "mangadex_id": "57a75b25-4cc6-45ac-ab1a-6670a271a6b5",
   "rating": 8.29,
   "next_update": null,
@@ -78,7 +84,7 @@
       "title": "Ch. 95",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 94,
@@ -92,7 +98,7 @@
       "title": "Ch. 94",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 93,
@@ -106,7 +112,7 @@
       "title": "Ch. 93",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 92,
@@ -120,7 +126,7 @@
       "title": "Ch. 92",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 91,
@@ -134,7 +140,7 @@
       "title": "Ch. 91",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 90,
@@ -148,7 +154,7 @@
       "title": "Ch. 90",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 89,
@@ -162,7 +168,7 @@
       "title": "Ch. 89",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 88,
@@ -176,7 +182,7 @@
       "title": "Ch. 88",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 87,
@@ -190,7 +196,7 @@
       "title": "Ch. 87",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 86,
