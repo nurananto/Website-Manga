@@ -1,5 +1,77 @@
 [
   {
+    "id": "Madogiwa",
+    "title": "Madogiwa Henshuu to Baka ni Sareta Ore ga, Futago JK to Doukyo Suru Koto ni Natta",
+    "description": "'Kalau kamu membiarkan kami menginap... kamu boleh melakukan hal apapun ke kita.' Mitsuhiko Okaya, seorang pria biasa, dikhianati oleh istrinya dan kouhainya di kantor. Di tempat kerja, dia dihina sebagai editor tak berguna dan tenggelam dalam keputusasaan, sampai suatu hari di hadapannya muncul…",
+    "status": "Tamat",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=3",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp?v=3"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Gyaru",
+      "Harem",
+      "Office Workers",
+      "Romance",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 7.37,
+    "chapter_count": 21,
+    "total_views": 374,
+    "isTrending": true,
+    "latest_release_date": "2026-08-27T23:58:08+07:00",
+    "next_update": null,
+    "tamat_at_chapter": 16.2,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 16.2,
+        "pages": 14,
+        "notif_image": "9",
+        "r2_folder": 16.2,
+        "id": "Madogiwa-ch-16.2",
+        "r2_prefix": "manga/Madogiwa/16.2/",
+        "title": "Ch. 16.2",
+        "release_date": "2026-08-27T23:58:08+07:00",
+        "unlockDate": "2026-08-30T17:00:00.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 16.1,
+        "lock_hours": 0,
+        "pages": 13,
+        "notif_image": "7",
+        "release_date": "2026-08-16T18:49:43+07:00",
+        "r2_folder": 16.1,
+        "id": "Madogiwa-ch-16.1",
+        "r2_prefix": "manga/Madogiwa/16.1/",
+        "title": "Ch. 16.1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 40
+      },
+      {
+        "chapter_number": 15.2,
+        "lock_hours": 0,
+        "pages": 12,
+        "release_date": "2026-08-02T11:52:46+07:00",
+        "r2_folder": 15.2,
+        "id": "Madogiwa-ch-15.2",
+        "r2_prefix": "manga/Madogiwa/15.2/",
+        "title": "Ch. 15.2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 32
+      }
+    ]
+  },
+  {
     "id": "Seishun",
     "title": "Seishun Matching Appli",
     "description": "Di HP Yuukei Nagino, seorang anak SMA yang udah menyerah sama masa muda, tiba-tiba terpasang sebuah aplikasi misterius. Nama aplikasinya adalah AOHAKO,Aplikasi itu bakal ngasih hadiah kalau kita menyelesaikan misi-misi buat menjalani 'masa muda yang seharusnya' bareng pasangan yang terpilih. Dan…",
@@ -32,11 +104,11 @@
         "lock_hours": 0,
         "pages": 24,
         "notif_image": "page1",
+        "release_date": "2026-08-27T19:12:42+07:00",
         "r2_folder": 4,
         "id": "Seishun-ch-4",
         "r2_prefix": "manga/Seishun/4/",
         "title": "Ch. 4",
-        "release_date": "2026-08-27T19:12:42+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -307,7 +379,7 @@
     "rating": 10,
     "chapter_count": 2,
     "total_views": 19,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-25T20:27:44+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -760,78 +832,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 12
-      }
-    ]
-  },
-  {
-    "id": "Madogiwa",
-    "title": "Madogiwa Henshuu to Baka ni Sareta Ore ga, Futago JK to Doukyo Suru Koto ni Natta",
-    "description": "'Kalau kamu membiarkan kami menginap... kamu boleh melakukan hal apapun ke kita.' Mitsuhiko Okaya, seorang pria biasa, dikhianati oleh istrinya dan kouhainya di kantor. Di tempat kerja, dia dihina sebagai editor tak berguna dan tenggelam dalam keputusasaan, sampai suatu hari di hadapannya muncul…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=3",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=3",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@tablet.webp?v=3",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp?v=3"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Gyaru",
-      "Harem",
-      "Office Workers",
-      "Romance",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 7.38,
-    "chapter_count": 20,
-    "total_views": 374,
-    "isTrending": false,
-    "latest_release_date": "2026-08-16T18:49:43+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 16.1,
-        "lock_hours": 0,
-        "pages": 13,
-        "notif_image": "7",
-        "release_date": "2026-08-16T18:49:43+07:00",
-        "r2_folder": 16.1,
-        "id": "Madogiwa-ch-16.1",
-        "r2_prefix": "manga/Madogiwa/16.1/",
-        "title": "Ch. 16.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 40
-      },
-      {
-        "chapter_number": 15.2,
-        "lock_hours": 0,
-        "pages": 12,
-        "release_date": "2026-08-02T11:52:46+07:00",
-        "r2_folder": 15.2,
-        "id": "Madogiwa-ch-15.2",
-        "r2_prefix": "manga/Madogiwa/15.2/",
-        "title": "Ch. 15.2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 32
-      },
-      {
-        "chapter_number": 15.1,
-        "lock_hours": 0,
-        "pages": 15,
-        "release_date": "2026-07-26T11:43:43+07:00",
-        "r2_folder": 15.1,
-        "id": "Madogiwa-ch-15.1",
-        "r2_prefix": "manga/Madogiwa/15.1/",
-        "title": "Ch. 15.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 28
       }
     ]
   },
