@@ -66,12 +66,17 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
     // Tamat/Hiatus. Kalau gak ada satu pun, tampilkan tanggal seperti biasa.
     // Icon Lock dipindah dari sebelah judul (kepenuhan/mepet di layar sempit)
     // ke sini — konsisten dgn badge lain yang juga di slot ini. Icon-only
-    // (tanpa teks "Locked") kalau cuma locked doang — tapi chapter TERBARU
-    // yang locked itu kasus umum (chapter early-access buat supporter), jadi
-    // kalau kebetulan locked SEKALIGUS baru rilis, teks "UP!" digabung di
-    // sebelah icon-nya (bukan salah satu doang) biar dua info itu kebaca.
+    // (tanpa teks) kalau cuma locked doang, warna amber — tapi chapter
+    // TERBARU yang locked itu kasus umum (chapter early-access buat
+    // supporter), jadi kalau kebetulan locked SEKALIGUS baru rilis, badge-nya
+    // ikut warna hijau UP! biasa (bukan amber) + teks "UP!", ikon Lock-nya
+    // ikut warna teks (currentColor) jadi otomatis putih. Ukuran box & ikon
+    // tetap sama persis dgn badge UP!/Locked lainnya (classes sizing gak
+    // dibedain per varian).
     const dateBadge = showAccessGate
-      ? { icon: Lock, text: isUp ? 'UP!' : null, className: 'bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-400/60' }
+      ? isUp
+        ? { icon: Lock, text: 'UP!', className: 'bg-emerald-700 text-white' }
+        : { icon: Lock, className: 'bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-400/60' }
       : isUp
       ? { text: 'UP!', className: 'bg-emerald-700 text-white' }
       : showStatusBadge
