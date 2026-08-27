@@ -1,5 +1,79 @@
 [
   {
+    "id": "ShokeiFlag",
+    "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
+    "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@mobile.webp?v=3"
+    },
+    "genres": [
+      "Action",
+      "Adaptation",
+      "Fantasy",
+      "Harem",
+      "Isekai",
+      "Reincarnation",
+      "Romance",
+      "Shounen"
+    ],
+    "rating": 6,
+    "chapter_count": 10,
+    "total_views": 127,
+    "isTrending": true,
+    "latest_release_date": "2026-08-27T09:34:05+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 4.3,
+        "lock_hours": 0,
+        "pages": 12,
+        "notif_image": "12",
+        "r2_folder": 4.3,
+        "id": "ShokeiFlag-ch-4.3",
+        "r2_prefix": "manga/ShokeiFlag/4.3/",
+        "title": "Ch. 4.3",
+        "release_date": "2026-08-27T09:34:05+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 4.2,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "3",
+        "release_date": "2026-08-25T21:32:10+07:00",
+        "r2_folder": 4.2,
+        "id": "ShokeiFlag-ch-4.2",
+        "r2_prefix": "manga/ShokeiFlag/4.2/",
+        "title": "Ch. 4.2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 4
+      },
+      {
+        "chapter_number": 4.1,
+        "lock_hours": 0,
+        "pages": 10,
+        "notif_image": "2",
+        "release_date": "2026-08-21T18:49:42+07:00",
+        "r2_folder": 4.1,
+        "id": "ShokeiFlag-ch-4.1",
+        "r2_prefix": "manga/ShokeiFlag/4.1/",
+        "title": "Ch. 4.1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 11
+      }
+    ]
+  },
+  {
     "id": "Negatte",
     "title": "Negatte mo Nai Tsuihou Go kara no Slow Life? ~Intai Shita Hazu ga Nariyuki de Bishoujo Gyaru no Shishou ni Nattara Naze ka Mechakucha Natsukareta~",
     "description": "Reito Harukaze, yang telah naik hingga ranking tertinggi adventurer, telah pensiun. Saat ia berniat untuk hidup santai dan pensiun, suatu hari seorang gadis gal cantik bernama Karen Hiiragi muncul di hadapannya. 'Hey, onii-san, traktir makan dong!' Mendengar bahwa Karen kesulitan uang, Reito…",
@@ -137,80 +211,6 @@
         "unlockDate": "2026-08-11T16:28:24.000Z",
         "isLocked": false,
         "views": 41
-      }
-    ]
-  },
-  {
-    "id": "ShokeiFlag",
-    "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
-    "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@tablet.webp?v=3",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@mobile.webp?v=3"
-    },
-    "genres": [
-      "Action",
-      "Adaptation",
-      "Fantasy",
-      "Harem",
-      "Isekai",
-      "Reincarnation",
-      "Romance",
-      "Shounen"
-    ],
-    "rating": 6,
-    "chapter_count": 9,
-    "total_views": 127,
-    "isTrending": true,
-    "latest_release_date": "2026-08-25T21:32:10+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 4.2,
-        "lock_hours": 0,
-        "pages": 10,
-        "notif_image": "3",
-        "release_date": "2026-08-25T21:32:10+07:00",
-        "r2_folder": 4.2,
-        "id": "ShokeiFlag-ch-4.2",
-        "r2_prefix": "manga/ShokeiFlag/4.2/",
-        "title": "Ch. 4.2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 4
-      },
-      {
-        "chapter_number": 4.1,
-        "lock_hours": 0,
-        "pages": 10,
-        "notif_image": "2",
-        "release_date": "2026-08-21T18:49:42+07:00",
-        "r2_folder": 4.1,
-        "id": "ShokeiFlag-ch-4.1",
-        "r2_prefix": "manga/ShokeiFlag/4.1/",
-        "title": "Ch. 4.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 11
-      },
-      {
-        "chapter_number": 3.3,
-        "lock_hours": 0,
-        "pages": 10,
-        "notif_image": "5",
-        "release_date": "2026-08-21T09:32:23+07:00",
-        "r2_folder": 3.3,
-        "id": "ShokeiFlag-ch-3.3",
-        "r2_prefix": "manga/ShokeiFlag/3.3/",
-        "title": "Ch. 3.3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 7
       }
     ]
   },
