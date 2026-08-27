@@ -48,7 +48,7 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
           onClick={(e) => { e.preventDefault(); onViewManga(manga); }}
           className="block p-2 sm:p-2.5"
         >
-          <h3 className="font-headline-md text-sm md:text-base lg:text-lg font-black leading-tight text-on-surface line-clamp-2 text-justify min-h-[2.5em] hover:text-primary transition-colors cursor-pointer">
+          <h3 className="font-headline-md text-sm md:text-base lg:text-lg font-black leading-tight text-on-surface line-clamp-2 min-h-[2.5em] hover:text-primary transition-colors cursor-pointer">
             {manga.title}
           </h3>
         </a>
