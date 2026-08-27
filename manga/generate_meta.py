@@ -221,6 +221,10 @@ def ask_lock_config():
     yang ditulis di sini cuma placeholder (0), bukan dipakai buat hitung apa-apa
     — dan proses_chapter() sendiri bakal skip nulis field itu sama sekali kalau
     unlock_date ada, biar nggak ambigu di meta.json.
+
+    PENGINGAT: kebijakan saat ini, tanggal buka yang diinput di sini = tanggal
+    buka SEBENARNYA + 1 minggu (lihat public/manga/NOTES.md). Jangan input
+    tanggal buka aslinya mentah-mentah — tambah 7 hari dulu sebelum diketik.
     """
     print()
     print("Kunci chapter ini:")
@@ -233,6 +237,7 @@ def ask_lock_config():
         return {"lock_hours": -1}
 
     if pilih == "3":
+        print("  ⏰  Ingat: tanggal buka = tanggal buka SEBENARNYA + 1 minggu.")
         while True:
             tgl = ask("  Tanggal buka (1-31)")
             bln = ask("  Bulan (1-12)")
