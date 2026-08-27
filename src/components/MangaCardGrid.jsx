@@ -47,7 +47,7 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
           href={`/${manga.id}/`}
           onClick={(e) => { e.preventDefault(); onViewManga(manga); }}
           aria-label={manga.title}
-          className="relative block w-full aspect-[2/3] shrink-0 cursor-pointer overflow-hidden"
+          className="relative block w-full aspect-[0.7/1] shrink-0 cursor-pointer overflow-hidden"
         >
           <ResponsiveCover
             manga={manga}
@@ -58,13 +58,23 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
             decoding={coverPriority ? 'sync' : 'async'}
             className="h-full w-full object-cover bg-surface-container-high"
           />
-          {/* Penanda status di pojok cover — pengganti badge END/Hiatus yang di
-              mode list nempel di chapter row (grid gak punya chapter row di
-              cover ini). "Menyatu" dgn border kartu: warna sama (red-500 /
-              zinc-400) & rounded-bl-lg dipotong pas oleh overflow-hidden Box 1
-              di corner kanan-atas. Ukuran diskalakan turun ke breakpoint
-              terkecil (mobile 3 kolom) biar gak melebihi lebar cover sempit. */}
-          {(isEnded || isHiatus) && (
+          {/* Penanda di pojok cover — gantiin 2 badge yang tadinya nempel di
+              chapter row (mode list) skaligus, karena grid gak punya chapter
+              row di cover ini: "NEW" (ada update <24 jam) menang duluan drpd
+              status Tamat/Hiatus (lebih actionable buat pembaca), status cuma
+              tampil kalau lagi TIDAK ada update baru. "Menyatu" dgn border
+              kartu: warna sama (emerald/red/zinc) & rounded-bl-lg dipotong pas
+              oleh overflow-hidden Box 1 di corner kanan-atas. Ukuran
+              diskalakan turun ke breakpoint terkecil (mobile 3 kolom) biar
+              gak melebihi lebar cover sempit. */}
+          {isMangaNew ? (
+            <span
+              aria-hidden="true"
+              className="absolute top-0 right-0 px-1 py-0.5 sm:px-1.5 md:px-2 md:py-1 rounded-bl-lg font-label-sm text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black uppercase tracking-wide whitespace-nowrap text-white bg-emerald-600"
+            >
+              New
+            </span>
+          ) : (isEnded || isHiatus) && (
             <span
               aria-hidden="true"
               className={`absolute top-0 right-0 px-1 py-0.5 sm:px-1.5 md:px-2 md:py-1 rounded-bl-lg font-label-sm text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black uppercase tracking-wide whitespace-nowrap text-white ${
@@ -136,8 +146,13 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
             type="button"
             key={ch.id}
             onClick={(e) => { e.stopPropagation(); onReadChapter(ch, manga.title, manga); }}
-            className={`flex w-full min-w-0 items-center justify-between gap-0.5 sm:gap-1 text-left cursor-pointer group/ch bg-surface-container rounded-lg shadow-md transition-colors p-1.5 sm:p-2 ${
-              showStatusBadge
+            className={`relative flex w-full min-w-0 items-center justify-between gap-0.5 sm:gap-1 text-left cursor-pointer group/ch bg-surface-container rounded-lg shadow-md transition-colors p-1.5 sm:p-2 ${
+              // Chapter yang baru rilis (<24 jam, badge NEW-nya sekarang di
+              // pojok cover) dikasih border hijau di sini juga — showStatusBadge
+              // otomatis false selama isUp true, jadi gak akan bentrok.
+              isUp
+                ? 'border-2 border-emerald-500/70'
+                : showStatusBadge
                 ? (isEnded ? 'border-2 border-red-500/70' : 'border-2 border-zinc-400/70 dark:border-zinc-500/70')
                 : 'border border-transparent hover:border-primary/20'
             }`}
@@ -154,15 +169,21 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
               }`}>
                 {chapterTitle}
               </span>
-              {isUp && (
-                <span className="badge-new-glow relative bg-emerald-700 text-white ring-1 ring-emerald-300/70 px-1 py-0.5 sm:px-1.5 rounded font-label-sm text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
-                  NEW
-                </span>
-              )}
+              {/* Badge "NEW" sekarang di pojok cover (isMangaNew), bukan di sini
+                  lagi — chapter row di mobile 3 kolom kesempitan buat nampung
+                  nomor chapter + badge + tanggal sekaligus (lihat riwayat
+                  perubahan). */}
             </span>
             <span className={`font-label-sm text-[10px] sm:text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0 transition-opacity ${isRead ? 'opacity-80' : ''}`}>
               {ch.date || timeAgoShort(ch.release_date)}
             </span>
+            {/* Glow senada dgn border hijau chapter baru — sama seperti glow
+                di Box 1 (lihat .cover-new-glow-ring di index.css). Button ini
+                gak overflow-hidden jadi amannya sama: nongol dikit ke gap,
+                gak kepotong. */}
+            {isUp && (
+              <span aria-hidden="true" className="cover-new-glow-ring pointer-events-none absolute inset-0 rounded-lg" />
+            )}
           </button>
         );
       })}
@@ -178,7 +199,7 @@ export function MangaCardGridPlaceholder() {
   return (
     <div aria-hidden="true" className="invisible flex h-full flex-col gap-1.5 sm:gap-2">
       <div className="flex flex-col rounded-xl overflow-hidden">
-        <div className="w-full aspect-[2/3] shrink-0" />
+        <div className="w-full aspect-[0.7/1] shrink-0" />
         <div className="p-2 sm:p-2.5">
           <div className="text-sm md:text-base lg:text-lg font-black leading-tight min-h-[2.5em]">.</div>
         </div>

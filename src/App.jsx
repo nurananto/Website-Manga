@@ -356,16 +356,19 @@ export default function App() {
     window.matchMedia('(min-width: 768px)').matches ? 12 : 6
   );
   // Mode tampilan katalog: 'list' (kartu lebar, 3 chapter) atau 'grid' (poster,
-  // 2 chapter). Pilihan diingat per-device lewat localStorage, mirip pola theme.
+  // 2 chapter). Pilihan diingat per-device lewat localStorage, mirip pola tema.
+  // Key sengaja di-versioning (_v2) — waktu grid masih eksperimen, defaultnya
+  // sempat grid dan tersimpan di banyak device. Ganti key = preferensi lama
+  // diabaikan (baca ulang balik ke default list), tanpa perlu migrasi manual.
   const [viewMode, setViewMode] = useState(() => {
     try {
-      const saved = localStorage.getItem('mf_view_mode');
+      const saved = localStorage.getItem('mf_view_mode_v2');
       if (saved === 'grid' || saved === 'list') return saved;
     } catch {}
-    return 'grid';
+    return 'list';
   });
   useEffect(() => {
-    try { localStorage.setItem('mf_view_mode', viewMode); } catch {}
+    try { localStorage.setItem('mf_view_mode_v2', viewMode); } catch {}
   }, [viewMode]);
   // Jumlah kolom grid saat ini — dipakai utk hitung itemsPerPage mode grid
   // (lihat computeGridColumns). matchMedia dipasang per breakpoint biar cuma
@@ -1253,17 +1256,6 @@ export default function App() {
                           diklik, tapi 2 ikon berdampingan, yang aktif di-highlight. */}
                       <div className="flex items-center rounded-2xl border border-outline-variant p-0.5 gap-0.5">
                         <button
-                          onClick={() => setViewMode('grid')}
-                          className={`h-8 w-8 flex items-center justify-center rounded-xl transition-all active:scale-95 cursor-pointer ${
-                            viewMode === 'grid'
-                              ? 'bg-primary text-on-primary shadow-sm'
-                              : 'text-outline hover:text-primary hover:bg-surface-container-high'
-                          }`}
-                          title="Tampilan grid"
-                        >
-                          <LayoutGrid className="w-4.5 h-4.5" />
-                        </button>
-                        <button
                           onClick={() => setViewMode('list')}
                           className={`h-8 w-8 flex items-center justify-center rounded-xl transition-all active:scale-95 cursor-pointer ${
                             viewMode === 'list'
@@ -1273,6 +1265,17 @@ export default function App() {
                           title="Tampilan list"
                         >
                           <List className="w-4.5 h-4.5" />
+                        </button>
+                        <button
+                          onClick={() => setViewMode('grid')}
+                          className={`h-8 w-8 flex items-center justify-center rounded-xl transition-all active:scale-95 cursor-pointer ${
+                            viewMode === 'grid'
+                              ? 'bg-primary text-on-primary shadow-sm'
+                              : 'text-outline hover:text-primary hover:bg-surface-container-high'
+                          }`}
+                          title="Tampilan grid"
+                        >
+                          <LayoutGrid className="w-4.5 h-4.5" />
                         </button>
                       </div>
 
