@@ -18,30 +18,11 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
 
   const isOneshot = manga.status === 'Oneshot';
   const isFinished = manga.status === 'Tamat' || manga.status === 'Hiatus' || isOneshot;
-  const isEnded = manga.status === 'Tamat' || isOneshot;
-  const isHiatus = manga.status === 'Hiatus';
   const latestReleaseAge = manga.latest_release_date ? now - new Date(manga.latest_release_date).getTime() : NaN;
   const isMangaNew = Number.isFinite(latestReleaseAge) && latestReleaseAge >= 0 && latestReleaseAge < 24 * 60 * 60 * 1000;
 
   return (
-    // Wrapper LUAR tanpa overflow-hidden — ring "ada update" ditaruh di sini
-    // (sibling kartu, bukan child-nya) supaya pas scale-up dia bisa nongol
-    // MELEBIHI tepi border, bukan kepotong overflow-hidden kartu di dalamnya.
-    <div className="relative h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px]">
-      <div className={`flex h-full bg-surface-container rounded-xl overflow-hidden group shadow-md transition-colors ${
-      // Border status manga — lebih tebal (border-2) biar kebaca sekilas tanpa
-      // perlu buka detail: Tamat/Oneshot (END) merah, Hiatus abu-abu. Ongoing
-      // tetap netral seperti sebelumnya. "Ada update baru" (isMangaNew) menang
-      // duluan — glow-nya doang kurang kelihatan, jadi ditambah border hijau
-      // solid senada (emerald-500, sama dgn warna .cover-new-glow-ring).
-      isMangaNew
-        ? 'border-[2.5px] border-emerald-500/70'
-        : isEnded
-        ? 'border-[2.5px] border-red-500/70'
-        : isHiatus
-        ? 'border-[2.5px] border-zinc-400/70 dark:border-zinc-500/70'
-        : 'border border-transparent hover:border-primary/20'
-    }`}>
+    <div className="flex h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px] bg-surface-container rounded-xl overflow-hidden group border border-transparent hover:border-primary/20 shadow-md transition-colors">
       {/* Cover — link crawlable ke detail (SPA: preventDefault + navigate) */}
       <a
         href={`/${manga.id}/`}
@@ -126,6 +107,21 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
             );
             const isRead = readChapters.has(ch.id);
 
+            // Slot tanggal (kanan) diisi badge kalau ada yang perlu ditandai —
+            // "UP!" menang duluan (lebih actionable), baru status Tamat/Hiatus.
+            // Kalau gak ada dua-duanya, tampilkan tanggal seperti biasa. Sama
+            // seperti mode grid (lihat MangaCardGrid.jsx).
+            const dateBadge = isUp
+              ? { text: 'UP!', className: 'badge-new-glow relative bg-emerald-700 text-white ring-1 ring-emerald-300/70' }
+              : showStatusBadge
+              ? {
+                  text: manga.status === 'Tamat' || isOneshot ? 'END' : manga.status,
+                  className: manga.status === 'Tamat' || isOneshot
+                    ? 'bg-red-500/15 text-red-700 dark:text-red-400 border border-red-500/30'
+                    : 'bg-zinc-500/15 text-zinc-700 dark:text-zinc-400 border border-zinc-500/30',
+                }
+              : null;
+
             return (
               <button
                 type="button"
@@ -162,24 +158,6 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                   }`}>
                     {chapterTitle}
                   </span>
-                  {isUp && (
-                    // ml-1.5 (bukan cuma andalkan gap-1 parent) — box-shadow glow badge
-                    // ini melebar sampai 8px ke kiri (lihat @keyframes new-badge-glow di
-                    // index.css), jarak gap-1 (4px) saja bikin separuh glow nembus ke
-                    // tulisan chapter di sebelahnya.
-                    <span className="badge-new-glow relative ml-1.5 bg-emerald-700 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
-                      NEW
-                    </span>
-                  )}
-                  {showStatusBadge && (
-                    <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider ${
-                      manga.status === 'Tamat' || isOneshot
-                        ? 'bg-red-500/15 text-red-700 dark:text-red-400 border border-red-500/30'
-                        : 'bg-zinc-500/15 text-zinc-700 dark:text-zinc-400 border border-zinc-500/30'
-                    }`}>
-                      {manga.status === 'Tamat' || isOneshot ? 'END' : manga.status}
-                    </span>
-                  )}
                 </div>
 
                 {showEarlyAccessGate && transitionAt && (
@@ -191,23 +169,18 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                     }}
                   />
                 )}
-                <span className={`font-label-sm text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0 transition-opacity ${isRead ? 'opacity-80' : ''}`}>{ch.date || timeAgoShort(ch.release_date)}</span>
+                {dateBadge ? (
+                  <span className={`shrink-0 font-label-sm px-1.5 py-0.5 rounded text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider ${dateBadge.className}`}>
+                    {dateBadge.text}
+                  </span>
+                ) : (
+                  <span className={`font-label-sm text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0 transition-opacity ${isRead ? 'opacity-80' : ''}`}>{ch.date || timeAgoShort(ch.release_date)}</span>
+                )}
               </button>
             );
           })}
         </div>
       </div>
-    </div>
-
-      {/* Ring "ada update" — melingkupi 1 KARTU PENUH (bukan cuma cover),
-          sibling kartu (bukan child-nya yang overflow-hidden) supaya glow-nya
-          nongol DI LUAR border, bukan kepotong/kegencet di dalam. Elemen
-          terpisah (bukan class di <img>/di outer div) supaya animasi
-          scale+opacity murni compositor, lihat .cover-new-glow-ring di
-          index.css. rounded-xl match radius kartu. */}
-      {isMangaNew && (
-        <span aria-hidden="true" className="cover-new-glow-ring pointer-events-none absolute inset-0 rounded-xl" />
-      )}
     </div>
   );
 }

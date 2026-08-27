@@ -98,13 +98,14 @@ function takePrefetch(type, slug) {
 
 // Kolom grid katalog mengikuti breakpoint Tailwind DEFAULT (sm 640 / md 768 /
 // lg 1024 / xl 1280) — HARUS sinkron dengan className
-// "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6" di
+// "grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7" di
 // render katalog. itemsPerPage mode grid dihitung dari sini (kolom × baris)
 // supaya selalu kelipatan pas jumlah kolom yang BENAR-BENAR tampil di layar —
 // jadi baris terakhir yang bolong cuma bisa muncul di halaman paling akhir,
 // bukan di tengah pagination.
-// Minimum 3 kolom di mobile (bukan 2) — 2 kolom bikin cover kegedean di layar
-// sempit. Skala naik +1 tiap breakpoint, sama seperti sebelumnya.
+// Minimum 3 kolom di mobile — sempat dicoba 2, tapi cover kegedean bikin
+// kotak chapter di bawahnya keliatan kepanjangan/kosong (proporsinya pincang).
+// Skala naik +1 tiap breakpoint.
 const GRID_ROWS_PER_PAGE = 3;
 function computeGridColumns() {
   if (typeof window === 'undefined') return 3;

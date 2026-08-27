@@ -197,34 +197,9 @@ body {
   .badge-new-glow::after { animation: none; }
 }
 
-/* Glow KARTU — sinyal "ada update di manga ini" di level manga (isMangaNew),
-   pengganti dot kecil di sebelah judul yang kelihatan aneh nyempil sendirian
-   pas gak ada badge NEW aktif di chapter manapun. `.cover-new-glow-ring`
-   sendiri elemen <span> terpisah (MangaCard.jsx/MangaCardGrid.jsx), BUKAN
-   class di <img> — pseudo-element ::after tidak dirender di elemen <img>
-   (replaced element), makanya di sini ring-nya elemen langsung, bukan ::after
-   seperti badge-new-glow di atas.
-   Dibuat lambat & lembut, cuma opacity yang "napas" naik-turun — TANPA
-   transform: scale sama sekali. Versi sebelumnya scale membesar (sampai 1.1)
-   supaya kelihatan "keluar" dari border, tapi di grid yang gap antar
-   kartunya tipis (12-16px) itu malah nabrak/nembus ke kartu sebelah kayak
-   ombak. box-shadow-nya STATIS & blur-nya dikecilin (8px, bukan 14px) biar
-   tetap muat di gap tanpa nyentuh kartu tetangga. Opacity-only animation
-   tetap murni compositor (box-shadow dirender sekali ke layer lalu compositor
-   tinggal atur opacity-nya, bukan repaint tiap frame). */
-@keyframes cover-glow-pulse {
-  0%, 100% { opacity: 0.35; }
-  50%      { opacity: 0.85; }
-}
-.cover-new-glow-ring {
-  border: 3px solid rgba(16, 185, 129, 0.75);
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.35);
-  animation: cover-glow-pulse 3.4s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cover-new-glow-ring { animation: none; }
-}
+/* Glow kartu (.cover-new-glow-ring) & border status manga (Tamat/Hiatus/
+   update baru) DIHAPUS — diganti badge teks polos di pojok cover (grid) &
+   badge di chapter row (list/grid), lihat MangaCard.jsx/MangaCardGrid.jsx. */
 
 /* Glow tombol Donasi — ring putih membesar dari tepi badge "Donasi" (bukan
    biru, karena biru menyatu dengan gradient background tombol & jadi nyaris
