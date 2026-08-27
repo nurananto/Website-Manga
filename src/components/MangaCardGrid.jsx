@@ -4,7 +4,7 @@ import { Lock } from 'lucide-react';
 import ResponsiveCover from './ResponsiveCover';
 import { canReadChapter, chapterAccessLevel } from '../lib/chapterAccess';
 
-// Kartu versi poster untuk mode grid — cover dominan, judul 2 baris ellipsis
+// Kartu versi poster untuk mode grid — cover dominan, judul 1 baris ellipsis
 // di bawahnya, lalu 1 chapter TERBARU saja (beda dari MangaCard mode list yang
 // tampilkan 3 chapter di samping cover). Prop & logic akses chapter sama
 // persis dengan MangaCard.jsx supaya kedua mode konsisten — cuma layout yang beda.
@@ -60,10 +60,19 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
       (targetChapter != null && String(ch.chapter_number) === String(targetChapter))
     );
 
-    // Slot tanggal (kanan) diisi badge kalau ada yang perlu ditandai — "UP!"
-    // menang duluan (lebih actionable), baru status. Kalau gak ada dua-duanya,
-    // tampilkan tanggal seperti biasa.
-    const dateBadge = isUp
+    // Slot tanggal (kanan) diisi badge kalau ada yang perlu ditandai — "Locked"
+    // menang PALING duluan (chapter yang gak bisa dibaca lebih penting drpd
+    // info lain), baru "UP!" (lebih actionable drpd status), baru status
+    // Tamat/Hiatus. Kalau gak ada satu pun, tampilkan tanggal seperti biasa.
+    // Icon Lock dipindah dari sebelah judul (kepenuhan/mepet di layar sempit)
+    // ke sini — konsisten dgn badge lain yang juga di slot ini. Icon-only
+    // (tanpa teks "Locked") kalau cuma locked doang — tapi chapter TERBARU
+    // yang locked itu kasus umum (chapter early-access buat supporter), jadi
+    // kalau kebetulan locked SEKALIGUS baru rilis, teks "UP!" digabung di
+    // sebelah icon-nya (bukan salah satu doang) biar dua info itu kebaca.
+    const dateBadge = showAccessGate
+      ? { icon: Lock, text: isUp ? 'UP!' : null, className: 'bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-400/60' }
+      : isUp
       ? { text: 'UP!', className: 'bg-emerald-700 text-white' }
       : showStatusBadge
       ? {
@@ -92,27 +101,15 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
           }`}>
             {chapterTitle}
           </span>
-          {showAccessGate && (
-            // Squircle sama gayanya dgn kotak ikon di MangaCard.jsx (list) —
-            // border+bg keliatan jelas, jadi gampang dicek: ikon Lock ngambang
-            // di dalam kotak atau udah pas center. Ditaruh di KANAN judul
-            // chapter (bukan kiri) sesuai preferensi tampilan grid.
-            <span
-              aria-hidden="true"
-              className="flex h-4 w-4 sm:h-[18px] sm:w-[18px] md:h-5 md:w-5 lg:h-[22px] lg:w-[22px] shrink-0 items-center justify-center rounded-[5px] border border-amber-400/60 bg-amber-500/20"
-            >
-              {/* -translate-y-px: bounding box SVG-nya sendiri sudah center
-                  matematis (rect y11-22 + shackle y2-11 → tengah persis y12
-                  dari viewBox 24), tapi shackle cuma garis tipis vs badan rect
-                  solid bikin bobot visualnya keliatan berat ke bawah — nudge
-                  optik halus ke atas biar keliatan seimbang di mata. */}
-              <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4 -translate-y-px text-amber-600 dark:text-amber-300 stroke-[2.5]" />
-            </span>
-          )}
         </span>
         {dateBadge ? (
-          <span className={`shrink-0 font-label-sm px-1 py-0.5 sm:px-1.5 rounded text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black uppercase tracking-wide whitespace-nowrap ${dateBadge.className}`}>
+          <span className={`flex items-center gap-0.5 shrink-0 font-label-sm px-1 py-0.5 sm:px-1.5 rounded text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black uppercase tracking-wide whitespace-nowrap ${dateBadge.className}`}>
+            {/* Icon Lock (kalau ada) dipindah ke sini dari sebelah judul —
+                di layar sempit judul+icon suka kepenuhan/mepet. Icon-only,
+                gak ada teks "Locked" di sebelahnya — biar gak makin sempit. */}
+            {dateBadge.icon && <dateBadge.icon className="h-2.5 w-2.5 md:h-3 md:w-3 shrink-0 stroke-[3]" />}
             {dateBadge.text}
+
           </span>
         ) : (
           <span className={`font-label-sm text-[10px] sm:text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0 transition-opacity ${isRead ? 'opacity-80' : ''}`}>
@@ -175,7 +172,7 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
           onClick={(e) => { e.preventDefault(); onViewManga(manga); }}
           className="block p-2 sm:p-2.5"
         >
-          <h3 className="font-headline-md text-sm md:text-base lg:text-lg font-black leading-tight text-on-surface line-clamp-2 min-h-[2.5em] hover:text-primary transition-colors cursor-pointer">
+          <h3 className="font-headline-md text-sm md:text-base lg:text-lg font-black leading-tight text-on-surface truncate hover:text-primary transition-colors cursor-pointer">
             {manga.title}
           </h3>
         </a>
@@ -196,7 +193,7 @@ export function MangaCardGridPlaceholder() {
       <div className="flex flex-col rounded-xl overflow-hidden">
         <div className="w-full aspect-[0.7/1] shrink-0" />
         <div className="p-2 sm:p-2.5">
-          <div className="text-sm md:text-base lg:text-lg font-black leading-tight min-h-[2.5em]">.</div>
+          <div className="text-sm md:text-base lg:text-lg font-black leading-tight">.</div>
         </div>
       </div>
       <div className="rounded-lg p-1.5 sm:p-2">
