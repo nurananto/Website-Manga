@@ -188,8 +188,8 @@ const renderChapterRow = (ch) => {
                 </span>
               )}
               {isNew && (
-                <span className="badge-new-glow bg-emerald-700 text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
-                  NEW
+                <span className="badge-new-glow badge-updated-glow text-white ring-1 ring-emerald-300/70 px-1.5 py-0.5 rounded font-label-sm text-[10px] md:text-xs lg:text-sm font-black uppercase tracking-wider shrink-0">
+                  UP!
                 </span>
               )}
               {showStatusBadge && (
@@ -248,8 +248,14 @@ const renderChapterRow = (ch) => {
           <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-3 sm:gap-6 pb-4">
             {/* Cover Image */}
             {/* aspect-[7/10] (~0.70), bukan 2/3 — rata-rata rasio cover asli
-                di situs ini, lihat MangaCard/FeaturedCarousel/SpotlightCarousel */}
-            <div className="w-[200px] sm:w-[200px] md:w-[220px] aspect-[7/10] flex-shrink-0 rounded-xl bg-surface-container-high">
+                di situs ini, lihat MangaCard/FeaturedCarousel/SpotlightCarousel.
+                Mobile (layout stacked, cover di-center sendirian di atas —
+                lihat flex-col di parent) dibesarkan pakai w-[min(70vw,260px)]
+                biar lebih maksimal ngisi ruang yang ada (200px fixed
+                sebelumnya kelihatan "nanggung", lebih kecil drpd cover di
+                grid halaman utama). sm+ (layout row, cover berbagi ruang
+                horizontal sama judul/metadata) tetap fixed px spt semula. */}
+            <div className="w-[min(70vw,260px)] sm:w-[200px] md:w-[220px] aspect-[7/10] flex-shrink-0 rounded-xl bg-surface-container-high">
               <ResponsiveCover
                   manga={manga}
                   alt={`${manga.title} Cover`}

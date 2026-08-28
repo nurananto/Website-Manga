@@ -6,18 +6,24 @@ export function Skeleton({ className = '', style, ...props }) {
 
 export function MangaCardSkeleton() {
   return (
-    <div className="flex h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px] bg-surface-container rounded-xl overflow-hidden border border-transparent">
-      {/* Cover */}
-      <div className="w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full bg-surface-container-high animate-pulse shrink-0" />
-      {/* Content */}
-      <div className="flex-1 p-3 sm:p-4 lg:p-5 flex flex-col">
-        {/* Title */}
-        <Skeleton className="h-4 sm:h-5 lg:h-6 w-3/4 mb-2" />
-        {/* 3 chapter rows — flex-1 justify-between agar ngepas bawah cover */}
-        <div className="flex flex-col flex-1 justify-between">
-          <Skeleton className="h-7 sm:h-8 lg:h-9 w-full rounded-xl" />
-          <Skeleton className="h-7 sm:h-8 lg:h-9 w-full rounded-xl" />
-          <Skeleton className="h-7 sm:h-8 lg:h-9 w-full rounded-xl" />
+    // Struktur (strip badge + kartu) SAMA PERSIS dgn MangaCard.jsx (flex-col,
+    // bukan margin-top angka tebakan) — biar tinggi total pas & gak geser
+    // pas skeleton diganti kartu asli.
+    <div className="flex flex-col items-start">
+      <div className="w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-[18px] sm:h-[21px] md:h-[24px] lg:h-[24px] rounded-t-lg bg-surface-container-high animate-pulse" />
+      <div className="flex w-full h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px] bg-surface-container rounded-tl-none rounded-tr-lg rounded-br-lg rounded-bl-lg overflow-hidden border border-transparent">
+        {/* Cover */}
+        <div className="w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full bg-surface-container-high animate-pulse shrink-0" />
+        {/* Content */}
+        <div className="flex-1 p-3 sm:p-4 lg:p-5 flex flex-col">
+          {/* Title */}
+          <Skeleton className="h-4 sm:h-5 lg:h-6 w-3/4 mb-2" />
+          {/* 3 chapter rows — flex-1 justify-between agar ngepas bawah cover */}
+          <div className="flex flex-col flex-1 justify-between">
+            <Skeleton className="h-7 sm:h-8 lg:h-9 w-full rounded-xl" />
+            <Skeleton className="h-7 sm:h-8 lg:h-9 w-full rounded-xl" />
+            <Skeleton className="h-7 sm:h-8 lg:h-9 w-full rounded-xl" />
+          </div>
         </div>
       </div>
     </div>

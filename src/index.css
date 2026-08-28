@@ -201,6 +201,24 @@ body {
    update baru) DIHAPUS — diganti badge teks polos di pojok cover (grid) &
    badge di chapter row (list/grid), lihat MangaCard.jsx/MangaCardGrid.jsx. */
 
+/* Glow badge "Updated!" di atas cover (MangaCard.jsx) — background-color
+   "bernapas" pelan antara hijau muda & hijau tua, bedain dari badge Ongoing
+   yang solid. Ini animasi background-color (bukan transform/opacity kayak
+   glow lain di file ini), jadi TIDAK murni compositor — tapi elemennya kecil
+   & ukurannya fixed (gak scale/bleed keluar batas), jadi cost repaint-nya
+   kecil, beda kasus dgn cover-new-glow-ring lama yang nyakup 1 kartu penuh. */
+@keyframes badge-updated-glow {
+  0%, 100% { background-color: #34d399; } /* emerald-400 */
+  50%      { background-color: #059669; } /* emerald-600 */
+}
+.badge-updated-glow {
+  animation: badge-updated-glow 2.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-updated-glow { animation: none; background-color: #10b981; }
+}
+
 /* Glow tombol Donasi — ring putih membesar dari tepi badge "Donasi" (bukan
    biru, karena biru menyatu dengan gradient background tombol & jadi nyaris
    tak kelihatan). Dipakai di SupportButtons supaya CTA donasi lebih

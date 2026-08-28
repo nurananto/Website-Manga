@@ -21,8 +21,54 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
   const latestReleaseAge = manga.latest_release_date ? now - new Date(manga.latest_release_date).getTime() : NaN;
   const isMangaNew = Number.isFinite(latestReleaseAge) && latestReleaseAge >= 0 && latestReleaseAge < 24 * 60 * 60 * 1000;
 
+  // Badge status — "Updated!" (ada rilis <24 jam) menang duluan drpd status
+  // asli manga (Ongoing/Completed/Hiatus/Oneshot). "Tamat" ditampilkan sbg
+  // "Completed" — konsisten dgn badge lain yg juga pakai istilah Inggris
+  // (Updated!/UP!). Ongoing & Updated sama-sama hijau (ongoing = status
+  // "sehat/aktif", pantes disamain positif kayak update baru), tapi Updated
+  // dikasih animasi GLOW background-color pelan (hijau muda↔tua, lihat
+  // .badge-updated-glow di index.css) biar tetap kebeda dari Ongoing yang
+  // solid diam — sekilas kelihatan beda tanpa perlu baca teksnya.
+  const statusLabel = isMangaNew ? 'Updated!' : manga.status === 'Tamat' ? 'Completed' : manga.status;
+  const statusBadgeClass = isMangaNew
+    ? 'badge-updated-glow text-white'
+    : manga.status === 'Ongoing'
+    ? 'bg-emerald-600 text-white'
+    : manga.status === 'Tamat' || isOneshot
+    ? 'bg-red-500/90 text-white'
+    : manga.status === 'Hiatus'
+    ? 'bg-zinc-500/90 text-white'
+    : 'bg-primary text-on-primary';
+
   return (
-    <div className="flex h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px] bg-surface-container rounded-xl overflow-hidden group border border-transparent hover:border-primary/20 shadow-md transition-colors">
+    // Wrapper LUAR — flex-col FLOW NORMAL (BUKAN absolute+pt-X tebak-tebak
+    // tinggi badge lagi). Badge & kartu jadi 2 CHILD BIASA yang ditumpuk
+    // browser sendiri persis pas — tinggi badge berapa pun (ikut font/padding
+    // di breakpoint manapun) otomatis nentuin jaraknya sendiri, gak akan
+    // ngambang (kurang) atau kepotong/ketutup (kelebihan) lagi kayak
+    // pendekatan pt-X manual sebelumnya. items-start: badge (lebar fixed,
+    // gak stretch) nempel rata kiri, sejajar sama kolom cover di kartu
+    // bawahnya. Sudut KIRI-atas kartu SENGAJA rounded-tl-none (lihat
+    // rounded-* di bawah) — disitu ketemunya sama sudut kiri-bawah badge
+    // yang juga siku (gak dikasih rounded), jadi sambungannya rata persis,
+    // bukan lengkung ketemu lengkung.
+    <div className="flex flex-col items-start">
+      {/* Badge status — child PERTAMA (di atas kartu, urutan DOM = urutan
+          visual di flex-col), lebar disamain persis dgn lebar kolom cover di
+          kartu bawahnya (bukan lebar kartu penuh). Sudut bawahnya (kanan &
+          kiri) SENGAJA siku (gak dikasih rounded) — kiri-bawah ketemu sudut
+          kiri-atas kartu yang juga siku (rounded-tl-none), kanan-bawah
+          ketemu tepi datar atas kartu — dua-duanya nyambung rata tanpa
+          lengkungan ganda. Sudut atas (kiri & kanan) tetap rounded krn itu
+          sisi bebas badge, gak nyentuh apa-apa. text-center: teks di-center
+          di lebar yg fixed. */}
+      <span
+        aria-hidden="true"
+        className={`w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] rounded-t-lg py-0.5 sm:py-1 text-center shadow-sm font-label-sm text-[10px] sm:text-[11px] md:text-xs lg:text-xs font-black uppercase tracking-wide ${statusBadgeClass}`}
+      >
+        {statusLabel}
+      </span>
+    <div className="flex w-full h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px] bg-surface-container rounded-tl-none rounded-tr-lg rounded-br-lg rounded-bl-lg overflow-hidden group border border-outline-variant hover:border-primary/40 shadow-md transition-colors">
       {/* Cover — link crawlable ke detail (SPA: preventDefault + navigate) */}
       <a
         href={`/${manga.id}/`}
@@ -30,11 +76,11 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
         aria-label={manga.title}
         // Padding disetel per-breakpoint (bukan px-2 rata semua) supaya cover
         // yang tampil rasionya ~0.70 (rata-rata cover asli manga, lihat catatan
-        // riset), bukan ~0.6 (kepotong kurus/tinggi). py dinaikkan (cover jadi
-        // sedikit lebih pendek) supaya px juga bisa dinaikkan — versi awal px
-        // terlalu mepet (sm:px-0 = 0px), bikin efek hover:scale-105 & glow
-        // cover-new-glow ikut kepotong overflow-hidden kartu di sisi kanan.
-        className="relative w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full flex-shrink-0 flex items-center justify-center py-4 md:py-3.5 px-2 sm:px-1 lg:px-1.5 cursor-pointer"
+        // riset), bukan ~0.6 (kepotong kurus/tinggi). py progresif naik dari
+        // mobile ke desktop (py-2.5→py-4) — sebelumnya malah py-4 di mobile
+        // & py-3.5 di md (kebalik, gak responsive), bikin cover kelilit
+        // padding gede di layar sempit padahal ruangnya paling terbatas.
+        className="relative w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-full flex-shrink-0 flex items-center justify-center py-3 sm:py-3.5 md:py-4 lg:py-4 px-2 sm:px-1 lg:px-1.5 cursor-pointer"
       >
         <div className="relative h-full w-full">
           <ResponsiveCover
@@ -50,7 +96,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
       </a>
 
       {/* Details Section */}
-      <div className="flex-1 py-3 pr-3 pl-1 sm:py-4 sm:pr-4 sm:pl-1.5 lg:py-5 lg:pr-5 lg:pl-2 flex flex-col min-w-0">
+      <div className="flex-1 py-2 pr-3 pl-1 sm:py-3 sm:pr-4 sm:pl-1.5 md:py-4 lg:py-5 lg:pr-5 lg:pl-2 flex flex-col min-w-0">
         {/* Title row — px-2 sm:px-2.5 lg:px-3 SAMA PERSIS dengan padding tombol
             chapter di bawah (button punya padding sendiri di luar ikon). Judul
             sengaja sejajar dengan BORDER KIRI kotak ikon buku/gembok (bukan
@@ -112,7 +158,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
             // Kalau gak ada dua-duanya, tampilkan tanggal seperti biasa. Sama
             // seperti mode grid (lihat MangaCardGrid.jsx).
             const dateBadge = isUp
-              ? { text: 'UP!', className: 'badge-new-glow relative bg-emerald-700 text-white ring-1 ring-emerald-300/70' }
+              ? { text: 'UP!', className: 'badge-new-glow relative badge-updated-glow text-white ring-1 ring-emerald-300/70' }
               : showStatusBadge
               ? {
                   text: manga.status === 'Tamat' || isOneshot ? 'END' : manga.status,
@@ -151,7 +197,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                       dari ~8:1 (light) / ~10:1 (dark) jadi ~2:1 begitu chapter isRead — gagal
                       WCAG AA (butuh 4.5:1). -80 tetap kebaca "dibaca/pudar" tapi aman AA di
                       kedua tema. Icon box boleh tetap -40 karena itu dekoratif, bukan teks. */}
-                  <span className={`font-body-md text-sm md:text-base lg:text-lg font-bold transition-all whitespace-nowrap ${isRead ? 'opacity-80' : ''} ${
+                  <span className={`font-body-md text-sm md:text-base lg:text-base font-bold transition-all whitespace-nowrap ${isRead ? 'opacity-80' : ''} ${
                     showEarlyAccessGate
                       ? 'text-amber-800 dark:text-amber-300 group-hover/ch:text-amber-700 dark:group-hover/ch:text-amber-200'
                       : 'text-on-surface-variant group-hover/ch:text-primary'
@@ -181,6 +227,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
           })}
         </div>
       </div>
+    </div>
     </div>
   );
 }

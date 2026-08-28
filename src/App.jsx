@@ -1332,6 +1332,10 @@ export default function App() {
                     </div>
                   </div>
 
+                  {/* Garis pemisah judul "List Bacaan" vs grid kartu di bawahnya —
+                      tanpa ini kelihatan nempel langsung ke kartu pertama. */}
+                  <div className="border-t border-outline-variant/40" aria-hidden="true" />
+
                   {/* Expandable Search Input (Full Width) */}
                   {isSearchOpen && (
                     <div className="relative w-full group animate-[slideDownFade_0.18s_ease-out]">
@@ -1379,11 +1383,15 @@ export default function App() {
                             return viewMode === 'grid' ? (
                               <MangaCardGridPlaceholder key={`empty-${i}`} />
                             ) : (
-                              <div
-                                key={`empty-${i}`}
-                                aria-hidden="true"
-                                className="invisible h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px]"
-                              />
+                              // Struktur (badge invisible + kartu invisible) SAMA
+                              // PERSIS dgn MangaCard.jsx — tinggi total ngikut
+                              // browser sendiri, bukan angka px hasil tebakan
+                              // (yang gampang meleset tiap kali font/padding
+                              // badge di MangaCard.jsx berubah).
+                              <div key={`empty-${i}`} aria-hidden="true" className="invisible flex flex-col items-start">
+                                <span className="w-[108px] sm:w-[120px] md:w-[135px] lg:w-[150px] rounded-t-lg py-0.5 sm:py-1 text-center font-label-sm text-[10px] sm:text-[11px] md:text-xs lg:text-xs font-black uppercase tracking-wide">.</span>
+                                <div className="h-[164px] sm:h-[194px] md:h-[209px] lg:h-[226px] w-full" />
+                              </div>
                             );
                           }
                           const CardComponent = viewMode === 'grid' ? MangaCardGrid : MangaCard;
