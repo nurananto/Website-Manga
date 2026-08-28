@@ -28,14 +28,18 @@
   "hiatus_at_chapter": null,
   "chapter_views": {},
   "total_views": 0,
-  "mangadex_cover": "",
+  "intro_pending": true,
+  "raw_cover_url": "https://m.media-amazon.com/images/I/91oil6f5b2L._SL1500_.jpg",
+  "cover_source": "manual-url",
+  "cover_widths": "1280x960x640q75",
+  "cover_version": 2,
   "rating": null,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=1",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=2",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=1",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover@tablet.webp?v=1",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover@mobile.webp?v=1"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=2",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover@tablet.webp?v=2",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {
@@ -44,10 +48,10 @@
       "lock_hours": 0,
       "pages": 18,
       "notif_image": "cover",
-      "r2_folder": "prolog",
-      "id": "Ippanjin-ch-prolog",
-      "r2_prefix": "manga/Ippanjin/prolog/",
       "release_date": "2026-08-28T23:29:44+07:00",
+      "r2_folder": "Prolog",
+      "id": "Ippanjin-ch-prolog",
+      "r2_prefix": "manga/Ippanjin/Prolog/",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
