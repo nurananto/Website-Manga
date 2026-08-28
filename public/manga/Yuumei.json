@@ -40,24 +40,24 @@
     "12": 8,
     "13": 6,
     "14": 9,
-    "15": 10,
-    "16": 11,
-    "17": 11,
-    "18": 9,
-    "19": 13,
-    "20": 20,
-    "21.1": 22,
-    "21.2": 28,
-    "22.1": 52,
-    "22.2": 68,
-    "23.1": 48,
+    "15": 11,
+    "16": 12,
+    "17": 12,
+    "18": 10,
+    "19": 14,
+    "20": 21,
+    "21.1": 23,
+    "21.2": 29,
+    "22.1": 53,
+    "22.2": 69,
+    "23.1": 49,
     "1.5": 8,
-    "23.2": 41,
+    "23.2": 43,
     "8.5": 8,
-    "24.1": 7,
-    "24.2": 4
+    "24.1": 8,
+    "24.2": 5
   },
-  "total_views": 657,
+  "total_views": 677,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -89,7 +89,7 @@
       }
     }
   ],
-  "detail_views": 176,
+  "detail_views": 181,
   "cover_version": 4,
   "notif_image": "page1",
   "mangadex_id": "9aebe60e-777f-4a58-a3bf-143c3096b94f",
@@ -113,7 +113,7 @@
       "title": "Ch. 24.2",
       "unlockDate": "2026-09-11T17:00:00.000Z",
       "isLocked": true,
-      "views": 4
+      "views": 5
     },
     {
       "chapter_number": 24.1,
@@ -126,8 +126,8 @@
       "r2_prefix": "manga/Yuumei/24.1/",
       "title": "Ch. 24.1",
       "unlockDate": "2026-08-28T17:00:00.000Z",
-      "isLocked": true,
-      "views": 7
+      "isLocked": false,
+      "views": 8
     },
     {
       "chapter_number": 23.2,
@@ -140,7 +140,7 @@
       "title": "Ch. 23.2",
       "unlockDate": "2026-08-11T16:28:24.000Z",
       "isLocked": false,
-      "views": 41
+      "views": 43
     },
     {
       "chapter_number": 23.1,
@@ -153,7 +153,7 @@
       "title": "Ch. 23.1",
       "unlockDate": "2026-07-29T14:00:00.000Z",
       "isLocked": false,
-      "views": 48
+      "views": 49
     },
     {
       "chapter_number": 22.2,
@@ -166,7 +166,7 @@
       "title": "Ch. 22.2",
       "unlockDate": "2026-07-08T04:27:34.000Z",
       "isLocked": false,
-      "views": 68
+      "views": 69
     },
     {
       "chapter_number": 22.1,
@@ -179,7 +179,7 @@
       "title": "Ch. 22.1",
       "unlockDate": "2026-06-30T13:34:53.000Z",
       "isLocked": false,
-      "views": 52
+      "views": 53
     },
     {
       "chapter_number": 21.2,
@@ -192,7 +192,7 @@
       "title": "Ch. 21.2",
       "unlockDate": "2026-06-23T14:06:03.000Z",
       "isLocked": false,
-      "views": 28
+      "views": 29
     },
     {
       "chapter_number": 21.1,
@@ -205,7 +205,7 @@
       "title": "Ch. 21.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 22
+      "views": 23
     },
     {
       "chapter_number": 20,
@@ -218,7 +218,7 @@
       "title": "Ch. 20",
       "unlockDate": "2026-06-11T18:25:40.000Z",
       "isLocked": false,
-      "views": 20
+      "views": 21
     },
     {
       "chapter_number": 19,
@@ -231,7 +231,7 @@
       "title": "Ch. 19",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 18,
@@ -244,7 +244,7 @@
       "title": "Ch. 18",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 17,
@@ -257,7 +257,7 @@
       "title": "Ch. 17",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 16,
@@ -270,7 +270,7 @@
       "title": "Ch. 16",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 15,
@@ -283,7 +283,7 @@
       "title": "Ch. 15",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 14,

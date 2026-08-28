@@ -25,7 +25,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 19,
+    "1": 20,
     "2": 8,
     "3": 5,
     "4": 6,
@@ -49,11 +49,12 @@
     "20.2": 17,
     "21.1": 15,
     "21.2": 20,
-    "22.1": 14,
+    "22.1": 15,
     "22.2": 7,
-    "23.1": 4
+    "23.1": 4,
+    "23.2": 1
   },
-  "total_views": 373,
+  "total_views": 379,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -85,7 +86,7 @@
       }
     }
   ],
-  "detail_views": 113,
+  "detail_views": 116,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "26854d1a-dfd0-4e5c-b6d1-ab291035b8cc",
@@ -109,7 +110,7 @@
       "title": "Ch. 23.2",
       "unlockDate": "2026-09-27T17:00:00.000Z",
       "isLocked": true,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 23.1,
@@ -147,7 +148,7 @@
       "title": "Ch. 22.1",
       "unlockDate": "2026-08-22T17:00:00.000Z",
       "isLocked": false,
-      "views": 14
+      "views": 15
     },
     {
       "chapter_number": 21.2,
@@ -459,7 +460,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 19
+      "views": 20
     }
   ]
 }

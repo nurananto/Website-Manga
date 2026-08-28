@@ -37,9 +37,9 @@
     "3.3": 8,
     "4.1": 13,
     "4.2": 7,
-    "4.3": 4
+    "4.3": 7
   },
-  "total_views": 144,
+  "total_views": 148,
   "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -55,7 +55,7 @@
       }
     }
   ],
-  "detail_views": 53,
+  "detail_views": 54,
   "mangadex_id": "02c719c6-d4bc-4ad4-9ebf-d033abe2f410",
   "rating": 6,
   "next_update": null,
@@ -78,7 +78,7 @@
       "title": "Ch. 4.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 7
     },
     {
       "chapter_number": 4.2,
