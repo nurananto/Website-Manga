@@ -22,6 +22,10 @@
   ],
   "mangadex_url": "https://mangadex.org/title/e6d70578-d6b2-4c60-a2f4-7ab16e515480/seishun-wa-sankakukei-no-loop",
   "raw_url": "https://comic-walker.com/detail/KC_006586_S?episodeType=first",
+  "raw_source": "Comic Walker",
+  "update_frequency": "Biweekly",
+  "raw_type": "Free",
+  "final_raw_chapter": null,
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
@@ -57,7 +61,7 @@
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "e6d70578-d6b2-4c60-a2f4-7ab16e515480",
-  "rating": 8.45,
+  "rating": 8.44,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp?v=2",
   "coverUrls": {
