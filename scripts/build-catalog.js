@@ -707,7 +707,15 @@ function buildChapters(slug, mangaPath, manga) {
     // Auto-generate id, title, dan r2_prefix
     const isOneshot = manga.status === 'Oneshot';
     const chapterNumber = isOneshot ? 'oneshot' : ch.chapter_number;
-    const r2Folder = isOneshot ? entry : chapterNumber;
+    // Prolog/Epilog SAMA seperti Oneshot — chapter_number dinormalisasi jadi
+    // slug lowercase ("prolog"/"epilog-1", lihat extract_chapter_number di
+    // generate_meta.py) buat urutan sort, TAPI nama folder R2 harus ngikutin
+    // nama folder DISK apa adanya (mis. "Prolog" huruf besar) — soalnya itu
+    // yang dipakai user waktu upload manual ke R2 (Mountain Duck, mirror 1:1
+    // dari nama folder lokal). R2/S3 key case-sensitive: pakai slug lowercase
+    // di sini bakal selalu 404 walau filenya ada, cuma beda kapital.
+    const isPrologEpilog = typeof chapterNumber === 'string' && /^(prolog|epilog)(-|$)/.test(chapterNumber);
+    const r2Folder = (isOneshot || isPrologEpilog) ? entry : chapterNumber;
     ch.chapter_number = chapterNumber;
     ch.r2_folder = r2Folder;
     ch.id = `${slug}-ch-${chapterNumber}`;

@@ -269,7 +269,7 @@ async function syncCovers() {
           console.log(`   ❌ Gagal download cover utama dari MangaDex`);
         }
       }
-    } else if (meta.cover_source_url && (!meta.covers?.length || meta.cover_source === 'manual-url')) {
+    } else if (meta.cover_source_url && (!meta.cover_source || meta.cover_source === 'manual-url')) {
       // Fallback manual — dipakai kalau MangaDex belum ada DAN og:image dari
       // raw_url tidak bisa dipakai (bukan portrait, atau situsnya tidak punya
       // og:image sama sekali, mis. Amazon). meta.cover_source_url adalah LINK
@@ -277,6 +277,15 @@ async function syncCovers() {
       // field terpisah dari raw_url supaya raw_url tetap bisa diisi link raw
       // beneran (buat tombol "Buka Raw") walau bukan sumber cover. Begitu
       // MangaDex ketemu, cabang di atas otomatis menang duluan lagi.
+      //
+      // Guard pakai !meta.cover_source (BUKAN !meta.covers?.length) — meta.covers
+      // di manga baru SELALU sudah keisi 3 path R2 dari template
+      // _write_manga_meta (generate_meta.py) meski file-nya belum pernah
+      // diupload, jadi kalau dites "kosong" gak akan pernah true. cover_source
+      // cuma keisi begitu salah satu cabang cover (mangadex/raw/manual-url) ini
+      // BENERAN berhasil upload — jadi itu penanda yang valid utk "belum ada
+      // cover asli sama sekali". (Bug yang sama juga ada di cabang raw_url di
+      // bawah, sudah dibenerin bareng.)
       console.log(`   🔗 MangaDex belum ada cover, coba cover_source_url manual: ${meta.cover_source_url}`);
       const imgBuffer = await downloadImageUrl(meta.cover_source_url);
       if (!imgBuffer) {
@@ -300,12 +309,14 @@ async function syncCovers() {
           console.log(`   ✅ Cover utama terupload dari cover_source_url (sementara, akan diganti MangaDex kalau sudah tersedia)`);
         }
       }
-    } else if (meta.raw_url && (!meta.covers?.length || meta.cover_source === 'raw')) {
+    } else if (meta.raw_url && (!meta.cover_source || meta.cover_source === 'raw')) {
       // Fallback raw_url — HANYA kalau MangaDex belum punya cover (belum
       // terindeks / mangadex_url belum diisi) DAN manga ini memang belum
-      // punya cover sama sekali, atau cover yang ada sekarang juga dari
-      // raw_url (biar tetap dicek/diupdate tiap sync). Manga yang sudah
-      // punya cover manual/mangadex tidak pernah disentuh jalur ini.
+      // punya cover sama sekali (cover_source belum keisi — lihat catatan
+      // guard di cabang cover_source_url di atas), atau cover yang ada
+      // sekarang juga dari raw_url (biar tetap dicek/diupdate tiap sync).
+      // Manga yang sudah punya cover manual/mangadex tidak pernah disentuh
+      // jalur ini.
       console.log(`   🔗 MangaDex belum ada cover, coba fallback raw_url: ${meta.raw_url}`);
       const ogImageUrl = await fetchOgImage(meta.raw_url);
       if (!ogImageUrl) {
