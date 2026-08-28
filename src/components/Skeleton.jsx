@@ -30,20 +30,23 @@ export function MangaCardSkeleton() {
   );
 }
 
-// Versi grid dari MangaCardSkeleton — cover poster 2:3 di atas, judul + 2
-// baris chapter di bawahnya (bandingkan dgn MangaCardGrid.jsx).
+// Versi grid dari MangaCardSkeleton — SAMA PERSIS strukturnya dgn
+// MangaCardGrid.jsx saat ini: strip badge di atas cover, cover rasio 0.7,
+// judul 1 baris, 1 chapter row. Sebelumnya skeleton ini stale (rasio 2:3,
+// 2 chapter row, tanpa badge/border) — bikin CLS pas ganti ke kartu asli.
 export function MangaCardGridSkeleton() {
   return (
-    <div className="flex flex-col bg-surface-container rounded-xl overflow-hidden border border-transparent">
-      <div className="w-full aspect-[2/3] bg-surface-container-high animate-pulse" />
-      <div className="flex flex-col gap-1.5 p-2 sm:p-2.5">
-        <Skeleton className="h-3.5 sm:h-4 w-full" />
-        <Skeleton className="h-3.5 sm:h-4 w-2/3" />
-        <div className="flex flex-col gap-1 mt-1">
-          <Skeleton className="h-3 w-full rounded" />
-          <Skeleton className="h-3 w-full rounded" />
+    <div className="flex flex-col gap-1.5 sm:gap-2">
+      <div className="flex flex-col items-end">
+        <div className="w-[56px] sm:w-[64px] md:w-[76px] lg:w-[88px] h-[14px] sm:h-[18px] md:h-[20px] lg:h-[24px] rounded-t-lg bg-surface-container-high animate-pulse" />
+        <div className="flex w-full flex-col rounded-tl-xl rounded-tr-none rounded-br-xl rounded-bl-xl overflow-hidden border border-transparent bg-surface-container">
+          <div className="w-full aspect-[0.7/1] bg-surface-container-high animate-pulse" />
+          <div className="p-2 sm:p-2.5">
+            <Skeleton className="h-3.5 sm:h-4 md:h-5 lg:h-[18px] w-full" />
+          </div>
         </div>
       </div>
+      <Skeleton className="h-7 sm:h-8 w-full rounded-lg" />
     </div>
   );
 }

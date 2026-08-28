@@ -17,6 +17,39 @@ WIB = timezone(timedelta(hours=7))
 CHAPTER_NUMBER_RE = re.compile(r'^(?:chapter|ch|chap|episode|ep|part)?\s*[-_. ]*\s*(\d+(?:\.\d+)?)\s*$', re.IGNORECASE)
 STRICT_NUMBER_RE = re.compile(r'^\d+(?:\.\d+)?$')
 ONESHOT_RE = re.compile(r'^(?:one[-_. ]*shot|oneshot)$', re.IGNORECASE)
+# Folder "Prolog"/"Prolog 1"/"Prolog-1" & "Epilog"/dst — chapter_number-nya
+# jadi string slug ("prolog", "prolog-1", ...) BUKAN angka, biar aman dipakai
+# di URL/R2 key (lihat chapterSortValue di src/utils.js & scripts/build-catalog.js
+# utk urutan: Prolog selalu di depan chapter bernomor, Epilog selalu di
+# belakang, terlepas urutan folder di disk).
+PROLOG_RE = re.compile(r'^prolog[-_. ]*(\d+(?:\.\d+)?)?$', re.IGNORECASE)
+EPILOG_RE = re.compile(r'^epilog[-_. ]*(\d+(?:\.\d+)?)?$', re.IGNORECASE)
+
+
+def _fmt_sub_number(raw):
+    """'1' / '1.0' / '2.5' -> '1' / '1' / '2.5' (buang .0 kalau bulat)."""
+    f = float(raw)
+    return str(int(f)) if f == int(f) else str(f)
+
+
+def _prolog_epilog_slug(match, base):
+    sub = match.group(1)
+    return base if not sub else f"{base}-{_fmt_sub_number(sub)}"
+
+
+def display_label_for_special(chapter_number):
+    """chapter_number string ('oneshot'/'prolog'/'prolog-1'/'epilog-2') -> label
+    tampilan ('Oneshot'/'Prolog'/'Prolog 1'/'Epilog 2'). None kalau bukan salah
+    satu dari itu (chapter bernomor biasa)."""
+    if chapter_number == "oneshot":
+        return "Oneshot"
+    if isinstance(chapter_number, str) and "-" in chapter_number:
+        base, sub = chapter_number.split("-", 1)
+        if base in ("prolog", "epilog"):
+            return f"{base.capitalize()} {sub}"
+    if chapter_number in ("prolog", "epilog"):
+        return chapter_number.capitalize()
+    return None
 
 def now_wib():
     return datetime.now(WIB).strftime("%Y-%m-%dT%H:%M:%S+07:00")
@@ -26,6 +59,13 @@ def extract_chapter_number(name):
     text = name.strip()
     if ONESHOT_RE.match(text):
         return "oneshot"
+
+    m = PROLOG_RE.match(text)
+    if m:
+        return _prolog_epilog_slug(m, "prolog")
+    m = EPILOG_RE.match(text)
+    if m:
+        return _prolog_epilog_slug(m, "epilog")
 
     if STRICT_NUMBER_RE.match(text):
         return float(text)
@@ -69,17 +109,31 @@ def to_chapter_number(name):
     val = extract_chapter_number(name)
     if val is None:
         raise ValueError(f"Nama chapter tidak mengandung nomor: {name}")
-    if val == "oneshot":
+    if isinstance(val, str):
         return val
     return int(val) if val == int(val) else val
 
 
 def chapter_sort_key(name):
+    """Urutan tampilan LOKAL di menu ini — Prolog paling depan, lanjut chapter
+    bernomor, Epilog paling belakang. (Beda dari urutan katalog LIVE di
+    situs, yang dihitung chapterSortValue() di scripts/build-catalog.js /
+    src/utils.js — dua-duanya sengaja disamakan skemanya.)"""
     val = extract_chapter_number(name)
-    if val == "oneshot":
-        return (0, -1)
     if val is None:
         return (0, -2)
+    if val == "oneshot":
+        return (0, -1)
+    if isinstance(val, str) and "-" in val:
+        base, sub = val.split("-", 1)
+        if base == "prolog":
+            return (-1, float(sub))
+        if base == "epilog":
+            return (2, float(sub))
+    if val == "prolog":
+        return (-1, 0)
+    if val == "epilog":
+        return (2, 0)
     return (1, val)
 
 
@@ -143,9 +197,10 @@ def proses_chapter(ch_dir, lock_hours, next_update=None, notif_image=None, unloc
     # dan kalau tetap ditulis (mis. "lock_hours": 0) orang yang buka meta.json
     # belakangan bisa salah baca "0 = gratis/tidak dikunci". Satu sumber
     # kebenaran per chapter, bukan dua field yang bisa kelihatan kontradiktif.
+    special_title = display_label_for_special(chapter_number)
     meta = {
         "chapter_number": to_chapter_number(ch_dir.name),
-        **({"title": "Oneshot"} if chapter_number == "oneshot" else {}),
+        **({"title": special_title} if special_title else {}),
         **({} if final_unlock else {"lock_hours": lock_hours}),
         "pages": pages,
     }
@@ -171,10 +226,11 @@ def proses_chapter(ch_dir, lock_hours, next_update=None, notif_image=None, unloc
 
 def display_chapter_label(ch_dir):
     number = extract_chapter_number(ch_dir.name)
-    if number == "oneshot":
-        return "Oneshot"
     if number is None:
         return ch_dir.name
+    special = display_label_for_special(number)
+    if special:
+        return special
     return f"Chapter {int(number) if number == int(number) else number}"
 
 
@@ -383,12 +439,16 @@ def buat_manga_meta(manga_dir):
 
 
 def ask_status_chapter(label, current):
-    """Tanya nomor chapter untuk status Hiatus/Tamat. Enter = pertahankan yang lama."""
+    """Tanya nomor CHAPTER (atau label Prolog/Epilog) utk status Hiatus/Tamat.
+    Enter = pertahankan yang lama."""
     default_txt = f" (Enter=pertahankan '{current}')" if current is not None else " (Enter=kosongkan)"
     while True:
-        val = ask(f"  Chapter mulai {label}{default_txt}", allow_empty=True)
+        val = ask(f"  Chapter mulai {label} (angka, atau Prolog/Epilog){default_txt}", allow_empty=True)
         if val == "":
             return current
+        special = extract_chapter_number(val)
+        if isinstance(special, str) and special != "oneshot":
+            return special
         try:
             num = float(val)
             return int(num) if num == int(num) else num

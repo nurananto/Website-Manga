@@ -149,7 +149,7 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
       <div className="flex flex-col items-end">
         <span
           aria-hidden="true"
-          className={`w-[56px] sm:w-[64px] md:w-[76px] lg:w-[88px] py-1 sm:py-1.5 md:py-1.5 lg:py-2 rounded-t-lg text-center font-label-sm text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black uppercase tracking-wide whitespace-nowrap ${cornerBadge.className}`}
+          className={`w-[56px] sm:w-[64px] md:w-[76px] lg:w-[88px] py-0.5 sm:py-1 rounded-t-lg text-center font-label-sm text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black uppercase tracking-wide whitespace-nowrap ${cornerBadge.className}`}
         >
           {cornerBadge.text}
         </span>
@@ -203,7 +203,7 @@ export function MangaCardGridPlaceholder() {
       <div className="flex flex-col items-end">
         {/* Strip badge — ikut ada di sini juga (invisible) krn di kartu asli
             badge nambah tinggi ke Box 1 (flow, bukan overlay lagi). */}
-        <span className="w-[56px] sm:w-[64px] md:w-[76px] lg:w-[88px] py-1 sm:py-1.5 md:py-1.5 lg:py-2 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black">.</span>
+        <span className="w-[56px] sm:w-[64px] md:w-[76px] lg:w-[88px] py-0.5 sm:py-1 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black">.</span>
         <div className="flex w-full flex-col rounded-xl overflow-hidden">
           <div className="w-full aspect-[0.7/1] shrink-0" />
           <div className="p-2 sm:p-2.5">

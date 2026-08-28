@@ -6,6 +6,25 @@ export function nowTimestamp() {
   return Date.now();
 }
 
+// Nilai urut buat chapter_number yang BUKAN angka biasa — dipakai bareng
+// scripts/build-catalog.js (sumber kebenaran urutan chapter dari server) biar
+// konsisten kalau frontend perlu urutkan sendiri (mis. cari chapter tertua).
+// Selain angka biasa, dukung chapter_number berupa label "Prolog"/"Prolog 1"/
+// "Prolog-1" (sebelum Ch. 1, urut sesama Prolog naik sesuai angkanya) dan
+// "Epilog"/"Epilog 1" (SESUDAH chapter terakhir, urut sesama Epilog naik).
+// "Oneshot" & label lain yang tak dikenali tetap fallback -Infinity (perilaku
+// lama, aman krn biasanya cuma 1 chapter jadi gak ada konflik urutan).
+export function chapterSortValue(value) {
+  const n = Number(value);
+  if (Number.isFinite(n)) return n;
+  const s = String(value ?? '').trim().toLowerCase();
+  const prolog = s.match(/^prolog[\s-]?(\d+(?:\.\d+)?)?$/);
+  if (prolog) return -1e9 + (prolog[1] ? Number(prolog[1]) : 0);
+  const epilog = s.match(/^epilog[\s-]?(\d+(?:\.\d+)?)?$/);
+  if (epilog) return 1e9 + (epilog[1] ? Number(epilog[1]) : 0);
+  return Number.NEGATIVE_INFINITY;
+}
+
 // Convert R2 path ke full URL via image worker
 export function imgUrl(path) {
   if (!path) return null;

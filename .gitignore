@@ -1,5 +1,6 @@
 # Script lokal
 manga/generate_meta.py
+manga/__pycache__/
 
 # Gambar chapter — disimpan di R2, BUKAN di repo. Repo hanya simpan meta.json.
 manga/**/*.webp

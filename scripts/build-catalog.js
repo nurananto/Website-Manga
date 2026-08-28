@@ -155,9 +155,22 @@ function normalizeType(type) {
   return TYPE_MAP[raw.trim().toLowerCase()] ?? type;
 }
 
+// Selain angka biasa, dukung chapter_number berupa slug "prolog"/"prolog-1"
+// (SELALU di depan chapter bernomor, urut sesama Prolog naik sesuai
+// angkanya) dan "epilog"/"epilog-1" (SELALU di belakang chapter terakhir,
+// urut sesama Epilog naik) — dibuat generate_meta.py (lihat
+// extract_chapter_number di sana). "oneshot" & label lain yg tak dikenal
+// tetap fallback -Infinity (perilaku lama). HARUS disamakan skemanya dgn
+// chapterSortValue() di src/utils.js (dipakai frontend).
 function chapterSortValue(value) {
   const n = Number(value);
-  return Number.isFinite(n) ? n : Number.NEGATIVE_INFINITY;
+  if (Number.isFinite(n)) return n;
+  const s = String(value ?? '').trim().toLowerCase();
+  const prolog = s.match(/^prolog(?:-(\d+(?:\.\d+)?))?$/);
+  if (prolog) return -1e9 + (prolog[1] ? Number(prolog[1]) : 0);
+  const epilog = s.match(/^epilog(?:-(\d+(?:\.\d+)?))?$/);
+  if (epilog) return 1e9 + (epilog[1] ? Number(epilog[1]) : 0);
+  return Number.NEGATIVE_INFINITY;
 }
 
 function releaseSortValue(value) {
@@ -700,7 +713,16 @@ function buildChapters(slug, mangaPath, manga) {
     ch.id = `${slug}-ch-${chapterNumber}`;
     ch.r2_prefix = `manga/${slug}/${r2Folder}/`;
     if (!ch.title) {
-      ch.title = isOneshot ? 'Oneshot' : `Ch. ${chapterNumber}`;
+      // generate_meta.py SEHARUSNYA sudah nulis title eksplisit utk
+      // Prolog/Epilog/Oneshot (lihat display_label_for_special di sana) —
+      // fallback ini cuma jaring pengaman kalau meta.json diedit manual
+      // tanpa lewat script itu.
+      const special = String(chapterNumber).match(/^(prolog|epilog)(?:-(\d+(?:\.\d+)?))?$/i);
+      ch.title = isOneshot
+        ? 'Oneshot'
+        : special
+        ? `${special[1][0].toUpperCase()}${special[1].slice(1)}${special[2] ? ` ${special[2]}` : ''}`
+        : `Ch. ${chapterNumber}`;
     }
 
     // release_date: kalau belum ada di meta.json, ambil dari waktu commit PERTAMA

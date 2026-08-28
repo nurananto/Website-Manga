@@ -346,8 +346,10 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     : normalizedStatus === 'hiatus'
       ? manga?.hiatus_at_chapter
       : null;
+  // String(), bukan Number() — chapter_number bisa berupa label non-angka
+  // (mis. "Prolog"/"Epilog"), Number() bikin NaN===NaN yg selalu false.
   const isAtConfiguredEndChapter = configuredEndChapter != null
-    && Number(activeChapter?.chapter_number) === Number(configuredEndChapter);
+    && String(activeChapter?.chapter_number) === String(configuredEndChapter);
   const isFinishedSeries = normalizedStatus === 'tamat' || normalizedStatus === 'hiatus' || isOneshot;
 
   // Next di-disable saat: chapter terbaru + series selesai atau chapter akhir sesuai metadata.
@@ -1140,7 +1142,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                   );
                   const isStatusChapter = isOneshot || (
                     configuredEndChapter != null
-                    && Number(ch.chapter_number) === Number(configuredEndChapter)
+                    && String(ch.chapter_number) === String(configuredEndChapter)
                   );
                   const showStatusBadge = !isNew && isFinishedSeries && isStatusChapter;
                   return (

@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { nowTimestamp, chapterDateLabel } from '../utils';
+import { nowTimestamp, chapterDateLabel, chapterSortValue } from '../utils';
 import { Star, BookOpen, ArrowUpDown, Eye, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play, Lock } from 'lucide-react';
 import SupportButtons from './SupportButtons';
 import ResponsiveCover from './ResponsiveCover';
@@ -11,11 +11,6 @@ import { useDialogFocus } from '../lib/useDialogFocus';
 import { recordView } from '../lib/viewGate';
 
 const EMPTY_SET = new Set();
-
-const chapterSortValue = (value) => {
-  const n = Number(value);
-  return Number.isFinite(n) ? n : Number.NEGATIVE_INFINITY;
-};
 
 // author/artist bisa berupa string tunggal ATAU array (kolaborasi banyak
 // orang, mis. studio) — selalu gabung jadi satu string ", "-separated
@@ -291,12 +286,16 @@ const renderChapterRow = (ch) => {
                   <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
                     <SolidButton variant="light" size="fixed" onClick={() => onReadChapter(firstChapter, manga.title)}>
                       <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                      {manga.status === 'Oneshot' ? 'Baca Oneshot' : `Baca Ch. ${firstChapter.chapter_number}`}
+                      {/* firstChapter.title sudah "Ch. X"/"Oneshot"/"Prolog"/"Epilog 1"
+                          dst (diisi generate_meta.py/build-catalog.js) — jangan bikin
+                          ulang "Ch. ${chapter_number}" manual di sini, bisa keliru
+                          jadi "Ch. prolog" utk chapter_number non-angka. */}
+                      Baca {firstChapter.title}
                     </SolidButton>
                     {continueChapter && (
                       <SolidButton variant="dark" size="fixed" onClick={() => onReadChapter(continueChapter, manga.title)}>
                         <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
-                        Lanjut {manga.status === 'Oneshot' ? 'Oneshot' : `Ch. ${continueChapter.chapter_number}`}
+                        Lanjut {continueChapter.title}
                       </SolidButton>
                     )}
                   </div>

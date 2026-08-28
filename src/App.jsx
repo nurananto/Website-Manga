@@ -9,7 +9,7 @@ import MangaCard from './components/MangaCard';
 import VisitorCount from './components/VisitorCount';
 import ResponsiveCover from './components/ResponsiveCover';
 import { Sparkles, RotateCcw, Search, CheckCircle, ArrowRight, ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight, LayoutGrid, List } from 'lucide-react';
-import { coverUrlForWidth, timeAgo } from './utils';
+import { coverUrlForWidth, timeAgo, chapterSortValue } from './utils';
 import { HomepageHeroSkeleton, MangaCardSkeleton, MangaCardGridSkeleton, MangaDetailSkeleton, ReaderLoadingSkeleton } from './components/Skeleton';
 import MangaCardGrid, { MangaCardGridPlaceholder } from './components/MangaCardGrid';
 import { parsePath, navigate } from './router';
@@ -1223,11 +1223,9 @@ export default function App() {
                           const r = await fetch(`/manga/${mangaId}.json`, { cache: 'no-cache' });
                           if (!r.ok) throw new Error();
                           const fullManga = await r.json();
-                          const oldest = [...(fullManga.chapters || [])].sort((a, b) => {
-                            const an = Number(a.chapter_number);
-                            const bn = Number(b.chapter_number);
-                            return (Number.isFinite(an) ? an : Number.NEGATIVE_INFINITY) - (Number.isFinite(bn) ? bn : Number.NEGATIVE_INFINITY);
-                          })[0];
+                          const oldest = [...(fullManga.chapters || [])].sort(
+                            (a, b) => chapterSortValue(a.chapter_number) - chapterSortValue(b.chapter_number)
+                          )[0];
                           if (!oldest) throw new Error();
                           handleReadChapter(oldest, fullManga.title);
                         } catch {
