@@ -22,11 +22,6 @@
   ],
   "mangadex_url": "https://mangadex.org/title/26854d1a-dfd0-4e5c-b6d1-ab291035b8cc/10-nen-buri-ni-saikai-shita-kusogaki-wa-seijun-bishoujo-jk-ni-seichou-shiteita",
   "raw_url": "https://comic-gardo.com/episode/2550912965031159065",
-  "raw_source": "COMIC Gardo",
-  "update_frequency": "Biweekly",
-  "raw_type": "Paid",
-  "raw_system": "Koin dan Tiket",
-  "final_raw_chapter": null,
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
@@ -112,7 +107,7 @@
       "id": "10-nenburi-ch-23.2",
       "r2_prefix": "manga/10-nenburi/23.2/",
       "title": "Ch. 23.2",
-      "unlockDate": "2026-10-01T17:00:00.000Z",
+      "unlockDate": "2026-09-27T17:00:00.000Z",
       "isLocked": true,
       "views": 0
     },
@@ -125,7 +120,7 @@
       "id": "10-nenburi-ch-23.1",
       "r2_prefix": "manga/10-nenburi/23.1/",
       "title": "Ch. 23.1",
-      "unlockDate": "2026-09-10T17:00:00.000Z",
+      "unlockDate": "2026-09-06T17:00:00.000Z",
       "isLocked": true,
       "views": 4
     },
@@ -138,7 +133,7 @@
       "id": "10-nenburi-ch-22.2",
       "r2_prefix": "manga/10-nenburi/22.2/",
       "title": "Ch. 22.2",
-      "unlockDate": "2026-09-03T17:00:00.000Z",
+      "unlockDate": "2026-08-30T17:00:00.000Z",
       "isLocked": true,
       "views": 7
     },

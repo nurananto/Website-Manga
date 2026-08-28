@@ -36,7 +36,7 @@
         "id": "10-nenburi-ch-23.2",
         "r2_prefix": "manga/10-nenburi/23.2/",
         "title": "Ch. 23.2",
-        "unlockDate": "2026-10-01T17:00:00.000Z",
+        "unlockDate": "2026-09-27T17:00:00.000Z",
         "isLocked": true,
         "views": 0
       },
@@ -49,7 +49,7 @@
         "id": "10-nenburi-ch-23.1",
         "r2_prefix": "manga/10-nenburi/23.1/",
         "title": "Ch. 23.1",
-        "unlockDate": "2026-09-10T17:00:00.000Z",
+        "unlockDate": "2026-09-06T17:00:00.000Z",
         "isLocked": true,
         "views": 4
       },
@@ -62,17 +62,11 @@
         "id": "10-nenburi-ch-22.2",
         "r2_prefix": "manga/10-nenburi/22.2/",
         "title": "Ch. 22.2",
-        "unlockDate": "2026-09-03T17:00:00.000Z",
+        "unlockDate": "2026-08-30T17:00:00.000Z",
         "isLocked": true,
         "views": 7
       }
-    ],
-    "raw_url": "https://comic-gardo.com/episode/2550912965031159065",
-    "raw_source": "COMIC Gardo",
-    "update_frequency": "Biweekly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Madogiwa",
@@ -144,13 +138,7 @@
         "isLocked": false,
         "views": 33
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_006388_S",
-    "raw_source": "Comic Walker",
-    "update_frequency": "Biweekly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": 16.2
+    ]
   },
   {
     "id": "Seishun",
@@ -222,13 +210,7 @@
         "isLocked": false,
         "views": 13
       }
-    ],
-    "raw_url": "https://firecross.jp/ebook/series/595",
-    "raw_source": "Fire Cross",
-    "update_frequency": "Monthly",
-    "raw_type": "Mixed",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "ShokeiFlag",
@@ -302,13 +284,7 @@
         "isLocked": false,
         "views": 13
       }
-    ],
-    "raw_url": "https://www.manga-up.com/titles/1717",
-    "raw_source": "Manga UP!",
-    "update_frequency": "Weekly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Negatte",
@@ -378,13 +354,7 @@
         "isLocked": false,
         "views": 26
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_006563_S?episodeType=first",
-    "raw_source": "Comic Walker",
-    "update_frequency": "Biweekly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Yuumei",
@@ -424,7 +394,7 @@
         "id": "Yuumei-ch-24.2",
         "r2_prefix": "manga/Yuumei/24.2/",
         "title": "Ch. 24.2",
-        "unlockDate": "2026-09-15T17:00:00.000Z",
+        "unlockDate": "2026-09-11T17:00:00.000Z",
         "isLocked": true,
         "views": 4
       },
@@ -438,7 +408,7 @@
         "id": "Yuumei-ch-24.1",
         "r2_prefix": "manga/Yuumei/24.1/",
         "title": "Ch. 24.1",
-        "unlockDate": "2026-09-01T17:00:00.000Z",
+        "unlockDate": "2026-08-28T17:00:00.000Z",
         "isLocked": true,
         "views": 7
       },
@@ -455,13 +425,7 @@
         "isLocked": false,
         "views": 41
       }
-    ],
-    "raw_url": "https://www.manga-up.com/titles/1289/chapters/266183",
-    "raw_source": "Manga UP!",
-    "update_frequency": "Biweekly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Tamayo-chan",
@@ -518,13 +482,7 @@
         "isLocked": false,
         "views": 6
       }
-    ],
-    "raw_url": "https://championcross.jp/series/06df3f0cd2eb5",
-    "raw_source": "Champion Cross",
-    "update_frequency": "Monthly",
-    "raw_type": "Paid",
-    "raw_system": "Tiket",
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Suufungo",
@@ -594,13 +552,7 @@
         "isLocked": false,
         "views": 31
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_005690_S?episodeType=first",
-    "raw_source": "Comic Walker",
-    "update_frequency": "Biweekly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": 18.2
+    ]
   },
   {
     "id": "Osananajimi",
@@ -623,7 +575,7 @@
       "Slice of Life",
       "Tragedy"
     ],
-    "rating": 7.69,
+    "rating": 7.7,
     "chapter_count": 19,
     "total_views": 1001,
     "isTrending": false,
@@ -641,7 +593,7 @@
         "id": "Osananajimi-ch-8.2",
         "r2_prefix": "manga/Osananajimi/8.2/",
         "title": "Ch. 8.2",
-        "unlockDate": "2026-09-10T17:00:00.000Z",
+        "unlockDate": "2026-09-06T17:00:00.000Z",
         "isLocked": true,
         "views": 7
       },
@@ -654,7 +606,7 @@
         "id": "Osananajimi-ch-8.1",
         "r2_prefix": "manga/Osananajimi/8.1/",
         "title": "Ch. 8.1",
-        "unlockDate": "2026-09-03T17:00:00.000Z",
+        "unlockDate": "2026-08-30T17:00:00.000Z",
         "isLocked": true,
         "views": 4
       },
@@ -671,13 +623,7 @@
         "isLocked": false,
         "views": 27
       }
-    ],
-    "raw_url": "https://www.manga-up.com/titles/1680",
-    "raw_source": "Manga UP!",
-    "update_frequency": "Weekly",
-    "raw_type": "Paid",
-    "raw_system": "Koin",
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Chikasugiru",
@@ -748,13 +694,7 @@
         "isLocked": false,
         "views": 14
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_008362_S",
-    "raw_source": "Comic Walker",
-    "update_frequency": "Biweekly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "ZunouBattle",
@@ -794,7 +734,7 @@
         "id": "ZunouBattle-ch-8.2",
         "r2_prefix": "manga/ZunouBattle/8.2/",
         "title": "Ch. 8.2",
-        "unlockDate": "2026-10-06T17:00:00.000Z",
+        "unlockDate": "2026-10-02T17:00:00.000Z",
         "isLocked": true,
         "views": 14
       },
@@ -807,7 +747,7 @@
         "id": "ZunouBattle-ch-8.1",
         "r2_prefix": "manga/ZunouBattle/8.1/",
         "title": "Ch. 8.1",
-        "unlockDate": "2026-09-22T17:00:00.000Z",
+        "unlockDate": "2026-09-18T17:00:00.000Z",
         "isLocked": true,
         "views": 10
       },
@@ -823,13 +763,7 @@
         "isLocked": false,
         "views": 34
       }
-    ],
-    "raw_url": "https://comic-gardo.com/episode/12207421983659774808",
-    "raw_source": "COMIC Gardo",
-    "update_frequency": "Biweekly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Amari-chan",
@@ -900,13 +834,7 @@
         "isLocked": false,
         "views": 12
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_006262_S?episodeType=first",
-    "raw_source": "Comic Walker",
-    "update_frequency": "Biweekly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "NanimoDekinai",
@@ -980,13 +908,7 @@
         "isLocked": false,
         "views": 9
       }
-    ],
-    "raw_url": "https://bookwalker.jp/series/615327/?fbclid=IwY2xjawTixg5wZG9mAWV4dG4DYWVtAjExAHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR6P5iiZhNyYFZiYi92DCltQWSMTGAYCwTCPh0ED70zqA1yLuTW31UzUu-qbwA_aem_mQUmijnznnDymQDJGlAVSg",
-    "raw_source": "BookWalker",
-    "update_frequency": "Monthly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "InkyaDanshi",
@@ -1056,13 +978,7 @@
         "isLocked": false,
         "views": 22
       }
-    ],
-    "raw_url": "https://bookwalker.jp/series/485592/",
-    "raw_source": "BookWalker",
-    "update_frequency": "Monthly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": 10
+    ]
   },
   {
     "id": "Sankakukei",
@@ -1132,13 +1048,7 @@
         "isLocked": false,
         "views": 15
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_006586_S?episodeType=first",
-    "raw_source": "Comic Walker",
-    "update_frequency": "Biweekly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Midari",
@@ -1206,13 +1116,7 @@
         "isLocked": false,
         "views": 9
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_006109_S?episodeType=first",
-    "raw_source": "Comic Walker",
-    "update_frequency": "Biweekly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": 14
+    ]
   },
   {
     "id": "TeisouGyakuten",
@@ -1285,13 +1189,7 @@
         "isLocked": false,
         "views": 20
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_007283_S?episodeType=first",
-    "raw_source": "Comic Walker",
-    "update_frequency": "Monthly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "ClassdeIchiban",
@@ -1361,13 +1259,7 @@
         "isLocked": false,
         "views": 22
       }
-    ],
-    "raw_url": "https://www.manga-up.com/titles/1540",
-    "raw_source": "Manga UP!",
-    "update_frequency": "Biweekly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Mendokusai",
@@ -1437,13 +1329,7 @@
         "isLocked": false,
         "views": 2
       }
-    ],
-    "raw_url": "https://bookwalker.jp/series/517234/",
-    "raw_source": "BookWalker",
-    "update_frequency": "Monthly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": 30
+    ]
   },
   {
     "id": "UchinoSeiso-kei",
@@ -1512,13 +1398,7 @@
         "isLocked": false,
         "views": 5
       }
-    ],
-    "raw_url": "https://comic-days.com/episode/2550912965858307088",
-    "raw_source": "Comic Days",
-    "update_frequency": "Biweekly",
-    "raw_type": "Mixed",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "TensaiBishoujo",
@@ -1588,13 +1468,7 @@
         "isLocked": false,
         "views": 6
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_006969_S/episodes/KC_0069690000200011_E?episodeType=first",
-    "raw_source": "Comic Walker",
-    "update_frequency": "Monthly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Gotou-san",
@@ -1662,13 +1536,7 @@
         "isLocked": false,
         "views": 2
       }
-    ],
-    "raw_url": "https://bookwalker.jp/series/310103/list/",
-    "raw_source": "BookWalker",
-    "update_frequency": "Irregular",
-    "raw_type": "Paid",
-    "raw_system": "Koin",
-    "final_raw_chapter": 27.5
+    ]
   },
   {
     "id": "AotoSakura",
@@ -1711,13 +1579,7 @@
         "isLocked": false,
         "views": 17
       }
-    ],
-    "raw_url": "https://www.manga-up.com/titles/1208",
-    "raw_source": "Manga UP!",
-    "update_frequency": null,
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Yuuri-kun",
@@ -1761,13 +1623,7 @@
         "isLocked": false,
         "views": 17
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_006800_S/episodes/KC_0068000000100011_E?episodeType=latest",
-    "raw_source": "Comic Walker",
-    "update_frequency": null,
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Mutsuko",
@@ -1835,13 +1691,7 @@
         "isLocked": false,
         "views": 9
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_007406_S/episodes/KC_0074060000200011_E?episodeType=first",
-    "raw_source": "Comic Walker",
-    "update_frequency": "Monthly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Hanpirei",
@@ -1910,13 +1760,7 @@
         "isLocked": false,
         "views": 1
       }
-    ],
-    "raw_url": "https://www.comico.jp/comic/10275",
-    "raw_source": "comico",
-    "update_frequency": "Monthly",
-    "raw_type": "Paid",
-    "raw_system": "Koin",
-    "final_raw_chapter": 5
+    ]
   },
   {
     "id": "Mememe",
@@ -1986,13 +1830,7 @@
         "isLocked": false,
         "views": 5
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_007215_S?episodeType=first",
-    "raw_source": "Comic Walker",
-    "update_frequency": "Monthly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "Yarikonda",
@@ -2064,13 +1902,7 @@
         "isLocked": false,
         "views": 7
       }
-    ],
-    "raw_url": "https://www.manga-up.com/titles/1518",
-    "raw_source": "Manga UP!",
-    "update_frequency": "Biweekly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": 9
+    ]
   },
   {
     "id": "AiwoOshiete",
@@ -2140,13 +1972,7 @@
         "isLocked": false,
         "views": 1
       }
-    ],
-    "raw_url": "https://championcross.jp/episodes/312e96c6d46e6/",
-    "raw_source": "Champion Cross",
-    "update_frequency": "Monthly",
-    "raw_type": "Mixed",
-    "raw_system": "Tiket",
-    "final_raw_chapter": 19
+    ]
   },
   {
     "id": "WeAreNotDating",
@@ -2215,13 +2041,7 @@
         "isLocked": false,
         "views": 0
       }
-    ],
-    "raw_url": "https://comic.naver.com/webtoon/list?titleId=828670",
-    "raw_source": "Naver Webtoon",
-    "update_frequency": "Daily",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": 142
+    ]
   },
   {
     "id": "YoukyaniNatta",
@@ -2241,7 +2061,7 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 8.27,
+    "rating": 8.28,
     "chapter_count": 6,
     "total_views": 39,
     "isTrending": false,
@@ -2289,13 +2109,7 @@
         "isLocked": false,
         "views": 2
       }
-    ],
-    "raw_url": "https://www.manga-up.com/titles/1388",
-    "raw_source": "Manga UP!",
-    "update_frequency": "Biweekly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "IkemenJoshi",
@@ -2350,13 +2164,7 @@
         "isLocked": false,
         "views": 5
       }
-    ],
-    "raw_url": "https://kirapo.jp/meteor/titles/ikemenjoshi",
-    "raw_source": "Kirapo",
-    "update_frequency": "Monthly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "KiminoNegai",
@@ -2425,13 +2233,7 @@
         "isLocked": false,
         "views": 1
       }
-    ],
-    "raw_url": "https://comic-walker.com/detail/KC_006693_S?episodeType=first",
-    "raw_source": "Comic Walker",
-    "update_frequency": "Monthly",
-    "raw_type": "Free",
-    "raw_system": null,
-    "final_raw_chapter": null
+    ]
   },
   {
     "id": "MoshimoYuurei",
@@ -2500,13 +2302,7 @@
         "isLocked": false,
         "views": 3
       }
-    ],
-    "raw_url": "https://bookwalker.jp/series/494400/",
-    "raw_source": "BookWalker",
-    "update_frequency": "Monthly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": 25
+    ]
   },
   {
     "id": "Waka-chan",
@@ -2573,13 +2369,7 @@
         "isLocked": false,
         "views": 9
       }
-    ],
-    "raw_url": "https://www.comico.jp/comic/908",
-    "raw_source": "comico",
-    "update_frequency": "Weekly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": 215.9
+    ]
   },
   {
     "id": "ClassMaid",
@@ -2650,12 +2440,6 @@
         "isLocked": false,
         "views": 2
       }
-    ],
-    "raw_url": "https://www.comico.jp/comic/132",
-    "raw_source": "comico",
-    "update_frequency": "Biweekly",
-    "raw_type": "Paid",
-    "raw_system": "Koin dan Tiket",
-    "final_raw_chapter": 150
+    ]
   }
 ]

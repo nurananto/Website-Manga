@@ -24,11 +24,6 @@
   ],
   "mangadex_url": "https://mangadex.org/title/36cf3daf-9770-4f83-a69c-0d5971b5b43d/osananajimi-ni-kage-de-tsugou-no-yoi-otoko-yobawari-sareta-ore-wa-koui-o-reset-shite-futsuu-ni",
   "raw_url": "https://www.manga-up.com/titles/1680",
-  "raw_source": "Manga UP!",
-  "update_frequency": "Weekly",
-  "raw_type": "Paid",
-  "raw_system": "Koin",
-  "final_raw_chapter": null,
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
@@ -79,7 +74,7 @@
   "cover_version": 4,
   "notif_image": "page1",
   "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
-  "rating": 7.69,
+  "rating": 7.7,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
   "coverUrls": {
@@ -97,7 +92,7 @@
       "id": "Osananajimi-ch-8.2",
       "r2_prefix": "manga/Osananajimi/8.2/",
       "title": "Ch. 8.2",
-      "unlockDate": "2026-09-10T17:00:00.000Z",
+      "unlockDate": "2026-09-06T17:00:00.000Z",
       "isLocked": true,
       "views": 7
     },
@@ -110,7 +105,7 @@
       "id": "Osananajimi-ch-8.1",
       "r2_prefix": "manga/Osananajimi/8.1/",
       "title": "Ch. 8.1",
-      "unlockDate": "2026-09-03T17:00:00.000Z",
+      "unlockDate": "2026-08-30T17:00:00.000Z",
       "isLocked": true,
       "views": 4
     },
