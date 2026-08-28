@@ -358,17 +358,12 @@ def _write_manga_meta(title_dir):
         ],
         "mangadex_url": "",
         "raw_url": "",
-        # Field Manga Tracker / Schedule (halaman /tracker) — diisi manual,
-        # TIDAK di-generate otomatis. raw_source: nama platform raw (mis.
-        # "Manga UP!", "Comic Walker"). update_frequency: "Weekly"/"Biweekly"/
-        # "Monthly"/"Daily"/"Irregular" (null kalau Oneshot). raw_type:
-        # "Free"/"Paid"/"Mixed". raw_system (cuma kalau raw_type != "Free"):
-        # "Koin"/"Tiket"/"Koin dan Tiket". final_raw_chapter: chapter terakhir
-        # di RAW (bukan translasi) saat manga Tamat/Hiatus.
-        "raw_source": "",
-        "update_frequency": None,
-        "raw_type": "",
-        "final_raw_chapter": None,
+        # cover_source_url (opsional, TIDAK ditambahkan di sini secara default —
+        # cuma diisi manual kalau perlu): link GAMBAR LANGSUNG (bukan halaman
+        # HTML) untuk cover sementara sebelum MangaDex ada — dipakai
+        # scripts/sync-covers.js kalau raw_url tidak punya og:image yang valid
+        # (mis. Amazon) atau og:image-nya bukan portrait. Field terpisah dari
+        # raw_url biar raw_url tetap bisa diisi link raw baca beneran.
         # Gambar notifikasi chapter baru (Discord & Facebook): "cover" (default,
         # cover manga) atau "page1" (halaman 1 chapter).
         "notif_image": "cover",

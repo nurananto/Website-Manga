@@ -269,6 +269,37 @@ async function syncCovers() {
           console.log(`   ❌ Gagal download cover utama dari MangaDex`);
         }
       }
+    } else if (meta.cover_source_url && (!meta.covers?.length || meta.cover_source === 'manual-url')) {
+      // Fallback manual — dipakai kalau MangaDex belum ada DAN og:image dari
+      // raw_url tidak bisa dipakai (bukan portrait, atau situsnya tidak punya
+      // og:image sama sekali, mis. Amazon). meta.cover_source_url adalah LINK
+      // GAMBAR LANGSUNG (bukan halaman HTML) yang diisi manual sementara —
+      // field terpisah dari raw_url supaya raw_url tetap bisa diisi link raw
+      // beneran (buat tombol "Buka Raw") walau bukan sumber cover. Begitu
+      // MangaDex ketemu, cabang di atas otomatis menang duluan lagi.
+      console.log(`   🔗 MangaDex belum ada cover, coba cover_source_url manual: ${meta.cover_source_url}`);
+      const imgBuffer = await downloadImageUrl(meta.cover_source_url);
+      if (!imgBuffer) {
+        console.log(`   ❌ Gagal download dari cover_source_url`);
+      } else if (!force && meta.raw_cover_url === meta.cover_source_url && meta.covers?.length >= 3 && meta.cover_widths === SIZE_SIGNATURE) {
+        console.log(`   ✓ Cover dari cover_source_url sudah terbaru`);
+      } else {
+        const dims = await sharp(imgBuffer).metadata().catch(() => null);
+        const ratio = dims?.width && dims?.height ? dims.width / dims.height : null;
+        if (!ratio || ratio > 0.9) {
+          console.log(`   ⚠️  cover_source_url bukan portrait (${dims?.width}x${dims?.height}, rasio ${ratio?.toFixed(2) ?? '?'}) — dilewati`);
+        } else {
+          for (const oldKey of meta.covers || []) await deleteFromR2(oldKey);
+          meta.covers        = await resizeAndUpload(imgBuffer, `manga/${slug}/covers/cover`);
+          meta.raw_cover_url = meta.cover_source_url;
+          meta.cover_source  = 'manual-url';
+          delete meta.mangadex_cover;
+          meta.cover_widths  = SIZE_SIGNATURE;
+          meta.cover_version = (Number.isFinite(meta.cover_version) ? meta.cover_version : 1) + 1;
+          metaChanged = true;
+          console.log(`   ✅ Cover utama terupload dari cover_source_url (sementara, akan diganti MangaDex kalau sudah tersedia)`);
+        }
+      }
     } else if (meta.raw_url && (!meta.covers?.length || meta.cover_source === 'raw')) {
       // Fallback raw_url — HANYA kalau MangaDex belum punya cover (belum
       // terindeks / mangadex_url belum diisi) DAN manga ini memang belum

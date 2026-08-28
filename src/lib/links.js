@@ -1,7 +1,8 @@
 // Link komunitas — config global terpusat di sini.
 //
-// Dipakai bersama oleh blok "Ikuti Update" di reader, footer, dan dropdown akun
-// (lihat components/SocialFollowLinks.jsx). Kalau URL berubah, cukup edit di sini.
+// Dipakai bersama oleh blok "Ikuti Update" di reader (SocialFollowLinks.jsx)
+// dan tombol Discord/Facebook di homepage/detail (SupportButtons.jsx). Kalau
+// URL berubah, cukup edit di sini.
 //
 // Channel komentar per judul sudah dihapus — diskusi dipusatkan di satu server,
 // jadi hanya ada satu invite umum di bawah.

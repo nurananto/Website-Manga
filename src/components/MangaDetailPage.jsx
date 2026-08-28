@@ -226,7 +226,7 @@ const renderChapterRow = (ch) => {
       {/* Main Section — pt mengikuti TopNavBar (72px) */}
       <div className="pt-4 md:pt-6 xl:pt-8 w-full">
         {/* Hero Banner Section */}
-        <section className="relative mx-3 sm:mx-4 md:mx-5 rounded-2xl overflow-hidden border border-transparent flex items-end pt-3 pb-2">
+        <section className="relative mx-3 sm:mx-4 md:mx-5 rounded-2xl overflow-hidden border border-outline-variant shadow-lg flex items-end pt-3 pb-2">
           {/* Darkened dynamic background */}
           <div className="absolute inset-0 z-0 overflow-hidden bg-surface-container-high">
             <ResponsiveCover
@@ -256,7 +256,7 @@ const renderChapterRow = (ch) => {
                   alt={`${manga.title} Cover`}
                   loading="eager"
                   fetchPriority="high"
-                  className="w-full h-full object-cover rounded-xl shadow-2xl"
+                  className="w-full h-full object-cover rounded-xl shadow-2xl border-2 border-outline-variant"
                 />
             </div>
 
@@ -305,7 +305,7 @@ const renderChapterRow = (ch) => {
           </div>
         </section>
 
-        {/* Tombol Donasi (Trakteer) + Manga Tracker */}
+        {/* Tombol Donasi, Discord, Facebook */}
         <div className="w-full mt-4 md:mt-6 xl:mt-8 px-3 sm:px-4 md:px-5">
           <SupportButtons />
         </div>

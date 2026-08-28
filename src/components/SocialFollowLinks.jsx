@@ -1,18 +1,22 @@
 import { Bell } from 'lucide-react';
 import { DISCORD_INVITE_URL, FACEBOOK_URL } from '../lib/links';
 
-// Tombol "Ikuti Update" Discord + Facebook. Satu komponen untuk tiga tempat:
-// dropdown akun (stack), footer (row), dan bagian bawah reader (row).
+// Tombol "Ikuti Update" Discord + Facebook — dipakai di bagian bawah reader.
+// (Homepage/detail sekarang punya tombol Discord/Facebook sendiri di baris
+// atas sebelah Donasi, lihat SupportButtons.jsx — komponen ini diekspor juga
+// buat dipakai ulang di sana.)
 //
-// Responsif tanpa breakpoint khusus: tombol memakai flex-1 + basis-0 di mode row
-// sehingga selalu membagi lebar induk sama rata — dari 320px sampai desktop lebar,
+// Responsif tanpa breakpoint khusus: tombol memakai flex-1 + basis-0 sehingga
+// selalu membagi lebar induk sama rata — dari 320px sampai desktop lebar,
 // tidak pernah meluber maupun terpotong. Label ikut mengecil lewat clamp kelas.
 
-function DiscordIcon({ className }) {
+// Diekspor (bukan cuma lokal) — dipakai ulang di SupportButtons.jsx buat
+// tombol Discord/Facebook di baris atas (sebelah Donasi).
+export function DiscordIcon({ className }) {
   return <img src="/discord-mark-white.svg" alt="" className={className} />;
 }
 
-function FacebookIcon({ className }) {
+export function FacebookIcon({ className }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
       <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.7V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.3v3h2.8v8h3.4Z" />
@@ -24,45 +28,13 @@ const BUTTON_BASE = 'flex items-center justify-center gap-2 rounded-xl border bo
   + 'text-white shadow-sm transition-[transform,filter,box-shadow] duration-200 ease-out '
   + 'hover:-translate-y-0.5 hover:brightness-110 hover:shadow-md active:translate-y-0 active:scale-[0.98]';
 
-// layout: 'row' (berdampingan, membagi lebar) | 'stack' (bertumpuk penuh)
 // heading: judul "Ikuti Update" — dimatikan di reader, yang hanya menampilkan
 // dua tombol tanpa teks (pesan "chapter terbaru" sudah ada di modal tersendiri).
-// size: 'sm' (default, dipakai reader — tombol memanjang penuh seperti biasa)
-// | 'lg' (footer homepage & halaman detail — disamakan besarnya dgn tombol
-// Donasi/Manga Tracker di SupportButtons.jsx).
-export default function SocialFollowLinks({
-  layout = 'row',
-  heading = true,
-  size = 'sm',
-  className = '',
-}) {
-  const isRow = layout === 'row';
-  const isLg = size === 'lg';
-  const wrapper = isRow
-    ? 'flex w-full items-stretch gap-2 sm:gap-2.5'
-    : 'flex flex-col gap-2';
+export default function SocialFollowLinks({ heading = true, className = '' }) {
   // basis-0 + min-w-0 mencegah judul panjang mendorong tombol jadi tidak sama lebar.
-  // isLg (footer homepage/detail) naik bertahap 3 langkah, SAMA PERSIS pola
-  // dgn tombol Donasi/Manga Tracker (SupportButtons.jsx) — kalau cuma 1
-  // lompatan di sm, ukurannya "nyangkut" di angka sm sejak layar sekecil
-  // apa pun, jadi kelihatan kebesaran di HP kecil (beda dgn size sm/reader
-  // di bawah yang sudah 3 langkah dari awal).
-  const button = isRow
-    ? (isLg
-      ? `${BUTTON_BASE} min-w-0 flex-1 basis-0 px-3 py-2.5 sm:px-4 sm:py-3 md:px-6 md:py-3.5`
-      : `${BUTTON_BASE} h-10 min-w-0 flex-1 basis-0 px-2 sm:h-11 sm:px-3 md:h-12`)
-    : `${BUTTON_BASE} h-9 w-full px-3 md:h-10`;
-  const icon = isRow
-    ? (isLg ? 'h-5 w-5 shrink-0 sm:h-6 sm:w-6 md:h-7 md:w-7' : 'h-4 w-4 shrink-0 sm:h-[18px] sm:w-[18px] md:h-5 md:w-5')
-    : 'h-4 w-4 shrink-0 md:h-[18px] md:w-[18px]';
-  const label = isRow
-    ? (isLg ? 'truncate text-xs font-black sm:text-sm md:text-base' : 'truncate text-[11px] font-bold sm:text-xs md:text-sm')
-    : 'truncate text-[11px] font-bold md:text-xs';
-  // Garis pemisah tebal antara ikon & teks — sama gayanya dgn tombol
-  // Donasi/Manga Tracker di SupportButtons.jsx. Cuma dipakai layout row.
-  const dividerCls = isLg
-    ? 'h-5 w-1 shrink-0 rounded-full bg-white/50 sm:h-6 md:h-7'
-    : 'h-4 w-0.5 shrink-0 rounded-full bg-white/50 sm:h-[18px] md:h-5';
+  const button = `${BUTTON_BASE} h-10 min-w-0 flex-1 basis-0 px-2 sm:h-11 sm:px-3 md:h-12`;
+  const icon = 'h-4 w-4 shrink-0 sm:h-[18px] sm:w-[18px] md:h-5 md:w-5';
+  const label = 'truncate text-[11px] font-bold sm:text-xs md:text-sm';
 
   return (
     <div className={className}>
@@ -72,7 +44,7 @@ export default function SocialFollowLinks({
           Ikuti Update
         </p>
       )}
-      <div className={wrapper}>
+      <div className="flex w-full items-stretch gap-2 sm:gap-2.5">
         <a
           href={DISCORD_INVITE_URL || undefined}
           target="_blank"
@@ -81,7 +53,6 @@ export default function SocialFollowLinks({
           className={`${button} bg-[#5865F2]`}
         >
           <DiscordIcon className={icon} />
-          {isRow && <span aria-hidden="true" className={dividerCls} />}
           <span className={label}>Discord</span>
         </a>
         <a
@@ -92,7 +63,6 @@ export default function SocialFollowLinks({
           className={`${button} bg-[#1877F2]`}
         >
           <FacebookIcon className={icon} />
-          {isRow && <span aria-hidden="true" className={dividerCls} />}
           <span className={label}>Facebook</span>
         </a>
       </div>
