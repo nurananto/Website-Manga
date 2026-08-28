@@ -42,25 +42,26 @@ export default function SocialFollowLinks({
     ? 'flex w-full items-stretch gap-2 sm:gap-2.5'
     : 'flex flex-col gap-2';
   // basis-0 + min-w-0 mencegah judul panjang mendorong tombol jadi tidak sama lebar.
+  // isLg (footer homepage/detail) naik bertahap 3 langkah, SAMA PERSIS pola
+  // dgn tombol Donasi/Manga Tracker (SupportButtons.jsx) — kalau cuma 1
+  // lompatan di sm, ukurannya "nyangkut" di angka sm sejak layar sekecil
+  // apa pun, jadi kelihatan kebesaran di HP kecil (beda dgn size sm/reader
+  // di bawah yang sudah 3 langkah dari awal).
   const button = isRow
     ? (isLg
-      ? `${BUTTON_BASE} min-w-0 flex-1 basis-0 px-4 py-3.5 sm:px-6 sm:py-4`
+      ? `${BUTTON_BASE} min-w-0 flex-1 basis-0 px-3 py-2.5 sm:px-4 sm:py-3 md:px-6 md:py-3.5`
       : `${BUTTON_BASE} h-10 min-w-0 flex-1 basis-0 px-2 sm:h-11 sm:px-3 md:h-12`)
     : `${BUTTON_BASE} h-9 w-full px-3 md:h-10`;
-  // Ikon di footer (isLg) disamakan besarnya dgn ikon tombol Donasi/Manga
-  // Tracker (SupportButtons.jsx) — BUKAN tinggi bounding-box logo banner
-  // "Nurananto Scanlation" (mascot kucing di banner itu jauh lebih kecil dari
-  // kotak gambarnya sendiri, jadi nyamain ke tinggi kotak malah kebesaran).
   const icon = isRow
-    ? (isLg ? 'h-6 w-6 shrink-0 sm:h-7 sm:w-7' : 'h-4 w-4 shrink-0 sm:h-[18px] sm:w-[18px] md:h-5 md:w-5')
+    ? (isLg ? 'h-5 w-5 shrink-0 sm:h-6 sm:w-6 md:h-7 md:w-7' : 'h-4 w-4 shrink-0 sm:h-[18px] sm:w-[18px] md:h-5 md:w-5')
     : 'h-4 w-4 shrink-0 md:h-[18px] md:w-[18px]';
   const label = isRow
-    ? (isLg ? 'truncate text-sm font-black sm:text-base' : 'truncate text-[11px] font-bold sm:text-xs md:text-sm')
+    ? (isLg ? 'truncate text-xs font-black sm:text-sm md:text-base' : 'truncate text-[11px] font-bold sm:text-xs md:text-sm')
     : 'truncate text-[11px] font-bold md:text-xs';
   // Garis pemisah tebal antara ikon & teks — sama gayanya dgn tombol
   // Donasi/Manga Tracker di SupportButtons.jsx. Cuma dipakai layout row.
   const dividerCls = isLg
-    ? 'h-6 w-1 shrink-0 rounded-full bg-white/50 sm:h-7'
+    ? 'h-5 w-1 shrink-0 rounded-full bg-white/50 sm:h-6 md:h-7'
     : 'h-4 w-0.5 shrink-0 rounded-full bg-white/50 sm:h-[18px] md:h-5';
 
   return (
