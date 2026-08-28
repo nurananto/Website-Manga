@@ -1,5 +1,49 @@
 [
   {
+    "id": "Ippanjin",
+    "title": "Ippanjin no Ore wo Geinouka Joshi-tachi ga Nigashite Kurenai Ken",
+    "description": "Aoi Yuuto, anak rahasia dari aktor populer yang dikenal seantero negeri, masuk ke SMA swasta Ichiyou yang punya berbagai macam jurusan. Padahal dia cuma pengin menjalani kehidupan sekolah yang tenang sebagai murid biasa di jurusan akademik... tapi kenapa cewek-cewek dari jurusan seni malah nggak…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=1",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=1",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover@tablet.webp?v=1",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover@mobile.webp?v=1"
+    },
+    "genres": [
+      "Comedy",
+      "Life",
+      "Romance",
+      "School",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": null,
+    "chapter_count": 1,
+    "total_views": 0,
+    "isTrending": true,
+    "latest_release_date": "2026-08-28T23:29:44+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": "prolog",
+        "title": "Prolog",
+        "lock_hours": 0,
+        "pages": 18,
+        "notif_image": "cover",
+        "r2_folder": "prolog",
+        "id": "Ippanjin-ch-prolog",
+        "r2_prefix": "manga/Ippanjin/prolog/",
+        "release_date": "2026-08-28T23:29:44+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "Osananajimi",
     "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
     "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
@@ -33,11 +77,11 @@
         "chapter_number": 8.3,
         "pages": 8,
         "notif_image": "8",
+        "release_date": "2026-08-28T23:16:18+07:00",
         "r2_folder": 8.3,
         "id": "Osananajimi-ch-8.3",
         "r2_prefix": "manga/Osananajimi/8.3/",
         "title": "Ch. 8.3",
-        "release_date": "2026-08-28T23:16:18+07:00",
         "unlockDate": "2026-10-14T17:00:00.000Z",
         "isLocked": true,
         "views": 0
@@ -307,7 +351,7 @@
     "rating": 6,
     "chapter_count": 10,
     "total_views": 144,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-08-27T09:34:05+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
