@@ -60,24 +60,11 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
       (targetChapter != null && String(ch.chapter_number) === String(targetChapter))
     );
 
-    // Slot tanggal (kanan) diisi badge kalau ada yang perlu ditandai — "Locked"
-    // menang PALING duluan (chapter yang gak bisa dibaca lebih penting drpd
-    // info lain), baru "UP!" (lebih actionable drpd status), baru status
-    // Tamat/Hiatus. Kalau gak ada satu pun, tampilkan tanggal seperti biasa.
-    // Icon Lock dipindah dari sebelah judul (kepenuhan/mepet di layar sempit)
-    // ke sini — konsisten dgn badge lain yang juga di slot ini. Icon-only
-    // (tanpa teks) kalau cuma locked doang, warna amber — tapi chapter
-    // TERBARU yang locked itu kasus umum (chapter early-access buat
-    // supporter), jadi kalau kebetulan locked SEKALIGUS baru rilis, badge-nya
-    // ikut warna hijau UP! biasa (bukan amber) + teks "UP!", ikon Lock-nya
-    // ikut warna teks (currentColor) jadi otomatis putih. Ukuran box & ikon
-    // tetap sama persis dgn badge UP!/Locked lainnya (classes sizing gak
-    // dibedain per varian).
-    const dateBadge = showAccessGate
-      ? isUp
-        ? { icon: Lock, text: 'UP!', className: 'badge-updated-glow text-white' }
-        : { icon: Lock, className: 'bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-400/60' }
-      : isUp
+    // Slot tanggal (kanan) diisi badge kalau ada yang perlu ditandai — "UP!"
+    // menang duluan (lebih actionable drpd status), baru status Tamat/Hiatus.
+    // Kalau gak ada satu pun, tampilkan tanggal seperti biasa. Icon Lock
+    // TIDAK di sini — balik ke sebelah kiri judul chapter (lihat chapterBody).
+    const dateBadge = isUp
       ? { text: 'UP!', className: 'badge-updated-glow text-white' }
       : showStatusBadge
       ? {
@@ -94,7 +81,22 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
         onClick={(e) => { e.stopPropagation(); onReadChapter(ch, manga.title, manga); }}
         className="flex w-full min-w-0 items-center justify-between gap-0.5 sm:gap-1 text-left cursor-pointer group/ch bg-surface-container rounded-lg shadow-md transition-colors p-1.5 sm:p-2 border border-transparent hover:border-primary/20"
       >
-        <span className="flex min-w-0 items-center gap-0.5 sm:gap-1">
+        <span className="flex min-w-0 items-center gap-1 sm:gap-1.5">
+          {/* Icon Lock — balik ke sebelah KIRI judul chapter (squircle amber,
+              icon-only). Badge di slot tanggal (kanan) tetap independen. */}
+          {showAccessGate && (
+            <span
+              aria-hidden="true"
+              className="flex h-4 w-4 sm:h-[18px] sm:w-[18px] md:h-5 md:w-5 lg:h-[22px] lg:w-[22px] shrink-0 items-center justify-center rounded-[5px] border border-amber-400/60 bg-amber-500/20"
+            >
+              {/* -translate-y-px: bounding box SVG-nya sendiri sudah center
+                  matematis (rect y11-22 + shackle y2-11 → tengah persis y12
+                  dari viewBox 24), tapi shackle cuma garis tipis vs badan rect
+                  solid bikin bobot visualnya keliatan berat ke bawah — nudge
+                  optik halus ke atas biar keliatan seimbang di mata. */}
+              <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4 -translate-y-px text-amber-600 dark:text-amber-300 stroke-[2.5]" />
+            </span>
+          )}
           {/* Font chapter di antara ukuran awal (list) & versi kepenuhan
               sebelumnya — dinaikkan dikit dari versi paling kecil, tapi
               masih dijaga gak sebesar mode list biar gak ketutupan badge
@@ -108,13 +110,8 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
           </span>
         </span>
         {dateBadge ? (
-          <span className={`flex items-center gap-0.5 shrink-0 font-label-sm px-1 py-0.5 sm:px-1.5 rounded text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black uppercase tracking-wide whitespace-nowrap ${dateBadge.className}`}>
-            {/* Icon Lock (kalau ada) dipindah ke sini dari sebelah judul —
-                di layar sempit judul+icon suka kepenuhan/mepet. Icon-only,
-                gak ada teks "Locked" di sebelahnya — biar gak makin sempit. */}
-            {dateBadge.icon && <dateBadge.icon className="h-2.5 w-2.5 md:h-3 md:w-3 shrink-0 stroke-[3]" />}
+          <span className={`shrink-0 font-label-sm px-1 py-0.5 sm:px-1.5 rounded text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black uppercase tracking-wide whitespace-nowrap ${dateBadge.className}`}>
             {dateBadge.text}
-
           </span>
         ) : (
           <span className={`font-label-sm text-[10px] sm:text-xs md:text-sm lg:text-base text-outline whitespace-nowrap shrink-0 transition-opacity ${isRead ? 'opacity-80' : ''}`}>
