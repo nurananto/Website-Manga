@@ -27,25 +27,41 @@ const BUTTON_BASE = 'flex items-center justify-center gap-2 rounded-xl border bo
 // layout: 'row' (berdampingan, membagi lebar) | 'stack' (bertumpuk penuh)
 // heading: judul "Ikuti Update" — dimatikan di reader, yang hanya menampilkan
 // dua tombol tanpa teks (pesan "chapter terbaru" sudah ada di modal tersendiri).
+// size: 'sm' (default, dipakai reader — tombol memanjang penuh seperti biasa)
+// | 'lg' (footer homepage & halaman detail — disamakan besarnya dgn tombol
+// Donasi/Manga Tracker di SupportButtons.jsx).
 export default function SocialFollowLinks({
   layout = 'row',
   heading = true,
+  size = 'sm',
   className = '',
 }) {
   const isRow = layout === 'row';
+  const isLg = size === 'lg';
   const wrapper = isRow
     ? 'flex w-full items-stretch gap-2 sm:gap-2.5'
     : 'flex flex-col gap-2';
   // basis-0 + min-w-0 mencegah judul panjang mendorong tombol jadi tidak sama lebar.
   const button = isRow
-    ? `${BUTTON_BASE} h-10 min-w-0 flex-1 basis-0 px-2 sm:h-11 sm:px-3 md:h-12`
+    ? (isLg
+      ? `${BUTTON_BASE} min-w-0 flex-1 basis-0 px-4 py-3.5 sm:px-6 sm:py-4`
+      : `${BUTTON_BASE} h-10 min-w-0 flex-1 basis-0 px-2 sm:h-11 sm:px-3 md:h-12`)
     : `${BUTTON_BASE} h-9 w-full px-3 md:h-10`;
+  // Ikon di footer (isLg) disamakan besarnya dgn ikon tombol Donasi/Manga
+  // Tracker (SupportButtons.jsx) — BUKAN tinggi bounding-box logo banner
+  // "Nurananto Scanlation" (mascot kucing di banner itu jauh lebih kecil dari
+  // kotak gambarnya sendiri, jadi nyamain ke tinggi kotak malah kebesaran).
   const icon = isRow
-    ? 'h-4 w-4 shrink-0 sm:h-[18px] sm:w-[18px] md:h-5 md:w-5'
+    ? (isLg ? 'h-6 w-6 shrink-0 sm:h-7 sm:w-7' : 'h-4 w-4 shrink-0 sm:h-[18px] sm:w-[18px] md:h-5 md:w-5')
     : 'h-4 w-4 shrink-0 md:h-[18px] md:w-[18px]';
   const label = isRow
-    ? 'truncate text-[11px] font-bold sm:text-xs md:text-sm'
+    ? (isLg ? 'truncate text-sm font-black sm:text-base' : 'truncate text-[11px] font-bold sm:text-xs md:text-sm')
     : 'truncate text-[11px] font-bold md:text-xs';
+  // Garis pemisah tebal antara ikon & teks — sama gayanya dgn tombol
+  // Donasi/Manga Tracker di SupportButtons.jsx. Cuma dipakai layout row.
+  const dividerCls = isLg
+    ? 'h-6 w-1 shrink-0 rounded-full bg-white/50 sm:h-7'
+    : 'h-4 w-0.5 shrink-0 rounded-full bg-white/50 sm:h-[18px] md:h-5';
 
   return (
     <div className={className}>
@@ -64,6 +80,7 @@ export default function SocialFollowLinks({
           className={`${button} bg-[#5865F2]`}
         >
           <DiscordIcon className={icon} />
+          {isRow && <span aria-hidden="true" className={dividerCls} />}
           <span className={label}>Discord</span>
         </a>
         <a
@@ -74,6 +91,7 @@ export default function SocialFollowLinks({
           className={`${button} bg-[#1877F2]`}
         >
           <FacebookIcon className={icon} />
+          {isRow && <span aria-hidden="true" className={dividerCls} />}
           <span className={label}>Facebook</span>
         </a>
       </div>

@@ -1,44 +1,48 @@
-import { HandHeart } from 'lucide-react';
-import { loadCoinModals } from '../lib/coinModalsLoader';
+import { Coffee } from 'lucide-react';
+import { navigate } from '../router';
 
-// CTA Trakteer statis dan ringkas. Discord/Facebook tetap tersedia di footer.
+// Dua tombol berdampingan: Donasi (Trakteer, merah) & Manga Tracker (biru).
+// Sebelumnya satu banner lebar "Dukung Nurananto Scanlation" — diganti jadi
+// dua tombol squircle biar tombol Manga Tracker (halaman /tracker) juga
+// kelihatan langsung di homepage & halaman detail, gak cuma nyempil di URL.
+//
+// Donasi langsung ke Trakteer (bukan modal) — modal Supporter cuma dipicu
+// dari klik chapter locked & tombol "Jadi/Perpanjang Supporter" di dropdown
+// akun (lihat App.jsx/TopNavBar.jsx).
 const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
 
-// Kalau `onDonate` diberikan → tombol membuka modal pengingat (isi email di kolom
-// Pesan Trakteer) alih-alih langsung melompat ke Trakteer. Ini mengurangi kasus
-// donatur lupa menautkan email sehingga status Supporter tidak otomatis aktif.
-// Tanpa `onDonate` → fallback link langsung (kompatibilitas pemakaian lama).
-export default function SupportButtons({ className = '', onDonate }) {
-  const cls = `group relative flex w-full items-center gap-3 rounded-xl border border-[#1877F2]/45 px-3 py-2.5 shadow-md transition-colors hover:border-[#89ceff]/65 sm:px-4 sm:py-3 ${className}`;
-  const style = { background: 'linear-gradient(to right, rgba(0,82,174,0.92), rgba(24,119,242,0.78), rgba(88,101,242,0.9))' };
-  const inner = (
-    <>
-      <HandHeart aria-hidden="true" className="h-5 w-5 shrink-0 text-white sm:h-6 sm:w-6" />
-      <div className="min-w-0 flex-1 text-left">
-        <p className="truncate text-xs font-black text-white sm:text-sm">Dukung Nurananto Scanlation</p>
-        <p className="hidden truncate text-[11px] font-semibold text-white/80 sm:block sm:text-xs">
-          Bantu biaya server dan rilis chapter berikutnya melalui Trakteer.
-        </p>
-      </div>
-      <span className="donate-glow relative shrink-0 rounded-lg border border-white/20 bg-white/20 px-2.5 py-1.5 text-[10px] font-black text-white transition-colors group-hover:bg-white/30 sm:px-3 sm:text-xs">
-        Donasi
-      </span>
-    </>
-  );
+// Garis pemisah tebal antara ikon & teks ("|") — dipakai kedua tombol.
+function Divider() {
+  return <span aria-hidden="true" className="h-6 w-1 shrink-0 rounded-full bg-white/50 sm:h-7" />;
+}
 
-  if (onDonate) {
-    // Prefetch chunk modal saat hover/sentuh → modal muncul instan, tanpa delay.
-    const warm = () => { void loadCoinModals(); };
-    return (
-      <button type="button" onClick={onDonate} onMouseEnter={warm} onFocus={warm} onTouchStart={warm} className={cls} style={style}>
-        {inner}
-      </button>
-    );
-  }
-
+export default function SupportButtons({ className = '' }) {
   return (
-    <a href={TRAKTEER_URL} target="_blank" rel="noopener noreferrer" className={cls} style={style}>
-      {inner}
-    </a>
+    // max-w + mx-auto: di mobile tetap membentang penuh (kontainer sempit),
+    // tapi di tablet/desktop dua tombol ini gak ikut melebar sampai ujung.
+    <div className={`mx-auto flex w-full max-w-md items-stretch gap-3 sm:max-w-lg sm:gap-4 md:max-w-xl ${className}`}>
+      <a
+        href={TRAKTEER_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex flex-1 items-center justify-center gap-2.5 sm:gap-3 rounded-2xl border border-red-300/40 bg-gradient-to-r from-red-600 to-red-500 px-4 py-3.5 sm:px-6 sm:py-4 shadow-md transition-colors hover:from-red-500 hover:to-red-400 cursor-pointer"
+      >
+        <Coffee aria-hidden="true" className="h-6 w-6 shrink-0 text-white sm:h-7 sm:w-7" />
+        <Divider />
+        <span className="text-sm font-black text-white sm:text-base">Donasi</span>
+      </a>
+
+      <button
+        type="button"
+        onClick={() => navigate('/tracker')}
+        className="group flex flex-1 items-center justify-center gap-2.5 sm:gap-3 rounded-2xl border border-[#89ceff]/40 bg-gradient-to-r from-[#0052ae] to-[#5865F2] px-4 py-3.5 sm:px-6 sm:py-4 shadow-md transition-colors hover:brightness-110 cursor-pointer"
+      >
+        {/* Logo situs (mascot kucing) — sama persis dgn ikon di pojok kiri
+            atas header (TopNavBar), cuma dipindah ke dalam tombol ini. */}
+        <img src="/icon.webp" alt="" aria-hidden="true" className="h-6 w-6 shrink-0 object-contain sm:h-7 sm:w-7" />
+        <Divider />
+        <span className="text-sm font-black text-white sm:text-base">Manga Tracker</span>
+      </button>
+    </div>
   );
 }

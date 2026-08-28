@@ -34,7 +34,7 @@ const fitCreatorStyle = (value) => ({
   '--creator-chars': Math.max(creatorDisplay(value).length, 8),
 });
 
-export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, readChapterIds, isSupporter, isLoggedIn, onDonate }) {
+export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, readChapterIds, isSupporter, isLoggedIn }) {
   const [expandedSynopsis, setExpandedSynopsis] = useState(false);
   // Author/Artist dengan >2 nama tampil dipotong ("A, B & N lainnya") — tap
   // untuk expand. title= (hover) tetap dipasang buat desktop, tapi ini yang
@@ -305,9 +305,9 @@ const renderChapterRow = (ch) => {
           </div>
         </section>
 
-        {/* Tombol dukungan: buka modal pengingat email dulu, bukan lompat langsung ke Trakteer */}
+        {/* Tombol Donasi (Trakteer) + Manga Tracker */}
         <div className="w-full mt-4 md:mt-6 xl:mt-8 px-3 sm:px-4 md:px-5">
-          <SupportButtons onDonate={onDonate} />
+          <SupportButtons />
         </div>
 
         {/* Wrapper: border di mobile/tablet, tidak di desktop */}

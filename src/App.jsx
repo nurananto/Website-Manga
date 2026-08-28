@@ -3,6 +3,7 @@ import TopNavBar from './components/TopNavBar';
 import FeaturedCarousel from './components/FeaturedCarousel';
 import SpotlightCarousel from './components/SpotlightCarousel';
 import SupportButtons from './components/SupportButtons';
+import SocialFollowLinks from './components/SocialFollowLinks';
 import LazyBoundary from './components/LazyBoundary';
 import { loadCoinModals } from './lib/coinModalsLoader';
 import MangaCard from './components/MangaCard';
@@ -21,6 +22,7 @@ import { chapterAccessLevel } from './lib/chapterAccess';
 
 // Lazy-load komponen besar/jarang dipakai → kurangi JS bundle awal (homepage)
 const MangaDetailPage     = lazy(() => import('./components/MangaDetailPage'));
+const TrackerPage         = lazy(() => import('./components/TrackerPage'));
 const ReaderModal         = lazy(() => import('./components/ReaderModal'));
 const PrivacyPolicyModal  = lazy(() => import('./components/PrivacyPolicyModal'));
 const TermsOfServiceModal = lazy(() => import('./components/TermsOfServiceModal'));
@@ -831,6 +833,9 @@ export default function App() {
         setSelectedManga(null);
         setActiveChapter(null);
         setActiveTab('profile');
+      } else if (page === 'tracker') {
+        setSelectedManga(null);
+        setActiveChapter(null);
       } else if (page === 'manga') {
         const current = selectedMangaRef.current;
         if (current?.id === mangaId) {
@@ -1168,6 +1173,10 @@ export default function App() {
           <MangaDetailSkeleton />
         ) : routePage === 'reader' ? (
           null
+        ) : routePage === 'tracker' ? (
+          <Suspense fallback={<MangaDetailSkeleton />}>
+            <TrackerPage mangaList={MANGA_LIST} onViewManga={stableViewManga} />
+          </Suspense>
         ) : selectedManga ? (
           /* Manga Detail View */
           <Suspense fallback={<MangaDetailSkeleton />}>
@@ -1178,7 +1187,6 @@ export default function App() {
               readChapterIds={readChapterIds}
               isSupporter={isSupporter}
               isLoggedIn={isLoggedIn}
-              onDonate={() => setIsCoinModalOpen(true)}
             />
           </Suspense>
         ) : (
@@ -1234,8 +1242,8 @@ export default function App() {
                       }}
                     />
 
-                    {/* Tombol dukungan: buka modal pengingat email dulu, bukan lompat langsung ke Trakteer */}
-                    <SupportButtons className="mt-2" onDonate={() => setIsCoinModalOpen(true)} />
+                    {/* Tombol Donasi (Trakteer) + Manga Tracker */}
+                    <SupportButtons className="mt-2" />
 
                     </> ) : null}
                   </>
@@ -1475,8 +1483,8 @@ export default function App() {
         )}
       </div>
 
-      {/* Global Footer (Only on Homepage catalog) */}
-      {!loadingManga && routePage !== 'reader' && (activeTab === 'library' || !!selectedManga) && (
+      {/* Global Footer (homepage, halaman detail, & Tracker) */}
+      {!loadingManga && routePage !== 'reader' && (activeTab === 'library' || !!selectedManga || routePage === 'tracker') && (
         <footer className="w-full pt-4 md:pt-6 xl:pt-8 pb-4 md:pb-6 xl:pb-8 bg-surface border-t border-outline-variant mt-auto">
           <div className="w-full px-4 sm:px-6 md:px-8 flex flex-col items-center gap-3">
             <div className="h-11 aspect-[1843/552] md:h-14 xl:h-16">
@@ -1490,6 +1498,12 @@ export default function App() {
                 className="h-full w-full object-contain"
               />
             </div>
+
+            {/* Discord & Facebook — dulu di dropdown akun, sekarang di sini
+                (bawah logo footer). max-w + mx-auto: penuh di mobile, gak
+                melebar sampai ujung di tablet/desktop (sama kayak SupportButtons). */}
+            <SocialFollowLinks layout="row" heading={false} size="lg" className="mx-auto w-full max-w-md sm:max-w-lg md:max-w-xl" />
+
             <VisitorCount />
             <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
               <button

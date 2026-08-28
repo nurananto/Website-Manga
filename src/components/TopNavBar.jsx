@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Key, RotateCcw, LogOut, LogIn, Crown, Sun, Moon } from 'lucide-react';
 import { nowTimestamp } from '../utils';
-import SocialFollowLinks from './SocialFollowLinks';
 
 export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick, isSupporter, supporterUntil, isLoggedIn, currentUser, onLoginClick, onLogout, onBecomeSupporter, onDropdownOpen, theme, onToggleTheme }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -60,9 +59,9 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
         <div className="flex-1" />
 
-        {/* Tombol Discord/Facebook sengaja TIDAK di header — sudah pindah ke blok
-            "Ikuti Update" di bawah reader, footer, dan dropdown akun. Header
-            disisakan untuk logo + aksi akun saja. */}
+        {/* Tombol Discord/Facebook sengaja TIDAK di header — ada di blok
+            "Ikuti Update" bawah pagination homepage, footer, dan bawah reader.
+            Header disisakan untuk logo + aksi akun saja. */}
         <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
           {/* Toggle light/dark — di kiri tombol login/akun. Dua ikon ditumpuk
               (absolute + m-auto, bukan render kondisional satu ikon) — kalau
@@ -163,11 +162,6 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                     <Key className="w-4 h-4 md:w-5 md:h-5 text-amber-600 dark:text-amber-400" />
                     <span>Pengaturan Akun</span>
                   </button>
-
-                  <SocialFollowLinks
-                    layout="stack"
-                    className="animate-[fadeIn_0.2s_ease-out] border-t border-outline-variant/40 px-3 py-2 md:py-2.5"
-                  />
 
                   <button
                     onClick={() => { setIsDropdownOpen(false); onLogout(); }}

@@ -851,6 +851,15 @@ function buildIndexEntry(manga, chapters, latestReleaseDate) {
     tamat_at_chapter:  manga.tamat_at_chapter ?? null,
     hiatus_at_chapter: manga.hiatus_at_chapter ?? null,
     chapters:     chapters.slice(0, 3),
+    // Field Manga Tracker / Schedule (src/components/TrackerPage.jsx) — diisi
+    // manual di meta.json manga, lihat komentar _write_manga_meta di
+    // generate_meta.py utk arti tiap field.
+    raw_url:            manga.raw_url || null,
+    raw_source:         manga.raw_source || null,
+    update_frequency:   manga.update_frequency ?? null,
+    raw_type:           manga.raw_type || null,
+    raw_system:         manga.raw_system ?? null,
+    final_raw_chapter:  manga.final_raw_chapter ?? null,
   };
 }
 
