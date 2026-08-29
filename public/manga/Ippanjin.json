@@ -20,7 +20,7 @@
     "manga/Ippanjin/covers/cover@tablet.webp",
     "manga/Ippanjin/covers/cover@mobile.webp"
   ],
-  "mangadex_url": "",
+  "mangadex_url": "https://mangadex.org/title/4a2b1c8e-a275-4090-8437-600b06c4ee30/ippanjin-no-ore-wo-geinouka-joshi-tachi-ga-nigashite-kurenai-ken",
   "raw_url": "https://comic-walker.com/detail/KC_019773_S/episodes/KC_0197730000300011_E?episodeType=latest",
   "cover_source_url": "https://m.media-amazon.com/images/I/91oil6f5b2L._SL1500_.jpg",
   "notif_image": "cover",
@@ -30,18 +30,30 @@
     "prolog": 1
   },
   "total_views": 4,
-  "raw_cover_url": "https://m.media-amazon.com/images/I/91oil6f5b2L._SL1500_.jpg",
-  "cover_source": "manual-url",
+  "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
-  "cover_version": 2,
+  "cover_version": 3,
   "detail_views": 3,
-  "rating": null,
+  "mangadex_cover": "d8a88534-9300-4bda-a556-fd37dcefbec6.jpg",
+  "cover_gallery": [
+    {
+      "volume": "0",
+      "is_current": true,
+      "urls": {
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/gallery/d8a88534-9300-4bda-a556-fd37dcefbec6.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/gallery/d8a88534-9300-4bda-a556-fd37dcefbec6@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/gallery/d8a88534-9300-4bda-a556-fd37dcefbec6@mobile.webp?v=3"
+      }
+    }
+  ],
+  "mangadex_id": "4a2b1c8e-a275-4090-8437-600b06c4ee30",
+  "rating": 6.67,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {

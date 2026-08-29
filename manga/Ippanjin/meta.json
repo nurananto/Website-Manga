@@ -30,10 +30,22 @@
     "prolog": 1
   },
   "total_views": 4,
-  "raw_cover_url": "https://m.media-amazon.com/images/I/91oil6f5b2L._SL1500_.jpg",
-  "cover_source": "manual-url",
+  "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
-  "cover_version": 2,
+  "cover_version": 3,
   "detail_views": 3,
-  "view_sync_cutoff": "2026-08-28 17:00:32"
+  "view_sync_cutoff": "2026-08-28 17:00:32",
+  "mangadex_cover": "d8a88534-9300-4bda-a556-fd37dcefbec6.jpg",
+  "cover_gallery": [
+    {
+      "file": "d8a88534-9300-4bda-a556-fd37dcefbec6.jpg",
+      "volume": "0",
+      "keys": [
+        "manga/Ippanjin/covers/gallery/d8a88534-9300-4bda-a556-fd37dcefbec6.webp",
+        "manga/Ippanjin/covers/gallery/d8a88534-9300-4bda-a556-fd37dcefbec6@tablet.webp",
+        "manga/Ippanjin/covers/gallery/d8a88534-9300-4bda-a556-fd37dcefbec6@mobile.webp"
+      ],
+      "widths": "1280x960x640q75"
+    }
+  ]
 }
