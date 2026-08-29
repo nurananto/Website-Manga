@@ -96,14 +96,14 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
       </a>
 
       {/* Details Section */}
-      <div className="flex-1 py-2 pr-3 pl-1 sm:py-3 sm:pr-4 sm:pl-1.5 md:py-4 lg:py-5 lg:pr-5 lg:pl-2 flex flex-col min-w-0">
+      <div className="flex-1 py-2 pr-3 pl-0 sm:py-3 sm:pr-4 sm:pl-0.5 md:py-4 md:pl-1 lg:py-5 lg:pr-5 lg:pl-1 flex flex-col min-w-0">
         {/* Title row — px-2 sm:px-2.5 lg:px-3 SAMA PERSIS dengan padding tombol
             chapter di bawah (button punya padding sendiri di luar ikon). Judul
             sengaja sejajar dengan BORDER KIRI kotak ikon buku/gembok (bukan
             dengan teks "Ch. X" setelah ikon) — makanya di sini TIDAK ada
             placeholder selebar ikon lagi, cukup padding ini saja. */}
         {/* border-b + pb sebagai pemisah visual judul vs daftar chapter di bawahnya */}
-        <div className="flex items-center justify-between gap-2 px-2 sm:px-2.5 lg:px-3 pb-1.5 sm:pb-2 border-b-2 border-outline-variant/50">
+        <div className="flex items-center justify-between gap-2 px-1 sm:px-1.5 lg:px-2 pb-1.5 sm:pb-2 border-b-2 border-outline-variant/50">
           <div className="flex items-center gap-1 min-w-0 flex-1">
             <a
               href={`/${manga.id}/`}
@@ -176,7 +176,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                   e.stopPropagation();
                   onReadChapter(ch, manga.title, manga);
                 }}
-                className="flex min-h-[34px] w-full sm:min-h-[40px] lg:min-h-[46px] justify-between items-center px-2 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border text-left transition-all group/ch border-transparent hover:bg-surface-container-highest hover:border-outline-variant cursor-pointer"
+                className="flex min-h-[34px] w-full sm:min-h-[40px] lg:min-h-[46px] justify-between items-center pl-0 pr-2 sm:pl-1 sm:pr-2.5 md:pl-1.5 lg:pl-2 lg:pr-3 py-1 sm:py-1.5 lg:py-2 rounded-xl border text-left transition-all group/ch border-transparent hover:bg-surface-container-highest hover:border-outline-variant cursor-pointer"
               >
                 <div className="flex items-center gap-1 min-w-0 mr-1">
                   <span
@@ -197,7 +197,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
                       dari ~8:1 (light) / ~10:1 (dark) jadi ~2:1 begitu chapter isRead — gagal
                       WCAG AA (butuh 4.5:1). -80 tetap kebaca "dibaca/pudar" tapi aman AA di
                       kedua tema. Icon box boleh tetap -40 karena itu dekoratif, bukan teks. */}
-                  <span className={`font-body-md text-sm md:text-base lg:text-base font-bold transition-all whitespace-nowrap ${isRead ? 'opacity-80' : ''} ${
+                  <span className={`min-w-0 truncate font-body-md text-sm sm:text-base md:text-lg lg:text-lg font-bold leading-tight transition-all whitespace-nowrap ${isRead ? 'opacity-80' : ''} ${
                     showEarlyAccessGate
                       ? 'text-amber-800 dark:text-amber-300 group-hover/ch:text-amber-700 dark:group-hover/ch:text-amber-200'
                       : 'text-on-surface-variant group-hover/ch:text-primary'

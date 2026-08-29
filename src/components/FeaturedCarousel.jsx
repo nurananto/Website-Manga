@@ -161,11 +161,13 @@ export default function FeaturedCarousel({
       </div>
 
       {/* Left Side: Content Overlay — justify-between agar badges di atas, button di bawah */}
-      {/* pr pixel tetap agar gap ke cover konsisten di semua lebar viewport. Nilai
-          dihitung dari lebar cover aktual (aspect-[7/10] × tinggi efektifnya, lihat
-          h-[96%] dst di bawah) + ~10-20px jarak — ikut disesuaikan tiap cover
+      {/* pt/pb/pl disamain (8/12/16/20px, ikutin skala kanan cover di bawah)
+          biar gap 4 sisi banner ini kelihatan seragam. pr pixel tetap terpisah
+          (bukan bagian dari "gap", tapi jarak aman ke cover) — dihitung dari
+          lebar cover aktual (aspect-[7/10] × tinggi efektifnya, lihat h-[96%]
+          dst di bawah) + ~10-20px jarak, ikut disesuaikan tiap cover
           diperbesar/diperkecil supaya gap tidak kelewat lega atau kepotong. */}
-      <div className="absolute inset-0 left-0 py-1.5 pl-3 pr-32 sm:py-2 sm:pl-5 sm:pr-36 md:py-2.5 md:pl-7 md:pr-40 lg:py-3 lg:pl-9 lg:pr-48 flex flex-col justify-center z-10">
+      <div className="absolute inset-0 left-0 pt-2 pb-2 pl-2 pr-32 sm:pt-3 sm:pb-3 sm:pl-3 sm:pr-36 md:pt-4 md:pb-4 md:pl-4 md:pr-40 lg:pt-5 lg:pb-5 lg:pl-5 lg:pr-48 flex flex-col justify-center z-10">
 
         {/* Satu blok konten, di-center secara vertikal */}
         <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5">
@@ -221,9 +223,11 @@ export default function FeaturedCarousel({
       </div>
 
       {/* Right Side: Cover Image */}
-      {/* Mobile: lebih besar (h-[96%]), tablet: h-[97%], desktop: h-[98%] — mepet
-          ke tepi atas/bawah kontainernya sendiri (wrapper py-2/py-3 di bawah). */}
-      <div key={`featured-cover-${activeManga.id}`} className="absolute inset-y-0 right-2 sm:right-3 md:right-4 flex items-center justify-center h-full z-10 py-2 sm:py-3">
+      {/* right & py disamain persis sama pt/pb/pl kontainer teks di atas
+          (8/12/16/20px) biar gap ke tepi kanan/atas/bawah sama dgn kiri.
+          Mobile: lebih besar (h-[96%]), tablet: h-[97%], desktop: h-[98%] —
+          mepet ke tepi atas/bawah wrapper-nya sendiri. */}
+      <div key={`featured-cover-${activeManga.id}`} className="absolute inset-y-0 right-2 sm:right-3 md:right-4 lg:right-5 flex items-center justify-center h-full z-10 py-2 sm:py-3 md:py-4 lg:py-5">
         <ResponsiveCover
           manga={activeManga}
           alt={activeManga.title}
@@ -231,7 +235,7 @@ export default function FeaturedCarousel({
           // manga asli di situs ini ~0.70 (diukur langsung dari 31 file cover).
           // h tetap proporsional karena lebar ikut aspect-ratio, bukan fixed —
           // pr text block di atas ikut disesuaikan supaya gap ke cover wajar.
-          className="h-[96%] sm:h-[97%] md:h-[98%] aspect-[7/10] object-cover rounded-lg sm:rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.14)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-black/10 dark:border-white/10 group-hover:scale-105 transition-all duration-500 animate-[featuredCoverIn_0.45s_cubic-bezier(0.22,1,0.36,1)]"
+          className="h-full aspect-[7/10] object-cover rounded-lg sm:rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.14)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-black/10 dark:border-white/10 group-hover:scale-105 transition-all duration-500 animate-[featuredCoverIn_0.45s_cubic-bezier(0.22,1,0.36,1)]"
           loading="eager"
           fetchPriority="auto"
           decoding="async"
