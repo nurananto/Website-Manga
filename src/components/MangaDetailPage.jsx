@@ -226,7 +226,7 @@ const renderChapterRow = (ch) => {
       {/* Main Section — pt mengikuti TopNavBar (72px) */}
       <div className="pt-4 md:pt-6 xl:pt-8 w-full">
         {/* Hero Banner Section */}
-        <section className="relative mx-3 sm:mx-4 md:mx-5 rounded-2xl overflow-hidden border border-outline-variant shadow-lg flex items-end pt-3 pb-2">
+        <section className="relative mx-3 sm:mx-4 md:mx-5 rounded-2xl overflow-hidden border border-outline-variant shadow-lg flex items-end pt-3 sm:pt-4 md:pt-5">
           {/* Darkened dynamic background */}
           <div className="absolute inset-0 z-0 overflow-hidden bg-surface-container-high">
             <ResponsiveCover
@@ -240,7 +240,10 @@ const renderChapterRow = (ch) => {
           </div>
 
           {/* Info Over Cover Container */}
-          <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-3 sm:gap-6 pb-4">
+          {/* pb-* disamain persis sama pt-* punya section di tiap breakpoint,
+              dan sama besar juga dgn px-* kiri/kanan — biar gap 4 sisi cover
+              (atas/bawah/kiri/kanan) selalu seragam, bukan cuma sama di base */}
+          <div className="relative z-10 w-full px-3 sm:px-4 md:px-5 flex flex-col items-center text-center sm:flex-row sm:items-end sm:text-left gap-3 sm:gap-6 pb-3 sm:pb-4 md:pb-5">
             {/* Cover Image */}
             {/* aspect-[7/10] (~0.70), bukan 2/3 — rata-rata rasio cover asli
                 di situs ini, lihat MangaCard/FeaturedCarousel/SpotlightCarousel.
@@ -261,7 +264,9 @@ const renderChapterRow = (ch) => {
             </div>
 
             {/* Metadata info */}
-            <div className="flex-grow min-w-0 w-full flex flex-col items-center sm:items-start pb-1">
+            {/* pb-1 cuma buat sm+ (row layout, biar baseline pas sama bawah cover) —
+                di mobile (stacked) bikin gap bawah beda drpd gap atas kalau selalu aktif */}
+            <div className="flex-grow min-w-0 w-full flex flex-col items-center sm:items-start sm:pb-1">
               {/* Title — max 2 baris */}
               <h2 className="font-headline-md text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-on-surface dark:text-white dark:[text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_12px_rgba(0,0,0,0.75)] font-black tracking-tight mb-1.5 text-center sm:text-left line-clamp-2">
                 {manga.title}

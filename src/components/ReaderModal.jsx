@@ -14,7 +14,7 @@ import { getDeviceId } from '../lib/device';
 import { canReadChapter, chapterAccessLevel } from '../lib/chapterAccess';
 import { useDialogFocus } from '../lib/useDialogFocus';
 import ResponsiveCover from './ResponsiveCover';
-import SocialFollowLinks from './SocialFollowLinks';
+import SupportButtons from './SupportButtons';
 
 // Widget Turnstile interaktif untuk gate locked chapter.
 // PENTING: onToken & onError harus referensi stabil (useCallback / setter state) —
@@ -886,12 +886,12 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
             {/* Navigasi bawah */}
             {renderNavBar('bottom')}
 
-            {/* Discord & Facebook — tanpa teks apa pun. Pesan "chapter terbaru"
-                sudah ditangani modal Chapter Terakhir, jadi menambah judul di
-                sini hanya menduplikasi. Ditaruh setelah navigasi chapter (aksi
-                utama pembaca) tapi sebelum tombol keluar agar tetap terlihat. */}
+            {/* Donasi, Discord & Facebook — 1 baris, tampilan sama persis dgn
+                homepage/detail (SupportButtons.jsx). Ditaruh setelah navigasi
+                chapter (aksi utama pembaca) tapi sebelum tombol keluar agar
+                tetap terlihat. */}
             <div className="px-2 pb-1">
-              <SocialFollowLinks layout="row" heading={false} />
+              <SupportButtons />
             </div>
 
             {/* Kembali ke detail — bawah */}
@@ -1035,10 +1035,15 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
           </div>
         </div>
 
-        {/* Tombol scroll-to-top — fixed di dalam z-[200] reader */}
+        {/* Tombol scroll-to-top — fixed di dalam z-[200] reader. Cuma muncul
+            saat gambar di-tap (barExpanded, sama kayak nav bar) — bukan
+            selalu tampil. pointer-events-none pas hilang biar gak nge-block
+            tap ke gambar di baliknya. */}
         <button
           onClick={() => scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed z-[201] w-11 h-11 rounded-l-2xl rounded-r-none bg-black/20 hover:bg-black/60 active:bg-black/80 border border-r-0 border-white/10 hover:border-white/30 flex items-center justify-center text-white/30 hover:text-white active:text-white transition-all duration-200 cursor-pointer active:scale-95 backdrop-blur-sm"
+          className={`fixed z-[201] w-11 h-11 rounded-l-2xl rounded-r-none bg-black/20 hover:bg-black/60 active:bg-black/80 border border-r-0 border-white/10 hover:border-white/30 flex items-center justify-center text-white/30 hover:text-white active:text-white transition-all duration-200 cursor-pointer active:scale-95 backdrop-blur-sm ${
+            barExpanded ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
           style={{ top: '70%', right: 0 }}
           aria-label="Scroll ke atas"
         >

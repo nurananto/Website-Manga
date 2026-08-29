@@ -130,14 +130,25 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
         <div className="flex flex-col gap-2">
           {historyEntries.map(({ manga, chapter }) => (
             <button type="button" key={manga.id} onClick={() => handleReadChapter(chapter, manga.title, manga)}
-              className="flex w-full items-stretch gap-3 sm:gap-4 bg-surface-container border border-outline-variant/50 hover:border-primary/30 rounded-xl p-2.5 sm:p-3 md:p-4 text-left cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
-              <ResponsiveCover manga={manga} alt={manga.title}
-                className="object-cover rounded-lg border border-outline-variant/60 shrink-0 shadow-md"
-                style={{ aspectRatio: '2/3', width: 'auto', maxHeight: 'calc(1.25rem + 2.5rem + 1.25rem + 0.5rem)' }} />
-              <div className="min-w-0 flex-1 flex flex-col justify-center gap-0.5 sm:gap-1">
-                <h3 className="font-headline-md text-sm sm:text-base md:text-lg font-black text-on-surface line-clamp-1">{manga.title}</h3>
-                <p className="text-xs sm:text-sm md:text-base font-bold text-primary truncate">{chapter.title}</p>
-                <p className="text-[10px] sm:text-xs md:text-sm text-outline">{chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}</p>
+              className="flex w-full items-stretch gap-2 sm:gap-2.5 md:gap-3 bg-surface-container border-2 border-outline-variant/50 hover:border-primary/30 rounded-xl py-2 pr-2 pl-1 sm:py-2.5 sm:pr-2.5 sm:pl-1.5 md:py-3 md:pr-3 md:pl-2 text-left cursor-pointer transition-all hover:bg-surface-container-high active:scale-[0.99] group">
+              {/* pakai margin (bukan gap) buat jarak bar→cover: ResponsiveCover
+                  merender <source> tersembunyi di dalam <picture display:contents>,
+                  yang ikut kehitung sebagai flex item terpisah kalau pakai gap
+                  (jadi gap-nya kelipatan jumlah <source>, bukan cuma 1x). */}
+              <div className="flex items-stretch shrink-0">
+                <span aria-hidden="true" className="w-1 sm:w-1.5 rounded-full bg-primary self-stretch shrink-0 mr-1 sm:mr-1.5 md:mr-2" />
+                <ResponsiveCover manga={manga} alt={manga.title}
+                  className="aspect-[2/3] h-[80px] sm:h-[104px] md:h-[132px] lg:h-[160px] w-auto object-cover rounded-lg border border-outline-variant/60 shrink-0 shadow-md" />
+              </div>
+              {/* justify-center + gap kecil: dulu pakai justify-between yang
+                  ngestretch ngikutin tinggi cover, makin gede cover-nya makin
+                  lebar gap-nya. Sekarang gap tetap rapat di semua breakpoint.
+                  leading-tight biar sisa spasi line-height ga bikin gap judul-chapter
+                  keliatan lebih lebar dari gap chapter-waktu. Hierarki ukuran: judul > chapter > waktu. */}
+              <div className="min-w-0 flex-1 flex flex-col justify-center gap-1 sm:gap-1.5 md:gap-2">
+                <h3 className="font-headline-md leading-tight text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-on-surface line-clamp-1">{manga.title}</h3>
+                <p className="leading-tight text-sm sm:text-lg md:text-xl font-bold text-primary truncate">{chapter.title}</p>
+                <p className="leading-tight text-xs sm:text-base md:text-lg text-outline">{chapter.last_read_at ? timeAgo(chapter.last_read_at) : '—'}</p>
               </div>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-outline/80 group-hover:text-primary shrink-0 self-center transition-colors" />
             </button>
@@ -672,7 +683,12 @@ export default function App() {
 
       // Cek session yang sudah ada
       const user = getCurrentUser();
-      if (!user) return;
+      if (!user) {
+        // History cuma boleh diakses saat login — kalau diakses langsung
+        // lewat URL /history tanpa sesi, tendang balik ke beranda.
+        if (activeTab === 'profile') handleTabClick('library');
+        return;
+      }
 
       setIsLoggedIn(true);
       setCurrentUser(user);
@@ -1136,6 +1152,9 @@ export default function App() {
             setIsSupporter(false);
             setSupporterUntil(null);
             setHistoryChapters({});
+            // History cuma boleh diakses saat login — kalau logout pas lagi
+            // di halaman History, tendang balik ke beranda.
+            if (activeTab === 'profile') handleTabClick('library');
           }}
           onBecomeSupporter={() => {
             if (isLoggedIn) setIsCoinModalOpen(true);
@@ -1451,11 +1470,31 @@ export default function App() {
                 .sort((a, b) => new Date(b.chapter.last_read_at || 0) - new Date(a.chapter.last_read_at || 0));
               return (
                 <section className="flex flex-col gap-4 w-full">
-                  <div className="border-b border-outline-variant/40 pb-4">
-                    <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface flex items-center gap-3">
-                      <RotateCcw className="w-6 h-6 text-sky-400" />
-                      Riwayat
-                    </h2>
+                  <div className="border-b border-outline-variant/40 pb-4 flex items-center justify-between gap-3">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        // Balik ke halaman asal (detail manga / beranda) tempat
+                        // History ini dibuka — sama seperti pola onClose reader.
+                        // Kalau tidak ada "from" (mis. buka langsung via URL),
+                        // fallback ke beranda.
+                        if (window.history.state?.from) {
+                          window.history.back();
+                        } else {
+                          handleTabClick('library');
+                        }
+                      }}
+                      aria-label="Kembali"
+                      className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center active:scale-95 transition-all cursor-pointer shrink-0"
+                    >
+                      <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </button>
+                    <div className="flex items-center gap-3 min-w-0">
+                      <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface truncate">
+                        History
+                      </h2>
+                      <span className="h-7 w-1 rounded-full bg-primary shrink-0" aria-hidden="true" />
+                    </div>
                   </div>
 
                   {/* Sub-tab */}

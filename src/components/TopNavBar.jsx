@@ -37,7 +37,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
 
   return (
     <nav className="w-full bg-surface border-b border-outline-variant/50 transition-colors">
-      <div className="flex items-center h-14 md:h-16 xl:h-[72px] px-3 sm:px-4 md:px-5 xl:px-6 gap-3 md:gap-4 w-full">
+      <div className="flex items-center h-12 sm:h-14 md:h-16 xl:h-[72px] px-2.5 sm:px-4 md:px-5 xl:px-6 gap-2 sm:gap-3 md:gap-4 w-full">
         {/* Ikon saja — teks "Nurananto Scanlation" dilepas. Tingginya (w/h-10/11/12)
             jadi skala acuan buat SEMUA tombol di sisi kanan (toggle tema, Log In,
             tombol akun) supaya kedua ujung header selalu sejajar — sama persis
@@ -46,7 +46,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
           href="/"
           onClick={(e) => { e.preventDefault(); onTabClick('library'); }}
           aria-label="Nurananto Scanlation — ke beranda"
-          className="flex items-center justify-center active:scale-95 transition-all duration-150 shrink-0 rounded-2xl bg-[#075bad] border border-outline-variant w-10 h-10 md:w-11 md:h-11 xl:w-12 xl:h-12 p-1.5"
+          className="flex items-center justify-center active:scale-95 transition-all duration-150 shrink-0 rounded-[8px] sm:rounded-[9px] md:rounded-[10px] xl:rounded-[11px] bg-[#075bad] border border-outline-variant w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 xl:w-12 xl:h-12 p-1 sm:p-1.5"
         >
           <img
             src="/icon.webp"
@@ -62,7 +62,7 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
         {/* Tombol Discord/Facebook sengaja TIDAK di header — ada di blok
             "Ikuti Update" bawah pagination homepage, footer, dan bawah reader.
             Header disisakan untuk logo + aksi akun saja. */}
-        <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-1.5 md:gap-2">
           {/* Toggle light/dark — di kiri tombol login/akun. Dua ikon ditumpuk
               (absolute + m-auto, bukan render kondisional satu ikon) — kalau
               cuma {cond ? <Sun/> : <Moon/>}, React copot-pasang elemennya
@@ -74,10 +74,10 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
             type="button"
             onClick={onToggleTheme}
             aria-label={theme === 'dark' ? 'Ganti ke mode terang' : 'Ganti ke mode gelap'}
-            className="relative h-10 w-10 md:h-11 md:w-11 xl:h-12 xl:w-12 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface shrink-0 shadow-md active:scale-95 transition-all cursor-pointer"
+            className="relative h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 xl:h-12 xl:w-12 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface shrink-0 shadow-md active:scale-95 transition-all cursor-pointer"
           >
-            <Sun className={`absolute inset-0 m-auto w-[18px] h-[18px] md:w-5 md:h-5 ${theme === 'dark' ? 'opacity-100' : 'opacity-0'}`} />
-            <Moon className={`absolute inset-0 m-auto w-[18px] h-[18px] md:w-5 md:h-5 ${theme === 'dark' ? 'opacity-0' : 'opacity-100'}`} />
+            <Sun className={`absolute inset-0 m-auto w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 ${theme === 'dark' ? 'opacity-100' : 'opacity-0'}`} />
+            <Moon className={`absolute inset-0 m-auto w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 ${theme === 'dark' ? 'opacity-0' : 'opacity-100'}`} />
           </button>
           <div ref={dropdownRef} className="relative">
             <div className="relative">
@@ -87,20 +87,20 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
                 aria-label="Menu akun"
                 aria-expanded={isDropdownOpen}
                 onClick={() => { setIsDropdownOpen(!isDropdownOpen); if (!isDropdownOpen && onDropdownOpen) onDropdownOpen(); }}
-                className={`h-10 md:h-11 xl:h-12 rounded-xl border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md flex items-center gap-2 bg-surface-container-high p-1.5 pr-3 ${
+                className={`h-9 sm:h-10 md:h-11 xl:h-12 rounded-xl border cursor-pointer hover:border-primary transition-colors shrink-0 shadow-md flex items-center gap-1.5 sm:gap-2 bg-surface-container-high p-1 pr-2 sm:p-1.5 sm:pr-3 ${
                   activeTab === 'profile' || isDropdownOpen ? 'border-primary' : 'border-outline-variant/60'
                 }`}
               >
-                <span className="w-7 h-7 md:w-8 md:h-8 xl:w-9 xl:h-9 rounded-full overflow-hidden border border-outline-variant/60 bg-surface-container-highest flex items-center justify-center shrink-0">
+                <span className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 xl:w-9 xl:h-9 rounded-full overflow-hidden border border-outline-variant/60 bg-surface-container-highest flex items-center justify-center shrink-0">
                   {avatarUrl ? (
                     <img alt="avatar" className="w-full h-full object-cover" src={avatarUrl} referrerPolicy="no-referrer" />
                   ) : (
-                    <span className="text-[10px] md:text-xs font-black text-primary select-none">
+                    <span className="text-[9px] sm:text-[10px] md:text-xs font-black text-primary select-none">
                       {displayName.slice(0, 2).toUpperCase()}
                     </span>
                   )}
                 </span>
-                <span className="max-w-24 truncate text-xs md:text-sm font-black text-on-surface">
+                <span className="max-w-16 sm:max-w-24 md:max-w-36 xl:max-w-48 truncate text-[11px] sm:text-xs md:text-sm font-black text-on-surface">
                   {displayName}
                 </span>
               </button>
@@ -108,16 +108,16 @@ export default function TopNavBar({ activeTab, onTabClick, onChangePasswordClick
               <button
                 type="button"
                 onClick={onLoginClick}
-                className="h-10 md:h-11 xl:h-12 rounded-lg bg-[#075bad] hover:bg-[#096bc5] px-3 md:px-3.5 xl:px-4 text-white text-[11px] md:text-xs xl:text-sm font-black flex items-center justify-center gap-1.5 md:gap-2 border border-[#89ceff]/40 shadow-md active:scale-95 transition-all cursor-pointer"
+                className="h-9 sm:h-10 md:h-11 xl:h-12 rounded-lg bg-[#075bad] hover:bg-[#096bc5] px-2.5 sm:px-3 md:px-3.5 xl:px-4 text-white text-[10px] sm:text-[11px] md:text-xs xl:text-sm font-black flex items-center justify-center gap-1 sm:gap-1.5 md:gap-2 border border-[#89ceff]/40 shadow-md active:scale-95 transition-all cursor-pointer"
               >
-                <LogIn className="w-4 h-4 md:w-[18px] md:h-[18px]" />
+                <LogIn className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-[18px] md:h-[18px]" />
                 <span>Log In</span>
               </button>
             )}
             </div>
 
             {isLoggedIn && isDropdownOpen && (
-              <div className="absolute right-0 top-12 w-56 sm:w-60 md:w-64 bg-surface-container border border-outline-variant/40 rounded-xl shadow-2xl py-1.5 z-50 animate-[fadeIn_0.15s_ease-out]">
+              <div className="absolute right-0 top-11 sm:top-12 md:top-[52px] xl:top-14 w-56 sm:w-60 md:w-64 bg-surface-container border border-outline-variant/40 rounded-xl shadow-2xl py-1.5 z-50 animate-[fadeIn_0.15s_ease-out]">
               <>
                   {/* Nama + badge + countdown Supporter (tepat di bawah nama) */}
                   <div className="px-4 py-2.5 border-b border-outline-variant/40">
