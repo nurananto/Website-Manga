@@ -43,9 +43,9 @@
     "11.1": 15,
     "1.5": 2,
     "4.5": 2,
-    "11.2": 13
+    "11.2": 14
   },
-  "total_views": 158,
+  "total_views": 161,
   "mangadex_cover": "c402aa68-08d7-49da-9fbd-7b84a9da4f7c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -68,7 +68,7 @@
       }
     }
   ],
-  "detail_views": 62,
+  "detail_views": 64,
   "cover_version": 3,
   "notif_image": "page1",
   "mangadex_id": "624d6ceb-768d-40a7-8412-84e083afbdb1",
@@ -93,7 +93,7 @@
       "title": "Ch. 11.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 11.1,

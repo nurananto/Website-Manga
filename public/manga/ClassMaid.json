@@ -32,11 +32,11 @@
     "90": 1,
     "91": 1,
     "92": 1,
-    "93": 2,
-    "94": 2,
-    "95": 2
+    "93": 3,
+    "94": 3,
+    "95": 3
   },
-  "total_views": 24,
+  "total_views": 28,
   "mangadex_cover": "556f9b48-02b6-42c8-ae8c-02f3c92870e3.png",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -61,7 +61,7 @@
       }
     }
   ],
-  "detail_views": 11,
+  "detail_views": 12,
   "mangadex_id": "57a75b25-4cc6-45ac-ab1a-6670a271a6b5",
   "rating": 8.29,
   "next_update": null,
@@ -84,7 +84,7 @@
       "title": "Ch. 95",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 94,
@@ -98,7 +98,7 @@
       "title": "Ch. 94",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 93,
@@ -112,7 +112,7 @@
       "title": "Ch. 93",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 92,

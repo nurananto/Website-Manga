@@ -26,7 +26,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 18,
+    "1": 19,
     "2": 8,
     "3": 11,
     "4": 17,
@@ -37,11 +37,11 @@
     "6.3": 52,
     "6.2": 51,
     "7.1": 56,
-    "7.2": 36,
+    "7.2": 38,
     "8.1": 10,
     "8.2": 14
   },
-  "total_views": 626,
+  "total_views": 631,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -56,7 +56,7 @@
     }
   ],
   "cover_version": 4,
-  "detail_views": 233,
+  "detail_views": 235,
   "notif_image": "page1",
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
   "rating": 8.08,
@@ -104,7 +104,7 @@
       "title": "Ch. 7.2",
       "unlockDate": "2026-08-19T17:00:00.000Z",
       "isLocked": false,
-      "views": 36
+      "views": 38
     },
     {
       "chapter_number": 7.1,
@@ -247,7 +247,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 18
+      "views": 19
     }
   ]
 }
