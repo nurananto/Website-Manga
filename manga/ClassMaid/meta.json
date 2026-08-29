@@ -32,11 +32,11 @@
     "90": 1,
     "91": 1,
     "92": 1,
-    "93": 2,
-    "94": 2,
-    "95": 2
+    "93": 3,
+    "94": 3,
+    "95": 3
   },
-  "total_views": 24,
+  "total_views": 28,
   "mangadex_cover": "556f9b48-02b6-42c8-ae8c-02f3c92870e3.png",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -63,6 +63,6 @@
       "widths": "1280x960x640q75"
     }
   ],
-  "detail_views": 11,
-  "view_sync_cutoff": "2026-08-27 17:00:32"
+  "detail_views": 12,
+  "view_sync_cutoff": "2026-08-29 17:00:26"
 }
