@@ -27,8 +27,8 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 45,
-    "2": 29,
+    "1": 46,
+    "2": 30,
     "3.1": 29,
     "3.2": 28,
     "4.1": 31,
@@ -42,13 +42,13 @@
     "6.3": 66,
     "7.1": 82,
     "6.5": 67,
-    "7.2": 51,
-    "7.3": 39,
-    "8.1": 4,
-    "8.2": 7,
-    "8.3": 5
+    "7.2": 52,
+    "7.3": 40,
+    "8.1": 11,
+    "8.2": 9,
+    "8.3": 7
   },
-  "total_views": 1054,
+  "total_views": 1072,
   "mangadex_cover": "7924e82c-7b57-4fda-9800-8dde50833030.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -71,7 +71,7 @@
       }
     }
   ],
-  "detail_views": 282,
+  "detail_views": 285,
   "cover_version": 4,
   "notif_image": "page1",
   "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
@@ -95,7 +95,7 @@
       "title": "Ch. 8.3",
       "unlockDate": "2026-10-14T17:00:00.000Z",
       "isLocked": true,
-      "views": 5
+      "views": 7
     },
     {
       "chapter_number": 8.2,
@@ -108,7 +108,7 @@
       "title": "Ch. 8.2",
       "unlockDate": "2026-09-06T17:00:00.000Z",
       "isLocked": true,
-      "views": 7
+      "views": 9
     },
     {
       "chapter_number": 8.1,
@@ -121,7 +121,7 @@
       "title": "Ch. 8.1",
       "unlockDate": "2026-08-30T17:00:00.000Z",
       "isLocked": false,
-      "views": 4
+      "views": 11
     },
     {
       "chapter_number": 7.3,
@@ -134,7 +134,7 @@
       "title": "Ch. 7.3",
       "unlockDate": "2026-08-22T17:00:00.000Z",
       "isLocked": false,
-      "views": 39
+      "views": 40
     },
     {
       "chapter_number": 7.2,
@@ -147,7 +147,7 @@
       "title": "Ch. 7.2",
       "unlockDate": "2026-08-15T01:00:00.000Z",
       "isLocked": false,
-      "views": 51
+      "views": 52
     },
     {
       "chapter_number": 7.1,
@@ -329,7 +329,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 29
+      "views": 30
     },
     {
       "chapter_number": 1,
@@ -342,7 +342,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 45
+      "views": 46
     }
   ]
 }
