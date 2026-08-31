@@ -57,6 +57,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 53,
+      "notif_image": "2",
+      "r2_folder": 1,
+      "id": "Ippanjin-ch-1",
+      "r2_prefix": "manga/Ippanjin/1/",
+      "title": "Ch. 1",
+      "release_date": "2026-08-31T20:13:11+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": "prolog",
       "title": "Prolog",
       "lock_hours": 0,
