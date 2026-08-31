@@ -33,13 +33,13 @@
     "2.2": 9,
     "2.3": 13,
     "3.1": 4,
-    "3.2": 8,
-    "3.3": 9,
-    "4.1": 14,
-    "4.2": 7,
-    "4.3": 9
+    "3.2": 9,
+    "3.3": 10,
+    "4.1": 15,
+    "4.2": 9,
+    "4.3": 10
   },
-  "total_views": 155,
+  "total_views": 163,
   "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -56,6 +56,6 @@
       "widths": "1280x960x640q75"
     }
   ],
-  "detail_views": 55,
-  "view_sync_cutoff": "2026-08-30 17:00:24"
+  "detail_views": 57,
+  "view_sync_cutoff": "2026-08-31 17:00:31"
 }
