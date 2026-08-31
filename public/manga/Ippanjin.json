@@ -27,13 +27,13 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "prolog": 1
+    "prolog": 21
   },
-  "total_views": 4,
+  "total_views": 37,
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
   "cover_version": 3,
-  "detail_views": 3,
+  "detail_views": 16,
   "mangadex_cover": "d8a88534-9300-4bda-a556-fd37dcefbec6.jpg",
   "cover_gallery": [
     {
@@ -47,7 +47,7 @@
     }
   ],
   "mangadex_id": "4a2b1c8e-a275-4090-8437-600b06c4ee30",
-  "rating": 7.5,
+  "rating": 8.1,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=3",
   "coverUrls": {
@@ -68,7 +68,7 @@
       "r2_prefix": "manga/Ippanjin/Prolog/",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 21
     }
   ]
 }

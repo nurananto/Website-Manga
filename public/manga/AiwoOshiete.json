@@ -33,9 +33,9 @@
     "16": 1,
     "17": 1,
     "18": 1,
-    "19": 12
+    "19": 13
   },
-  "total_views": 37,
+  "total_views": 39,
   "mangadex_cover": "511f749e-21de-4ba8-ab27-b6cd74cbb6e5.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -76,7 +76,7 @@
       }
     }
   ],
-  "detail_views": 15,
+  "detail_views": 16,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "c14b2a85-ca88-4bf7-8937-87baf95491c0",
@@ -100,7 +100,7 @@
       "title": "Ch. 19",
       "unlockDate": null,
       "isLocked": false,
-      "views": 12
+      "views": 13
     },
     {
       "chapter_number": 18,

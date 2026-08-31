@@ -52,7 +52,7 @@
     "101": 1,
     "102": 1,
     "103": 2,
-    "104": 2,
+    "104": 3,
     "161": 1,
     "165": 2,
     "171": 1,
@@ -97,7 +97,7 @@
     "215.6": 9,
     "215.7": 9,
     "215.8": 11,
-    "215.9": 26,
+    "215.9": 27,
     "215.1": 9,
     "204.5": 3,
     "208.5": 4,
@@ -112,7 +112,7 @@
     "161.5": 1,
     "103.5": 1
   },
-  "total_views": 373,
+  "total_views": 376,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -225,7 +225,7 @@
       }
     }
   ],
-  "detail_views": 66,
+  "detail_views": 67,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "57fe3f00-8626-462b-8f75-fce0e6faa6be",
@@ -249,7 +249,7 @@
       "title": "Ch. 215.9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 26
+      "views": 27
     },
     {
       "chapter_number": 215.8,
@@ -1991,7 +1991,7 @@
       "title": "Ch. 104",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 103.5,
