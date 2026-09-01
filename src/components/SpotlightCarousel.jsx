@@ -10,7 +10,7 @@ import CoverScrim from './CoverScrim';
 // #166534 biar kebaca), sedangkan 2 tempat lain adalah badge/dot polos di atas
 // kartu UI biasa. Nilai memang beda by design, bukan drift yang perlu disatukan.
 const STATUS_CFG = {
-  'Tamat':   { label: 'END',     textCls: 'text-red-700 dark:text-red-500' },
+  'Tamat':   { label: 'COMPLETED', textCls: 'text-red-700 dark:text-red-500' },
   'Hiatus':  { label: 'HIATUS',  textCls: 'text-zinc-600 dark:text-zinc-400' },
   'Oneshot': { label: 'ONESHOT', textCls: 'text-red-700 dark:text-red-500' },
 };

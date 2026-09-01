@@ -1,79 +1,5 @@
 [
   {
-    "id": "TeisouGyakuten",
-    "title": "Teisou Gyakuten Sekai Nara Moteru to Omotte Itara",
-    "description": "Dunia dengan moral nafsu yang terbalik —rasio gender 1:20, cewek-cewek memiliki hasrat nafsu yang kuat, sedangkan para cowok ingin menjalani hidup nyaman dan damai dilindungi bodyguard. Bodyguard Cowok yang ada di sekitarnya semuanya tampan, dan Ikuto mengeluh bahwa terutama sahabatnya, Toosaka…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Crossdressing",
-      "Harem",
-      "Isekai",
-      "Reincarnation",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life"
-    ],
-    "rating": 7.45,
-    "chapter_count": 12,
-    "total_views": 209,
-    "isTrending": true,
-    "latest_release_date": "2026-09-01T18:26:28+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 8.2,
-        "lock_hours": 0,
-        "pages": 19,
-        "notif_image": "17",
-        "r2_folder": 8.2,
-        "id": "TeisouGyakuten-ch-8.2",
-        "r2_prefix": "manga/TeisouGyakuten/8.2/",
-        "title": "Ch. 8.2",
-        "release_date": "2026-09-01T18:26:28+07:00",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 0
-      },
-      {
-        "chapter_number": 8.1,
-        "lock_hours": 0,
-        "pages": 16,
-        "release_date": "2026-08-04T15:13:59+07:00",
-        "r2_folder": 8.1,
-        "id": "TeisouGyakuten-ch-8.1",
-        "r2_prefix": "manga/TeisouGyakuten/8.1/",
-        "title": "Ch. 8.1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 29
-      },
-      {
-        "chapter_number": 7.3,
-        "lock_hours": 0,
-        "pages": 13,
-        "release_date": "2026-07-07T20:55:27+07:00",
-        "r2_folder": 7.3,
-        "id": "TeisouGyakuten-ch-7.3",
-        "r2_prefix": "manga/TeisouGyakuten/7.3/",
-        "title": "Ch. 7.3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 20
-      }
-    ]
-  },
-  {
     "id": "Ippanjin",
     "title": "Ippanjin no Ore wo Geinouka Joshi-tachi ga Nigashite Kurenai Ken",
     "description": "Aoi Yuuto, anak rahasia dari aktor populer yang dikenal seantero negeri, masuk ke SMA swasta Ichiyou yang punya berbagai macam jurusan. Padahal dia cuma pengin menjalani kehidupan sekolah yang tenang sebagai murid biasa di jurusan akademik... tapi kenapa cewek-cewek dari jurusan seni malah nggak…",
@@ -92,29 +18,15 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.27,
-    "chapter_count": 2,
-    "total_views": 47,
+    "rating": 7.5,
+    "chapter_count": 1,
+    "total_views": 4,
     "isTrending": true,
-    "latest_release_date": "2026-08-31T20:13:11+07:00",
+    "latest_release_date": "2026-08-28T23:29:44+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
     "hiatus_at_chapter": null,
     "chapters": [
-      {
-        "chapter_number": 1,
-        "lock_hours": 0,
-        "pages": 53,
-        "notif_image": "2",
-        "release_date": "2026-08-31T20:13:11+07:00",
-        "r2_folder": 1,
-        "id": "Ippanjin-ch-1",
-        "r2_prefix": "manga/Ippanjin/1/",
-        "title": "Ch. 1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 3
-      },
       {
         "chapter_number": "prolog",
         "title": "Prolog",
@@ -127,7 +39,7 @@
         "r2_prefix": "manga/Ippanjin/Prolog/",
         "unlockDate": null,
         "isLocked": false,
-        "views": 26
+        "views": 1
       }
     ]
   },
@@ -152,9 +64,9 @@
       "Slice of Life",
       "Tragedy"
     ],
-    "rating": 7.71,
+    "rating": 7.7,
     "chapter_count": 20,
-    "total_views": 1072,
+    "total_views": 1017,
     "isTrending": true,
     "latest_release_date": "2026-08-28T23:16:18+07:00",
     "next_update": null,
@@ -172,7 +84,7 @@
         "title": "Ch. 8.3",
         "unlockDate": "2026-10-14T17:00:00.000Z",
         "isLocked": true,
-        "views": 7
+        "views": 0
       },
       {
         "chapter_number": 8.2,
@@ -185,7 +97,7 @@
         "title": "Ch. 8.2",
         "unlockDate": "2026-09-06T17:00:00.000Z",
         "isLocked": true,
-        "views": 9
+        "views": 7
       },
       {
         "chapter_number": 8.1,
@@ -197,8 +109,8 @@
         "r2_prefix": "manga/Osananajimi/8.1/",
         "title": "Ch. 8.1",
         "unlockDate": "2026-08-30T17:00:00.000Z",
-        "isLocked": false,
-        "views": 11
+        "isLocked": true,
+        "views": 4
       }
     ]
   },
@@ -223,7 +135,7 @@
     ],
     "rating": 7.51,
     "chapter_count": 28,
-    "total_views": 430,
+    "total_views": 379,
     "isTrending": true,
     "latest_release_date": "2026-08-28T11:00:39+07:00",
     "next_update": null,
@@ -241,7 +153,7 @@
         "title": "Ch. 23.2",
         "unlockDate": "2026-09-27T17:00:00.000Z",
         "isLocked": true,
-        "views": 4
+        "views": 1
       },
       {
         "chapter_number": 23.1,
@@ -254,7 +166,7 @@
         "title": "Ch. 23.1",
         "unlockDate": "2026-09-06T17:00:00.000Z",
         "isLocked": true,
-        "views": 5
+        "views": 4
       },
       {
         "chapter_number": 22.2,
@@ -266,8 +178,8 @@
         "r2_prefix": "manga/10-nenburi/22.2/",
         "title": "Ch. 22.2",
         "unlockDate": "2026-08-30T17:00:00.000Z",
-        "isLocked": false,
-        "views": 9
+        "isLocked": true,
+        "views": 7
       }
     ]
   },
@@ -294,7 +206,7 @@
     ],
     "rating": 7.36,
     "chapter_count": 21,
-    "total_views": 448,
+    "total_views": 393,
     "isTrending": true,
     "latest_release_date": "2026-08-27T23:58:08+07:00",
     "next_update": null,
@@ -311,8 +223,8 @@
         "r2_prefix": "manga/Madogiwa/16.2/",
         "title": "Ch. 16.2",
         "unlockDate": "2026-08-30T17:00:00.000Z",
-        "isLocked": false,
-        "views": 20
+        "isLocked": true,
+        "views": 2
       },
       {
         "chapter_number": 16.1,
@@ -326,7 +238,7 @@
         "title": "Ch. 16.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 51
+        "views": 43
       },
       {
         "chapter_number": 15.2,
@@ -339,7 +251,7 @@
         "title": "Ch. 15.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 35
+        "views": 33
       }
     ]
   },
@@ -364,8 +276,8 @@
     ],
     "rating": 8.33,
     "chapter_count": 4,
-    "total_views": 81,
-    "isTrending": false,
+    "total_views": 77,
+    "isTrending": true,
     "latest_release_date": "2026-08-27T19:12:42+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -383,7 +295,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 7
+        "views": 5
       },
       {
         "chapter_number": 3,
@@ -438,7 +350,7 @@
     ],
     "rating": 6,
     "chapter_count": 10,
-    "total_views": 163,
+    "total_views": 148,
     "isTrending": false,
     "latest_release_date": "2026-08-27T09:34:05+07:00",
     "next_update": null,
@@ -457,7 +369,7 @@
         "title": "Ch. 4.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 10
+        "views": 7
       },
       {
         "chapter_number": 4.2,
@@ -471,7 +383,7 @@
         "title": "Ch. 4.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 9
+        "views": 7
       },
       {
         "chapter_number": 4.1,
@@ -485,7 +397,7 @@
         "title": "Ch. 4.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 15
+        "views": 13
       }
     ]
   },
@@ -510,7 +422,7 @@
     ],
     "rating": 6.8,
     "chapter_count": 18,
-    "total_views": 290,
+    "total_views": 274,
     "isTrending": false,
     "latest_release_date": "2026-08-26T23:49:42+07:00",
     "next_update": null,
@@ -529,7 +441,7 @@
         "title": "Ch. 18",
         "unlockDate": null,
         "isLocked": false,
-        "views": 27
+        "views": 19
       },
       {
         "chapter_number": 17,
@@ -542,7 +454,7 @@
         "title": "Ch. 17",
         "unlockDate": null,
         "isLocked": false,
-        "views": 40
+        "views": 39
       },
       {
         "chapter_number": 16,
@@ -555,7 +467,7 @@
         "title": "Ch. 16",
         "unlockDate": null,
         "isLocked": false,
-        "views": 27
+        "views": 26
       }
     ]
   },
@@ -581,7 +493,7 @@
     ],
     "rating": 8.22,
     "chapter_count": 30,
-    "total_views": 705,
+    "total_views": 677,
     "isTrending": false,
     "latest_release_date": "2026-08-25T23:04:51+07:00",
     "next_update": null,
@@ -613,7 +525,7 @@
         "title": "Ch. 24.1",
         "unlockDate": "2026-08-28T17:00:00.000Z",
         "isLocked": false,
-        "views": 14
+        "views": 8
       },
       {
         "chapter_number": 23.2,
@@ -626,7 +538,7 @@
         "title": "Ch. 23.2",
         "unlockDate": "2026-08-11T16:28:24.000Z",
         "isLocked": false,
-        "views": 44
+        "views": 43
       }
     ]
   },
@@ -648,7 +560,7 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 9.57,
+    "rating": 9.5,
     "chapter_count": 2,
     "total_views": 26,
     "isTrending": false,
@@ -708,7 +620,7 @@
     ],
     "rating": 7.79,
     "chapter_count": 20,
-    "total_views": 264,
+    "total_views": 260,
     "isTrending": false,
     "latest_release_date": "2026-08-25T11:22:09+07:00",
     "next_update": null,
@@ -727,7 +639,7 @@
         "title": "Ch. 18.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 20
+        "views": 19
       },
       {
         "chapter_number": 18.1,
@@ -777,7 +689,7 @@
     ],
     "rating": 8.41,
     "chapter_count": 17,
-    "total_views": 127,
+    "total_views": 121,
     "isTrending": false,
     "latest_release_date": "2026-08-20T19:55:22+07:00",
     "next_update": null,
@@ -850,7 +762,7 @@
     ],
     "rating": 8.08,
     "chapter_count": 14,
-    "total_views": 644,
+    "total_views": 626,
     "isTrending": false,
     "latest_release_date": "2026-08-19T19:01:02+07:00",
     "next_update": null,
@@ -893,7 +805,7 @@
         "title": "Ch. 7.2",
         "unlockDate": "2026-08-19T17:00:00.000Z",
         "isLocked": false,
-        "views": 41
+        "views": 36
       }
     ]
   },
@@ -919,7 +831,7 @@
     ],
     "rating": 8.48,
     "chapter_count": 18,
-    "total_views": 167,
+    "total_views": 158,
     "isTrending": false,
     "latest_release_date": "2026-08-18T11:22:53+07:00",
     "next_update": null,
@@ -938,7 +850,7 @@
         "title": "Ch. 11.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 15
+        "views": 13
       },
       {
         "chapter_number": 11.1,
@@ -951,7 +863,7 @@
         "title": "Ch. 11.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 16
+        "views": 15
       },
       {
         "chapter_number": 10.3,
@@ -964,7 +876,7 @@
         "title": "Ch. 10.3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 13
+        "views": 12
       }
     ]
   },
@@ -1063,7 +975,7 @@
     ],
     "rating": 8.24,
     "chapter_count": 3,
-    "total_views": 103,
+    "total_views": 102,
     "isTrending": false,
     "latest_release_date": "2026-08-12T22:54:08+07:00",
     "next_update": null,
@@ -1133,7 +1045,7 @@
     ],
     "rating": 8.44,
     "chapter_count": 13,
-    "total_views": 165,
+    "total_views": 164,
     "isTrending": false,
     "latest_release_date": "2026-08-07T11:26:33+07:00",
     "next_update": null,
@@ -1201,7 +1113,7 @@
     ],
     "rating": 8.61,
     "chapter_count": 19,
-    "total_views": 117,
+    "total_views": 116,
     "isTrending": false,
     "latest_release_date": "2026-08-07T00:02:21+07:00",
     "next_update": null,
@@ -1251,6 +1163,79 @@
     ]
   },
   {
+    "id": "TeisouGyakuten",
+    "title": "Teisou Gyakuten Sekai Nara Moteru to Omotte Itara",
+    "description": "Dunia dengan moral nafsu yang terbalik —rasio gender 1:20, cewek-cewek memiliki hasrat nafsu yang kuat, sedangkan para cowok ingin menjalani hidup nyaman dan damai dilindungi bodyguard. Bodyguard Cowok yang ada di sekitarnya semuanya tampan, dan Ikuto mengeluh bahwa terutama sahabatnya, Toosaka…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Crossdressing",
+      "Harem",
+      "Isekai",
+      "Reincarnation",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life"
+    ],
+    "rating": 7.44,
+    "chapter_count": 11,
+    "total_views": 209,
+    "isTrending": false,
+    "latest_release_date": "2026-08-04T15:13:59+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 8.1,
+        "lock_hours": 0,
+        "pages": 16,
+        "release_date": "2026-08-04T15:13:59+07:00",
+        "r2_folder": 8.1,
+        "id": "TeisouGyakuten-ch-8.1",
+        "r2_prefix": "manga/TeisouGyakuten/8.1/",
+        "title": "Ch. 8.1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 29
+      },
+      {
+        "chapter_number": 7.3,
+        "lock_hours": 0,
+        "pages": 13,
+        "release_date": "2026-07-07T20:55:27+07:00",
+        "r2_folder": 7.3,
+        "id": "TeisouGyakuten-ch-7.3",
+        "r2_prefix": "manga/TeisouGyakuten/7.3/",
+        "title": "Ch. 7.3",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 20
+      },
+      {
+        "chapter_number": 7.2,
+        "lock_hours": 0,
+        "pages": 12,
+        "release_date": "2026-06-29T18:30:52+07:00",
+        "r2_folder": 7.2,
+        "id": "TeisouGyakuten-ch-7.2",
+        "r2_prefix": "manga/TeisouGyakuten/7.2/",
+        "title": "Ch. 7.2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 20
+      }
+    ]
+  },
+  {
     "id": "ClassdeIchiban",
     "title": "Class de Ichiban Kawaii Gal wo Ezuke Shiteiru Hanashi",
     "description": "Sakura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
@@ -1272,7 +1257,7 @@
     ],
     "rating": 7.7,
     "chapter_count": 20,
-    "total_views": 231,
+    "total_views": 228,
     "isTrending": false,
     "latest_release_date": "2026-08-03T16:14:51+07:00",
     "next_update": null,
@@ -1342,7 +1327,7 @@
     ],
     "rating": 8.81,
     "chapter_count": 15,
-    "total_views": 60,
+    "total_views": 54,
     "isTrending": false,
     "latest_release_date": "2026-08-01T23:00:15+07:00",
     "next_update": null,
@@ -1411,7 +1396,7 @@
     ],
     "rating": 8.38,
     "chapter_count": 19,
-    "total_views": 119,
+    "total_views": 115,
     "isTrending": false,
     "latest_release_date": "2026-07-30T20:01:44+07:00",
     "next_update": null,
@@ -1481,7 +1466,7 @@
     ],
     "rating": 7.78,
     "chapter_count": 5,
-    "total_views": 84,
+    "total_views": 83,
     "isTrending": false,
     "latest_release_date": "2026-07-24T13:49:29+07:00",
     "next_update": null,
@@ -1549,7 +1534,7 @@
     ],
     "rating": 8.04,
     "chapter_count": 14,
-    "total_views": 42,
+    "total_views": 41,
     "isTrending": false,
     "latest_release_date": "2026-07-10T23:02:36+07:00",
     "next_update": null,
@@ -1704,7 +1689,7 @@
     ],
     "rating": 8.04,
     "chapter_count": 3,
-    "total_views": 27,
+    "total_views": 25,
     "isTrending": false,
     "latest_release_date": "2026-07-09T20:33:22+07:00",
     "next_update": null,
@@ -1748,7 +1733,7 @@
         "title": "Ch. 1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 10
+        "views": 9
       }
     ]
   },
@@ -1843,7 +1828,7 @@
     ],
     "rating": 8.3,
     "chapter_count": 4,
-    "total_views": 78,
+    "total_views": 68,
     "isTrending": false,
     "latest_release_date": "2026-07-03T20:15:09+07:00",
     "next_update": null,
@@ -1861,7 +1846,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 17
+        "views": 13
       },
       {
         "chapter_number": 3,
@@ -1874,7 +1859,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 3
       },
       {
         "chapter_number": 2,
@@ -1887,7 +1872,7 @@
         "title": "Ch. 2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 7
+        "views": 6
       }
     ]
   },
@@ -1915,7 +1900,7 @@
     ],
     "rating": 7.35,
     "chapter_count": 9,
-    "total_views": 167,
+    "total_views": 162,
     "isTrending": false,
     "latest_release_date": "2026-07-02T18:06:40+07:00",
     "next_update": null,
@@ -1933,7 +1918,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 38
+        "views": 37
       },
       {
         "chapter_number": 8,
@@ -1946,7 +1931,7 @@
         "title": "Ch. 8",
         "unlockDate": null,
         "isLocked": false,
-        "views": 22
+        "views": 21
       },
       {
         "chapter_number": 7,
@@ -1959,7 +1944,7 @@
         "title": "Ch. 7",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 7
       }
     ]
   },
@@ -1985,7 +1970,7 @@
     ],
     "rating": 8.2,
     "chapter_count": 20,
-    "total_views": 40,
+    "total_views": 37,
     "isTrending": false,
     "latest_release_date": "2026-06-20T14:53:29+07:00",
     "next_update": null,
@@ -2003,7 +1988,7 @@
         "title": "Ch. 19",
         "unlockDate": null,
         "isLocked": false,
-        "views": 13
+        "views": 12
       },
       {
         "chapter_number": 18,
@@ -2120,9 +2105,9 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 8.29,
+    "rating": 8.28,
     "chapter_count": 6,
-    "total_views": 44,
+    "total_views": 41,
     "isTrending": false,
     "latest_release_date": "2026-06-18T18:38:29+07:00",
     "next_update": null,
@@ -2140,7 +2125,7 @@
         "title": "Ch. 6",
         "unlockDate": null,
         "isLocked": false,
-        "views": 9
+        "views": 8
       },
       {
         "chapter_number": 5,
@@ -2315,7 +2300,7 @@
     ],
     "rating": 8.64,
     "chapter_count": 25,
-    "total_views": 54,
+    "total_views": 53,
     "isTrending": false,
     "latest_release_date": "2026-06-13T20:30:05+07:00",
     "next_update": null,
@@ -2382,7 +2367,7 @@
     ],
     "rating": 8.65,
     "chapter_count": 216,
-    "total_views": 377,
+    "total_views": 373,
     "isTrending": false,
     "latest_release_date": "2025-03-27T19:03:42+07:00",
     "next_update": null,
@@ -2400,7 +2385,7 @@
         "title": "Ch. 215.9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 27
+        "views": 26
       },
       {
         "chapter_number": 215.8,
@@ -2450,7 +2435,7 @@
     ],
     "rating": 8.29,
     "chapter_count": 95,
-    "total_views": 29,
+    "total_views": 24,
     "isTrending": false,
     "latest_release_date": "2019-09-05T00:00:00+07:00",
     "next_update": null,
@@ -2469,7 +2454,7 @@
         "title": "Ch. 95",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 2
       },
       {
         "chapter_number": 94,
@@ -2483,7 +2468,7 @@
         "title": "Ch. 94",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 2
       },
       {
         "chapter_number": 93,
@@ -2497,7 +2482,7 @@
         "title": "Ch. 93",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 2
       }
     ]
   }

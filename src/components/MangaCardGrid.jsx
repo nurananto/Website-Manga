@@ -20,7 +20,8 @@ const EMPTY_READ_SET = new Set();
 // panjang teks lagi) — biar gak ada kartu yang judulnya kelihatan lebih
 // besar/kecil dari kartu sebelahnya cuma gara-gara nomor chapternya beda
 // panjang. Ukurannya sendiri dikecilkan supaya "Ch. 205.1" tetap muat tanpa elipsis.
-const CHAPTER_TITLE_SIZE_CLASS = 'text-[9px] sm:text-[10px] md:text-[12px] lg:text-[14px]';
+const CHAPTER_TITLE_SIZE_CLASS = 'text-[10px] sm:text-[11px] md:text-[13px] lg:text-[15px]';
+const CHAPTER_ROW_SIZE_CLASS = 'h-9 sm:h-10 md:h-11 lg:h-12';
 
 function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter, coverPriority = false, readChapterIds }) {
   const readChapters = readChapterIds || EMPTY_READ_SET;
@@ -38,7 +39,7 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
   const ch = manga.chapters[0];
 
   let chapterBody = (
-    <div aria-hidden="true" className="invisible flex w-full items-center justify-between gap-1 rounded-lg p-1.5 sm:p-2">
+    <div aria-hidden="true" className={`invisible flex w-full items-center justify-between gap-1 rounded-lg p-1.5 sm:p-2 ${CHAPTER_ROW_SIZE_CLASS}`}>
       <span className="font-body-md text-[12px] sm:text-[13px] md:text-[15px] lg:text-[17px] font-bold">.</span>
     </div>
   );
@@ -85,7 +86,7 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
       <button
         type="button"
         onClick={(e) => { e.stopPropagation(); onReadChapter(ch, manga.title, manga); }}
-        className="flex w-full min-w-0 items-center justify-between gap-0.5 sm:gap-1 text-left cursor-pointer group/ch bg-surface-container rounded-lg shadow-md transition-colors p-1.5 sm:p-2 border border-transparent hover:border-primary/20"
+        className={`flex w-full min-w-0 items-center justify-between gap-0.5 sm:gap-1 text-left cursor-pointer group/ch bg-surface-container rounded-lg shadow-md transition-colors p-1.5 sm:p-2 border border-transparent hover:border-primary/20 ${CHAPTER_ROW_SIZE_CLASS}`}
       >
         <span className="flex min-w-0 items-center gap-1 sm:gap-1.5">
           {/* Icon Lock — balik ke sebelah KIRI judul chapter (squircle amber,
@@ -213,7 +214,7 @@ export function MangaCardGridPlaceholder() {
           </div>
         </div>
       </div>
-      <div className="rounded-lg p-1.5 sm:p-2">
+          <div className={`rounded-lg p-1.5 sm:p-2 ${CHAPTER_ROW_SIZE_CLASS}`}>
         <span className="font-body-md text-[12px] sm:text-[13px] md:text-[15px] lg:text-[17px] font-bold">.</span>
       </div>
     </div>
