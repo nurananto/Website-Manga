@@ -78,6 +78,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 8.2,
+      "lock_hours": 0,
+      "pages": 19,
+      "notif_image": "17",
+      "r2_folder": 8.2,
+      "id": "TeisouGyakuten-ch-8.2",
+      "r2_prefix": "manga/TeisouGyakuten/8.2/",
+      "title": "Ch. 8.2",
+      "release_date": "2026-09-01T18:26:28+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 8.1,
       "lock_hours": 0,
       "pages": 16,
