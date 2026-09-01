@@ -47,7 +47,7 @@
     }
   ],
   "mangadex_id": "4a2b1c8e-a275-4090-8437-600b06c4ee30",
-  "rating": 7.5,
+  "rating": 8.25,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=3",
   "coverUrls": {
@@ -56,6 +56,20 @@
     "mobile": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
+    {
+      "chapter_number": 1,
+      "lock_hours": 0,
+      "pages": 53,
+      "notif_image": "2",
+      "release_date": "2026-08-31T20:13:11+07:00",
+      "r2_folder": 1,
+      "id": "Ippanjin-ch-1",
+      "r2_prefix": "manga/Ippanjin/1/",
+      "title": "Ch. 1",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
     {
       "chapter_number": "prolog",
       "title": "Prolog",
