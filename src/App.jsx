@@ -103,9 +103,8 @@ function takePrefetch(type, slug) {
 // supaya selalu kelipatan pas jumlah kolom yang BENAR-BENAR tampil di layar —
 // jadi baris terakhir yang bolong cuma bisa muncul di halaman paling akhir,
 // bukan di tengah pagination.
-// Minimum 3 kolom di mobile — sempat dicoba 2, tapi cover kegedean bikin
-// kotak chapter di bawahnya keliatan kepanjangan/kosong (proporsinya pincang).
-// Skala naik +1 tiap breakpoint.
+// Minimum 3 kolom di mobile — sempat dicoba 2, tapi bikin tampilan nggak
+// konsisten dengan elemen lain di halaman.
 const GRID_ROWS_PER_PAGE = 3;
 function computeGridColumns() {
   if (typeof window === 'undefined') return 3;
@@ -1392,7 +1391,7 @@ export default function App() {
                         ? 'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 content-start items-start gap-3 sm:gap-4'
                         : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start items-start gap-4'
                       }>
-                        {Array.from({ length: paginatedManga.length }).map((_, i) => {
+                        {Array.from({ length: effectiveItemsPerPage }).map((_, i) => {
                           const manga = paginatedManga[i];
                           if (!manga) {
                             return viewMode === 'grid' ? (

@@ -20,7 +20,7 @@ const EMPTY_READ_SET = new Set();
 // panjang teks lagi) — biar gak ada kartu yang judulnya kelihatan lebih
 // besar/kecil dari kartu sebelahnya cuma gara-gara nomor chapternya beda
 // panjang. Ukurannya sendiri dikecilkan supaya "Ch. 205.1" tetap muat tanpa elipsis.
-const CHAPTER_TITLE_SIZE_CLASS = 'text-[10px] sm:text-[11px] md:text-[13px] lg:text-[15px]';
+const CHAPTER_TITLE_SIZE_CLASS = 'text-[10.5px] sm:text-[11.5px] md:text-[13.5px] lg:text-[14.5px]';
 const CHAPTER_ROW_SIZE_CLASS = 'h-9 sm:h-10 md:h-11 lg:h-12';
 
 function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter, coverPriority = false, readChapterIds }) {
@@ -39,7 +39,7 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
   const ch = manga.chapters[0];
 
   let chapterBody = (
-    <div aria-hidden="true" className={`invisible flex w-full items-center justify-between gap-1 rounded-lg p-1.5 sm:p-2 ${CHAPTER_ROW_SIZE_CLASS}`}>
+    <div aria-hidden="true" className={`invisible flex w-full items-center justify-between gap-1 rounded-lg p-1 sm:p-2 ${CHAPTER_ROW_SIZE_CLASS}`}>
       <span className="font-body-md text-[12px] sm:text-[13px] md:text-[15px] lg:text-[17px] font-bold">.</span>
     </div>
   );
@@ -86,7 +86,7 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
       <button
         type="button"
         onClick={(e) => { e.stopPropagation(); onReadChapter(ch, manga.title, manga); }}
-        className={`flex w-full min-w-0 items-center justify-between gap-0.5 sm:gap-1 text-left cursor-pointer group/ch bg-surface-container rounded-lg shadow-md transition-colors p-1.5 sm:p-2 border border-transparent hover:border-primary/20 ${CHAPTER_ROW_SIZE_CLASS}`}
+        className={`flex w-full min-w-0 items-center justify-between gap-0.5 sm:gap-1 text-left cursor-pointer group/ch bg-surface-container rounded-lg shadow-md transition-colors p-1 sm:p-2 border border-transparent hover:border-primary/20 ${CHAPTER_ROW_SIZE_CLASS}`}
       >
         <span className="flex min-w-0 items-center gap-1 sm:gap-1.5">
           {/* Icon Lock — balik ke sebelah KIRI judul chapter (squircle amber,
@@ -94,17 +94,17 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
           {showAccessGate && (
             <span
               aria-hidden="true"
-              className="flex h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-[18px] md:w-[18px] lg:h-5 lg:w-5 shrink-0 items-center justify-center rounded-[5px] border border-amber-400/60 bg-amber-500/20"
+              className="flex h-4 w-4 sm:h-[18px] sm:w-[18px] md:h-5 md:w-5 lg:h-[22px] lg:w-[22px] shrink-0 items-center justify-center rounded-[5px] border border-amber-400/60 bg-amber-500/20"
             >
               {/* -translate-y-px: bounding box SVG-nya sendiri sudah center
                   matematis (rect y11-22 + shackle y2-11 → tengah persis y12
                   dari viewBox 24), tapi shackle cuma garis tipis vs badan rect
                   solid bikin bobot visualnya keliatan berat ke bawah — nudge
                   optik halus ke atas biar keliatan seimbang di mata. */}
-              <Lock className="h-2 w-2 sm:h-2.5 sm:w-2.5 md:h-3 md:w-3 lg:h-3.5 lg:w-3.5 -translate-y-px text-amber-600 dark:text-amber-300 stroke-[2.5]" />
+              <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4 -translate-y-px text-amber-600 dark:text-amber-300 stroke-[2.5]" />
             </span>
           )}
-          <span className={`font-body-md ${CHAPTER_TITLE_SIZE_CLASS} font-bold truncate transition-all ${isRead ? 'opacity-70' : ''} ${
+          <span className={`font-body-md ${CHAPTER_TITLE_SIZE_CLASS} font-bold leading-none truncate transition-all ${isRead ? 'opacity-70' : ''} ${
             showAccessGate
               ? 'text-amber-800 dark:text-amber-300'
               : 'text-on-surface-variant group-hover/ch:text-primary'
@@ -113,11 +113,11 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
           </span>
         </span>
         {dateBadge ? (
-          <span className={`shrink-0 font-label-sm px-1 py-0.5 sm:px-1.5 rounded text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black uppercase tracking-wide whitespace-nowrap ${dateBadge.className}`}>
+          <span className={`shrink-0 font-label-sm leading-none px-1 py-0.5 sm:px-1.5 rounded text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black uppercase tracking-wide whitespace-nowrap ${dateBadge.className}`}>
             {dateBadge.text}
           </span>
         ) : (
-          <span className={`font-label-sm text-[8px] sm:text-[9px] md:text-[11px] lg:text-[13px] text-outline whitespace-nowrap shrink-0 transition-opacity ${isRead ? 'opacity-80' : ''}`}>
+          <span className={`font-label-sm leading-none text-[8px] sm:text-[9px] md:text-[11px] lg:text-[13px] text-outline whitespace-nowrap shrink-0 transition-opacity ${isRead ? 'opacity-80' : ''}`}>
             {ch.date || timeAgoShort(ch.release_date)}
           </span>
         )}
@@ -207,14 +207,14 @@ export function MangaCardGridPlaceholder() {
         {/* Strip badge — ikut ada di sini juga (invisible) krn di kartu asli
             badge nambah tinggi ke Box 1 (flow, bukan overlay lagi). */}
         <span className="w-[72px] sm:w-[80px] md:w-[92px] lg:w-[104px] px-1 sm:px-1.5 py-0.5 sm:py-1 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-black">.</span>
-        <div className="flex w-full flex-col rounded-xl overflow-hidden">
+        <div className="flex w-full flex-col rounded-xl overflow-hidden border border-outline-variant">
           <div className="w-full aspect-[0.7/1] shrink-0" />
           <div className="p-2 sm:p-2.5">
-            <div className="text-sm md:text-base lg:text-lg font-black leading-tight">.</div>
+            <div className="font-headline-md text-sm md:text-base lg:text-lg font-black leading-tight">.</div>
           </div>
         </div>
       </div>
-          <div className={`rounded-lg p-1.5 sm:p-2 ${CHAPTER_ROW_SIZE_CLASS}`}>
+          <div className={`rounded-lg p-1 sm:p-2 ${CHAPTER_ROW_SIZE_CLASS}`}>
         <span className="font-body-md text-[12px] sm:text-[13px] md:text-[15px] lg:text-[17px] font-bold">.</span>
       </div>
     </div>

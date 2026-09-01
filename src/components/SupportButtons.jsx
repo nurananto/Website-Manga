@@ -12,10 +12,10 @@ import { DISCORD_INVITE_URL, FACEBOOK_URL } from '../lib/links';
 // akun (lihat App.jsx/TopNavBar.jsx).
 const TRAKTEER_URL = 'https://trakteer.id/NuranantoScanlation';
 
-// Tinggi tombol disamakan dgn Discord/Facebook reader (SocialFollowLinks) —
-// h-11/12/14/16 tetap, bukan py-* yg bikin tombol jadi "gendut".
-const BUTTON_BASE = 'group flex h-11 flex-1 items-center justify-center gap-1.5 rounded-xl '
-  + 'px-2 shadow-sm transition-colors cursor-pointer sm:h-12 sm:gap-2 sm:px-3 md:h-14 md:px-4 lg:h-16';
+// Tinggi tombol digepengkan (h-9/10/11/12) — sebelumnya h-11/12/14/16 terlalu
+// gendut dibanding elemen lain di sekitarnya.
+const BUTTON_BASE = 'group flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl '
+  + 'px-2 shadow-sm transition-colors cursor-pointer sm:h-10 sm:gap-2 sm:px-3 md:h-11 md:px-4 lg:h-12';
 
 // Garis pemisah tebal antara ikon & teks ("|") — dipakai ketiga tombol.
 function Divider() {

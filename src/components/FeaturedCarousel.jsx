@@ -11,8 +11,8 @@ const GENRE_TAG_BASE = 'rounded-md font-label-sm uppercase backdrop-blur-md bg-[
 
 function GenreTag({ children, hiddenOnMobile = false }) {
   const sizeCls = hiddenOnMobile
-    ? 'px-2.5 py-0.5 text-[10px] md:text-xs tracking-wider'
-    : 'px-1.5 sm:px-2.5 py-0.5 text-[9px] sm:text-[10px] md:text-xs sm:tracking-wider';
+    ? 'px-2.5 py-0.5 text-[10px] md:text-xs lg:text-[13px] xl:text-sm tracking-wider'
+    : 'px-1.5 sm:px-2.5 py-0.5 text-[9px] sm:text-[10px] md:text-xs lg:text-[13px] xl:text-sm sm:tracking-wider';
   return (
     <span className={`${GENRE_TAG_BASE} ${sizeCls} ${hiddenOnMobile ? 'hidden sm:inline' : ''}`}>
       {children}
@@ -27,7 +27,7 @@ function GenreOverflowTag({ count, onlyMobile = false, bordered = false }) {
   return onlyMobile ? (
     <span className={`${base} sm:hidden px-1.5 py-0.5 text-[9px]`}>+{count}</span>
   ) : (
-    <span className={`${base} hidden sm:inline px-2.5 py-0.5 text-[10px] md:text-xs tracking-wider ${bordered ? 'border border-white/20 dark:border-black/20' : ''}`}>
+    <span className={`${base} hidden sm:inline px-2.5 py-0.5 text-[10px] md:text-xs lg:text-[13px] xl:text-sm tracking-wider ${bordered ? 'border border-white/20 dark:border-black/20' : ''}`}>
       +{count}
     </span>
   );
@@ -114,7 +114,7 @@ export default function FeaturedCarousel({
     <div className="flex items-center justify-between gap-3">
       <div className="flex items-center gap-3 min-w-0">
         <span className="h-7 w-1 rounded-full bg-primary shrink-0" aria-hidden="true" />
-        <h2 className="font-headline-md text-xl sm:text-2xl font-black text-on-surface truncate">
+        <h2 className="font-headline-md text-xl sm:text-2xl lg:text-3xl font-black text-on-surface truncate">
           Populer hari ini
         </h2>
       </div>
@@ -124,11 +124,11 @@ export default function FeaturedCarousel({
           onClick={goPrev}
           disabled={!canNavigate}
           aria-label="Sebelumnya"
-          className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center active:scale-95 transition-all cursor-pointer"
+          className="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center active:scale-95 transition-all cursor-pointer"
         >
-          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 lg:w-[22px] lg:h-[22px]" />
         </button>
-        <div className="min-w-10 h-9 sm:h-10 px-2 rounded-xl border border-outline-variant bg-surface-container text-on-surface flex items-center justify-center font-label-sm text-xs sm:text-sm font-black tabular-nums">
+        <div className="min-w-10 h-9 sm:h-10 lg:h-11 px-2 rounded-xl border border-outline-variant bg-surface-container text-on-surface flex items-center justify-center font-label-sm text-xs sm:text-sm lg:text-base font-black tabular-nums">
           {current + 1} | {Math.max(slides.length, 1)}
         </div>
         <button
@@ -136,14 +136,14 @@ export default function FeaturedCarousel({
           onClick={goNext}
           disabled={!canNavigate}
           aria-label="Berikutnya"
-          className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center active:scale-95 transition-all cursor-pointer"
+          className="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-xl border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-35 disabled:cursor-not-allowed flex items-center justify-center active:scale-95 transition-all cursor-pointer"
         >
-          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-[22px] lg:h-[22px]" />
         </button>
       </div>
     </div>
     <section
-      className="relative w-full h-[165px] sm:h-[190px] md:h-[218px] lg:h-[245px] rounded-xl overflow-hidden group shadow-2xl border border-primary/45 flex items-center justify-between"
+      className="relative w-full h-[160px] sm:h-[200px] md:h-[240px] lg:h-[290px] xl:h-[340px] rounded-xl overflow-hidden group shadow-2xl border border-primary/45 flex items-center justify-between"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -167,7 +167,7 @@ export default function FeaturedCarousel({
           lebar cover aktual (aspect-[7/10] × tinggi efektifnya, lihat h-[96%]
           dst di bawah) + ~10-20px jarak, ikut disesuaikan tiap cover
           diperbesar/diperkecil supaya gap tidak kelewat lega atau kepotong. */}
-      <div className="absolute inset-0 left-0 pt-2 pb-2 pl-2 pr-32 sm:pt-3 sm:pb-3 sm:pl-3 sm:pr-36 md:pt-4 md:pb-4 md:pl-4 md:pr-40 lg:pt-5 lg:pb-5 lg:pl-5 lg:pr-48 flex flex-col justify-center z-10">
+      <div className="absolute inset-0 left-0 pt-2 pb-2 pl-2 pr-32 sm:pt-3 sm:pb-3 sm:pl-3 sm:pr-40 md:pt-4 md:pb-4 md:pl-4 md:pr-48 lg:pt-5 lg:pb-5 lg:pl-5 lg:pr-56 xl:pt-6 xl:pb-6 xl:pl-6 xl:pr-64 flex flex-col justify-center z-10">
 
         {/* Satu blok konten, di-center secara vertikal */}
         <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5">
@@ -192,7 +192,7 @@ export default function FeaturedCarousel({
           {/* Title */}
           <h1
             key={`title-${activeManga.id}`}
-            className="min-w-0 font-display-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-on-surface dark:text-white dark:[text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_12px_rgba(0,0,0,0.75)] leading-tight truncate animate-[slideUpFade_0.3s_ease-out]"
+            className="min-w-0 font-display-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.625rem] font-black text-on-surface dark:text-white dark:[text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_12px_rgba(0,0,0,0.75)] leading-tight truncate animate-[slideUpFade_0.3s_ease-out]"
           >
             {activeManga.title}
           </h1>
@@ -200,7 +200,7 @@ export default function FeaturedCarousel({
           {/* Description */}
           <p
             key={`desc-${activeManga.id}`}
-            className="line-clamp-2 sm:line-clamp-3 font-body-lg text-xs sm:text-sm md:text-base lg:text-lg text-on-surface-variant dark:text-white/90 dark:[text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_1px_8px_rgba(0,0,0,0.7)] leading-relaxed text-justify animate-[slideUpFade_0.34s_ease-out]"
+            className="line-clamp-2 sm:line-clamp-3 font-body-lg text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-on-surface-variant dark:text-white/90 dark:[text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_1px_8px_rgba(0,0,0,0.7)] leading-relaxed text-justify animate-[slideUpFade_0.34s_ease-out]"
           >
             {activeManga.description}
           </p>
@@ -211,11 +211,11 @@ export default function FeaturedCarousel({
             className="flex items-center gap-2 sm:gap-3 mt-1 sm:mt-2 animate-[slideUpFade_0.38s_ease-out]"
           >
             <SolidButton variant="light" onClick={() => onReadFirst(activeManga.id)}>
-              <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 fill-current" />
+              <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 lg:w-[18px] lg:h-[18px] fill-current" />
               Baca dari Awal
             </SolidButton>
             <SolidButton variant="dark" onClick={() => onViewManga && onViewManga(activeManga)}>
-              <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
+              <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 lg:w-[18px] lg:h-[18px]" />
               Lihat Detail
             </SolidButton>
           </div>
@@ -227,7 +227,7 @@ export default function FeaturedCarousel({
           (8/12/16/20px) biar gap ke tepi kanan/atas/bawah sama dgn kiri.
           Mobile: lebih besar (h-[96%]), tablet: h-[97%], desktop: h-[98%] —
           mepet ke tepi atas/bawah wrapper-nya sendiri. */}
-      <div key={`featured-cover-${activeManga.id}`} className="absolute inset-y-0 right-2 sm:right-3 md:right-4 lg:right-5 flex items-center justify-center h-full z-10 py-2 sm:py-3 md:py-4 lg:py-5">
+      <div key={`featured-cover-${activeManga.id}`} className="absolute inset-y-0 right-2 sm:right-3 md:right-4 lg:right-5 xl:right-6 flex items-center justify-center h-full z-10 py-2 sm:py-3 md:py-4 lg:py-5 xl:py-6">
         <ResponsiveCover
           manga={activeManga}
           alt={activeManga.title}
