@@ -75,8 +75,11 @@ function NextUpdateInfo({ value }) {
   }, [isDate, t]);
 
   const soonBox = (
+    // 2 baris (bukan 1 baris mepet) — kalimatnya sekarang punya ruang
+    // masing-masing daripada berdesakan dalam 1 baris.
     <p className="font-body-md text-xs sm:text-sm text-on-surface/80 mt-3 bg-emerald-500/10 rounded-lg px-3 py-2 border border-emerald-500/20">
-      <span className="text-emerald-400 font-bold">Chapter baru segera rilis!</span> Pantau terus ya 🔥
+      <span className="block text-emerald-400 font-bold">Chapter baru akan segera rilis!</span>
+      <span className="block">Pantau terus ya 🔥</span>
     </p>
   );
 
@@ -1070,29 +1073,40 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
                 onClick={e => e.stopPropagation()}
-                className="bg-surface-container border border-outline-variant rounded-2xl p-6 max-w-sm w-full shadow-2xl flex flex-col gap-4 text-center"
+                className="bg-surface-container border border-outline-variant rounded-2xl max-w-sm w-full shadow-2xl p-5 flex flex-col gap-3 text-center"
               >
-                {/* Cover manga menggantikan ikon buku */}
+                {/* Cover dikecilin lagi (w-28/32) — w-36/44 kerasa masih
+                    kegedean, modal jadi kayak nutup 1 halaman penuh. Dibungkus
+                    div (bukan langsung ResponsiveCover) karena
+                    <picture class="contents">-nya bikin <source> ikut kehitung
+                    sebagai flex-item kena gap dialog, nambah gap semu di atas
+                    cover. */}
                 {activeManga?.coverUrl && (
-                  <ResponsiveCover
-                    manga={activeManga}
-                    alt={activeManga.title}
-                    className="w-24 aspect-[2/3] object-cover rounded-xl mx-auto shadow-lg border border-outline-variant"
-                  />
+                  <div>
+                    <ResponsiveCover
+                      manga={activeManga}
+                      alt={activeManga.title}
+                      className="w-28 sm:w-32 aspect-[2/3] object-cover rounded-xl mx-auto shadow-lg border border-outline-variant"
+                    />
+                  </div>
                 )}
                 <div>
-                  <h3 id="latest-chapter-title" className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface">Kamu sudah sampai chapter terbaru!</h3>
-                  <p className="font-headline-md text-sm sm:text-base font-black text-on-surface/90 mt-2 line-clamp-2">{activeManga?.title}</p>
-                  <p className="font-body-md text-sm sm:text-base font-bold mt-1">
-                    <span className="text-outline">Chapter saat ini</span>{' '}
-                    <span className="text-primary">{activeChapter?.title}</span>
-                  </p>
+                  {/* Warna primary biar label ini yang pertama nyantol di mata,
+                      meski ukurannya tetap kecil (hierarki tetap milik judul). */}
+                  <h3 id="latest-chapter-title" className="font-headline-md text-sm sm:text-base font-bold text-primary">Chapter {activeChapter?.chapter_number} adalah Chapter Terbaru!</h3>
+                  {/* Judul manga diperkecil lagi (kerasa masih kegedean vs
+                      label di atasnya). text-balance: baris wrap dibagi rata
+                      biar gak ada baris terakhir yang cuma sisa 1-2 kata.
+                      Tanda "-" di judul (mis. "Joshi-tachi") diganti
+                      non-breaking hyphen biar browser gak motong tepat di
+                      tengah kata itu. */}
+                  <p className="font-headline-md text-base sm:text-lg md:text-xl font-black text-on-surface mt-1 line-clamp-2 text-balance">{activeManga?.title?.replace(/-/g, '\u2011')}</p>
 
                   <NextUpdateInfo value={activeManga?.next_update} />
                 </div>
                 <button
                   onClick={() => { setShowLastChapterModal(false); onClose(); }}
-                  className="w-full h-11 rounded-xl bg-primary text-on-primary font-bold text-sm sm:text-base active:scale-95 transition-all cursor-pointer"
+                  className="w-full h-9 rounded-xl bg-primary text-on-primary font-bold text-sm active:scale-95 transition-all cursor-pointer"
                 >
                   Kembali ke Detail Manga
                 </button>
