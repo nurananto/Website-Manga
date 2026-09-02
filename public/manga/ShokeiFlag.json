@@ -67,15 +67,28 @@
   },
   "chapters": [
     {
+      "chapter_number": 5.3,
+      "pages": 11,
+      "notif_image": "8",
+      "r2_folder": 5.3,
+      "id": "ShokeiFlag-ch-5.3",
+      "r2_prefix": "manga/ShokeiFlag/5.3/",
+      "title": "Ch. 5.3",
+      "release_date": "2026-09-02T20:05:34+07:00",
+      "unlockDate": "2026-09-15T17:00:00.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 5.2,
       "lock_hours": 0,
       "pages": 10,
       "notif_image": "3",
+      "release_date": "2026-09-02T19:21:22+07:00",
       "r2_folder": 5.2,
       "id": "ShokeiFlag-ch-5.2",
       "r2_prefix": "manga/ShokeiFlag/5.2/",
       "title": "Ch. 5.2",
-      "release_date": "2026-09-02T19:21:22+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0

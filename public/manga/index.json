@@ -21,24 +21,37 @@
       "Shounen"
     ],
     "rating": 6,
-    "chapter_count": 12,
+    "chapter_count": 13,
     "total_views": 179,
     "isTrending": true,
-    "latest_release_date": "2026-09-02T19:21:22+07:00",
+    "latest_release_date": "2026-09-02T20:05:34+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
     "hiatus_at_chapter": null,
     "chapters": [
       {
+        "chapter_number": 5.3,
+        "pages": 11,
+        "notif_image": "8",
+        "r2_folder": 5.3,
+        "id": "ShokeiFlag-ch-5.3",
+        "r2_prefix": "manga/ShokeiFlag/5.3/",
+        "title": "Ch. 5.3",
+        "release_date": "2026-09-02T20:05:34+07:00",
+        "unlockDate": "2026-09-15T17:00:00.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
         "chapter_number": 5.2,
         "lock_hours": 0,
         "pages": 10,
         "notif_image": "3",
+        "release_date": "2026-09-02T19:21:22+07:00",
         "r2_folder": 5.2,
         "id": "ShokeiFlag-ch-5.2",
         "r2_prefix": "manga/ShokeiFlag/5.2/",
         "title": "Ch. 5.2",
-        "release_date": "2026-09-02T19:21:22+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -56,20 +69,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 0
-      },
-      {
-        "chapter_number": 4.3,
-        "lock_hours": 0,
-        "pages": 12,
-        "notif_image": "12",
-        "release_date": "2026-08-27T09:34:05+07:00",
-        "r2_folder": 4.3,
-        "id": "ShokeiFlag-ch-4.3",
-        "r2_prefix": "manga/ShokeiFlag/4.3/",
-        "title": "Ch. 4.3",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 12
       }
     ]
   },
