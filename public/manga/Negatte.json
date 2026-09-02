@@ -40,11 +40,11 @@
     "13": 17,
     "14": 11,
     "15": 14,
-    "16": 27,
-    "17": 40,
-    "18": 28
+    "16": 28,
+    "17": 41,
+    "18": 29
   },
-  "total_views": 291,
+  "total_views": 294,
   "mangadex_cover": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -101,7 +101,7 @@
       "title": "Ch. 18",
       "unlockDate": null,
       "isLocked": false,
-      "views": 28
+      "views": 29
     },
     {
       "chapter_number": 17,
@@ -114,7 +114,7 @@
       "title": "Ch. 17",
       "unlockDate": null,
       "isLocked": false,
-      "views": 40
+      "views": 41
     },
     {
       "chapter_number": 16,
@@ -127,7 +127,7 @@
       "title": "Ch. 16",
       "unlockDate": null,
       "isLocked": false,
-      "views": 27
+      "views": 28
     },
     {
       "chapter_number": 15,

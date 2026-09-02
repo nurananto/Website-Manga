@@ -32,14 +32,18 @@
     "2.1": 8,
     "2.2": 11,
     "2.3": 14,
-    "3.1": 5,
-    "3.2": 10,
-    "3.3": 11,
-    "4.1": 16,
-    "4.2": 10,
-    "4.3": 12
+    "3.1": 6,
+    "3.2": 11,
+    "3.3": 12,
+    "4.1": 17,
+    "4.2": 11,
+    "4.3": 13,
+    "5.1": 2,
+    "5.2": 2,
+    "5.3": 1,
+    "5.4": 1
   },
-  "total_views": 179,
+  "total_views": 195,
   "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -55,7 +59,7 @@
       }
     }
   ],
-  "detail_views": 59,
+  "detail_views": 63,
   "mangadex_id": "02c719c6-d4bc-4ad4-9ebf-d033abe2f410",
   "rating": 6,
   "next_update": null,
@@ -70,14 +74,14 @@
       "chapter_number": 5.4,
       "pages": 11,
       "notif_image": "11",
+      "release_date": "2026-09-02T21:04:13+07:00",
       "r2_folder": 5.4,
       "id": "ShokeiFlag-ch-5.4",
       "r2_prefix": "manga/ShokeiFlag/5.4/",
       "title": "Ch. 5.4",
-      "release_date": "2026-09-02T21:04:13+07:00",
       "unlockDate": "2026-09-15T17:00:00.000Z",
       "isLocked": true,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 5.3,
@@ -90,7 +94,7 @@
       "title": "Ch. 5.3",
       "unlockDate": "2026-09-15T17:00:00.000Z",
       "isLocked": true,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 5.2,
@@ -104,7 +108,7 @@
       "title": "Ch. 5.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 5.1,
@@ -118,7 +122,7 @@
       "title": "Ch. 5.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 2
     },
     {
       "chapter_number": 4.3,
@@ -132,7 +136,7 @@
       "title": "Ch. 4.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 12
+      "views": 13
     },
     {
       "chapter_number": 4.2,
@@ -146,7 +150,7 @@
       "title": "Ch. 4.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 4.1,
@@ -160,7 +164,7 @@
       "title": "Ch. 4.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 16
+      "views": 17
     },
     {
       "chapter_number": 3.3,
@@ -174,7 +178,7 @@
       "title": "Ch. 3.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 3.2,
@@ -188,7 +192,7 @@
       "title": "Ch. 3.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 3.1,
@@ -202,7 +206,7 @@
       "title": "Ch. 3.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 6
     },
     {
       "chapter_number": 2.3,

@@ -37,16 +37,16 @@
     "10": 5,
     "11": 5,
     "12": 5,
-    "13": 5,
+    "13": 6,
     "14": 6,
     "15": 6,
     "16": 9,
-    "17.1": 19,
-    "17.2": 32,
-    "18.1": 36,
-    "18.2": 21
+    "17.1": 20,
+    "17.2": 33,
+    "18.1": 37,
+    "18.2": 22
   },
-  "total_views": 267,
+  "total_views": 273,
   "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -69,7 +69,7 @@
       }
     }
   ],
-  "detail_views": 70,
+  "detail_views": 71,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "16c34950-954c-4f0d-808e-d8278a546339",
@@ -94,7 +94,7 @@
       "title": "Ch. 18.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 21
+      "views": 22
     },
     {
       "chapter_number": 18.1,
@@ -107,7 +107,7 @@
       "title": "Ch. 18.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 36
+      "views": 37
     },
     {
       "chapter_number": 17.2,
@@ -120,7 +120,7 @@
       "title": "Ch. 17.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 32
+      "views": 33
     },
     {
       "chapter_number": 17.1,
@@ -133,7 +133,7 @@
       "title": "Ch. 17.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 19
+      "views": 20
     },
     {
       "chapter_number": 16,
@@ -185,7 +185,7 @@
       "title": "Ch. 13",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 6
     },
     {
       "chapter_number": 12,
