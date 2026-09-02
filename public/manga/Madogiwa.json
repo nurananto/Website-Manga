@@ -27,10 +27,10 @@
   "tamat_at_chapter": 16.2,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 15,
-    "2": 7,
+    "1": 16,
+    "2": 8,
     "3": 3,
-    "4": 14,
+    "4": 15,
     "5": 2,
     "6": 2,
     "7": 2,
@@ -47,9 +47,9 @@
     "15.1": 30,
     "15.2": 35,
     "16.1": 51,
-    "16.2": 20
+    "16.2": 26
   },
-  "total_views": 448,
+  "total_views": 458,
   "mangadex_cover": "1ff29f3f-9318-47e4-88da-f4cf5793c4fb.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -81,12 +81,12 @@
       }
     }
   ],
-  "detail_views": 150,
+  "detail_views": 151,
   "cover_version": 3,
   "notif_image": "page1",
   "cover_source": "mangadex",
   "mangadex_id": "a0ecce48-aa4c-48e6-8d9b-90f322a5687a",
-  "rating": 7.36,
+  "rating": 7.35,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=3",
   "coverUrls": {
@@ -106,7 +106,7 @@
       "title": "Ch. 16.2",
       "unlockDate": "2026-08-30T17:00:00.000Z",
       "isLocked": false,
-      "views": 20
+      "views": 26
     },
     {
       "chapter_number": 16.1,
@@ -328,7 +328,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 14
+      "views": 15
     },
     {
       "chapter_number": 3,
@@ -354,7 +354,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     },
     {
       "chapter_number": 1,
@@ -367,7 +367,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 15
+      "views": 16
     }
   ]
 }
