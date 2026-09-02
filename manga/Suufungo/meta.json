@@ -37,16 +37,16 @@
     "10": 5,
     "11": 5,
     "12": 5,
-    "13": 5,
+    "13": 6,
     "14": 6,
     "15": 6,
     "16": 9,
-    "17.1": 19,
-    "17.2": 32,
-    "18.1": 36,
-    "18.2": 21
+    "17.1": 20,
+    "17.2": 33,
+    "18.1": 37,
+    "18.2": 22
   },
-  "total_views": 267,
+  "total_views": 273,
   "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -71,8 +71,8 @@
       "widths": "1280x960x640q75"
     }
   ],
-  "detail_views": 70,
-  "view_sync_cutoff": "2026-09-01 17:00:21",
+  "detail_views": 71,
+  "view_sync_cutoff": "2026-09-02 17:00:22",
   "cover_version": 2,
   "notif_image": "page1"
 }
