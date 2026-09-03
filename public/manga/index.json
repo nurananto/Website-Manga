@@ -1,5 +1,76 @@
 [
   {
+    "id": "ShokeiFlag",
+    "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
+    "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@mobile.webp?v=3"
+    },
+    "genres": [
+      "Action",
+      "Adaptation",
+      "Fantasy",
+      "Harem",
+      "Isekai",
+      "Reincarnation",
+      "Romance",
+      "Shounen"
+    ],
+    "rating": 6,
+    "chapter_count": 17,
+    "total_views": 195,
+    "isTrending": true,
+    "latest_release_date": "2026-09-03T22:14:41+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 6.3,
+        "pages": 10,
+        "notif_image": "10",
+        "r2_folder": 6.3,
+        "id": "ShokeiFlag-ch-6.3",
+        "r2_prefix": "manga/ShokeiFlag/6.3/",
+        "title": "Ch. 6.3",
+        "release_date": "2026-09-03T22:14:41+07:00",
+        "unlockDate": "2026-10-06T17:00:00.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 6.2,
+        "pages": 10,
+        "notif_image": "10",
+        "r2_folder": 6.2,
+        "id": "ShokeiFlag-ch-6.2",
+        "r2_prefix": "manga/ShokeiFlag/6.2/",
+        "title": "Ch. 6.2",
+        "release_date": "2026-09-03T22:14:41+07:00",
+        "unlockDate": "2026-09-29T17:00:00.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 6.1,
+        "pages": 12,
+        "notif_image": "2",
+        "r2_folder": 6.1,
+        "id": "ShokeiFlag-ch-6.1",
+        "r2_prefix": "manga/ShokeiFlag/6.1/",
+        "title": "Ch. 6.1",
+        "release_date": "2026-09-03T22:14:41+07:00",
+        "unlockDate": "2026-09-22T17:00:00.000Z",
+        "isLocked": true,
+        "views": 0
+      }
+    ]
+  },
+  {
     "id": "Chikasugiru",
     "title": "Chikasugiru Futari",
     "description": "Aoi dan Akane itu anak SMA, rumah mereka berdua sebelahan. Sejak lahir,bangun, tidur, bahkan mandi pun selalu bareng. Nyebut mereka sebagai 'teman masa kecil' aja udah kurang greget—ini keseharian para kuso-najimi. Lebih dari teman kecil, tapi belum pacaran. Mereka semua sudah melakukan apapun…",
@@ -31,11 +102,11 @@
         "lock_hours": 0,
         "pages": 9,
         "notif_image": "3",
+        "release_date": "2026-09-03T10:13:04+07:00",
         "r2_folder": 13.1,
         "id": "Chikasugiru-ch-13.1",
         "r2_prefix": "manga/Chikasugiru/13.1/",
         "title": "Ch. 13.1",
-        "release_date": "2026-09-03T10:13:04+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -67,78 +138,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 15
-      }
-    ]
-  },
-  {
-    "id": "ShokeiFlag",
-    "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
-    "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@tablet.webp?v=3",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover@mobile.webp?v=3"
-    },
-    "genres": [
-      "Action",
-      "Adaptation",
-      "Fantasy",
-      "Harem",
-      "Isekai",
-      "Reincarnation",
-      "Romance",
-      "Shounen"
-    ],
-    "rating": 6,
-    "chapter_count": 14,
-    "total_views": 195,
-    "isTrending": true,
-    "latest_release_date": "2026-09-02T21:04:13+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 5.4,
-        "pages": 11,
-        "notif_image": "11",
-        "release_date": "2026-09-02T21:04:13+07:00",
-        "r2_folder": 5.4,
-        "id": "ShokeiFlag-ch-5.4",
-        "r2_prefix": "manga/ShokeiFlag/5.4/",
-        "title": "Ch. 5.4",
-        "unlockDate": "2026-09-15T17:00:00.000Z",
-        "isLocked": true,
-        "views": 1
-      },
-      {
-        "chapter_number": 5.3,
-        "pages": 11,
-        "notif_image": "8",
-        "release_date": "2026-09-02T20:05:34+07:00",
-        "r2_folder": 5.3,
-        "id": "ShokeiFlag-ch-5.3",
-        "r2_prefix": "manga/ShokeiFlag/5.3/",
-        "title": "Ch. 5.3",
-        "unlockDate": "2026-09-15T17:00:00.000Z",
-        "isLocked": true,
-        "views": 1
-      },
-      {
-        "chapter_number": 5.2,
-        "lock_hours": 0,
-        "pages": 10,
-        "notif_image": "3",
-        "release_date": "2026-09-02T19:21:22+07:00",
-        "r2_folder": 5.2,
-        "id": "ShokeiFlag-ch-5.2",
-        "r2_prefix": "manga/ShokeiFlag/5.2/",
-        "title": "Ch. 5.2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 2
       }
     ]
   },
