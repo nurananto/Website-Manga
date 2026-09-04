@@ -59,6 +59,20 @@
   },
   "chapters": [
     {
+      "chapter_number": 5,
+      "lock_hours": 0,
+      "pages": 20,
+      "notif_image": "page1",
+      "r2_folder": 5,
+      "id": "Seishun-ch-5",
+      "r2_prefix": "manga/Seishun/5/",
+      "title": "Ch. 5",
+      "release_date": "2026-09-04T17:57:49+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 4,
       "lock_hours": 0,
       "pages": 24,
