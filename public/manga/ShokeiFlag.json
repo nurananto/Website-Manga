@@ -39,14 +39,14 @@
     "4.2": 11,
     "4.3": 13,
     "5.1": 3,
-    "5.2": 10,
+    "5.2": 11,
     "5.3": 2,
-    "5.4": 2,
-    "6.1": 1,
-    "6.2": 1,
-    "6.3": 2
+    "5.4": 3,
+    "6.1": 2,
+    "6.2": 3,
+    "6.3": 5
   },
-  "total_views": 219,
+  "total_views": 232,
   "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -62,7 +62,7 @@
       }
     }
   ],
-  "detail_views": 71,
+  "detail_views": 76,
   "mangadex_id": "02c719c6-d4bc-4ad4-9ebf-d033abe2f410",
   "rating": 6,
   "next_update": null,
@@ -84,7 +84,7 @@
       "title": "Ch. 6.3",
       "unlockDate": "2026-10-06T17:00:00.000Z",
       "isLocked": true,
-      "views": 2
+      "views": 5
     },
     {
       "chapter_number": 6.2,
@@ -97,7 +97,7 @@
       "title": "Ch. 6.2",
       "unlockDate": "2026-09-29T17:00:00.000Z",
       "isLocked": true,
-      "views": 1
+      "views": 3
     },
     {
       "chapter_number": 6.1,
@@ -110,7 +110,7 @@
       "title": "Ch. 6.1",
       "unlockDate": "2026-09-22T17:00:00.000Z",
       "isLocked": true,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 5.4,
@@ -123,7 +123,7 @@
       "title": "Ch. 5.4",
       "unlockDate": "2026-09-15T17:00:00.000Z",
       "isLocked": true,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 5.3,
@@ -150,7 +150,7 @@
       "title": "Ch. 5.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 5.1,

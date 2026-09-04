@@ -26,9 +26,9 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 26,
-    "2": 13,
-    "3": 11,
+    "1": 27,
+    "2": 14,
+    "3": 12,
     "4": 8,
     "5": 7,
     "6": 7,
@@ -52,12 +52,12 @@
     "22.2": 78,
     "23.1": 58,
     "1.5": 9,
-    "23.2": 52,
+    "23.2": 54,
     "8.5": 8,
-    "24.1": 29,
-    "24.2": 6
+    "24.1": 32,
+    "24.2": 7
   },
-  "total_views": 771,
+  "total_views": 783,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -89,11 +89,11 @@
       }
     }
   ],
-  "detail_views": 198,
+  "detail_views": 201,
   "cover_version": 4,
   "notif_image": "page1",
   "mangadex_id": "9aebe60e-777f-4a58-a3bf-143c3096b94f",
-  "rating": 8.22,
+  "rating": 8.23,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=4",
   "coverUrls": {
@@ -113,7 +113,7 @@
       "title": "Ch. 24.2",
       "unlockDate": "2026-09-11T17:00:00.000Z",
       "isLocked": true,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 24.1,
@@ -127,7 +127,7 @@
       "title": "Ch. 24.1",
       "unlockDate": "2026-08-28T17:00:00.000Z",
       "isLocked": false,
-      "views": 29
+      "views": 32
     },
     {
       "chapter_number": 23.2,
@@ -140,7 +140,7 @@
       "title": "Ch. 23.2",
       "unlockDate": "2026-08-11T16:28:24.000Z",
       "isLocked": false,
-      "views": 52
+      "views": 54
     },
     {
       "chapter_number": 23.1,
@@ -452,7 +452,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 2,
@@ -465,7 +465,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 1.5,
@@ -491,7 +491,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 26
+      "views": 27
     }
   ]
 }

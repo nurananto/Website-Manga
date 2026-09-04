@@ -42,19 +42,19 @@
     "15": 8,
     "16": 8,
     "17": 11,
-    "19": 14,
-    "18.1": 19,
-    "18.2": 15,
-    "20.1": 17,
-    "20.2": 19,
-    "21.1": 17,
-    "21.2": 23,
-    "22.1": 21,
-    "22.2": 12,
+    "19": 15,
+    "18.1": 20,
+    "18.2": 16,
+    "20.1": 18,
+    "20.2": 20,
+    "21.1": 18,
+    "21.2": 24,
+    "22.1": 22,
+    "22.2": 14,
     "23.1": 6,
     "23.2": 5
   },
-  "total_views": 438,
+  "total_views": 448,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -136,7 +136,7 @@
       "title": "Ch. 22.2",
       "unlockDate": "2026-08-30T17:00:00.000Z",
       "isLocked": false,
-      "views": 12
+      "views": 14
     },
     {
       "chapter_number": 22.1,
@@ -148,7 +148,7 @@
       "title": "Ch. 22.1",
       "unlockDate": "2026-08-22T17:00:00.000Z",
       "isLocked": false,
-      "views": 21
+      "views": 22
     },
     {
       "chapter_number": 21.2,
@@ -161,7 +161,7 @@
       "title": "Ch. 21.2",
       "unlockDate": "2026-08-07T05:00:00.000Z",
       "isLocked": false,
-      "views": 23
+      "views": 24
     },
     {
       "chapter_number": 21.1,
@@ -174,7 +174,7 @@
       "title": "Ch. 21.1",
       "unlockDate": "2026-07-30T17:30:39.000Z",
       "isLocked": false,
-      "views": 17
+      "views": 18
     },
     {
       "chapter_number": 20.2,
@@ -187,7 +187,7 @@
       "title": "Ch. 20.2",
       "unlockDate": "2026-07-17T05:00:00.000Z",
       "isLocked": false,
-      "views": 19
+      "views": 20
     },
     {
       "chapter_number": 20.1,
@@ -200,7 +200,7 @@
       "title": "Ch. 20.1",
       "unlockDate": "2026-07-03T12:38:27.000Z",
       "isLocked": false,
-      "views": 17
+      "views": 18
     },
     {
       "chapter_number": 19,
@@ -213,7 +213,7 @@
       "title": "Ch. 19",
       "unlockDate": null,
       "isLocked": false,
-      "views": 14
+      "views": 15
     },
     {
       "chapter_number": 18.2,
@@ -226,7 +226,7 @@
       "title": "Ch. 18.2",
       "unlockDate": "2026-06-22T17:57:22.000Z",
       "isLocked": false,
-      "views": 15
+      "views": 16
     },
     {
       "chapter_number": 18.1,
@@ -239,7 +239,7 @@
       "title": "Ch. 18.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 19
+      "views": 20
     },
     {
       "chapter_number": 17,

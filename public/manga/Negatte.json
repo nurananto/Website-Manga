@@ -42,9 +42,9 @@
     "15": 14,
     "16": 28,
     "17": 41,
-    "18": 29
+    "18": 31
   },
-  "total_views": 294,
+  "total_views": 296,
   "mangadex_cover": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -101,7 +101,7 @@
       "title": "Ch. 18",
       "unlockDate": null,
       "isLocked": false,
-      "views": 29
+      "views": 31
     },
     {
       "chapter_number": 17,
