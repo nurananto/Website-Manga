@@ -1,0 +1,88 @@
+name: Update Dependencies
+
+# Auto-update SEMUA npm dependency (dependencies + devDependencies, termasuk
+# wrangler) tiap minggu. "npm update" cuma naik dalam batas semver yang
+# tertulis di package.json (mis. "^4.129.0" bisa ke 4.130.0, TIDAK loncat ke
+# 5.x) -- ini sengaja, biar gak ada breaking change major version yang
+# ke-apply tanpa review manusia. Update yang gagal lint/build TIDAK
+# di-commit (job berhenti/merah duluan sebelum sempat commit), jadi repo
+# tetap di versi lama yang aman sampai ada investigasi manual.
+#
+# Commit balik ke main (kalau ada perubahan) otomatis men-trigger
+# deploy-pages.yml juga, jadi situs langsung redeploy pakai dependency baru.
+
+on:
+  schedule:
+    - cron: '0 1 * * 1'   # Tiap Senin jam 01:00 UTC (sehari setelah build-catalog Minggu)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Update dependencies (dalam batas semver package.json)
+        run: npm update --no-audit --no-fund
+
+      - name: Cek ada perubahan lockfile atau tidak
+        id: diff
+        run: |
+          if git diff --quiet -- package.json package-lock.json; then
+            echo "Sudah paling baru (dalam batas semver), tidak ada perubahan."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Validasi update gak merusak SEBELUM di-commit -- kalau salah satu
+      # gagal, job berhenti di sini (step "Commit" di bawah tidak jalan).
+      - name: Lint (validasi update)
+        if: steps.diff.outputs.changed == 'true'
+        run: npm run lint
+
+      - name: Build (validasi update)
+        if: steps.diff.outputs.changed == 'true'
+        run: npm run build
+        env:
+          VITE_WORKER_URL: ${{ secrets.VITE_WORKER_URL }}
+          VITE_IMAGE_URL: ${{ secrets.VITE_IMAGE_URL }}
+          VITE_CDN_URL: ${{ secrets.VITE_CDN_URL }}
+          VITE_TURNSTILE_SITEKEY: ${{ secrets.VITE_TURNSTILE_SITEKEY }}
+
+      - name: Commit & push balik ke repo
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          git commit -m "chore: update npm dependencies"
+
+          max_attempts=3
+          attempt=1
+          while true; do
+            if git push; then
+              break
+            fi
+            if [ "$attempt" -ge "$max_attempts" ]; then
+              echo "::error::Gagal push setelah $max_attempts percobaan."
+              exit 1
+            fi
+            echo "Push ditolak, rebase ulang ke HEAD terbaru..."
+            git fetch origin main
+            git rebase origin/main || { echo "::error::Rebase konflik, butuh investigasi manual."; exit 1; }
+            attempt=$((attempt + 1))
+          done
