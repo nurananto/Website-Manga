@@ -1,5 +1,76 @@
 [
   {
+    "id": "Tamayo-chan",
+    "title": "Seyakate Tamayo-chan wa Koi ga Shitai",
+    "description": "Guru SMA baru, Haruseto Kazutoyo, punya harga diri yang tinggi sebagai seorang guru. Pelanggaran tata tertib? Nggak bakal dia toleransi! Tapi kemudian, muncul cewek cantik yang ngomong pakai dialek Kansai, Higashiyodogawa Tamayo, yang mengaku sebagai “teman masa kecilnya”! Di depan Tamayo yang…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Comedy",
+      "Official Colored",
+      "Romance",
+      "School Life",
+      "Shounen"
+    ],
+    "rating": 9.57,
+    "chapter_count": 3,
+    "total_views": 26,
+    "isTrending": true,
+    "latest_release_date": "2026-09-04T21:20:14+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 3,
+        "lock_hours": 0,
+        "pages": 13,
+        "notif_image": "2",
+        "r2_folder": 3,
+        "id": "Tamayo-chan-ch-3",
+        "r2_prefix": "manga/Tamayo-chan/3/",
+        "title": "Ch. 3",
+        "release_date": "2026-09-04T21:20:14+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 2,
+        "lock_hours": 0,
+        "pages": 13,
+        "notif_image": "4",
+        "release_date": "2026-08-25T20:27:44+07:00",
+        "r2_folder": 2,
+        "id": "Tamayo-chan-ch-2",
+        "r2_prefix": "manga/Tamayo-chan/2/",
+        "title": "Ch. 2",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 3
+      },
+      {
+        "chapter_number": 1,
+        "lock_hours": 0,
+        "pages": 32,
+        "notif_image": "12",
+        "release_date": "2026-08-23T16:08:08+07:00",
+        "r2_folder": 1,
+        "id": "Tamayo-chan-ch-1",
+        "r2_prefix": "manga/Tamayo-chan/1/",
+        "title": "Ch. 1",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 7
+      }
+    ]
+  },
+  {
     "id": "Seishun",
     "title": "Seishun Matching Appli",
     "description": "Di HP Yuukei Nagino, seorang anak SMA yang udah menyerah sama masa muda, tiba-tiba terpasang sebuah aplikasi misterius. Nama aplikasinya adalah AOHAKO,Aplikasi itu bakal ngasih hadiah kalau kita menyelesaikan misi-misi buat menjalani 'masa muda yang seharusnya' bareng pasangan yang terpilih. Dan…",
@@ -310,7 +381,7 @@
     "rating": 7.45,
     "chapter_count": 12,
     "total_views": 258,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-09-01T18:26:28+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -766,63 +837,6 @@
         "unlockDate": "2026-08-11T16:28:24.000Z",
         "isLocked": false,
         "views": 52
-      }
-    ]
-  },
-  {
-    "id": "Tamayo-chan",
-    "title": "Seyakate Tamayo-chan wa Koi ga Shitai",
-    "description": "Guru SMA baru, Haruseto Kazutoyo, punya harga diri yang tinggi sebagai seorang guru. Pelanggaran tata tertib? Nggak bakal dia toleransi! Tapi kemudian, muncul cewek cantik yang ngomong pakai dialek Kansai, Higashiyodogawa Tamayo, yang mengaku sebagai “teman masa kecilnya”! Di depan Tamayo yang…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Comedy",
-      "Official Colored",
-      "Romance",
-      "School Life",
-      "Shounen"
-    ],
-    "rating": 9.57,
-    "chapter_count": 2,
-    "total_views": 26,
-    "isTrending": false,
-    "latest_release_date": "2026-08-25T20:27:44+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 2,
-        "lock_hours": 0,
-        "pages": 13,
-        "notif_image": "4",
-        "release_date": "2026-08-25T20:27:44+07:00",
-        "r2_folder": 2,
-        "id": "Tamayo-chan-ch-2",
-        "r2_prefix": "manga/Tamayo-chan/2/",
-        "title": "Ch. 2",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 3
-      },
-      {
-        "chapter_number": 1,
-        "lock_hours": 0,
-        "pages": 32,
-        "notif_image": "12",
-        "release_date": "2026-08-23T16:08:08+07:00",
-        "r2_folder": 1,
-        "id": "Tamayo-chan-ch-1",
-        "r2_prefix": "manga/Tamayo-chan/1/",
-        "title": "Ch. 1",
-        "unlockDate": null,
-        "isLocked": false,
-        "views": 7
       }
     ]
   },
