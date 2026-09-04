@@ -76,15 +76,29 @@
   },
   "chapters": [
     {
+      "chapter_number": 10.5,
+      "lock_hours": 0,
+      "pages": 5,
+      "notif_image": "4",
+      "r2_folder": 10.5,
+      "id": "KiminoNegai-ch-10.5",
+      "r2_prefix": "manga/KiminoNegai/10.5/",
+      "title": "Ch. 10.5",
+      "release_date": "2026-09-04T09:01:58+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 10,
       "lock_hours": 0,
       "pages": 25,
       "notif_image": "25",
+      "release_date": "2026-09-04T07:57:46+07:00",
       "r2_folder": 10,
       "id": "KiminoNegai-ch-10",
       "r2_prefix": "manga/KiminoNegai/10/",
       "title": "Ch. 10",
-      "release_date": "2026-09-04T07:57:46+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
