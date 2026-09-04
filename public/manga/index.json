@@ -1,5 +1,76 @@
 [
   {
+    "id": "Osananajimi",
+    "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
+    "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=4",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=4"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Drama",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life",
+      "Tragedy"
+    ],
+    "rating": 7.72,
+    "chapter_count": 21,
+    "total_views": 1128,
+    "isTrending": true,
+    "latest_release_date": "2026-09-04T22:42:33+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 8.4,
+        "pages": 10,
+        "notif_image": "2",
+        "r2_folder": 8.4,
+        "id": "Osananajimi-ch-8.4",
+        "r2_prefix": "manga/Osananajimi/8.4/",
+        "title": "Ch. 8.4",
+        "release_date": "2026-09-04T22:42:33+07:00",
+        "unlockDate": "2026-09-19T17:00:00.000Z",
+        "isLocked": true,
+        "views": 0
+      },
+      {
+        "chapter_number": 8.3,
+        "pages": 8,
+        "notif_image": "8",
+        "release_date": "2026-08-28T23:16:18+07:00",
+        "r2_folder": 8.3,
+        "id": "Osananajimi-ch-8.3",
+        "r2_prefix": "manga/Osananajimi/8.3/",
+        "title": "Ch. 8.3",
+        "unlockDate": "2026-10-14T17:00:00.000Z",
+        "isLocked": true,
+        "views": 11
+      },
+      {
+        "chapter_number": 8.2,
+        "pages": 8,
+        "notif_image": "3",
+        "release_date": "2026-08-21T22:37:47+07:00",
+        "r2_folder": 8.2,
+        "id": "Osananajimi-ch-8.2",
+        "r2_prefix": "manga/Osananajimi/8.2/",
+        "title": "Ch. 8.2",
+        "unlockDate": "2026-09-06T17:00:00.000Z",
+        "isLocked": true,
+        "views": 11
+      }
+    ]
+  },
+  {
     "id": "Tamayo-chan",
     "title": "Seyakate Tamayo-chan wa Koi ga Shitai",
     "description": "Guru SMA baru, Haruseto Kazutoyo, punya harga diri yang tinggi sebagai seorang guru. Pelanggaran tata tertib? Nggak bakal dia toleransi! Tapi kemudian, muncul cewek cantik yang ngomong pakai dialek Kansai, Higashiyodogawa Tamayo, yang mengaku sebagai “teman masa kecilnya”! Di depan Tamayo yang…",
@@ -31,11 +102,11 @@
         "lock_hours": 0,
         "pages": 13,
         "notif_image": "2",
+        "release_date": "2026-09-04T21:20:14+07:00",
         "r2_folder": 3,
         "id": "Tamayo-chan-ch-3",
         "r2_prefix": "manga/Tamayo-chan/3/",
         "title": "Ch. 3",
-        "release_date": "2026-09-04T21:20:14+07:00",
         "unlockDate": null,
         "isLocked": false,
         "views": 0
@@ -305,7 +376,7 @@
     "rating": 8.4,
     "chapter_count": 18,
     "total_views": 138,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-09-03T10:13:04+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -484,77 +555,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 6
-      }
-    ]
-  },
-  {
-    "id": "Osananajimi",
-    "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
-    "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=4",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=4"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Drama",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life",
-      "Tragedy"
-    ],
-    "rating": 7.72,
-    "chapter_count": 20,
-    "total_views": 1128,
-    "isTrending": false,
-    "latest_release_date": "2026-08-28T23:16:18+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 8.3,
-        "pages": 8,
-        "notif_image": "8",
-        "release_date": "2026-08-28T23:16:18+07:00",
-        "r2_folder": 8.3,
-        "id": "Osananajimi-ch-8.3",
-        "r2_prefix": "manga/Osananajimi/8.3/",
-        "title": "Ch. 8.3",
-        "unlockDate": "2026-10-14T17:00:00.000Z",
-        "isLocked": true,
-        "views": 11
-      },
-      {
-        "chapter_number": 8.2,
-        "pages": 8,
-        "notif_image": "3",
-        "release_date": "2026-08-21T22:37:47+07:00",
-        "r2_folder": 8.2,
-        "id": "Osananajimi-ch-8.2",
-        "r2_prefix": "manga/Osananajimi/8.2/",
-        "title": "Ch. 8.2",
-        "unlockDate": "2026-09-06T17:00:00.000Z",
-        "isLocked": true,
-        "views": 11
-      },
-      {
-        "chapter_number": 8.1,
-        "pages": 9,
-        "notif_image": "4",
-        "release_date": "2026-08-14T23:12:12+07:00",
-        "r2_folder": 8.1,
-        "id": "Osananajimi-ch-8.1",
-        "r2_prefix": "manga/Osananajimi/8.1/",
-        "title": "Ch. 8.1",
-        "unlockDate": "2026-08-30T17:00:00.000Z",
-        "isLocked": false,
-        "views": 20
       }
     ]
   },
