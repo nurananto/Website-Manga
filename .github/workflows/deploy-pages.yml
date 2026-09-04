@@ -24,9 +24,13 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: '22'
+          cache: 'npm'
 
+      # --no-audit: skip audit endpoint yang lagi di-retire npm (bikin
+      # notice + network round-trip ekstra yang bisa lambat), --no-fund:
+      # skip cek funding. Keamanan dependency tetap dicek terpisah (Dependabot).
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
       - name: Build
         run: npm run build
@@ -36,14 +40,14 @@ jobs:
           VITE_CDN_URL: ${{ secrets.VITE_CDN_URL }}
           VITE_TURNSTILE_SITEKEY: ${{ secrets.VITE_TURNSTILE_SITEKEY }}
 
+      # Sebelumnya cek dulu via "wrangler pages project list" + grep nama
+      # project sebelum create — ternyata rapuh: grep bisa gak match kalau
+      # output list dipaging/terpotong, jadi tetap nyoba create walau project
+      # sudah ada (lihat run yang gagal dengan "A project with this name
+      # already exists"). Sekarang langsung coba create & telan error "sudah
+      # ada" — lebih cepat (skip 1 panggilan npx list) dan gak rapuh lagi.
       - name: Pastikan project Pages ada (idempotent)
-        run: |
-          if npx wrangler pages project list 2>/dev/null | grep -q "nuranantoscans"; then
-            echo "Project 'nuranantoscans' sudah ada, lewati create."
-          else
-            echo "Project belum ada, membuat..."
-            npx wrangler pages project create nuranantoscans --production-branch=main
-          fi
+        run: npx wrangler pages project create nuranantoscans --production-branch=main || true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}

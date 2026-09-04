@@ -50,9 +50,12 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: '22'
+          cache: 'npm'
 
+      # --no-audit/--no-fund: skip audit endpoint yang lagi di-retire npm
+      # (bikin notice + network round-trip ekstra yang bisa lambat).
       - name: Install cover sync dependencies
-        run: npm install --no-save @aws-sdk/client-s3 sharp
+        run: npm install --no-save --no-audit --no-fund @aws-sdk/client-s3 sharp
 
       - name: Deteksi manga yang berubah di push ini
         id: changed
@@ -176,7 +179,7 @@ jobs:
 
       # ── Deploy Direct Upload (commit bot tidak men-trigger deploy-pages.yml) ──
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
       - name: Build website
         run: npm run build
