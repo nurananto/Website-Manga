@@ -28,7 +28,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 23,
+    "1": 24,
     "2.1": 8,
     "2.2": 11,
     "2.3": 14,
@@ -38,12 +38,15 @@
     "4.1": 17,
     "4.2": 11,
     "4.3": 13,
-    "5.1": 2,
-    "5.2": 2,
-    "5.3": 1,
-    "5.4": 1
+    "5.1": 3,
+    "5.2": 10,
+    "5.3": 2,
+    "5.4": 2,
+    "6.1": 1,
+    "6.2": 1,
+    "6.3": 2
   },
-  "total_views": 195,
+  "total_views": 219,
   "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -59,7 +62,7 @@
       }
     }
   ],
-  "detail_views": 63,
+  "detail_views": 71,
   "mangadex_id": "02c719c6-d4bc-4ad4-9ebf-d033abe2f410",
   "rating": 6,
   "next_update": null,
@@ -71,6 +74,45 @@
   },
   "chapters": [
     {
+      "chapter_number": 6.3,
+      "pages": 10,
+      "notif_image": "10",
+      "release_date": "2026-09-03T22:14:41+07:00",
+      "r2_folder": 6.3,
+      "id": "ShokeiFlag-ch-6.3",
+      "r2_prefix": "manga/ShokeiFlag/6.3/",
+      "title": "Ch. 6.3",
+      "unlockDate": "2026-10-06T17:00:00.000Z",
+      "isLocked": true,
+      "views": 2
+    },
+    {
+      "chapter_number": 6.2,
+      "pages": 10,
+      "notif_image": "10",
+      "release_date": "2026-09-03T22:14:41+07:00",
+      "r2_folder": 6.2,
+      "id": "ShokeiFlag-ch-6.2",
+      "r2_prefix": "manga/ShokeiFlag/6.2/",
+      "title": "Ch. 6.2",
+      "unlockDate": "2026-09-29T17:00:00.000Z",
+      "isLocked": true,
+      "views": 1
+    },
+    {
+      "chapter_number": 6.1,
+      "pages": 12,
+      "notif_image": "2",
+      "release_date": "2026-09-03T22:14:41+07:00",
+      "r2_folder": 6.1,
+      "id": "ShokeiFlag-ch-6.1",
+      "r2_prefix": "manga/ShokeiFlag/6.1/",
+      "title": "Ch. 6.1",
+      "unlockDate": "2026-09-22T17:00:00.000Z",
+      "isLocked": true,
+      "views": 1
+    },
+    {
       "chapter_number": 5.4,
       "pages": 11,
       "notif_image": "11",
@@ -81,7 +123,7 @@
       "title": "Ch. 5.4",
       "unlockDate": "2026-09-15T17:00:00.000Z",
       "isLocked": true,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 5.3,
@@ -94,7 +136,7 @@
       "title": "Ch. 5.3",
       "unlockDate": "2026-09-15T17:00:00.000Z",
       "isLocked": true,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 5.2,
@@ -108,7 +150,7 @@
       "title": "Ch. 5.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 10
     },
     {
       "chapter_number": 5.1,
@@ -122,7 +164,7 @@
       "title": "Ch. 5.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 4.3,
@@ -262,7 +304,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 23
+      "views": 24
     }
   ]
 }

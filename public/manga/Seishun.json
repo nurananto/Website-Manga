@@ -28,10 +28,10 @@
   "chapter_views": {
     "1": 20,
     "2": 13,
-    "3": 11,
-    "4": 8
+    "3": 12,
+    "4": 9
   },
-  "total_views": 85,
+  "total_views": 88,
   "mangadex_cover": "656c16e6-b939-4df1-a8b7-fb0e091d1b02.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -47,7 +47,7 @@
       }
     }
   ],
-  "detail_views": 33,
+  "detail_views": 34,
   "mangadex_id": "968f0b7d-465a-4a84-9e71-9ef3f2f9a0e3",
   "rating": 8.33,
   "next_update": null,
@@ -70,7 +70,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 3,
@@ -84,7 +84,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 2,

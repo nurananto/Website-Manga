@@ -40,9 +40,10 @@
     "11.1": 5,
     "11.2": 14,
     "12.1": 15,
-    "12.2": 9
+    "12.2": 9,
+    "13.1": 6
   },
-  "total_views": 127,
+  "total_views": 138,
   "mangadex_cover": "fadafe71-37cd-4c73-ac98-59fd79e07f58.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -56,7 +57,7 @@
       }
     }
   ],
-  "detail_views": 43,
+  "detail_views": 48,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "c679bf28-e054-4bb7-93e6-18c089ee79f1",
@@ -74,14 +75,14 @@
       "lock_hours": 0,
       "pages": 9,
       "notif_image": "3",
+      "release_date": "2026-09-03T10:13:04+07:00",
       "r2_folder": 13.1,
       "id": "Chikasugiru-ch-13.1",
       "r2_prefix": "manga/Chikasugiru/13.1/",
       "title": "Ch. 13.1",
-      "release_date": "2026-09-03T10:13:04+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 6
     },
     {
       "chapter_number": 12.2,

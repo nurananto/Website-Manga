@@ -30,7 +30,7 @@
     "1": 16,
     "2": 8,
     "3": 3,
-    "4": 16,
+    "4": 17,
     "5": 2,
     "6": 2,
     "7": 2,
@@ -38,18 +38,18 @@
     "9": 2,
     "10": 4,
     "11": 11,
-    "12.1": 6,
-    "12.2": 7,
-    "13.1": 7,
-    "13.2": 15,
-    "14.1": 26,
-    "14.2": 38,
-    "15.1": 31,
-    "15.2": 36,
-    "16.1": 52,
-    "16.2": 29
+    "12.1": 7,
+    "12.2": 8,
+    "13.1": 8,
+    "13.2": 17,
+    "14.1": 28,
+    "14.2": 40,
+    "15.1": 33,
+    "15.2": 38,
+    "16.1": 55,
+    "16.2": 37
   },
-  "total_views": 467,
+  "total_views": 496,
   "mangadex_cover": "1ff29f3f-9318-47e4-88da-f4cf5793c4fb.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -81,12 +81,12 @@
       }
     }
   ],
-  "detail_views": 152,
+  "detail_views": 156,
   "cover_version": 3,
   "notif_image": "page1",
   "cover_source": "mangadex",
   "mangadex_id": "a0ecce48-aa4c-48e6-8d9b-90f322a5687a",
-  "rating": 7.23,
+  "rating": 7.13,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=3",
   "coverUrls": {
@@ -106,7 +106,7 @@
       "title": "Ch. 16.2",
       "unlockDate": "2026-08-30T17:00:00.000Z",
       "isLocked": false,
-      "views": 29
+      "views": 37
     },
     {
       "chapter_number": 16.1,
@@ -120,7 +120,7 @@
       "title": "Ch. 16.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 52
+      "views": 55
     },
     {
       "chapter_number": 15.2,
@@ -133,7 +133,7 @@
       "title": "Ch. 15.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 36
+      "views": 38
     },
     {
       "chapter_number": 15.1,
@@ -146,7 +146,7 @@
       "title": "Ch. 15.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 31
+      "views": 33
     },
     {
       "chapter_number": 14.2,
@@ -159,7 +159,7 @@
       "title": "Ch. 14.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 38
+      "views": 40
     },
     {
       "chapter_number": 14.1,
@@ -172,7 +172,7 @@
       "title": "Ch. 14.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 26
+      "views": 28
     },
     {
       "chapter_number": 13.2,
@@ -185,7 +185,7 @@
       "title": "Ch. 13.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 15
+      "views": 17
     },
     {
       "chapter_number": 13.1,
@@ -198,7 +198,7 @@
       "title": "Ch. 13.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     },
     {
       "chapter_number": 12.2,
@@ -211,7 +211,7 @@
       "title": "Ch. 12.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     },
     {
       "chapter_number": 12.1,
@@ -224,7 +224,7 @@
       "title": "Ch. 12.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 11,
@@ -328,7 +328,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 16
+      "views": 17
     },
     {
       "chapter_number": 3,

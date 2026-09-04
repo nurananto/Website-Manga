@@ -32,14 +32,14 @@
     "4": 1,
     "7": 1,
     "8": 1,
-    "9": 3,
+    "9": 4,
     "5.1": 1,
     "5.2": 1,
     "5.5": 1,
     "6.1": 1,
     "6.2": 1
   },
-  "total_views": 31,
+  "total_views": 32,
   "mangadex_cover": "b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -86,7 +86,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 8,
