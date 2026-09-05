@@ -27,9 +27,9 @@
   "chapter_views": {
     "1": 7,
     "2": 3,
-    "3": 2
+    "3": 5
   },
-  "total_views": 29,
+  "total_views": 32,
   "mangadex_cover": "f0327b95-bcb6-4644-a777-97ac48def2c3.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -68,7 +68,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 5
     },
     {
       "chapter_number": 2,

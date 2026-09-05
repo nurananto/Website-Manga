@@ -30,7 +30,7 @@
     "1": 17,
     "2": 9,
     "3": 3,
-    "4": 18,
+    "4": 19,
     "5": 2,
     "6": 2,
     "7": 2,
@@ -47,9 +47,9 @@
     "15.1": 33,
     "15.2": 38,
     "16.1": 55,
-    "16.2": 37
+    "16.2": 42
   },
-  "total_views": 502,
+  "total_views": 509,
   "mangadex_cover": "1ff29f3f-9318-47e4-88da-f4cf5793c4fb.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -81,7 +81,7 @@
       }
     }
   ],
-  "detail_views": 159,
+  "detail_views": 160,
   "cover_version": 3,
   "notif_image": "page1",
   "cover_source": "mangadex",
@@ -106,7 +106,7 @@
       "title": "Ch. 16.2",
       "unlockDate": "2026-08-30T17:00:00.000Z",
       "isLocked": false,
-      "views": 37
+      "views": 42
     },
     {
       "chapter_number": 16.1,
@@ -328,7 +328,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 18
+      "views": 19
     },
     {
       "chapter_number": 3,
