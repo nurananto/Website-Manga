@@ -29,19 +29,19 @@
     "1": 19,
     "2": 8,
     "3": 11,
-    "4": 17,
-    "5.2": 23,
-    "5.3": 33,
-    "5.1": 18,
-    "6.1": 48,
-    "6.3": 53,
-    "6.2": 52,
-    "7.1": 58,
-    "7.2": 44,
-    "8.1": 11,
-    "8.2": 15
+    "4": 18,
+    "5.2": 24,
+    "5.3": 34,
+    "5.1": 19,
+    "6.1": 49,
+    "6.3": 57,
+    "6.2": 54,
+    "7.1": 64,
+    "7.2": 49,
+    "8.1": 13,
+    "8.2": 21
   },
-  "total_views": 656,
+  "total_views": 695,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -56,7 +56,7 @@
     }
   ],
   "cover_version": 4,
-  "detail_views": 246,
+  "detail_views": 255,
   "notif_image": "page1",
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
   "rating": 8.08,
@@ -79,7 +79,7 @@
       "title": "Ch. 8.2",
       "unlockDate": "2026-10-02T17:00:00.000Z",
       "isLocked": true,
-      "views": 15
+      "views": 21
     },
     {
       "chapter_number": 8.1,
@@ -92,7 +92,7 @@
       "title": "Ch. 8.1",
       "unlockDate": "2026-09-18T17:00:00.000Z",
       "isLocked": true,
-      "views": 11
+      "views": 13
     },
     {
       "chapter_number": 7.2,
@@ -104,7 +104,7 @@
       "title": "Ch. 7.2",
       "unlockDate": "2026-08-19T17:00:00.000Z",
       "isLocked": false,
-      "views": 44
+      "views": 49
     },
     {
       "chapter_number": 7.1,
@@ -117,7 +117,7 @@
       "title": "Ch. 7.1",
       "unlockDate": "2026-08-05T12:49:50.000Z",
       "isLocked": false,
-      "views": 58
+      "views": 64
     },
     {
       "chapter_number": 6.3,
@@ -130,7 +130,7 @@
       "title": "Ch. 6.3",
       "unlockDate": "2026-07-22T11:03:47.000Z",
       "isLocked": false,
-      "views": 53
+      "views": 57
     },
     {
       "chapter_number": 6.2,
@@ -143,7 +143,7 @@
       "title": "Ch. 6.2",
       "unlockDate": "2026-07-08T11:03:47.000Z",
       "isLocked": false,
-      "views": 52
+      "views": 54
     },
     {
       "chapter_number": 6.1,
@@ -156,7 +156,7 @@
       "title": "Ch. 6.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 48
+      "views": 49
     },
     {
       "chapter_number": 5.3,
@@ -169,7 +169,7 @@
       "title": "Ch. 5.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 33
+      "views": 34
     },
     {
       "chapter_number": 5.2,
@@ -182,7 +182,7 @@
       "title": "Ch. 5.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 23
+      "views": 24
     },
     {
       "chapter_number": 5.1,
@@ -195,7 +195,7 @@
       "title": "Ch. 5.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 18
+      "views": 19
     },
     {
       "chapter_number": 4,
@@ -208,7 +208,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 17
+      "views": 18
     },
     {
       "chapter_number": 3,

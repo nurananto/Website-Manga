@@ -31,18 +31,18 @@
   "chapter_views": {
     "1": 15,
     "2": 10,
-    "3": 10,
-    "4": 8,
+    "3": 11,
+    "4": 9,
     "5": 9,
     "6": 9,
     "6.5": 12,
     "7.1": 12,
     "7.2": 21,
     "7.3": 22,
-    "8.1": 35,
-    "8.2": 17
+    "8.1": 39,
+    "8.2": 24
   },
-  "total_views": 258,
+  "total_views": 274,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -65,7 +65,7 @@
       }
     }
   ],
-  "detail_views": 78,
+  "detail_views": 81,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "8556c131-23ed-42d6-98ba-5f2aa5037843",
@@ -90,7 +90,7 @@
       "title": "Ch. 8.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 17
+      "views": 24
     },
     {
       "chapter_number": 8.1,
@@ -103,7 +103,7 @@
       "title": "Ch. 8.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 35
+      "views": 39
     },
     {
       "chapter_number": 7.3,
@@ -194,7 +194,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 3,
@@ -207,7 +207,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 2,

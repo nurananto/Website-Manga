@@ -1,5 +1,76 @@
 [
   {
+    "id": "Osananajimi",
+    "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
+    "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=4",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=4"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Drama",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life",
+      "Tragedy"
+    ],
+    "rating": 7.71,
+    "chapter_count": 21,
+    "total_views": 1302,
+    "isTrending": true,
+    "latest_release_date": "2026-09-04T22:42:33+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 8.4,
+        "pages": 10,
+        "notif_image": "2",
+        "release_date": "2026-09-04T22:42:33+07:00",
+        "r2_folder": 8.4,
+        "id": "Osananajimi-ch-8.4",
+        "r2_prefix": "manga/Osananajimi/8.4/",
+        "title": "Ch. 8.4",
+        "unlockDate": "2026-09-19T17:00:00.000Z",
+        "isLocked": true,
+        "views": 8
+      },
+      {
+        "chapter_number": 8.3,
+        "pages": 8,
+        "notif_image": "8",
+        "release_date": "2026-08-28T23:16:18+07:00",
+        "r2_folder": 8.3,
+        "id": "Osananajimi-ch-8.3",
+        "r2_prefix": "manga/Osananajimi/8.3/",
+        "title": "Ch. 8.3",
+        "unlockDate": "2026-10-14T17:00:00.000Z",
+        "isLocked": true,
+        "views": 15
+      },
+      {
+        "chapter_number": 8.2,
+        "pages": 8,
+        "notif_image": "3",
+        "release_date": "2026-08-21T22:37:47+07:00",
+        "r2_folder": 8.2,
+        "id": "Osananajimi-ch-8.2",
+        "r2_prefix": "manga/Osananajimi/8.2/",
+        "title": "Ch. 8.2",
+        "unlockDate": "2026-09-06T17:00:00.000Z",
+        "isLocked": true,
+        "views": 15
+      }
+    ]
+  },
+  {
     "id": "Tamayo-chan",
     "title": "Seyakate Tamayo-chan wa Koi ga Shitai",
     "description": "Guru SMA baru, Haruseto Kazutoyo, punya harga diri yang tinggi sebagai seorang guru. Pelanggaran tata tertib? Nggak bakal dia toleransi! Tapi kemudian, muncul cewek cantik yang ngomong pakai dialek Kansai, Higashiyodogawa Tamayo, yang mengaku sebagai “teman masa kecilnya”! Di depan Tamayo yang…",
@@ -17,9 +88,9 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 9.57,
+    "rating": 9.25,
     "chapter_count": 3,
-    "total_views": 26,
+    "total_views": 32,
     "isTrending": true,
     "latest_release_date": "2026-09-04T21:20:14+07:00",
     "next_update": null,
@@ -31,14 +102,14 @@
         "lock_hours": 0,
         "pages": 13,
         "notif_image": "2",
+        "release_date": "2026-09-04T21:20:14+07:00",
         "r2_folder": 3,
         "id": "Tamayo-chan-ch-3",
         "r2_prefix": "manga/Tamayo-chan/3/",
         "title": "Ch. 3",
-        "release_date": "2026-09-04T21:20:14+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 5
       },
       {
         "chapter_number": 2,
@@ -89,9 +160,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.33,
+    "rating": 8.25,
     "chapter_count": 5,
-    "total_views": 88,
+    "total_views": 104,
     "isTrending": true,
     "latest_release_date": "2026-09-04T17:57:49+07:00",
     "next_update": null,
@@ -110,7 +181,7 @@
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 7
       },
       {
         "chapter_number": 4,
@@ -163,7 +234,7 @@
     ],
     "rating": 8.9,
     "chapter_count": 15,
-    "total_views": 32,
+    "total_views": 46,
     "isTrending": true,
     "latest_release_date": "2026-09-04T09:01:58+07:00",
     "next_update": null,
@@ -182,7 +253,7 @@
         "title": "Ch. 10.5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 3
       },
       {
         "chapter_number": 10,
@@ -196,7 +267,7 @@
         "title": "Ch. 10",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 2
       },
       {
         "chapter_number": 9,
@@ -209,7 +280,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 6
       }
     ]
   },
@@ -236,7 +307,7 @@
     ],
     "rating": 6,
     "chapter_count": 17,
-    "total_views": 219,
+    "total_views": 248,
     "isTrending": true,
     "latest_release_date": "2026-09-03T22:14:41+07:00",
     "next_update": null,
@@ -254,7 +325,7 @@
         "title": "Ch. 6.3",
         "unlockDate": "2026-10-06T17:00:00.000Z",
         "isLocked": true,
-        "views": 2
+        "views": 6
       },
       {
         "chapter_number": 6.2,
@@ -267,7 +338,7 @@
         "title": "Ch. 6.2",
         "unlockDate": "2026-09-29T17:00:00.000Z",
         "isLocked": true,
-        "views": 1
+        "views": 3
       },
       {
         "chapter_number": 6.1,
@@ -280,7 +351,7 @@
         "title": "Ch. 6.1",
         "unlockDate": "2026-09-22T17:00:00.000Z",
         "isLocked": true,
-        "views": 1
+        "views": 2
       }
     ]
   },
@@ -304,8 +375,8 @@
     ],
     "rating": 8.4,
     "chapter_count": 18,
-    "total_views": 138,
-    "isTrending": true,
+    "total_views": 146,
+    "isTrending": false,
     "latest_release_date": "2026-09-03T10:13:04+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -323,7 +394,7 @@
         "title": "Ch. 13.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 9
       },
       {
         "chapter_number": 12.2,
@@ -380,7 +451,7 @@
     ],
     "rating": 7.45,
     "chapter_count": 12,
-    "total_views": 258,
+    "total_views": 274,
     "isTrending": false,
     "latest_release_date": "2026-09-01T18:26:28+07:00",
     "next_update": null,
@@ -399,7 +470,7 @@
         "title": "Ch. 8.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 17
+        "views": 24
       },
       {
         "chapter_number": 8.1,
@@ -412,7 +483,7 @@
         "title": "Ch. 8.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 35
+        "views": 39
       },
       {
         "chapter_number": 7.3,
@@ -448,9 +519,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.56,
+    "rating": 8.63,
     "chapter_count": 2,
-    "total_views": 32,
+    "total_views": 36,
     "isTrending": false,
     "latest_release_date": "2026-08-31T20:13:11+07:00",
     "next_update": null,
@@ -469,7 +540,7 @@
         "title": "Ch. 1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 13
+        "views": 15
       },
       {
         "chapter_number": "prolog",
@@ -484,77 +555,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 6
-      }
-    ]
-  },
-  {
-    "id": "Osananajimi",
-    "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
-    "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=4",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=4",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=4"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Drama",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life",
-      "Tragedy"
-    ],
-    "rating": 7.72,
-    "chapter_count": 20,
-    "total_views": 1128,
-    "isTrending": false,
-    "latest_release_date": "2026-08-28T23:16:18+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 8.3,
-        "pages": 8,
-        "notif_image": "8",
-        "release_date": "2026-08-28T23:16:18+07:00",
-        "r2_folder": 8.3,
-        "id": "Osananajimi-ch-8.3",
-        "r2_prefix": "manga/Osananajimi/8.3/",
-        "title": "Ch. 8.3",
-        "unlockDate": "2026-10-14T17:00:00.000Z",
-        "isLocked": true,
-        "views": 11
-      },
-      {
-        "chapter_number": 8.2,
-        "pages": 8,
-        "notif_image": "3",
-        "release_date": "2026-08-21T22:37:47+07:00",
-        "r2_folder": 8.2,
-        "id": "Osananajimi-ch-8.2",
-        "r2_prefix": "manga/Osananajimi/8.2/",
-        "title": "Ch. 8.2",
-        "unlockDate": "2026-09-06T17:00:00.000Z",
-        "isLocked": true,
-        "views": 11
-      },
-      {
-        "chapter_number": 8.1,
-        "pages": 9,
-        "notif_image": "4",
-        "release_date": "2026-08-14T23:12:12+07:00",
-        "r2_folder": 8.1,
-        "id": "Osananajimi-ch-8.1",
-        "r2_prefix": "manga/Osananajimi/8.1/",
-        "title": "Ch. 8.1",
-        "unlockDate": "2026-08-30T17:00:00.000Z",
-        "isLocked": false,
-        "views": 20
       }
     ]
   },
@@ -579,7 +579,7 @@
     ],
     "rating": 7.49,
     "chapter_count": 28,
-    "total_views": 438,
+    "total_views": 451,
     "isTrending": false,
     "latest_release_date": "2026-08-28T11:00:39+07:00",
     "next_update": null,
@@ -623,7 +623,7 @@
         "title": "Ch. 22.2",
         "unlockDate": "2026-08-30T17:00:00.000Z",
         "isLocked": false,
-        "views": 12
+        "views": 16
       }
     ]
   },
@@ -648,9 +648,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.12,
+    "rating": 7.11,
     "chapter_count": 21,
-    "total_views": 496,
+    "total_views": 509,
     "isTrending": false,
     "latest_release_date": "2026-08-27T23:58:08+07:00",
     "next_update": null,
@@ -668,7 +668,7 @@
         "title": "Ch. 16.2",
         "unlockDate": "2026-08-30T17:00:00.000Z",
         "isLocked": false,
-        "views": 37
+        "views": 42
       },
       {
         "chapter_number": 16.1,
@@ -720,7 +720,7 @@
     ],
     "rating": 6.8,
     "chapter_count": 18,
-    "total_views": 294,
+    "total_views": 304,
     "isTrending": false,
     "latest_release_date": "2026-08-26T23:49:42+07:00",
     "next_update": null,
@@ -739,7 +739,7 @@
         "title": "Ch. 18",
         "unlockDate": null,
         "isLocked": false,
-        "views": 29
+        "views": 36
       },
       {
         "chapter_number": 17,
@@ -752,7 +752,7 @@
         "title": "Ch. 17",
         "unlockDate": null,
         "isLocked": false,
-        "views": 41
+        "views": 42
       },
       {
         "chapter_number": 16,
@@ -765,7 +765,7 @@
         "title": "Ch. 16",
         "unlockDate": null,
         "isLocked": false,
-        "views": 28
+        "views": 29
       }
     ]
   },
@@ -789,9 +789,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.22,
+    "rating": 8.23,
     "chapter_count": 30,
-    "total_views": 771,
+    "total_views": 799,
     "isTrending": false,
     "latest_release_date": "2026-08-25T23:04:51+07:00",
     "next_update": null,
@@ -809,7 +809,7 @@
         "title": "Ch. 24.2",
         "unlockDate": "2026-09-11T17:00:00.000Z",
         "isLocked": true,
-        "views": 6
+        "views": 7
       },
       {
         "chapter_number": 24.1,
@@ -823,7 +823,7 @@
         "title": "Ch. 24.1",
         "unlockDate": "2026-08-28T17:00:00.000Z",
         "isLocked": false,
-        "views": 29
+        "views": 34
       },
       {
         "chapter_number": 23.2,
@@ -836,7 +836,7 @@
         "title": "Ch. 23.2",
         "unlockDate": "2026-08-11T16:28:24.000Z",
         "isLocked": false,
-        "views": 52
+        "views": 56
       }
     ]
   },
@@ -861,7 +861,7 @@
     ],
     "rating": 7.79,
     "chapter_count": 20,
-    "total_views": 273,
+    "total_views": 290,
     "isTrending": false,
     "latest_release_date": "2026-08-25T11:22:09+07:00",
     "next_update": null,
@@ -880,7 +880,7 @@
         "title": "Ch. 18.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 22
+        "views": 24
       },
       {
         "chapter_number": 18.1,
@@ -932,7 +932,7 @@
     ],
     "rating": 8.08,
     "chapter_count": 14,
-    "total_views": 656,
+    "total_views": 695,
     "isTrending": false,
     "latest_release_date": "2026-08-19T19:01:02+07:00",
     "next_update": null,
@@ -950,7 +950,7 @@
         "title": "Ch. 8.2",
         "unlockDate": "2026-10-02T17:00:00.000Z",
         "isLocked": true,
-        "views": 15
+        "views": 21
       },
       {
         "chapter_number": 8.1,
@@ -963,7 +963,7 @@
         "title": "Ch. 8.1",
         "unlockDate": "2026-09-18T17:00:00.000Z",
         "isLocked": true,
-        "views": 11
+        "views": 13
       },
       {
         "chapter_number": 7.2,
@@ -975,7 +975,7 @@
         "title": "Ch. 7.2",
         "unlockDate": "2026-08-19T17:00:00.000Z",
         "isLocked": false,
-        "views": 44
+        "views": 49
       }
     ]
   },
@@ -1001,7 +1001,7 @@
     ],
     "rating": 8.48,
     "chapter_count": 18,
-    "total_views": 168,
+    "total_views": 170,
     "isTrending": false,
     "latest_release_date": "2026-08-18T11:22:53+07:00",
     "next_update": null,
@@ -1020,7 +1020,7 @@
         "title": "Ch. 11.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 16
+        "views": 17
       },
       {
         "chapter_number": 11.1,
@@ -1073,7 +1073,7 @@
     ],
     "rating": 9.14,
     "chapter_count": 5,
-    "total_views": 138,
+    "total_views": 140,
     "isTrending": false,
     "latest_release_date": "2026-08-16T02:31:56+07:00",
     "next_update": null,
@@ -1092,7 +1092,7 @@
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 21
+        "views": 23
       },
       {
         "chapter_number": 4,
@@ -1145,7 +1145,7 @@
     ],
     "rating": 8.24,
     "chapter_count": 3,
-    "total_views": 108,
+    "total_views": 109,
     "isTrending": false,
     "latest_release_date": "2026-08-12T22:54:08+07:00",
     "next_update": null,
@@ -1164,7 +1164,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 20
+        "views": 21
       },
       {
         "chapter_number": 2,
@@ -1269,11 +1269,11 @@
     "title": "Midari ni Tsukasete wa Narimasen",
     "description": "Tamotsu Sugawara, seorang karyawan yang tidak bisa menolak permintaan apa pun, mendapati dirinya tidak bisa lagi pergi ke kantor dan memutuskan untuk beristirahat sementara di kuil keluarganya. Suatu malam, hantu yang sangat mirip dengan Makoto Hiiragi, seorang mahasiswi yang bekerja part time di…",
     "status": "Tamat",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=2",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=3",
     "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@mobile.webp?v=2"
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=3",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@tablet.webp?v=3",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@mobile.webp?v=3"
     },
     "genres": [
       "Comedy",
@@ -1352,7 +1352,7 @@
       "School Life",
       "Slice of Life"
     ],
-    "rating": 7.69,
+    "rating": 7.7,
     "chapter_count": 20,
     "total_views": 233,
     "isTrending": false,
@@ -1424,7 +1424,7 @@
     ],
     "rating": 8.83,
     "chapter_count": 15,
-    "total_views": 62,
+    "total_views": 63,
     "isTrending": false,
     "latest_release_date": "2026-08-01T23:00:15+07:00",
     "next_update": null,
@@ -1455,7 +1455,7 @@
         "title": "Ch. 14",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 5
       },
       {
         "chapter_number": 13,
@@ -1563,7 +1563,7 @@
     ],
     "rating": 7.78,
     "chapter_count": 5,
-    "total_views": 87,
+    "total_views": 88,
     "isTrending": false,
     "latest_release_date": "2026-07-24T13:49:29+07:00",
     "next_update": null,
@@ -1631,7 +1631,7 @@
     ],
     "rating": 8.04,
     "chapter_count": 14,
-    "total_views": 43,
+    "total_views": 52,
     "isTrending": false,
     "latest_release_date": "2026-07-10T23:02:36+07:00",
     "next_update": null,
@@ -1853,9 +1853,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.56,
+    "rating": 8.4,
     "chapter_count": 5,
-    "total_views": 21,
+    "total_views": 27,
     "isTrending": false,
     "latest_release_date": "2026-07-08T18:41:58+07:00",
     "next_update": null,
@@ -1873,7 +1873,7 @@
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 6
       },
       {
         "chapter_number": 4,
@@ -1886,7 +1886,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       },
       {
         "chapter_number": 3,
@@ -1899,7 +1899,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 1
+        "views": 2
       }
     ]
   },
@@ -1925,7 +1925,7 @@
     ],
     "rating": 8.3,
     "chapter_count": 4,
-    "total_views": 83,
+    "total_views": 86,
     "isTrending": false,
     "latest_release_date": "2026-07-03T20:15:09+07:00",
     "next_update": null,
@@ -1943,7 +1943,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 18
+        "views": 19
       },
       {
         "chapter_number": 3,
@@ -1997,7 +1997,7 @@
     ],
     "rating": 7.34,
     "chapter_count": 9,
-    "total_views": 168,
+    "total_views": 170,
     "isTrending": false,
     "latest_release_date": "2026-07-02T18:06:40+07:00",
     "next_update": null,
@@ -2136,7 +2136,7 @@
     ],
     "rating": 8.6,
     "chapter_count": 142,
-    "total_views": 40,
+    "total_views": 42,
     "isTrending": false,
     "latest_release_date": "2026-06-20T14:53:29+07:00",
     "next_update": null,
@@ -2395,7 +2395,7 @@
     ],
     "rating": 8.65,
     "chapter_count": 216,
-    "total_views": 378,
+    "total_views": 382,
     "isTrending": false,
     "latest_release_date": "2025-03-27T19:03:42+07:00",
     "next_update": null,
@@ -2413,7 +2413,7 @@
         "title": "Ch. 215.9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 28
+        "views": 29
       },
       {
         "chapter_number": 215.8,
@@ -2463,7 +2463,7 @@
     ],
     "rating": 8.29,
     "chapter_count": 95,
-    "total_views": 29,
+    "total_views": 30,
     "isTrending": false,
     "latest_release_date": "2019-09-05T00:00:00+07:00",
     "next_update": null,
@@ -2482,7 +2482,7 @@
         "title": "Ch. 95",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 4
       },
       {
         "chapter_number": 94,

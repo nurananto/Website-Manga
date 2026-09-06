@@ -26,9 +26,10 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 7,
-    "2": 3
+    "2": 3,
+    "3": 5
   },
-  "total_views": 26,
+  "total_views": 32,
   "mangadex_cover": "f0327b95-bcb6-4644-a777-97ac48def2c3.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -44,9 +45,9 @@
       }
     }
   ],
-  "detail_views": 16,
+  "detail_views": 17,
   "mangadex_id": "e0456082-720e-4f5b-8e37-034afe8393ab",
-  "rating": 9.57,
+  "rating": 9.25,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=2",
   "coverUrls": {
@@ -60,14 +61,14 @@
       "lock_hours": 0,
       "pages": 13,
       "notif_image": "2",
+      "release_date": "2026-09-04T21:20:14+07:00",
       "r2_folder": 3,
       "id": "Tamayo-chan-ch-3",
       "r2_prefix": "manga/Tamayo-chan/3/",
       "title": "Ch. 3",
-      "release_date": "2026-09-04T21:20:14+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 5
     },
     {
       "chapter_number": 2,

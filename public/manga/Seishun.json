@@ -26,12 +26,13 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 20,
+    "1": 22,
     "2": 13,
     "3": 12,
-    "4": 9
+    "4": 9,
+    "5": 7
   },
-  "total_views": 88,
+  "total_views": 104,
   "mangadex_cover": "656c16e6-b939-4df1-a8b7-fb0e091d1b02.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -47,9 +48,9 @@
       }
     }
   ],
-  "detail_views": 34,
+  "detail_views": 41,
   "mangadex_id": "968f0b7d-465a-4a84-9e71-9ef3f2f9a0e3",
-  "rating": 8.33,
+  "rating": 8.25,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=2",
   "coverUrls": {
@@ -70,7 +71,7 @@
       "title": "Ch. 5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 7
     },
     {
       "chapter_number": 4,
@@ -126,7 +127,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 20
+      "views": 22
     }
   ]
 }

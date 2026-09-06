@@ -27,14 +27,14 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 13,
+    "1": 15,
     "prolog": 6
   },
-  "total_views": 32,
+  "total_views": 36,
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
   "cover_version": 3,
-  "detail_views": 13,
+  "detail_views": 15,
   "mangadex_cover": "d8a88534-9300-4bda-a556-fd37dcefbec6.jpg",
   "cover_gallery": [
     {
@@ -48,7 +48,7 @@
     }
   ],
   "mangadex_id": "4a2b1c8e-a275-4090-8437-600b06c4ee30",
-  "rating": 8.56,
+  "rating": 8.63,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=3",
   "coverUrls": {
@@ -69,7 +69,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 15
     },
     {
       "chapter_number": "prolog",
