@@ -64,7 +64,7 @@
   ],
   "detail_views": 82,
   "mangadex_id": "02c719c6-d4bc-4ad4-9ebf-d033abe2f410",
-  "rating": 6,
+  "rating": 6.01,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=3",
   "coverUrls": {
@@ -134,7 +134,7 @@
       "id": "ShokeiFlag-ch-5.3",
       "r2_prefix": "manga/ShokeiFlag/5.3/",
       "title": "Ch. 5.3",
-      "unlockDate": "2026-09-15T17:00:00.000Z",
+      "unlockDate": "2026-09-07T17:00:00.000Z",
       "isLocked": true,
       "views": 2
     },
