@@ -47,7 +47,7 @@
     "15.1": 18,
     "15.2": 9
   },
-  "total_views": 233,
+  "total_views": 234,
   "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -70,7 +70,7 @@
       }
     }
   ],
-  "detail_views": 93,
+  "detail_views": 94,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "acfd6902-b39c-4b7d-91a8-9825dda4ede8",
@@ -87,11 +87,11 @@
       "chapter_number": 16.1,
       "pages": 12,
       "notif_image": "11",
+      "release_date": "2026-09-06T23:10:58+07:00",
       "r2_folder": 16.1,
       "id": "ClassdeIchiban-ch-16.1",
       "r2_prefix": "manga/ClassdeIchiban/16.1/",
       "title": "Ch. 16.1",
-      "release_date": "2026-09-06T23:10:58+07:00",
       "unlockDate": "2026-09-23T17:00:00.000Z",
       "isLocked": true,
       "views": 0

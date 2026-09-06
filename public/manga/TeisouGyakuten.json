@@ -40,9 +40,9 @@
     "7.2": 21,
     "7.3": 22,
     "8.1": 39,
-    "8.2": 24
+    "8.2": 26
   },
-  "total_views": 274,
+  "total_views": 278,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -65,7 +65,7 @@
       }
     }
   ],
-  "detail_views": 81,
+  "detail_views": 83,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "8556c131-23ed-42d6-98ba-5f2aa5037843",
@@ -90,7 +90,7 @@
       "title": "Ch. 8.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 24
+      "views": 26
     },
     {
       "chapter_number": 8.1,
