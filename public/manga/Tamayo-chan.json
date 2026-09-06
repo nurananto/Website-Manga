@@ -57,15 +57,29 @@
   },
   "chapters": [
     {
+      "chapter_number": 5,
+      "lock_hours": 0,
+      "pages": 13,
+      "notif_image": "2",
+      "r2_folder": 5,
+      "id": "Tamayo-chan-ch-5",
+      "r2_prefix": "manga/Tamayo-chan/5/",
+      "title": "Ch. 5",
+      "release_date": "2026-09-06T21:31:18+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
+    {
       "chapter_number": 4,
       "lock_hours": 0,
       "pages": 13,
       "notif_image": "3",
+      "release_date": "2026-09-06T19:59:47+07:00",
       "r2_folder": 4,
       "id": "Tamayo-chan-ch-4",
       "r2_prefix": "manga/Tamayo-chan/4/",
       "title": "Ch. 4",
-      "release_date": "2026-09-06T19:59:47+07:00",
       "unlockDate": null,
       "isLocked": false,
       "views": 0
