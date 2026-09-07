@@ -40,11 +40,11 @@
     "13": 17,
     "14": 11,
     "15": 14,
-    "16": 29,
+    "16": 30,
     "17": 42,
     "18": 36
   },
-  "total_views": 304,
+  "total_views": 305,
   "mangadex_cover": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -80,7 +80,7 @@
   "detail_views": 88,
   "notif_image": "page1",
   "mangadex_id": "748d2aab-cea8-4ffb-89b3-e716872cb027",
-  "rating": 6.8,
+  "rating": 6.81,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Negatte/covers/cover.webp?v=3",
   "coverUrls": {
@@ -127,7 +127,7 @@
       "title": "Ch. 16",
       "unlockDate": null,
       "isLocked": false,
-      "views": 29
+      "views": 30
     },
     {
       "chapter_number": 15,

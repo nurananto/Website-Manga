@@ -39,9 +39,9 @@
     "5.5": 1,
     "6.1": 1,
     "6.2": 1,
-    "10.5": 3
+    "10.5": 4
   },
-  "total_views": 47,
+  "total_views": 49,
   "mangadex_cover": "b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -64,7 +64,7 @@
       }
     }
   ],
-  "detail_views": 16,
+  "detail_views": 17,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "90d81edd-accb-4c8d-b44c-e38254d77935",
@@ -89,7 +89,7 @@
       "title": "Ch. 10.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 10,
