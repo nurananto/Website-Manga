@@ -40,13 +40,13 @@
     "4.3": 14,
     "5.1": 4,
     "5.2": 14,
-    "5.3": 3,
+    "5.3": 4,
     "5.4": 4,
     "6.1": 4,
     "6.2": 5,
     "6.3": 8
   },
-  "total_views": 286,
+  "total_views": 293,
   "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -62,7 +62,7 @@
       }
     }
   ],
-  "detail_views": 95,
+  "detail_views": 101,
   "mangadex_id": "02c719c6-d4bc-4ad4-9ebf-d033abe2f410",
   "rating": 6.01,
   "next_update": null,
@@ -136,7 +136,7 @@
       "title": "Ch. 5.3",
       "unlockDate": "2026-09-07T17:00:00.000Z",
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 5.2,

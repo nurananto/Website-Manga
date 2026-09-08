@@ -25,11 +25,11 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 22,
-    "2": 9,
-    "3": 6,
-    "4": 7,
-    "5": 8,
+    "1": 23,
+    "2": 10,
+    "3": 7,
+    "4": 8,
+    "5": 9,
     "6": 7,
     "7": 5,
     "8": 6,
@@ -51,10 +51,10 @@
     "21.2": 24,
     "22.1": 22,
     "22.2": 17,
-    "23.1": 7,
+    "23.1": 9,
     "23.2": 5
   },
-  "total_views": 454,
+  "total_views": 462,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -86,7 +86,7 @@
       }
     }
   ],
-  "detail_views": 129,
+  "detail_views": 130,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "26854d1a-dfd0-4e5c-b6d1-ab291035b8cc",
@@ -123,7 +123,7 @@
       "title": "Ch. 23.1",
       "unlockDate": "2026-09-06T17:00:00.000Z",
       "isLocked": false,
-      "views": 7
+      "views": 9
     },
     {
       "chapter_number": 22.2,
@@ -408,7 +408,7 @@
       "title": "Ch. 5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 4,
@@ -421,7 +421,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     },
     {
       "chapter_number": 3,
@@ -434,7 +434,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 2,
@@ -447,7 +447,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 1,
@@ -460,7 +460,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 22
+      "views": 23
     }
   ]
 }

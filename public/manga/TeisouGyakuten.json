@@ -29,20 +29,20 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 15,
+    "1": 16,
     "2": 10,
-    "3": 11,
-    "4": 9,
+    "3": 12,
+    "4": 10,
     "5": 9,
     "6": 9,
     "6.5": 12,
     "7.1": 12,
     "7.2": 21,
-    "7.3": 22,
-    "8.1": 39,
-    "8.2": 26
+    "7.3": 23,
+    "8.1": 40,
+    "8.2": 29
   },
-  "total_views": 278,
+  "total_views": 288,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -65,7 +65,7 @@
       }
     }
   ],
-  "detail_views": 83,
+  "detail_views": 85,
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "8556c131-23ed-42d6-98ba-5f2aa5037843",
@@ -90,7 +90,7 @@
       "title": "Ch. 8.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 26
+      "views": 29
     },
     {
       "chapter_number": 8.1,
@@ -103,7 +103,7 @@
       "title": "Ch. 8.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 39
+      "views": 40
     },
     {
       "chapter_number": 7.3,
@@ -116,7 +116,7 @@
       "title": "Ch. 7.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 22
+      "views": 23
     },
     {
       "chapter_number": 7.2,
@@ -194,7 +194,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 3,
@@ -207,7 +207,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 2,
@@ -233,7 +233,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 15
+      "views": 16
     }
   ]
 }

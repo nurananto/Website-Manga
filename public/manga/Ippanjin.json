@@ -27,10 +27,10 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 16,
+    "1": 17,
     "prolog": 6
   },
-  "total_views": 42,
+  "total_views": 43,
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
   "cover_version": 3,
@@ -69,7 +69,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 16
+      "views": 17
     },
     {
       "chapter_number": "prolog",
