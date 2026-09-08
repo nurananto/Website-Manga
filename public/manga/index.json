@@ -1,5 +1,75 @@
 [
   {
+    "id": "ClassdeIchiban",
+    "title": "Class de Ichiban Kawaii Gal wo Ezuke Shiteiru Hanashi",
+    "description": "Sakura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=2",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=2",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@tablet.webp?v=2",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp?v=2"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Cooking",
+      "Gyaru",
+      "Romance",
+      "School Life",
+      "Slice of Life"
+    ],
+    "rating": 7.7,
+    "chapter_count": 21,
+    "total_views": 250,
+    "isTrending": true,
+    "latest_release_date": "2026-09-06T23:10:58+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 16.1,
+        "pages": 12,
+        "notif_image": "11",
+        "release_date": "2026-09-06T23:10:58+07:00",
+        "r2_folder": 16.1,
+        "id": "ClassdeIchiban-ch-16.1",
+        "r2_prefix": "manga/ClassdeIchiban/16.1/",
+        "title": "Ch. 16.1",
+        "unlockDate": "2026-09-23T17:00:00.000Z",
+        "isLocked": true,
+        "views": 2
+      },
+      {
+        "chapter_number": 15.2,
+        "lock_hours": 360,
+        "pages": 13,
+        "release_date": "2026-08-03T16:14:51+07:00",
+        "r2_folder": 15.2,
+        "id": "ClassdeIchiban-ch-15.2",
+        "r2_prefix": "manga/ClassdeIchiban/15.2/",
+        "title": "Ch. 15.2",
+        "unlockDate": "2026-08-18T09:14:51.000Z",
+        "isLocked": false,
+        "views": 12
+      },
+      {
+        "chapter_number": 15.1,
+        "lock_hours": 360,
+        "pages": 10,
+        "release_date": "2026-07-19T23:08:03+07:00",
+        "r2_folder": 15.1,
+        "id": "ClassdeIchiban-ch-15.1",
+        "r2_prefix": "manga/ClassdeIchiban/15.1/",
+        "title": "Ch. 15.1",
+        "unlockDate": "2026-08-03T16:08:03.000Z",
+        "isLocked": false,
+        "views": 19
+      }
+    ]
+  },
+  {
     "id": "Tamayo-chan",
     "title": "Seyakate Tamayo-chan wa Koi ga Shitai",
     "description": "Guru SMA baru, Haruseto Kazutoyo, punya harga diri yang tinggi sebagai seorang guru. Pelanggaran tata tertib? Nggak bakal dia toleransi! Tapi kemudian, muncul cewek cantik yang ngomong pakai dialek Kansai, Higashiyodogawa Tamayo, yang mengaku sebagai “teman masa kecilnya”! Di depan Tamayo yang…",
@@ -19,7 +89,7 @@
     ],
     "rating": 9.25,
     "chapter_count": 5,
-    "total_views": 32,
+    "total_views": 46,
     "isTrending": true,
     "latest_release_date": "2026-09-06T21:31:18+07:00",
     "next_update": null,
@@ -31,14 +101,14 @@
         "lock_hours": 0,
         "pages": 13,
         "notif_image": "2",
+        "release_date": "2026-09-06T21:31:18+07:00",
         "r2_folder": 5,
         "id": "Tamayo-chan-ch-5",
         "r2_prefix": "manga/Tamayo-chan/5/",
         "title": "Ch. 5",
-        "release_date": "2026-09-06T21:31:18+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 5
       },
       {
         "chapter_number": 4,
@@ -52,7 +122,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 3
       },
       {
         "chapter_number": 3,
@@ -66,7 +136,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 5
+        "views": 6
       }
     ]
   },
@@ -91,9 +161,9 @@
       "Slice of Life",
       "Tragedy"
     ],
-    "rating": 7.72,
+    "rating": 7.61,
     "chapter_count": 21,
-    "total_views": 1302,
+    "total_views": 1434,
     "isTrending": true,
     "latest_release_date": "2026-09-04T22:42:33+07:00",
     "next_update": null,
@@ -111,7 +181,7 @@
         "title": "Ch. 8.4",
         "unlockDate": "2026-09-19T17:00:00.000Z",
         "isLocked": true,
-        "views": 8
+        "views": 12
       },
       {
         "chapter_number": 8.3,
@@ -124,7 +194,7 @@
         "title": "Ch. 8.3",
         "unlockDate": "2026-09-12T17:00:00.000Z",
         "isLocked": true,
-        "views": 15
+        "views": 16
       },
       {
         "chapter_number": 8.2,
@@ -136,8 +206,8 @@
         "r2_prefix": "manga/Osananajimi/8.2/",
         "title": "Ch. 8.2",
         "unlockDate": "2026-09-06T17:00:00.000Z",
-        "isLocked": true,
-        "views": 15
+        "isLocked": false,
+        "views": 31
       }
     ]
   },
@@ -162,7 +232,7 @@
     ],
     "rating": 8.25,
     "chapter_count": 5,
-    "total_views": 104,
+    "total_views": 115,
     "isTrending": true,
     "latest_release_date": "2026-09-04T17:57:49+07:00",
     "next_update": null,
@@ -181,7 +251,7 @@
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 7
+        "views": 9
       },
       {
         "chapter_number": 4,
@@ -195,7 +265,7 @@
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 9
+        "views": 10
       },
       {
         "chapter_number": 3,
@@ -209,7 +279,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 12
+        "views": 13
       }
     ]
   },
@@ -234,7 +304,7 @@
     ],
     "rating": 8.9,
     "chapter_count": 15,
-    "total_views": 46,
+    "total_views": 49,
     "isTrending": true,
     "latest_release_date": "2026-09-04T09:01:58+07:00",
     "next_update": null,
@@ -253,7 +323,7 @@
         "title": "Ch. 10.5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 3
+        "views": 4
       },
       {
         "chapter_number": 10,
@@ -280,7 +350,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 7
       }
     ]
   },
@@ -307,8 +377,8 @@
     ],
     "rating": 6.01,
     "chapter_count": 17,
-    "total_views": 248,
-    "isTrending": true,
+    "total_views": 286,
+    "isTrending": false,
     "latest_release_date": "2026-09-03T22:14:41+07:00",
     "next_update": null,
     "tamat_at_chapter": null,
@@ -325,7 +395,7 @@
         "title": "Ch. 6.3",
         "unlockDate": "2026-10-06T17:00:00.000Z",
         "isLocked": true,
-        "views": 6
+        "views": 8
       },
       {
         "chapter_number": 6.2,
@@ -338,7 +408,7 @@
         "title": "Ch. 6.2",
         "unlockDate": "2026-09-29T17:00:00.000Z",
         "isLocked": true,
-        "views": 3
+        "views": 5
       },
       {
         "chapter_number": 6.1,
@@ -351,7 +421,7 @@
         "title": "Ch. 6.1",
         "unlockDate": "2026-09-22T17:00:00.000Z",
         "isLocked": true,
-        "views": 2
+        "views": 4
       }
     ]
   },
@@ -451,7 +521,7 @@
     ],
     "rating": 7.45,
     "chapter_count": 12,
-    "total_views": 274,
+    "total_views": 278,
     "isTrending": false,
     "latest_release_date": "2026-09-01T18:26:28+07:00",
     "next_update": null,
@@ -470,7 +540,7 @@
         "title": "Ch. 8.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 24
+        "views": 26
       },
       {
         "chapter_number": 8.1,
@@ -519,9 +589,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.63,
+    "rating": 8.7,
     "chapter_count": 2,
-    "total_views": 36,
+    "total_views": 42,
     "isTrending": false,
     "latest_release_date": "2026-08-31T20:13:11+07:00",
     "next_update": null,
@@ -540,7 +610,7 @@
         "title": "Ch. 1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 15
+        "views": 16
       },
       {
         "chapter_number": "prolog",
@@ -579,7 +649,7 @@
     ],
     "rating": 7.49,
     "chapter_count": 28,
-    "total_views": 451,
+    "total_views": 454,
     "isTrending": false,
     "latest_release_date": "2026-08-28T11:00:39+07:00",
     "next_update": null,
@@ -609,8 +679,8 @@
         "r2_prefix": "manga/10-nenburi/23.1/",
         "title": "Ch. 23.1",
         "unlockDate": "2026-09-06T17:00:00.000Z",
-        "isLocked": true,
-        "views": 6
+        "isLocked": false,
+        "views": 7
       },
       {
         "chapter_number": 22.2,
@@ -623,7 +693,7 @@
         "title": "Ch. 22.2",
         "unlockDate": "2026-08-30T17:00:00.000Z",
         "isLocked": false,
-        "views": 16
+        "views": 17
       }
     ]
   },
@@ -648,9 +718,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.11,
+    "rating": 7.1,
     "chapter_count": 21,
-    "total_views": 509,
+    "total_views": 521,
     "isTrending": false,
     "latest_release_date": "2026-08-27T23:58:08+07:00",
     "next_update": null,
@@ -668,7 +738,7 @@
         "title": "Ch. 16.2",
         "unlockDate": "2026-08-30T17:00:00.000Z",
         "isLocked": false,
-        "views": 42
+        "views": 45
       },
       {
         "chapter_number": 16.1,
@@ -682,7 +752,7 @@
         "title": "Ch. 16.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 55
+        "views": 56
       },
       {
         "chapter_number": 15.2,
@@ -718,9 +788,9 @@
       "Magic",
       "Romance"
     ],
-    "rating": 6.8,
+    "rating": 6.81,
     "chapter_count": 18,
-    "total_views": 304,
+    "total_views": 305,
     "isTrending": false,
     "latest_release_date": "2026-08-26T23:49:42+07:00",
     "next_update": null,
@@ -765,7 +835,7 @@
         "title": "Ch. 16",
         "unlockDate": null,
         "isLocked": false,
-        "views": 29
+        "views": 30
       }
     ]
   },
@@ -791,7 +861,7 @@
     ],
     "rating": 8.23,
     "chapter_count": 30,
-    "total_views": 799,
+    "total_views": 815,
     "isTrending": false,
     "latest_release_date": "2026-08-25T23:04:51+07:00",
     "next_update": null,
@@ -809,7 +879,7 @@
         "title": "Ch. 24.2",
         "unlockDate": "2026-09-11T17:00:00.000Z",
         "isLocked": true,
-        "views": 7
+        "views": 8
       },
       {
         "chapter_number": 24.1,
@@ -836,7 +906,7 @@
         "title": "Ch. 23.2",
         "unlockDate": "2026-08-11T16:28:24.000Z",
         "isLocked": false,
-        "views": 56
+        "views": 57
       }
     ]
   },
@@ -861,7 +931,7 @@
     ],
     "rating": 7.79,
     "chapter_count": 20,
-    "total_views": 290,
+    "total_views": 296,
     "isTrending": false,
     "latest_release_date": "2026-08-25T11:22:09+07:00",
     "next_update": null,
@@ -880,7 +950,7 @@
         "title": "Ch. 18.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 24
+        "views": 25
       },
       {
         "chapter_number": 18.1,
@@ -932,7 +1002,7 @@
     ],
     "rating": 8.08,
     "chapter_count": 14,
-    "total_views": 695,
+    "total_views": 709,
     "isTrending": false,
     "latest_release_date": "2026-08-19T19:01:02+07:00",
     "next_update": null,
@@ -950,7 +1020,7 @@
         "title": "Ch. 8.2",
         "unlockDate": "2026-10-02T17:00:00.000Z",
         "isLocked": true,
-        "views": 21
+        "views": 22
       },
       {
         "chapter_number": 8.1,
@@ -975,7 +1045,7 @@
         "title": "Ch. 7.2",
         "unlockDate": "2026-08-19T17:00:00.000Z",
         "isLocked": false,
-        "views": 49
+        "views": 53
       }
     ]
   },
@@ -1001,7 +1071,7 @@
     ],
     "rating": 8.48,
     "chapter_count": 18,
-    "total_views": 170,
+    "total_views": 171,
     "isTrending": false,
     "latest_release_date": "2026-08-18T11:22:53+07:00",
     "next_update": null,
@@ -1145,7 +1215,7 @@
     ],
     "rating": 8.24,
     "chapter_count": 3,
-    "total_views": 109,
+    "total_views": 114,
     "isTrending": false,
     "latest_release_date": "2026-08-12T22:54:08+07:00",
     "next_update": null,
@@ -1164,7 +1234,7 @@
         "title": "Ch. 3",
         "unlockDate": null,
         "isLocked": false,
-        "views": 21
+        "views": 22
       },
       {
         "chapter_number": 2,
@@ -1177,7 +1247,7 @@
         "title": "Ch. 2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 19
+        "views": 20
       },
       {
         "chapter_number": 1,
@@ -1190,7 +1260,7 @@
         "title": "Ch. 1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 23
+        "views": 24
       }
     ]
   },
@@ -1213,9 +1283,9 @@
       "Slice of Life",
       "Time Travel"
     ],
-    "rating": 8.43,
+    "rating": 8.42,
     "chapter_count": 13,
-    "total_views": 165,
+    "total_views": 170,
     "isTrending": false,
     "latest_release_date": "2026-08-07T11:26:33+07:00",
     "next_update": null,
@@ -1234,7 +1304,7 @@
         "title": "Ch. 13",
         "unlockDate": null,
         "isLocked": false,
-        "views": 26
+        "views": 27
       },
       {
         "chapter_number": 12,
@@ -1247,7 +1317,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 21
+        "views": 22
       },
       {
         "chapter_number": 11,
@@ -1260,7 +1330,7 @@
         "title": "Ch. 11",
         "unlockDate": null,
         "isLocked": false,
-        "views": 15
+        "views": 16
       }
     ]
   },
@@ -1283,7 +1353,7 @@
     ],
     "rating": 8.61,
     "chapter_count": 19,
-    "total_views": 127,
+    "total_views": 138,
     "isTrending": false,
     "latest_release_date": "2026-08-07T00:02:21+07:00",
     "next_update": null,
@@ -1302,7 +1372,7 @@
         "title": "Ch. 14",
         "unlockDate": null,
         "isLocked": false,
-        "views": 22
+        "views": 23
       },
       {
         "chapter_number": 13,
@@ -1315,7 +1385,7 @@
         "title": "Ch. 13",
         "unlockDate": null,
         "isLocked": false,
-        "views": 18
+        "views": 19
       },
       {
         "chapter_number": 12,
@@ -1328,77 +1398,7 @@
         "title": "Ch. 12",
         "unlockDate": null,
         "isLocked": false,
-        "views": 10
-      }
-    ]
-  },
-  {
-    "id": "ClassdeIchiban",
-    "title": "Class de Ichiban Kawaii Gal wo Ezuke Shiteiru Hanashi",
-    "description": "Sakura Kouzuki, seorang gyaru populer di kelas yang juga bekerja sebagai model majalah, dan Houri Kazami, yang duduk di pojok kelas sambil asyik membicarakan hal-hal otaku bersama teman-temannya. Meskipun tampaknya berasal dari dunia yang benar-benar berbeda, keduanya sebenarnya adalah kakak-adik…",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=2",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=2",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@tablet.webp?v=2",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp?v=2"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Cooking",
-      "Gyaru",
-      "Romance",
-      "School Life",
-      "Slice of Life"
-    ],
-    "rating": 7.7,
-    "chapter_count": 20,
-    "total_views": 233,
-    "isTrending": false,
-    "latest_release_date": "2026-08-03T16:14:51+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 15.2,
-        "lock_hours": 360,
-        "pages": 13,
-        "release_date": "2026-08-03T16:14:51+07:00",
-        "r2_folder": 15.2,
-        "id": "ClassdeIchiban-ch-15.2",
-        "r2_prefix": "manga/ClassdeIchiban/15.2/",
-        "title": "Ch. 15.2",
-        "unlockDate": "2026-08-18T09:14:51.000Z",
-        "isLocked": false,
-        "views": 9
-      },
-      {
-        "chapter_number": 15.1,
-        "lock_hours": 360,
-        "pages": 10,
-        "release_date": "2026-07-19T23:08:03+07:00",
-        "r2_folder": 15.1,
-        "id": "ClassdeIchiban-ch-15.1",
-        "r2_prefix": "manga/ClassdeIchiban/15.1/",
-        "title": "Ch. 15.1",
-        "unlockDate": "2026-08-03T16:08:03.000Z",
-        "isLocked": false,
-        "views": 18
-      },
-      {
-        "chapter_number": 14.2,
-        "lock_hours": 192,
-        "pages": 12,
-        "release_date": "2026-07-12T18:20:01+07:00",
-        "r2_folder": 14.2,
-        "id": "ClassdeIchiban-ch-14.2",
-        "r2_prefix": "manga/ClassdeIchiban/14.2/",
-        "title": "Ch. 14.2",
-        "unlockDate": "2026-07-20T11:20:01.000Z",
-        "isLocked": false,
-        "views": 22
+        "views": 11
       }
     ]
   },
@@ -1561,9 +1561,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.78,
+    "rating": 7.79,
     "chapter_count": 5,
-    "total_views": 88,
+    "total_views": 89,
     "isTrending": false,
     "latest_release_date": "2026-07-24T13:49:29+07:00",
     "next_update": null,
@@ -1581,7 +1581,7 @@
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 19
+        "views": 20
       },
       {
         "chapter_number": 4,
@@ -1700,7 +1700,7 @@
     ],
     "rating": 8.38,
     "chapter_count": 1,
-    "total_views": 33,
+    "total_views": 34,
     "isTrending": false,
     "latest_release_date": "2026-07-09T21:15:37+07:00",
     "next_update": null,
@@ -1786,7 +1786,7 @@
     ],
     "rating": 8.04,
     "chapter_count": 3,
-    "total_views": 27,
+    "total_views": 28,
     "isTrending": false,
     "latest_release_date": "2026-07-09T20:33:22+07:00",
     "next_update": null,
@@ -1925,7 +1925,7 @@
     ],
     "rating": 8.3,
     "chapter_count": 4,
-    "total_views": 86,
+    "total_views": 87,
     "isTrending": false,
     "latest_release_date": "2026-07-03T20:15:09+07:00",
     "next_update": null,
@@ -1995,9 +1995,9 @@
       "Slice of Life",
       "Video Games"
     ],
-    "rating": 7.34,
+    "rating": 7.33,
     "chapter_count": 9,
-    "total_views": 170,
+    "total_views": 171,
     "isTrending": false,
     "latest_release_date": "2026-07-02T18:06:40+07:00",
     "next_update": null,
@@ -2015,7 +2015,7 @@
         "title": "Ch. 9",
         "unlockDate": null,
         "isLocked": false,
-        "views": 39
+        "views": 40
       },
       {
         "chapter_number": 8,
@@ -2136,7 +2136,7 @@
     ],
     "rating": 8.6,
     "chapter_count": 142,
-    "total_views": 42,
+    "total_views": 43,
     "isTrending": false,
     "latest_release_date": "2026-06-20T14:53:29+07:00",
     "next_update": null,

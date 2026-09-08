@@ -40,11 +40,11 @@
     "13": 17,
     "14": 11,
     "15": 14,
-    "16": 29,
+    "16": 30,
     "17": 42,
     "18": 36
   },
-  "total_views": 304,
+  "total_views": 305,
   "mangadex_cover": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -81,6 +81,6 @@
   ],
   "cover_version": 3,
   "detail_views": 88,
-  "view_sync_cutoff": "2026-09-05 17:00:59",
+  "view_sync_cutoff": "2026-09-07 17:01:24",
   "notif_image": "page1"
 }

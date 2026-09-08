@@ -30,9 +30,9 @@
     "2": 5,
     "3": 6,
     "4": 10,
-    "5": 19
+    "5": 20
   },
-  "total_views": 88,
+  "total_views": 89,
   "mangadex_cover": "5b82e94e-60e6-4413-919e-c0ca483e277f.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -60,7 +60,7 @@
   "notif_image": "page1",
   "cover_source": "mangadex",
   "mangadex_id": "ee1eb629-79c9-410f-927c-dd7a4cd1d87b",
-  "rating": 7.78,
+  "rating": 7.79,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=3",
   "coverUrls": {
@@ -80,7 +80,7 @@
       "title": "Ch. 5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 19
+      "views": 20
     },
     {
       "chapter_number": 4,

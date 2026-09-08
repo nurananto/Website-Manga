@@ -33,13 +33,13 @@
     "6": 5,
     "7": 6,
     "8": 6,
-    "9": 8,
-    "10": 9,
-    "11": 15,
-    "12": 21,
-    "13": 26
+    "9": 9,
+    "10": 10,
+    "11": 16,
+    "12": 22,
+    "13": 27
   },
-  "total_views": 165,
+  "total_views": 170,
   "mangadex_cover": "4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.jpg",
   "cover_widths": "1280x960x640q75",
   "cover_gallery": [
@@ -57,7 +57,7 @@
   "cover_version": 2,
   "notif_image": "page1",
   "mangadex_id": "e6d70578-d6b2-4c60-a2f4-7ab16e515480",
-  "rating": 8.43,
+  "rating": 8.42,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Sankakukei/covers/cover.webp?v=2",
   "coverUrls": {
@@ -78,7 +78,7 @@
       "title": "Ch. 13",
       "unlockDate": null,
       "isLocked": false,
-      "views": 26
+      "views": 27
     },
     {
       "chapter_number": 12,
@@ -91,7 +91,7 @@
       "title": "Ch. 12",
       "unlockDate": null,
       "isLocked": false,
-      "views": 21
+      "views": 22
     },
     {
       "chapter_number": 11,
@@ -104,7 +104,7 @@
       "title": "Ch. 11",
       "unlockDate": null,
       "isLocked": false,
-      "views": 15
+      "views": 16
     },
     {
       "chapter_number": 10,
@@ -117,7 +117,7 @@
       "title": "Ch. 10",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 9,
@@ -130,7 +130,7 @@
       "title": "Ch. 9",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 8,

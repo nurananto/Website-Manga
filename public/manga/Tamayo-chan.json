@@ -25,11 +25,13 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 7,
+    "1": 8,
     "2": 3,
-    "3": 5
+    "3": 6,
+    "4": 3,
+    "5": 5
   },
-  "total_views": 32,
+  "total_views": 46,
   "mangadex_cover": "f0327b95-bcb6-4644-a777-97ac48def2c3.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640q75",
@@ -45,7 +47,7 @@
       }
     }
   ],
-  "detail_views": 17,
+  "detail_views": 21,
   "mangadex_id": "e0456082-720e-4f5b-8e37-034afe8393ab",
   "rating": 9.25,
   "next_update": null,
@@ -61,14 +63,14 @@
       "lock_hours": 0,
       "pages": 13,
       "notif_image": "2",
+      "release_date": "2026-09-06T21:31:18+07:00",
       "r2_folder": 5,
       "id": "Tamayo-chan-ch-5",
       "r2_prefix": "manga/Tamayo-chan/5/",
       "title": "Ch. 5",
-      "release_date": "2026-09-06T21:31:18+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 5
     },
     {
       "chapter_number": 4,
@@ -82,7 +84,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 3
     },
     {
       "chapter_number": 3,
@@ -96,7 +98,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 5
+      "views": 6
     },
     {
       "chapter_number": 2,
@@ -124,7 +126,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 8
     }
   ]
 }
