@@ -261,15 +261,20 @@ async function syncCovers() {
         const imgBuffer = await downloadCover(mangadexId, coverFileName);
         if (imgBuffer) {
           try {
-            // Upload BARU dulu, baru hapus yang LAMA setelah sukses lengkap —
-            // urutan sebaliknya (hapus dulu) bikin cover PERMANEN blank kalau
-            // upload gagal di tengah jalan (retensi lama sudah kehapus, yang
-            // baru gak lengkap, DAN meta.json gak sempat ke-update karena
-            // exception di sini, jadi run berikutnya nyangka masih "up to
-            // date" — skip re-upload selamanya, padahal file di R2 hilang).
-            const oldKeys = meta.covers || [];
+            // TIDAK ADA delete manual di sini — key R2 cover utama SELALU SAMA
+            // (manga/<slug>/covers/cover(.webp|@tablet.webp|@mobile.webp|
+            // @thumb.webp), nama-nya gak pernah berubah tergantung isi), jadi
+            // resizeAndUpload() (PutObjectCommand ke key yang sama) otomatis
+            // OVERWRITE — replace atomik per-size, gak perlu delete-lalu-upload
+            // ATAUPUN upload-lalu-delete. (Versi upload-lalu-delete yang
+            // sempat dipakai di sini JUSTRU BUG: karena key lama & baru
+            // identik, langkah "hapus yang lama" itu menghapus file yang
+            // BARU SAJA diupload — bikin cover PERMANEN blank tiap sync sukses.
+            // Versi SEBELUM itu lagi, hapus-dulu-baru-upload, juga rawan kalau
+            // upload gagal di tengah jalan sebelum sempat overwrite semua
+            // size. Overwrite-di-tempat aman dari dua-duanya: gagal parsial
+            // cuma nyisain CAMPURAN size lama+baru, tidak pernah 404 total.)
             meta.covers         = await resizeAndUpload(imgBuffer, `manga/${slug}/covers/cover`);
-            for (const oldKey of oldKeys) await deleteFromR2(oldKey);
             meta.mangadex_cover = coverFileName;
             meta.cover_source   = 'mangadex';
             delete meta.raw_cover_url; // sisa dari jalur raw_url, sudah tidak relevan
@@ -319,11 +324,10 @@ async function syncCovers() {
           console.log(`   ⚠️  cover_source_url bukan portrait (${dims?.width}x${dims?.height}, rasio ${ratio?.toFixed(2) ?? '?'}) — dilewati`);
         } else {
           try {
-            // Upload BARU dulu, baru hapus LAMA setelah sukses — lihat komentar
-            // panjang di cabang MangaDex di atas (kasusnya sama persis di sini).
-            const oldKeys = meta.covers || [];
+            // TIDAK ADA delete manual — key R2 selalu sama, resizeAndUpload()
+            // overwrite di tempat. Lihat komentar panjang di cabang MangaDex
+            // di atas (kasusnya sama persis di sini).
             meta.covers        = await resizeAndUpload(imgBuffer, `manga/${slug}/covers/cover`);
-            for (const oldKey of oldKeys) await deleteFromR2(oldKey);
             meta.raw_cover_url = meta.cover_source_url;
             meta.cover_source  = 'manual-url';
             delete meta.mangadex_cover;
@@ -368,11 +372,10 @@ async function syncCovers() {
             console.log(`   ⚠️  og:image bukan portrait (${dims?.width}x${dims?.height}, rasio ${ratio?.toFixed(2) ?? '?'}) — kemungkinan bukan cover asli, dilewati`);
           } else {
             try {
-              // Upload BARU dulu, baru hapus LAMA setelah sukses — lihat komentar
-              // panjang di cabang MangaDex di atas (kasusnya sama persis di sini).
-              const oldKeys = meta.covers || [];
+              // TIDAK ADA delete manual — key R2 selalu sama, resizeAndUpload()
+              // overwrite di tempat. Lihat komentar panjang di cabang MangaDex
+              // di atas (kasusnya sama persis di sini).
               meta.covers        = await resizeAndUpload(imgBuffer, `manga/${slug}/covers/cover`);
-              for (const oldKey of oldKeys) await deleteFromR2(oldKey);
               meta.raw_cover_url = ogImageUrl;
               meta.cover_source  = 'raw';
               delete meta.mangadex_cover; // pastikan nanti ke-detect beda begitu MangaDex ada cover
