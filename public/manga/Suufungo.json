@@ -56,7 +56,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9.webp?v=2",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@mobile.webp?v=2"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@mobile.webp?v=2",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@mobile.webp?v=2"
       }
     },
     {
@@ -65,7 +66,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf.webp?v=2",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@mobile.webp?v=2"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@mobile.webp?v=2",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@mobile.webp?v=2"
       }
     }
   ],
@@ -79,7 +81,8 @@
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp?v=2",
     "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@mobile.webp?v=2"
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@mobile.webp?v=2",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {

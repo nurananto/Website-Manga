@@ -20,7 +20,8 @@
   "covers": [
     "manga/Amari-chan/covers/cover.webp",
     "manga/Amari-chan/covers/cover@tablet.webp",
-    "manga/Amari-chan/covers/cover@mobile.webp"
+    "manga/Amari-chan/covers/cover@mobile.webp",
+    "manga/Amari-chan/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/624d6ceb-768d-40a7-8412-84e083afbdb1/kanojo-ni-shitai-joshi-ichii-no-tonari-de-mitsuketa-amari-chan",
   "raw_url": "https://comic-walker.com/detail/KC_006262_S?episodeType=first",
@@ -49,38 +50,42 @@
   },
   "total_views": 186,
   "mangadex_cover": "c402aa68-08d7-49da-9fbd-7b84a9da4f7c.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c.webp?v=3",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@mobile.webp?v=3"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c.webp?v=4",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@tablet.webp?v=4",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@mobile.webp?v=4",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@thumb.webp?v=4"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53.webp?v=3",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@mobile.webp?v=3"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53.webp?v=4",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@tablet.webp?v=4",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@mobile.webp?v=4",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@thumb.webp?v=4"
       }
     }
   ],
   "detail_views": 71,
-  "cover_version": 3,
+  "cover_version": 4,
   "notif_image": "page1",
+  "cover_source": "mangadex",
   "mangadex_id": "624d6ceb-768d-40a7-8412-84e083afbdb1",
   "rating": 8.48,
-  "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=3",
+  "next_update": "2026-09-22",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=4",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=3",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp?v=3"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=4",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@tablet.webp?v=4",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@mobile.webp?v=4",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover@thumb.webp?v=4"
   },
   "chapters": [
     {
@@ -95,7 +100,8 @@
       "title": "Ch. 11.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 7,
+      "next_update": "2026-09-22"
     },
     {
       "chapter_number": 11.2,

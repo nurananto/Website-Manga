@@ -20,7 +20,8 @@
   "covers": [
     "manga/ZunouBattle/covers/cover.webp",
     "manga/ZunouBattle/covers/cover@tablet.webp",
-    "manga/ZunouBattle/covers/cover@mobile.webp"
+    "manga/ZunouBattle/covers/cover@mobile.webp",
+    "manga/ZunouBattle/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/00fccb9d-c43b-4083-b68d-693f5501ea78/ore-wa-gakuen-zunou-battle-no-enshutsuka-jishou-mobu-ga-kage-kara-egaku-saikyou-shujinkou-musou",
   "raw_url": "https://comic-gardo.com/episode/12207421983659774808",
@@ -44,7 +45,7 @@
   },
   "total_views": 727,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
@@ -52,13 +53,15 @@
       "keys": [
         "manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c.webp",
         "manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@tablet.webp",
-        "manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@mobile.webp"
+        "manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@mobile.webp",
+        "manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
-  "cover_version": 4,
+  "cover_version": 5,
   "detail_views": 266,
   "view_sync_cutoff": "2026-09-08 17:00:01",
-  "notif_image": "page1"
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

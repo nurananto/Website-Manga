@@ -20,7 +20,8 @@
   "covers": [
     "manga/Amari-chan/covers/cover.webp",
     "manga/Amari-chan/covers/cover@tablet.webp",
-    "manga/Amari-chan/covers/cover@mobile.webp"
+    "manga/Amari-chan/covers/cover@mobile.webp",
+    "manga/Amari-chan/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/624d6ceb-768d-40a7-8412-84e083afbdb1/kanojo-ni-shitai-joshi-ichii-no-tonari-de-mitsuketa-amari-chan",
   "raw_url": "https://comic-walker.com/detail/KC_006262_S?episodeType=first",
@@ -49,7 +50,7 @@
   },
   "total_views": 186,
   "mangadex_cover": "c402aa68-08d7-49da-9fbd-7b84a9da4f7c.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "6ffed041-aa59-49e2-b79f-dac40ac0ef53.jpg",
@@ -57,9 +58,10 @@
       "keys": [
         "manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53.webp",
         "manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@tablet.webp",
-        "manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@mobile.webp"
+        "manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@mobile.webp",
+        "manga/Amari-chan/covers/gallery/6ffed041-aa59-49e2-b79f-dac40ac0ef53@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "c402aa68-08d7-49da-9fbd-7b84a9da4f7c.jpg",
@@ -67,13 +69,15 @@
       "keys": [
         "manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c.webp",
         "manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@tablet.webp",
-        "manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@mobile.webp"
+        "manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@mobile.webp",
+        "manga/Amari-chan/covers/gallery/c402aa68-08d7-49da-9fbd-7b84a9da4f7c@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 71,
   "view_sync_cutoff": "2026-09-08 17:00:01",
-  "cover_version": 3,
-  "notif_image": "page1"
+  "cover_version": 4,
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

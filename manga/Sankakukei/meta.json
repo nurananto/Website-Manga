@@ -19,7 +19,8 @@
   "covers": [
     "manga/Sankakukei/covers/cover.webp",
     "manga/Sankakukei/covers/cover@tablet.webp",
-    "manga/Sankakukei/covers/cover@mobile.webp"
+    "manga/Sankakukei/covers/cover@mobile.webp",
+    "manga/Sankakukei/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/e6d70578-d6b2-4c60-a2f4-7ab16e515480/seishun-wa-sankakukei-no-loop",
   "raw_url": "https://bookwalker.jp/series/58697/list/",
@@ -42,7 +43,7 @@
   },
   "total_views": 170,
   "mangadex_cover": "4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.jpg",
@@ -50,13 +51,15 @@
       "keys": [
         "manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16.webp",
         "manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16@tablet.webp",
-        "manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16@mobile.webp"
+        "manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16@mobile.webp",
+        "manga/Sankakukei/covers/gallery/4cf5a0cc-9123-43bd-bf54-c5f8c0aa9e16@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 44,
   "view_sync_cutoff": "2026-09-07 17:01:24",
-  "cover_version": 2,
-  "notif_image": "page1"
+  "cover_version": 3,
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

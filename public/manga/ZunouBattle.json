@@ -20,7 +20,8 @@
   "covers": [
     "manga/ZunouBattle/covers/cover.webp",
     "manga/ZunouBattle/covers/cover@tablet.webp",
-    "manga/ZunouBattle/covers/cover@mobile.webp"
+    "manga/ZunouBattle/covers/cover@mobile.webp",
+    "manga/ZunouBattle/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/00fccb9d-c43b-4083-b68d-693f5501ea78/ore-wa-gakuen-zunou-battle-no-enshutsuka-jishou-mobu-ga-kage-kara-egaku-saikyou-shujinkou-musou",
   "raw_url": "https://comic-gardo.com/episode/12207421983659774808",
@@ -44,29 +45,32 @@
   },
   "total_views": 727,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c.webp?v=4",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@tablet.webp?v=4",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@mobile.webp?v=4"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c.webp?v=5",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@tablet.webp?v=5",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@mobile.webp?v=5",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/gallery/6b50c641-b583-4a60-a31e-82980f55b08c@thumb.webp?v=5"
       }
     }
   ],
-  "cover_version": 4,
+  "cover_version": 5,
   "detail_views": 266,
   "notif_image": "page1",
+  "cover_source": "mangadex",
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
-  "rating": 8.08,
+  "rating": 8.09,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=4",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=5",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=4",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@tablet.webp?v=4",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@mobile.webp?v=4"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=5",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@tablet.webp?v=5",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@mobile.webp?v=5",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover@thumb.webp?v=5"
   },
   "chapters": [
     {

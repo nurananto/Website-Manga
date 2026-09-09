@@ -19,7 +19,8 @@
   "covers": [
     "manga/UchinoSeiso-kei/covers/cover.webp",
     "manga/UchinoSeiso-kei/covers/cover@tablet.webp",
-    "manga/UchinoSeiso-kei/covers/cover@mobile.webp"
+    "manga/UchinoSeiso-kei/covers/cover@mobile.webp",
+    "manga/UchinoSeiso-kei/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/5993c10b-c49e-4771-9a3a-8b8436b12d80/uchi-no-seiso-kei-iinchou-ga-katsute-chuunibyou-idol-datta-koto-wo-ore-dake-ga-shitteiru",
   "raw_url": "https://comic-days.com/episode/2550912965858307088",
@@ -43,7 +44,7 @@
   },
   "total_views": 128,
   "mangadex_cover": "6da6cf64-c44f-4153-801e-77cdf9a92d3b.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "10d163e1-853d-4bbb-9131-b99534a1836b.jpg",
@@ -51,9 +52,10 @@
       "keys": [
         "manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b.webp",
         "manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@tablet.webp",
-        "manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@mobile.webp"
+        "manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@mobile.webp",
+        "manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "c95c3728-3229-41d7-9d11-e2a01ec94333.jpg",
@@ -61,9 +63,10 @@
       "keys": [
         "manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333.webp",
         "manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@tablet.webp",
-        "manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@mobile.webp"
+        "manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@mobile.webp",
+        "manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "6da6cf64-c44f-4153-801e-77cdf9a92d3b.jpg",
@@ -71,13 +74,15 @@
       "keys": [
         "manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b.webp",
         "manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@tablet.webp",
-        "manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@mobile.webp"
+        "manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@mobile.webp",
+        "manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
-  "cover_version": 3,
+  "cover_version": 4,
   "detail_views": 66,
   "view_sync_cutoff": "2026-09-03 17:00:42",
-  "notif_image": "page1"
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

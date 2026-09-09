@@ -55,7 +55,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@mobile.webp?v=3"
       }
     },
     {
@@ -64,7 +65,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@mobile.webp?v=3"
       }
     },
     {
@@ -73,7 +75,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@mobile.webp?v=3"
       }
     }
   ],
@@ -88,7 +91,8 @@
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover.webp?v=3",
     "tablet": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@mobile.webp?v=3"
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@mobile.webp?v=3",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {

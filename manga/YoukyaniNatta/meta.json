@@ -17,7 +17,8 @@
   "covers": [
     "manga/YoukyaniNatta/covers/cover.webp",
     "manga/YoukyaniNatta/covers/cover@tablet.webp",
-    "manga/YoukyaniNatta/covers/cover@mobile.webp"
+    "manga/YoukyaniNatta/covers/cover@mobile.webp",
+    "manga/YoukyaniNatta/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/cfcb65ff-cf9b-4628-a666-76d1b06553dc/youkya-ni-natta-ore-no-seishun-shijou-shugi",
   "raw_url": "https://www.manga-up.com/titles/1388",
@@ -33,7 +34,7 @@
   },
   "total_views": 46,
   "mangadex_cover": "2c142b06-cf48-405d-b5e6-5af0c1651688.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "3eaf02cf-980c-44af-9ab9-2032f7458fb8.jpg",
@@ -41,9 +42,10 @@
       "keys": [
         "manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8.webp",
         "manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@tablet.webp",
-        "manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@mobile.webp"
+        "manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@mobile.webp",
+        "manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "2c142b06-cf48-405d-b5e6-5af0c1651688.jpg",
@@ -51,14 +53,16 @@
       "keys": [
         "manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688.webp",
         "manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@tablet.webp",
-        "manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@mobile.webp"
+        "manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@mobile.webp",
+        "manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 19,
   "view_sync_cutoff": "2026-09-02 17:00:22",
-  "cover_version": 2,
+  "cover_version": 3,
   "notif_image": "page1",
-  "update_schedule": "Selasa"
+  "update_schedule": "Selasa",
+  "cover_source": "mangadex"
 }

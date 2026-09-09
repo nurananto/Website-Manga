@@ -41,7 +41,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6.webp?v=2",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6@mobile.webp?v=2"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6@mobile.webp?v=2",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6@mobile.webp?v=2"
       }
     }
   ],
@@ -53,7 +54,8 @@
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover.webp?v=2",
     "tablet": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover@mobile.webp?v=2"
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover@mobile.webp?v=2",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/InkyaDanshi/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {

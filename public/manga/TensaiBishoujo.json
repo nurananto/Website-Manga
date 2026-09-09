@@ -42,7 +42,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f@mobile.webp?v=3"
       }
     },
     {
@@ -51,7 +52,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp?v=3"
       }
     }
   ],
@@ -66,7 +68,8 @@
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover.webp?v=3",
     "tablet": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=3"
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=3",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/TensaiBishoujo/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {

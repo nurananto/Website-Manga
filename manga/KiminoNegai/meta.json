@@ -19,7 +19,8 @@
   "covers": [
     "manga/KiminoNegai/covers/cover.webp",
     "manga/KiminoNegai/covers/cover@tablet.webp",
-    "manga/KiminoNegai/covers/cover@mobile.webp"
+    "manga/KiminoNegai/covers/cover@mobile.webp",
+    "manga/KiminoNegai/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/90d81edd-accb-4c8d-b44c-e38254d77935/kimi-no-negai-ga-kanau-made",
   "raw_url": "https://bookwalker.jp/series/148182/list/",
@@ -44,7 +45,7 @@
   },
   "total_views": 49,
   "mangadex_cover": "b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b.jpg",
@@ -52,9 +53,10 @@
       "keys": [
         "manga/KiminoNegai/covers/gallery/b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b.webp",
         "manga/KiminoNegai/covers/gallery/b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b@tablet.webp",
-        "manga/KiminoNegai/covers/gallery/b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b@mobile.webp"
+        "manga/KiminoNegai/covers/gallery/b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b@mobile.webp",
+        "manga/KiminoNegai/covers/gallery/b91d3dd1-3a11-49f0-afe7-1fd0ae32bd0b@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "e468847e-fee9-453b-a9ec-215f0128154c.jpg",
@@ -62,13 +64,15 @@
       "keys": [
         "manga/KiminoNegai/covers/gallery/e468847e-fee9-453b-a9ec-215f0128154c.webp",
         "manga/KiminoNegai/covers/gallery/e468847e-fee9-453b-a9ec-215f0128154c@tablet.webp",
-        "manga/KiminoNegai/covers/gallery/e468847e-fee9-453b-a9ec-215f0128154c@mobile.webp"
+        "manga/KiminoNegai/covers/gallery/e468847e-fee9-453b-a9ec-215f0128154c@mobile.webp",
+        "manga/KiminoNegai/covers/gallery/e468847e-fee9-453b-a9ec-215f0128154c@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 17,
   "view_sync_cutoff": "2026-09-07 17:01:24",
-  "cover_version": 2,
-  "notif_image": "page1"
+  "cover_version": 3,
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

@@ -48,7 +48,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697.webp?v=2",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697@mobile.webp?v=2"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697@mobile.webp?v=2",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697@mobile.webp?v=2"
       }
     },
     {
@@ -57,7 +58,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3.webp?v=2",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3@mobile.webp?v=2"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3@mobile.webp?v=2",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3@mobile.webp?v=2"
       }
     }
   ],
@@ -69,7 +71,8 @@
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/cover.webp?v=2",
     "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/cover@mobile.webp?v=2"
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/cover@mobile.webp?v=2",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/ClassMaid/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {

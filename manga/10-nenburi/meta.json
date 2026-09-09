@@ -19,7 +19,8 @@
   "covers": [
     "manga/10-nenburi/covers/cover.webp",
     "manga/10-nenburi/covers/cover@tablet.webp",
-    "manga/10-nenburi/covers/cover@mobile.webp"
+    "manga/10-nenburi/covers/cover@mobile.webp",
+    "manga/10-nenburi/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/26854d1a-dfd0-4e5c-b6d1-ab291035b8cc/10-nen-buri-ni-saikai-shita-kusogaki-wa-seijun-bishoujo-jk-ni-seichou-shiteita",
   "raw_url": "https://comic-gardo.com/episode/2550912965031159065",
@@ -57,7 +58,7 @@
   },
   "total_views": 462,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "6d676869-6140-44ed-8210-58264ae612df.jpg",
@@ -65,9 +66,10 @@
       "keys": [
         "manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df.webp",
         "manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@tablet.webp",
-        "manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@mobile.webp"
+        "manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@mobile.webp",
+        "manga/10-nenburi/covers/gallery/6d676869-6140-44ed-8210-58264ae612df@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "254730e0-71bd-4008-9c08-e9d9d1d0989e.jpg",
@@ -75,9 +77,10 @@
       "keys": [
         "manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e.webp",
         "manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@tablet.webp",
-        "manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@mobile.webp"
+        "manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@mobile.webp",
+        "manga/10-nenburi/covers/gallery/254730e0-71bd-4008-9c08-e9d9d1d0989e@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
@@ -85,13 +88,15 @@
       "keys": [
         "manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5.webp",
         "manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@tablet.webp",
-        "manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@mobile.webp"
+        "manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@mobile.webp",
+        "manga/10-nenburi/covers/gallery/b35a81f1-40b2-4a0b-9151-64d2dd5867c5@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 130,
   "view_sync_cutoff": "2026-09-08 17:00:01",
-  "cover_version": 2,
-  "notif_image": "page1"
+  "cover_version": 3,
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

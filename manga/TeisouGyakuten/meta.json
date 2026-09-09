@@ -22,7 +22,8 @@
   "covers": [
     "manga/TeisouGyakuten/covers/cover.webp",
     "manga/TeisouGyakuten/covers/cover@tablet.webp",
-    "manga/TeisouGyakuten/covers/cover@mobile.webp"
+    "manga/TeisouGyakuten/covers/cover@mobile.webp",
+    "manga/TeisouGyakuten/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/8556c131-23ed-42d6-98ba-5f2aa5037843/teisou-gyakuten-sekai-nara-moteru-to-omotte-itara",
   "raw_url": "https://comic-walker.com/detail/KC_007283_S?episodeType=first",
@@ -44,7 +45,7 @@
   },
   "total_views": 288,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "9afc7e54-6049-4ad9-9592-451a9a11a7f8.jpg",
@@ -52,9 +53,10 @@
       "keys": [
         "manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8.webp",
         "manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@tablet.webp",
-        "manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@mobile.webp"
+        "manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@mobile.webp",
+        "manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
@@ -62,13 +64,15 @@
       "keys": [
         "manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f.webp",
         "manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@tablet.webp",
-        "manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@mobile.webp"
+        "manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@mobile.webp",
+        "manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 85,
   "view_sync_cutoff": "2026-09-08 17:00:01",
-  "cover_version": 2,
-  "notif_image": "page1"
+  "cover_version": 3,
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

@@ -54,7 +54,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.webp?v=2",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@mobile.webp?v=2"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@mobile.webp?v=2",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@mobile.webp?v=2"
       }
     }
   ],
@@ -66,7 +67,8 @@
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover.webp?v=2",
     "tablet": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover@mobile.webp?v=2"
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover@mobile.webp?v=2",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {

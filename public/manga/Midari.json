@@ -53,7 +53,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/920d8050-1bbe-4754-890f-eb847416a18e.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/920d8050-1bbe-4754-890f-eb847416a18e@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/920d8050-1bbe-4754-890f-eb847416a18e@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/920d8050-1bbe-4754-890f-eb847416a18e@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/920d8050-1bbe-4754-890f-eb847416a18e@mobile.webp?v=3"
       }
     },
     {
@@ -62,7 +63,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@mobile.webp?v=3"
       }
     }
   ],
@@ -77,7 +79,8 @@
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover.webp?v=3",
     "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@mobile.webp?v=3"
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@mobile.webp?v=3",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {

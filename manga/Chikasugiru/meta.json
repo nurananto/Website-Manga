@@ -17,7 +17,8 @@
   "covers": [
     "manga/Chikasugiru/covers/cover.webp",
     "manga/Chikasugiru/covers/cover@tablet.webp",
-    "manga/Chikasugiru/covers/cover@mobile.webp"
+    "manga/Chikasugiru/covers/cover@mobile.webp",
+    "manga/Chikasugiru/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/c679bf28-e054-4bb7-93e6-18c089ee79f1/chikasugiru-futari",
   "raw_url": "https://comic-walker.com/detail/KC_008362_S",
@@ -45,7 +46,7 @@
   },
   "total_views": 150,
   "mangadex_cover": "fadafe71-37cd-4c73-ac98-59fd79e07f58.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "fadafe71-37cd-4c73-ac98-59fd79e07f58.jpg",
@@ -53,13 +54,15 @@
       "keys": [
         "manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58.webp",
         "manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58@tablet.webp",
-        "manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58@mobile.webp"
+        "manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58@mobile.webp",
+        "manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 54,
   "view_sync_cutoff": "2026-09-08 17:00:01",
-  "cover_version": 2,
-  "notif_image": "page1"
+  "cover_version": 3,
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

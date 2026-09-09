@@ -42,7 +42,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c@mobile.webp?v=3"
       }
     }
   ],
@@ -55,7 +56,8 @@
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover.webp?v=3",
     "tablet": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover@mobile.webp?v=3"
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover@mobile.webp?v=3",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Mememe/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {

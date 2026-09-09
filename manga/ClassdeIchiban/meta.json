@@ -20,7 +20,8 @@
   "covers": [
     "manga/ClassdeIchiban/covers/cover.webp",
     "manga/ClassdeIchiban/covers/cover@tablet.webp",
-    "manga/ClassdeIchiban/covers/cover@mobile.webp"
+    "manga/ClassdeIchiban/covers/cover@mobile.webp",
+    "manga/ClassdeIchiban/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/acfd6902-b39c-4b7d-91a8-9825dda4ede8/class-de-ichiban-kawaii-gal-wo-ezuke-shiteiru-hanashi",
   "raw_url": "https://www.manga-up.com/titles/1540",
@@ -51,7 +52,7 @@
   },
   "total_views": 255,
   "mangadex_cover": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "2875a3ae-a8a0-42da-b963-1d342b80f45a.jpg",
@@ -59,9 +60,10 @@
       "keys": [
         "manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a.webp",
         "manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@tablet.webp",
-        "manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@mobile.webp"
+        "manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@mobile.webp",
+        "manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "ab35247f-dc63-4aa6-a01a-7ebe1353ab41.jpg",
@@ -69,13 +71,15 @@
       "keys": [
         "manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41.webp",
         "manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@tablet.webp",
-        "manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@mobile.webp"
+        "manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@mobile.webp",
+        "manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 101,
   "view_sync_cutoff": "2026-09-08 17:00:01",
-  "cover_version": 2,
-  "notif_image": "page1"
+  "cover_version": 3,
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

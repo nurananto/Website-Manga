@@ -59,7 +59,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/1ff29f3f-9318-47e4-88da-f4cf5793c4fb.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/1ff29f3f-9318-47e4-88da-f4cf5793c4fb@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/1ff29f3f-9318-47e4-88da-f4cf5793c4fb@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/1ff29f3f-9318-47e4-88da-f4cf5793c4fb@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/1ff29f3f-9318-47e4-88da-f4cf5793c4fb@mobile.webp?v=3"
       }
     },
     {
@@ -68,7 +69,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@mobile.webp?v=3"
       }
     },
     {
@@ -77,7 +79,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@mobile.webp?v=3"
       }
     }
   ],
@@ -92,7 +95,8 @@
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover.webp?v=3",
     "tablet": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp?v=3"
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp?v=3",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Madogiwa/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {

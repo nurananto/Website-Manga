@@ -51,7 +51,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/gallery/d72b641b-59bc-4103-82b2-d3c7fc584bc7.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/gallery/d72b641b-59bc-4103-82b2-d3c7fc584bc7@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/gallery/d72b641b-59bc-4103-82b2-d3c7fc584bc7@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/gallery/d72b641b-59bc-4103-82b2-d3c7fc584bc7@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/gallery/d72b641b-59bc-4103-82b2-d3c7fc584bc7@mobile.webp?v=3"
       }
     }
   ],
@@ -63,7 +64,8 @@
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover.webp?v=3",
     "tablet": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@mobile.webp?v=3"
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@mobile.webp?v=3",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/NanimoDekinai/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {

@@ -22,7 +22,8 @@
   "covers": [
     "manga/TeisouGyakuten/covers/cover.webp",
     "manga/TeisouGyakuten/covers/cover@tablet.webp",
-    "manga/TeisouGyakuten/covers/cover@mobile.webp"
+    "manga/TeisouGyakuten/covers/cover@mobile.webp",
+    "manga/TeisouGyakuten/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/8556c131-23ed-42d6-98ba-5f2aa5037843/teisou-gyakuten-sekai-nara-moteru-to-omotte-itara",
   "raw_url": "https://comic-walker.com/detail/KC_007283_S?episodeType=first",
@@ -44,38 +45,42 @@
   },
   "total_views": 288,
   "mangadex_cover": "76a2ad9a-e0ac-4612-b707-b35db637fc9f.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/76a2ad9a-e0ac-4612-b707-b35db637fc9f@thumb.webp?v=3"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/gallery/9afc7e54-6049-4ad9-9592-451a9a11a7f8@thumb.webp?v=3"
       }
     }
   ],
   "detail_views": 85,
-  "cover_version": 2,
+  "cover_version": 3,
   "notif_image": "page1",
+  "cover_source": "mangadex",
   "mangadex_id": "8556c131-23ed-42d6-98ba-5f2aa5037843",
   "rating": 7.45,
   "next_update": "2026-10-06",
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@mobile.webp?v=3",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover@thumb.webp?v=3"
   },
   "chapters": [
     {
@@ -84,14 +89,14 @@
       "pages": 19,
       "notif_image": "17",
       "release_date": "2026-09-01T18:26:28+07:00",
+      "next_update": "2026-10-06",
       "r2_folder": 8.2,
       "id": "TeisouGyakuten-ch-8.2",
       "r2_prefix": "manga/TeisouGyakuten/8.2/",
       "title": "Ch. 8.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 29,
-      "next_update": "2026-10-06"
+      "views": 29
     },
     {
       "chapter_number": 8.1,

@@ -17,7 +17,8 @@
   "covers": [
     "manga/Mutsuko/covers/cover.webp",
     "manga/Mutsuko/covers/cover@tablet.webp",
-    "manga/Mutsuko/covers/cover@mobile.webp"
+    "manga/Mutsuko/covers/cover@mobile.webp",
+    "manga/Mutsuko/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/12db645e-8482-4f58-8ba3-44e15d07f614/mutsuko-seiwo-tsukemasu",
   "raw_url": "https://comic-walker.com/detail/KC_007406_S/episodes/KC_0074060000200011_E?episodeType=first",
@@ -30,29 +31,32 @@
   },
   "total_views": 28,
   "mangadex_cover": "80b2f022-46fc-4506-919a-60c0382e797e.jpg",
-  "cover_widths": "1280x960x640q75",
-  "cover_version": 3,
+  "cover_widths": "1280x960x640x400q75",
+  "cover_version": 4,
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e.webp?v=3",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e@mobile.webp?v=3"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e.webp?v=4",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e@tablet.webp?v=4",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e@mobile.webp?v=4",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/gallery/80b2f022-46fc-4506-919a-60c0382e797e@thumb.webp?v=4"
       }
     }
   ],
   "detail_views": 13,
   "notif_image": "page1",
+  "cover_source": "mangadex",
   "mangadex_id": "12db645e-8482-4f58-8ba3-44e15d07f614",
   "rating": 8.04,
   "next_update": "2026-10-02",
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=3",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=4",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=3",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover@mobile.webp?v=3"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=4",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover@tablet.webp?v=4",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover@mobile.webp?v=4",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover@thumb.webp?v=4"
   },
   "chapters": [
     {
@@ -60,14 +64,14 @@
       "lock_hours": 0,
       "pages": 32,
       "release_date": "2026-07-09T20:33:22+07:00",
+      "next_update": "2026-10-02",
       "r2_folder": 3,
       "id": "Mutsuko-ch-3",
       "r2_prefix": "manga/Mutsuko/3/",
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4,
-      "next_update": "2026-10-02"
+      "views": 4
     },
     {
       "chapter_number": 2,

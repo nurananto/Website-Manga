@@ -37,7 +37,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a.webp?v=2",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@mobile.webp?v=2"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@mobile.webp?v=2",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/gallery/6beb2e72-2c1b-443f-8348-b6a0a96e7d6a@mobile.webp?v=2"
       }
     }
   ],
@@ -51,7 +52,8 @@
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover.webp?v=2",
     "tablet": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@mobile.webp?v=2"
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@mobile.webp?v=2",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/IkemenJoshi/covers/cover@mobile.webp?v=2"
   },
   "chapters": [
     {

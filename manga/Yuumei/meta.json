@@ -19,7 +19,8 @@
   "covers": [
     "manga/Yuumei/covers/cover.webp",
     "manga/Yuumei/covers/cover@tablet.webp",
-    "manga/Yuumei/covers/cover@mobile.webp"
+    "manga/Yuumei/covers/cover@mobile.webp",
+    "manga/Yuumei/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/9aebe60e-777f-4a58-a3bf-143c3096b94f/yuumei-vtuber-no-ani-dakedo-nazeka-ore-ga-yuumei-ni-natteita",
   "raw_url": "https://www.manga-up.com/titles/1289/chapters/266183",
@@ -59,7 +60,7 @@
   },
   "total_views": 817,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "23eafd3d-5847-42f6-9909-74c4b3dee9a8.jpg",
@@ -67,9 +68,10 @@
       "keys": [
         "manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8.webp",
         "manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@tablet.webp",
-        "manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@mobile.webp"
+        "manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@mobile.webp",
+        "manga/Yuumei/covers/gallery/23eafd3d-5847-42f6-9909-74c4b3dee9a8@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "493c315e-5492-4d76-80e9-1f55f9e5849e.jpg",
@@ -77,9 +79,10 @@
       "keys": [
         "manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e.webp",
         "manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@tablet.webp",
-        "manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@mobile.webp"
+        "manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@mobile.webp",
+        "manga/Yuumei/covers/gallery/493c315e-5492-4d76-80e9-1f55f9e5849e@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
@@ -87,14 +90,16 @@
       "keys": [
         "manga/Yuumei/covers/gallery/cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.webp",
         "manga/Yuumei/covers/gallery/cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991@tablet.webp",
-        "manga/Yuumei/covers/gallery/cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991@mobile.webp"
+        "manga/Yuumei/covers/gallery/cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991@mobile.webp",
+        "manga/Yuumei/covers/gallery/cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 205,
-  "cover_version": 4,
+  "cover_version": 5,
   "view_sync_cutoff": "2026-09-08 17:00:01",
   "notif_image": "page1",
-  "update_schedule": "Rabu (minggu ke-2 & ke-4)"
+  "update_schedule": "Rabu (minggu ke-2 & ke-4)",
+  "cover_source": "mangadex"
 }

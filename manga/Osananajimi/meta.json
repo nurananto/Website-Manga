@@ -20,7 +20,8 @@
   "covers": [
     "manga/Osananajimi/covers/cover.webp",
     "manga/Osananajimi/covers/cover@tablet.webp",
-    "manga/Osananajimi/covers/cover@mobile.webp"
+    "manga/Osananajimi/covers/cover@mobile.webp",
+    "manga/Osananajimi/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/36cf3daf-9770-4f83-a69c-0d5971b5b43d/osananajimi-ni-kage-de-tsugou-no-yoi-otoko-yobawari-sareta-ore-wa-koui-o-reset-shite-futsuu-ni",
   "raw_url": "https://www.manga-up.com/titles/1680",
@@ -51,7 +52,7 @@
   },
   "total_views": 1474,
   "mangadex_cover": "7924e82c-7b57-4fda-9800-8dde50833030.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "a1bd83b1-b73e-430f-8f3b-cd194cb2c029.jpg",
@@ -59,9 +60,10 @@
       "keys": [
         "manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029.webp",
         "manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029@tablet.webp",
-        "manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029@mobile.webp"
+        "manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029@mobile.webp",
+        "manga/Osananajimi/covers/gallery/a1bd83b1-b73e-430f-8f3b-cd194cb2c029@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "7924e82c-7b57-4fda-9800-8dde50833030.jpg",
@@ -69,14 +71,16 @@
       "keys": [
         "manga/Osananajimi/covers/gallery/7924e82c-7b57-4fda-9800-8dde50833030.webp",
         "manga/Osananajimi/covers/gallery/7924e82c-7b57-4fda-9800-8dde50833030@tablet.webp",
-        "manga/Osananajimi/covers/gallery/7924e82c-7b57-4fda-9800-8dde50833030@mobile.webp"
+        "manga/Osananajimi/covers/gallery/7924e82c-7b57-4fda-9800-8dde50833030@mobile.webp",
+        "manga/Osananajimi/covers/gallery/7924e82c-7b57-4fda-9800-8dde50833030@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 382,
   "view_sync_cutoff": "2026-09-08 17:00:01",
-  "cover_version": 4,
+  "cover_version": 5,
   "notif_image": "page1",
-  "update_schedule": "Sabtu"
+  "update_schedule": "Sabtu",
+  "cover_source": "mangadex"
 }

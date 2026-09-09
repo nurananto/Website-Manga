@@ -19,7 +19,8 @@
   "covers": [
     "manga/Negatte/covers/cover.webp",
     "manga/Negatte/covers/cover@tablet.webp",
-    "manga/Negatte/covers/cover@mobile.webp"
+    "manga/Negatte/covers/cover@mobile.webp",
+    "manga/Negatte/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/748d2aab-cea8-4ffb-89b3-e716872cb027/negatte-mo-nai-tsuihou-go-kara-no-slow-life-intai-shita-hazu-ga-nariyuki-de-bishoujo-gyaru-no",
   "raw_url": "https://bookwalker.jp/series/58127/list/",
@@ -47,7 +48,7 @@
   },
   "total_views": 306,
   "mangadex_cover": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "dee7c542-0efd-4e72-8df1-5d71a2b08c6d.jpg",
@@ -55,9 +56,10 @@
       "keys": [
         "manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d.webp",
         "manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@tablet.webp",
-        "manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@mobile.webp"
+        "manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@mobile.webp",
+        "manga/Negatte/covers/gallery/dee7c542-0efd-4e72-8df1-5d71a2b08c6d@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "ba037f6a-4e4c-4bc3-a8b9-4b200602d268.jpg",
@@ -65,9 +67,10 @@
       "keys": [
         "manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268.webp",
         "manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@tablet.webp",
-        "manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@mobile.webp"
+        "manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@mobile.webp",
+        "manga/Negatte/covers/gallery/ba037f6a-4e4c-4bc3-a8b9-4b200602d268@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "0c426de6-aa3a-4957-a5b8-6ba7ca87022e.jpg",
@@ -75,13 +78,15 @@
       "keys": [
         "manga/Negatte/covers/gallery/0c426de6-aa3a-4957-a5b8-6ba7ca87022e.webp",
         "manga/Negatte/covers/gallery/0c426de6-aa3a-4957-a5b8-6ba7ca87022e@tablet.webp",
-        "manga/Negatte/covers/gallery/0c426de6-aa3a-4957-a5b8-6ba7ca87022e@mobile.webp"
+        "manga/Negatte/covers/gallery/0c426de6-aa3a-4957-a5b8-6ba7ca87022e@mobile.webp",
+        "manga/Negatte/covers/gallery/0c426de6-aa3a-4957-a5b8-6ba7ca87022e@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
-  "cover_version": 3,
+  "cover_version": 4,
   "detail_views": 88,
   "view_sync_cutoff": "2026-09-08 17:00:01",
-  "notif_image": "page1"
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

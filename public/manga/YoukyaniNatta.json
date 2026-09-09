@@ -17,7 +17,8 @@
   "covers": [
     "manga/YoukyaniNatta/covers/cover.webp",
     "manga/YoukyaniNatta/covers/cover@tablet.webp",
-    "manga/YoukyaniNatta/covers/cover@mobile.webp"
+    "manga/YoukyaniNatta/covers/cover@mobile.webp",
+    "manga/YoukyaniNatta/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/cfcb65ff-cf9b-4628-a666-76d1b06553dc/youkya-ni-natta-ore-no-seishun-shijou-shugi",
   "raw_url": "https://www.manga-up.com/titles/1388",
@@ -33,38 +34,43 @@
   },
   "total_views": 46,
   "mangadex_cover": "2c142b06-cf48-405d-b5e6-5af0c1651688.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/2c142b06-cf48-405d-b5e6-5af0c1651688@thumb.webp?v=3"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/gallery/3eaf02cf-980c-44af-9ab9-2032f7458fb8@thumb.webp?v=3"
       }
     }
   ],
   "detail_views": 19,
-  "cover_version": 2,
+  "cover_version": 3,
   "notif_image": "page1",
+  "update_schedule": "Selasa",
+  "cover_source": "mangadex",
   "mangadex_id": "cfcb65ff-cf9b-4628-a666-76d1b06553dc",
   "rating": 8.29,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@mobile.webp?v=3",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/YoukyaniNatta/covers/cover@thumb.webp?v=3"
   },
   "chapters": [
     {
@@ -145,6 +151,5 @@
       "isLocked": false,
       "views": 8
     }
-  ],
-  "update_schedule": "Selasa"
+  ]
 }

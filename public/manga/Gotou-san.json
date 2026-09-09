@@ -49,7 +49,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44@mobile.webp?v=3"
       }
     },
     {
@@ -58,7 +59,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625@mobile.webp?v=3"
       }
     },
     {
@@ -67,7 +69,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c@mobile.webp?v=3"
       }
     },
     {
@@ -76,7 +79,8 @@
       "urls": {
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26.webp?v=3",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26@mobile.webp?v=3"
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26@mobile.webp?v=3"
       }
     }
   ],
@@ -89,7 +93,8 @@
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/cover.webp?v=3",
     "tablet": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/cover@mobile.webp?v=3"
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/cover@mobile.webp?v=3",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Gotou-san/covers/cover@mobile.webp?v=3"
   },
   "chapters": [
     {
