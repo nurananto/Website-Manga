@@ -10,16 +10,68 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install Wrangler
-        run: npm install -g wrangler@latest
+      # Dipakai step notif Discord di akhir buat hitung durasi total job.
+      - name: Catat waktu mulai
+        id: start
+        run: echo "epoch=$(date +%s)" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      # Pakai wrangler yang sudah dikunci di package.json (bukan @latest) +
+      # cache npm — sama kayak workflow lain, jadi biasanya sudah warm
+      # (key-nya package-lock.json yang sama) dan gak download ulang tiap run.
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
 
       # chapter_read_events = audit log append-only (akses chapter locked, granted/denied).
       # Bukan dedup harian seperti chapter_views, jadi retensi 30 hari cukup longgar
       # buat investigasi sengketa akses tapi tetap mencegah tabel tumbuh tanpa batas.
       - name: Hapus chapter_read_events lebih dari 30 hari
         run: |
-          wrangler d1 execute manga-db --remote --command \
+          npx wrangler d1 execute manga-db --remote --command \
             "DELETE FROM chapter_read_events WHERE occurred_at < datetime('now', '-30 days')"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+
+      # Job ini jarang dilihat manual (jalan bulanan) — notif tiap kali job
+      # selesai (sukses ATAUPUN gagal) ke #github-status, bukan cuma pas gagal,
+      # supaya kelihatan juga kalau durasinya tiba-tiba melonjak (indikasi awal
+      # sebelum benar-benar gagal). Skip aman kalau secret belum diset.
+      - name: Notif Discord (status job)
+        if: always()
+        env:
+          DISCORD_ALERTS_WEBHOOK_URL: ${{ secrets.DISCORD_ALERTS_WEBHOOK_URL }}
+          JOB_STATUS: ${{ job.status }}
+          START_EPOCH: ${{ steps.start.outputs.epoch }}
+        run: |
+          if [ -z "$DISCORD_ALERTS_WEBHOOK_URL" ]; then
+            echo "DISCORD_ALERTS_WEBHOOK_URL belum diset, lewati notif."
+            exit 0
+          fi
+          DURATION=$(( $(date +%s) - START_EPOCH ))
+          DURATION_STR="$((DURATION / 60))m $((DURATION % 60))s"
+          RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          case "$JOB_STATUS" in
+            success)   TITLE="✅ Cleanup D1 Audit Log — berhasil"; COLOR=3066993 ;;
+            cancelled) TITLE="⏹️ Cleanup D1 Audit Log — dibatalkan"; COLOR=9807270 ;;
+            *)         TITLE="❌ Cleanup D1 Audit Log — gagal"; COLOR=15158332 ;;
+          esac
+          PAYLOAD=$(jq -n \
+            --arg title "$TITLE" \
+            --arg url "$RUN_URL" \
+            --arg duration "$DURATION_STR" \
+            --arg trigger "$GITHUB_EVENT_NAME" \
+            --argjson color "$COLOR" \
+            '{embeds: [{title: $title, url: $url, color: $color,
+              fields: [{name: "Durasi", value: $duration, inline: true},
+                       {name: "Trigger", value: $trigger, inline: true}]}]}')
+          curl -s -X POST "$DISCORD_ALERTS_WEBHOOK_URL" \
+            -H "Content-Type: application/json" --data "$PAYLOAD"
