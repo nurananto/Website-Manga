@@ -29,7 +29,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 27,
+    "1": 29,
     "2.1": 10,
     "2.2": 13,
     "2.3": 16,
@@ -41,13 +41,13 @@
     "4.3": 14,
     "5.1": 4,
     "5.2": 14,
-    "5.3": 4,
+    "5.3": 6,
     "5.4": 4,
     "6.1": 4,
     "6.2": 5,
     "6.3": 8
   },
-  "total_views": 293,
+  "total_views": 303,
   "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640x400q75",
@@ -65,7 +65,7 @@
       "widths": "1280x960x640x400q75"
     }
   ],
-  "detail_views": 101,
-  "view_sync_cutoff": "2026-09-08 17:00:01",
+  "detail_views": 107,
+  "view_sync_cutoff": "2026-09-09 17:00:01",
   "update_schedule": "Rabu"
 }
