@@ -19,7 +19,8 @@
   "covers": [
     "manga/TensaiBishoujo/covers/cover.webp",
     "manga/TensaiBishoujo/covers/cover@tablet.webp",
-    "manga/TensaiBishoujo/covers/cover@mobile.webp"
+    "manga/TensaiBishoujo/covers/cover@mobile.webp",
+    "manga/TensaiBishoujo/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/ee1eb629-79c9-410f-927c-dd7a4cd1d87b/tensai-bishoujo-sanshimai-wa-isourou-ni-dake-choro-kawaii",
   "raw_url": "https://comic-walker.com/detail/KC_006969_S/episodes/KC_0069690000200011_E?episodeType=first",
@@ -34,7 +35,7 @@
   },
   "total_views": 89,
   "mangadex_cover": "5b82e94e-60e6-4413-919e-c0ca483e277f.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "3964fb0f-aa43-492f-a693-a83b70e35371.jpg",
@@ -42,9 +43,10 @@
       "keys": [
         "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371.webp",
         "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@tablet.webp",
-        "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp"
+        "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@mobile.webp",
+        "manga/TensaiBishoujo/covers/gallery/3964fb0f-aa43-492f-a693-a83b70e35371@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "5b82e94e-60e6-4413-919e-c0ca483e277f.jpg",
@@ -52,14 +54,15 @@
       "keys": [
         "manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f.webp",
         "manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f@tablet.webp",
-        "manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f@mobile.webp"
+        "manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f@mobile.webp",
+        "manga/TensaiBishoujo/covers/gallery/5b82e94e-60e6-4413-919e-c0ca483e277f@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 34,
   "view_sync_cutoff": "2026-09-07 17:01:24",
-  "cover_version": 3,
+  "cover_version": 4,
   "notif_image": "page1",
   "cover_source": "mangadex"
 }

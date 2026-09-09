@@ -18,7 +18,8 @@
   "covers": [
     "manga/Suufungo/covers/cover.webp",
     "manga/Suufungo/covers/cover@tablet.webp",
-    "manga/Suufungo/covers/cover@mobile.webp"
+    "manga/Suufungo/covers/cover@mobile.webp",
+    "manga/Suufungo/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/16c34950-954c-4f0d-808e-d8278a546339/suufungo-no-mirai-ga-wakaru-you-ni-natta-kedo-onnagokoro-wa-wakaranai",
   "raw_url": "https://comic-walker.com/detail/KC_005690_S?episodeType=first",
@@ -48,41 +49,42 @@
   },
   "total_views": 304,
   "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@mobile.webp?v=2",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/b681b78e-75ce-4464-8089-50f37f00e0e9@thumb.webp?v=3"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@mobile.webp?v=2",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/gallery/7d301e1e-642b-4b7d-b65b-9777b36e80bf@thumb.webp?v=3"
       }
     }
   ],
   "detail_views": 74,
-  "cover_version": 2,
+  "cover_version": 3,
   "notif_image": "page1",
+  "cover_source": "mangadex",
   "mangadex_id": "16c34950-954c-4f0d-808e-d8278a546339",
   "rating": 7.79,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@mobile.webp?v=2",
-    "thumb": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@mobile.webp?v=3",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Suufungo/covers/cover@thumb.webp?v=3"
   },
   "chapters": [
     {

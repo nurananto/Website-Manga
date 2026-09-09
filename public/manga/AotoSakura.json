@@ -18,7 +18,8 @@
   "covers": [
     "manga/AotoSakura/covers/cover.webp",
     "manga/AotoSakura/covers/cover@tablet.webp",
-    "manga/AotoSakura/covers/cover@mobile.webp"
+    "manga/AotoSakura/covers/cover@mobile.webp",
+    "manga/AotoSakura/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/7cf10b89-2c28-4df5-9087-39f076e79e4a/ao-to-sakura",
   "raw_url": "https://www.manga-up.com/titles/1208",
@@ -29,31 +30,32 @@
   },
   "total_views": 34,
   "mangadex_cover": "8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.jpg",
-  "cover_widths": "1280x960x640q75",
-  "cover_version": 3,
+  "cover_widths": "1280x960x640x400q75",
+  "cover_version": 4,
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.webp?v=3",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@mobile.webp?v=3",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@mobile.webp?v=3"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.webp?v=4",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@tablet.webp?v=4",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@mobile.webp?v=4",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@thumb.webp?v=4"
       }
     }
   ],
   "detail_views": 16,
   "notif_image": "page1",
+  "cover_source": "mangadex",
   "mangadex_id": "7cf10b89-2c28-4df5-9087-39f076e79e4a",
   "rating": 8.38,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover.webp?v=3",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover.webp?v=4",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover.webp?v=3",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@mobile.webp?v=3",
-    "thumb": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@mobile.webp?v=3"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover.webp?v=4",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@tablet.webp?v=4",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@mobile.webp?v=4",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/AotoSakura/covers/cover@thumb.webp?v=4"
   },
   "chapters": [
     {

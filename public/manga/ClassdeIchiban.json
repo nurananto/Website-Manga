@@ -58,36 +58,36 @@
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41.webp?v=3",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@mobile.webp?v=3",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@thumb.webp?v=3"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41.webp?v=4",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@tablet.webp?v=4",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@mobile.webp?v=4",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/ab35247f-dc63-4aa6-a01a-7ebe1353ab41@thumb.webp?v=4"
       }
     },
     {
       "volume": "2",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a.webp?v=3",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@mobile.webp?v=3",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@thumb.webp?v=3"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a.webp?v=4",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@tablet.webp?v=4",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@mobile.webp?v=4",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/gallery/2875a3ae-a8a0-42da-b963-1d342b80f45a@thumb.webp?v=4"
       }
     }
   ],
   "detail_views": 101,
-  "cover_version": 3,
+  "cover_version": 4,
   "notif_image": "page1",
   "cover_source": "mangadex",
   "mangadex_id": "acfd6902-b39c-4b7d-91a8-9825dda4ede8",
   "rating": 7.7,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=3",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=4",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=3",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp?v=3",
-    "thumb": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@thumb.webp?v=3"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover.webp?v=4",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@tablet.webp?v=4",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@mobile.webp?v=4",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/ClassdeIchiban/covers/cover@thumb.webp?v=4"
   },
   "chapters": [
     {

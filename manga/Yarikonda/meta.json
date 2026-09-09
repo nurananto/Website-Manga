@@ -21,7 +21,8 @@
   "covers": [
     "manga/Yarikonda/covers/cover.webp",
     "manga/Yarikonda/covers/cover@tablet.webp",
-    "manga/Yarikonda/covers/cover@mobile.webp"
+    "manga/Yarikonda/covers/cover@mobile.webp",
+    "manga/Yarikonda/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/a605a5d0-21a6-481f-a055-74735ea4f2c2/yarikonda-renai-game-no-akuyaku-ni-tensei-shita-node-gensaku-chishiki-de-heroine-wo-kouryaku-shimasu",
   "raw_url": "https://www.manga-up.com/titles/1518",
@@ -40,7 +41,7 @@
   },
   "total_views": 171,
   "mangadex_cover": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "eaecd9b5-0510-46aa-b65c-a09611fa912b.jpg",
@@ -48,9 +49,10 @@
       "keys": [
         "manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b.webp",
         "manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@tablet.webp",
-        "manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@mobile.webp"
+        "manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@mobile.webp",
+        "manga/Yarikonda/covers/gallery/eaecd9b5-0510-46aa-b65c-a09611fa912b@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "8668678c-bc32-4ada-8374-53d6962ae431.jpg",
@@ -58,9 +60,10 @@
       "keys": [
         "manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431.webp",
         "manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@tablet.webp",
-        "manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@mobile.webp"
+        "manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@mobile.webp",
+        "manga/Yarikonda/covers/gallery/8668678c-bc32-4ada-8374-53d6962ae431@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "62e79661-7c2b-404d-89c8-908abe64ba4f.jpg",
@@ -68,13 +71,15 @@
       "keys": [
         "manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f.webp",
         "manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@tablet.webp",
-        "manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@mobile.webp"
+        "manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@mobile.webp",
+        "manga/Yarikonda/covers/gallery/62e79661-7c2b-404d-89c8-908abe64ba4f@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 54,
-  "cover_version": 3,
+  "cover_version": 4,
   "view_sync_cutoff": "2026-09-07 17:01:24",
-  "notif_image": "page1"
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

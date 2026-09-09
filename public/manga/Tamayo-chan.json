@@ -37,16 +37,16 @@
   "mangadex_cover": "f0327b95-bcb6-4644-a777-97ac48def2c3.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640x400q75",
-  "cover_version": 3,
+  "cover_version": 4,
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3.webp?v=3",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3@mobile.webp?v=3",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3@thumb.webp?v=3"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3.webp?v=4",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3@tablet.webp?v=4",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3@mobile.webp?v=4",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/gallery/f0327b95-bcb6-4644-a777-97ac48def2c3@thumb.webp?v=4"
       }
     }
   ],
@@ -54,12 +54,12 @@
   "mangadex_id": "e0456082-720e-4f5b-8e37-034afe8393ab",
   "rating": 9.25,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=3",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=4",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=3",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@mobile.webp?v=3",
-    "thumb": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@thumb.webp?v=3"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover.webp?v=4",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@tablet.webp?v=4",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@mobile.webp?v=4",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Tamayo-chan/covers/cover@thumb.webp?v=4"
   },
   "chapters": [
     {

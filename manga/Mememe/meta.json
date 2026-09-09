@@ -19,7 +19,8 @@
   "covers": [
     "manga/Mememe/covers/cover.webp",
     "manga/Mememe/covers/cover@tablet.webp",
-    "manga/Mememe/covers/cover@mobile.webp"
+    "manga/Mememe/covers/cover@mobile.webp",
+    "manga/Mememe/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/bb64b3e5-64d1-4d7d-bbd5-e6cd754dd5fa/mememe-no-mememe",
   "raw_url": "https://comic-walker.com/detail/KC_007215_S?episodeType=first",
@@ -33,8 +34,8 @@
   },
   "total_views": 87,
   "mangadex_cover": "4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c.jpg",
-  "cover_widths": "1280x960x640q75",
-  "cover_version": 3,
+  "cover_widths": "1280x960x640x400q75",
+  "cover_version": 4,
   "cover_gallery": [
     {
       "file": "4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c.jpg",
@@ -42,12 +43,14 @@
       "keys": [
         "manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c.webp",
         "manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c@tablet.webp",
-        "manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c@mobile.webp"
+        "manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c@mobile.webp",
+        "manga/Mememe/covers/gallery/4b7d0c4f-2d3d-4aec-9170-71e7a1b4bd7c@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 41,
   "view_sync_cutoff": "2026-09-06 17:01:03",
-  "notif_image": "page1"
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

@@ -18,7 +18,8 @@
   "covers": [
     "manga/InkyaDanshi/covers/cover.webp",
     "manga/InkyaDanshi/covers/cover@tablet.webp",
-    "manga/InkyaDanshi/covers/cover@mobile.webp"
+    "manga/InkyaDanshi/covers/cover@mobile.webp",
+    "manga/InkyaDanshi/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/927d687f-ceb6-4e56-baff-461d6660443a/inkya-danshi-ga-keiken-shita-urayamakeshikaran-na-love-comedy",
   "raw_url": "https://bookwalker.jp/series/485592/",
@@ -32,8 +33,8 @@
   },
   "total_views": 114,
   "mangadex_cover": "6d6bb634-822b-41c9-9249-d2f2c1d87ba6.png",
-  "cover_widths": "1280x960x640q75",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640x400q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "file": "6d6bb634-822b-41c9-9249-d2f2c1d87ba6.png",
@@ -41,11 +42,13 @@
       "keys": [
         "manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6.webp",
         "manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6@tablet.webp",
-        "manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6@mobile.webp"
+        "manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6@mobile.webp",
+        "manga/InkyaDanshi/covers/gallery/6d6bb634-822b-41c9-9249-d2f2c1d87ba6@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 48,
-  "view_sync_cutoff": "2026-09-07 17:01:24"
+  "view_sync_cutoff": "2026-09-07 17:01:24",
+  "cover_source": "mangadex"
 }

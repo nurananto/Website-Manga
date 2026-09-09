@@ -19,7 +19,8 @@
   "covers": [
     "manga/Mendokusai/covers/cover.webp",
     "manga/Mendokusai/covers/cover@tablet.webp",
-    "manga/Mendokusai/covers/cover@mobile.webp"
+    "manga/Mendokusai/covers/cover@mobile.webp",
+    "manga/Mendokusai/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/f2923e0c-8b5e-4758-86ab-5aecc9f6689f/mendokusai-yurei-desu-ga-watashi-to-koi-shite-kuremasu-ka",
   "raw_url": "https://bookwalker.jp/series/517234/",
@@ -45,30 +46,31 @@
   },
   "total_views": 63,
   "mangadex_cover": "ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.jpg",
-  "cover_widths": "1280x960x640q75",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640x400q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@mobile.webp?v=2",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@thumb.webp?v=3"
       }
     }
   ],
   "detail_views": 19,
+  "cover_source": "mangadex",
   "mangadex_id": "f2923e0c-8b5e-4758-86ab-5aecc9f6689f",
   "rating": 8.83,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover@mobile.webp?v=2",
-    "thumb": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover@mobile.webp?v=3",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Mendokusai/covers/cover@thumb.webp?v=3"
   },
   "chapters": [
     {

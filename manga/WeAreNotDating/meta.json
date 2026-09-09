@@ -18,7 +18,8 @@
   "covers": [
     "manga/WeAreNotDating/covers/cover.webp",
     "manga/WeAreNotDating/covers/cover@tablet.webp",
-    "manga/WeAreNotDating/covers/cover@mobile.webp"
+    "manga/WeAreNotDating/covers/cover@mobile.webp",
+    "manga/WeAreNotDating/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/02b80fce-8fd0-46dc-a6e4-a65f701fde4a/uli-an-sagwieo",
   "raw_url": "https://comic.naver.com/webtoon/list?titleId=828670",
@@ -47,7 +48,7 @@
   },
   "total_views": 43,
   "mangadex_cover": "98be450d-fef5-4324-a277-94856f13b8bf.png",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "98be450d-fef5-4324-a277-94856f13b8bf.png",
@@ -55,9 +56,10 @@
       "keys": [
         "manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf.webp",
         "manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@tablet.webp",
-        "manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@mobile.webp"
+        "manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@mobile.webp",
+        "manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "9343b2f1-2a92-428c-a78d-3bf63a95b5b7.png",
@@ -65,9 +67,10 @@
       "keys": [
         "manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7.webp",
         "manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@tablet.webp",
-        "manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@mobile.webp"
+        "manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@mobile.webp",
+        "manga/WeAreNotDating/covers/gallery/9343b2f1-2a92-428c-a78d-3bf63a95b5b7@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "ff110214-8c55-4479-b7d8-bf2fc4658e4e.png",
@@ -75,14 +78,16 @@
       "keys": [
         "manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e.webp",
         "manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@tablet.webp",
-        "manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@mobile.webp"
+        "manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@mobile.webp",
+        "manga/WeAreNotDating/covers/gallery/ff110214-8c55-4479-b7d8-bf2fc4658e4e@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "fb_cover": "https://cdn.nuranantoscans.my.id/manga/WeAreNotDating/covers/gallery/98be450d-fef5-4324-a277-94856f13b8bf.webp",
-  "cover_version": 3,
+  "cover_version": 4,
   "detail_views": 11,
   "view_sync_cutoff": "2026-09-07 17:01:24",
-  "notif_image": "page1"
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

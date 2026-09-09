@@ -19,7 +19,8 @@
   "covers": [
     "manga/AiwoOshiete/covers/cover.webp",
     "manga/AiwoOshiete/covers/cover@tablet.webp",
-    "manga/AiwoOshiete/covers/cover@mobile.webp"
+    "manga/AiwoOshiete/covers/cover@mobile.webp",
+    "manga/AiwoOshiete/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/c14b2a85-ca88-4bf7-8937-87baf95491c0/watashi-ni-ai-wo-oshiete",
   "raw_url": "https://championcross.jp/episodes/312e96c6d46e6/",
@@ -37,7 +38,7 @@
   },
   "total_views": 40,
   "mangadex_cover": "511f749e-21de-4ba8-ab27-b6cd74cbb6e5.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "569f927c-0fb9-440b-9da9-43fd109a8f79.jpg",
@@ -45,9 +46,10 @@
       "keys": [
         "manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79.webp",
         "manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79@tablet.webp",
-        "manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79@mobile.webp"
+        "manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79@mobile.webp",
+        "manga/AiwoOshiete/covers/gallery/569f927c-0fb9-440b-9da9-43fd109a8f79@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "e56a300a-60aa-433e-8589-c8a963f188f8.jpg",
@@ -55,9 +57,10 @@
       "keys": [
         "manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8.webp",
         "manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8@tablet.webp",
-        "manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8@mobile.webp"
+        "manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8@mobile.webp",
+        "manga/AiwoOshiete/covers/gallery/e56a300a-60aa-433e-8589-c8a963f188f8@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff.jpg",
@@ -65,9 +68,10 @@
       "keys": [
         "manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff.webp",
         "manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff@tablet.webp",
-        "manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff@mobile.webp"
+        "manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff@mobile.webp",
+        "manga/AiwoOshiete/covers/gallery/fdeb901c-7618-4dfe-8f61-2c5d9b0b6fff@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "511f749e-21de-4ba8-ab27-b6cd74cbb6e5.jpg",
@@ -75,13 +79,15 @@
       "keys": [
         "manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5.webp",
         "manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5@tablet.webp",
-        "manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5@mobile.webp"
+        "manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5@mobile.webp",
+        "manga/AiwoOshiete/covers/gallery/511f749e-21de-4ba8-ab27-b6cd74cbb6e5@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 17,
   "view_sync_cutoff": "2026-08-31 17:00:31",
-  "cover_version": 2,
-  "notif_image": "page1"
+  "cover_version": 3,
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

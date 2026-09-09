@@ -52,26 +52,26 @@
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58.webp?v=3",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58@mobile.webp?v=3",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58@thumb.webp?v=3"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58.webp?v=4",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58@tablet.webp?v=4",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58@mobile.webp?v=4",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/gallery/fadafe71-37cd-4c73-ac98-59fd79e07f58@thumb.webp?v=4"
       }
     }
   ],
   "detail_views": 54,
-  "cover_version": 3,
+  "cover_version": 4,
   "notif_image": "page1",
   "cover_source": "mangadex",
   "mangadex_id": "c679bf28-e054-4bb7-93e6-18c089ee79f1",
   "rating": 8.4,
   "next_update": "2026-09-17",
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=3",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=4",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=3",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@mobile.webp?v=3",
-    "thumb": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@thumb.webp?v=3"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover.webp?v=4",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@tablet.webp?v=4",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@mobile.webp?v=4",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Chikasugiru/covers/cover@thumb.webp?v=4"
   },
   "chapters": [
     {

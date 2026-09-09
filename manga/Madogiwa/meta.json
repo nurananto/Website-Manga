@@ -20,7 +20,8 @@
   "covers": [
     "manga/Madogiwa/covers/cover.webp",
     "manga/Madogiwa/covers/cover@tablet.webp",
-    "manga/Madogiwa/covers/cover@mobile.webp"
+    "manga/Madogiwa/covers/cover@mobile.webp",
+    "manga/Madogiwa/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/a0ecce48-aa4c-48e6-8d9b-90f322a5687a/madogiwa-henshuu-to-baka-ni-sareta-ore-ga-futago-jk-to-doukyo-suru-koto-ni-natta",
   "raw_url": "https://comic-walker.com/detail/KC_006388_S",
@@ -51,7 +52,7 @@
   },
   "total_views": 558,
   "mangadex_cover": "1ff29f3f-9318-47e4-88da-f4cf5793c4fb.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "ce74d132-81f0-491a-bb19-83de73746c8e.jpg",
@@ -59,9 +60,10 @@
       "keys": [
         "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e.webp",
         "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@tablet.webp",
-        "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@mobile.webp"
+        "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@mobile.webp",
+        "manga/Madogiwa/covers/gallery/ce74d132-81f0-491a-bb19-83de73746c8e@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "dabd3374-d273-4146-bf89-6171a14f8756.jpg",
@@ -69,9 +71,10 @@
       "keys": [
         "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756.webp",
         "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@tablet.webp",
-        "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@mobile.webp"
+        "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@mobile.webp",
+        "manga/Madogiwa/covers/gallery/dabd3374-d273-4146-bf89-6171a14f8756@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "1ff29f3f-9318-47e4-88da-f4cf5793c4fb.jpg",
@@ -79,14 +82,15 @@
       "keys": [
         "manga/Madogiwa/covers/gallery/1ff29f3f-9318-47e4-88da-f4cf5793c4fb.webp",
         "manga/Madogiwa/covers/gallery/1ff29f3f-9318-47e4-88da-f4cf5793c4fb@tablet.webp",
-        "manga/Madogiwa/covers/gallery/1ff29f3f-9318-47e4-88da-f4cf5793c4fb@mobile.webp"
+        "manga/Madogiwa/covers/gallery/1ff29f3f-9318-47e4-88da-f4cf5793c4fb@mobile.webp",
+        "manga/Madogiwa/covers/gallery/1ff29f3f-9318-47e4-88da-f4cf5793c4fb@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 168,
   "view_sync_cutoff": "2026-09-08 17:00:01",
-  "cover_version": 3,
+  "cover_version": 4,
   "notif_image": "page1",
   "cover_source": "mangadex"
 }

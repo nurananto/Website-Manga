@@ -17,7 +17,8 @@
   "covers": [
     "manga/ClassMaid/covers/cover.webp",
     "manga/ClassMaid/covers/cover@tablet.webp",
-    "manga/ClassMaid/covers/cover@mobile.webp"
+    "manga/ClassMaid/covers/cover@mobile.webp",
+    "manga/ClassMaid/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/57a75b25-4cc6-45ac-ab1a-6670a271a6b5/class-maid",
   "raw_url": "https://www.comico.jp/comic/132",
@@ -39,8 +40,8 @@
   "total_views": 30,
   "mangadex_cover": "556f9b48-02b6-42c8-ae8c-02f3c92870e3.png",
   "cover_source": "mangadex",
-  "cover_widths": "1280x960x640q75",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640x400q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "file": "556f9b48-02b6-42c8-ae8c-02f3c92870e3.png",
@@ -48,9 +49,10 @@
       "keys": [
         "manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3.webp",
         "manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3@tablet.webp",
-        "manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3@mobile.webp"
+        "manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3@mobile.webp",
+        "manga/ClassMaid/covers/gallery/556f9b48-02b6-42c8-ae8c-02f3c92870e3@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "19efe3dc-b745-4030-8196-e6aac97d7697.jpg",
@@ -58,9 +60,10 @@
       "keys": [
         "manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697.webp",
         "manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697@tablet.webp",
-        "manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697@mobile.webp"
+        "manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697@mobile.webp",
+        "manga/ClassMaid/covers/gallery/19efe3dc-b745-4030-8196-e6aac97d7697@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 13,

@@ -50,46 +50,46 @@
       "volume": "3",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b.webp?v=4",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@tablet.webp?v=4",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@mobile.webp?v=4",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@thumb.webp?v=4"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b.webp?v=5",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@tablet.webp?v=5",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@mobile.webp?v=5",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/6da6cf64-c44f-4153-801e-77cdf9a92d3b@thumb.webp?v=5"
       }
     },
     {
       "volume": "2",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333.webp?v=4",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@tablet.webp?v=4",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@mobile.webp?v=4",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@thumb.webp?v=4"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333.webp?v=5",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@tablet.webp?v=5",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@mobile.webp?v=5",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/c95c3728-3229-41d7-9d11-e2a01ec94333@thumb.webp?v=5"
       }
     },
     {
       "volume": "1",
       "is_current": false,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b.webp?v=4",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@tablet.webp?v=4",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@mobile.webp?v=4",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@thumb.webp?v=4"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b.webp?v=5",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@tablet.webp?v=5",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@mobile.webp?v=5",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/gallery/10d163e1-853d-4bbb-9131-b99534a1836b@thumb.webp?v=5"
       }
     }
   ],
-  "cover_version": 4,
+  "cover_version": 5,
   "detail_views": 66,
   "notif_image": "page1",
   "cover_source": "mangadex",
   "mangadex_id": "5993c10b-c49e-4771-9a3a-8b8436b12d80",
   "rating": 8.38,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover.webp?v=4",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover.webp?v=5",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover.webp?v=4",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@tablet.webp?v=4",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@mobile.webp?v=4",
-    "thumb": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@thumb.webp?v=4"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover.webp?v=5",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@tablet.webp?v=5",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@mobile.webp?v=5",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/UchinoSeiso-kei/covers/cover@thumb.webp?v=5"
   },
   "chapters": [
     {

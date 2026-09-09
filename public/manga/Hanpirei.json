@@ -18,7 +18,8 @@
   "covers": [
     "manga/Hanpirei/covers/cover.webp",
     "manga/Hanpirei/covers/cover@tablet.webp",
-    "manga/Hanpirei/covers/cover@mobile.webp"
+    "manga/Hanpirei/covers/cover@mobile.webp",
+    "manga/Hanpirei/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/5d87115b-058d-4e36-a624-80c66f0115eb/hanpirei-no-kyori-kan",
   "raw_url": "https://www.comico.jp/comic/10275",
@@ -33,31 +34,32 @@
   },
   "total_views": 27,
   "mangadex_cover": "462b16a8-3a01-405f-b174-4db2846cef92.jpg",
-  "cover_widths": "1280x960x640q75",
-  "cover_version": 3,
+  "cover_widths": "1280x960x640x400q75",
+  "cover_version": 4,
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92.webp?v=3",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@tablet.webp?v=3",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@mobile.webp?v=3",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@mobile.webp?v=3"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92.webp?v=4",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@tablet.webp?v=4",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@mobile.webp?v=4",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@thumb.webp?v=4"
       }
     }
   ],
   "detail_views": 12,
   "notif_image": "page1",
+  "cover_source": "mangadex",
   "mangadex_id": "5d87115b-058d-4e36-a624-80c66f0115eb",
   "rating": 8.4,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover.webp?v=3",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover.webp?v=4",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover.webp?v=3",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover@tablet.webp?v=3",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover@mobile.webp?v=3",
-    "thumb": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover@mobile.webp?v=3"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover.webp?v=4",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover@tablet.webp?v=4",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover@mobile.webp?v=4",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Hanpirei/covers/cover@thumb.webp?v=4"
   },
   "chapters": [
     {

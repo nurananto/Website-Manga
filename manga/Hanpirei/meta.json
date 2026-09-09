@@ -18,7 +18,8 @@
   "covers": [
     "manga/Hanpirei/covers/cover.webp",
     "manga/Hanpirei/covers/cover@tablet.webp",
-    "manga/Hanpirei/covers/cover@mobile.webp"
+    "manga/Hanpirei/covers/cover@mobile.webp",
+    "manga/Hanpirei/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/5d87115b-058d-4e36-a624-80c66f0115eb/hanpirei-no-kyori-kan",
   "raw_url": "https://www.comico.jp/comic/10275",
@@ -33,8 +34,8 @@
   },
   "total_views": 27,
   "mangadex_cover": "462b16a8-3a01-405f-b174-4db2846cef92.jpg",
-  "cover_widths": "1280x960x640q75",
-  "cover_version": 3,
+  "cover_widths": "1280x960x640x400q75",
+  "cover_version": 4,
   "cover_gallery": [
     {
       "file": "462b16a8-3a01-405f-b174-4db2846cef92.jpg",
@@ -42,12 +43,14 @@
       "keys": [
         "manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92.webp",
         "manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@tablet.webp",
-        "manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@mobile.webp"
+        "manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@mobile.webp",
+        "manga/Hanpirei/covers/gallery/462b16a8-3a01-405f-b174-4db2846cef92@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 12,
   "view_sync_cutoff": "2026-09-05 17:00:59",
-  "notif_image": "page1"
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

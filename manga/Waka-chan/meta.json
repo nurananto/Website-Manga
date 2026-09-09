@@ -16,7 +16,8 @@
   "covers": [
     "manga/Waka-chan/covers/cover.webp",
     "manga/Waka-chan/covers/cover@tablet.webp",
-    "manga/Waka-chan/covers/cover@mobile.webp"
+    "manga/Waka-chan/covers/cover@mobile.webp",
+    "manga/Waka-chan/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/57fe3f00-8626-462b-8f75-fce0e6faa6be/waka-chan-wa-kyou-mo-azatoi",
   "raw_url": "https://www.comico.jp/comic/908",
@@ -114,7 +115,7 @@
   },
   "total_views": 386,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "3764c25f-c596-421b-b0c7-9eabba109b5a.jpg",
@@ -122,9 +123,10 @@
       "keys": [
         "manga/Waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a.webp",
         "manga/Waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a@tablet.webp",
-        "manga/Waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a@mobile.webp"
+        "manga/Waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a@mobile.webp",
+        "manga/Waka-chan/covers/gallery/3764c25f-c596-421b-b0c7-9eabba109b5a@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "c4a47ff5-4ebc-4b4e-afa1-8830e7da478d.jpg",
@@ -132,9 +134,10 @@
       "keys": [
         "manga/Waka-chan/covers/gallery/c4a47ff5-4ebc-4b4e-afa1-8830e7da478d.webp",
         "manga/Waka-chan/covers/gallery/c4a47ff5-4ebc-4b4e-afa1-8830e7da478d@tablet.webp",
-        "manga/Waka-chan/covers/gallery/c4a47ff5-4ebc-4b4e-afa1-8830e7da478d@mobile.webp"
+        "manga/Waka-chan/covers/gallery/c4a47ff5-4ebc-4b4e-afa1-8830e7da478d@mobile.webp",
+        "manga/Waka-chan/covers/gallery/c4a47ff5-4ebc-4b4e-afa1-8830e7da478d@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "68047225-c38a-4f31-826e-424977bec9fb.jpg",
@@ -142,9 +145,10 @@
       "keys": [
         "manga/Waka-chan/covers/gallery/68047225-c38a-4f31-826e-424977bec9fb.webp",
         "manga/Waka-chan/covers/gallery/68047225-c38a-4f31-826e-424977bec9fb@tablet.webp",
-        "manga/Waka-chan/covers/gallery/68047225-c38a-4f31-826e-424977bec9fb@mobile.webp"
+        "manga/Waka-chan/covers/gallery/68047225-c38a-4f31-826e-424977bec9fb@mobile.webp",
+        "manga/Waka-chan/covers/gallery/68047225-c38a-4f31-826e-424977bec9fb@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "7f617325-8fcd-4e60-b866-878cf969625c.jpg",
@@ -152,9 +156,10 @@
       "keys": [
         "manga/Waka-chan/covers/gallery/7f617325-8fcd-4e60-b866-878cf969625c.webp",
         "manga/Waka-chan/covers/gallery/7f617325-8fcd-4e60-b866-878cf969625c@tablet.webp",
-        "manga/Waka-chan/covers/gallery/7f617325-8fcd-4e60-b866-878cf969625c@mobile.webp"
+        "manga/Waka-chan/covers/gallery/7f617325-8fcd-4e60-b866-878cf969625c@mobile.webp",
+        "manga/Waka-chan/covers/gallery/7f617325-8fcd-4e60-b866-878cf969625c@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "59515fa4-4da0-4f68-9dd0-b9110d7716d8.jpg",
@@ -162,9 +167,10 @@
       "keys": [
         "manga/Waka-chan/covers/gallery/59515fa4-4da0-4f68-9dd0-b9110d7716d8.webp",
         "manga/Waka-chan/covers/gallery/59515fa4-4da0-4f68-9dd0-b9110d7716d8@tablet.webp",
-        "manga/Waka-chan/covers/gallery/59515fa4-4da0-4f68-9dd0-b9110d7716d8@mobile.webp"
+        "manga/Waka-chan/covers/gallery/59515fa4-4da0-4f68-9dd0-b9110d7716d8@mobile.webp",
+        "manga/Waka-chan/covers/gallery/59515fa4-4da0-4f68-9dd0-b9110d7716d8@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "bd17f6f1-7f45-4aa7-a559-0184645c0e99.jpg",
@@ -172,9 +178,10 @@
       "keys": [
         "manga/Waka-chan/covers/gallery/bd17f6f1-7f45-4aa7-a559-0184645c0e99.webp",
         "manga/Waka-chan/covers/gallery/bd17f6f1-7f45-4aa7-a559-0184645c0e99@tablet.webp",
-        "manga/Waka-chan/covers/gallery/bd17f6f1-7f45-4aa7-a559-0184645c0e99@mobile.webp"
+        "manga/Waka-chan/covers/gallery/bd17f6f1-7f45-4aa7-a559-0184645c0e99@mobile.webp",
+        "manga/Waka-chan/covers/gallery/bd17f6f1-7f45-4aa7-a559-0184645c0e99@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "ccd144f6-4c14-4c8a-8d1e-f94be5c568c8.jpg",
@@ -182,9 +189,10 @@
       "keys": [
         "manga/Waka-chan/covers/gallery/ccd144f6-4c14-4c8a-8d1e-f94be5c568c8.webp",
         "manga/Waka-chan/covers/gallery/ccd144f6-4c14-4c8a-8d1e-f94be5c568c8@tablet.webp",
-        "manga/Waka-chan/covers/gallery/ccd144f6-4c14-4c8a-8d1e-f94be5c568c8@mobile.webp"
+        "manga/Waka-chan/covers/gallery/ccd144f6-4c14-4c8a-8d1e-f94be5c568c8@mobile.webp",
+        "manga/Waka-chan/covers/gallery/ccd144f6-4c14-4c8a-8d1e-f94be5c568c8@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "07cfe301-96be-414e-b03e-80068315dbe4.jpg",
@@ -192,9 +200,10 @@
       "keys": [
         "manga/Waka-chan/covers/gallery/07cfe301-96be-414e-b03e-80068315dbe4.webp",
         "manga/Waka-chan/covers/gallery/07cfe301-96be-414e-b03e-80068315dbe4@tablet.webp",
-        "manga/Waka-chan/covers/gallery/07cfe301-96be-414e-b03e-80068315dbe4@mobile.webp"
+        "manga/Waka-chan/covers/gallery/07cfe301-96be-414e-b03e-80068315dbe4@mobile.webp",
+        "manga/Waka-chan/covers/gallery/07cfe301-96be-414e-b03e-80068315dbe4@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "59609e1c-3523-4284-b3be-2577892ed6ec.jpg",
@@ -202,9 +211,10 @@
       "keys": [
         "manga/Waka-chan/covers/gallery/59609e1c-3523-4284-b3be-2577892ed6ec.webp",
         "manga/Waka-chan/covers/gallery/59609e1c-3523-4284-b3be-2577892ed6ec@tablet.webp",
-        "manga/Waka-chan/covers/gallery/59609e1c-3523-4284-b3be-2577892ed6ec@mobile.webp"
+        "manga/Waka-chan/covers/gallery/59609e1c-3523-4284-b3be-2577892ed6ec@mobile.webp",
+        "manga/Waka-chan/covers/gallery/59609e1c-3523-4284-b3be-2577892ed6ec@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "9d7bd60c-655f-41f3-be4d-be5ebc91106c.jpg",
@@ -212,9 +222,10 @@
       "keys": [
         "manga/Waka-chan/covers/gallery/9d7bd60c-655f-41f3-be4d-be5ebc91106c.webp",
         "manga/Waka-chan/covers/gallery/9d7bd60c-655f-41f3-be4d-be5ebc91106c@tablet.webp",
-        "manga/Waka-chan/covers/gallery/9d7bd60c-655f-41f3-be4d-be5ebc91106c@mobile.webp"
+        "manga/Waka-chan/covers/gallery/9d7bd60c-655f-41f3-be4d-be5ebc91106c@mobile.webp",
+        "manga/Waka-chan/covers/gallery/9d7bd60c-655f-41f3-be4d-be5ebc91106c@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "bbabca8a-db2f-4b77-870d-2512af396763.jpg",
@@ -222,9 +233,10 @@
       "keys": [
         "manga/Waka-chan/covers/gallery/bbabca8a-db2f-4b77-870d-2512af396763.webp",
         "manga/Waka-chan/covers/gallery/bbabca8a-db2f-4b77-870d-2512af396763@tablet.webp",
-        "manga/Waka-chan/covers/gallery/bbabca8a-db2f-4b77-870d-2512af396763@mobile.webp"
+        "manga/Waka-chan/covers/gallery/bbabca8a-db2f-4b77-870d-2512af396763@mobile.webp",
+        "manga/Waka-chan/covers/gallery/bbabca8a-db2f-4b77-870d-2512af396763@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
@@ -232,13 +244,15 @@
       "keys": [
         "manga/Waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba.webp",
         "manga/Waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba@tablet.webp",
-        "manga/Waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba@mobile.webp"
+        "manga/Waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba@mobile.webp",
+        "manga/Waka-chan/covers/gallery/c15f762d-5437-4f73-aa85-64a7b686ddba@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 72,
   "view_sync_cutoff": "2026-09-08 17:00:01",
-  "cover_version": 2,
-  "notif_image": "page1"
+  "cover_version": 3,
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

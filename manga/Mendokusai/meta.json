@@ -19,7 +19,8 @@
   "covers": [
     "manga/Mendokusai/covers/cover.webp",
     "manga/Mendokusai/covers/cover@tablet.webp",
-    "manga/Mendokusai/covers/cover@mobile.webp"
+    "manga/Mendokusai/covers/cover@mobile.webp",
+    "manga/Mendokusai/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/f2923e0c-8b5e-4758-86ab-5aecc9f6689f/mendokusai-yurei-desu-ga-watashi-to-koi-shite-kuremasu-ka",
   "raw_url": "https://bookwalker.jp/series/517234/",
@@ -45,8 +46,8 @@
   },
   "total_views": 63,
   "mangadex_cover": "ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.jpg",
-  "cover_widths": "1280x960x640q75",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640x400q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "file": "ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.jpg",
@@ -54,11 +55,13 @@
       "keys": [
         "manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1.webp",
         "manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@tablet.webp",
-        "manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@mobile.webp"
+        "manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@mobile.webp",
+        "manga/Mendokusai/covers/gallery/ac0ac741-c94b-441b-ac30-9b4d9a41f9f1@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 19,
-  "view_sync_cutoff": "2026-09-05 17:00:59"
+  "view_sync_cutoff": "2026-09-05 17:00:59",
+  "cover_source": "mangadex"
 }

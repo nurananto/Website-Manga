@@ -18,7 +18,8 @@
   "covers": [
     "manga/Seishun/covers/cover.webp",
     "manga/Seishun/covers/cover@tablet.webp",
-    "manga/Seishun/covers/cover@mobile.webp"
+    "manga/Seishun/covers/cover@mobile.webp",
+    "manga/Seishun/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/968f0b7d-465a-4a84-9e71-9ef3f2f9a0e3/seishun-matching-appli",
   "raw_url": "https://firecross.jp/ebook/series/595",
@@ -35,17 +36,17 @@
   "total_views": 128,
   "mangadex_cover": "656c16e6-b939-4df1-a8b7-fb0e091d1b02.jpg",
   "cover_source": "mangadex",
-  "cover_widths": "1280x960x640q75",
-  "cover_version": 2,
+  "cover_widths": "1280x960x640x400q75",
+  "cover_version": 3,
   "cover_gallery": [
     {
       "volume": "1",
       "is_current": true,
       "urls": {
-        "desktop": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02.webp?v=2",
-        "tablet": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02@tablet.webp?v=2",
-        "mobile": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02@mobile.webp?v=2",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02@mobile.webp?v=2"
+        "desktop": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02.webp?v=3",
+        "tablet": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02@tablet.webp?v=3",
+        "mobile": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02@mobile.webp?v=3",
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/gallery/656c16e6-b939-4df1-a8b7-fb0e091d1b02@thumb.webp?v=3"
       }
     }
   ],
@@ -53,12 +54,12 @@
   "mangadex_id": "968f0b7d-465a-4a84-9e71-9ef3f2f9a0e3",
   "rating": 8.25,
   "next_update": null,
-  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=2",
+  "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=3",
   "coverUrls": {
-    "desktop": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=2",
-    "tablet": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@tablet.webp?v=2",
-    "mobile": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@mobile.webp?v=2",
-    "thumb": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@mobile.webp?v=2"
+    "desktop": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover.webp?v=3",
+    "tablet": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@tablet.webp?v=3",
+    "mobile": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@mobile.webp?v=3",
+    "thumb": "https://cdn.nuranantoscans.my.id/manga/Seishun/covers/cover@thumb.webp?v=3"
   },
   "chapters": [
     {

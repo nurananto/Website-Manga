@@ -17,7 +17,8 @@
   "covers": [
     "manga/Gotou-san/covers/cover.webp",
     "manga/Gotou-san/covers/cover@tablet.webp",
-    "manga/Gotou-san/covers/cover@mobile.webp"
+    "manga/Gotou-san/covers/cover@mobile.webp",
+    "manga/Gotou-san/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/caa197bb-990e-4f59-bc6f-f20e42015d01/gotou-san-wa-furimukasetai?tab=comments",
   "raw_url": "https://bookwalker.jp/series/310103/list/",
@@ -40,8 +41,8 @@
   },
   "total_views": 53,
   "mangadex_cover": "c396db84-6cc5-41c0-bf66-f54d0cfa2b44.png",
-  "cover_widths": "1280x960x640q75",
-  "cover_version": 3,
+  "cover_widths": "1280x960x640x400q75",
+  "cover_version": 4,
   "cover_gallery": [
     {
       "file": "33a7d5f7-0621-43a9-95ca-65e9748b0e26.jpg",
@@ -49,9 +50,10 @@
       "keys": [
         "manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26.webp",
         "manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26@tablet.webp",
-        "manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26@mobile.webp"
+        "manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26@mobile.webp",
+        "manga/Gotou-san/covers/gallery/33a7d5f7-0621-43a9-95ca-65e9748b0e26@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "a742f20f-05ee-4e73-8c4e-8af74436716c.jpg",
@@ -59,9 +61,10 @@
       "keys": [
         "manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c.webp",
         "manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c@tablet.webp",
-        "manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c@mobile.webp"
+        "manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c@mobile.webp",
+        "manga/Gotou-san/covers/gallery/a742f20f-05ee-4e73-8c4e-8af74436716c@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "8656415c-556e-48d6-aa6a-b682919cb625.jpg",
@@ -69,9 +72,10 @@
       "keys": [
         "manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625.webp",
         "manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625@tablet.webp",
-        "manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625@mobile.webp"
+        "manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625@mobile.webp",
+        "manga/Gotou-san/covers/gallery/8656415c-556e-48d6-aa6a-b682919cb625@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "c396db84-6cc5-41c0-bf66-f54d0cfa2b44.png",
@@ -79,12 +83,14 @@
       "keys": [
         "manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44.webp",
         "manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44@tablet.webp",
-        "manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44@mobile.webp"
+        "manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44@mobile.webp",
+        "manga/Gotou-san/covers/gallery/c396db84-6cc5-41c0-bf66-f54d0cfa2b44@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 21,
   "view_sync_cutoff": "2026-09-08 17:00:01",
-  "notif_image": "page1"
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }

@@ -16,7 +16,8 @@
   "covers": [
     "manga/Midari/covers/cover.webp",
     "manga/Midari/covers/cover@tablet.webp",
-    "manga/Midari/covers/cover@mobile.webp"
+    "manga/Midari/covers/cover@mobile.webp",
+    "manga/Midari/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/3076dc1f-e6f2-418c-baa9-125694eb36cc/midari-ni-tsukasete-wa-narimasen",
   "raw_url": "https://comic-walker.com/detail/KC_006109_S?episodeType=first",
@@ -45,7 +46,7 @@
   },
   "total_views": 140,
   "mangadex_cover": "920d8050-1bbe-4754-890f-eb847416a18e.jpg",
-  "cover_widths": "1280x960x640q75",
+  "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
     {
       "file": "d86648a6-77d3-4a95-a8d2-b296da206065.jpg",
@@ -63,14 +64,15 @@
       "keys": [
         "manga/Midari/covers/gallery/920d8050-1bbe-4754-890f-eb847416a18e.webp",
         "manga/Midari/covers/gallery/920d8050-1bbe-4754-890f-eb847416a18e@tablet.webp",
-        "manga/Midari/covers/gallery/920d8050-1bbe-4754-890f-eb847416a18e@mobile.webp"
+        "manga/Midari/covers/gallery/920d8050-1bbe-4754-890f-eb847416a18e@mobile.webp",
+        "manga/Midari/covers/gallery/920d8050-1bbe-4754-890f-eb847416a18e@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 40,
   "view_sync_cutoff": "2026-09-08 17:00:01",
-  "cover_version": 3,
+  "cover_version": 4,
   "notif_image": "page1",
   "cover_source": "mangadex"
 }

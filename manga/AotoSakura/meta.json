@@ -18,7 +18,8 @@
   "covers": [
     "manga/AotoSakura/covers/cover.webp",
     "manga/AotoSakura/covers/cover@tablet.webp",
-    "manga/AotoSakura/covers/cover@mobile.webp"
+    "manga/AotoSakura/covers/cover@mobile.webp",
+    "manga/AotoSakura/covers/cover@thumb.webp"
   ],
   "mangadex_url": "https://mangadex.org/title/7cf10b89-2c28-4df5-9087-39f076e79e4a/ao-to-sakura",
   "raw_url": "https://www.manga-up.com/titles/1208",
@@ -29,8 +30,8 @@
   },
   "total_views": 34,
   "mangadex_cover": "8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.jpg",
-  "cover_widths": "1280x960x640q75",
-  "cover_version": 3,
+  "cover_widths": "1280x960x640x400q75",
+  "cover_version": 4,
   "cover_gallery": [
     {
       "file": "8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.jpg",
@@ -38,12 +39,14 @@
       "keys": [
         "manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5.webp",
         "manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@tablet.webp",
-        "manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@mobile.webp"
+        "manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@mobile.webp",
+        "manga/AotoSakura/covers/gallery/8f1fc328-3eaf-4bd9-8631-c5c9f8029ed5@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     }
   ],
   "detail_views": 16,
   "view_sync_cutoff": "2026-09-07 17:01:24",
-  "notif_image": "page1"
+  "notif_image": "page1",
+  "cover_source": "mangadex"
 }
