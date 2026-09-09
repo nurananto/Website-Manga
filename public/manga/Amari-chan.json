@@ -28,7 +28,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "0": 9,
+    "0": 10,
     "1": 4,
     "2": 2,
     "3": 2,
@@ -46,9 +46,9 @@
     "1.5": 2,
     "4.5": 2,
     "11.2": 20,
-    "11.5": 7
+    "11.5": 9
   },
-  "total_views": 186,
+  "total_views": 194,
   "mangadex_cover": "c402aa68-08d7-49da-9fbd-7b84a9da4f7c.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -73,7 +73,7 @@
       }
     }
   ],
-  "detail_views": 71,
+  "detail_views": 76,
   "cover_version": 5,
   "notif_image": "page1",
   "cover_source": "mangadex",
@@ -101,7 +101,7 @@
       "title": "Ch. 11.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 7
+      "views": 9
     },
     {
       "chapter_number": 11.2,
@@ -336,7 +336,7 @@
       "title": "Ch. 0",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     }
   ]
 }

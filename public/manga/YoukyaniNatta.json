@@ -25,14 +25,14 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 8,
+    "1": 9,
     "2": 3,
     "3": 2,
     "4": 4,
     "5": 1,
     "6": 9
   },
-  "total_views": 46,
+  "total_views": 48,
   "mangadex_cover": "2c142b06-cf48-405d-b5e6-5af0c1651688.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -57,7 +57,7 @@
       }
     }
   ],
-  "detail_views": 19,
+  "detail_views": 20,
   "cover_version": 4,
   "notif_image": "page1",
   "update_schedule": "Selasa",
@@ -149,7 +149,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     }
   ]
 }

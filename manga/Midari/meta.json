@@ -54,9 +54,10 @@
       "keys": [
         "manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065.webp",
         "manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@tablet.webp",
-        "manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@mobile.webp"
+        "manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@mobile.webp",
+        "manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@thumb.webp"
       ],
-      "widths": "1280x960x640q75"
+      "widths": "1280x960x640x400q75"
     },
     {
       "file": "920d8050-1bbe-4754-890f-eb847416a18e.jpg",

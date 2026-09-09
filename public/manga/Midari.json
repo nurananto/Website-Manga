@@ -44,7 +44,7 @@
     "6.1": 1,
     "6.2": 1
   },
-  "total_views": 140,
+  "total_views": 141,
   "mangadex_cover": "920d8050-1bbe-4754-890f-eb847416a18e.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -65,11 +65,11 @@
         "desktop": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065.webp?v=4",
         "tablet": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@tablet.webp?v=4",
         "mobile": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@mobile.webp?v=4",
-        "thumb": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@mobile.webp?v=4"
+        "thumb": "https://cdn.nuranantoscans.my.id/manga/Midari/covers/gallery/d86648a6-77d3-4a95-a8d2-b296da206065@thumb.webp?v=4"
       }
     }
   ],
-  "detail_views": 40,
+  "detail_views": 41,
   "cover_version": 4,
   "notif_image": "page1",
   "cover_source": "mangadex",

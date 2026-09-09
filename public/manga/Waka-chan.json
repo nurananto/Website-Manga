@@ -53,7 +53,9 @@
     "101": 1,
     "102": 1,
     "103": 2,
-    "104": 3,
+    "104": 4,
+    "105": 1,
+    "106": 1,
     "161": 1,
     "165": 2,
     "171": 1,
@@ -113,7 +115,7 @@
     "161.5": 1,
     "103.5": 1
   },
-  "total_views": 386,
+  "total_views": 390,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -238,7 +240,7 @@
       }
     }
   ],
-  "detail_views": 72,
+  "detail_views": 73,
   "cover_version": 3,
   "notif_image": "page1",
   "cover_source": "mangadex",
@@ -1980,7 +1982,7 @@
       "title": "Ch. 106",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 105,
@@ -1993,7 +1995,7 @@
       "title": "Ch. 105",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 1
     },
     {
       "chapter_number": 104,
@@ -2006,7 +2008,7 @@
       "title": "Ch. 104",
       "unlockDate": null,
       "isLocked": false,
-      "views": 3
+      "views": 4
     },
     {
       "chapter_number": 103.5,
