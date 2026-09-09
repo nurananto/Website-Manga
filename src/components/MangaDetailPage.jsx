@@ -34,17 +34,29 @@ const fitCreatorStyle = (value) => ({
   '--creator-chars': Math.max(creatorDisplay(value).length, 8),
 });
 
-// Label badge jadwal update di hero — BEDA dari next_update (dipakai
-// NextUpdateInfo di ReaderModal): next_update itu tanggal/teks utk CHAPTER
-// SELANJUTNYA, diisi ulang tiap upload chapter baru. update_schedule ini
-// pola rilis RAW (sumber asli) di platform aslinya (mis. "Rabu", "Senin &
-// Kamis", "tanggal 5, 15, 25 tiap bulan") — diisi SEKALI di meta.json manga
-// (bukan per-chapter), gak berubah tiap upload, dan sengaja tidak
-// diinterpretasi sebagai tanggal sama sekali, ditampilkan apa adanya.
-// null/kosong → badge disembunyikan.
-const updateScheduleLabel = (value) => {
-  if (value == null || String(value).trim() === '') return null;
-  return `Raw diupdate setiap ${value}`;
+// Label badge jadwal update di hero. Prioritas: next_update (tanggal PRESISI
+// chapter selanjutnya, sama field yg dipakai NextUpdateInfo di ReaderModal —
+// dari comic-walker.com, atau manual) kalau ADA & masih di masa depan, lebih
+// informatif drpd pola umum ("Raw berikutnya update pada 22 September").
+// Fallback ke update_schedule (pola rilis RAW berulang, mis. "Rabu", "Senin &
+// Kamis" — dari manga-up.com, atau manual) kalau next_update gak ada/sudah
+// lewat ("Raw diupdate setiap Rabu"). Sebelumnya badge INI cuma baca
+// update_schedule — manga raw comic-walker (yg cuma dapet next_update, gak
+// pernah dapet update_schedule) jadi gak pernah nampilin apa-apa di sini
+// sama sekali, walau next_update-nya sendiri valid. null/kosong dua-duanya
+// → badge disembunyikan.
+const rawUpdateLabel = (updateSchedule, nextUpdate) => {
+  if (nextUpdate) {
+    const t = new Date(nextUpdate).getTime();
+    if (!Number.isNaN(t) && t > Date.now()) {
+      const tgl = new Date(t).toLocaleDateString('id-ID', { day: 'numeric', month: 'long' });
+      return `Raw berikutnya update pada ${tgl}`;
+    }
+  }
+  if (updateSchedule != null && String(updateSchedule).trim() !== '') {
+    return `Raw diupdate setiap ${updateSchedule}`;
+  }
+  return null;
 };
 
 export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, readChapterIds, isSupporter, isLoggedIn }) {
@@ -83,7 +95,7 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   // "update setiap Kamis" gak relevan lagi buat manga yang lagi/udah berhenti,
   // walau field update_schedule masih ke-isi (sengaja gak dihapus di
   // meta.json, biar kalau lanjut lagi dari hiatus gak perlu isi ulang).
-  const updateSchedule = manga.status === 'Ongoing' ? updateScheduleLabel(manga.update_schedule) : null;
+  const updateSchedule = manga.status === 'Ongoing' ? rawUpdateLabel(manga.update_schedule, manga.next_update) : null;
   const [lightboxCover, setLightboxCover] = useState(null);
   const lightboxRef = useRef(null);
   const [galleryPage, setGalleryPage] = useState(0);
