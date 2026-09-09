@@ -66,7 +66,10 @@ export default function SupportButtons({ className = '' }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Ikuti Facebook Nurananto Scanlation"
-        className={`${BUTTON_BASE} border border-white/15 bg-[#1877F2] hover:brightness-110`}
+        // #1877F2 (biru brand FB asli) + teks putih cuma ~4.24:1, gagal WCAG
+        // AA (butuh 4.5:1). #1569D5 (~12% lebih gelap, masih kebaca sbg biru
+        // FB) ~5.2:1, lolos.
+        className={`${BUTTON_BASE} border border-white/15 bg-[#1569D5] hover:brightness-110`}
       >
         <FacebookIcon className="h-[18px] w-[18px] shrink-0 text-white sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" />
         <Divider />

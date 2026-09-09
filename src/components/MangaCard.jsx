@@ -29,11 +29,15 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
   // dikasih animasi GLOW background-color pelan (hijau muda↔tua, lihat
   // .badge-updated-glow di index.css) biar tetap kebeda dari Ongoing yang
   // solid diam — sekilas kelihatan beda tanpa perlu baca teksnya.
+  //
+  // emerald-700 (bukan emerald-600) — teks putih di atas emerald-600 cuma
+  // ~3.8:1, gagal WCAG AA (butuh 4.5:1 utk teks kecil). emerald-700 ~5.5:1,
+  // lolos. badge-updated-glow di index.css sudah disamain juga.
   const statusLabel = isMangaNew ? 'Updated!' : manga.status === 'Tamat' ? 'Completed' : manga.status;
   const statusBadgeClass = isMangaNew
     ? 'badge-updated-glow text-white'
     : manga.status === 'Ongoing'
-    ? 'bg-emerald-600 text-white'
+    ? 'bg-emerald-700 text-white'
     : manga.status === 'Tamat' || isOneshot
     ? 'bg-red-500/90 text-white'
     : manga.status === 'Hiatus'
@@ -85,6 +89,7 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
         <div className="relative h-full w-full">
           <ResponsiveCover
               manga={manga}
+              variant="thumb"
               alt={manga.title}
               title={isMangaNew ? 'Ada update baru di manga ini' : undefined}
               loading={coverPriority ? 'eager' : 'lazy'}

@@ -135,7 +135,9 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
     ? { text: 'Completed', className: 'bg-red-500 text-white' }
     : isHiatus
     ? { text: 'Hiatus', className: 'bg-zinc-400 dark:bg-zinc-500 text-white' }
-    : { text: 'Ongoing', className: 'bg-emerald-600 text-white' };
+    // emerald-700 (bukan -600) — teks putih di emerald-600 cuma ~3.8:1,
+    // gagal WCAG AA (butuh 4.5:1). emerald-700 ~5.5:1, lolos.
+    : { text: 'Ongoing', className: 'bg-emerald-700 text-white' };
 
   return (
     <div className="flex h-full flex-col gap-1.5 sm:gap-2">
@@ -170,6 +172,7 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
           >
             <ResponsiveCover
               manga={manga}
+              variant="thumb"
               alt={manga.title}
               title={isMangaNew ? 'Ada update baru di manga ini' : undefined}
               loading={coverPriority ? 'eager' : 'lazy'}

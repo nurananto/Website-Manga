@@ -70,7 +70,7 @@
   "notif_image": "page1",
   "mangadex_id": "8556c131-23ed-42d6-98ba-5f2aa5037843",
   "rating": 7.45,
-  "next_update": null,
+  "next_update": "2026-10-06",
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=2",
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/TeisouGyakuten/covers/cover.webp?v=2",
@@ -90,7 +90,8 @@
       "title": "Ch. 8.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 29
+      "views": 29,
+      "next_update": "2026-10-06"
     },
     {
       "chapter_number": 8.1,

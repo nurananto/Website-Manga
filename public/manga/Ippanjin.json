@@ -49,7 +49,7 @@
   ],
   "mangadex_id": "4a2b1c8e-a275-4090-8437-600b06c4ee30",
   "rating": 8.7,
-  "next_update": null,
+  "next_update": "2026-09-25",
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=3",
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/Ippanjin/covers/cover.webp?v=3",
@@ -69,7 +69,8 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 17
+      "views": 17,
+      "next_update": "2026-09-25"
     },
     {
       "chapter_number": "prolog",

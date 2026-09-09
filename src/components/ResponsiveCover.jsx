@@ -10,11 +10,21 @@ const RETRY_DELAY_MS = [400, 1200]; // backoff per percobaan
 // di baliknya) sampai user refresh manual. Retry otomatis dengan query param
 // pembeda (bukan re-request URL identik yang bisa kena cache negatif yang
 // sama) sebelum benar-benar menyerah.
-export default function ResponsiveCover({ manga, alt = '', className = '', ...imgProps }) {
+// variant="thumb" — kartu grid kecil (MangaCard/MangaCardGrid, tampil
+// ~96-150px lebar) BUKAN hero/detail. Beda dari mobile/tablet/desktop yang
+// dipilih lewat media query VIEWPORT (<picture><source>), thumb dibutuhkan
+// di SEMUA lebar layar (kartu kecil tetap kecil walau di desktop) — jadi
+// langsung dipatok ke coverUrls.thumb (400px), skip <source> sama sekali.
+// Sebelumnya kartu-kartu ini ikut coverUrls.mobile (640px, didesain utk
+// hero) — 5-7x lebih besar dari kebutuhan aslinya.
+export default function ResponsiveCover({ manga, alt = '', className = '', variant, ...imgProps }) {
   const covers = manga?.coverUrls;
-  const base = imgUrl(covers?.desktop || manga?.coverUrl);
-  const mobileBase = covers?.mobile ? imgUrl(covers.mobile) : null;
-  const tabletBase = covers?.tablet ? imgUrl(covers.tablet) : null;
+  const desktopUrl = imgUrl(covers?.desktop || manga?.coverUrl);
+  const mobileUrl = covers?.mobile ? imgUrl(covers.mobile) : null;
+  const isThumb = variant === 'thumb';
+  const base = isThumb ? (covers?.thumb ? imgUrl(covers.thumb) : (mobileUrl || desktopUrl)) : desktopUrl;
+  const mobileBase = isThumb ? null : mobileUrl;
+  const tabletBase = isThumb ? null : (covers?.tablet ? imgUrl(covers.tablet) : null);
 
   // Reset retry + loaded sinkron pas render (bukan lewat effect) begitu cover
   // beda — pola resmi React utk "derive state dari perubahan prop" tanpa
@@ -43,7 +53,14 @@ export default function ResponsiveCover({ manga, alt = '', className = '', ...im
   const handleLoad = () => setState((s) => (s.base === base ? { ...s, loaded: true } : s));
 
   return (
-    <picture className="contents">
+    // key={retry} — sengaja remount UTUH <picture>+<source>+<img> tiap retry,
+    // bukan cuma update atribut srcSet. Sekadar mengganti srcSet pada <source>
+    // yang sudah ter-render TIDAK selalu memaksa browser mengulang request
+    // (beda dgn <img src> polos) — ini kemungkinan penyebab cover yang
+    // "nyangkut blank" walau retry logic di atas sudah jalan (state berubah,
+    // tapi browser diam-diam gak benar-benar retry). key baru = elemen DOM
+    // baru = browser pasti fetch ulang dari nol.
+    <picture key={retry} className="contents">
       {mobileBase && <source media="(max-width: 639px)" srcSet={withRetry(mobileBase)} />}
       {tabletBase && <source media="(max-width: 1023px)" srcSet={withRetry(tabletBase)} />}
       <img

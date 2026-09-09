@@ -100,6 +100,72 @@ async function fetchT(url, options = {}, ms = 15000) {
   }
 }
 
+// Comic-walker.com menyertakan tanggal update chapter berikutnya di data
+// halaman itu sendiri ("nextUpdateDateText" di dalam JSON __NEXT_DATA__,
+// server-rendered — gak perlu headless browser/JS, plain fetch cukup).
+// Dipakai buat auto-isi next_update chapter TERBARU tiap manga yang raw_url-nya
+// dari situ. Comic-walker MENANG kalau next_update sebelumnya diisi manual —
+// dianggap sumber paling akurat utk manga yang raw-nya memang dari situ.
+// Return null (bukan throw) di SEMUA kegagalan (bukan comic-walker, network,
+// format berubah) — 1 manga gagal fetch tidak boleh menggagalkan build.
+async function fetchComicWalkerNextUpdate(rawUrl) {
+  try {
+    const host = new URL(rawUrl).hostname;
+    if (!/(^|\.)comic-walker\.com$/.test(host)) return null;
+    const res = await fetchT(rawUrl, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36' },
+    });
+    if (!res.ok) return null;
+    const html = await res.text();
+    const match = html.match(/"nextUpdateDateText":"(\d{4})\/(\d{2})\/(\d{2})"/);
+    if (!match) return null;
+    const [, y, m, d] = match;
+    return `${y}-${m}-${d}`; // ISO date — cocok dgn semantik next_update yg sudah ada
+  } catch {
+    return null;
+  }
+}
+
+const JP_WEEKDAY_ID = { '月': 'Senin', '火': 'Selasa', '水': 'Rabu', '木': 'Kamis', '金': 'Jumat', '土': 'Sabtu', '日': 'Minggu' };
+
+// Parse teks jadwal update dari HTML manga-up.com — pola yang ditemukan:
+// "毎日更新" (tiap hari), "毎週◯曜日更新" (tiap hari-X), "第1・3◯曜日更新"
+// (hari-X minggu ke-1 & ke-3, dst). Dipisah dari fetchMangaUpSchedule di
+// bawah supaya bisa dites tanpa network.
+function parseMangaUpSchedule(html) {
+  if (/毎日更新/.test(html)) return 'hari';
+  let m = html.match(/毎週([月火水木金土日])曜日更新/);
+  if (m) return JP_WEEKDAY_ID[m[1]] ?? null;
+  m = html.match(/第([\d・]+)([月火水木金土日])曜日更新/);
+  if (m) {
+    const day = JP_WEEKDAY_ID[m[2]];
+    if (!day) return null;
+    const weeks = m[1].split('・').map((n) => `ke-${n}`).join(' & ');
+    return `${day} (minggu ${weeks})`;
+  }
+  return null;
+}
+
+// manga-up.com menyertakan pola jadwal update (bukan tanggal pasti, beda dari
+// comic-walker) di HTML halamannya, server-rendered — plain fetch cukup.
+// Dipakai buat auto-isi update_schedule (field manga-level, BUKAN per-chapter
+// spt next_update) tiap manga yang raw_url-nya dari situ. manga-up MENANG
+// kalau update_schedule sebelumnya diisi manual. Return null di semua
+// kegagalan — 1 manga gagal fetch tidak boleh menggagalkan build.
+async function fetchMangaUpSchedule(rawUrl) {
+  try {
+    const host = new URL(rawUrl).hostname;
+    if (!/(^|\.)manga-up\.com$/.test(host)) return null;
+    const res = await fetchT(rawUrl, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36' },
+    });
+    if (!res.ok) return null;
+    return parseMangaUpSchedule(await res.text());
+  } catch {
+    return null;
+  }
+}
+
 // Fetch rating dari MangaDex API
 // mangadex_id: null → rating null (manga original / tidak ada di MangaDex)
 async function fetchMangaDexRating(mangadexId) {
@@ -686,6 +752,11 @@ function buildChapters(slug, mangaPath, manga) {
     const chMetaPath = path.join(chapterPath, 'meta.json');
     if (!fs.existsSync(chMetaPath)) continue;
     const ch = fixEncoding(JSON.parse(fs.readFileSync(chMetaPath, 'utf-8')));
+    // Non-enumerable — gak ikut ke-serialize ke catalog publik (sama pola dgn
+    // _forceNotify di bawah), dipakai caller utk nulis-balik next_update dari
+    // comic-walker ke chapter TERBARU (chapters[0] setelah sort) tanpa perlu
+    // re-derive path dari r2_folder (bisa beda string dgn nama folder disk asli).
+    Object.defineProperty(ch, '_chMetaPath', { value: chMetaPath, enumerable: false });
     const forceNotify = ch.republish_notification === true;
     if (forceNotify) {
       delete ch.republish_notification;
@@ -803,6 +874,10 @@ function applyCoverUrls(manga) {
     desktop: coverFull(manga.covers?.[0]) ?? manga.coverUrl,
     tablet:  coverFull(manga.covers?.[1]) ?? manga.coverUrl,
     mobile:  coverFull(manga.covers?.[2]) ?? manga.coverUrl,
+    // thumb (400px, lihat SIZES di sync-covers.js) — khusus kartu grid kecil
+    // (MangaCard/MangaCardGrid). Fallback ke mobile/desktop kalau manga ini
+    // belum sempat di-resync sejak size ini ditambahkan (covers[3] belum ada).
+    thumb:   coverFull(manga.covers?.[3]) ?? coverFull(manga.covers?.[2]) ?? manga.coverUrl,
   };
   delete manga.cover_dev;
 
@@ -817,6 +892,7 @@ function applyCoverUrls(manga) {
           desktop: coverFull(g.keys[0]),
           tablet:  coverFull(g.keys[1]),
           mobile:  coverFull(g.keys[2]),
+          thumb:   coverFull(g.keys[3]) ?? coverFull(g.keys[2]),
         },
       }))
       .reverse();
@@ -985,6 +1061,57 @@ async function buildCatalog() {
     // Total views manga = jumlah view semua chapter + view halaman detail
     // (detail_views diakumulasi cron dari /api/view/<slug> tanpa "-ch-").
     manga.total_views = chapters.reduce((sum, ch) => sum + ch.views, 0) + (manga.detail_views ?? 0);
+
+    // Tamat/Oneshot gak punya "chapter berikutnya" sama sekali — Tamat sudah
+    // selesai permanen, Oneshot cuma 1 chapter (bukan serialisasi berkala).
+    // Skip TOTAL dari fetch (bukan cuma sembunyikan badge di frontend spt
+    // status Ongoing/Hiatus) — percuma nge-hit raw site tiap build utk manga
+    // yang gak akan pernah punya info ini.
+    const isSerializing = manga.status !== 'Tamat' && manga.status !== 'Oneshot';
+
+    // Comic-walker: auto-isi next_update chapter TERBARU dari tanggal resmi
+    // mereka (lihat fetchComicWalkerNextUpdate) — comic-walker MENANG atas
+    // nilai manual yang ada. Ditulis balik ke meta.json chapter itu (pola sama
+    // dgn auto-fill release_date di atas) supaya tetap terlihat & persisten
+    // di source, bukan cuma nempel di memori build ini.
+    //
+    // Gated isChanged — TANPA ini, tiap push manapun (walau cuma nyentuh 1
+    // manga lain) bakal ikut fetch raw site SEMUA manga yg ada di sini,
+    // berkali-kali per hari kalau lagi rajin update, bebanin server mereka
+    // sia-sia. isChanged sudah true kalau: (a) build cron mingguan (full,
+    // CHANGED_SLUGS kosong — tetap dicek SEKALI per minggu buat semua manga),
+    // atau (b) manga INI yang baru di-push (momen wajar buat refresh juga).
+    if (isSerializing && isChanged && manga.raw_url && chapters[0]) {
+      const cwNextUpdate = await fetchComicWalkerNextUpdate(manga.raw_url);
+      if (cwNextUpdate && chapters[0].next_update !== cwNextUpdate) {
+        chapters[0].next_update = cwNextUpdate;
+        try {
+          const raw = JSON.parse(fs.readFileSync(chapters[0]._chMetaPath, 'utf-8'));
+          raw.next_update = cwNextUpdate;
+          fs.writeFileSync(chapters[0]._chMetaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
+          console.log(`   📅 ${slug} Ch.${chapters[0].chapter_number} next_update ← comic-walker (${cwNextUpdate})`);
+        } catch {}
+      }
+    }
+
+    // manga-up.com: auto-isi update_schedule (pola rilis umum, BUKAN tanggal
+    // pasti — beda dari next_update di atas) dari teks resmi mereka (lihat
+    // fetchMangaUpSchedule) — manga-up MENANG atas nilai manual yang ada.
+    // Field manga-level (bukan per-chapter), ditulis balik ke metaPath manga ini.
+    // Gated isChanged & isSerializing juga — lihat komentar panjang di cabang
+    // comic-walker di atas.
+    if (isSerializing && isChanged && manga.raw_url) {
+      const muSchedule = await fetchMangaUpSchedule(manga.raw_url);
+      if (muSchedule && manga.update_schedule !== muSchedule) {
+        manga.update_schedule = muSchedule;
+        try {
+          const raw = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+          raw.update_schedule = muSchedule;
+          fs.writeFileSync(metaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
+          console.log(`   🗓  ${slug} update_schedule ← manga-up (${muSchedule})`);
+        } catch {}
+      }
+    }
 
     // next_update diambil dari chapter terbaru (chapters sudah diurutkan desc)
     manga.next_update = chapters[0]?.next_update ?? null;

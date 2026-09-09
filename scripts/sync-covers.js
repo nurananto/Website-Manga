@@ -4,11 +4,17 @@ import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client
 import sharp from 'sharp';
 
 const MANGA_DIR = './manga';
-// Lebar 4× ukuran tampil agar sangat tajam di layar high-DPI
+// Lebar 4× ukuran tampil agar sangat tajam di layar high-DPI.
+// @thumb (400px) KHUSUS kartu grid kecil (MangaCard/MangaCardGrid, tampil
+// ~96-150px lebar) — sebelum ada ini, kartu-kartu itu ikut pakai @mobile
+// (640px, didesain utk hero/detail full-width), 5-7x lebih besar dari yang
+// dibutuhkan (temuan PageSpeed "Improve image delivery", ~480 KiB boros per
+// halaman). 400px masih tajam di DPR 2x utk kartu terlebar (~150-200px).
 const SIZES = [
-  { suffix: '',        width: 1280 }, // desktop
-  { suffix: '@tablet', width: 960 },  // tablet
-  { suffix: '@mobile', width: 640 },  // mobile
+  { suffix: '',       width: 1280 }, // desktop
+  { suffix: '@tablet', width: 960 }, // tablet
+  { suffix: '@mobile', width: 640 }, // mobile (hero/detail)
+  { suffix: '@thumb',  width: 400 }, // thumbnail (kartu grid kecil)
 ];
 // q85 menghasilkan cover mobile ~80 KB — berat untuk elemen LCP. Diukur pada
 // cover asli: q75 memangkas ~33% (80 KB -> 54 KB di 640px) dan di bawah q75
@@ -254,17 +260,31 @@ async function syncCovers() {
         console.log(`   📥 Cover utama baru dari MangaDex: ${coverFileName}`);
         const imgBuffer = await downloadCover(mangadexId, coverFileName);
         if (imgBuffer) {
-          for (const oldKey of meta.covers || []) await deleteFromR2(oldKey);
-          meta.covers         = await resizeAndUpload(imgBuffer, `manga/${slug}/covers/cover`);
-          meta.mangadex_cover = coverFileName;
-          meta.cover_source   = 'mangadex';
-          delete meta.raw_cover_url; // sisa dari jalur raw_url, sudah tidak relevan
-          meta.cover_widths   = SIZE_SIGNATURE;
-          // Bump versi → URL cover.webp?v=N berubah → bust cache CDN/Discord/browser.
-          // Tanpa ini, cover R2 diganti tapi URL sama → cache lama tetap tampil.
-          meta.cover_version  = (Number.isFinite(meta.cover_version) ? meta.cover_version : 1) + 1;
-          metaChanged = true;
-          console.log(`   ✅ Cover utama terupload dari MangaDex (${SIZE_SIGNATURE})`);
+          try {
+            // Upload BARU dulu, baru hapus yang LAMA setelah sukses lengkap —
+            // urutan sebaliknya (hapus dulu) bikin cover PERMANEN blank kalau
+            // upload gagal di tengah jalan (retensi lama sudah kehapus, yang
+            // baru gak lengkap, DAN meta.json gak sempat ke-update karena
+            // exception di sini, jadi run berikutnya nyangka masih "up to
+            // date" — skip re-upload selamanya, padahal file di R2 hilang).
+            const oldKeys = meta.covers || [];
+            meta.covers         = await resizeAndUpload(imgBuffer, `manga/${slug}/covers/cover`);
+            for (const oldKey of oldKeys) await deleteFromR2(oldKey);
+            meta.mangadex_cover = coverFileName;
+            meta.cover_source   = 'mangadex';
+            delete meta.raw_cover_url; // sisa dari jalur raw_url, sudah tidak relevan
+            meta.cover_widths   = SIZE_SIGNATURE;
+            // Bump versi → URL cover.webp?v=N berubah → bust cache CDN/Discord/browser.
+            // Tanpa ini, cover R2 diganti tapi URL sama → cache lama tetap tampil.
+            meta.cover_version  = (Number.isFinite(meta.cover_version) ? meta.cover_version : 1) + 1;
+            metaChanged = true;
+            console.log(`   ✅ Cover utama terupload dari MangaDex (${SIZE_SIGNATURE})`);
+          } catch (err) {
+            // Jangan biarkan 1 manga gagal upload matikan seluruh batch —
+            // cover lama (kalau masih ada) tetap dipertahankan, meta.json TIDAK
+            // disentuh (masih nunjuk cover lama yang valid), coba lagi run berikutnya.
+            console.log(`   ❌ Gagal upload cover utama dari MangaDex: ${err.message} — cover lama dipertahankan`);
+          }
         } else {
           console.log(`   ❌ Gagal download cover utama dari MangaDex`);
         }
@@ -298,15 +318,22 @@ async function syncCovers() {
         if (!ratio || ratio > 0.9) {
           console.log(`   ⚠️  cover_source_url bukan portrait (${dims?.width}x${dims?.height}, rasio ${ratio?.toFixed(2) ?? '?'}) — dilewati`);
         } else {
-          for (const oldKey of meta.covers || []) await deleteFromR2(oldKey);
-          meta.covers        = await resizeAndUpload(imgBuffer, `manga/${slug}/covers/cover`);
-          meta.raw_cover_url = meta.cover_source_url;
-          meta.cover_source  = 'manual-url';
-          delete meta.mangadex_cover;
-          meta.cover_widths  = SIZE_SIGNATURE;
-          meta.cover_version = (Number.isFinite(meta.cover_version) ? meta.cover_version : 1) + 1;
-          metaChanged = true;
-          console.log(`   ✅ Cover utama terupload dari cover_source_url (sementara, akan diganti MangaDex kalau sudah tersedia)`);
+          try {
+            // Upload BARU dulu, baru hapus LAMA setelah sukses — lihat komentar
+            // panjang di cabang MangaDex di atas (kasusnya sama persis di sini).
+            const oldKeys = meta.covers || [];
+            meta.covers        = await resizeAndUpload(imgBuffer, `manga/${slug}/covers/cover`);
+            for (const oldKey of oldKeys) await deleteFromR2(oldKey);
+            meta.raw_cover_url = meta.cover_source_url;
+            meta.cover_source  = 'manual-url';
+            delete meta.mangadex_cover;
+            meta.cover_widths  = SIZE_SIGNATURE;
+            meta.cover_version = (Number.isFinite(meta.cover_version) ? meta.cover_version : 1) + 1;
+            metaChanged = true;
+            console.log(`   ✅ Cover utama terupload dari cover_source_url (sementara, akan diganti MangaDex kalau sudah tersedia)`);
+          } catch (err) {
+            console.log(`   ❌ Gagal upload cover dari cover_source_url: ${err.message} — cover lama dipertahankan`);
+          }
         }
       }
     } else if (meta.raw_url && (!meta.cover_source || meta.cover_source === 'raw')) {
@@ -340,15 +367,22 @@ async function syncCovers() {
           if (!ratio || ratio > 0.9) {
             console.log(`   ⚠️  og:image bukan portrait (${dims?.width}x${dims?.height}, rasio ${ratio?.toFixed(2) ?? '?'}) — kemungkinan bukan cover asli, dilewati`);
           } else {
-            for (const oldKey of meta.covers || []) await deleteFromR2(oldKey);
-            meta.covers        = await resizeAndUpload(imgBuffer, `manga/${slug}/covers/cover`);
-            meta.raw_cover_url = ogImageUrl;
-            meta.cover_source  = 'raw';
-            delete meta.mangadex_cover; // pastikan nanti ke-detect beda begitu MangaDex ada cover
-            meta.cover_widths  = SIZE_SIGNATURE;
-            meta.cover_version = (Number.isFinite(meta.cover_version) ? meta.cover_version : 1) + 1;
-            metaChanged = true;
-            console.log(`   ✅ Cover utama terupload dari raw_url (sementara, akan diganti MangaDex kalau sudah tersedia)`);
+            try {
+              // Upload BARU dulu, baru hapus LAMA setelah sukses — lihat komentar
+              // panjang di cabang MangaDex di atas (kasusnya sama persis di sini).
+              const oldKeys = meta.covers || [];
+              meta.covers        = await resizeAndUpload(imgBuffer, `manga/${slug}/covers/cover`);
+              for (const oldKey of oldKeys) await deleteFromR2(oldKey);
+              meta.raw_cover_url = ogImageUrl;
+              meta.cover_source  = 'raw';
+              delete meta.mangadex_cover; // pastikan nanti ke-detect beda begitu MangaDex ada cover
+              meta.cover_widths  = SIZE_SIGNATURE;
+              meta.cover_version = (Number.isFinite(meta.cover_version) ? meta.cover_version : 1) + 1;
+              metaChanged = true;
+              console.log(`   ✅ Cover utama terupload dari raw_url (sementara, akan diganti MangaDex kalau sudah tersedia)`);
+            } catch (err) {
+              console.log(`   ❌ Gagal upload cover dari raw_url: ${err.message} — cover lama dipertahankan`);
+            }
           }
         }
       }
@@ -388,10 +422,18 @@ async function syncCovers() {
           continue;
         }
         const base = c.file.replace(/\.[a-z0-9]+$/i, '');
-        const keys = await resizeAndUpload(buf, `manga/${slug}/covers/gallery/${base}`);
-        gallery.push({ file: c.file, volume: c.volume, keys, widths: SIZE_SIGNATURE });
-        metaChanged = true;
-        console.log(`   🖼  Galeri: upload ${c.file}${c.volume ? ` (Vol. ${c.volume})` : ''}`);
+        try {
+          // try/catch — 1 gambar galeri gagal upload (network blip) jangan
+          // sampai nge-crash seluruh batch sync (lihat kasus sama di cover
+          // utama di atas). Item lama (kalau ada) dipertahankan, sisanya lanjut.
+          const keys = await resizeAndUpload(buf, `manga/${slug}/covers/gallery/${base}`);
+          gallery.push({ file: c.file, volume: c.volume, keys, widths: SIZE_SIGNATURE });
+          metaChanged = true;
+          console.log(`   🖼  Galeri: upload ${c.file}${c.volume ? ` (Vol. ${c.volume})` : ''}`);
+        } catch (err) {
+          if (existing) gallery.push(existing);
+          console.log(`   ❌ Galeri: gagal upload ${c.file}: ${err.message}`);
+        }
       }
 
       if (JSON.stringify(meta.cover_gallery ?? null) !== JSON.stringify(gallery)) {

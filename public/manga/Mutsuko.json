@@ -47,7 +47,7 @@
   "notif_image": "page1",
   "mangadex_id": "12db645e-8482-4f58-8ba3-44e15d07f614",
   "rating": 8.04,
-  "next_update": null,
+  "next_update": "2026-10-02",
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=3",
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/Mutsuko/covers/cover.webp?v=3",
@@ -66,7 +66,8 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 4,
+      "next_update": "2026-10-02"
     },
     {
       "chapter_number": 2,

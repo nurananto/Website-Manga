@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { nowTimestamp, chapterDateLabel, chapterSortValue } from '../utils';
-import { Star, BookOpen, ArrowUpDown, Eye, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play, Lock } from 'lucide-react';
+import { Star, BookOpen, ArrowUpDown, Eye, Images, Download, X, ChevronLeft, ChevronRight, ChevronDown, Play, Lock, CalendarClock } from 'lucide-react';
 import SupportButtons from './SupportButtons';
 import ResponsiveCover from './ResponsiveCover';
 import CountdownTimer from './CountdownTimer';
@@ -34,6 +34,19 @@ const fitCreatorStyle = (value) => ({
   '--creator-chars': Math.max(creatorDisplay(value).length, 8),
 });
 
+// Label badge jadwal update di hero — BEDA dari next_update (dipakai
+// NextUpdateInfo di ReaderModal): next_update itu tanggal/teks utk CHAPTER
+// SELANJUTNYA, diisi ulang tiap upload chapter baru. update_schedule ini
+// pola rilis RAW (sumber asli) di platform aslinya (mis. "Rabu", "Senin &
+// Kamis", "tanggal 5, 15, 25 tiap bulan") — diisi SEKALI di meta.json manga
+// (bukan per-chapter), gak berubah tiap upload, dan sengaja tidak
+// diinterpretasi sebagai tanggal sama sekali, ditampilkan apa adanya.
+// null/kosong → badge disembunyikan.
+const updateScheduleLabel = (value) => {
+  if (value == null || String(value).trim() === '') return null;
+  return `Raw diupdate setiap ${value}`;
+};
+
 export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter, readChapterIds, isSupporter, isLoggedIn }) {
   const [expandedSynopsis, setExpandedSynopsis] = useState(false);
   // Author/Artist dengan >2 nama tampil dipotong ("A, B & N lainnya") — tap
@@ -66,6 +79,11 @@ export default function MangaDetailPage({ manga, onReadChapter, lastReadChapter,
   const [activeDetailTab, setActiveDetailTab] = useState('info');
   const [accessNow, setAccessNow] = useState(() => Date.now());
   const readChapters = readChapterIds || EMPTY_SET;
+  // Badge disembunyikan kalau manga udah gak aktif (Hiatus/Tamat/Oneshot) —
+  // "update setiap Kamis" gak relevan lagi buat manga yang lagi/udah berhenti,
+  // walau field update_schedule masih ke-isi (sengaja gak dihapus di
+  // meta.json, biar kalau lanjut lagi dari hiatus gak perlu isi ulang).
+  const updateSchedule = manga.status === 'Ongoing' ? updateScheduleLabel(manga.update_schedule) : null;
   const [lightboxCover, setLightboxCover] = useState(null);
   const lightboxRef = useRef(null);
   const [galleryPage, setGalleryPage] = useState(0);
@@ -263,10 +281,29 @@ const renderChapterRow = (ch) => {
                 />
             </div>
 
+            {/* Jadwal update — mobile: di antara cover & judul (badge terpisah,
+                cover di-center sendirian di atas dalam layout stacked). Versi
+                desktop ada di atas judul, di dalam kolom Metadata (lihat di bawah). */}
+            {updateSchedule && (
+              <div className="sm:hidden flex items-center gap-1.5 text-on-surface dark:text-white dark:[text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_1px_8px_rgba(0,0,0,0.7)]">
+                <CalendarClock className="w-4 h-4 shrink-0 dark:drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]" />
+                <span className="font-label-sm text-sm font-bold capitalize">{updateSchedule}</span>
+              </div>
+            )}
+
             {/* Metadata info */}
             {/* pb-1 cuma buat sm+ (row layout, biar baseline pas sama bawah cover) —
                 di mobile (stacked) bikin gap bawah beda drpd gap atas kalau selalu aktif */}
             <div className="flex-grow min-w-0 w-full flex flex-col items-center sm:items-start sm:pb-1">
+              {/* Jadwal update — versi desktop, di atas judul. Versi mobile
+                  ada di antara cover & kolom ini (lihat di atas). */}
+              {updateSchedule && (
+                <div className="hidden sm:flex items-center gap-1.5 text-on-surface dark:text-white dark:[text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_1px_8px_rgba(0,0,0,0.7)] mb-2">
+                  <CalendarClock className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-[18px] md:h-[18px] shrink-0 dark:drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]" />
+                  <span className="font-label-sm text-xs sm:text-sm md:text-base font-bold capitalize">{updateSchedule}</span>
+                </div>
+              )}
+
               {/* Title — max 2 baris */}
               <h2 className="font-headline-md text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-on-surface dark:text-white dark:[text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_12px_rgba(0,0,0,0.75)] font-black tracking-tight mb-1.5 text-center sm:text-left line-clamp-2">
                 {manga.title}
@@ -536,6 +573,7 @@ const renderChapterRow = (ch) => {
                             >
                               <ResponsiveCover
                                 manga={{ coverUrls: g.urls, coverUrl: g.urls.mobile }}
+                                variant="thumb"
                                 alt={g.volume ? `Cover Vol. ${g.volume}` : 'Cover'}
                                 loading="lazy"
                                 className="w-full aspect-[2/3] object-cover group-hover:scale-105 transition-transform duration-300"

@@ -202,21 +202,24 @@ body {
    badge di chapter row (list/grid), lihat MangaCard.jsx/MangaCardGrid.jsx. */
 
 /* Glow badge "Updated!" di atas cover (MangaCard.jsx) — background-color
-   "bernapas" pelan antara hijau muda & hijau tua, bedain dari badge Ongoing
-   yang solid. Ini animasi background-color (bukan transform/opacity kayak
-   glow lain di file ini), jadi TIDAK murni compositor — tapi elemennya kecil
-   & ukurannya fixed (gak scale/bleed keluar batas), jadi cost repaint-nya
-   kecil, beda kasus dgn cover-new-glow-ring lama yang nyakup 1 kartu penuh. */
+   "bernapas" pelan antara 2 hijau, bedain dari badge Ongoing yang solid.
+   Ini animasi background-color (bukan transform/opacity kayak glow lain di
+   file ini), jadi TIDAK murni compositor — tapi elemennya kecil & ukurannya
+   fixed (gak scale/bleed keluar batas), jadi cost repaint-nya kecil, beda
+   kasus dgn cover-new-glow-ring lama yang nyakup 1 kartu penuh.
+   emerald-400/600 (versi lama) GAGAL WCAG AA dgn teks putih (~2.5:1 dan
+   ~3.8:1, butuh 4.5:1) — diganti emerald-700/800, dua-duanya lolos (~5.5:1
+   dan ~7.7:1) supaya kontras aman di SEPANJANG animasi, bukan cuma sesaat. */
 @keyframes badge-updated-glow {
-  0%, 100% { background-color: #34d399; } /* emerald-400 */
-  50%      { background-color: #059669; } /* emerald-600 */
+  0%, 100% { background-color: #047857; } /* emerald-700 */
+  50%      { background-color: #065f46; } /* emerald-800 */
 }
 .badge-updated-glow {
   animation: badge-updated-glow 2.5s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .badge-updated-glow { animation: none; background-color: #10b981; }
+  .badge-updated-glow { animation: none; background-color: #047857; } /* emerald-700 */
 }
 
 /* Glow tombol Donasi — ring putih membesar dari tepi badge "Donasi" (bukan

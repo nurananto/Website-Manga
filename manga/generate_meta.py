@@ -162,7 +162,7 @@ def header(subtitle=""):
     print()
 
 
-def proses_chapter(ch_dir, lock_hours, next_update=None, notif_image=None, unlock_date=None):
+def proses_chapter(ch_dir, lock_hours, notif_image=None, unlock_date=None):
     pages = count_webp(ch_dir)
     if pages == 0:
         return False, "tidak ada .webp"
@@ -208,9 +208,6 @@ def proses_chapter(ch_dir, lock_hours, next_update=None, notif_image=None, unloc
         meta["release_date"] = existing_release
     if final_unlock:
         meta["unlock_date"] = final_unlock
-    # next_update hanya untuk chapter terakhir/terbaru (jadwal rilis berikutnya)
-    if next_update:
-        meta["next_update"] = next_update
     # Gambar notifikasi chapter INI (Discord & FB) — disimpan per-chapter, BUKAN
     # di meta.json manga, supaya tiap chapter bisa beda-beda tanpa manga meta.json
     # ikut berubah tiap kali proses chapter baru.
@@ -240,29 +237,6 @@ def infer_manga_status(title_dir):
         for d in title_dir.iterdir()
     )
     return "Oneshot" if has_oneshot_folder else "ONGOING"
-
-
-def ask_next_update():
-    """Tanya jadwal rilis chapter berikutnya. Return ISO WIB string atau None."""
-    print()
-    print("Jadwal rilis chapter BERIKUTNYA (untuk chapter terbaru):")
-    print("  1. Tidak ada (default — tampil 'segera rilis')")
-    print("  2. Ada tanggalnya")
-    pilih = ask("Pilihan (1/2, Enter=1)", allow_empty=True)
-    if pilih != "2":
-        return None
-
-    while True:
-        tgl = ask("  Tanggal (1-31)")
-        bln = ask("  Bulan (1-12)")
-        thn = ask("  Tahun (mis. 2026)")
-        try:
-            d = int(tgl); m = int(bln); y = int(thn)
-            # validasi tanggal
-            datetime(y, m, d)
-            return f"{y:04d}-{m:02d}-{d:02d}T00:00:00+07:00"
-        except ValueError:
-            print("  ⚠  Tanggal tidak valid, coba lagi.")
 
 
 def ask_lock_config():
@@ -623,7 +597,7 @@ def proses_semua_judul(titles):
         for ch in chs:
             is_newest = ch == newest
             berhasil, info = proses_chapter(
-                ch, lock_hours if is_newest else 0, None, notif_image,
+                ch, lock_hours if is_newest else 0, notif_image,
                 unlock_date if is_newest else None,
             )
             if berhasil:
@@ -733,9 +707,10 @@ def proses_chapter_menu(manga_dir):
             lock_hours = lock_cfg["lock_hours"]
             unlock_date = lock_cfg.get("unlock_date")
 
-            # ── Jadwal rilis berikutnya (chapter terbaru saja) ─
-            next_update = ask_next_update()
-            # chapter terbaru = nomor terbesar di antara yang dipilih
+            # chapter terbaru = nomor terbesar di antara yang dipilih (masih
+            # dipakai buat lock_hours/unlock_date — next_update sudah tidak ada
+            # di sini, sekarang diisi otomatis lewat update_schedule/next_update
+            # dari raw source, lihat scripts/build-catalog.js)
             newest_ch = max(selected, key=lambda d: chapter_sort_key(d.name))
 
             # ── Gambar notifikasi chapter baru (Discord & Facebook) ─
@@ -777,7 +752,6 @@ def proses_chapter_menu(manga_dir):
                     berhasil, info = proses_chapter(
                         ch,
                         lock_hours if is_newest else 0,
-                        next_update if is_newest else None,
                         notif_image,
                         unlock_date if is_newest else None,
                     )
@@ -803,7 +777,6 @@ def proses_chapter_menu(manga_dir):
                     berhasil, info = proses_chapter(
                         ch,
                         lock_hours if is_newest else 0,
-                        next_update if is_newest else None,
                         notif_image,
                         unlock_date if is_newest else None,
                     )
