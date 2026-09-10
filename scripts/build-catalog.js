@@ -650,14 +650,23 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
   const byManga = groupByManga(newChapters);
 
   // Opening beda kalau chapter ini menandai manga Tamat/Hiatus (lihat
-  // isFinalChapter/isHiatusChapter di detectNewChapters). "@followers"
-  // nempel di depan baris pertama SEMUA kondisi (bukan baris sendiri) —
-  // trigger notifikasi ke semua follower Page, sengaja ke-tag semua gak
-  // masalah.
+  // isFinalChapter/isHiatusChapter di detectNewChapters).
+  //
+  // "@followers" SEMPAT ditambahin di sini (lihat riwayat commit), lalu
+  // dicabut lagi — ternyata mention itu cuma jadi entity beneran (biru,
+  // klik-able, trigger push notification) kalau diketik manual lewat
+  // Composer Facebook (ada dropdown saran begitu ngetik "@fol..."). Graph
+  // API (endpoint yang dipakai di sini, /feed & /photos) cuma nerima
+  // `message` sbg teks POLOS — "@followers" yang dikirim lewat API cuma
+  // nempel sbg teks biasa, gak pernah jadi mention beneran & gak trigger
+  // notifikasi apa pun. Gak ada parameter Graph API publik buat nyisipin
+  // mention itu programatik (batasan platform Meta, bukan bug di sini) —
+  // drpd nambah teks yang keliatannya berfungsi tapi sebenarnya kosmetik
+  // doang, mending gak usah sama sekali.
   const openingOf = (ch, title, fallback) => {
-    if (ch.isFinalChapter)  return `@followers 🏁 Chapter terakhir — TAMAT!\n${title}\nTerima kasih sudah menikmati series ini.`;
-    if (ch.isHiatusChapter) return `@followers ⏸️ Masuk hiatus mulai chapter ini\n${title}\nPantau terus ya!`;
-    return `@followers ${fallback}`;
+    if (ch.isFinalChapter)  return `🏁 Chapter terakhir — TAMAT!\n${title}\nTerima kasih sudah menikmati series ini.`;
+    if (ch.isHiatusChapter) return `⏸️ Masuk hiatus mulai chapter ini\n${title}\nPantau terus ya!`;
+    return fallback;
   };
 
   const posts = []; // { title, rep, message } — tiap elemen = 1 post FB
