@@ -21,7 +21,7 @@
     ],
     "rating": 8.25,
     "chapter_count": 6,
-    "total_views": 130,
+    "total_views": 140,
     "isTrending": true,
     "latest_release_date": "2026-09-10T20:56:57+07:00",
     "next_update": null,
@@ -70,14 +70,14 @@
           0.7038
         ],
         "notif_image": "28",
+        "release_date": "2026-09-10T20:56:57+07:00",
         "r2_folder": 6,
         "id": "Seishun-ch-6",
         "r2_prefix": "manga/Seishun/6/",
         "title": "Ch. 6",
-        "release_date": "2026-09-10T20:56:57+07:00",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 3
       },
       {
         "chapter_number": 5,
@@ -85,13 +85,35 @@
         "pages": 20,
         "notif_image": "page1",
         "release_date": "2026-09-04T17:57:49+07:00",
+        "page_ratios": [
+          0.7038123167155426,
+          0.7038123167155426,
+          0.7038123167155426,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
         "r2_folder": 5,
         "id": "Seishun-ch-5",
         "r2_prefix": "manga/Seishun/5/",
         "title": "Ch. 5",
         "unlockDate": null,
         "isLocked": false,
-        "views": 10
+        "views": 11
       },
       {
         "chapter_number": 4,
@@ -99,13 +121,39 @@
         "pages": 24,
         "notif_image": "page1",
         "release_date": "2026-08-27T19:12:42+07:00",
+        "page_ratios": [
+          0.7038123167155426,
+          0.7038123167155426,
+          0.7038123167155426,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
         "r2_folder": 4,
         "id": "Seishun-ch-4",
         "r2_prefix": "manga/Seishun/4/",
         "title": "Ch. 4",
         "unlockDate": null,
         "isLocked": false,
-        "views": 12
+        "views": 13
       }
     ]
   },
@@ -131,7 +179,7 @@
     ],
     "rating": 8.38,
     "chapter_count": 20,
-    "total_views": 128,
+    "total_views": 142,
     "isTrending": true,
     "latest_release_date": "2026-09-10T19:19:01+07:00",
     "next_update": null,
@@ -174,33 +222,72 @@
         "title": "Ch. 15.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 3
       },
       {
         "chapter_number": 14.2,
         "lock_hours": 0,
         "pages": 20,
         "release_date": "2026-07-30T20:01:44+07:00",
+        "page_ratios": [
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114
+        ],
         "r2_folder": 14.2,
         "id": "UchinoSeiso-kei-ch-14.2",
         "r2_prefix": "manga/UchinoSeiso-kei/14.2/",
         "title": "Ch. 14.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 8
+        "views": 9
       },
       {
         "chapter_number": 14.1,
         "lock_hours": 0,
         "pages": 15,
         "release_date": "2026-07-30T18:18:57+07:00",
+        "page_ratios": [
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114
+        ],
         "r2_folder": 14.1,
         "id": "UchinoSeiso-kei-ch-14.1",
         "r2_prefix": "manga/UchinoSeiso-kei/14.1/",
         "title": "Ch. 14.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 6
+        "views": 7
       }
     ]
   },
@@ -227,7 +314,7 @@
     ],
     "rating": null,
     "chapter_count": 1,
-    "total_views": 0,
+    "total_views": 26,
     "isTrending": true,
     "latest_release_date": "2026-09-10T14:20:20+07:00",
     "next_update": "2026-09-21",
@@ -275,7 +362,7 @@
         "title": "Ch. 1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 0
+        "views": 12
       }
     ]
   },
@@ -302,7 +389,7 @@
     ],
     "rating": 8.48,
     "chapter_count": 19,
-    "total_views": 194,
+    "total_views": 203,
     "isTrending": true,
     "latest_release_date": "2026-09-08T16:55:08+07:00",
     "next_update": "2026-09-22",
@@ -374,9 +461,9 @@
       "School Life",
       "Slice of Life"
     ],
-    "rating": 7.7,
+    "rating": 7.69,
     "chapter_count": 21,
-    "total_views": 273,
+    "total_views": 276,
     "isTrending": true,
     "latest_release_date": "2026-09-06T23:10:58+07:00",
     "next_update": null,
@@ -394,7 +481,7 @@
         "title": "Ch. 16.1",
         "unlockDate": "2026-09-23T17:00:00.000Z",
         "isLocked": true,
-        "views": 3
+        "views": 4
       },
       {
         "chapter_number": 15.2,
@@ -445,7 +532,7 @@
     ],
     "rating": 9.25,
     "chapter_count": 5,
-    "total_views": 52,
+    "total_views": 53,
     "isTrending": false,
     "latest_release_date": "2026-09-06T21:31:18+07:00",
     "next_update": null,
@@ -520,7 +607,7 @@
     ],
     "rating": 7.63,
     "chapter_count": 21,
-    "total_views": 1503,
+    "total_views": 1517,
     "isTrending": false,
     "latest_release_date": "2026-09-04T22:42:33+07:00",
     "next_update": null,
@@ -574,7 +661,7 @@
         "title": "Ch. 8.2",
         "unlockDate": "2026-09-06T17:00:00.000Z",
         "isLocked": false,
-        "views": 47
+        "views": 50
       }
     ]
   },
@@ -600,7 +687,7 @@
     ],
     "rating": 8.89,
     "chapter_count": 15,
-    "total_views": 50,
+    "total_views": 53,
     "isTrending": false,
     "latest_release_date": "2026-09-04T09:01:58+07:00",
     "next_update": null,
@@ -672,9 +759,9 @@
       "Romance",
       "Shounen"
     ],
-    "rating": 6.01,
+    "rating": 6.02,
     "chapter_count": 17,
-    "total_views": 303,
+    "total_views": 306,
     "isTrending": false,
     "latest_release_date": "2026-09-03T22:14:41+07:00",
     "next_update": null,
@@ -692,7 +779,7 @@
         "title": "Ch. 6.3",
         "unlockDate": "2026-10-06T17:00:00.000Z",
         "isLocked": true,
-        "views": 8
+        "views": 9
       },
       {
         "chapter_number": 6.2,
@@ -743,7 +830,7 @@
     ],
     "rating": 8.41,
     "chapter_count": 18,
-    "total_views": 151,
+    "total_views": 154,
     "isTrending": false,
     "latest_release_date": "2026-09-03T10:13:04+07:00",
     "next_update": "2026-09-17",
@@ -763,7 +850,7 @@
         "title": "Ch. 13.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 11
+        "views": 12
       },
       {
         "chapter_number": 12.2,
@@ -777,7 +864,7 @@
         "title": "Ch. 12.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 10
+        "views": 11
       },
       {
         "chapter_number": 12.1,
@@ -821,7 +908,7 @@
     ],
     "rating": 7.45,
     "chapter_count": 12,
-    "total_views": 296,
+    "total_views": 301,
     "isTrending": false,
     "latest_release_date": "2026-09-01T18:26:28+07:00",
     "next_update": "2026-10-06",
@@ -841,7 +928,7 @@
         "title": "Ch. 8.2",
         "unlockDate": null,
         "isLocked": false,
-        "views": 29
+        "views": 30
       },
       {
         "chapter_number": 8.1,
@@ -893,7 +980,7 @@
     ],
     "rating": 8.7,
     "chapter_count": 2,
-    "total_views": 45,
+    "total_views": 48,
     "isTrending": false,
     "latest_release_date": "2026-08-31T20:13:11+07:00",
     "next_update": "2026-09-25",
@@ -968,7 +1055,7 @@
         "title": "Ch. 1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 17
+        "views": 18
       },
       {
         "chapter_number": "prolog",
@@ -1008,7 +1095,7 @@
     ],
     "rating": 7.49,
     "chapter_count": 28,
-    "total_views": 466,
+    "total_views": 470,
     "isTrending": false,
     "latest_release_date": "2026-08-28T11:00:39+07:00",
     "next_update": null,
@@ -1026,7 +1113,7 @@
         "title": "Ch. 23.2",
         "unlockDate": "2026-09-27T17:00:00.000Z",
         "isLocked": true,
-        "views": 5
+        "views": 6
       },
       {
         "chapter_number": 23.1,
@@ -1051,7 +1138,7 @@
         "title": "Ch. 23.1",
         "unlockDate": "2026-09-06T17:00:00.000Z",
         "isLocked": false,
-        "views": 12
+        "views": 13
       },
       {
         "chapter_number": 22.2,
@@ -1092,7 +1179,7 @@
     ],
     "rating": 7.1,
     "chapter_count": 21,
-    "total_views": 569,
+    "total_views": 574,
     "isTrending": false,
     "latest_release_date": "2026-08-27T23:58:08+07:00",
     "next_update": null,
@@ -1126,7 +1213,7 @@
         "title": "Ch. 16.2",
         "unlockDate": "2026-08-30T17:00:00.000Z",
         "isLocked": false,
-        "views": 52
+        "views": 53
       },
       {
         "chapter_number": 16.1,
@@ -1155,7 +1242,7 @@
         "title": "Ch. 16.1",
         "unlockDate": null,
         "isLocked": false,
-        "views": 57
+        "views": 58
       },
       {
         "chapter_number": 15.2,
@@ -1194,7 +1281,7 @@
     ],
     "rating": 6.8,
     "chapter_count": 18,
-    "total_views": 307,
+    "total_views": 315,
     "isTrending": false,
     "latest_release_date": "2026-08-26T23:49:42+07:00",
     "next_update": null,
@@ -1258,7 +1345,7 @@
         "title": "Ch. 17",
         "unlockDate": null,
         "isLocked": false,
-        "views": 42
+        "views": 43
       },
       {
         "chapter_number": 16,
@@ -1297,7 +1384,7 @@
         "title": "Ch. 16",
         "unlockDate": null,
         "isLocked": false,
-        "views": 30
+        "views": 31
       }
     ]
   },
@@ -1324,7 +1411,7 @@
     ],
     "rating": 8.22,
     "chapter_count": 30,
-    "total_views": 840,
+    "total_views": 851,
     "isTrending": false,
     "latest_release_date": "2026-08-25T23:04:51+07:00",
     "next_update": null,
@@ -1372,7 +1459,7 @@
         "title": "Ch. 24.1",
         "unlockDate": "2026-08-28T17:00:00.000Z",
         "isLocked": false,
-        "views": 37
+        "views": 39
       },
       {
         "chapter_number": 23.2,
@@ -1385,7 +1472,7 @@
         "title": "Ch. 23.2",
         "unlockDate": "2026-08-11T16:28:24.000Z",
         "isLocked": false,
-        "views": 58
+        "views": 59
       }
     ]
   },
@@ -1411,7 +1498,7 @@
     ],
     "rating": 7.79,
     "chapter_count": 20,
-    "total_views": 308,
+    "total_views": 310,
     "isTrending": false,
     "latest_release_date": "2026-08-25T11:22:09+07:00",
     "next_update": null,
@@ -1483,7 +1570,7 @@
     ],
     "rating": 8.09,
     "chapter_count": 14,
-    "total_views": 729,
+    "total_views": 731,
     "isTrending": false,
     "latest_release_date": "2026-08-19T19:01:02+07:00",
     "next_update": null,
@@ -1554,7 +1641,7 @@
     ],
     "rating": 9.18,
     "chapter_count": 5,
-    "total_views": 144,
+    "total_views": 145,
     "isTrending": false,
     "latest_release_date": "2026-08-16T02:31:56+07:00",
     "next_update": null,
@@ -1627,7 +1714,7 @@
     ],
     "rating": 8.24,
     "chapter_count": 3,
-    "total_views": 120,
+    "total_views": 122,
     "isTrending": false,
     "latest_release_date": "2026-08-12T22:54:08+07:00",
     "next_update": null,
@@ -1698,7 +1785,7 @@
     ],
     "rating": 8.42,
     "chapter_count": 13,
-    "total_views": 171,
+    "total_views": 172,
     "isTrending": false,
     "latest_release_date": "2026-08-07T11:26:33+07:00",
     "next_update": null,
@@ -1839,7 +1926,7 @@
     ],
     "rating": 8.83,
     "chapter_count": 15,
-    "total_views": 65,
+    "total_views": 66,
     "isTrending": false,
     "latest_release_date": "2026-08-01T23:00:15+07:00",
     "next_update": null,
@@ -1908,9 +1995,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 7.78,
+    "rating": 7.77,
     "chapter_count": 5,
-    "total_views": 91,
+    "total_views": 92,
     "isTrending": false,
     "latest_release_date": "2026-07-24T13:49:29+07:00",
     "next_update": null,
@@ -2094,7 +2181,7 @@
     ],
     "rating": 8.83,
     "chapter_count": 1,
-    "total_views": 32,
+    "total_views": 33,
     "isTrending": false,
     "latest_release_date": "2026-07-09T21:15:37+07:00",
     "next_update": null,
@@ -2137,7 +2224,7 @@
     ],
     "rating": 8.04,
     "chapter_count": 3,
-    "total_views": 28,
+    "total_views": 29,
     "isTrending": false,
     "latest_release_date": "2026-07-09T20:33:22+07:00",
     "next_update": "2026-10-02",
@@ -2208,7 +2295,7 @@
     ],
     "rating": 8.4,
     "chapter_count": 5,
-    "total_views": 27,
+    "total_views": 28,
     "isTrending": false,
     "latest_release_date": "2026-07-08T18:41:58+07:00",
     "next_update": null,
@@ -2279,7 +2366,7 @@
     ],
     "rating": 8.29,
     "chapter_count": 4,
-    "total_views": 89,
+    "total_views": 90,
     "isTrending": false,
     "latest_release_date": "2026-07-03T20:15:09+07:00",
     "next_update": null,
@@ -2560,9 +2647,9 @@
       "School Life",
       "Shounen"
     ],
-    "rating": 8.29,
+    "rating": 8.28,
     "chapter_count": 6,
-    "total_views": 48,
+    "total_views": 49,
     "isTrending": false,
     "latest_release_date": "2026-06-18T18:38:29+07:00",
     "next_update": null,
@@ -2631,7 +2718,7 @@
     ],
     "rating": 8.76,
     "chapter_count": 2,
-    "total_views": 23,
+    "total_views": 24,
     "isTrending": false,
     "latest_release_date": "2026-06-14T15:10:34+07:00",
     "next_update": null,
@@ -2686,9 +2773,9 @@
       "Shounen",
       "Slice of Life"
     ],
-    "rating": 8.65,
+    "rating": 8.67,
     "chapter_count": 25,
-    "total_views": 55,
+    "total_views": 56,
     "isTrending": false,
     "latest_release_date": "2026-06-13T20:30:05+07:00",
     "next_update": null,
@@ -2756,7 +2843,7 @@
     ],
     "rating": 8.65,
     "chapter_count": 216,
-    "total_views": 390,
+    "total_views": 391,
     "isTrending": false,
     "latest_release_date": "2025-03-27T19:03:42+07:00",
     "next_update": null,
@@ -2825,7 +2912,7 @@
     ],
     "rating": 8.29,
     "chapter_count": 95,
-    "total_views": 30,
+    "total_views": 32,
     "isTrending": false,
     "latest_release_date": "2019-09-05T00:00:00+07:00",
     "next_update": null,
@@ -2844,7 +2931,7 @@
         "title": "Ch. 95",
         "unlockDate": null,
         "isLocked": false,
-        "views": 4
+        "views": 5
       },
       {
         "chapter_number": 94,

@@ -45,9 +45,9 @@
     "5.4": 4,
     "6.1": 4,
     "6.2": 5,
-    "6.3": 8
+    "6.3": 9
   },
-  "total_views": 303,
+  "total_views": 306,
   "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640x400q75",
@@ -64,10 +64,10 @@
       }
     }
   ],
-  "detail_views": 107,
+  "detail_views": 109,
   "update_schedule": "Rabu",
   "mangadex_id": "02c719c6-d4bc-4ad4-9ebf-d033abe2f410",
-  "rating": 6.01,
+  "rating": 6.02,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ShokeiFlag/covers/cover.webp?v=5",
   "coverUrls": {
@@ -88,7 +88,7 @@
       "title": "Ch. 6.3",
       "unlockDate": "2026-10-06T17:00:00.000Z",
       "isLocked": true,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 6.2,

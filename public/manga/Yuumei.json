@@ -27,7 +27,7 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 35,
+    "1": 36,
     "2": 16,
     "3": 16,
     "4": 9,
@@ -37,7 +37,7 @@
     "8": 9,
     "9": 10,
     "10": 10,
-    "11": 9,
+    "11": 10,
     "12": 8,
     "13": 6,
     "14": 9,
@@ -51,14 +51,14 @@
     "21.2": 31,
     "22.1": 64,
     "22.2": 81,
-    "23.1": 61,
+    "23.1": 62,
     "1.5": 11,
-    "23.2": 58,
+    "23.2": 59,
     "8.5": 9,
-    "24.1": 37,
+    "24.1": 39,
     "24.2": 8
   },
-  "total_views": 840,
+  "total_views": 851,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -93,7 +93,7 @@
       }
     }
   ],
-  "detail_views": 209,
+  "detail_views": 214,
   "cover_version": 6,
   "notif_image": "page1",
   "update_schedule": "Rabu (ke-2 & 4)",
@@ -150,7 +150,7 @@
       "title": "Ch. 24.1",
       "unlockDate": "2026-08-28T17:00:00.000Z",
       "isLocked": false,
-      "views": 37
+      "views": 39
     },
     {
       "chapter_number": 23.2,
@@ -163,7 +163,7 @@
       "title": "Ch. 23.2",
       "unlockDate": "2026-08-11T16:28:24.000Z",
       "isLocked": false,
-      "views": 58
+      "views": 59
     },
     {
       "chapter_number": 23.1,
@@ -176,7 +176,7 @@
       "title": "Ch. 23.1",
       "unlockDate": "2026-07-29T14:00:00.000Z",
       "isLocked": false,
-      "views": 61
+      "views": 62
     },
     {
       "chapter_number": 22.2,
@@ -358,7 +358,7 @@
       "title": "Ch. 11",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 10
     },
     {
       "chapter_number": 10,
@@ -526,9 +526,9 @@
         null,
         null,
         0.703125,
-        null,
-        null,
-        null
+        0.703125,
+        0.703125,
+        0.703125
       ],
       "r2_folder": 1,
       "id": "Yuumei-ch-1",
@@ -536,7 +536,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 35
+      "views": 36
     }
   ]
 }

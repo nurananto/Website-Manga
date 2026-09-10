@@ -28,12 +28,15 @@
   "notif_image": "cover",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "1": 12
+  },
+  "total_views": 26,
   "raw_cover_url": "https://m.media-amazon.com/images/I/81-RxaqGX0L._SL1500_.jpg",
   "cover_source": "manual-url",
   "cover_widths": "1280x960x640x400q75",
   "cover_version": 2,
+  "detail_views": 14,
   "rating": null,
   "next_update": "2026-09-21",
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Dekakute/covers/cover.webp?v=2",
@@ -85,7 +88,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 12
     }
   ]
 }
