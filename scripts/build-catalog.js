@@ -650,11 +650,14 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
   const byManga = groupByManga(newChapters);
 
   // Opening beda kalau chapter ini menandai manga Tamat/Hiatus (lihat
-  // isFinalChapter/isHiatusChapter di detectNewChapters).
+  // isFinalChapter/isHiatusChapter di detectNewChapters). "@followers"
+  // nempel di depan baris pertama SEMUA kondisi (bukan baris sendiri) —
+  // trigger notifikasi ke semua follower Page, sengaja ke-tag semua gak
+  // masalah.
   const openingOf = (ch, title, fallback) => {
-    if (ch.isFinalChapter)  return `🏁 Chapter terakhir — TAMAT!\n${title}\nTerima kasih sudah menikmati series ini.`;
-    if (ch.isHiatusChapter) return `⏸️ Masuk hiatus mulai chapter ini\n${title}\nPantau terus ya!`;
-    return fallback;
+    if (ch.isFinalChapter)  return `@followers 🏁 Chapter terakhir — TAMAT!\n${title}\nTerima kasih sudah menikmati series ini.`;
+    if (ch.isHiatusChapter) return `@followers ⏸️ Masuk hiatus mulai chapter ini\n${title}\nPantau terus ya!`;
+    return `@followers ${fallback}`;
   };
 
   const posts = []; // { title, rep, message } — tiap elemen = 1 post FB
@@ -670,7 +673,7 @@ async function sendFacebookNotifications(newChapters, pageId, pageToken, siteUrl
     } else {
       for (const ch of list) {
         const message =
-          openingOf(ch, title, `📖 ${title}\nChapter ${ch.chapterNumber} sudah update!`) +
+          openingOf(ch, title, `📖 ${title}\nNew Chapter ${ch.chapterNumber} sudah update!`) +
           `\n\nBaca: ${host}/${mangaId}/`;
         posts.push({ title, rep: ch, message });
       }
