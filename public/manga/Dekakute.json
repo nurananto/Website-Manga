@@ -77,15 +77,15 @@
         0.6969
       ],
       "notif_image": "2",
+      "release_date": "2026-09-10T14:20:20+07:00",
+      "next_update": "2026-09-21",
       "r2_folder": 1,
       "id": "Dekakute-ch-1",
       "r2_prefix": "manga/Dekakute/1/",
       "title": "Ch. 1",
-      "release_date": "2026-09-10T14:20:20+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0,
-      "next_update": "2026-09-21"
+      "views": 0
     }
   ]
 }

@@ -3,5 +3,20 @@
   "lock_hours": 0,
   "pages": 13,
   "notif_image": "7",
-  "release_date": "2026-08-16T18:49:43+07:00"
+  "release_date": "2026-08-16T18:49:43+07:00",
+  "page_ratios": [
+    0.6968641114982579,
+    0.6968641114982579,
+    0.6968641114982579,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ]
 }
