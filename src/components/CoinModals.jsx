@@ -559,6 +559,7 @@ export function LockedChapterModal({ isOpen, onClose, chapter, manga, isLoggedIn
                 <ResponsiveCover
                   manga={manga}
                   alt=""
+                  variant="thumb"
                   className="block h-full w-full object-cover"
                 />
               </div>

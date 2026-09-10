@@ -136,7 +136,7 @@ function HistoryTabs({ historyEntries, handleReadChapter }) {
                   (jadi gap-nya kelipatan jumlah <source>, bukan cuma 1x). */}
               <div className="flex items-stretch shrink-0">
                 <span aria-hidden="true" className="w-1 sm:w-1.5 rounded-full bg-primary self-stretch shrink-0 mr-1 sm:mr-1.5 md:mr-2" />
-                <ResponsiveCover manga={manga} alt={manga.title}
+                <ResponsiveCover manga={manga} alt={manga.title} variant="thumb"
                   className="aspect-[2/3] h-[80px] sm:h-[104px] md:h-[132px] lg:h-[160px] w-auto object-cover rounded-lg border border-outline-variant/60 shrink-0 shadow-md" />
               </div>
               {/* justify-center + gap kecil: dulu pakai justify-between yang

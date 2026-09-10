@@ -1086,6 +1086,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                     <ResponsiveCover
                       manga={activeManga}
                       alt={activeManga.title}
+                      variant="thumb"
                       className="w-28 sm:w-32 aspect-[2/3] object-cover rounded-xl mx-auto shadow-lg border border-outline-variant"
                     />
                   </div>
