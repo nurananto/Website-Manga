@@ -55,8 +55,13 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Nurananto Scanlation" />
     <meta name="twitter:description" content="nurananto scanslation" />
-    <!-- Hanya origin LCP yang dibuka penuh. API cukup DNS; Turnstile dimuat saat dibutuhkan. -->
-    <link rel="preconnect" href="https://cdn.nuranantoscans.my.id" />
+    <!-- Hanya origin LCP yang dibuka penuh. API cukup DNS; Turnstile dimuat saat dibutuhkan.
+         crossorigin — tanpa ini Lighthouse/Chrome tandai "unused preconnect": ada
+         fetch() mode CORS ke origin ini juga (tombol download cover di galeri,
+         lihat downloadCover() di MangaDetailPage.jsx), jadi browser buka koneksi
+         BARU buat request itu ketimbang makai yang sudah di-preconnect (beda
+         "flavor" koneksi kalau attribute-nya gak disamakan). -->
+    <link rel="preconnect" href="https://cdn.nuranantoscans.my.id" crossorigin />
     <link rel="dns-prefetch" href="https://api.nuranantoscans.my.id" />
     <!-- Prefetch data JSON halaman ini SEDINI mungkin — sebelum bundle JS di-download,
          di-parse, dieksekusi, dan React mount+useEffect jalan. Tanpa ini, URL gambar

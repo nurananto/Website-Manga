@@ -132,9 +132,14 @@ function MangaCardGrid({ manga, onReadChapter, onViewManga, isLoggedIn, isSuppor
   const cornerBadge = isMangaNew
     ? { text: 'Updated!', className: 'badge-updated-glow text-white' }
     : isEnded
-    ? { text: 'Completed', className: 'bg-red-500 text-white' }
+    // red-700 (bukan -500) — teks putih di red-500 cuma ~3.76:1, gagal WCAG
+    // AA. red-700 ~6.47:1, lolos.
+    ? { text: 'Completed', className: 'bg-red-700 text-white' }
     : isHiatus
-    ? { text: 'Hiatus', className: 'bg-zinc-400 dark:bg-zinc-500 text-white' }
+    // zinc-600 (bukan -400, dan disamain 1 warna gak usah beda per tema) —
+    // zinc-400 di light mode cuma ~2.56:1, gagal parah. zinc-600 ~7.73:1 di
+    // dua tema, lolos.
+    ? { text: 'Hiatus', className: 'bg-zinc-600 text-white' }
     // emerald-700 (bukan -600) — teks putih di emerald-600 cuma ~3.8:1,
     // gagal WCAG AA (butuh 4.5:1). emerald-700 ~5.5:1, lolos.
     : { text: 'Ongoing', className: 'bg-emerald-700 text-white' };

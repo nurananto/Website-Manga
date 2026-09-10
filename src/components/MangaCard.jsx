@@ -30,18 +30,21 @@ function MangaCard({ manga, onReadChapter, onViewManga, isLoggedIn, isSupporter,
   // .badge-updated-glow di index.css) biar tetap kebeda dari Ongoing yang
   // solid diam — sekilas kelihatan beda tanpa perlu baca teksnya.
   //
-  // emerald-700 (bukan emerald-600) — teks putih di atas emerald-600 cuma
-  // ~3.8:1, gagal WCAG AA (butuh 4.5:1 utk teks kecil). emerald-700 ~5.5:1,
-  // lolos. badge-updated-glow di index.css sudah disamain juga.
+  // emerald-700/red-700/zinc-600 (bukan emerald-600/red-500/zinc-500) — versi
+  // lama teks putih di atasnya cuma ~3.8:1/3.76:1/4.83:1, gagal ATAU pas-pasan
+  // di ambang WCAG AA (butuh 4.5:1 utk teks kecil) — apalagi dgn /90 opacity
+  // yg bikin makin turun tergantung apa yg ketembus di belakangnya. Versi
+  // baru semua ~5.5-7.7:1, lolos dgn margin aman, solid (gak pakai opacity).
+  // badge-updated-glow di index.css sudah disamain juga.
   const statusLabel = isMangaNew ? 'Updated!' : manga.status === 'Tamat' ? 'Completed' : manga.status;
   const statusBadgeClass = isMangaNew
     ? 'badge-updated-glow text-white'
     : manga.status === 'Ongoing'
     ? 'bg-emerald-700 text-white'
     : manga.status === 'Tamat' || isOneshot
-    ? 'bg-red-500/90 text-white'
+    ? 'bg-red-700 text-white'
     : manga.status === 'Hiatus'
-    ? 'bg-zinc-500/90 text-white'
+    ? 'bg-zinc-600 text-white'
     : 'bg-primary text-on-primary';
 
   return (
