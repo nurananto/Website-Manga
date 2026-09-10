@@ -45,9 +45,9 @@
     "5.4": 4,
     "6.1": 4,
     "6.2": 5,
-    "6.3": 8
+    "6.3": 9
   },
-  "total_views": 303,
+  "total_views": 306,
   "mangadex_cover": "5a774b7c-eb16-4f85-9410-c211b24c6f68.jpg",
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640x400q75",
@@ -65,7 +65,7 @@
       "widths": "1280x960x640x400q75"
     }
   ],
-  "detail_views": 107,
-  "view_sync_cutoff": "2026-09-09 17:00:01",
+  "detail_views": 109,
+  "view_sync_cutoff": "2026-09-10 17:00:32",
   "update_schedule": "Rabu"
 }

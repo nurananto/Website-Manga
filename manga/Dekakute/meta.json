@@ -28,11 +28,15 @@
   "notif_image": "cover",
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
-  "chapter_views": {},
-  "total_views": 0,
+  "chapter_views": {
+    "1": 12
+  },
+  "total_views": 26,
   "raw_cover_url": "https://m.media-amazon.com/images/I/81-RxaqGX0L._SL1500_.jpg",
   "cover_source": "manual-url",
   "cover_widths": "1280x960x640x400q75",
   "cover_version": 2,
-  "raw_schedule_checked_at": "2026-09-10T07:21:03.989Z"
+  "raw_schedule_checked_at": "2026-09-10T07:21:03.989Z",
+  "detail_views": 14,
+  "view_sync_cutoff": "2026-09-10 17:00:32"
 }
