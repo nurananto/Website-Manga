@@ -132,6 +132,10 @@ const JP_WEEKDAY_ID = { '月': 'Senin', '火': 'Selasa', '水': 'Rabu', '木': '
 // "毎日更新" (tiap hari), "毎週◯曜日更新" (tiap hari-X), "第1・3◯曜日更新"
 // (hari-X minggu ke-1 & ke-3, dst). Dipisah dari fetchMangaUpSchedule di
 // bawah supaya bisa dites tanpa network.
+// Format hasil sengaja ringkas ("Senin (ke-1 & 3)" bukan "Senin (minggu
+// ke-1 & ke-3)") — versi panjang kepanjangan sampai 2 baris di badge kartu
+// mobile sempit, dan font badge-nya sudah sekecil mungkin, gak bisa
+// dikecilin lagi.
 function parseMangaUpSchedule(html) {
   if (/毎日更新/.test(html)) return 'hari';
   let m = html.match(/毎週([月火水木金土日])曜日更新/);
@@ -140,8 +144,8 @@ function parseMangaUpSchedule(html) {
   if (m) {
     const day = JP_WEEKDAY_ID[m[2]];
     if (!day) return null;
-    const weeks = m[1].split('・').map((n) => `ke-${n}`).join(' & ');
-    return `${day} (minggu ${weeks})`;
+    const weeks = m[1].split('・').join(' & ');
+    return `${day} (ke-${weeks})`;
   }
   return null;
 }
@@ -164,6 +168,33 @@ async function fetchMangaUpSchedule(rawUrl) {
   } catch {
     return null;
   }
+}
+
+// Cooldown TAMBAHAN di atas isChanged — kalau manga yang SAMA di-push
+// berkali-kali dalam waktu deket (edit typo, upload ulang chapter, dst),
+// isChanged bakal true tiap kali juga → tanpa ini, comic-walker/manga-up
+// di-fetch ULANG tiap push itu walau baru aja dicek beberapa menit lalu
+// (dan hasilnya hampir pasti sama persis). raw_schedule_checked_at nyimpen
+// kapan TERAKHIR KALI beneran nge-hit raw site — ditandai begitu PERCOBAAN
+// dibuat, bukan cuma pas berhasil dapet data (biar gak retry cepat-cepat ke
+// server yang lagi down/berubah struktur juga).
+const RAW_SCHEDULE_CHECK_COOLDOWN_MS = 6 * 3600 * 1000; // 6 jam
+
+function rawScheduleOnCooldown(manga) {
+  const last = manga.raw_schedule_checked_at;
+  if (!last) return false;
+  const elapsed = Date.now() - new Date(last).getTime();
+  return Number.isFinite(elapsed) && elapsed >= 0 && elapsed < RAW_SCHEDULE_CHECK_COOLDOWN_MS;
+}
+
+function markRawScheduleChecked(manga, metaPath) {
+  const now = new Date().toISOString();
+  manga.raw_schedule_checked_at = now;
+  try {
+    const raw = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+    raw.raw_schedule_checked_at = now;
+    fs.writeFileSync(metaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
+  } catch {}
 }
 
 // Fetch rating dari MangaDex API
@@ -903,9 +934,10 @@ function applyCoverUrls(manga) {
 function writeMangaDetailJson(slug, manga, chapters) {
   fs.mkdirSync(outDir, { recursive: true });
   const publicManga = { ...manga, chapters };
-  // Watermark internal cron hanya diperlukan di meta sumber GitHub. Jangan
-  // ikut mempublikasikan detail sinkronisasi Worker ke katalog frontend.
+  // Watermark internal cron/build hanya diperlukan di meta sumber GitHub.
+  // Jangan ikut mempublikasikan detail sinkronisasi ke katalog frontend.
   delete publicManga.view_sync_cutoff;
+  delete publicManga.raw_schedule_checked_at;
   fs.writeFileSync(path.join(outDir, `${slug}.json`), JSON.stringify(publicManga, null, 2), 'utf-8');
 }
 
@@ -1018,11 +1050,80 @@ async function syncChapterLocks(locks) {
   process.exit(1);
 }
 
+// Tarik laporan rasio halaman yang numpuk dari pembaca BENERAN (chapter LAMA
+// yang belum sempat dapet page_ratios saat upload, sebelum fitur ini ada —
+// lihat handleReportRatio di image-worker.js & onLoad di PageImage,
+// ReaderModal.jsx), gabungin ke page_ratios di meta.json chapter yang sesuai.
+// Dipanggil SEKALI di awal (bukan per-manga, bukan di-gate isChanged) karena
+// laporan bisa nyangkut manga MANAPUN, gak cuma yang lagi di-push build ini.
+// Ditulis LANGSUNG ke source meta.json SEBELUM loop utama di bawah membaca
+// tiap chapter — jadi otomatis kebawa ke catalog publik lewat alur normal,
+// gak perlu sentuh public/manga/*.json manual di sini.
+// Gagal (network/WORKER_URL belum diset/dll) di-skip diam-diam — ini murni
+// peningkatan opsional, bukan sesuatu yang wajib ada tiap build.
+async function applyPageRatioReports() {
+  const workerUrl   = process.env.WORKER_URL;
+  const adminSecret = process.env.WORKER_ADMIN_SECRET;
+  if (!workerUrl || !adminSecret) return;
+  let reports;
+  try {
+    const res = await fetchT(`${workerUrl}/api/admin/page-ratio-reports`, {
+      headers: { 'X-Admin-Secret': adminSecret },
+    });
+    if (!res.ok) return;
+    reports = (await res.json())?.reports;
+  } catch {
+    return;
+  }
+  if (!Array.isArray(reports) || reports.length === 0) return;
+
+  const byChapter = new Map();
+  for (const r of reports) {
+    if (!r?.chapter_id || !Number.isInteger(r.page) || typeof r.ratio !== 'number') continue;
+    if (!byChapter.has(r.chapter_id)) byChapter.set(r.chapter_id, []);
+    byChapter.get(r.chapter_id).push(r);
+  }
+
+  let applied = 0;
+  for (const [chapterId, rows] of byChapter) {
+    // chapter_id = "<slug>-ch-<chapterFolder>" (sama pola dgn mangaIdFromChapterId
+    // di worker) — lastIndexOf krn slug boleh mengandung "-ch-" secara kebetulan.
+    const i = chapterId.lastIndexOf('-ch-');
+    if (i < 0) continue;
+    const slug = chapterId.slice(0, i);
+    const chapterFolder = chapterId.slice(i + 4);
+    const chMetaPath = path.join(chaptersDir, slug, chapterFolder, 'meta.json');
+    if (!fs.existsSync(chMetaPath)) continue;
+    try {
+      const chMeta = JSON.parse(fs.readFileSync(chMetaPath, 'utf-8'));
+      const ratios = Array.isArray(chMeta.page_ratios)
+        ? [...chMeta.page_ratios]
+        : new Array(chMeta.pages || 0).fill(null);
+      let changed = false;
+      for (const r of rows) {
+        const idx = r.page - 1;
+        if (idx < 0 || idx >= ratios.length) continue;
+        // Cuma isi yang masih kosong — jangan timpa data yang udah ada
+        // (mis. dari generate_meta.py, atau laporan sebelumnya yang menang duluan).
+        if (ratios[idx] == null) { ratios[idx] = r.ratio; changed = true; }
+      }
+      if (changed) {
+        chMeta.page_ratios = ratios;
+        fs.writeFileSync(chMetaPath, JSON.stringify(chMeta, null, 2) + '\n', 'utf-8');
+        applied++;
+      }
+    } catch { /* lanjut chapter berikutnya */ }
+  }
+  if (applied) console.log(`🖼  page_ratios di-backfill dari laporan pembaca: ${applied} chapter`);
+}
+
 async function buildCatalog() {
   const catalog = [];
   const protectedChapters = [];
   const newChaptersList = []; // dikumpulkan untuk notifikasi Discord
   const newMangaList    = []; // manga BARU (intro 1× ke #manga-list)
+
+  await applyPageRatioReports();
 
   const mangaSlugs = fs.readdirSync(chaptersDir).filter(f =>
     fs.statSync(path.join(chaptersDir, f)).isDirectory()
@@ -1069,6 +1170,18 @@ async function buildCatalog() {
     // yang gak akan pernah punya info ini.
     const isSerializing = manga.status !== 'Tamat' && manga.status !== 'Oneshot';
 
+    // Deteksi host DULUAN (bukan di dalam fetchComicWalkerNextUpdate/
+    // fetchMangaUpSchedule) — biar cooldown (rawScheduleOnCooldown/
+    // markRawScheduleChecked di bawah) cuma nandain "sudah dicek" utk manga
+    // yang HOST-nya beneran cocok. Kalau digabung 1 flag doang, manga
+    // manga-up bisa ke-skip gara-gara blok comic-walker duluan yang nandain
+    // cooldown padahal dia sendiri gak pernah beneran connect ke luar
+    // (host-nya gak cocok, return null lebih awal).
+    let rawHost = null;
+    try { rawHost = new URL(manga.raw_url || '').hostname; } catch {}
+    const isComicWalkerRaw = !!rawHost && /(^|\.)comic-walker\.com$/.test(rawHost);
+    const isMangaUpRaw     = !!rawHost && /(^|\.)manga-up\.com$/.test(rawHost);
+
     // Comic-walker: auto-isi next_update chapter TERBARU dari tanggal resmi
     // mereka (lihat fetchComicWalkerNextUpdate) — comic-walker MENANG atas
     // nilai manual yang ada. Ditulis balik ke meta.json chapter itu (pola sama
@@ -1081,16 +1194,23 @@ async function buildCatalog() {
     // sia-sia. isChanged sudah true kalau: (a) build cron mingguan (full,
     // CHANGED_SLUGS kosong — tetap dicek SEKALI per minggu buat semua manga),
     // atau (b) manga INI yang baru di-push (momen wajar buat refresh juga).
-    if (isSerializing && isChanged && manga.raw_url && chapters[0]) {
-      const cwNextUpdate = await fetchComicWalkerNextUpdate(manga.raw_url);
-      if (cwNextUpdate && chapters[0].next_update !== cwNextUpdate) {
-        chapters[0].next_update = cwNextUpdate;
-        try {
-          const raw = JSON.parse(fs.readFileSync(chapters[0]._chMetaPath, 'utf-8'));
-          raw.next_update = cwNextUpdate;
-          fs.writeFileSync(chapters[0]._chMetaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
-          console.log(`   📅 ${slug} Ch.${chapters[0].chapter_number} next_update ← comic-walker (${cwNextUpdate})`);
-        } catch {}
+    // Plus cooldown 6 jam (lihat rawScheduleOnCooldown) — jaga-jaga kalau
+    // manga yang SAMA di-push berkali-kali dalam waktu deket.
+    if (isSerializing && isChanged && isComicWalkerRaw && chapters[0]) {
+      if (rawScheduleOnCooldown(manga)) {
+        console.log(`   ⏳ ${slug}: skip cek comic-walker (masih cooldown)`);
+      } else {
+        markRawScheduleChecked(manga, metaPath);
+        const cwNextUpdate = await fetchComicWalkerNextUpdate(manga.raw_url);
+        if (cwNextUpdate && chapters[0].next_update !== cwNextUpdate) {
+          chapters[0].next_update = cwNextUpdate;
+          try {
+            const raw = JSON.parse(fs.readFileSync(chapters[0]._chMetaPath, 'utf-8'));
+            raw.next_update = cwNextUpdate;
+            fs.writeFileSync(chapters[0]._chMetaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
+            console.log(`   📅 ${slug} Ch.${chapters[0].chapter_number} next_update ← comic-walker (${cwNextUpdate})`);
+          } catch {}
+        }
       }
     }
 
@@ -1098,18 +1218,23 @@ async function buildCatalog() {
     // pasti — beda dari next_update di atas) dari teks resmi mereka (lihat
     // fetchMangaUpSchedule) — manga-up MENANG atas nilai manual yang ada.
     // Field manga-level (bukan per-chapter), ditulis balik ke metaPath manga ini.
-    // Gated isChanged & isSerializing juga — lihat komentar panjang di cabang
-    // comic-walker di atas.
-    if (isSerializing && isChanged && manga.raw_url) {
-      const muSchedule = await fetchMangaUpSchedule(manga.raw_url);
-      if (muSchedule && manga.update_schedule !== muSchedule) {
-        manga.update_schedule = muSchedule;
-        try {
-          const raw = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
-          raw.update_schedule = muSchedule;
-          fs.writeFileSync(metaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
-          console.log(`   🗓  ${slug} update_schedule ← manga-up (${muSchedule})`);
-        } catch {}
+    // Gated isChanged, isSerializing, & cooldown juga — lihat komentar
+    // panjang di cabang comic-walker di atas.
+    if (isSerializing && isChanged && isMangaUpRaw) {
+      if (rawScheduleOnCooldown(manga)) {
+        console.log(`   ⏳ ${slug}: skip cek manga-up (masih cooldown)`);
+      } else {
+        markRawScheduleChecked(manga, metaPath);
+        const muSchedule = await fetchMangaUpSchedule(manga.raw_url);
+        if (muSchedule && manga.update_schedule !== muSchedule) {
+          manga.update_schedule = muSchedule;
+          try {
+            const raw = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+            raw.update_schedule = muSchedule;
+            fs.writeFileSync(metaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
+            console.log(`   🗓  ${slug} update_schedule ← manga-up (${muSchedule})`);
+          } catch {}
+        }
       }
     }
 

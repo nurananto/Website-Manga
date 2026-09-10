@@ -37,10 +37,14 @@ const fitCreatorStyle = (value) => ({
 // Label badge jadwal update di hero. Prioritas: next_update (tanggal PRESISI
 // chapter selanjutnya, sama field yg dipakai NextUpdateInfo di ReaderModal —
 // dari comic-walker.com, atau manual) kalau ADA & masih di masa depan, lebih
-// informatif drpd pola umum ("Raw berikutnya update pada 22 September").
-// Fallback ke update_schedule (pola rilis RAW berulang, mis. "Rabu", "Senin &
-// Kamis" — dari manga-up.com, atau manual) kalau next_update gak ada/sudah
-// lewat ("Raw diupdate setiap Rabu"). Sebelumnya badge INI cuma baca
+// informatif drpd pola umum ("Raw update: 22 September"). Fallback ke
+// update_schedule (pola rilis RAW berulang, mis. "Rabu", "Senin & Kamis" —
+// dari manga-up.com, atau manual) kalau next_update gak ada/sudah lewat
+// ("Raw update: setiap Rabu"). Teks sengaja dipangkas seringkas mungkin
+// ("Raw update:" bukan "Raw diupdate setiap"/"Raw berikutnya update pada")
+// — versi lama gampang kepanjangan sampai 2 baris di kartu mobile sempit
+// utk pola panjang (mis. "Senin (minggu ke-1 & ke-3)"), dan font-nya sudah
+// sekecil mungkin, gak bisa dikecilin lagi. Sebelumnya badge INI cuma baca
 // update_schedule — manga raw comic-walker (yg cuma dapet next_update, gak
 // pernah dapet update_schedule) jadi gak pernah nampilin apa-apa di sini
 // sama sekali, walau next_update-nya sendiri valid. null/kosong dua-duanya
@@ -50,11 +54,11 @@ const rawUpdateLabel = (updateSchedule, nextUpdate) => {
     const t = new Date(nextUpdate).getTime();
     if (!Number.isNaN(t) && t > Date.now()) {
       const tgl = new Date(t).toLocaleDateString('id-ID', { day: 'numeric', month: 'long' });
-      return `Raw berikutnya update pada ${tgl}`;
+      return `Raw update: ${tgl}`;
     }
   }
   if (updateSchedule != null && String(updateSchedule).trim() !== '') {
-    return `Raw diupdate setiap ${updateSchedule}`;
+    return `Raw update: setiap ${updateSchedule}`;
   }
   return null;
 };

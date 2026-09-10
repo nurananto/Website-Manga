@@ -653,14 +653,22 @@ export default function App() {
       const code = params.get('code');
       if (code) {
         try {
-          const user = await exchangeLoginCode(code).catch(() => null);
+          const result = await exchangeLoginCode(code).catch(() => null);
           // Buang ?code= dari URL tapi pertahankan path (chapter) + param lain
           params.delete('code');
           const clean = window.location.pathname + (params.toString() ? `?${params}` : '') + window.location.hash;
           window.history.replaceState(null, '', clean);
-          if (user) {
+          if (result?.cooldown) {
+            // Kena cooldown gonta-ganti device (lihat handleExchange di
+            // api-worker.js) — BEDA dari gagal generik (result null), pembaca
+            // perlu tau kenapa & kapan bisa coba lagi, bukan diam-diam gagal.
+            // setToastMessage langsung (bukan showToast) — sama alasan spt
+            // pemakaian di bawah, showToast dideklarasi setelah efek ini.
+            setToastMessage(result.message);
+            setTimeout(() => setToastMessage(null), 5000);
+          } else if (result) {
             setIsLoggedIn(true);
-            setCurrentUser(user);
+            setCurrentUser(result);
             setIsAuthModalOpen(false);
             await loadUserDataEvent();
             await resumeLoginIntentEvent();

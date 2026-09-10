@@ -114,7 +114,7 @@ function NextUpdateInfo({ value }) {
   );
 }
 
-function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, onAccessSuccess, withCredentials, ratio }) {
+function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, onAccessSuccess, withCredentials, ratio, onMeasured }) {
   const [loaded,     setLoaded]     = useState(false);
   const [failed,     setFailed]     = useState(false);
   const [retryCount, setRetryCount] = useState(0);
@@ -223,7 +223,19 @@ function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, 
         decoding="async"
         className={`w-full h-auto block transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
         src={blobUrl || undefined}
-        onLoad={() => setLoaded(true)}
+        onLoad={(e) => {
+          setLoaded(true);
+          // ratio dari meta.json (page_ratios) sudah ada → gak perlu lapor lagi.
+          // Kalau belum (chapter LAMA, diupload sebelum fitur ini) → browser
+          // udah tau naturalWidth/Height dari gambar yang BARU SAJA berhasil
+          // dimuat, laporkan ke server (lihat reportPageRatio) biar chapter
+          // ini dapet page_ratios dari trafik baca beneran, bukan tebakan 2:3
+          // terus-terusan.
+          if (!ratio) {
+            const { naturalWidth: w, naturalHeight: h } = e.target;
+            if (w > 0 && h > 0) onMeasured?.(idx + 1, w / h);
+          }
+        }}
         onError={() => setFailed(true)}
       />
     </div>
@@ -276,6 +288,33 @@ function useChapterDropdown() {
 }
 
 const EMPTY_READ_SET = new Set();
+
+// Stopper LOKAL utk laporan page ratio (browser ini doang, gak nyentuh
+// server) — tanpa ini, tiap kali chapter yang SAMA dibaca ULANG (pembaca
+// balik lagi besok, buka lagi dari riwayat, dst) bakal ngirim laporan LAGI
+// buat tiap halaman yang belum ke-bake ke page_ratios (baru ke-bake pas
+// build-catalog.js berikutnya jalan, bisa berjarak sampai seminggu kalau
+// cuma cron) — kebayang beratnya kalau 1 chapter lama dibaca ratusan/ribuan
+// kali sebelum build berikutnya. Per HALAMAN (bukan per chapter) — biar
+// pembacaan PERTAMA tetap sukses lapor semua halaman yang belum ada
+// datanya, tapi kunjungan ULANG chapter yang SAMA di browser yang SAMA =
+// nol request tambahan sama sekali. Fungsi murni (gak ada closure ke state
+// komponen) — sengaja di module scope, bukan di dalam ReaderModal, biar
+// reportPageRatio() bisa tetap useCallback dgn deps yang stabil.
+const REPORTED_RATIO_KEY_PREFIX = 'reported_ratios:';
+function getReportedPages(chapterId) {
+  try {
+    const raw = localStorage.getItem(REPORTED_RATIO_KEY_PREFIX + chapterId);
+    return raw ? new Set(JSON.parse(raw)) : new Set();
+  } catch { return new Set(); }
+}
+function markPageReported(chapterId, page) {
+  try {
+    const set = getReportedPages(chapterId);
+    set.add(page);
+    localStorage.setItem(REPORTED_RATIO_KEY_PREFIX + chapterId, JSON.stringify([...set]));
+  } catch {}
+}
 
 export default function ReaderModal({ chapter, manga, onClose, onReadChapter, isSupporter, currentUser, readChapterIds }) {
   const readChapters = readChapterIds || EMPTY_READ_SET;
@@ -626,6 +665,40 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
     return `${base}/manga/${manga?.id}/${chapterFolder}/Image${num}.webp`;
   }, [chapter?.r2_folder, chapter?.chapter_number, chapterNeedsToken, freshlyFreed, imageBase, imgAccess, imgHash, imgSigning, manga?.id]);
 
+  // Lapor rasio 1 halaman ke server (image-worker.js, /report-page-ratio) —
+  // dipanggil PageImage.onLoad kalau chapter ini belum punya page_ratios di
+  // meta.json (chapter LAMA, diupload sebelum fitur ini ada). Fire-and-forget
+  // (gagal kirim gak masalah — cuma placeholder tetap fallback 2:3 spt
+  // sebelumnya, gak ada apa pun yang rusak). Chapter LOCKED wajib sertakan
+  // bukti akses (signature+token+hash) SAMA PERSIS spt yang dipakai
+  // ngambil gambar itu sendiri — server verifikasi ulang, gak asal percaya.
+  const reportPageRatio = useCallback((page, ratio) => {
+    const chapterId = chapter?.id;
+    if (!imageBase || !chapterId) return;
+    if (getReportedPages(chapterId).has(page)) return; // browser ini udah pernah coba lapor halaman ini
+    markPageReported(chapterId, page);
+    const body = { chapter_id: chapterId, page, ratio };
+    if (chapterNeedsToken) {
+      const pageSignature = imgSigning?.pageSignatures?.[page - 1];
+      if (!imgAccess || !imgHash || !imgSigning || !pageSignature) return; // belum ada bukti akses, jangan lapor
+      Object.assign(body, {
+        access: imgAccess,
+        h: imgHash,
+        iat: imgSigning.iat,
+        nbf: imgSigning.nbf,
+        exp: imgSigning.exp,
+        sig: pageSignature,
+      });
+    }
+    fetch(`${imageBase}/report-page-ratio`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      credentials: chapterNeedsToken ? 'include' : 'same-origin',
+      keepalive: true,
+    }).catch(() => {});
+  }, [imageBase, chapter?.id, chapterNeedsToken, imgAccess, imgHash, imgSigning]);
+
   const makeFallbackUrl = useCallback((idx, primaryUrl) => {
     if (chapterNeedsToken || !mangaId) return null;
     const num = String(idx).padStart(2, '0');
@@ -881,6 +954,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                   registerPage={registerPage}
                   ready={imageReady}
                   ratio={activeChapter?.page_ratios?.[idx]}
+                  onMeasured={reportPageRatio}
                   withCredentials={chapterNeedsToken}
                   onAccessError={chapterNeedsToken ? handleLockedImageError : undefined}
                   onAccessSuccess={chapterNeedsToken ? handleLockedImageSuccess : undefined}

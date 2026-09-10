@@ -1,6 +1,8 @@
 // Custom auth — Google OAuth via API Worker, custom JWT
 // Tidak ada Supabase.
 
+import { getDeviceId } from './device';
+
 const API = (import.meta.env.VITE_WORKER_URL || '').replace(/\/$/, '');
 const ACCESS_KEY  = 'mf_at';   // access token
 const REFRESH_KEY = 'mf_rt';   // refresh token
@@ -79,13 +81,23 @@ export function loginWithGoogle(turnstileToken) {
 }
 
 // ── Exchange one-time login code for tokens ───────────────────
+// X-Device-Id (sama ID yg dipakai anti-abuse koin, lihat lib/device.js)
+// dipakai worker deteksi gonta-ganti device CEPAT (cooldown 15 menit, lihat
+// handleExchange di api-worker.js) — indikasi 1 akun dipakai bergantian.
+// Return: user object (sukses) | null (gagal generik, pola lama gak berubah)
+// | { cooldown: true, message } (kena cooldown — BEDA dari null krn caller
+// perlu nampilin pesannya ke pembaca, bukan diam-diam gagal spt error lain).
 export async function exchangeLoginCode(code) {
   const res = await fetch(`${API}/api/auth/exchange`, {
     method:      'POST',
-    headers:     { 'Content-Type': 'application/json' },
+    headers:     { 'Content-Type': 'application/json', 'X-Device-Id': getDeviceId() },
     body:        JSON.stringify({ code }),
     credentials: 'include', // wajib supaya Set-Cookie img_session (cross-subdomain) diterima
   });
+  if (res.status === 429) {
+    const data = await res.json().catch(() => ({}));
+    return { cooldown: true, message: data.error || 'Akun ini sedang aktif di device lain. Silahkan coba login di lain waktu.' };
+  }
   if (!res.ok) return null;
   const data = await res.json();
   storeTokens(data.access_token, data.refresh_token);
