@@ -40,7 +40,9 @@ function getMetaH() {
   if (w < 640)  return 52;
   if (w < 768)  return 58;
   if (w < 1024) return 64;
-  return 72;
+  if (w < 1280) return 72;
+  if (w < 1536) return 80;
+  return 88;
 }
 
 // Jarak antar cover per breakpoint (makin kecil = makin rapat)
@@ -49,28 +51,38 @@ function getItemGap() {
   if (w < 640)  return 2;
   if (w < 768)  return 4;
   if (w < 1024) return 6;
-  return 8;
+  if (w < 1280) return 8;
+  return 10;
 }
 
 // Lebar cover per breakpoint (+25% dari 120/150/184/208). coverH & containerH
 // turunan dari sini, jadi seluruh cover & tinggi carousel ikut membesar 25%.
+// SEBELUMNYA berhenti tumbuh di w>=1024 (260px tetap sampai layar 4K sekalipun
+// — "stuck", dilaporkan user) — tambah tier xl(1280)/2xl(1536) biar tetap
+// membesar proporsional di layar desktop lebar, bukan cuma sampai tablet.
 function getCoverW() {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
   if (w < 640)  return 150;
   if (w < 768)  return 188;
   if (w < 1024) return 230;
-  return 260;
+  if (w < 1280) return 260;
+  if (w < 1536) return 290;
+  return 320;
 }
 
 // Items shown on each side of active per breakpoint (pinggir boleh kepotong).
 // mobile: 2 side → 5 | sm: 3 → 7 | md: 4 → 9 | lg: 5 → 11
 // xl: 6 → 13 | 2xl/ultrawide: 7 → 15 (isi layar lebar agar tidak ada ruang kosong)
+// Tier xl/2xl di komentar ini SEMPAT gak keimplementasi (fungsi berhenti di 5
+// utk w>=1024) — sekarang disamain persis sama rencana di komentar.
 function getMaxSide() {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
   if (w < 640)  return 2;
   if (w < 768)  return 3;
   if (w < 1024) return 4;
-  return 5;
+  if (w < 1280) return 5;
+  if (w < 1536) return 6;
+  return 7;
 }
 
 // Satu snapshot layout per breakpoint — dihitung sekali per resize (bukan 6
@@ -341,14 +353,14 @@ export default function SpotlightCarousel({
           className={`absolute inset-x-2 sm:inset-x-4 z-20 flex flex-col items-center gap-1.5 px-1 ${hasMoved ? 'animate-[spotlightMetaIn_0.38s_cubic-bezier(0.22,1,0.36,1)]' : ''}`}
           style={{ top: padV + coverH + metaGap }}
         >
-          <h3 className="w-full max-w-full truncate text-center font-headline-md text-base sm:text-lg md:text-xl font-black leading-tight text-on-surface dark:text-white dark:[text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_10px_rgba(0,0,0,0.75)]">
+          <h3 className="w-full max-w-full truncate text-center font-headline-md text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-black leading-tight text-on-surface dark:text-white dark:[text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_10px_rgba(0,0,0,0.75)]">
             {active.title}
           </h3>
 
-          <div className="inline-flex max-w-full items-center justify-center gap-1.5 overflow-hidden border-y-2 border-[#9CA3AF] dark:border-white/35 px-2.5 py-1.5 font-body-md text-xs sm:text-sm md:text-base font-bold leading-none">
+          <div className="inline-flex max-w-full items-center justify-center gap-1.5 overflow-hidden border-y-2 border-[#9CA3AF] dark:border-white/35 px-2.5 py-1.5 font-body-md text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-bold leading-none">
             {activeRating && (
               <span className="flex min-w-0 items-center gap-1 font-extrabold text-amber-700 dark:text-amber-400">
-                <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4 fill-current shrink-0" />
+                <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-5 lg:w-5 xl:h-6 xl:w-6 fill-current shrink-0" />
                 <span>{activeRating}</span>
               </span>
             )}

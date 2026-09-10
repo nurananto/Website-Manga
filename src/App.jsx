@@ -96,24 +96,51 @@ function takePrefetch(type, slug) {
   return pf.promise;
 }
 
-// Kolom grid katalog mengikuti breakpoint Tailwind DEFAULT (sm 640 / md 768 /
-// lg 1024 / xl 1280) — HARUS sinkron dengan className
-// "grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7" di
-// render katalog. itemsPerPage mode grid dihitung dari sini (kolom × baris)
-// supaya selalu kelipatan pas jumlah kolom yang BENAR-BENAR tampil di layar —
-// jadi baris terakhir yang bolong cuma bisa muncul di halaman paling akhir,
-// bukan di tengah pagination.
-// Minimum 3 kolom di mobile — sempat dicoba 2, tapi bikin tampilan nggak
-// konsisten dengan elemen lain di halaman.
+// Kolom grid katalog SENGAJA gak lagi ngikutin breakpoint Tailwind tetap
+// (dulu grid-cols-3 sm:4 md:5 lg:6 xl:7, lompat kaku per breakpoint) — sekarang
+// className render katalog pakai CSS Grid auto-fill (lihat GRID_MIN_CARD_PX di
+// bawah): "grid-cols-[repeat(auto-fill,minmax(${GRID_MIN_CARD_PX}px,1fr))]".
+// Browser sendiri yang hitung berapa kartu muat 1 baris berdasar lebar
+// KONTAINER SEBENARNYA (bukan tebakan window.innerWidth per breakpoint) —
+// hasilnya jumlah kolom naik/turun HALUS ngikutin lebar layar yang benar-benar
+// tersedia, bukan lompat kasar 3→4→5→6→7. GRID_MIN_CARD_PX dipilih supaya
+// minimum 3 kolom di layar sekecil apa pun (≥~320px, HP paling sempit yang
+// wajar) — sempat dicoba turunin ke 2, tapi covernya jadi kelewat gede di
+// HP, jadi dibalikin ke 3.
+// Di layar SANGAT lebar (ultrawide/4K) auto-fill murni bisa hasilin 12-14+
+// kolom yang kartunya jadi kekecilan (dilaporkan user) — makanya dibatasi
+// GRID_MAX_COLUMNS: begitu kolom nyampe batas ini, sisa lebar dipakai buat
+// MEMBESARKAN tiap kartu, bukan nambah kolom baru lagi.
+//
+// FLOOR RATA itu sendiri sempat bikin masalah lain: minimum kartu rata 132px
+// dari layar kecil sampai lebar manapun sebelum GRID_MAX_COLUMNS "narik rem" —
+// artinya di lebar tertentu (dilaporkan: ~1072px) kontainer bisa PERSIS di
+// ambang muat 1 kolom tambahan, dan begitu nambah, SEMUA kartu di baris itu
+// langsung mepet ke floor 132px sekaligus (leftover space abis dipakai buat
+// kolom baru) — kerasa "dempet" & beda banget dari lebar sebelah-sebelahnya.
+// Fix: floor gak lagi rata, tapi NAIK HALUS ngikutin cqw (container query
+// width — lebar KONTAINER asli, samaseperti teknik .creator-fit di
+// index.css, bukan tebakan viewport) lewat clamp(). Jadi minimum kartu
+// membesar dikit-dikit terus seiring kontainer melebar, bukan diam di satu
+// angka lalu "meletus" pas nyampe ambang kolom baru.
 const GRID_ROWS_PER_PAGE = 3;
-function computeGridColumns() {
-  if (typeof window === 'undefined') return 3;
-  const w = window.innerWidth;
-  if (w >= 1280) return 7;
-  if (w >= 1024) return 6;
-  if (w >= 768) return 5;
-  if (w >= 640) return 4;
-  return 3;
+const GRID_MIN_CARD_PX = 90; // 3*90 + 2*12(gap-3) = 294 <= 296px (viewport 320 - px-3*2) → tetap muat 3 kolom di HP paling sempit
+const GRID_SOFT_MAX_CARD_PX = 220; // plafon clamp() — di atas ini biarin GRID_MAX_COLUMNS yg ambil alih
+const GRID_MAX_COLUMNS = 9;
+const GRID_GAP_PX = 16; // asumsi gap-4 (dipakai sm ke atas, tempat batas kolom ini relevan)
+
+// minmax(max(A, B), 1fr) — track pakai floor mana pun yang LEBIH BESAR antara:
+// A) clamp(GRID_MIN_CARD_PX, 16cqw, GRID_SOFT_MAX_CARD_PX) — naik halus
+//    ngikutin 16% lebar kontainer asli (elemen grid-nya sendiri
+//    container-type:inline-size, lihat class .catalog-grid-autofill di
+//    index.css), plafon 220px biar gak kebablasan di lebar menengah.
+// B) 100%/N (N=GRID_MAX_COLUMNS) — cuma menang di layar SANGAT lebar (begitu
+//    kontainer segede itu, A sudah mentok di plafon 220px duluan), jadi rem
+//    keras di N kolom berapa pun lebar layarnya.
+function buildGridColumnsStyle() {
+  const smooth = `clamp(${GRID_MIN_CARD_PX}px, 16cqw, ${GRID_SOFT_MAX_CARD_PX}px)`;
+  const columnCap = `calc((100% - ${(GRID_MAX_COLUMNS - 1) * GRID_GAP_PX}px) / ${GRID_MAX_COLUMNS})`;
+  return { gridTemplateColumns: `repeat(auto-fill, minmax(max(${smooth}, ${columnCap}), 1fr))` };
 }
 
 // ── Riwayat Baca ──────────────────────────────────────────────
@@ -396,17 +423,33 @@ export default function App() {
   useEffect(() => {
     try { localStorage.setItem('mf_view_mode_v2', viewMode); } catch {}
   }, [viewMode]);
-  // Jumlah kolom grid saat ini — dipakai utk hitung itemsPerPage mode grid
-  // (lihat computeGridColumns). matchMedia dipasang per breakpoint biar cuma
-  // re-render pas melewati ambang batas, bukan tiap piksel resize.
-  const [gridColumns, setGridColumns] = useState(computeGridColumns);
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mqls = [640, 768, 1024, 1280].map((bp) => window.matchMedia(`(min-width: ${bp}px)`));
-    const handler = () => setGridColumns(computeGridColumns());
-    mqls.forEach((mql) => mql.addEventListener('change', handler));
-    return () => mqls.forEach((mql) => mql.removeEventListener('change', handler));
+  // Jumlah kolom grid saat ini — DIUKUR LANGSUNG dari DOM (bukan dihitung dari
+  // lebar viewport), karena kolomnya sekarang auto-fill (lihat GRID_MIN_CARD_PX
+  // di atas). getComputedStyle(...).gridTemplateColumns balikin string track
+  // yang BENERAN dirender browser (mis. "156px 156px 156px" utk 3 kolom) —
+  // tinggal dihitung jumlah token-nya, dijamin akurat 1:1 tanpa perlu
+  // replikasi rumus auto-fill manual di JS (yang gampang meleset kalau
+  // padding/gap berubah dan lupa disinkron).
+  const [gridColumns, setGridColumns] = useState(2);
+  const gridResizeObserverRef = useRef(null);
+  const measureGridColumns = useCallback((el) => {
+    if (!el) return;
+    const tracks = getComputedStyle(el).gridTemplateColumns.split(' ').filter(Boolean);
+    if (tracks.length > 0) setGridColumns(tracks.length);
   }, []);
+  // Callback ref (bukan useRef biasa) — grid skeleton (loading) & grid isi
+  // (sudah termuat) render BERGANTIAN (saling eksklusif, lihat JSX di bawah),
+  // jadi node DOM-nya selalu ganti-ganti. Callback ref dipanggil ulang setiap
+  // kali React nyambungin/nyabut node baru, jadi ResizeObserver-nya otomatis
+  // diarahkan ke grid mana pun yang lagi benar-benar tampil.
+  const measureGridRef = useCallback((el) => {
+    gridResizeObserverRef.current?.disconnect();
+    if (!el) return;
+    measureGridColumns(el);
+    const ro = new ResizeObserver(() => measureGridColumns(el));
+    ro.observe(el);
+    gridResizeObserverRef.current = ro;
+  }, [measureGridColumns]);
   const gridItemsPerPage = gridColumns * GRID_ROWS_PER_PAGE;
   const effectiveItemsPerPage = viewMode === 'grid' ? gridItemsPerPage : itemsPerPage;
   const [isSupporter, setIsSupporter] = useState(false);
@@ -1401,10 +1444,14 @@ export default function App() {
                   )}
 
                   {isLoading ? (
-                    <div className={viewMode === 'grid'
-                      ? 'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4'
-                      : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4'
-                    }>
+                    <div
+                      ref={viewMode === 'grid' ? measureGridRef : undefined}
+                      className={viewMode === 'grid'
+                        ? 'grid gap-3 sm:gap-4 catalog-grid-autofill'
+                        : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4'
+                      }
+                      style={viewMode === 'grid' ? buildGridColumnsStyle() : undefined}
+                    >
                       {Array.from({ length: effectiveItemsPerPage }).map((_, i) => (
                         viewMode === 'grid' ? <MangaCardGridSkeleton key={i} /> : <MangaCardSkeleton key={i} />
                       ))}
@@ -1422,10 +1469,14 @@ export default function App() {
                           Halaman terakhir hanya merender manga yang tersedia supaya
                           pagination tetap dekat dengan kartu terakhir, bukan terdorong
                           turun oleh slot kosong yang tidak terlihat. */}
-                      <div className={viewMode === 'grid'
-                        ? 'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 content-start items-start gap-3 sm:gap-4'
-                        : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start items-start gap-4'
-                      }>
+                      <div
+                        ref={viewMode === 'grid' ? measureGridRef : undefined}
+                        className={viewMode === 'grid'
+                          ? 'grid content-start items-start gap-3 sm:gap-4 catalog-grid-autofill'
+                          : 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 content-start items-start gap-4'
+                        }
+                        style={viewMode === 'grid' ? buildGridColumnsStyle() : undefined}
+                      >
                         {Array.from({ length: effectiveItemsPerPage }).map((_, i) => {
                           const manga = paginatedManga[i];
                           if (!manga) {
