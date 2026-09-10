@@ -170,14 +170,18 @@ async function fetchMangaUpSchedule(rawUrl) {
   }
 }
 
-// Cooldown TAMBAHAN di atas isChanged — kalau manga yang SAMA di-push
-// berkali-kali dalam waktu deket (edit typo, upload ulang chapter, dst),
-// isChanged bakal true tiap kali juga → tanpa ini, comic-walker/manga-up
-// di-fetch ULANG tiap push itu walau baru aja dicek beberapa menit lalu
-// (dan hasilnya hampir pasti sama persis). raw_schedule_checked_at nyimpen
-// kapan TERAKHIR KALI beneran nge-hit raw site — ditandai begitu PERCOBAAN
-// dibuat, bukan cuma pas berhasil dapet data (biar gak retry cepat-cepat ke
-// server yang lagi down/berubah struktur juga).
+// Cooldown TAMBAHAN di atas isChanged, KHUSUS comic-walker (next_update) —
+// nilainya tanggal SPESIFIK yg beneran berubah tiap ada chapter baru, jadi
+// emang perlu dicek ULANG dari waktu ke waktu (beda dari manga-up/
+// update_schedule di bawah, yg pola-nya tetap & cuma dicek SEKALI seumur
+// hidup — lihat kondisi !manga.update_schedule di situ). Tanpa cooldown ini,
+// kalau manga yang SAMA di-push berkali-kali dalam waktu deket (edit typo,
+// upload ulang chapter, dst), isChanged bakal true tiap kali juga → comic-
+// walker di-fetch ULANG tiap push itu walau baru aja dicek beberapa menit
+// lalu (dan hasilnya hampir pasti sama persis). raw_schedule_checked_at
+// nyimpen kapan TERAKHIR KALI beneran nge-hit raw site — ditandai begitu
+// PERCOBAAN dibuat, bukan cuma pas berhasil dapet data (biar gak retry
+// cepat-cepat ke server yang lagi down/berubah struktur juga).
 const RAW_SCHEDULE_CHECK_COOLDOWN_MS = 6 * 3600 * 1000; // 6 jam
 
 function rawScheduleOnCooldown(manga) {
@@ -1214,27 +1218,26 @@ async function buildCatalog() {
       }
     }
 
-    // manga-up.com: auto-isi update_schedule (pola rilis umum, BUKAN tanggal
-    // pasti — beda dari next_update di atas) dari teks resmi mereka (lihat
-    // fetchMangaUpSchedule) — manga-up MENANG atas nilai manual yang ada.
-    // Field manga-level (bukan per-chapter), ditulis balik ke metaPath manga ini.
-    // Gated isChanged, isSerializing, & cooldown juga — lihat komentar
-    // panjang di cabang comic-walker di atas.
-    if (isSerializing && isChanged && isMangaUpRaw) {
-      if (rawScheduleOnCooldown(manga)) {
-        console.log(`   ⏳ ${slug}: skip cek manga-up (masih cooldown)`);
-      } else {
-        markRawScheduleChecked(manga, metaPath);
-        const muSchedule = await fetchMangaUpSchedule(manga.raw_url);
-        if (muSchedule && manga.update_schedule !== muSchedule) {
-          manga.update_schedule = muSchedule;
-          try {
-            const raw = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
-            raw.update_schedule = muSchedule;
-            fs.writeFileSync(metaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
-            console.log(`   🗓  ${slug} update_schedule ← manga-up (${muSchedule})`);
-          } catch {}
-        }
+    // manga-up.com: auto-isi update_schedule (pola rilis UMUM, mis. "Senin")
+    // dari teks resmi mereka (lihat fetchMangaUpSchedule). BEDA sifatnya dari
+    // next_update comic-walker di atas — next_update itu tanggal SPESIFIK yg
+    // beneran berubah tiap ada chapter baru (makanya butuh cooldown WAKTU),
+    // sedangkan pola manga-up itu TETAP (hari serialisasi mingguan/bulanan
+    // gak pernah ganti-ganti) — begitu udah dapet sekali, cukup, gak perlu
+    // dicek ulang lagi SELAMANYA (bukan cooldown 6 jam yg reset terus).
+    // Cukup: cek HANYA kalau field-nya masih kosong. Admin bisa paksa cek
+    // ulang dgn ngosongin field ini manual di meta.json kalau memang jarang
+    // sekali manga-up berubah pola (mis. pindah hari rilis).
+    if (isSerializing && isChanged && isMangaUpRaw && !manga.update_schedule) {
+      const muSchedule = await fetchMangaUpSchedule(manga.raw_url);
+      if (muSchedule) {
+        manga.update_schedule = muSchedule;
+        try {
+          const raw = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+          raw.update_schedule = muSchedule;
+          fs.writeFileSync(metaPath, JSON.stringify(raw, null, 2) + '\n', 'utf-8');
+          console.log(`   🗓  ${slug} update_schedule ← manga-up (${muSchedule})`);
+        } catch {}
       }
     }
 
