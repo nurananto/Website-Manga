@@ -114,7 +114,7 @@ function NextUpdateInfo({ value }) {
   );
 }
 
-function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, onAccessSuccess, withCredentials }) {
+function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, onAccessSuccess, withCredentials, ratio }) {
   const [loaded,     setLoaded]     = useState(false);
   const [failed,     setFailed]     = useState(false);
   const [retryCount, setRetryCount] = useState(0);
@@ -189,11 +189,12 @@ function PageImage({ src, fallbackSrc, idx, registerPage, ready, onAccessError, 
       data-reader-page={idx}
       className="w-full relative"
       // Placeholder pakai aspect-ratio (bukan minHeight:85vh) — tingginya turunan dari
-      // LEBAR kontainer, sama seperti gambar asli nanti (w-full h-auto). Rasio 2/3 adalah
-      // perkiraan umum halaman manga; jauh lebih dekat ke ukuran akhir daripada 85% tinggi
-      // viewport (yang tak ada hubungannya sama sekali dengan dimensi gambar), sehingga
-      // pergeseran layout (CLS) saat gambar selesai dimuat jauh lebih kecil.
-      style={loaded ? undefined : { aspectRatio: '2 / 3' }}
+      // LEBAR kontainer, sama seperti gambar asli nanti (w-full h-auto). ratio (dari
+      // page_ratios di meta.json, dibaca dari header WEBP asli tiap halaman saat
+      // generate_meta.py, lihat webp_dimensions()) adalah rasio ASLI halaman INI —
+      // jauh lebih presisi drpd tebakan generik. 2/3 cuma fallback kalau ratio-nya
+      // belum ada (chapter lama sblm fitur ini, atau parsing gagal utk halaman itu).
+      style={loaded ? undefined : { aspectRatio: ratio ? String(ratio) : '2 / 3' }}
     >
       {!ready && inView && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-surface">
@@ -879,6 +880,7 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
                   idx={idx}
                   registerPage={registerPage}
                   ready={imageReady}
+                  ratio={activeChapter?.page_ratios?.[idx]}
                   withCredentials={chapterNeedsToken}
                   onAccessError={chapterNeedsToken ? handleLockedImageError : undefined}
                   onAccessSuccess={chapterNeedsToken ? handleLockedImageSuccess : undefined}

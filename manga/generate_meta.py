@@ -88,6 +88,46 @@ def count_webp(folder):
     return len(get_webp_files(folder))
 
 
+def webp_dimensions(path):
+    """Baca width/height dari HEADER file WEBP tanpa dependency eksternal
+    (Pillow, dll) — script ini sengaja stdlib-only ("double klik langsung
+    jalan", tanpa pip install apa pun), jadi parsing manual sesuai spek
+    WebP publik (RIFF container: VP8X = extended, VP8 = lossy, VP8L =
+    lossless), bukan pakai library gambar.
+    Return (width, height) atau None kalau gagal (format gak dikenal/corrupt
+    /truncated) — dipakai reader buat reserve ruang PERSIS per halaman
+    (cegah CLS), BUKAN sesuatu yang kritis kalau gagal: reader fallback ke
+    tebakan 2:3 spt sebelumnya buat halaman yang None.
+    """
+    try:
+        with open(path, "rb") as f:
+            header = f.read(30)
+        if len(header) < 30 or header[0:4] != b"RIFF" or header[8:12] != b"WEBP":
+            return None
+        fourcc = header[12:16]
+        if fourcc == b"VP8X":
+            w = 1 + (header[24] | (header[25] << 8) | (header[26] << 16))
+            h = 1 + (header[27] | (header[28] << 8) | (header[29] << 16))
+            return (w, h) if w and h else None
+        if fourcc == b"VP8 ":
+            # 3 byte frame tag lalu 3 byte sync code wajib 0x9d 0x01 0x2a
+            if header[23:26] != b"\x9d\x01\x2a":
+                return None
+            w = (header[26] | (header[27] << 8)) & 0x3FFF
+            h = (header[28] | (header[29] << 8)) & 0x3FFF
+            return (w, h) if w and h else None
+        if fourcc == b"VP8L":
+            if header[20] != 0x2F:
+                return None
+            b0, b1, b2, b3 = header[21], header[22], header[23], header[24]
+            w = 1 + (((b1 & 0x3F) << 8) | b0)
+            h = 1 + (((b3 & 0x0F) << 10) | (b2 << 2) | ((b1 & 0xC0) >> 6))
+            return (w, h) if w and h else None
+        return None
+    except Exception:
+        return None
+
+
 def get_webp_files(folder):
     return sorted(
         [p for p in folder.rglob("*") if p.is_file() and p.suffix.lower() == ".webp"],
@@ -163,7 +203,8 @@ def header(subtitle=""):
 
 
 def proses_chapter(ch_dir, lock_hours, notif_image=None, unlock_date=None):
-    pages = count_webp(ch_dir)
+    webp_files = get_webp_files(ch_dir)
+    pages = len(webp_files)
     if pages == 0:
         return False, "tidak ada .webp"
 
@@ -198,11 +239,22 @@ def proses_chapter(ch_dir, lock_hours, notif_image=None, unlock_date=None):
     # belakangan bisa salah baca "0 = gratis/tidak dikunci". Satu sumber
     # kebenaran per chapter, bukan dua field yang bisa kelihatan kontradiktif.
     special_title = display_label_for_special(chapter_number)
+    # Rasio lebar:tinggi ASLI tiap halaman (bukan dipaksa seragam!) — dipakai
+    # reader buat reserve ruang PERSIS per halaman sebelum gambarnya kemuat,
+    # ganti tebakan generik 2:3 lama yang suka meleset (halaman spread lebar,
+    # webtoon panjang, dll) dan bikin CLS (layout kegeser pas gambar asli
+    # kemuat). null di elemen tertentu (gagal baca 1 file) tidak masalah —
+    # reader fallback ke tebakan 2:3 cuma buat halaman itu.
+    def ratio_of(p):
+        dim = webp_dimensions(p)
+        return round(dim[0] / dim[1], 4) if dim else None
+    page_ratios = [ratio_of(p) for p in webp_files]
     meta = {
         "chapter_number": to_chapter_number(ch_dir.name),
         **({"title": special_title} if special_title else {}),
         **({} if final_unlock else {"lock_hours": lock_hours}),
         "pages": pages,
+        **({"page_ratios": page_ratios} if any(page_ratios) else {}),
     }
     if existing_release:
         meta["release_date"] = existing_release
