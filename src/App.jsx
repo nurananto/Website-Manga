@@ -167,14 +167,29 @@ export default function App() {
   // Lighthouse "Element render delay" pada gambar spotlight). Digeser jadi
   // nunggu event `load` dulu (sinyal render awal sudah beres) baru dijadwalkan,
   // timeout dinaikkan supaya backstop-nya juga tidak buru-buru.
+  // MangaDetailPage & ReaderModal ikut di-warm di sini juga — dua chunk paling
+  // sering dipakai (dibuka di hampir setiap kunjungan begitu klik 1 manga),
+  // tapi sebelumnya cuma di-lazy-load pas navigasi beneran terjadi, jadi
+  // transisi PERTAMA ke detail/baca chapter kelihatan delay nunggu chunk-nya
+  // di-download. import() dgn specifier yang sama dgn lazy() di atas otomatis
+  // dedupe ke cache modul yg sama (bukan ini re-fetch chunk yg berbeda) —
+  // gak perlu loader promise terpisah spt coinModalsLoader.js.
   useEffect(() => {
     let idleId;
     let timerId;
     const schedule = () => {
       if ('requestIdleCallback' in window) {
-        idleId = window.requestIdleCallback(() => { void loadCoinModals(); }, { timeout: 4000 });
+        idleId = window.requestIdleCallback(() => {
+          void loadCoinModals();
+          void import('./components/MangaDetailPage');
+          void import('./components/ReaderModal');
+        }, { timeout: 4000 });
       } else {
-        timerId = window.setTimeout(() => { void loadCoinModals(); }, 2500);
+        timerId = window.setTimeout(() => {
+          void loadCoinModals();
+          void import('./components/MangaDetailPage');
+          void import('./components/ReaderModal');
+        }, 2500);
       }
     };
     if (document.readyState === 'complete') {
@@ -1010,6 +1025,18 @@ export default function App() {
     return sortedManga.slice(startIndex, startIndex + effectiveItemsPerPage);
   }, [sortedManga, currentPage, effectiveItemsPerPage]);
 
+  // Tab Profile (riwayat baca) — sebelumnya dihitung ulang INLINE tiap render
+  // selagi tab ini aktif (map+find O(n*m) + filter + sort), padahal gak ada
+  // hubungannya sama state yang bikin App re-render (mis. countdown timer di
+  // komponen lain). Di-useMemo biar cuma hitung ulang kalau historyChapters
+  // atau MANGA_LIST beneran berubah — pola sama kayak filteredManga/sortedManga
+  // di atas.
+  const historyEntries = useMemo(() => Object.entries(historyChapters)
+    .map(([mangaId, chapter]) => ({ manga: MANGA_LIST.find(m => m.id === mangaId), chapter }))
+    .filter(e => e.manga)
+    .sort((a, b) => new Date(b.chapter.last_read_at || 0) - new Date(a.chapter.last_read_at || 0)),
+  [historyChapters, MANGA_LIST]);
+
   // itemsPerPage mode grid ikut breakpoint layar (bukan fix 6/12 spt list) —
   // begitu itu berubah (ganti mode, atau breakpoint dilewati), currentPage bisa
   // jadi > totalPages baru. Balikin ke halaman terakhir yang valid — pola
@@ -1461,12 +1488,7 @@ export default function App() {
               </>
             )}
 
-            {activeTab === 'profile' && (() => {
-              const historyEntries = Object.entries(historyChapters)
-                .map(([mangaId, chapter]) => ({ manga: MANGA_LIST.find(m => m.id === mangaId), chapter }))
-                .filter(e => e.manga)
-                .sort((a, b) => new Date(b.chapter.last_read_at || 0) - new Date(a.chapter.last_read_at || 0));
-              return (
+            {activeTab === 'profile' && (
                 <section className="flex flex-col gap-4 w-full">
                   <div className="border-b border-outline-variant/40 pb-4 flex items-center justify-between gap-3">
                     <button
@@ -1504,9 +1526,8 @@ export default function App() {
                     workerUrl={import.meta.env.VITE_WORKER_URL || ''}
                   />
                 </section>
-              );
-            })()}
-            
+            )}
+
           </main>
         )}
       </div>
