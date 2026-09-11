@@ -2,5 +2,11 @@
   "chapter_number": 1.5,
   "lock_hours": 0,
   "pages": 4,
-  "release_date": "2026-06-11T23:25:40+07:00"
+  "release_date": "2026-06-11T23:25:40+07:00",
+  "page_ratios": [
+    0.703125,
+    0.703125,
+    0.703125,
+    null
+  ]
 }
