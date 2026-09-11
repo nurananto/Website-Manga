@@ -1,5 +1,103 @@
 [
   {
+    "id": "Osananajimi",
+    "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
+    "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
+    "status": "Ongoing",
+    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=6",
+    "coverUrls": {
+      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=6",
+      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=6",
+      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=6",
+      "thumb": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@thumb.webp?v=6"
+    },
+    "genres": [
+      "Adaptation",
+      "Comedy",
+      "Drama",
+      "Romance",
+      "School Life",
+      "Shounen",
+      "Slice of Life",
+      "Tragedy"
+    ],
+    "rating": 7.62,
+    "chapter_count": 22,
+    "total_views": 1517,
+    "isTrending": true,
+    "latest_release_date": "2026-09-11T22:20:20+07:00",
+    "next_update": null,
+    "tamat_at_chapter": null,
+    "hiatus_at_chapter": null,
+    "chapters": [
+      {
+        "chapter_number": 8.5,
+        "lock_hours": 0,
+        "pages": 1,
+        "page_ratios": [
+          0.6994
+        ],
+        "notif_image": "page1",
+        "r2_folder": 8.5,
+        "id": "Osananajimi-ch-8.5",
+        "r2_prefix": "manga/Osananajimi/8.5/",
+        "title": "Ch. 8.5",
+        "release_date": "2026-09-11T22:20:20+07:00",
+        "unlockDate": null,
+        "isLocked": false,
+        "views": 0
+      },
+      {
+        "chapter_number": 8.4,
+        "pages": 10,
+        "notif_image": "2",
+        "release_date": "2026-09-04T22:42:33+07:00",
+        "page_ratios": [
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498
+        ],
+        "r2_folder": 8.4,
+        "id": "Osananajimi-ch-8.4",
+        "r2_prefix": "manga/Osananajimi/8.4/",
+        "title": "Ch. 8.4",
+        "unlockDate": "2026-09-19T17:00:00.000Z",
+        "isLocked": true,
+        "views": 17
+      },
+      {
+        "chapter_number": 8.3,
+        "pages": 8,
+        "notif_image": "8",
+        "release_date": "2026-08-28T23:16:18+07:00",
+        "page_ratios": [
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498,
+          0.709592641261498
+        ],
+        "r2_folder": 8.3,
+        "id": "Osananajimi-ch-8.3",
+        "r2_prefix": "manga/Osananajimi/8.3/",
+        "title": "Ch. 8.3",
+        "unlockDate": "2026-09-12T17:00:00.000Z",
+        "isLocked": true,
+        "views": 21
+      }
+    ]
+  },
+  {
     "id": "ShokeiFlag",
     "title": "Shokei Flag no Akuyaku Kizoku ni Tensei Shita ga, Shinitakunai node Yami Mahou o Kiwamete Heroine-tachi o Sukuimasu",
     "description": "Aku malah bereinkarnasi jadi Diabolo, bangsawan yang paling dibenci di dunia game ini.Tapi takdir yang udah menantiku adalah… death flag dari para heroine! Demi menebus dosa yang telah diabolo perbuat kepada para heroine, Diabolo berusaha untuk menyelamatkan mereka, dia harus melewati berbagai…",
@@ -46,11 +144,11 @@
           0.7096
         ],
         "notif_image": "10",
+        "release_date": "2026-09-11T18:19:35+07:00",
         "r2_folder": 7.3,
         "id": "ShokeiFlag-ch-7.3",
         "r2_prefix": "manga/ShokeiFlag/7.3/",
         "title": "Ch. 7.3",
-        "release_date": "2026-09-11T18:19:35+07:00",
         "unlockDate": "2026-12-08T17:00:00.000Z",
         "isLocked": true,
         "views": 0
@@ -533,7 +631,7 @@
     "rating": null,
     "chapter_count": 1,
     "total_views": 26,
-    "isTrending": true,
+    "isTrending": false,
     "latest_release_date": "2026-09-10T14:20:20+07:00",
     "next_update": "2026-09-21",
     "tamat_at_chapter": null,
@@ -650,6 +748,19 @@
         "pages": 11,
         "notif_image": "2",
         "release_date": "2026-08-18T11:22:53+07:00",
+        "page_ratios": [
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114
+        ],
         "r2_folder": 11.2,
         "id": "Amari-chan-ch-11.2",
         "r2_prefix": "manga/Amari-chan/11.2/",
@@ -663,6 +774,17 @@
         "lock_hours": 0,
         "pages": 9,
         "release_date": "2026-08-04T16:08:07+07:00",
+        "page_ratios": [
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114,
+          0.7033997655334114
+        ],
         "r2_folder": 11.1,
         "id": "Amari-chan-ch-11.1",
         "r2_prefix": "manga/Amari-chan/11.1/",
@@ -842,110 +964,6 @@
         "unlockDate": null,
         "isLocked": false,
         "views": 6
-      }
-    ]
-  },
-  {
-    "id": "Osananajimi",
-    "title": "Osananajimi ni Kage de Tsugou no Yoi Otoko Yobawari Sareta Ore wa, Koui o Reset Shite Futsuu ni Seishun o Okuritai",
-    "description": "Hari itu, Toudou Tsuyoshi nge-“reset” semua perasaan yang selama ini dia tujukan ke teman masa kecilnya, Hanazono Hana. Dengan canggung tapi tetap ngotot pengen ngerasain masa muda yang 'normal'",
-    "status": "Ongoing",
-    "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=6",
-    "coverUrls": {
-      "desktop": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=6",
-      "tablet": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@tablet.webp?v=6",
-      "mobile": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@mobile.webp?v=6",
-      "thumb": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@thumb.webp?v=6"
-    },
-    "genres": [
-      "Adaptation",
-      "Comedy",
-      "Drama",
-      "Romance",
-      "School Life",
-      "Shounen",
-      "Slice of Life",
-      "Tragedy"
-    ],
-    "rating": 7.63,
-    "chapter_count": 21,
-    "total_views": 1517,
-    "isTrending": false,
-    "latest_release_date": "2026-09-04T22:42:33+07:00",
-    "next_update": null,
-    "tamat_at_chapter": null,
-    "hiatus_at_chapter": null,
-    "chapters": [
-      {
-        "chapter_number": 8.4,
-        "pages": 10,
-        "notif_image": "2",
-        "release_date": "2026-09-04T22:42:33+07:00",
-        "page_ratios": [
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498
-        ],
-        "r2_folder": 8.4,
-        "id": "Osananajimi-ch-8.4",
-        "r2_prefix": "manga/Osananajimi/8.4/",
-        "title": "Ch. 8.4",
-        "unlockDate": "2026-09-19T17:00:00.000Z",
-        "isLocked": true,
-        "views": 17
-      },
-      {
-        "chapter_number": 8.3,
-        "pages": 8,
-        "notif_image": "8",
-        "release_date": "2026-08-28T23:16:18+07:00",
-        "page_ratios": [
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498
-        ],
-        "r2_folder": 8.3,
-        "id": "Osananajimi-ch-8.3",
-        "r2_prefix": "manga/Osananajimi/8.3/",
-        "title": "Ch. 8.3",
-        "unlockDate": "2026-09-12T17:00:00.000Z",
-        "isLocked": true,
-        "views": 21
-      },
-      {
-        "chapter_number": 8.2,
-        "pages": 8,
-        "notif_image": "3",
-        "release_date": "2026-08-21T22:37:47+07:00",
-        "page_ratios": [
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498,
-          0.709592641261498
-        ],
-        "r2_folder": 8.2,
-        "id": "Osananajimi-ch-8.2",
-        "r2_prefix": "manga/Osananajimi/8.2/",
-        "title": "Ch. 8.2",
-        "unlockDate": "2026-09-06T17:00:00.000Z",
-        "isLocked": false,
-        "views": 50
       }
     ]
   },

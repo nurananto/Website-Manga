@@ -81,7 +81,7 @@
   "update_schedule": "Sabtu",
   "cover_source": "mangadex",
   "mangadex_id": "36cf3daf-9770-4f83-a69c-0d5971b5b43d",
-  "rating": 7.63,
+  "rating": 7.62,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover.webp?v=6",
   "coverUrls": {
@@ -91,6 +91,23 @@
     "thumb": "https://cdn.nuranantoscans.my.id/manga/Osananajimi/covers/cover@thumb.webp?v=6"
   },
   "chapters": [
+    {
+      "chapter_number": 8.5,
+      "lock_hours": 0,
+      "pages": 1,
+      "page_ratios": [
+        0.6994
+      ],
+      "notif_image": "page1",
+      "r2_folder": 8.5,
+      "id": "Osananajimi-ch-8.5",
+      "r2_prefix": "manga/Osananajimi/8.5/",
+      "title": "Ch. 8.5",
+      "release_date": "2026-09-11T22:20:20+07:00",
+      "unlockDate": null,
+      "isLocked": false,
+      "views": 0
+    },
     {
       "chapter_number": 8.4,
       "pages": 10,
