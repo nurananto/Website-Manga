@@ -29,7 +29,7 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 52,
-    "2": 46,
+    "2": 47,
     "3.1": 38,
     "3.2": 37,
     "4.1": 40,
@@ -43,14 +43,15 @@
     "6.3": 76,
     "7.1": 93,
     "6.5": 75,
-    "7.2": 80,
-    "7.3": 75,
-    "8.1": 69,
-    "8.2": 50,
-    "8.3": 21,
-    "8.4": 17
+    "7.2": 81,
+    "7.3": 77,
+    "8.1": 73,
+    "8.2": 54,
+    "8.3": 22,
+    "8.4": 18,
+    "8.5": 4
   },
-  "total_views": 1517,
+  "total_views": 1546,
   "mangadex_cover": "7924e82c-7b57-4fda-9800-8dde50833030.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -77,8 +78,8 @@
       "widths": "1280x960x640x400q75"
     }
   ],
-  "detail_views": 400,
-  "view_sync_cutoff": "2026-09-10 17:00:32",
+  "detail_views": 411,
+  "view_sync_cutoff": "2026-09-11 17:00:55",
   "cover_version": 6,
   "notif_image": "page1",
   "update_schedule": "Sabtu",
