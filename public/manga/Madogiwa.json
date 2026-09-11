@@ -31,7 +31,7 @@
     "1": 21,
     "2": 11,
     "3": 5,
-    "4": 26,
+    "4": 27,
     "5": 4,
     "6": 3,
     "7": 3,
@@ -39,7 +39,7 @@
     "9": 3,
     "10": 5,
     "11": 12,
-    "12.1": 8,
+    "12.1": 9,
     "12.2": 10,
     "13.1": 10,
     "13.2": 19,
@@ -50,7 +50,7 @@
     "16.1": 58,
     "16.2": 53
   },
-  "total_views": 574,
+  "total_views": 577,
   "mangadex_cover": "1ff29f3f-9318-47e4-88da-f4cf5793c4fb.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -85,7 +85,7 @@
       }
     }
   ],
-  "detail_views": 172,
+  "detail_views": 173,
   "cover_version": 4,
   "notif_image": "page1",
   "cover_source": "mangadex",
@@ -272,7 +272,7 @@
       "title": "Ch. 12.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 8
+      "views": 9
     },
     {
       "chapter_number": 11,
@@ -412,7 +412,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 26
+      "views": 27
     },
     {
       "chapter_number": 3,

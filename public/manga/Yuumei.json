@@ -27,9 +27,9 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 36,
+    "1": 37,
     "2": 16,
-    "3": 16,
+    "3": 17,
     "4": 9,
     "5": 8,
     "6": 8,
@@ -52,13 +52,13 @@
     "22.1": 64,
     "22.2": 81,
     "23.1": 62,
-    "1.5": 11,
+    "1.5": 12,
     "23.2": 59,
     "8.5": 9,
-    "24.1": 39,
+    "24.1": 40,
     "24.2": 8
   },
-  "total_views": 851,
+  "total_views": 857,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -93,13 +93,13 @@
       }
     }
   ],
-  "detail_views": 214,
+  "detail_views": 216,
   "cover_version": 6,
   "notif_image": "page1",
   "update_schedule": "Rabu (ke-2 & 4)",
   "cover_source": "mangadex",
   "mangadex_id": "9aebe60e-777f-4a58-a3bf-143c3096b94f",
-  "rating": 8.22,
+  "rating": 8.23,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Yuumei/covers/cover.webp?v=6",
   "coverUrls": {
@@ -119,7 +119,7 @@
       "r2_prefix": "manga/Yuumei/24.2/",
       "title": "Ch. 24.2",
       "unlockDate": "2026-09-11T17:00:00.000Z",
-      "isLocked": true,
+      "isLocked": false,
       "views": 8
     },
     {
@@ -150,7 +150,7 @@
       "title": "Ch. 24.1",
       "unlockDate": "2026-08-28T17:00:00.000Z",
       "isLocked": false,
-      "views": 39
+      "views": 40
     },
     {
       "chapter_number": 23.2,
@@ -504,7 +504,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 16
+      "views": 17
     },
     {
       "chapter_number": 2,
@@ -536,7 +536,7 @@
       "title": "Ch. 1.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 1,
@@ -571,7 +571,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 36
+      "views": 37
     }
   ]
 }

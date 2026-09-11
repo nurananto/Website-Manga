@@ -29,7 +29,7 @@
   "hiatus_at_chapter": null,
   "chapter_views": {
     "1": 52,
-    "2": 46,
+    "2": 47,
     "3.1": 38,
     "3.2": 37,
     "4.1": 40,
@@ -43,14 +43,15 @@
     "6.3": 76,
     "7.1": 93,
     "6.5": 75,
-    "7.2": 80,
-    "7.3": 75,
-    "8.1": 69,
-    "8.2": 50,
-    "8.3": 21,
-    "8.4": 17
+    "7.2": 81,
+    "7.3": 77,
+    "8.1": 73,
+    "8.2": 54,
+    "8.3": 22,
+    "8.4": 18,
+    "8.5": 4
   },
-  "total_views": 1517,
+  "total_views": 1546,
   "mangadex_cover": "7924e82c-7b57-4fda-9800-8dde50833030.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -75,7 +76,7 @@
       }
     }
   ],
-  "detail_views": 400,
+  "detail_views": 411,
   "cover_version": 6,
   "notif_image": "page1",
   "update_schedule": "Sabtu",
@@ -99,14 +100,14 @@
         0.6994
       ],
       "notif_image": "page1",
+      "release_date": "2026-09-11T22:20:20+07:00",
       "r2_folder": 8.5,
       "id": "Osananajimi-ch-8.5",
       "r2_prefix": "manga/Osananajimi/8.5/",
       "title": "Ch. 8.5",
-      "release_date": "2026-09-11T22:20:20+07:00",
       "unlockDate": null,
       "isLocked": false,
-      "views": 0
+      "views": 4
     },
     {
       "chapter_number": 8.4,
@@ -131,7 +132,7 @@
       "title": "Ch. 8.4",
       "unlockDate": "2026-09-19T17:00:00.000Z",
       "isLocked": true,
-      "views": 17
+      "views": 18
     },
     {
       "chapter_number": 8.3,
@@ -154,7 +155,7 @@
       "title": "Ch. 8.3",
       "unlockDate": "2026-09-12T17:00:00.000Z",
       "isLocked": true,
-      "views": 21
+      "views": 22
     },
     {
       "chapter_number": 8.2,
@@ -177,7 +178,7 @@
       "title": "Ch. 8.2",
       "unlockDate": "2026-09-06T17:00:00.000Z",
       "isLocked": false,
-      "views": 50
+      "views": 54
     },
     {
       "chapter_number": 8.1,
@@ -201,7 +202,7 @@
       "title": "Ch. 8.1",
       "unlockDate": "2026-08-30T17:00:00.000Z",
       "isLocked": false,
-      "views": 69
+      "views": 73
     },
     {
       "chapter_number": 7.3,
@@ -230,7 +231,7 @@
       "title": "Ch. 7.3",
       "unlockDate": "2026-08-22T17:00:00.000Z",
       "isLocked": false,
-      "views": 75
+      "views": 77
     },
     {
       "chapter_number": 7.2,
@@ -254,7 +255,7 @@
       "title": "Ch. 7.2",
       "unlockDate": "2026-08-15T01:00:00.000Z",
       "isLocked": false,
-      "views": 80
+      "views": 81
     },
     {
       "chapter_number": 7.1,
@@ -478,7 +479,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 46
+      "views": 47
     },
     {
       "chapter_number": 1,

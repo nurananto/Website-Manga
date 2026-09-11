@@ -28,11 +28,11 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "0": 12,
-    "1": 6,
-    "2": 2,
-    "3": 2,
-    "4": 2,
+    "0": 13,
+    "1": 7,
+    "2": 3,
+    "3": 3,
+    "4": 3,
     "5": 2,
     "6": 4,
     "7": 3,
@@ -41,14 +41,14 @@
     "7.5": 3,
     "10.1": 6,
     "10.2": 5,
-    "10.3": 13,
-    "11.1": 17,
-    "1.5": 2,
+    "10.3": 14,
+    "11.1": 18,
+    "1.5": 3,
     "4.5": 2,
-    "11.2": 20,
-    "11.5": 9
+    "11.2": 21,
+    "11.5": 12
   },
-  "total_views": 203,
+  "total_views": 217,
   "mangadex_cover": "c402aa68-08d7-49da-9fbd-7b84a9da4f7c.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -73,13 +73,13 @@
       }
     }
   ],
-  "detail_views": 81,
+  "detail_views": 83,
   "cover_version": 5,
   "notif_image": "page1",
   "cover_source": "mangadex",
   "mangadex_id": "624d6ceb-768d-40a7-8412-84e083afbdb1",
   "rating": 8.48,
-  "next_update": "2026-09-22",
+  "next_update": "2026-09-29",
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=5",
   "coverUrls": {
     "desktop": "https://cdn.nuranantoscans.my.id/manga/Amari-chan/covers/cover.webp?v=5",
@@ -94,7 +94,7 @@
       "pages": 13,
       "notif_image": "13",
       "release_date": "2026-09-08T16:55:08+07:00",
-      "next_update": "2026-09-22",
+      "next_update": "2026-09-29",
       "page_ratios": [
         0.7033997655334114,
         0.7033997655334114,
@@ -116,7 +116,7 @@
       "title": "Ch. 11.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 9
+      "views": 12
     },
     {
       "chapter_number": 11.2,
@@ -143,7 +143,7 @@
       "title": "Ch. 11.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 20
+      "views": 21
     },
     {
       "chapter_number": 11.1,
@@ -167,7 +167,7 @@
       "title": "Ch. 11.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 17
+      "views": 18
     },
     {
       "chapter_number": 10.3,
@@ -195,7 +195,7 @@
       "title": "Ch. 10.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 10.2,
@@ -355,7 +355,7 @@
       "title": "Ch. 4",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 3,
@@ -403,7 +403,7 @@
       "title": "Ch. 3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 2,
@@ -448,7 +448,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 1.5,
@@ -471,7 +471,7 @@
       "title": "Ch. 1.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 2
+      "views": 3
     },
     {
       "chapter_number": 1,
@@ -542,7 +542,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 6
+      "views": 7
     },
     {
       "chapter_number": 0,
@@ -565,7 +565,7 @@
       "title": "Ch. 0",
       "unlockDate": null,
       "isLocked": false,
-      "views": 12
+      "views": 13
     }
   ]
 }
