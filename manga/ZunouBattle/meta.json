@@ -43,7 +43,7 @@
     "8.1": 13,
     "8.2": 22
   },
-  "total_views": 729,
+  "total_views": 731,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -60,8 +60,8 @@
     }
   ],
   "cover_version": 6,
-  "detail_views": 267,
-  "view_sync_cutoff": "2026-09-09 17:00:01",
+  "detail_views": 269,
+  "view_sync_cutoff": "2026-09-10 17:00:32",
   "notif_image": "page1",
   "cover_source": "mangadex"
 }

@@ -41,10 +41,10 @@
     "11.1": 5,
     "11.2": 14,
     "12.1": 15,
-    "12.2": 10,
-    "13.1": 11
+    "12.2": 11,
+    "13.1": 12
   },
-  "total_views": 151,
+  "total_views": 154,
   "mangadex_cover": "fadafe71-37cd-4c73-ac98-59fd79e07f58.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -59,7 +59,7 @@
       }
     }
   ],
-  "detail_views": 55,
+  "detail_views": 56,
   "cover_version": 4,
   "notif_image": "page1",
   "cover_source": "mangadex",
@@ -87,7 +87,7 @@
       "title": "Ch. 13.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 11
+      "views": 12
     },
     {
       "chapter_number": 12.2,
@@ -101,7 +101,7 @@
       "title": "Ch. 12.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 10
+      "views": 11
     },
     {
       "chapter_number": 12.1,

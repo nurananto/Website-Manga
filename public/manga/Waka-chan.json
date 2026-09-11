@@ -55,7 +55,7 @@
     "103": 2,
     "104": 4,
     "105": 1,
-    "106": 1,
+    "106": 2,
     "161": 1,
     "165": 2,
     "171": 1,
@@ -115,7 +115,7 @@
     "161.5": 1,
     "103.5": 1
   },
-  "total_views": 390,
+  "total_views": 391,
   "mangadex_cover": "c15f762d-5437-4f73-aa85-64a7b686ddba.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -1982,7 +1982,7 @@
       "title": "Ch. 106",
       "unlockDate": null,
       "isLocked": false,
-      "views": 1
+      "views": 2
     },
     {
       "chapter_number": 105,

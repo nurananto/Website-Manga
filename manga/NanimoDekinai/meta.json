@@ -40,7 +40,7 @@
     "4": 19,
     "5": 23
   },
-  "total_views": 144,
+  "total_views": 145,
   "cover_source": "mangadex",
   "cover_widths": "1280x960x640x400q75",
   "cover_version": 4,
@@ -58,6 +58,6 @@
       "widths": "1280x960x640x400q75"
     }
   ],
-  "detail_views": 63,
-  "view_sync_cutoff": "2026-09-09 17:00:01"
+  "detail_views": 64,
+  "view_sync_cutoff": "2026-09-10 17:00:32"
 }
