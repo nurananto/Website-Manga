@@ -78,6 +78,33 @@
   },
   "chapters": [
     {
+      "chapter_number": 7.1,
+      "pages": 12,
+      "page_ratios": [
+        0.7096,
+        0.7096,
+        0.7096,
+        0.7096,
+        0.7096,
+        0.7096,
+        0.7096,
+        0.7096,
+        0.7096,
+        0.7096,
+        0.7096,
+        0.7096
+      ],
+      "notif_image": "2",
+      "r2_folder": 7.1,
+      "id": "ShokeiFlag-ch-7.1",
+      "r2_prefix": "manga/ShokeiFlag/7.1/",
+      "title": "Ch. 7.1",
+      "release_date": "2026-09-11T16:56:08+07:00",
+      "unlockDate": "2026-11-24T17:00:00.000Z",
+      "isLocked": true,
+      "views": 0
+    },
+    {
       "chapter_number": 6.3,
       "pages": 10,
       "notif_image": "10",
