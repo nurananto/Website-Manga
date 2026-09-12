@@ -53,11 +53,19 @@ export async function getAccessToken(forceRefresh = false) {
           body:        JSON.stringify({ refresh_token: rt }),
           credentials: 'include', // wajib supaya cookie img_session ikut terkirim & backfill Set-Cookie diterima
         });
-        if (!res.ok) { clearAuth(); return null; }
+        if (!res.ok) {
+          // 401/403 = refresh token BENERAN ditolak server (expired/dicabut/
+          // dipakai device lain) — itu logout yang sah. Status lain (500/503/
+          // dkk, mis. D1 lagi kena beban berat) itu error SEMENTARA di server,
+          // BUKAN bukti sesi tidak valid — jangan hapus token tersimpan, biar
+          // bisa dicoba lagi nanti (reload berikutnya) tanpa paksa re-login.
+          if (res.status === 401 || res.status === 403) clearAuth();
+          return null;
+        }
         const { access_token, refresh_token } = await res.json();
         storeTokens(access_token, refresh_token);
         return access_token;
-      } catch { return null; }
+      } catch { return null; } // network error (offline dkk) — jangan clearAuth juga
       finally   { refreshPromise = null; }
     })();
   }
