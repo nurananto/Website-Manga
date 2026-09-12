@@ -52,13 +52,13 @@
     "22.1": 64,
     "22.2": 81,
     "23.1": 62,
-    "1.5": 12,
+    "1.5": 13,
     "23.2": 59,
     "8.5": 9,
-    "24.1": 40,
-    "24.2": 8
+    "24.1": 41,
+    "24.2": 11
   },
-  "total_views": 857,
+  "total_views": 864,
   "mangadex_cover": "cbbf70d1-fcce-49f5-bcfa-cd17ae9dd991.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -96,9 +96,9 @@
       "widths": "1280x960x640x400q75"
     }
   ],
-  "detail_views": 216,
+  "detail_views": 218,
   "cover_version": 6,
-  "view_sync_cutoff": "2026-09-11 17:00:55",
+  "view_sync_cutoff": "2026-09-12 17:00:08",
   "notif_image": "page1",
   "update_schedule": "Rabu (ke-2 & 4)",
   "cover_source": "mangadex"

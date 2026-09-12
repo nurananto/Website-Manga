@@ -30,14 +30,14 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 20
+    "1": 27
   },
-  "total_views": 39,
+  "total_views": 58,
   "raw_cover_url": "https://m.media-amazon.com/images/I/81-RxaqGX0L._SL1500_.jpg",
   "cover_source": "manual-url",
   "cover_widths": "1280x960x640x400q75",
   "cover_version": 2,
   "raw_schedule_checked_at": "2026-09-12T10:17:39.393Z",
-  "detail_views": 19,
-  "view_sync_cutoff": "2026-09-11 17:00:55"
+  "detail_views": 31,
+  "view_sync_cutoff": "2026-09-12 17:00:08"
 }
