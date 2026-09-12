@@ -829,8 +829,14 @@ export default function ReaderModal({ chapter, manga, onClose, onReadChapter, is
       const inside = e.target.closest('[data-chapter-selector]');
       if (!inside) setOpenChapterList(null);
     };
+    // passive: true — handler ini TIDAK PERNAH panggil preventDefault(), jadi
+    // aman ditandai passive. Tanpa ini, browser wajib nunggu handler selesai
+    // dulu sebelum mulai proses scroll/tap default TIAP kali user nge-tap di
+    // mana pun selagi reader kebuka (touchstart di level document = nyaris
+    // tiap interaksi baca) — kontributor nyata ke INP lambat di mobile
+    // (Lighthouse: "does not use passive listeners to improve scroll perf").
     document.addEventListener('mousedown', handleClose);
-    document.addEventListener('touchstart', handleClose);
+    document.addEventListener('touchstart', handleClose, { passive: true });
     return () => {
       document.removeEventListener('mousedown', handleClose);
       document.removeEventListener('touchstart', handleClose);
