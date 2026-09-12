@@ -81,6 +81,17 @@
       "notif_image": "3",
       "release_date": "2026-09-03T10:13:04+07:00",
       "next_update": "2026-09-17",
+      "page_ratios": [
+        0.6968641114982579,
+        0.6968641114982579,
+        0.6968641114982579,
+        0.6968641114982579,
+        0.6968641114982579,
+        null,
+        0.6968641114982579,
+        null,
+        null
+      ],
       "r2_folder": 13.1,
       "id": "Chikasugiru-ch-13.1",
       "r2_prefix": "manga/Chikasugiru/13.1/",
@@ -95,6 +106,14 @@
       "pages": 6,
       "notif_image": "3",
       "release_date": "2026-08-20T19:55:22+07:00",
+      "page_ratios": [
+        0.6968641114982579,
+        0.6968641114982579,
+        0.6968641114982579,
+        null,
+        null,
+        null
+      ],
       "r2_folder": 12.2,
       "id": "Chikasugiru-ch-12.2",
       "r2_prefix": "manga/Chikasugiru/12.2/",

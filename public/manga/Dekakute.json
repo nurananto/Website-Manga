@@ -22,7 +22,8 @@
     "manga/Dekakute/covers/cover@mobile.webp",
     "manga/Dekakute/covers/cover@thumb.webp"
   ],
-  "mangadex_url": "",
+  "mangadex_url": "https://mangadex.org/title/543253c3-9a95-43ea-83ff-f9a8c27d6ca5/chicchakute-dekakute-kawaii-nanase-san-wo-kanchigai-motokare-kara-ubatte-shiawase-ni-suru",
+  "cover_locked": true,
   "cover_source_url": "https://m.media-amazon.com/images/I/81-RxaqGX0L._SL1500_.jpg",
   "raw_url": "https://comic-walker.com/detail/KC_020117_S/episodes/KC_0201170000200011_E?episodeType=latest",
   "notif_image": "cover",
@@ -37,7 +38,8 @@
   "cover_widths": "1280x960x640x400q75",
   "cover_version": 2,
   "detail_views": 19,
-  "rating": null,
+  "mangadex_id": "543253c3-9a95-43ea-83ff-f9a8c27d6ca5",
+  "rating": 7.79,
   "next_update": "2026-09-21",
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/Dekakute/covers/cover.webp?v=2",
   "coverUrls": {
