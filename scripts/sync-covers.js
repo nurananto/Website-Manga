@@ -205,6 +205,19 @@ async function syncCovers() {
     if (!fs.existsSync(metaPath)) continue;
 
     const meta = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+
+    // Opt-out per-manga — dipakai kalau admin sengaja lebih suka cover manual
+    // yang sudah dipasang (mis. cover MangaDex kualitasnya lebih jelek/beda
+    // selera) DAN gak mau itu ketiban timpa begitu mangadex_url ditambahkan
+    // nanti (default: mangadex_url ada + MangaDex punya cover → SELALU
+    // menang, lihat cabang di bawah). Set manual di meta.json: "cover_locked":
+    // true. Manga lain tanpa flag ini tidak terpengaruh sama sekali.
+    if (meta.cover_locked) {
+      console.log(`🔒 ${slug}: cover_locked=true, cover manual dipertahankan, skip sync`);
+      skipped++;
+      continue;
+    }
+
     if (!meta.mangadex_url && !meta.raw_url) {
       console.log(`⏭  ${slug}: tidak ada mangadex_url maupun raw_url, skip`);
       skipped++;

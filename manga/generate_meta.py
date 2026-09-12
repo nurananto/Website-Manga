@@ -7,11 +7,24 @@ Manga Chapter Meta.json Generator
 """
 
 import os
+import sys
 import json
 import re
 import traceback
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
+
+# Paksa stdout/stderr UTF-8 dengan fallback "replace" (bukan crash) kalau
+# encoding-nya gak dukung — jaga-jaga buat emoji (✅⚠❌📚 dkk) di layar. Biasa
+# gak masalah pas double klik (Command Prompt asli otomatis Unicode-aman),
+# tapi kalau script ini kebuka lewat terminal lain/IDE/redirect yang codepage-nya
+# gak dukung, TANPA ini bisa crash UnicodeEncodeError di tengah jalan. Coba-saja
+# — .reconfigure() gak ada di Python sangat lama, gagal diam-diam kalau begitu.
+try:
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+except Exception:
+    pass
 
 WIB = timezone(timedelta(hours=7))
 CHAPTER_NUMBER_RE = re.compile(r'^(?:chapter|ch|chap|episode|ep|part)?\s*[-_. ]*\s*(\d+(?:\.\d+)?)\s*$', re.IGNORECASE)
@@ -24,6 +37,68 @@ ONESHOT_RE = re.compile(r'^(?:one[-_. ]*shot|oneshot)$', re.IGNORECASE)
 # belakang, terlepas urutan folder di disk).
 PROLOG_RE = re.compile(r'^prolog[-_. ]*(\d+(?:\.\d+)?)?$', re.IGNORECASE)
 EPILOG_RE = re.compile(r'^epilog[-_. ]*(\d+(?:\.\d+)?)?$', re.IGNORECASE)
+
+
+# ── Warna terminal (ANSI) ────────────────────────────────────────────────
+# Best-effort doang — banyak pemakai script ini pemula yang buka lewat
+# Command Prompt bawaan Windows, dan CMD lama gak render kode warna ANSI
+# secara default. Trik di bawah nyalain "Virtual Terminal Processing" pakai
+# ctypes (BUKAN pip install apa pun — tetap stdlib-only, "double klik
+# langsung jalan" seperti sebelumnya). Kalau gagal (OS lama / bukan
+# terminal asli), otomatis balik ke teks polos, jadi tetap kebaca normal,
+# cuma gak berwarna.
+def _enable_ansi():
+    if os.name != 'nt':
+        return True
+    try:
+        import ctypes
+        kernel32 = ctypes.windll.kernel32
+        handle = kernel32.GetStdHandle(-11)  # STD_OUTPUT_HANDLE
+        mode = ctypes.c_uint32()
+        if not kernel32.GetConsoleMode(handle, ctypes.byref(mode)):
+            return False
+        ENABLE_VIRTUAL_TERMINAL_PROCESSING = 0x0004
+        return bool(kernel32.SetConsoleMode(handle, mode.value | ENABLE_VIRTUAL_TERMINAL_PROCESSING))
+    except Exception:
+        return False
+
+
+USE_COLOR = _enable_ansi() and not os.environ.get('NO_COLOR')
+
+
+def _c(code, text):
+    return f"\033[{code}m{text}\033[0m" if USE_COLOR else text
+
+
+def bold(t):    return _c('1', t)
+def dim(t):     return _c('2', t)
+def cyan(t):    return _c('36', t)
+def green(t):   return _c('32', t)
+def yellow(t):  return _c('33', t)
+def red(t):     return _c('31', t)
+def magenta(t): return _c('35', t)
+
+
+def ok(msg):
+    print(f"  {green('✅')}  {msg}")
+
+
+def warn(msg):
+    print(f"  {yellow('⚠')}   {msg}")
+
+
+def err(msg):
+    print(f"  {red('❌')}  {msg}")
+
+
+def status_color(status):
+    """Warna label status manga (ONGOING/HIATUS/TAMAT/ONESHOT) di daftar judul."""
+    return {
+        'ONGOING': green,
+        'HIATUS': yellow,
+        'TAMAT': red,
+        'ONESHOT': magenta,
+    }.get(status, dim)
 
 
 def _fmt_sub_number(raw):
@@ -193,12 +268,13 @@ def ask(prompt, allow_empty=False):
 
 
 def header(subtitle=""):
-    print("=" * 55)
-    print("   Manga Chapter Meta.json Generator")
+    line = "=" * 55
+    print(cyan(line))
+    print(cyan(bold("   📚 Manga Chapter Meta.json Generator")))
     if subtitle:
-        print(f"   {subtitle}")
-    print("=" * 55)
-    print("  Ketik X kapan saja untuk keluar")
+        print(bold(f"   ▸ {subtitle}"))
+    print(cyan(line))
+    print(dim("  Ketik X kapan saja untuk keluar"))
     print()
 
 
@@ -363,7 +439,7 @@ def hapus_webp(ch_dir):
     return len(files)
 
 
-def _write_manga_meta(title_dir):
+def _write_manga_meta(title_dir, cover_locked=False):
     """Tulis meta.json kosongan untuk satu judul. Return path."""
     folder_id = title_dir.name
     status = infer_manga_status(title_dir)
@@ -377,10 +453,18 @@ def _write_manga_meta(title_dir):
         "artist": "",
         "genres": [],
         "description": "",
+        # 4 ukuran (desktop/tablet/mobile/thumb kartu grid kecil) — samain
+        # persis skema SIZE_SIGNATURE di scripts/sync-covers.js. Buat manga
+        # NORMAL (mangadex_url/raw_url terisi, bukan cover_locked) array ini
+        # bakal ditimpa otomatis pas sync-covers.js jalan pertama kali, jadi
+        # cuma placeholder. Tapi buat manga cover_locked (skip sync-covers.js
+        # total), array ini yang DIPAKAI BENERAN — makanya harus 4 ukuran
+        # lengkap dari awal, bukan cuma 3.
         "covers": [
             f"manga/{folder_id}/covers/cover.webp",
             f"manga/{folder_id}/covers/cover@tablet.webp",
             f"manga/{folder_id}/covers/cover@mobile.webp",
+            f"manga/{folder_id}/covers/cover@thumb.webp",
         ],
         "mangadex_url": "",
         "raw_url": "",
@@ -399,6 +483,12 @@ def _write_manga_meta(title_dir):
         "total_views": 0,
         "mangadex_cover": "",
     }
+    if cover_locked:
+        # Cover MANUAL dikunci — scripts/sync-covers.js skip judul ini total
+        # (gak akan pernah ganti cover-nya walau mangadex_url diisi belakangan).
+        # Dipilih pas mau pertahankan cover_source_url manual selamanya karena
+        # lebih disukai drpd cover MangaDex. Lihat guard-nya di sync-covers.js.
+        meta["cover_locked"] = True
     meta_path = title_dir / "meta.json"
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump(meta, f, indent=2, ensure_ascii=False)
@@ -420,18 +510,18 @@ def buat_manga_meta(manga_dir):
         ])
 
         if not titles:
-            print("✅ Semua judul sudah punya meta.json — tidak ada yang perlu dibuat.")
+            ok("Semua judul sudah punya meta.json — tidak ada yang perlu dibuat.")
             input("\nTekan Enter untuk kembali...")
             return
 
-        print(f"Judul tanpa meta.json ({len(titles)}):\n")
+        print(bold(f"Judul tanpa meta.json ({len(titles)}):") + "\n")
         for i, t in enumerate(titles, 1):
-            print(f"  {i:>2}. {t.name}")
+            print(f"  {cyan(f'{i:>2}')}. {t.name}")
         print()
-        print("  [nomor]  pilih")
-        print("  [A]      buat SEMUA")
-        print("  [B]      kembali")
-        print("  [X]      keluar")
+        print(f"  {green('[nomor]')}  pilih")
+        print(f"  {green('[A]')}      buat SEMUA")
+        print(f"  {dim('[B]')}      kembali")
+        print(f"  {red('[X]')}      keluar")
         print()
 
         pilih = ask("Pilih", allow_empty=True)
@@ -443,7 +533,7 @@ def buat_manga_meta(manga_dir):
             print()
             for t in titles:
                 _write_manga_meta(t)
-                print(f"  ✅  {t.name}")
+                ok(t.name)
             print()
             input(f"{len(titles)} meta.json kosongan dibuat. Tekan Enter...")
             continue
@@ -456,15 +546,24 @@ def buat_manga_meta(manga_dir):
 
         meta_path = title_dir / "meta.json"
         if meta_path.exists():
-            print(f"\n  ⚠  meta.json sudah ada di {title_dir.name}")
+            print()
+            warn(f"meta.json sudah ada di {title_dir.name}")
             timpa = input("  Timpa? (Y=ya / N=batal): ").strip().upper()
             if timpa != "Y":
                 input("  Dibatalkan. Tekan Enter...")
                 continue
 
-        _write_manga_meta(title_dir)
+        print()
+        print(bold("  Kunci cover manual?"))
+        print("  Kalau YA, cover yang kamu pasang sendiri nanti TIDAK AKAN PERNAH")
+        print("  diganti otomatis dari MangaDex — walau mangadex_url belakangan diisi.")
+        print("  Pilih ini cuma kalau kamu emang lebih suka cover manual drpd MangaDex.")
+        kunci = input("  Kunci cover? (Y=ya / N=tidak, default N): ").strip().upper()
 
-        print(f"\n  ✅  meta.json dibuat: {meta_path}")
+        _write_manga_meta(title_dir, cover_locked=(kunci == "Y"))
+
+        print()
+        ok(f"meta.json dibuat: {meta_path}")
         print(f'      id: "{title_dir.name}"')
         print()
         input("Tekan Enter untuk lanjut...")
@@ -504,22 +603,23 @@ def update_manga_status(manga_dir):
         ])
 
         if not titles:
-            print("⚠  Belum ada judul dengan meta.json. Buat dulu lewat menu 2.")
+            warn("Belum ada judul dengan meta.json. Buat dulu lewat menu 2.")
             input("\nTekan Enter untuk kembali...")
             return
 
-        print(f"Judul dengan meta.json ({len(titles)}):\n")
+        print(bold(f"Judul dengan meta.json ({len(titles)}):") + "\n")
         for i, t in enumerate(titles, 1):
             try:
                 meta = json.loads((t / "meta.json").read_text(encoding="utf-8"))
                 status = meta.get("status", "?")
             except Exception:
                 status = "?"
-            print(f"  {i:>2}. {t.name}  [{status}]")
+            colorize = status_color(status)
+            print(f"  {cyan(f'{i:>2}')}. {t.name}  [{colorize(status)}]")
         print()
-        print("  [nomor]  pilih")
-        print("  [B]      kembali")
-        print("  [X]      keluar")
+        print(f"  {green('[nomor]')}  pilih")
+        print(f"  {dim('[B]')}      kembali")
+        print(f"  {red('[X]')}      keluar")
         print()
 
         pilih = ask("Pilih", allow_empty=True)
@@ -537,16 +637,17 @@ def update_manga_status(manga_dir):
 
         cls()
         header(f"Judul: {title_dir.name}")
-        print(f"Status sekarang : {meta.get('status', '?')}")
+        current_status = meta.get('status', '?')
+        print(f"Status sekarang : {status_color(current_status)(current_status)}")
         print(f"tamat_at_chapter: {meta.get('tamat_at_chapter')}")
         print(f"hiatus_at_chapter: {meta.get('hiatus_at_chapter')}")
         print()
-        print("Status baru:")
-        print("  1. Ongoing")
-        print("  2. Hiatus")
-        print("  3. Tamat")
-        print("  4. Oneshot")
-        print("  B. Batal")
+        print(bold("Status baru:"))
+        print(f"  {green('1')}. Ongoing")
+        print(f"  {yellow('2')}. Hiatus")
+        print(f"  {red('3')}. Tamat")
+        print(f"  {magenta('4')}. Oneshot")
+        print(f"  {dim('B')}. Batal")
         print()
         pilih_status = ask("Pilihan (1-4/B)")
 
@@ -577,8 +678,154 @@ def update_manga_status(manga_dir):
             f.write("\n")
 
         print()
-        print(f"  ✅  Status {title_dir.name} → {new_status}")
+        ok(f"Status {title_dir.name} → {status_color(new_status)(new_status)}")
         input("\nTekan Enter untuk lanjut...")
+
+
+# ── Menu 4: Edit info manga (meta.json yang sudah ada) ────────────────────
+# Field-field profil/sumber yang gak ditangani menu 3 (status/tamat/hiatus) —
+# mangadex_url, raw_url, cover_source_url, cover_locked, dan profil dasar.
+EDITABLE_META_FIELDS = [
+    ("title", "Judul (romaji)", "text"),
+    ("alt_title", "Judul asli (kanji/hangul/dll)", "text"),
+    ("author", "Author", "text"),
+    ("artist", "Artist", "text"),
+    ("genres", "Genre (pisah pakai koma)", "genres"),
+    ("description", "Deskripsi/sinopsis", "text"),
+    ("mangadex_url", "Link MangaDex", "text"),
+    ("raw_url", "Link raw (comic-walker/manga-up/dll)", "text"),
+    ("cover_source_url", "Link cover manual (gambar langsung)", "text"),
+    ("cover_locked", "Kunci cover manual (jangan diganti MangaDex)", "bool"),
+    ("notif_image", "Gambar notifikasi chapter baru (page1/cover/nomor)", "text"),
+]
+
+
+def _fmt_field_value(value, kind):
+    if kind == "bool":
+        return green("YA") if value else dim("TIDAK")
+    if isinstance(value, list):
+        return ", ".join(str(x) for x in value) if value else dim("(kosong)")
+    s = "" if value is None else str(value)
+    if s == "":
+        return dim("(kosong)")
+    return s[:66] + dim("…") if len(s) > 66 else s
+
+
+def edit_manga_meta(manga_dir):
+    """Edit field profil/sumber di meta.json manga yang SUDAH ADA — mangadex_url,
+    raw_url, cover_source_url, cover_locked, genre, deskripsi, dll. Status
+    (ongoing/hiatus/tamat) tetap lewat menu 3, biar gak ada 2 jalan buat 1 field
+    yang bisa kelupaan salah satu."""
+    while True:
+        cls()
+        header("Edit info manga (meta.json yang sudah ada)")
+
+        titles = sorted([
+            d for d in manga_dir.iterdir()
+            if d.is_dir()
+            and not d.name.startswith('.')
+            and d.name not in ('__pycache__',)
+            and (d / "meta.json").exists()   # HANYA judul yang SUDAH punya meta.json
+        ])
+
+        if not titles:
+            warn("Belum ada judul dengan meta.json. Buat dulu lewat menu 2.")
+            input("\nTekan Enter untuk kembali...")
+            return
+
+        print(bold(f"Judul dengan meta.json ({len(titles)}):") + "\n")
+        for i, t in enumerate(titles, 1):
+            try:
+                meta = json.loads((t / "meta.json").read_text(encoding="utf-8"))
+                status = meta.get("status", "?")
+            except Exception:
+                status = "?"
+            colorize = status_color(status)
+            print(f"  {cyan(f'{i:>2}')}. {t.name}  [{colorize(status)}]")
+        print()
+        print(f"  {green('[nomor]')}  pilih judul untuk diedit")
+        print(f"  {dim('[B]')}      kembali")
+        print(f"  {red('[X]')}      keluar")
+        print()
+
+        pilih = ask("Pilih", allow_empty=True)
+        if pilih.upper() == "B" or pilih == "":
+            return
+
+        try:
+            title_dir = titles[int(pilih) - 1]
+        except (ValueError, IndexError):
+            input("  Pilihan tidak valid. Tekan Enter...")
+            continue
+
+        meta_path = title_dir / "meta.json"
+
+        # ── Submenu: edit field satu-satu, tersimpan langsung tiap field ──
+        while True:
+            meta = json.loads(meta_path.read_text(encoding="utf-8"))
+            cls()
+            header(f"Edit: {title_dir.name}")
+
+            print(bold("Field yang bisa diedit:") + "\n")
+            for i, (key, label, kind) in enumerate(EDITABLE_META_FIELDS, 1):
+                current = meta.get(key)
+                if kind == "bool" and current is None:
+                    current = False
+                print(f"  {cyan(f'{i:>2}')}. {label:<46} : {_fmt_field_value(current, kind)}")
+            print()
+            print(f"  {green('[nomor]')}  edit field itu")
+            print(f"  {dim('[B]')}      kembali ke daftar judul")
+            print(f"  {red('[X]')}      keluar")
+            print()
+
+            pilih_field = ask("Pilih", allow_empty=True)
+            if pilih_field.upper() == "B" or pilih_field == "":
+                break
+
+            try:
+                key, label, kind = EDITABLE_META_FIELDS[int(pilih_field) - 1]
+            except (ValueError, IndexError):
+                input("  Pilihan tidak valid. Tekan Enter...")
+                continue
+
+            current = meta.get(key)
+            if kind == "bool" and current is None:
+                current = False
+
+            print()
+            print(f"  Nilai sekarang: {_fmt_field_value(current, kind)}")
+
+            if key == "cover_locked":
+                print(dim("  ℹ  YA = cover manual TIDAK PERNAH diganti otomatis dari"))
+                print(dim("     MangaDex (dipakai scripts/sync-covers.js), walau"))
+                print(dim("     mangadex_url terisi. TIDAK = perilaku normal."))
+
+            if kind == "bool":
+                jawab = input(f"  {label} — Y=ya / N=tidak (Enter=batal): ").strip().upper()
+                if jawab not in ("Y", "N"):
+                    input("  Dibatalkan. Tekan Enter...")
+                    continue
+                meta[key] = (jawab == "Y")
+            elif kind == "genres":
+                val = input(f"  {label} (Enter=batal): ").strip()
+                if not val:
+                    input("  Dibatalkan. Tekan Enter...")
+                    continue
+                meta[key] = [g.strip() for g in val.split(",") if g.strip()]
+            else:
+                val = input(f"  {label} baru (Enter=batal): ").strip()
+                if val == "":
+                    input("  Dibatalkan. Tekan Enter...")
+                    continue
+                meta[key] = val
+
+            with open(meta_path, "w", encoding="utf-8") as f:
+                json.dump(meta, f, indent=2, ensure_ascii=False)
+                f.write("\n")
+
+            print()
+            ok(f"{label} tersimpan.")
+            input("Tekan Enter untuk lanjut...")
 
 
 def main():
@@ -588,11 +835,16 @@ def main():
         cls()
         header()
 
-        print("Menu utama:")
-        print("  1. Buat/update chapter meta.json")
-        print("  2. Buat manga meta.json kosongan")
-        print("  3. Update status manga (ongoing/hiatus/tamat/oneshot)")
-        print("  X. Keluar")
+        print(bold("Menu utama:"))
+        print(f"  {green('1')}. Buat/update chapter meta.json")
+        print(f"     {dim('→ chapter baru: upload halaman, kunci/jadwal, gambar notifikasi')}")
+        print(f"  {green('2')}. Buat manga meta.json kosongan (judul baru)")
+        print(f"     {dim('→ judul pertama kali ditambah ke situs')}")
+        print(f"  {green('3')}. Update status manga (ongoing/hiatus/tamat/oneshot)")
+        print(f"     {dim('→ ganti status + nomor chapter mulai hiatus/tamat')}")
+        print(f"  {green('4')}. Edit info manga (mangadex_url, cover, genre, dll)")
+        print(f"     {dim('→ judul yang SUDAH ADA: link MangaDex/raw, cover manual, dll')}")
+        print(f"  {red('X')}. Keluar")
         print()
 
         pilih_menu = ask("Pilih menu")
@@ -603,6 +855,8 @@ def main():
             buat_manga_meta(manga_dir)
         elif pilih_menu == "3":
             update_manga_status(manga_dir)
+        elif pilih_menu == "4":
+            edit_manga_meta(manga_dir)
         else:
             input("  Pilihan tidak valid. Tekan Enter...")
             continue
