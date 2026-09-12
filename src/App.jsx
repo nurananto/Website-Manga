@@ -944,26 +944,30 @@ export default function App() {
 
           const accessLevel = chapterAccessLevel(ch);
           if (accessLevel === 'supporter' && !isSupporterRef.current) {
-            // Cek status Supporter terkini dulu sebelum bounce — supporter yang BARU
-            // login bisa punya isSupporterRef basi (render me-fetch belum jalan).
-            let supporter = false;
-            if (isLoggedIn) {
-              const workerUrl = import.meta.env.VITE_WORKER_URL || '';
-              const token = await getAccessToken().catch(() => null);
-              if (workerUrl && token) {
-                try {
-                  const me = await fetch(`${workerUrl}/api/user/me`, { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json());
-                  supporter = !!me.is_supporter;
-                  if (supporter) { setIsSupporter(true); if (me.supporter_until) setSupporterUntil(me.supporter_until); }
-                } catch {}
-              }
-            }
-            if (!supporter) {
+            // PENTING: baca getCurrentUser() (localStorage LANGSUNG), BUKAN state
+            // `isLoggedIn` — efek routing ini ikut re-run tiap `isLoggedIn` berubah
+            // (lihat dependency array di bawah), tapi PANGGILAN PERTAMA selalu
+            // terjadi di render awal saat `isLoggedIn` masih default `false`
+            // (state React belum sempat "pulih" dari sesi tersimpan pas hard
+            // reload) — walau user sebenarnya masih login. Reload di halaman
+            // reader chapter locked jadinya kebanting balik ke detail + modal
+            // login padahal sesinya valid. getCurrentUser() gak kena race ini,
+            // selalu baca kondisi TERKINI dari localStorage.
+            const loggedIn = !!getCurrentUser();
+            if (!loggedIn) {
+              // Guest beneran (bukan cuma state React yang belum sinkron) —
+              // ini satu-satunya kasus yang wajar bounce ke detail + modal login.
               navigate(`/${mangaId}`, true);
-              if (!isLoggedIn) openAuth('unlock', { type: 'unlock', mangaId, chapterNum: ch.chapter_number });
-              else { setPendingUnlockChapter(ch); setPendingMangaTitle(manga.title); setPendingManga(manga); setIsLockedModalOpen(true); }
+              openAuth('unlock', { type: 'unlock', mangaId, chapterNum: ch.chapter_number });
               return;
             }
+            // Sudah login → STAY di reader apa pun status supporter-nya sekarang,
+            // konsisten sama alur klik biasa (openChapterReader di atas TIDAK
+            // pernah pre-check di sini sama sekali). ReaderModal sendiri yang
+            // nanganin sisanya: chapter locked → tampilkan Turnstile lagi kalau
+            // token akses belum ada/sudah expired; kalau ternyata beneran bukan
+            // supporter, endpoint chapter-token nolak dan pesan errornya
+            // ditampilkan di gate yang sama (sudah ada, dipakai di alur normal).
           }
           setSelectedManga(manga);
           selectedMangaRef.current = manga;
