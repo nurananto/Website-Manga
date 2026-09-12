@@ -27,16 +27,16 @@
   "tamat_at_chapter": 19,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 4,
+    "1": 5,
     "13": 1,
     "14": 1,
     "15": 1,
     "16": 1,
     "17": 1,
     "18": 1,
-    "19": 13
+    "19": 14
   },
-  "total_views": 40,
+  "total_views": 43,
   "mangadex_cover": "511f749e-21de-4ba8-ab27-b6cd74cbb6e5.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -81,7 +81,7 @@
       }
     }
   ],
-  "detail_views": 17,
+  "detail_views": 18,
   "cover_version": 3,
   "notif_image": "page1",
   "cover_source": "mangadex",
@@ -101,13 +101,27 @@
       "lock_hours": 0,
       "pages": 12,
       "release_date": "2026-06-20T14:53:29+07:00",
+      "page_ratios": [
+        0.703125,
+        0.703125,
+        0.703125,
+        0.703125,
+        0.703125,
+        0.703125,
+        0.703125,
+        0.703125,
+        0.703125,
+        0.703125,
+        0.703125,
+        0.703125
+      ],
       "r2_folder": 19,
       "id": "AiwoOshiete-ch-19",
       "r2_prefix": "manga/AiwoOshiete/19/",
       "title": "Ch. 19",
       "unlockDate": null,
       "isLocked": false,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 18,
@@ -397,7 +411,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 5
     }
   ]
 }

@@ -28,30 +28,30 @@
   "tamat_at_chapter": null,
   "hiatus_at_chapter": null,
   "chapter_views": {
-    "1": 52,
-    "2": 47,
-    "3.1": 38,
-    "3.2": 37,
-    "4.1": 40,
-    "4.2": 37,
-    "4.3": 35,
+    "1": 53,
+    "2": 48,
+    "3.1": 39,
+    "3.2": 38,
+    "4.1": 41,
+    "4.2": 38,
+    "4.3": 36,
     "5.3": 51,
     "5.2": 44,
-    "5.1": 44,
-    "6.1": 68,
+    "5.1": 45,
+    "6.1": 69,
     "6.2": 69,
     "6.3": 76,
     "7.1": 93,
     "6.5": 75,
-    "7.2": 81,
-    "7.3": 77,
-    "8.1": 73,
-    "8.2": 54,
-    "8.3": 22,
-    "8.4": 18,
-    "8.5": 4
+    "7.2": 82,
+    "7.3": 78,
+    "8.1": 75,
+    "8.2": 59,
+    "8.3": 24,
+    "8.4": 22,
+    "8.5": 25
   },
-  "total_views": 1546,
+  "total_views": 1611,
   "mangadex_cover": "7924e82c-7b57-4fda-9800-8dde50833030.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -76,7 +76,7 @@
       }
     }
   ],
-  "detail_views": 411,
+  "detail_views": 431,
   "cover_version": 6,
   "notif_image": "page1",
   "update_schedule": "Sabtu",
@@ -107,7 +107,7 @@
       "title": "Ch. 8.5",
       "unlockDate": null,
       "isLocked": false,
-      "views": 4
+      "views": 25
     },
     {
       "chapter_number": 8.4,
@@ -132,7 +132,7 @@
       "title": "Ch. 8.4",
       "unlockDate": "2026-09-19T17:00:00.000Z",
       "isLocked": true,
-      "views": 18
+      "views": 22
     },
     {
       "chapter_number": 8.3,
@@ -154,8 +154,8 @@
       "r2_prefix": "manga/Osananajimi/8.3/",
       "title": "Ch. 8.3",
       "unlockDate": "2026-09-12T17:00:00.000Z",
-      "isLocked": true,
-      "views": 22
+      "isLocked": false,
+      "views": 24
     },
     {
       "chapter_number": 8.2,
@@ -178,7 +178,7 @@
       "title": "Ch. 8.2",
       "unlockDate": "2026-09-06T17:00:00.000Z",
       "isLocked": false,
-      "views": 54
+      "views": 59
     },
     {
       "chapter_number": 8.1,
@@ -202,7 +202,7 @@
       "title": "Ch. 8.1",
       "unlockDate": "2026-08-30T17:00:00.000Z",
       "isLocked": false,
-      "views": 73
+      "views": 75
     },
     {
       "chapter_number": 7.3,
@@ -231,7 +231,7 @@
       "title": "Ch. 7.3",
       "unlockDate": "2026-08-22T17:00:00.000Z",
       "isLocked": false,
-      "views": 77
+      "views": 78
     },
     {
       "chapter_number": 7.2,
@@ -255,7 +255,7 @@
       "title": "Ch. 7.2",
       "unlockDate": "2026-08-15T01:00:00.000Z",
       "isLocked": false,
-      "views": 81
+      "views": 82
     },
     {
       "chapter_number": 7.1,
@@ -314,13 +314,27 @@
       "lock_hours": 48,
       "pages": 12,
       "release_date": "2026-06-25T17:49:58+07:00",
+      "page_ratios": [
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        null,
+        null,
+        null,
+        null
+      ],
       "r2_folder": 6.1,
       "id": "Osananajimi-ch-6.1",
       "r2_prefix": "manga/Osananajimi/6.1/",
       "title": "Ch. 6.1",
       "unlockDate": "2026-06-27T10:49:58.000Z",
       "isLocked": false,
-      "views": 68
+      "views": 69
     },
     {
       "chapter_number": 5.3,
@@ -353,78 +367,170 @@
       "lock_hours": 0,
       "pages": 10,
       "release_date": "2026-06-18T21:51:40+07:00",
+      "page_ratios": [
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498
+      ],
       "r2_folder": 5.1,
       "id": "Osananajimi-ch-5.1",
       "r2_prefix": "manga/Osananajimi/5.1/",
       "title": "Ch. 5.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 44
+      "views": 45
     },
     {
       "chapter_number": 4.3,
       "lock_hours": 0,
       "pages": 9,
       "release_date": "2026-06-18T20:37:12+07:00",
+      "page_ratios": [
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498
+      ],
       "r2_folder": 4.3,
       "id": "Osananajimi-ch-4.3",
       "r2_prefix": "manga/Osananajimi/4.3/",
       "title": "Ch. 4.3",
       "unlockDate": null,
       "isLocked": false,
-      "views": 35
+      "views": 36
     },
     {
       "chapter_number": 4.2,
       "lock_hours": 0,
       "pages": 9,
       "release_date": "2026-06-18T20:37:12+07:00",
+      "page_ratios": [
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498
+      ],
       "r2_folder": 4.2,
       "id": "Osananajimi-ch-4.2",
       "r2_prefix": "manga/Osananajimi/4.2/",
       "title": "Ch. 4.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 37
+      "views": 38
     },
     {
       "chapter_number": 4.1,
       "lock_hours": 0,
       "pages": 10,
       "release_date": "2026-06-14T15:10:34+07:00",
+      "page_ratios": [
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498
+      ],
       "r2_folder": 4.1,
       "id": "Osananajimi-ch-4.1",
       "r2_prefix": "manga/Osananajimi/4.1/",
       "title": "Ch. 4.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 40
+      "views": 41
     },
     {
       "chapter_number": 3.2,
       "lock_hours": 0,
       "pages": 20,
       "release_date": "2026-06-14T15:10:34+07:00",
+      "page_ratios": [
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498
+      ],
       "r2_folder": 3.2,
       "id": "Osananajimi-ch-3.2",
       "r2_prefix": "manga/Osananajimi/3.2/",
       "title": "Ch. 3.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 37
+      "views": 38
     },
     {
       "chapter_number": 3.1,
       "lock_hours": 0,
       "pages": 22,
       "release_date": "2026-06-14T15:10:34+07:00",
+      "page_ratios": [
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        null,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        0.709592641261498,
+        null
+      ],
       "r2_folder": 3.1,
       "id": "Osananajimi-ch-3.1",
       "r2_prefix": "manga/Osananajimi/3.1/",
       "title": "Ch. 3.1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 38
+      "views": 39
     },
     {
       "chapter_number": 2,
@@ -479,7 +585,7 @@
       "title": "Ch. 2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 47
+      "views": 48
     },
     {
       "chapter_number": 1,
@@ -544,7 +650,7 @@
       "title": "Ch. 1",
       "unlockDate": null,
       "isLocked": false,
-      "views": 52
+      "views": 53
     }
   ]
 }

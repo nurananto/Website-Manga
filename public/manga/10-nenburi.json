@@ -53,11 +53,11 @@
     "21.2": 24,
     "22.1": 22,
     "22.2": 17,
-    "23.1": 14,
+    "23.1": 17,
     "23.2": 8,
-    "24.1": 5
+    "24.1": 6
   },
-  "total_views": 486,
+  "total_views": 494,
   "mangadex_cover": "b35a81f1-40b2-4a0b-9151-64d2dd5867c5.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -92,7 +92,7 @@
       }
     }
   ],
-  "detail_views": 141,
+  "detail_views": 145,
   "cover_version": 4,
   "notif_image": "page1",
   "cover_source": "mangadex",
@@ -130,7 +130,7 @@
       "title": "Ch. 24.1",
       "unlockDate": "2026-10-10T17:00:00.000Z",
       "isLocked": true,
-      "views": 5
+      "views": 6
     },
     {
       "chapter_number": 23.2,
@@ -180,7 +180,7 @@
       "title": "Ch. 23.1",
       "unlockDate": "2026-09-06T17:00:00.000Z",
       "isLocked": false,
-      "views": 14
+      "views": 17
     },
     {
       "chapter_number": 22.2,

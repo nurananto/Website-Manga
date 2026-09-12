@@ -40,10 +40,10 @@
     "6.2": 56,
     "7.1": 66,
     "7.2": 55,
-    "8.1": 13,
+    "8.1": 14,
     "8.2": 22
   },
-  "total_views": 731,
+  "total_views": 736,
   "mangadex_cover": "6b50c641-b583-4a60-a31e-82980f55b08c.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -59,11 +59,11 @@
     }
   ],
   "cover_version": 6,
-  "detail_views": 269,
+  "detail_views": 273,
   "notif_image": "page1",
   "cover_source": "mangadex",
   "mangadex_id": "00fccb9d-c43b-4083-b68d-693f5501ea78",
-  "rating": 8.09,
+  "rating": 8.07,
   "next_update": null,
   "coverUrl": "https://cdn.nuranantoscans.my.id/manga/ZunouBattle/covers/cover.webp?v=6",
   "coverUrls": {
@@ -97,7 +97,7 @@
       "title": "Ch. 8.1",
       "unlockDate": "2026-09-18T17:00:00.000Z",
       "isLocked": true,
-      "views": 13
+      "views": 14
     },
     {
       "chapter_number": 7.2,

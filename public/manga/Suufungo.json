@@ -45,9 +45,9 @@
     "17.1": 21,
     "17.2": 34,
     "18.1": 40,
-    "18.2": 27
+    "18.2": 28
   },
-  "total_views": 314,
+  "total_views": 316,
   "mangadex_cover": "b681b78e-75ce-4464-8089-50f37f00e0e9.jpg",
   "cover_widths": "1280x960x640x400q75",
   "cover_gallery": [
@@ -72,7 +72,7 @@
       }
     }
   ],
-  "detail_views": 79,
+  "detail_views": 80,
   "cover_version": 3,
   "notif_image": "page1",
   "cover_source": "mangadex",
@@ -117,7 +117,7 @@
       "title": "Ch. 18.2",
       "unlockDate": null,
       "isLocked": false,
-      "views": 27
+      "views": 28
     },
     {
       "chapter_number": 18.1,
