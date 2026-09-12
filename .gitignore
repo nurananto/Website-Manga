@@ -22,6 +22,9 @@ dist-ssr
 # Worker source (private — deploy via Cloudflare Dashboard)
 worker/
 
+# Cache lokal wrangler CLI (state D1/R2 lokal, log, dll — bukan sumber kebenaran)
+.wrangler/
+
 # Logs
 *.log
 npm-debug.log*
